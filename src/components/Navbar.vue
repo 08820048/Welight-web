@@ -17,9 +17,6 @@
             <a href="https://ilikexff.cn" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
               文档
             </a>
-            <a href="/download" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
-              下载
-            </a>
           </div>
         </div>
       </div>
