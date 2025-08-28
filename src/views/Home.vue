@@ -98,38 +98,59 @@
             </div>
           </div>
 
-          <!-- Right image -->
+          <!-- Right screenshots - Staggered layout -->
           <div class="order-1 lg:order-2 lg:col-span-3 flex items-center justify-center relative">
             <!-- Background glow effect -->
             <div class="absolute inset-0 bg-gradient-to-br from-primary-200/20 via-blue-200/10 to-purple-200/20 rounded-3xl blur-3xl"></div>
 
-            <!-- Main screenshot container -->
-            <div class="relative w-full max-w-4xl">
-              <div class="relative transform rotate-3 hover:rotate-1 transition-all duration-700 group perspective-1000">
-                <!-- Screenshot with enhanced styling -->
-                <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-                  <!-- Subtle inner glow -->
-                  <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
+            <!-- Staggered screenshots container -->
+            <div class="relative w-full max-w-5xl">
+              <div class="relative flex gap-4 lg:gap-6">
 
-                  <!-- Main image -->
-                  <div class="relative overflow-hidden rounded-2xl">
-                    <img
-                      src="https://images.waer.ltd/notes/202508281312565.png"
-                      alt="Welight 编辑器界面"
-                      class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
-                      loading="lazy"
-                    />
+                <!-- Left screenshot (Editor) - Higher position -->
+                <div class="flex-1 relative z-20">
+                  <div class="relative transform rotate-2 hover:rotate-0 transition-all duration-700 group perspective-1000">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
+                      <div class="relative overflow-hidden rounded-2xl">
+                        <img
+                          src="https://images.waer.ltd/notes/202508281312565.png"
+                          alt="Welight 编辑器界面"
+                          class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="absolute -inset-4 bg-gradient-to-br from-primary-500/10 to-purple-500/10 rounded-3xl blur-xl -z-10"></div>
+                    </div>
+                    <!-- Floating accent for left -->
+                    <div class="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-primary-400/30 to-blue-400/30 rounded-full blur-xl animate-pulse"></div>
                   </div>
-
-                  <!-- Enhanced shadow layers -->
-                  <div class="absolute -inset-4 bg-gradient-to-br from-primary-500/10 to-purple-500/10 rounded-3xl blur-xl -z-10"></div>
-                  <div class="absolute -inset-8 bg-gradient-to-br from-blue-500/5 to-indigo-500/5 rounded-3xl blur-2xl -z-20"></div>
                 </div>
 
-                <!-- Floating accent elements -->
-                <div class="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-primary-400/30 to-blue-400/30 rounded-full blur-xl animate-pulse"></div>
-                <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
+                <!-- Right screenshot (Themes) - Lower position -->
+                <div class="flex-1 relative z-10 mt-16 lg:mt-20">
+                  <div class="relative transform -rotate-2 hover:rotate-0 transition-all duration-700 group perspective-1000">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
+                      <div class="relative overflow-hidden rounded-2xl">
+                        <img
+                          src="https://images.waer.ltd/notes/202508281311929.png"
+                          alt="Welight 主题预览"
+                          class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div class="absolute -inset-4 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl blur-xl -z-10"></div>
+                    </div>
+                    <!-- Floating accent for right -->
+                    <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
+                  </div>
+                </div>
+
               </div>
+
+              <!-- Overall ambient glow -->
+              <div class="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-indigo-400/10 rounded-full blur-3xl animate-pulse delay-500"></div>
             </div>
           </div>
         </div>

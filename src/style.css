@@ -123,19 +123,29 @@
   animation: enhanced-bounce 1.5s ease-in-out infinite;
 }
 
-/* Premium single hero screenshot effects */
+/* Premium staggered screenshots effects */
 @layer components {
   .perspective-1000 {
     perspective: 1000px;
   }
 
-  .hero-screenshot {
+  .staggered-screenshot {
     transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
   }
 
-  .hero-screenshot:hover {
-    transform: rotateY(-5deg) rotateX(5deg) scale(1.02);
+  .staggered-screenshot:hover {
+    transform: rotateY(-3deg) rotateX(2deg) scale(1.02);
+  }
+
+  /* Enhanced interaction for staggered layout */
+  .staggered-left:hover ~ .staggered-right {
+    transform: translateY(8px) rotate(-3deg) scale(0.98);
+    filter: brightness(0.95);
+  }
+
+  .staggered-right:hover {
+    transform: translateY(-8px) rotate(1deg) scale(1.02);
   }
 
   /* Enhanced hero screenshot styling */
