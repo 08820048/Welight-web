@@ -6,9 +6,9 @@
       <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50"></div>
 
       <div class="relative container-custom h-full">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[calc(100vh-5rem)]">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center min-h-[calc(100vh-5rem)]">
           <!-- Left content -->
-          <div class="order-2 lg:order-1">
+          <div class="order-2 lg:order-1 lg:col-span-2">
             <!-- Main heading -->
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
               <span class="block">智能高效的</span>
@@ -99,15 +99,15 @@
           </div>
 
           <!-- Right image -->
-          <div class="order-1 lg:order-2 flex items-center justify-center">
-            <div class="relative w-full max-w-6xl">
+          <div class="order-1 lg:order-2 lg:col-span-3 flex items-center justify-center">
+            <div class="relative w-full max-w-7xl">
               <!-- Premium side-by-side screenshots -->
               <div class="relative w-full">
                 <!-- Ambient background glow -->
                 <div class="absolute inset-0 bg-gradient-to-br from-primary-100/30 via-transparent to-purple-100/20 rounded-3xl blur-3xl transform scale-110"></div>
 
                 <!-- Screenshots container -->
-                <div class="flex gap-4 lg:gap-6 relative">
+                <div class="flex gap-2 lg:gap-4 relative">
                   <!-- Left screenshot (Editor) -->
                   <div class="screenshot-left flex-1 relative z-10">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white border border-gray-200/50 transform -rotate-1 hover:rotate-0 transition-all duration-700 group">
@@ -115,7 +115,7 @@
                         <img
                           src="https://images.waer.ltd/notes/202508281312565.png"
                           alt="Welight 编辑器界面"
-                          class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700"
+                          class="w-full h-auto group-hover:scale-105 transition-transform duration-700"
                           loading="lazy"
                         />
                       </div>
@@ -129,7 +129,7 @@
                         <img
                           src="https://images.waer.ltd/notes/202508281311929.png"
                           alt="Welight 主题预览"
-                          class="w-full h-auto object-contain group-hover:scale-105 transition-transform duration-700"
+                          class="w-full h-auto group-hover:scale-105 transition-transform duration-700"
                           loading="lazy"
                         />
                       </div>
