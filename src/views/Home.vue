@@ -103,12 +103,12 @@
             <!-- Background glow effect -->
             <div class="absolute inset-0 bg-gradient-to-br from-primary-200/20 via-blue-200/10 to-purple-200/20 rounded-3xl blur-3xl"></div>
 
-            <!-- Staggered screenshots container -->
+            <!-- Overlapping screenshots container -->
             <div class="relative w-full max-w-5xl">
-              <div class="relative flex gap-4 lg:gap-6">
+              <div class="relative h-[600px] lg:h-[700px]">
 
-                <!-- Left screenshot (Editor) - Higher position -->
-                <div class="flex-1 relative z-20">
+                <!-- Left screenshot (Editor) - Higher position, overlapping -->
+                <div class="absolute top-0 left-0 w-[55%] z-20">
                   <div class="relative transform rotate-2 hover:rotate-0 transition-all duration-700 group perspective-1000">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
                       <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
@@ -127,8 +127,8 @@
                   </div>
                 </div>
 
-                <!-- Right screenshot (Themes) - Lower position -->
-                <div class="flex-1 relative z-10 mt-16 lg:mt-20">
+                <!-- Right screenshot (Themes) - Lower position, overlapping behind -->
+                <div class="absolute top-16 lg:top-20 right-0 w-[55%] z-10">
                   <div class="relative transform -rotate-2 hover:rotate-0 transition-all duration-700 group perspective-1000">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
                       <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
