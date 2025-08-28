@@ -9,12 +9,12 @@
             <!-- Main heading -->
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight animate-fade-in-up delay-100">
               <span class="block animate-fade-in-left delay-200">智能高效的</span>
-              <span class="block gradient-text animate-fade-in-left delay-300">文档编辑体验</span>
+              <span class="block gradient-text animate-fade-in-left delay-300">公众号推文编辑排版美化体验</span>
             </h1>
 
             <!-- Description -->
             <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed animate-fade-in-up delay-400">
-              Welight 是一款类似 Typora 的文档编辑器，拥有更优的性能、智能 AI 辅助和 Git 集成。
+              Welight 是一款专业为微信公众号创作者打造的一款拥有更优性能、智能、快捷轻量的免费排版工具，排版与编辑，亦可兼得。
             </p>
 
             <!-- CTA buttons -->
@@ -140,10 +140,10 @@
         <!-- Section header -->
         <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
           <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 scroll-animate" style="transition-delay: 0.2s;">
-            所见即所得
+            快捷高效的编辑体验
           </h2>
           <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto scroll-animate" style="transition-delay: 0.3s;">
-            轻松创建结构化文档，所见即所得，不需要记忆复杂的 Markdown 语法
+            快捷 Markdown 语法提示与TXT文本转换支持。轻松创建结构化文档，所见即所得，不需要记忆复杂的 Markdown 语法。
           </p>
         </div>
 
@@ -191,7 +191,7 @@
                 直观的编辑体验
               </h3>
               <p class="text-lg text-gray-600 leading-relaxed">
-                Zditor 将传统的 Notion 的即时编辑体验，让您专注于内容创作，而不是复杂的格式与语法。
+                Welight将 Notion 的快捷辅助与经典的分屏编辑预览模式相结合,大幅提升编辑效率，让您专注内容创作，无视复杂的语法困扰。
               </p>
             </div>
 
@@ -204,9 +204,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a1 1 0 01-1-1V9a1 1 0 011-1h1a2 2 0 100-4H4a1 1 0 01-1-1V4a1 1 0 011-1h3a1 1 0 001-1z"></path>
                   </svg>
                 </div>
-                <h4 class="text-lg font-semibold text-gray-900 mb-2">智能工具栏</h4>
+                <h4 class="text-lg font-semibold text-gray-900 mb-2">划词工具栏</h4>
                 <p class="text-gray-600 text-sm">
-                  选中文本即可显示格式化工具栏，快速应用格式。
+                  选中文本即可显示划词工具栏，快速应用格式、预设的 AI 快捷功能。
                 </p>
               </div>
 
@@ -219,7 +219,7 @@
                 </div>
                 <h4 class="text-lg font-semibold text-gray-900 mb-2">Slash 命令菜单</h4>
                 <p class="text-gray-600 text-sm">
-                  输入斜杠即可打开命令菜单，快速插入各种内容块。
+                  输入斜杠即可打开命令菜单，快速插入语法、操作功能。
                 </p>
               </div>
 
@@ -230,9 +230,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                   </svg>
                 </div>
-                <h4 class="text-lg font-semibold text-gray-900 mb-2">表情包工具栏</h4>
+                <h4 class="text-lg font-semibold text-gray-900 mb-2">快捷插入支持</h4>
                 <p class="text-gray-600 text-sm">
-                  快速插入表情符号，输入冒号即可打开表情选择器。
+                  图片粘贴即可自动上传与显示，文章配图信手拈来。
                 </p>
               </div>
 
@@ -243,9 +243,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                   </svg>
                 </div>
-                <h4 class="text-lg font-semibold text-gray-900 mb-2">快速插入支持</h4>
+                <h4 class="text-lg font-semibold text-gray-900 mb-2">智能图表转换</h4>
                 <p class="text-gray-600 text-sm">
-                  支持表格、代码块、图片、引用等多种内容类型的快速插入。
+                  采用ChartJs图表渲染集成，图表格式自动转码，数据转表弹指可得。
                 </p>
               </div>
             </div>
@@ -253,7 +253,7 @@
             <!-- Bottom description -->
             <div class="pt-6 scroll-animate" style="transition-delay: 1.0s;">
               <p class="text-gray-600 leading-relaxed">
-                Zditor 将直观的内容创作与强大的功能完美结合，让每个人都能轻松创建结构化的优美文档。
+                Welight 将直观的内容创作与强大的功能完美结合，让每个创作者都能轻松创建结构化的优美排版效果。
               </p>
             </div>
           </div>
