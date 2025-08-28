@@ -267,25 +267,21 @@
   }
 }
 
-/* Animation classes */
+/* Animation classes - 初始状态隐藏，等待滚动触发 */
 .animate-fade-in-up {
   opacity: 0;
-  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .animate-fade-in-left {
   opacity: 0;
-  animation: fadeInLeft 0.8s ease-out forwards;
 }
 
 .animate-fade-in-right {
   opacity: 0;
-  animation: fadeInRight 0.8s ease-out forwards;
 }
 
 .animate-scale-in {
   opacity: 0;
-  animation: scaleIn 0.8s ease-out forwards;
 }
 
 /* Staggered animation delays */
@@ -297,5 +293,88 @@
 .delay-600 { animation-delay: 0.6s; }
 .delay-700 { animation-delay: 0.7s; }
 .delay-800 { animation-delay: 0.8s; }
+
+/* 确保section之间无缝连接 */
+section {
+  margin: 0;
+  border: none;
+}
+
+/* 移除任何可能的默认间距 */
+* {
+  box-sizing: border-box;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* Scroll-triggered animations */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.scroll-animate.animate-in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.scroll-animate.fade-left {
+  transform: translateX(-30px);
+}
+
+.scroll-animate.fade-left.animate-in-view {
+  transform: translateX(0);
+}
+
+.scroll-animate.fade-right {
+  transform: translateX(30px);
+}
+
+.scroll-animate.fade-right.animate-in-view {
+  transform: translateX(0);
+}
+
+.scroll-animate.scale-up {
+  transform: scale(0.9);
+}
+
+.scroll-animate.scale-up.animate-in-view {
+  transform: scale(1);
+}
+
+/* 首页元素的重复动画支持 */
+.scroll-animate-first {
+  transition: all 0.8s ease-out;
+}
+
+.scroll-animate-first:not(.animate-in-view) {
+  opacity: 0;
+  animation: none !important;
+}
+
+.scroll-animate-first.animate-in-view {
+  opacity: 1;
+}
+
+/* 重新定义首页动画，使其可重复触发 */
+.scroll-animate-first.animate-fade-in-up.animate-in-view {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.scroll-animate-first.animate-fade-in-left.animate-in-view {
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.scroll-animate-first.animate-fade-in-right.animate-in-view {
+  animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.scroll-animate-first.animate-scale-in.animate-in-view {
+  animation: scaleIn 0.8s ease-out forwards;
+}
 
 

@@ -1,10 +1,7 @@
 <template>
-  <div class="min-h-screen">
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
     <!-- Hero Section -->
     <section class="relative min-h-screen pt-20 overflow-hidden">
-      <!-- Background gradient -->
-      <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-purple-50"></div>
-
       <div class="relative container-custom h-full">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center min-h-[calc(100vh-5rem)]">
           <!-- Left content -->
@@ -137,15 +134,129 @@
     </section>
 
     <!-- Additional info section -->
-    <section class="py-16 bg-gray-50">
-      <div class="container-custom text-center">
-        <p class="text-gray-600 mb-4">
-          声明：Zditor 是开源项目，欢迎在 GitHub 上查看源代码。
-        </p>
-        <div class="flex justify-center space-x-6">
-          <a href="https://waer.ltd" class="text-primary-600 hover:text-primary-700 font-medium">
-            所有版本 →
-          </a>
+    <!-- Features Section -->
+    <section class="relative min-h-screen py-20 overflow-hidden">
+      <div class="relative container-custom">
+        <!-- Section header -->
+        <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 scroll-animate" style="transition-delay: 0.2s;">
+            所见即所得
+          </h2>
+          <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto scroll-animate" style="transition-delay: 0.3s;">
+            轻松创建结构化文档，所见即所得，不需要记忆复杂的 Markdown 语法
+          </p>
+        </div>
+
+        <!-- Main content grid -->
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <!-- Left side - Screenshot -->
+          <div class="order-2 lg:order-1 scroll-animate fade-left" style="transition-delay: 0.4s;">
+            <div class="relative">
+              <!-- Background glow -->
+              <div class="absolute inset-0 bg-gradient-to-br from-primary-200/20 via-blue-200/10 to-purple-200/20 rounded-3xl blur-3xl"></div>
+
+              <!-- Screenshot container -->
+              <div class="relative transform hover:scale-105 transition-all duration-700 group">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+                  <!-- Inner glow -->
+                  <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
+
+                  <!-- Main screenshot -->
+                  <div class="relative overflow-hidden rounded-2xl">
+                    <img
+                      src="https://images.waer.ltd/notes/202508281313370.png"
+                      alt="Welight 核心特性展示"
+                      class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <!-- Enhanced shadows -->
+                  <div class="absolute -inset-4 bg-gradient-to-br from-primary-500/10 to-blue-500/10 rounded-3xl blur-xl -z-10"></div>
+                  <div class="absolute -inset-8 bg-gradient-to-br from-primary-500/5 to-purple-500/5 rounded-3xl blur-2xl -z-20"></div>
+                </div>
+
+                <!-- Floating accents -->
+                <div class="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-primary-400/30 to-blue-400/30 rounded-full blur-xl animate-pulse"></div>
+                <div class="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side - Features -->
+          <div class="order-1 lg:order-2 space-y-8">
+            <!-- Main feature title -->
+            <div class="scroll-animate fade-right" style="transition-delay: 0.5s;">
+              <h3 class="text-2xl md:text-3xl font-bold text-primary-600 mb-4">
+                直观的编辑体验
+              </h3>
+              <p class="text-lg text-gray-600 leading-relaxed">
+                Zditor 将传统的 Notion 的即时编辑体验，让您专注于内容创作，而不是复杂的格式与语法。
+              </p>
+            </div>
+
+            <!-- Feature grid -->
+            <div class="grid md:grid-cols-2 gap-6">
+              <!-- Feature 1 -->
+              <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-primary-300/50 transition-all duration-300 hover:shadow-lg scroll-animate scale-up" style="transition-delay: 0.6s;">
+                <div class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center mb-4">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a1 1 0 01-1-1V9a1 1 0 011-1h1a2 2 0 100-4H4a1 1 0 01-1-1V4a1 1 0 011-1h3a1 1 0 001-1z"></path>
+                  </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-gray-900 mb-2">智能工具栏</h4>
+                <p class="text-gray-600 text-sm">
+                  选中文本即可显示格式化工具栏，快速应用格式。
+                </p>
+              </div>
+
+              <!-- Feature 2 -->
+              <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-blue-300/50 transition-all duration-300 hover:shadow-lg scroll-animate scale-up" style="transition-delay: 0.7s;">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-4">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+                  </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-gray-900 mb-2">Slash 命令菜单</h4>
+                <p class="text-gray-600 text-sm">
+                  输入斜杠即可打开命令菜单，快速插入各种内容块。
+                </p>
+              </div>
+
+              <!-- Feature 3 -->
+              <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-purple-300/50 transition-all duration-300 hover:shadow-lg scroll-animate scale-up" style="transition-delay: 0.8s;">
+                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                  </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-gray-900 mb-2">表情包工具栏</h4>
+                <p class="text-gray-600 text-sm">
+                  快速插入表情符号，输入冒号即可打开表情选择器。
+                </p>
+              </div>
+
+              <!-- Feature 4 -->
+              <div class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-indigo-300/50 transition-all duration-300 hover:shadow-lg scroll-animate scale-up" style="transition-delay: 0.9s;">
+                <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center mb-4">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                  </svg>
+                </div>
+                <h4 class="text-lg font-semibold text-gray-900 mb-2">快速插入支持</h4>
+                <p class="text-gray-600 text-sm">
+                  支持表格、代码块、图片、引用等多种内容类型的快速插入。
+                </p>
+              </div>
+            </div>
+
+            <!-- Bottom description -->
+            <div class="pt-6 scroll-animate" style="transition-delay: 1.0s;">
+              <p class="text-gray-600 leading-relaxed">
+                Zditor 将直观的内容创作与强大的功能完美结合，让每个人都能轻松创建结构化的优美文档。
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -153,5 +264,46 @@
 </template>
 
 <script setup>
-// Welight 首页
+import { onMounted, onUnmounted } from 'vue'
+
+// 滚动触发动画
+let observer = null
+
+onMounted(() => {
+  // 创建 Intersection Observer 来监听元素进入视口
+  observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // 当元素进入视口时，添加动画类
+        entry.target.classList.add('animate-in-view')
+      } else {
+        // 当元素离开视口时，移除动画类，以便下次进入时重新触发
+        entry.target.classList.remove('animate-in-view')
+      }
+    })
+  }, {
+    threshold: 0.3, // 当元素30%可见时触发
+    rootMargin: '0px 0px -100px 0px' // 提前100px触发
+  })
+
+  // 观察所有需要动画的元素
+  const animatedElements = document.querySelectorAll('.scroll-animate')
+  animatedElements.forEach((el) => {
+    observer.observe(el)
+  })
+
+  // 为首页元素也添加滚动监听
+  const firstPageElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-scale-in')
+  firstPageElements.forEach((el) => {
+    // 给首页元素添加scroll-animate类
+    el.classList.add('scroll-animate-first')
+    observer.observe(el)
+  })
+})
+
+onUnmounted(() => {
+  if (observer) {
+    observer.disconnect()
+  }
+})
 </script>
