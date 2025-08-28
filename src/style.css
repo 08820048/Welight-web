@@ -123,50 +123,36 @@
   animation: enhanced-bounce 1.5s ease-in-out infinite;
 }
 
-/* Premium screenshot side-by-side effects */
+/* Premium single hero screenshot effects */
 @layer components {
-  .screenshot-left {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .hero-screenshot {
     transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
   }
 
-  .screenshot-right {
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  .hero-screenshot:hover {
+    transform: rotateY(-5deg) rotateX(5deg) scale(1.02);
   }
 
-  .screenshot-left:hover {
-    transform: translateY(-8px) scale(1.02) rotate(0deg);
-    z-index: 30;
-  }
-
-  .screenshot-right:hover {
-    transform: translateY(-12px) scale(1.02) rotate(0deg);
-    z-index: 30;
-  }
-
-  /* Premium shadow effects for side-by-side layout */
-  .screenshot-left > div {
+  /* Enhanced hero screenshot styling */
+  .hero-screenshot-container {
     box-shadow:
-      0 25px 50px -12px rgba(0, 0, 0, 0.15),
-      0 40px 80px -20px rgba(0, 0, 0, 0.1),
+      0 40px 80px -20px rgba(0, 0, 0, 0.2),
+      0 60px 120px -30px rgba(0, 0, 0, 0.15),
       0 0 0 1px rgba(255, 255, 255, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
-  .screenshot-right > div {
+  .hero-screenshot-container:hover {
     box-shadow:
-      0 35px 70px -15px rgba(0, 0, 0, 0.2),
-      0 50px 100px -25px rgba(0, 0, 0, 0.15),
+      0 60px 120px -25px rgba(0, 0, 0, 0.25),
+      0 80px 160px -35px rgba(0, 0, 0, 0.2),
       0 0 0 1px rgba(255, 255, 255, 0.15),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  }
-
-  .screenshot-left:hover > div,
-  .screenshot-right:hover > div {
-    box-shadow:
-      0 50px 100px -20px rgba(0, 0, 0, 0.25),
-      0 70px 140px -30px rgba(0, 0, 0, 0.2),
-      0 0 0 1px rgba(255, 255, 255, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
   /* Enhanced glass morphism effect for side-by-side */
