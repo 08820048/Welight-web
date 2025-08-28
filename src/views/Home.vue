@@ -960,6 +960,129 @@
         </div>
       </div>
     </section>
+
+    <!-- Performance Section -->
+    <section class="relative min-h-screen py-20 overflow-hidden">
+      <div class="relative container-custom">
+        <!-- Section header -->
+        <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 scroll-animate" style="transition-delay: 0.2s;">
+            性能在线，对标行业标杆
+          </h2>
+          <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto scroll-animate" style="transition-delay: 0.3s;">
+            极致优化的性能表现，快速响应每一次操作，让你的创作体验更加流畅
+          </p>
+        </div>
+
+        <!-- Main content grid -->
+        <div class="grid lg:grid-cols-2 gap-16 items-start max-w-6xl mx-auto">
+          <!-- Left side - Performance Comparison -->
+          <div class="scroll-animate fade-right" style="transition-delay: 0.4s;">
+            <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50">
+              <div class="flex items-center mb-6">
+                <div class="w-8 h-8 bg-primary-100 rounded-lg flex items-center justify-center mr-3">
+                  <svg class="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-primary-600">性能对比</h3>
+                <span class="ml-auto text-sm text-gray-500">Welight vs Typora</span>
+              </div>
+
+              <!-- File Loading Speed Comparison -->
+              <div class="mb-8">
+                <div class="flex items-center mb-4">
+                  <svg class="w-5 h-5 text-orange-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                  </svg>
+                  <span class="font-medium text-gray-900">文件加载速度 (150万字符)</span>
+                </div>
+
+                <!-- Typora -->
+                <div class="mb-3">
+                  <div class="flex items-center justify-between mb-1">
+                    <div class="flex items-center">
+                      <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                      <span class="text-sm text-gray-700">Typora</span>
+                    </div>
+                    <span class="text-sm font-medium text-gray-900">2.80s</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-red-500 h-2 rounded-full" style="width: 100%"></div>
+                  </div>
+                </div>
+
+                <!-- Zditor -->
+                <div>
+                  <div class="flex items-center justify-between mb-1">
+                    <div class="flex items-center">
+                      <div class="w-3 h-3 bg-primary-500 rounded-full mr-2"></div>
+                      <span class="text-sm text-gray-700">Welight</span>
+                    </div>
+                    <span class="text-sm font-medium text-primary-600">2.48s</span>
+                  </div>
+                  <div class="w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-primary-500 h-2 rounded-full" style="width: 27%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side - File Saving Mechanism -->
+          <div class="scroll-animate fade-left" style="transition-delay: 0.5s;">
+            <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50">
+              <div class="flex items-center mb-6">
+                <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mr-3">
+                  <svg class="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-green-600">文件保存机制</h3>
+              </div>
+
+              <!-- Typora Saving -->
+              <div class="mb-6">
+                <div class="flex items-start mb-3">
+                  <div class="w-6 h-6 bg-red-100 rounded-lg flex items-center justify-center mr-3 mt-0.5">
+                    <svg class="w-4 h-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900 mb-1">Typora 保存机制</h4>
+                    <p class="text-sm text-gray-600">标签切换时保存，大文件操作可能导致卡死</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Zditor Saving -->
+              <div>
+                <div class="flex items-start mb-3">
+                  <div class="w-6 h-6 bg-orange-100 rounded-lg flex items-center justify-center mr-3 mt-0.5">
+                    <svg class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-900 mb-1">Welight 保存机制</h4>
+                    <p class="text-sm text-gray-600">实时自动保存，Rust实现的逻辑，高性能低内存占用</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Performance explanation -->
+        <div class="text-center mt-12 scroll-animate" style="transition-delay: 0.6s;">
+          <p class="text-gray-600 max-w-3xl mx-auto">
+            150万字符约等于75万汉字，相当于《红楼梦》这样的长篇小说或300页A4文档。
+            尽管Welight是作为一款公众号推文排版应用出现，但他的性能足以媲美主流同类型编辑器，作为日常公众号文章创作来说，游刃有余。
+          </p>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
