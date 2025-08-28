@@ -99,43 +99,56 @@
           </div>
 
           <!-- Right image -->
-          <div class="order-1 lg:order-2">
-            <div class="relative">
-              <!-- Stacked screenshots with paper effect -->
-              <div class="relative w-full max-w-lg mx-auto">
+          <div class="order-1 lg:order-2 flex items-center justify-center">
+            <div class="relative w-full max-w-2xl">
+              <!-- Premium stacked screenshots with enhanced effects -->
+              <div class="relative w-full h-[600px] lg:h-[700px]">
+                <!-- Ambient background glow -->
+                <div class="absolute inset-0 bg-gradient-to-br from-primary-100/30 via-transparent to-purple-100/20 rounded-3xl blur-3xl transform scale-110"></div>
+
                 <!-- Background screenshot (bottom layer) -->
-                <div class="screenshot-stack-back absolute top-4 left-4 w-full">
-                  <div class="relative rounded-xl overflow-hidden shadow-xl bg-white border border-gray-200 transform rotate-2">
-                    <div class="bg-gray-100 px-4 py-3 flex items-center space-x-2">
-                      <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                <div class="screenshot-stack-back absolute top-8 left-8 w-[85%] h-[85%]">
+                  <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white border border-gray-200/50 transform rotate-3 h-full">
+                    <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 flex items-center space-x-3 border-b border-gray-200/50">
+                      <div class="w-3.5 h-3.5 bg-red-500 rounded-full shadow-sm"></div>
+                      <div class="w-3.5 h-3.5 bg-yellow-500 rounded-full shadow-sm"></div>
+                      <div class="w-3.5 h-3.5 bg-green-500 rounded-full shadow-sm"></div>
+                      <div class="ml-4 text-xs text-gray-500 font-medium">Welight Editor</div>
                     </div>
-                    <img
-                      src="https://images.waer.ltd/notes/202508281310040.png"
-                      alt="Welight 编辑器界面"
-                      class="w-full h-auto object-cover"
-                      loading="lazy"
-                    />
+                    <div class="h-full overflow-hidden">
+                      <img
+                        src="https://images.waer.ltd/notes/202508281312565.png"
+                        alt="Welight 编辑器界面"
+                        class="w-full h-full object-cover object-top"
+                        loading="lazy"
+                      />
+                    </div>
                   </div>
                 </div>
 
                 <!-- Foreground screenshot (top layer) -->
-                <div class="screenshot-stack-front relative z-10">
-                  <div class="relative rounded-xl overflow-hidden shadow-2xl bg-white border border-gray-200 transform -rotate-1 hover:rotate-0 transition-transform duration-500">
-                    <div class="bg-gray-100 px-4 py-3 flex items-center space-x-2">
-                      <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                      <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                      <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                <div class="screenshot-stack-front relative z-10 w-[90%] h-[90%] ml-auto">
+                  <div class="relative rounded-2xl overflow-hidden shadow-3xl bg-white border border-gray-200/50 transform -rotate-2 hover:rotate-0 transition-all duration-700 h-full group">
+                    <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 flex items-center space-x-3 border-b border-gray-200/50">
+                      <div class="w-3.5 h-3.5 bg-red-500 rounded-full shadow-sm"></div>
+                      <div class="w-3.5 h-3.5 bg-yellow-500 rounded-full shadow-sm"></div>
+                      <div class="w-3.5 h-3.5 bg-green-500 rounded-full shadow-sm"></div>
+                      <div class="ml-4 text-xs text-gray-500 font-medium">Welight Themes</div>
                     </div>
-                    <img
-                      src="https://images.waer.ltd/notes/202508281309773.png"
-                      alt="Welight 主题预览"
-                      class="w-full h-auto object-cover"
-                      loading="lazy"
-                    />
+                    <div class="h-full overflow-hidden">
+                      <img
+                        src="https://images.waer.ltd/notes/202508281311929.png"
+                        alt="Welight 主题预览"
+                        class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                        loading="lazy"
+                      />
+                    </div>
                   </div>
                 </div>
+
+                <!-- Floating elements for premium feel -->
+                <div class="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-primary-400/20 to-purple-400/20 rounded-full blur-xl animate-pulse"></div>
+                <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-primary-400/10 rounded-full blur-2xl"></div>
               </div>
             </div>
           </div>

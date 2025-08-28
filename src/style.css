@@ -123,50 +123,53 @@
   animation: enhanced-bounce 1.5s ease-in-out infinite;
 }
 
-/* Screenshot stacking effects */
+/* Premium screenshot stacking effects */
 @layer components {
   .screenshot-stack-back {
-    filter: brightness(0.95) contrast(0.9);
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: brightness(0.92) contrast(0.88) saturate(0.9);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .screenshot-stack-front {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .screenshot-stack-front:hover {
-    transform: translateY(-8px) scale(1.02);
-    z-index: 20;
+    transform: translateY(-12px) translateX(-8px) scale(1.03) rotate(0deg);
+    z-index: 30;
   }
 
   .screenshot-stack-front:hover ~ .screenshot-stack-back {
-    transform: translateY(8px) rotate(3deg) scale(0.98);
-    filter: brightness(0.9) contrast(0.85);
+    transform: translateY(16px) translateX(12px) rotate(4deg) scale(0.96);
+    filter: brightness(0.85) contrast(0.8) saturate(0.8);
   }
 
-  /* Enhanced shadow effects for stacked images */
+  /* Premium shadow effects */
   .screenshot-stack-back .relative {
     box-shadow:
-      0 10px 25px -5px rgba(0, 0, 0, 0.1),
-      0 20px 40px -10px rgba(0, 0, 0, 0.1),
-      0 0 0 1px rgba(255, 255, 255, 0.05);
+      0 25px 50px -12px rgba(0, 0, 0, 0.15),
+      0 40px 80px -20px rgba(0, 0, 0, 0.1),
+      0 0 0 1px rgba(255, 255, 255, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
   .screenshot-stack-front .relative {
     box-shadow:
-      0 20px 40px -10px rgba(0, 0, 0, 0.15),
-      0 30px 60px -15px rgba(0, 0, 0, 0.1),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
+      0 35px 70px -15px rgba(0, 0, 0, 0.2),
+      0 50px 100px -25px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
   .screenshot-stack-front:hover .relative {
     box-shadow:
-      0 30px 60px -10px rgba(0, 0, 0, 0.2),
-      0 40px 80px -20px rgba(0, 0, 0, 0.15),
-      0 0 0 1px rgba(255, 255, 255, 0.1);
+      0 50px 100px -20px rgba(0, 0, 0, 0.25),
+      0 70px 140px -30px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
-  /* Paper texture effect */
+  /* Enhanced glass morphism effect */
   .screenshot-stack-back::before,
   .screenshot-stack-front::before {
     content: '';
@@ -176,12 +179,20 @@
     right: 0;
     bottom: 0;
     background:
-      radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.03) 0%, transparent 50%);
-    border-radius: 0.75rem;
+      linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 30% 20%, rgba(7, 193, 96, 0.05) 0%, transparent 50%),
+      radial-gradient(circle at 70% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+    border-radius: 1rem;
     pointer-events: none;
     z-index: 1;
+  }
+
+  /* Custom shadow utility */
+  .shadow-3xl {
+    box-shadow:
+      0 35px 70px -15px rgba(0, 0, 0, 0.2),
+      0 50px 100px -25px rgba(0, 0, 0, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.15);
   }
 }
 
