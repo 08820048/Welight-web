@@ -3,12 +3,12 @@
     <div class="container-custom">
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
-        <div class="flex items-center group">
-          <span class="text-xl font-bold relative logo-gradient-text">
+        <router-link to="/" class="flex items-center group hover:opacity-80 transition-opacity duration-200">
+          <span class="text-xl font-bold relative logo-gradient-text cursor-pointer">
             Welight
           </span>
           <sup class="text-xs text-gray-500 ml-1 font-normal">v2.0.0</sup>
-        </div>
+        </router-link>
 
         <!-- Right side buttons -->
         <div class="flex items-center space-x-4">
