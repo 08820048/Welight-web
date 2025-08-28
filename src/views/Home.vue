@@ -433,20 +433,274 @@
           </div>
         </div>
 
-        <!-- Bottom CTA section -->
+        <!-- Bottom text section -->
         <div class="text-center scroll-animate" style="transition-delay: 1.0s;">
-          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 max-w-2xl mx-auto">
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">更多主题持续更新</h3>
-            <p class="text-gray-600 mb-6">我们不断推出新的主题设计，让你的文档始终保持新鲜感</p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-              <button class="px-6 py-3 bg-gradient-to-r from-primary-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
-                立即体验主题
-              </button>
-              <button class="px-6 py-3 bg-white text-gray-700 font-semibold rounded-lg border border-gray-300 hover:border-primary-300 hover:bg-gray-50 transition-all duration-300">
-                查看更多主题
-              </button>
+          <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">更多主题持续更新</h3>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">我们不断推出新的主题设计，让你的文档始终保持新鲜感</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI Integration Section -->
+    <section class="relative min-h-screen py-20 overflow-hidden">
+      <div class="relative container-custom">
+        <!-- Section header -->
+        <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 scroll-animate" style="transition-delay: 0.2s;">
+            一站式智能体验
+          </h2>
+          <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto scroll-animate" style="transition-delay: 0.3s;">
+            Welight目前已集成多个主流AI模型，为你的写作提供智能辅助，让创作更加高效和灵感无限
+          </p>
+        </div>
+
+        <!-- AI Models showcase -->
+        <div class="mb-16">
+
+          <!-- Models grid -->
+          <div class="flex flex-wrap justify-center items-center gap-12 mb-12">
+            <!-- DeepSeek -->
+            <div class="group scroll-animate scale-up" style="transition-delay: 0.5s;">
+              <div class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
+                <div class="w-20 h-20 flex items-center justify-center">
+                  <img
+                    src="https://images.waer.ltd/notes/202508281524593.png"
+                    alt="DeepSeek Logo"
+                    class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+                <h4 class="text-lg font-bold text-gray-900">DeepSeek</h4>
+              </div>
+            </div>
+
+            <!-- Gemini -->
+            <div class="group scroll-animate scale-up" style="transition-delay: 0.6s;">
+              <div class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
+                <div class="w-20 h-20 flex items-center justify-center">
+                  <img
+                    src="https://images.waer.ltd/notes/202508281524560.png"
+                    alt="Gemini Logo"
+                    class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+                <h4 class="text-lg font-bold text-gray-900">Gemini</h4>
+              </div>
+            </div>
+
+            <!-- Grok -->
+            <div class="group scroll-animate scale-up" style="transition-delay: 0.7s;">
+              <div class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
+                <div class="w-20 h-20 flex items-center justify-center">
+                  <img
+                    src="https://images.waer.ltd/notes/202508281524601.png"
+                    alt="Grok Logo"
+                    class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+                <h4 class="text-lg font-bold text-gray-900">Grok</h4>
+              </div>
             </div>
           </div>
+        </div>
+
+        <!-- AI Features showcase with images -->
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <!-- Left side - AI Writing Assistant -->
+          <div class="order-2 lg:order-1 scroll-animate fade-left" style="transition-delay: 0.9s;">
+            <div class="relative">
+              <!-- Background glow -->
+              <div class="absolute inset-0 bg-gradient-to-br from-primary-200/20 via-blue-200/10 to-purple-200/20 rounded-3xl blur-3xl"></div>
+
+              <!-- Screenshot container -->
+              <div class="relative transform hover:scale-105 transition-all duration-700 group">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+                  <!-- Inner glow -->
+                  <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
+
+                  <!-- AI Writing screenshot -->
+                  <div class="relative overflow-hidden rounded-2xl">
+                    <img
+                      src="https://images.waer.ltd/notes/202508281311929.png"
+                      alt="AI写作助手功能展示"
+                      class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <!-- Enhanced shadows -->
+                  <div class="absolute -inset-4 bg-gradient-to-br from-primary-500/10 to-blue-500/10 rounded-3xl blur-xl -z-10"></div>
+                  <div class="absolute -inset-8 bg-gradient-to-br from-primary-500/5 to-purple-500/5 rounded-3xl blur-2xl -z-20"></div>
+                </div>
+
+                <!-- Floating AI indicator -->
+                <div class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side - AI Features -->
+          <div class="order-1 lg:order-2 space-y-8">
+            <!-- Main feature title -->
+            <div class="scroll-animate fade-right" style="transition-delay: 1.0s;">
+              <h3 class="text-2xl md:text-3xl font-bold text-primary-600 mb-4">
+                智能写作助手
+              </h3>
+              <p class="text-lg text-gray-600 leading-relaxed">
+                AI深度集成到编辑器中，提供智能化的协作辅助、内容优化和创意灵感，让你的写作更加高效和专业。
+              </p>
+            </div>
+
+            <!-- Feature list -->
+            <div class="space-y-6">
+              <!-- Feature 1 -->
+              <div class="flex items-start space-x-4 scroll-animate fade-right" style="transition-delay: 1.1s;">
+                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-2">智能续写</h4>
+                  <p class="text-gray-600">AI根据上下文智能续写内容，保持文章风格一致性</p>
+                </div>
+              </div>
+
+              <!-- Feature 2 -->
+              <div class="flex items-start space-x-4 scroll-animate fade-right" style="transition-delay: 1.2s;">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-2">多语言翻译</h4>
+                  <p class="text-gray-600">内置13中不同语言的的AI翻译支持,黑哥们儿语言是通的。</p>
+                </div>
+              </div>
+
+              <!-- Feature 3 -->
+              <div class="flex items-start space-x-4 scroll-animate fade-right" style="transition-delay: 1.3s;">
+                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-2">快捷转换</h4>
+                  <p class="text-gray-600">内置AI文本格式智能转换,TXT一键转写Markdown,没有语法门槛。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Second AI feature section -->
+        <div class="grid lg:grid-cols-2 gap-16 items-center mt-20">
+          <!-- Left side - AI Features -->
+          <div class="space-y-8">
+            <!-- Main feature title -->
+            <div class="scroll-animate fade-left" style="transition-delay: 1.4s;">
+              <h3 class="text-2xl md:text-3xl font-bold text-primary-600 mb-4">
+                智能内容生成
+              </h3>
+              <p class="text-lg text-gray-600 leading-relaxed">
+                基于强大的AI模型，快速创作高质量内容，包括文章、段落扩展、摘要提取等多种创作辅助功能。
+              </p>
+            </div>
+
+            <!-- Feature list -->
+            <div class="space-y-6">
+              <!-- Feature 1 -->
+              <div class="flex items-start space-x-4 scroll-animate fade-left" style="transition-delay: 1.5s;">
+                <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-2">内容润色</h4>
+                  <p class="text-gray-600">划词选中内容,AI一键润色，搬砖的牛马，也有文采飞扬。</p>
+                </div>
+              </div>
+
+              <!-- Feature 2 -->
+              <div class="flex items-start space-x-4 scroll-animate fade-left" style="transition-delay: 1.6s;">
+                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-2">摘要提取</h4>
+                  <p class="text-gray-600">自动提取文章指定内容关键信息，生成精准摘要,一键取舍。</p>
+                </div>
+              </div>
+
+              <!-- Feature 3 -->
+              <div class="flex items-start space-x-4 scroll-animate fade-left" style="transition-delay: 1.7s;">
+                <div class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 0h10m-10 0a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="text-lg font-semibold text-gray-900 mb-2">图表创作</h4>
+                  <p class="text-gray-600">智能化将文章数据转为丰富专业的数据图和表,推文逼格满满。</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right side - AI Content Generation -->
+          <div class="scroll-animate fade-right" style="transition-delay: 1.8s;">
+            <div class="relative">
+              <!-- Background glow -->
+              <div class="absolute inset-0 bg-gradient-to-br from-indigo-200/20 via-purple-200/10 to-pink-200/20 rounded-3xl blur-3xl"></div>
+
+              <!-- Screenshot container -->
+              <div class="relative transform hover:scale-105 transition-all duration-700 group">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+                  <!-- Inner glow -->
+                  <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
+
+                  <!-- AI Content Generation screenshot -->
+                  <div class="relative overflow-hidden rounded-2xl">
+                    <img
+                      src="https://images.waer.ltd/notes/202508281311929.png"
+                      alt="AI内容生成功能展示"
+                      class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  <!-- Enhanced shadows -->
+                  <div class="absolute -inset-4 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-3xl blur-xl -z-10"></div>
+                  <div class="absolute -inset-8 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-3xl blur-2xl -z-20"></div>
+                </div>
+
+                <!-- Floating AI indicator -->
+                <div class="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
+                  <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom teaser text -->
+        <div class="text-center mt-16 scroll-animate" style="transition-delay: 1.9s;">
+          <p class="text-xl md:text-2xl font-medium text-gray-600 italic">
+            更多AI功能等你来撩....
+          </p>
         </div>
       </div>
     </section>
