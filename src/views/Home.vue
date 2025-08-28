@@ -104,15 +104,15 @@
             <div class="absolute inset-0 bg-gradient-to-br from-primary-200/20 via-blue-200/10 to-purple-200/20 rounded-3xl blur-3xl"></div>
 
             <!-- Overlapping screenshots container -->
-            <div class="relative w-full max-w-5xl">
-              <div class="relative h-[600px] lg:h-[700px]">
+            <div class="relative w-full max-w-4xl mx-auto">
+              <div class="relative h-[400px] lg:h-[500px] overflow-hidden">
 
                 <!-- Left screenshot (Editor) - Higher position, overlapping -->
-                <div class="absolute top-0 left-0 w-[55%] z-20">
+                <div class="absolute top-0 left-0 w-[60%] z-20">
                   <div class="relative transform rotate-2 hover:rotate-0 transition-all duration-700 group perspective-1000">
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
-                      <div class="relative overflow-hidden rounded-2xl">
+                    <div class="relative rounded-xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-xl"></div>
+                      <div class="relative overflow-hidden rounded-xl">
                         <img
                           src="https://images.waer.ltd/notes/202508281312565.png"
                           alt="Welight 编辑器界面"
@@ -120,19 +120,19 @@
                           loading="lazy"
                         />
                       </div>
-                      <div class="absolute -inset-4 bg-gradient-to-br from-primary-500/10 to-purple-500/10 rounded-3xl blur-xl -z-10"></div>
+                      <div class="absolute -inset-2 bg-gradient-to-br from-primary-500/10 to-purple-500/10 rounded-2xl blur-lg -z-10"></div>
                     </div>
                     <!-- Floating accent for left -->
-                    <div class="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-primary-400/30 to-blue-400/30 rounded-full blur-xl animate-pulse"></div>
+                    <div class="absolute -top-2 -right-2 w-16 h-16 bg-gradient-to-br from-primary-400/30 to-blue-400/30 rounded-full blur-lg animate-pulse"></div>
                   </div>
                 </div>
 
                 <!-- Right screenshot (Themes) - Lower position, overlapping behind -->
-                <div class="absolute top-16 lg:top-20 right-0 w-[55%] z-10">
+                <div class="absolute top-12 lg:top-16 right-0 w-[60%] z-10">
                   <div class="relative transform -rotate-2 hover:rotate-0 transition-all duration-700 group perspective-1000">
-                    <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
-                      <div class="relative overflow-hidden rounded-2xl">
+                    <div class="relative rounded-xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
+                      <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-xl"></div>
+                      <div class="relative overflow-hidden rounded-xl">
                         <img
                           src="https://images.waer.ltd/notes/202508281311929.png"
                           alt="Welight 主题预览"
@@ -140,10 +140,10 @@
                           loading="lazy"
                         />
                       </div>
-                      <div class="absolute -inset-4 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-3xl blur-xl -z-10"></div>
+                      <div class="absolute -inset-2 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-2xl blur-lg -z-10"></div>
                     </div>
                     <!-- Floating accent for right -->
-                    <div class="absolute -bottom-6 -left-6 w-24 h-24 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse delay-1000"></div>
+                    <div class="absolute -bottom-3 -left-3 w-20 h-20 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-xl animate-pulse delay-1000"></div>
                   </div>
                 </div>
 
