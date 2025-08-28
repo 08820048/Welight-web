@@ -230,9 +230,9 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
                   </svg>
                 </div>
-                <h4 class="text-lg font-semibold text-gray-900 mb-2">快捷插入支持</h4>
+                <h4 class="text-lg font-semibold text-gray-900 mb-2">预览一键复制</h4>
                 <p class="text-gray-600 text-sm">
-                  图片粘贴即可自动上传与显示，文章配图信手拈来。
+                  满意的排版风格一键复制，粘贴微信编辑器即可发布，所见即所得。
                 </p>
               </div>
 
@@ -255,6 +255,196 @@
               <p class="text-gray-600 leading-relaxed">
                 Welight 将直观的内容创作与强大的功能完美结合，让每个创作者都能轻松创建结构化的优美排版效果。
               </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Themes Section -->
+    <section class="relative min-h-screen py-20 overflow-hidden">
+      <div class="relative container-custom">
+        <!-- Section header -->
+        <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
+          <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 scroll-animate" style="transition-delay: 0.2s;">
+            丰富多样的排版主题
+          </h2>
+          <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto scroll-animate" style="transition-delay: 0.3s;">
+            精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果，高级感满满。
+          </p>
+        </div>
+
+        <!-- Themes showcase grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          <!-- Theme 1 - 经典白色 -->
+          <div class="group scroll-animate scale-up" style="transition-delay: 0.4s;">
+            <div class="relative overflow-hidden rounded-2xl bg-white shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <!-- Theme preview image -->
+              <div class="aspect-[4/3] overflow-hidden">
+                <img
+                  src="https://images.waer.ltd/notes/202508281311929.png"
+                  alt="经典白色主题"
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy"
+                />
+              </div>
+              <!-- Theme info -->
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-gray-900 mb-2">经典白色</h3>
+                <p class="text-gray-600 text-sm mb-4">简洁优雅的白色主题，适合正式文档和学术写作</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-gray-500 bg-gray-100 px-3 py-1 rounded-full">默认主题</span>
+                  <div class="w-6 h-6 bg-white border-2 border-gray-300 rounded-full"></div>
+                </div>
+              </div>
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-primary-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Theme 2 - 深色模式 -->
+          <div class="group scroll-animate scale-up" style="transition-delay: 0.5s;">
+            <div class="relative overflow-hidden rounded-2xl bg-gray-900 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <!-- Theme preview image -->
+              <div class="aspect-[4/3] overflow-hidden">
+                <img
+                  src="https://images.waer.ltd/notes/202508281311929.png"
+                  alt="深色模式主题"
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 filter brightness-75"
+                  loading="lazy"
+                />
+              </div>
+              <!-- Theme info -->
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-white mb-2">深色模式</h3>
+                <p class="text-gray-300 text-sm mb-4">护眼的深色主题，减少视觉疲劳，适合长时间写作</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-gray-400 bg-gray-800 px-3 py-1 rounded-full">护眼模式</span>
+                  <div class="w-6 h-6 bg-gray-800 border-2 border-gray-600 rounded-full"></div>
+                </div>
+              </div>
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Theme 3 - 温暖米色 -->
+          <div class="group scroll-animate scale-up" style="transition-delay: 0.6s;">
+            <div class="relative overflow-hidden rounded-2xl bg-amber-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <!-- Theme preview image -->
+              <div class="aspect-[4/3] overflow-hidden">
+                <img
+                  src="https://images.waer.ltd/notes/202508281311929.png"
+                  alt="温暖米色主题"
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 filter sepia-[0.3]"
+                  loading="lazy"
+                />
+              </div>
+              <!-- Theme info -->
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-amber-900 mb-2">温暖米色</h3>
+                <p class="text-amber-700 text-sm mb-4">温馨舒适的米色调，营造温暖的阅读氛围</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-amber-600 bg-amber-100 px-3 py-1 rounded-full">舒适阅读</span>
+                  <div class="w-6 h-6 bg-amber-200 border-2 border-amber-400 rounded-full"></div>
+                </div>
+              </div>
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-amber-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Theme 4 - 清新绿色 -->
+          <div class="group scroll-animate scale-up" style="transition-delay: 0.7s;">
+            <div class="relative overflow-hidden rounded-2xl bg-emerald-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <!-- Theme preview image -->
+              <div class="aspect-[4/3] overflow-hidden">
+                <img
+                  src="https://images.waer.ltd/notes/202508281311929.png"
+                  alt="清新绿色主题"
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 filter hue-rotate-90"
+                  loading="lazy"
+                />
+              </div>
+              <!-- Theme info -->
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-emerald-900 mb-2">清新绿色</h3>
+                <p class="text-emerald-700 text-sm mb-4">自然清新的绿色调，带来宁静的写作体验</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">自然护眼</span>
+                  <div class="w-6 h-6 bg-emerald-200 border-2 border-emerald-400 rounded-full"></div>
+                </div>
+              </div>
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-emerald-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Theme 5 - 优雅紫色 -->
+          <div class="group scroll-animate scale-up" style="transition-delay: 0.8s;">
+            <div class="relative overflow-hidden rounded-2xl bg-purple-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <!-- Theme preview image -->
+              <div class="aspect-[4/3] overflow-hidden">
+                <img
+                  src="https://images.waer.ltd/notes/202508281311929.png"
+                  alt="优雅紫色主题"
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 filter hue-rotate-[270deg]"
+                  loading="lazy"
+                />
+              </div>
+              <!-- Theme info -->
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-purple-900 mb-2">优雅紫色</h3>
+                <p class="text-purple-700 text-sm mb-4">神秘优雅的紫色调，激发创意灵感</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-purple-600 bg-purple-100 px-3 py-1 rounded-full">创意灵感</span>
+                  <div class="w-6 h-6 bg-purple-200 border-2 border-purple-400 rounded-full"></div>
+                </div>
+              </div>
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-purple-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </div>
+
+          <!-- Theme 6 - 科技蓝色 -->
+          <div class="group scroll-animate scale-up" style="transition-delay: 0.9s;">
+            <div class="relative overflow-hidden rounded-2xl bg-blue-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <!-- Theme preview image -->
+              <div class="aspect-[4/3] overflow-hidden">
+                <img
+                  src="https://images.waer.ltd/notes/202508281311929.png"
+                  alt="科技蓝色主题"
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 filter hue-rotate-[200deg]"
+                  loading="lazy"
+                />
+              </div>
+              <!-- Theme info -->
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-blue-900 mb-2">科技蓝色</h3>
+                <p class="text-blue-700 text-sm mb-4">现代科技感的蓝色调，适合技术文档</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-blue-600 bg-blue-100 px-3 py-1 rounded-full">科技感</span>
+                  <div class="w-6 h-6 bg-blue-200 border-2 border-blue-400 rounded-full"></div>
+                </div>
+              </div>
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom CTA section -->
+        <div class="text-center scroll-animate" style="transition-delay: 1.0s;">
+          <div class="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 max-w-2xl mx-auto">
+            <h3 class="text-2xl font-bold text-gray-900 mb-4">更多主题持续更新</h3>
+            <p class="text-gray-600 mb-6">我们不断推出新的主题设计，让你的文档始终保持新鲜感</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <button class="px-6 py-3 bg-gradient-to-r from-primary-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                立即体验主题
+              </button>
+              <button class="px-6 py-3 bg-white text-gray-700 font-semibold rounded-lg border border-gray-300 hover:border-primary-300 hover:bg-gray-50 transition-all duration-300">
+                查看更多主题
+              </button>
             </div>
           </div>
         </div>
