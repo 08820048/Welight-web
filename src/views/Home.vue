@@ -100,15 +100,15 @@
 
           <!-- Right image -->
           <div class="order-1 lg:order-2 flex items-center justify-center">
-            <div class="relative w-full max-w-2xl">
-              <!-- Premium stacked screenshots with enhanced effects -->
+            <div class="relative w-full max-w-5xl">
+              <!-- Premium side-by-side screenshots with overlap -->
               <div class="relative w-full h-[500px] lg:h-[600px]">
                 <!-- Ambient background glow -->
                 <div class="absolute inset-0 bg-gradient-to-br from-primary-100/30 via-transparent to-purple-100/20 rounded-3xl blur-3xl transform scale-110"></div>
 
-                <!-- Background screenshot (bottom layer) -->
-                <div class="screenshot-stack-back absolute top-8 left-8 w-[85%] h-[85%]">
-                  <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white border border-gray-200/50 transform rotate-3 h-full">
+                <!-- Left screenshot (Editor) -->
+                <div class="screenshot-left absolute left-0 top-0 w-[60%] h-full z-10">
+                  <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white border border-gray-200/50 transform -rotate-1 hover:rotate-0 transition-all duration-700 h-full group">
                     <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 flex items-center space-x-3 border-b border-gray-200/50">
                       <div class="w-3.5 h-3.5 bg-red-500 rounded-full shadow-sm"></div>
                       <div class="w-3.5 h-3.5 bg-yellow-500 rounded-full shadow-sm"></div>
@@ -119,16 +119,16 @@
                       <img
                         src="https://images.waer.ltd/notes/202508281312565.png"
                         alt="Welight 编辑器界面"
-                        class="max-w-full max-h-full object-contain"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         loading="lazy"
                       />
                     </div>
                   </div>
                 </div>
 
-                <!-- Foreground screenshot (top layer) -->
-                <div class="screenshot-stack-front relative z-10 w-[90%] h-[90%] ml-auto">
-                  <div class="relative rounded-2xl overflow-hidden shadow-3xl bg-white border border-gray-200/50 transform -rotate-2 hover:rotate-0 transition-all duration-700 h-full group">
+                <!-- Right screenshot (Themes) - overlapping -->
+                <div class="screenshot-right absolute right-0 top-4 w-[60%] h-[95%] z-20">
+                  <div class="relative rounded-2xl overflow-hidden shadow-3xl bg-white border border-gray-200/50 transform rotate-1 hover:rotate-0 transition-all duration-700 h-full group">
                     <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 flex items-center space-x-3 border-b border-gray-200/50">
                       <div class="w-3.5 h-3.5 bg-red-500 rounded-full shadow-sm"></div>
                       <div class="w-3.5 h-3.5 bg-yellow-500 rounded-full shadow-sm"></div>
@@ -139,7 +139,7 @@
                       <img
                         src="https://images.waer.ltd/notes/202508281311929.png"
                         alt="Welight 主题预览"
-                        class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         loading="lazy"
                       />
                     </div>

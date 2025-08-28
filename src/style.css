@@ -123,29 +123,33 @@
   animation: enhanced-bounce 1.5s ease-in-out infinite;
 }
 
-/* Premium screenshot stacking effects */
+/* Premium screenshot side-by-side effects */
 @layer components {
-  .screenshot-stack-back {
-    filter: brightness(0.92) contrast(0.88) saturate(0.9);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .screenshot-stack-front {
+  .screenshot-left {
     transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  .screenshot-stack-front:hover {
-    transform: translateY(-12px) translateX(-8px) scale(1.03) rotate(0deg);
+  .screenshot-right {
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .screenshot-left:hover {
+    transform: translateX(-8px) translateY(-4px) scale(1.02) rotate(0deg);
     z-index: 30;
   }
 
-  .screenshot-stack-front:hover ~ .screenshot-stack-back {
-    transform: translateY(16px) translateX(12px) rotate(4deg) scale(0.96);
-    filter: brightness(0.85) contrast(0.8) saturate(0.8);
+  .screenshot-right:hover {
+    transform: translateX(8px) translateY(-8px) scale(1.02) rotate(0deg);
+    z-index: 30;
   }
 
-  /* Premium shadow effects */
-  .screenshot-stack-back .relative {
+  .screenshot-left:hover ~ .screenshot-right {
+    transform: translateX(12px) translateY(8px) rotate(2deg) scale(0.98);
+    filter: brightness(0.9) contrast(0.85);
+  }
+
+  /* Premium shadow effects for side-by-side layout */
+  .screenshot-left .relative {
     box-shadow:
       0 25px 50px -12px rgba(0, 0, 0, 0.15),
       0 40px 80px -20px rgba(0, 0, 0, 0.1),
@@ -153,7 +157,7 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 
-  .screenshot-stack-front .relative {
+  .screenshot-right .relative {
     box-shadow:
       0 35px 70px -15px rgba(0, 0, 0, 0.2),
       0 50px 100px -25px rgba(0, 0, 0, 0.15),
@@ -161,7 +165,8 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
-  .screenshot-stack-front:hover .relative {
+  .screenshot-left:hover .relative,
+  .screenshot-right:hover .relative {
     box-shadow:
       0 50px 100px -20px rgba(0, 0, 0, 0.25),
       0 70px 140px -30px rgba(0, 0, 0, 0.2),
@@ -169,9 +174,9 @@
       inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
 
-  /* Enhanced glass morphism effect */
-  .screenshot-stack-back::before,
-  .screenshot-stack-front::before {
+  /* Enhanced glass morphism effect for side-by-side */
+  .screenshot-left::before,
+  .screenshot-right::before {
     content: '';
     position: absolute;
     top: 0;
