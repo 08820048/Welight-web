@@ -101,22 +101,39 @@
           <!-- Right image -->
           <div class="order-1 lg:order-2">
             <div class="relative">
-              <!-- Demo image placeholder -->
-              <div class="relative rounded-xl overflow-hidden shadow-2xl bg-white border border-gray-200">
-                <div class="bg-gray-100 px-4 py-3 flex items-center space-x-2">
-                  <div class="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
-                </div>
-                <div class="p-8 h-96 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
-                  <div class="text-center">
-                    <div class="w-16 h-16 bg-primary-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                      <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                      </svg>
+              <!-- Stacked screenshots with paper effect -->
+              <div class="relative w-full max-w-lg mx-auto">
+                <!-- Background screenshot (bottom layer) -->
+                <div class="screenshot-stack-back absolute top-4 left-4 w-full">
+                  <div class="relative rounded-xl overflow-hidden shadow-xl bg-white border border-gray-200 transform rotate-2">
+                    <div class="bg-gray-100 px-4 py-3 flex items-center space-x-2">
+                      <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                      <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                      <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                     </div>
-                    <p class="text-gray-600 text-lg">Welight 界面预览</p>
-                    <p class="text-gray-500 text-sm mt-2">请提供实际截图替换此占位符</p>
+                    <img
+                      src="https://images.waer.ltd/notes/202508281310040.png"
+                      alt="Welight 编辑器界面"
+                      class="w-full h-auto object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+
+                <!-- Foreground screenshot (top layer) -->
+                <div class="screenshot-stack-front relative z-10">
+                  <div class="relative rounded-xl overflow-hidden shadow-2xl bg-white border border-gray-200 transform -rotate-1 hover:rotate-0 transition-transform duration-500">
+                    <div class="bg-gray-100 px-4 py-3 flex items-center space-x-2">
+                      <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                      <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                      <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    </div>
+                    <img
+                      src="https://images.waer.ltd/notes/202508281309773.png"
+                      alt="Welight 主题预览"
+                      class="w-full h-auto object-cover"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
               </div>
