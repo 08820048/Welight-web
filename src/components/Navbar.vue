@@ -14,9 +14,6 @@
         <div class="flex items-center space-x-4">
           <!-- Documentation links -->
           <div class="hidden md:flex items-center space-x-6">
-            <a href="https://waer.ltd" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
-              Github
-            </a>
             <a href="https://ilikexff.cn" class="text-gray-600 hover:text-gray-900 font-medium transition-colors duration-200">
               文档
             </a>
