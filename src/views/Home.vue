@@ -111,13 +111,7 @@
                   <!-- Left screenshot (Editor) -->
                   <div class="screenshot-left flex-1 relative z-10">
                     <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-white border border-gray-200/50 transform -rotate-1 hover:rotate-0 transition-all duration-700 group">
-                      <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 flex items-center space-x-3 border-b border-gray-200/50">
-                        <div class="w-3.5 h-3.5 bg-red-500 rounded-full shadow-sm"></div>
-                        <div class="w-3.5 h-3.5 bg-yellow-500 rounded-full shadow-sm"></div>
-                        <div class="w-3.5 h-3.5 bg-green-500 rounded-full shadow-sm"></div>
-                        <div class="ml-4 text-xs text-gray-500 font-medium">Welight Editor</div>
-                      </div>
-                      <div class="overflow-hidden bg-gray-50">
+                      <div class="overflow-hidden">
                         <img
                           src="https://images.waer.ltd/notes/202508281312565.png"
                           alt="Welight 编辑器界面"
@@ -131,13 +125,7 @@
                   <!-- Right screenshot (Themes) -->
                   <div class="screenshot-right flex-1 relative z-20 mt-8">
                     <div class="relative rounded-2xl overflow-hidden shadow-3xl bg-white border border-gray-200/50 transform rotate-1 hover:rotate-0 transition-all duration-700 group">
-                      <div class="bg-gradient-to-r from-gray-50 to-gray-100 px-6 py-4 flex items-center space-x-3 border-b border-gray-200/50">
-                        <div class="w-3.5 h-3.5 bg-red-500 rounded-full shadow-sm"></div>
-                        <div class="w-3.5 h-3.5 bg-yellow-500 rounded-full shadow-sm"></div>
-                        <div class="w-3.5 h-3.5 bg-green-500 rounded-full shadow-sm"></div>
-                        <div class="ml-4 text-xs text-gray-500 font-medium">Welight Themes</div>
-                      </div>
-                      <div class="overflow-hidden bg-gray-50">
+                      <div class="overflow-hidden">
                         <img
                           src="https://images.waer.ltd/notes/202508281311929.png"
                           alt="Welight 主题预览"
