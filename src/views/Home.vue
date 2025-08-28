@@ -102,7 +102,7 @@
           <div class="order-1 lg:order-2 flex items-center justify-center">
             <div class="relative w-full max-w-2xl">
               <!-- Premium stacked screenshots with enhanced effects -->
-              <div class="relative w-full h-[600px] lg:h-[700px]">
+              <div class="relative w-full h-[500px] lg:h-[600px]">
                 <!-- Ambient background glow -->
                 <div class="absolute inset-0 bg-gradient-to-br from-primary-100/30 via-transparent to-purple-100/20 rounded-3xl blur-3xl transform scale-110"></div>
 
@@ -115,11 +115,11 @@
                       <div class="w-3.5 h-3.5 bg-green-500 rounded-full shadow-sm"></div>
                       <div class="ml-4 text-xs text-gray-500 font-medium">Welight Editor</div>
                     </div>
-                    <div class="h-full overflow-hidden">
+                    <div class="h-full overflow-hidden bg-gray-50 flex items-center justify-center">
                       <img
                         src="https://images.waer.ltd/notes/202508281312565.png"
                         alt="Welight 编辑器界面"
-                        class="w-full h-full object-cover object-top"
+                        class="max-w-full max-h-full object-contain"
                         loading="lazy"
                       />
                     </div>
@@ -135,11 +135,11 @@
                       <div class="w-3.5 h-3.5 bg-green-500 rounded-full shadow-sm"></div>
                       <div class="ml-4 text-xs text-gray-500 font-medium">Welight Themes</div>
                     </div>
-                    <div class="h-full overflow-hidden">
+                    <div class="h-full overflow-hidden bg-gray-50 flex items-center justify-center">
                       <img
                         src="https://images.waer.ltd/notes/202508281311929.png"
                         alt="Welight 主题预览"
-                        class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                        class="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-700"
                         loading="lazy"
                       />
                     </div>
