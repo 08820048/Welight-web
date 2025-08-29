@@ -3,42 +3,45 @@
     <!-- 顶部横幅通知 -->
     <div
       v-if="showBanner"
-      class="fixed top-16 left-0 right-0 z-40 bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-lg animate-fade-in-up"
+      class="fixed top-16 left-0 right-0 z-40 overflow-hidden"
     >
-      <div class="container-custom">
-        <div class="flex items-center justify-between py-3 px-4">
-          <div class="flex items-center space-x-3">
-            <div class="flex-shrink-0">
-              <svg class="w-5 h-5 text-primary-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
-              </svg>
+      <div
+        class="bg-gradient-to-r from-primary-600 to-primary-700 text-white shadow-lg transform transition-all duration-700 ease-out"
+        :class="bannerVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'"
+      >
+        <div class="container-custom">
+          <div class="flex items-center justify-between py-4 px-4">
+            <div class="flex items-center space-x-4">
+              <div class="flex-shrink-0">
+                <div class="w-10 h-10 bg-white bg-opacity-20 rounded-full flex items-center justify-center animate-pulse">
+                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="flex-1">
+                <div class="flex items-center space-x-2 mb-1">
+                  <span class="text-lg font-bold">🎉 Welight v2.1.1 已发布！</span>
+                  <span class="bg-white bg-opacity-20 text-xs px-2 py-1 rounded-full font-medium">最新版本</span>
+                </div>
+                <p class="text-sm text-primary-100">
+                  新版本带来更好的性能和用户体验，
+                  <span class="hidden sm:inline">包含编辑器优化和问题修复。</span>
+                  <span class="font-medium text-white">立即下载体验最新功能！</span>
+                </p>
+              </div>
             </div>
-            <div class="flex-1">
-              <p class="text-sm font-medium">
-                🎉 <strong>Welight v2.1.1</strong> 已发布！
-                <span class="hidden sm:inline">新版本带来更好的性能和用户体验。</span>
-              </p>
+            <div class="flex items-center">
+              <button
+                @click="closeBanner"
+                class="text-primary-100 hover:text-white hover:bg-white hover:bg-opacity-20 transition-all duration-200 p-2 rounded-full group"
+                title="关闭通知"
+              >
+                <svg class="w-5 h-5 group-hover:rotate-90 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
             </div>
-          </div>
-          <div class="flex items-center space-x-3">
-            <button
-              @click="scrollToDownload"
-              class="bg-white text-primary-600 hover:bg-primary-50 px-4 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 flex items-center space-x-1"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              <span>立即下载</span>
-            </button>
-            <button
-              @click="closeBanner"
-              class="text-primary-100 hover:text-white transition-colors duration-200 p-1"
-              title="关闭通知"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
           </div>
         </div>
       </div>
@@ -1015,6 +1018,7 @@ const route = useRoute()
 
 // 横幅通知状态
 const showBanner = ref(true)
+const bannerVisible = ref(false)
 
 // 下载统计数据 - 从后端API获取真实统计
 const downloadStats = ref({
@@ -1039,20 +1043,14 @@ const totalDownloads = computed(() => {
 
 // 横幅通知相关函数
 const closeBanner = () => {
-  showBanner.value = false
-  // 保存用户选择到本地存储
-  localStorage.setItem('bannerClosed', 'true')
-}
-
-const scrollToDownload = () => {
-  // 滚动到下载按钮区域
-  const downloadSection = document.querySelector('.download-btn-mac')
-  if (downloadSection) {
-    downloadSection.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center'
-    })
-  }
+  // 先播放收起动画
+  bannerVisible.value = false
+  // 延迟隐藏横幅
+  setTimeout(() => {
+    showBanner.value = false
+    // 保存用户选择到本地存储
+    localStorage.setItem('bannerClosed', 'true')
+  }, 700) // 与动画时长一致
 }
 
 // 下载文件函数
@@ -1204,6 +1202,11 @@ onMounted(async () => {
   const bannerClosed = localStorage.getItem('bannerClosed')
   if (bannerClosed === 'true') {
     showBanner.value = false
+  } else {
+    // 延迟显示横幅动画，让页面先加载
+    setTimeout(() => {
+      bannerVisible.value = true
+    }, 500)
   }
 
   try {
