@@ -984,6 +984,11 @@ const downloadFile = (platform) => {
     // 保存到本地存储
     localStorage.setItem('downloadStats', JSON.stringify(downloadStats.value))
 
+    // 百度统计事件追踪
+    if (typeof _hmt !== 'undefined') {
+      _hmt.push(['_trackEvent', 'download', platform, downloadUrl])
+    }
+
     // 直接打开下载链接
     window.open(downloadUrl, '_blank')
     console.log(`开始下载 ${platform} 版本: ${downloadUrl}`)
@@ -995,17 +1000,15 @@ const downloadFile = (platform) => {
 
 // 从本地存储加载统计数据
 const loadDownloadStats = () => {
-  // 清除旧数据，重新开始统计
-  localStorage.removeItem('downloadStats')
-
-  // 重置为0
-  downloadStats.value = {
-    'windows-installer': 0,
-    'windows-msi': 0,
-    'macos-apple': 0,
-    'macos-intel': 0,
-    'linux-appimage': 0,
-    'linux-deb': 0
+  const saved = localStorage.getItem('downloadStats')
+  if (saved) {
+    try {
+      const parsedStats = JSON.parse(saved)
+      // 合并保存的数据和默认数据
+      downloadStats.value = { ...downloadStats.value, ...parsedStats }
+    } catch (error) {
+      console.error('加载下载统计数据失败:', error)
+    }
   }
 }
 

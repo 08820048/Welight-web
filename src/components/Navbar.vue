@@ -3,7 +3,8 @@
     <div class="container-custom">
       <div class="flex items-center justify-between h-16">
         <!-- Logo -->
-        <router-link to="/" class="flex items-center group hover:opacity-80 transition-opacity duration-200">
+        <router-link to="/" class="flex items-center space-x-2 group hover:opacity-80 transition-opacity duration-200">
+          <img src="/logo.png" alt="Welight Logo" class="w-8 h-8 rounded-lg">
           <span class="text-xl font-bold relative logo-gradient-text cursor-pointer">
             Welight
           </span>
