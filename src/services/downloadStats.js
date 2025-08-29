@@ -117,10 +117,13 @@ export async function initializeDownloadStats() {
     // 尝试从后端获取真实统计数据
     const backendStats = await getDownloadStats()
     
-    if (backendStats) {
-      // 如果后端返回了数据，将其映射到我们的格式
+    if (backendStats && backendStats.platformDownloads) {
+      console.log('后端统计数据:', backendStats)
+
+      // 获取平台下载数据
+      const platformDownloads = backendStats.platformDownloads
       const mappedStats = { ...defaultStats }
-      
+
       // 根据后端实际返回的数据格式映射
       if (platformDownloads.windows > 0) {
         // Windows平台分配：70% installer, 30% msi
