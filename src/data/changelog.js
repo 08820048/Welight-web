@@ -17,7 +17,7 @@ export const changelogData = [
   },
   {
     version: '2.1.0',
-    date: '2025-08-28',
+    date: '2025-08-29',
     type: 'release',
     badge: '正式版',
     badgeColor: 'blue',
@@ -43,7 +43,7 @@ export const changelogData = [
   },
   {
     version: '2.0.0',
-    date: '2025-08-15',
+    date: '2025-08-29',
     type: 'release',
     badge: '首个桌面版',
     badgeColor: 'blue',
