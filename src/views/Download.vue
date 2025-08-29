@@ -9,11 +9,19 @@
         <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
           选择适合您操作系统的版本，开始智能高效的文档编辑体验
         </p>
-        <div class="inline-flex items-center px-4 py-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm font-medium">
-          <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-          </svg>
-          最新版本：v1.0.0
+        <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
+          <div class="inline-flex items-center px-4 py-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm font-medium">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+            最新版本：v1.0.0
+          </div>
+          <div class="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
+            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            总下载量：{{ totalDownloads.toLocaleString() }} 次
+          </div>
         </div>
       </div>
     </section>
@@ -38,11 +46,20 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
               </button>
-              <button class="btn-secondary w-full" @click="downloadFile('windows-portable')">
-                便携版 (.zip)
+              <button class="btn-primary w-full" @click="downloadFile('windows-msi')">
+                MSI 安装包 (.msi)
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
               </button>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">大小：~85 MB</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">EXE: 5.4 MB | MSI: 7.7 MB</p>
+            <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+              <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
+                <span>EXE: {{ downloadStats['windows-installer'].toLocaleString() }} 次</span>
+                <span>MSI: {{ downloadStats['windows-msi'].toLocaleString() }} 次</span>
+              </div>
+            </div>
           </div>
 
           <!-- macOS -->
@@ -55,11 +72,9 @@
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">macOS</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-6">适用于 macOS 10.15+</p>
             <div class="space-y-3">
-              <button class="btn-primary w-full" @click="downloadFile('macos-intel')">
+              <button class="btn-secondary w-full opacity-50 cursor-not-allowed" disabled>
                 Intel 芯片 (.dmg)
-                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
+                <span class="text-xs ml-2">(即将推出)</span>
               </button>
               <button class="btn-primary w-full" @click="downloadFile('macos-apple')">
                 Apple Silicon (.dmg)
@@ -68,7 +83,12 @@
                 </svg>
               </button>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">大小：~90 MB</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">大小：12.2 MB</p>
+            <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+              <div class="text-xs text-gray-500 dark:text-gray-400 text-center">
+                <span>Apple Silicon: {{ downloadStats['macos-apple'].toLocaleString() }} 次下载</span>
+              </div>
+            </div>
           </div>
 
           <!-- Linux -->
@@ -81,17 +101,21 @@
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Linux</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-6">适用于主流 Linux 发行版</p>
             <div class="space-y-3">
-              <button class="btn-primary w-full" @click="downloadFile('linux-appimage')">
+              <button class="btn-secondary w-full opacity-50 cursor-not-allowed" disabled>
                 AppImage
-                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
+                <span class="text-xs ml-2">(即将推出)</span>
               </button>
-              <button class="btn-secondary w-full" @click="downloadFile('linux-deb')">
+              <button class="btn-secondary w-full opacity-50 cursor-not-allowed" disabled>
                 Debian (.deb)
+                <span class="text-xs ml-2">(即将推出)</span>
               </button>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">大小：~88 MB</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">即将推出</p>
+            <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+              <div class="text-xs text-gray-500 dark:text-gray-400 text-center">
+                <span>即将推出，敬请期待</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -109,35 +133,11 @@
           </p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div class="bg-white dark:bg-gray-700 p-6 rounded-lg">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Windows</h3>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-              <li>• Windows 10 或更高版本</li>
-              <li>• 4GB RAM (推荐 8GB)</li>
-              <li>• 500MB 可用磁盘空间</li>
-              <li>• 支持 DirectX 11</li>
-            </ul>
-          </div>
-
-          <div class="bg-white dark:bg-gray-700 p-6 rounded-lg">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">macOS</h3>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-              <li>• macOS 10.15 或更高版本</li>
-              <li>• 4GB RAM (推荐 8GB)</li>
-              <li>• 500MB 可用磁盘空间</li>
-              <li>• Intel 或 Apple Silicon</li>
-            </ul>
-          </div>
-
-          <div class="bg-white dark:bg-gray-700 p-6 rounded-lg">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Linux</h3>
-            <ul class="space-y-2 text-gray-600 dark:text-gray-300">
-              <li>• Ubuntu 18.04+ / 等效发行版</li>
-              <li>• 4GB RAM (推荐 8GB)</li>
-              <li>• 500MB 可用磁盘空间</li>
-              <li>• X11 或 Wayland</li>
-            </ul>
+        <div class="max-w-2xl mx-auto">
+          <div class="bg-white dark:bg-gray-700 p-8 rounded-lg text-center">
+            <div class="text-gray-600 dark:text-gray-300">
+              <p class="text-lg">• Windows 10+ / macOS 10.13+ / Ubuntu 18.04+</p>
+            </div>
           </div>
         </div>
       </div>
@@ -151,35 +151,161 @@
             安装指南
           </h2>
           <p class="text-lg text-gray-600 dark:text-gray-300">
-            简单几步，快速开始使用
+            详细的安装说明和故障排除指南
           </p>
         </div>
 
-        <div class="max-w-3xl mx-auto">
-          <div class="space-y-8">
-            <div class="flex items-start space-x-4">
-              <div class="w-8 h-8 bg-primary-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">1</div>
-              <div>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">下载安装包</h3>
-                <p class="text-gray-600 dark:text-gray-300">选择适合您操作系统的版本并下载</p>
+        <div class="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
+          <!-- macOS 安装指南 -->
+          <div class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+              <svg class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z"/>
+              </svg>
+              macOS 安装指南
+            </h3>
+
+            <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6 mb-6">
+              <h4 class="text-lg font-semibold text-yellow-800 dark:text-yellow-200 mb-3">⚠️ 常见问题：安全警告</h4>
+              <p class="text-yellow-700 dark:text-yellow-300 mb-3">在 macOS 上首次安装时，您可能会看到以下安全警告：</p>
+              <div class="bg-gray-100 dark:bg-gray-800 rounded p-3 mb-3 font-mono text-sm">
+                "Welight" 已损坏，无法打开。你应该将它移到废纸篓。
               </div>
+              <p class="text-yellow-700 dark:text-yellow-300 font-semibold">这是正常现象！这是因为我们的应用没有经过 Apple 的代码签名和公证服务。</p>
             </div>
 
-            <div class="flex items-start space-x-4">
-              <div class="w-8 h-8 bg-primary-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">2</div>
-              <div>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">运行安装程序</h3>
-                <p class="text-gray-600 dark:text-gray-300">双击下载的文件，按照提示完成安装</p>
-              </div>
-            </div>
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">解决方案</h4>
 
-            <div class="flex items-start space-x-4">
-              <div class="w-8 h-8 bg-primary-500 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">3</div>
-              <div>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">开始使用</h3>
-                <p class="text-gray-600 dark:text-gray-300">启动应用，开始您的智能文档编辑之旅</p>
+            <div class="space-y-6">
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">方法一：系统偏好设置（推荐）</h5>
+                <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-300">
+                  <li>打开系统偏好设置 → 安全性与隐私</li>
+                  <li>在"通用"选项卡中，您会看到被阻止的应用信息</li>
+                  <li>点击 <strong>"仍要打开"</strong> 按钮</li>
+                  <li>输入管理员密码确认</li>
+                </ol>
+              </div>
+
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">方法二：右键菜单打开</h5>
+                <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-300">
+                  <li>在 Finder 中找到 Welight 应用</li>
+                  <li>按住 Control 键点击应用图标（或右键点击）</li>
+                  <li>在弹出菜单中选择"打开"</li>
+                  <li>在安全对话框中点击"打开"</li>
+                </ol>
+              </div>
+
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                <h5 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">方法三：终端命令（高级用户）</h5>
+                <p class="text-gray-600 dark:text-gray-300 mb-3">如果上述方法无效，可以使用终端命令移除隔离属性：</p>
+                <div class="bg-gray-900 rounded-lg p-4 mb-3">
+                  <code class="text-green-400 text-sm font-mono">
+                    sudo xattr -rd com.apple.quarantine /Applications/Welight.app
+                  </code>
+                </div>
+                <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded p-3">
+                  <p class="text-yellow-700 dark:text-yellow-300 text-sm">
+                    <strong>⚠️ 注意：</strong>请确保您信任此应用再执行此命令。此命令会移除 macOS 的隔离保护。
+                  </p>
+                </div>
               </div>
             </div>
+          </div>
+
+          <!-- Windows 安装指南 -->
+          <div class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 flex items-center">
+              <svg class="w-6 h-6 mr-3" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M0,0V11.408H11.408V0ZM12.594,0V11.408H24V0ZM0,12.594V24H11.408V12.594ZM12.594,12.594V24H24V12.594Z"/>
+              </svg>
+              Windows 安装指南
+            </h3>
+
+            <div class="space-y-6">
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">从 EXE 安装包安装</h4>
+                <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-300">
+                  <li>下载 <code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">Welight-x.x.x.exe</code> 文件</li>
+                  <li>双击 <code class="bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">.exe</code> 文件启动安装向导</li>
+                  <li>选择安装位置，确认安装选项</li>
+                  <li>完成安装，从开始菜单或桌面快捷方式启动</li>
+                </ol>
+              </div>
+
+              <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
+                <h4 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-3">Windows 安全警告</h4>
+                <p class="text-blue-700 dark:text-blue-300">如果 Windows Defender 提示警告：</p>
+                <ol class="list-decimal list-inside space-y-1 text-blue-700 dark:text-blue-300 mt-2">
+                  <li>点击"更多信息"</li>
+                  <li>选择"仍要运行"</li>
+                  <li>添加到信任列表（可选）</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
+          <!-- 安全说明 -->
+          <div class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">🛡️ 安全说明</h3>
+
+            <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-3">✅ 应用完全安全</h4>
+              <ul class="list-disc list-inside space-y-2 text-green-700 dark:text-green-300">
+                <li><strong>正规软件</strong>：由专业团队开发的正规应用程序</li>
+                <li><strong>无恶意代码</strong>：不包含任何恶意或间谍软件</li>
+                <li><strong>本地运行</strong>：应用完全在本地运行，不上传用户数据</li>
+                <li><strong>隐私保护</strong>：严格保护用户隐私，不收集个人信息</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- 故障排除 -->
+          <div class="mb-12">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">🔧 故障排除</h3>
+
+            <div class="grid md:grid-cols-2 gap-6">
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">macOS 常见问题</h4>
+                <div class="space-y-3">
+                  <div>
+                    <p class="font-medium text-gray-900 dark:text-white">问题：应用无法启动</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">确保已按照上述方法允许应用运行</p>
+                  </div>
+                  <div>
+                    <p class="font-medium text-gray-900 dark:text-white">问题：提示"应用已损坏"</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">重新下载安装包或使用终端命令移除隔离属性</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                <h4 class="text-lg font-semibold text-gray-900 dark:text-white mb-3">Windows 常见问题</h4>
+                <div class="space-y-3">
+                  <div>
+                    <p class="font-medium text-gray-900 dark:text-white">问题：安装程序无法运行</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">以管理员身份运行安装程序</p>
+                  </div>
+                  <div>
+                    <p class="font-medium text-gray-900 dark:text-white">问题：应用启动缓慢</p>
+                    <p class="text-sm text-gray-600 dark:text-gray-300">将应用添加到杀毒软件白名单</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 快速开始 -->
+          <div class="bg-gradient-to-r from-primary-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-lg p-6">
+            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">🎯 快速开始</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">安装完成后，您可以：</p>
+            <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-300">
+              <li><strong>选择主题</strong>：从多种精美主题中选择</li>
+              <li><strong>开始编辑</strong>：直接在左侧编辑器中输入 Markdown</li>
+              <li><strong>实时预览</strong>：右侧实时查看排版效果</li>
+              <li><strong>一键复制</strong>：点击复制按钮，粘贴到微信公众号</li>
+            </ol>
           </div>
         </div>
       </div>
@@ -194,13 +320,47 @@
         <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
           如果您在安装或使用过程中遇到问题，我们随时为您提供支持
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#" class="btn-secondary">
-            查看文档
-          </a>
-          <router-link to="/about" class="btn-primary">
+        <div class="flex justify-center">
+          <button @click="showQQGroup" class="btn-primary">
             联系支持
-          </router-link>
+          </button>
+        </div>
+
+        <!-- QQ群信息弹窗 -->
+        <div v-if="showQQModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" @click="closeQQModal">
+          <div class="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-md mx-4 shadow-2xl" @click.stop>
+            <div class="text-center">
+              <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Welight 交流反馈群</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-6">遇到问题或需要帮助？欢迎加入我们的QQ群</p>
+
+              <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-6">
+                <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">QQ群号</p>
+                <div class="flex items-center justify-center space-x-2">
+                  <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">474919458</span>
+                  <button @click="copyQQGroup" class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  </button>
+                </div>
+                <p v-if="copied" class="text-green-600 text-sm mt-2">群号已复制到剪贴板</p>
+              </div>
+
+              <div class="flex space-x-3">
+                <button @click="closeQQModal" class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                  关闭
+                </button>
+                <a href="https://qm.qq.com/q/Q7CbqSNmUY" target="_blank" class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center">
+                  直接加群
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -208,14 +368,106 @@
 </template>
 
 <script setup>
-const downloadFile = (platform) => {
-  // 模拟下载功能
-  console.log(`下载 ${platform} 版本`)
-  
-  // 这里可以添加实际的下载逻辑
-  // 例如：window.open(downloadUrl) 或触发文件下载
-  
-  // 显示下载提示
-  alert(`正在下载 ${platform} 版本...`)
+import { ref, computed, onMounted } from 'vue'
+
+// 下载统计数据 - 真实统计，从0开始
+const downloadStats = ref({
+  'windows-installer': 0,
+  'windows-msi': 0,
+  'macos-apple': 0,
+  'macos-intel': 0,
+  'linux-appimage': 0,
+  'linux-deb': 0
+})
+
+// 计算总下载量
+const totalDownloads = computed(() => {
+  return Object.values(downloadStats.value).reduce((total, count) => total + count, 0)
+})
+
+// QQ群弹窗相关
+const showQQModal = ref(false)
+const copied = ref(false)
+
+// 显示QQ群信息
+const showQQGroup = () => {
+  showQQModal.value = true
 }
+
+// 关闭QQ群弹窗
+const closeQQModal = () => {
+  showQQModal.value = false
+  copied.value = false
+}
+
+// 复制QQ群号
+const copyQQGroup = async () => {
+  try {
+    await navigator.clipboard.writeText('474919458')
+    copied.value = true
+    setTimeout(() => {
+      copied.value = false
+    }, 2000)
+  } catch (error) {
+    // 如果浏览器不支持clipboard API，使用传统方法
+    const textArea = document.createElement('textarea')
+    textArea.value = '474919458'
+    document.body.appendChild(textArea)
+    textArea.select()
+    document.execCommand('copy')
+    document.body.removeChild(textArea)
+    copied.value = true
+    setTimeout(() => {
+      copied.value = false
+    }, 2000)
+  }
+}
+
+// 下载文件函数
+const downloadFile = (platform) => {
+  // 实际下载链接映射
+  const downloadUrls = {
+    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_1.0.0_x64-setup.exe',
+    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_1.0.0_x64_en-US.msi',
+    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_1.0.0_aarch64.dmg'
+  }
+
+  const downloadUrl = downloadUrls[platform]
+
+  if (downloadUrl) {
+    // 增加下载计数
+    downloadStats.value[platform]++
+
+    // 保存到本地存储
+    localStorage.setItem('downloadStats', JSON.stringify(downloadStats.value))
+
+    // 直接打开下载链接
+    window.open(downloadUrl, '_blank')
+    console.log(`开始下载 ${platform} 版本: ${downloadUrl}`)
+  } else {
+    console.log(`${platform} 版本暂不可用`)
+    alert(`${platform} 版本即将推出，敬请期待！`)
+  }
+}
+
+// 从本地存储加载统计数据
+const loadDownloadStats = () => {
+  // 清除旧数据，重新开始统计
+  localStorage.removeItem('downloadStats')
+
+  // 重置为0
+  downloadStats.value = {
+    'windows-installer': 0,
+    'windows-msi': 0,
+    'macos-apple': 0,
+    'macos-intel': 0,
+    'linux-appimage': 0,
+    'linux-deb': 0
+  }
+}
+
+// 组件挂载时加载数据
+onMounted(() => {
+  loadDownloadStats()
+})
 </script>
