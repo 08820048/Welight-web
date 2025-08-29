@@ -135,7 +135,7 @@
   }
 
   .hero-screenshot:hover {
-    transform: rotateY(-5deg) rotateX(5deg) scale(1.02);
+    transform: scale(1.02);
   }
 
   /* Enhanced hero screenshot styling */
