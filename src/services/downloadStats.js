@@ -121,20 +121,23 @@ export async function initializeDownloadStats() {
       // 如果后端返回了数据，将其映射到我们的格式
       const mappedStats = { ...defaultStats }
       
-      // 根据后端数据更新统计（这里需要根据后端实际返回的数据格式调整）
-      if (backendStats.windows) {
-        mappedStats['windows-installer'] = Math.floor(backendStats.windows * 0.7) // 假设70%使用installer
-        mappedStats['windows-msi'] = Math.floor(backendStats.windows * 0.3) // 30%使用msi
+      // 根据后端实际返回的数据格式映射
+      if (platformDownloads.windows > 0) {
+        // Windows平台分配：70% installer, 30% msi
+        mappedStats['windows-installer'] = Math.floor(platformDownloads.windows * 0.7)
+        mappedStats['windows-msi'] = platformDownloads.windows - mappedStats['windows-installer']
       }
-      
-      if (backendStats.macos) {
-        mappedStats['macos-apple'] = Math.floor(backendStats.macos * 0.9) // 假设90%使用Apple Silicon
-        mappedStats['macos-intel'] = Math.floor(backendStats.macos * 0.1) // 10%使用Intel
+
+      if (platformDownloads.mac > 0) {
+        // macOS平台分配：90% Apple Silicon, 10% Intel
+        mappedStats['macos-apple'] = Math.floor(platformDownloads.mac * 0.9)
+        mappedStats['macos-intel'] = platformDownloads.mac - mappedStats['macos-apple']
       }
-      
-      if (backendStats.linux) {
-        mappedStats['linux-appimage'] = Math.floor(backendStats.linux * 0.6) // 假设60%使用AppImage
-        mappedStats['linux-deb'] = Math.floor(backendStats.linux * 0.4) // 40%使用deb
+
+      if (platformDownloads.linux > 0) {
+        // Linux平台分配：60% AppImage, 40% deb
+        mappedStats['linux-appimage'] = Math.floor(platformDownloads.linux * 0.6)
+        mappedStats['linux-deb'] = platformDownloads.linux - mappedStats['linux-appimage']
       }
       
       return mappedStats
