@@ -35,13 +35,11 @@ export function trackEvent(category, action, label, value) {
 }
 
 /**
- * 模拟获取下载统计数据
- * 注意：百度统计不提供实时API，这里只是示例
- * 实际需要通过百度统计后台查看数据
+ * 获取下载统计数据 - 已迁移到 downloadStats 服务
+ * @deprecated 请使用 @/services/downloadStats 中的相关函数
  */
 export function getDownloadStats() {
-  // 这里返回模拟数据，实际应该从百度统计API获取
-  // 百度统计的数据通常需要通过后台查看或使用官方API
+  console.warn('getDownloadStats 已废弃，请使用 @/services/downloadStats 中的 initializeDownloadStats')
   return {
     'windows-installer': 0,
     'windows-msi': 0,

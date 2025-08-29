@@ -368,9 +368,10 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
 
-// 下载统计数据 - 真实统计，从0开始
+// 下载统计数据 - 从后端API获取真实统计
 const downloadStats = ref({
   'windows-installer': 0,
   'windows-msi': 0,
@@ -380,8 +381,14 @@ const downloadStats = ref({
   'linux-deb': 0
 })
 
-// 计算总下载量
+// 后端原始统计数据
+const backendStats = ref(null)
+
+// 计算总下载量 - 优先使用后端数据
 const totalDownloads = computed(() => {
+  if (backendStats.value && backendStats.value.totalDownloads) {
+    return backendStats.value.totalDownloads
+  }
   return Object.values(downloadStats.value).reduce((total, count) => total + count, 0)
 })
 
@@ -424,7 +431,7 @@ const copyQQGroup = async () => {
 }
 
 // 下载文件函数
-const downloadFile = (platform) => {
+const downloadFile = async (platform) => {
   // 实际下载链接映射
   const downloadUrls = {
     'windows-installer': 'https://waer.ltd/downloads/windows/Welight_1.0.0_x64-setup.exe',
@@ -435,42 +442,66 @@ const downloadFile = (platform) => {
   const downloadUrl = downloadUrls[platform]
 
   if (downloadUrl) {
-    // 增加下载计数
-    downloadStats.value[platform]++
-
-    // 保存到本地存储
-    localStorage.setItem('downloadStats', JSON.stringify(downloadStats.value))
-
-    // 百度统计事件追踪
-    if (typeof _hmt !== 'undefined') {
-      _hmt.push(['_trackEvent', 'download', platform, downloadUrl])
+    // 使用新的下载处理服务，传入刷新统计数据的回调
+    const refreshStats = async (newStats) => {
+      downloadStats.value = newStats
+      // 同时刷新后端原始数据
+      const rawData = await getDownloadStats()
+      if (rawData) {
+        backendStats.value = rawData
+      }
+      console.log('统计数据已更新:', newStats, '后端数据:', rawData)
     }
 
-    // 直接打开下载链接
-    window.open(downloadUrl, '_blank')
-    console.log(`开始下载 ${platform} 版本: ${downloadUrl}`)
+    await handleDownload(platform, downloadUrl, refreshStats)
   } else {
     console.log(`${platform} 版本暂不可用`)
     alert(`${platform} 版本即将推出，敬请期待！`)
   }
 }
 
-// 从本地存储加载统计数据
-const loadDownloadStats = () => {
-  const saved = localStorage.getItem('downloadStats')
-  if (saved) {
-    try {
-      const parsedStats = JSON.parse(saved)
-      // 合并保存的数据和默认数据
-      downloadStats.value = { ...downloadStats.value, ...parsedStats }
-    } catch (error) {
-      console.error('加载下载统计数据失败:', error)
+// 初始化下载统计数据
+const loadDownloadStats = async () => {
+  try {
+    // 先获取后端原始数据
+    const rawData = await getDownloadStats()
+    if (rawData) {
+      backendStats.value = rawData
+      console.log('后端原始数据:', rawData)
     }
+
+    // 再获取映射后的数据
+    const stats = await initializeDownloadStats()
+    downloadStats.value = stats
+    console.log('映射后的统计数据:', stats)
+  } catch (error) {
+    console.error('初始化下载统计数据失败:', error)
   }
 }
 
+// 统计数据同步清理函数
+let statsCleanup = null
+
 // 组件挂载时加载数据
-onMounted(() => {
-  loadDownloadStats()
+onMounted(async () => {
+  // 初始化下载统计数据
+  await loadDownloadStats()
+
+  // 启动统计数据同步（每5分钟同步一次）
+  statsCleanup = startStatsSync(async (newStats) => {
+    downloadStats.value = newStats
+    // 同时更新后端原始数据
+    const rawData = await getDownloadStats()
+    if (rawData) {
+      backendStats.value = rawData
+    }
+  }, 5 * 60 * 1000)
+})
+
+// 组件卸载时清理
+onUnmounted(() => {
+  if (statsCleanup) {
+    statsCleanup()
+  }
 })
 </script>
