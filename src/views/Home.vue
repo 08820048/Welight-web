@@ -9,12 +9,12 @@
             <!-- Main heading -->
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight animate-fade-in-up delay-100">
               <span class="block animate-fade-in-left delay-200">智能高效的</span>
-              <span class="block gradient-text animate-fade-in-left delay-300">公众号推文编辑排版美化体验</span>
+              <span class="block gradient-text animate-fade-in-left delay-300">公众号推文&排版美化体验</span>
             </h1>
 
             <!-- Description -->
             <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed animate-fade-in-up delay-400">
-              Welight 是一款专业为微信公众号创作者打造的一款拥有更优性能、智能、快捷轻量的免费排版工具，排版与编辑，亦可兼得。
+              Welight 是一款专为微信公众号创作者打造的一款拥有更优性能、智能、快捷轻量的免费排版工具，排版与编辑，亦可兼得。
             </p>
 
             <!-- CTA buttons -->
@@ -995,9 +995,9 @@ const downloadFile = async (platform) => {
   try {
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_1.0.0_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_1.0.0_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_1.0.0_aarch64.dmg'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.1.1_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.1.1_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.1.1_aarch64.dmg'
     }
 
     const downloadUrl = downloadUrls[platform]

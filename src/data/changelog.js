@@ -1,11 +1,26 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '2.1.0',
-    date: '2024-08-30',
+    version: '2.1.1',
+    date: '2024-08-31',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      improvements: [
+        '移除编辑区内容折叠功能，简化编辑器'
+      ],
+      fixes: [
+        '修复 Windows 版本构建失败的 BUG'
+      ]
+    }
+  },
+  {
+    version: '2.1.0',
+    date: '2024-08-30',
+    type: 'release',
+    badge: '正式版',
+    badgeColor: 'blue',
     changes: {
       features: [
         '深度优化AI功能，提高AI响应速度',

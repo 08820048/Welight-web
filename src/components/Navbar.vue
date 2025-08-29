@@ -8,7 +8,7 @@
           <span class="text-xl font-bold relative logo-gradient-text cursor-pointer">
             Welight
           </span>
-          <sup class="text-xs text-gray-500 ml-1 font-normal">v2.1.0</sup>
+          <sup class="text-xs text-gray-500 ml-1 font-normal">v2.1.1</sup>
         </router-link>
 
         <!-- Right side buttons -->
