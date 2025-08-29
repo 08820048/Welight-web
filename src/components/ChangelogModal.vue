@@ -6,8 +6,8 @@
     @click="closeModal"
   >
     <!-- 模态框内容 -->
-    <div 
-      class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden animate-fade-in-up"
+    <div
+      class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden modal-content"
       @click.stop
     >
       <!-- 头部 -->
@@ -35,8 +35,13 @@
 
       <!-- 内容区域 -->
       <div class="overflow-y-auto max-h-[calc(90vh-120px)] p-6">
+        <!-- 调试信息 -->
+        <div v-if="!changelogData || changelogData.length === 0" class="text-center py-8">
+          <p class="text-gray-500">正在加载更新日志...</p>
+        </div>
+
         <!-- 版本列表 -->
-        <div class="space-y-8">
+        <div v-else class="space-y-8">
           <!-- 动态渲染版本 -->
           <template v-for="(version, index) in changelogData" :key="version.version">
             <div class="relative">
@@ -140,6 +145,22 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* 模态框动画 */
+.modal-content {
+  animation: modalFadeInUp 0.3s ease-out forwards;
+}
+
+@keyframes modalFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* 自定义滚动条 */
 .overflow-y-auto::-webkit-scrollbar {
   width: 6px;
