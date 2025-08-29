@@ -958,12 +958,16 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
 import DownloadStatsTest from '@/components/DownloadStatsTest.vue'
 
 // 开发模式检测
 const isDev = import.meta.env.DEV
+
+// 路由实例
+const route = useRoute()
 
 // 下载统计数据 - 从后端API获取真实统计
 const downloadStats = ref({
@@ -988,31 +992,40 @@ const totalDownloads = computed(() => {
 
 // 下载文件函数
 const downloadFile = async (platform) => {
-  // 实际下载链接映射
-  const downloadUrls = {
-    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_1.0.0_x64-setup.exe',
-    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_1.0.0_x64_en-US.msi',
-    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_1.0.0_aarch64.dmg'
-  }
-
-  const downloadUrl = downloadUrls[platform]
-
-  if (downloadUrl) {
-    // 使用新的下载处理服务，传入刷新统计数据的回调
-    const refreshStats = async (newStats) => {
-      downloadStats.value = newStats
-      // 同时刷新后端原始数据
-      const rawData = await getDownloadStats()
-      if (rawData) {
-        backendStats.value = rawData
-      }
-      console.log('统计数据已更新:', newStats, '后端数据:', rawData)
+  try {
+    // 实际下载链接映射
+    const downloadUrls = {
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_1.0.0_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_1.0.0_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_1.0.0_aarch64.dmg'
     }
 
-    await handleDownload(platform, downloadUrl, refreshStats)
-  } else {
-    console.log(`${platform} 版本暂不可用`)
-    alert(`${platform} 版本即将推出，敬请期待！`)
+    const downloadUrl = downloadUrls[platform]
+
+    if (downloadUrl) {
+      // 使用新的下载处理服务，传入刷新统计数据的回调
+      const refreshStats = async (newStats) => {
+        try {
+          downloadStats.value = newStats
+          // 同时刷新后端原始数据
+          const rawData = await getDownloadStats()
+          if (rawData) {
+            backendStats.value = rawData
+          }
+          console.log('统计数据已更新:', newStats, '后端数据:', rawData)
+        } catch (error) {
+          console.error('刷新统计数据失败:', error)
+        }
+      }
+
+      await handleDownload(platform, downloadUrl, refreshStats)
+    } else {
+      console.log(`${platform} 版本暂不可用`)
+      alert(`${platform} 版本即将推出，敬请期待！`)
+    }
+  } catch (error) {
+    console.error('下载处理失败:', error)
+    // 下载失败也不应该影响页面状态
   }
 }
 
@@ -1038,60 +1051,160 @@ const loadDownloadStats = async () => {
 // 滚动触发动画
 let observer = null
 let statsCleanup = null
+const isInitialized = ref(false)
 
-onMounted(async () => {
-  // 初始化下载统计数据
-  await loadDownloadStats()
-
-  // 启动统计数据同步（每5分钟同步一次）
-  statsCleanup = startStatsSync(async (newStats) => {
-    downloadStats.value = newStats
-    // 同时更新后端原始数据
-    const rawData = await getDownloadStats()
-    if (rawData) {
-      backendStats.value = rawData
-    }
-  }, 5 * 60 * 1000)
-
-  // 创建 Intersection Observer 来监听元素进入视口
-  observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // 当元素进入视口时，添加动画类
-        entry.target.classList.add('animate-in-view')
-      } else {
-        // 当元素离开视口时，移除动画类，以便下次进入时重新触发
-        entry.target.classList.remove('animate-in-view')
-      }
-    })
-  }, {
-    threshold: 0.3, // 当元素30%可见时触发
-    rootMargin: '0px 0px -100px 0px' // 提前100px触发
-  })
-
-  // 观察所有需要动画的元素
-  const animatedElements = document.querySelectorAll('.scroll-animate')
-  animatedElements.forEach((el) => {
-    observer.observe(el)
-  })
-
-  // 为首页元素也添加滚动监听
-  const firstPageElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-scale-in')
-  firstPageElements.forEach((el) => {
-    // 给首页元素添加scroll-animate类
-    el.classList.add('scroll-animate-first')
-    observer.observe(el)
-  })
-})
-
-onUnmounted(() => {
+// 重置页面状态
+const resetPageState = () => {
+  // 清理之前的observer
   if (observer) {
     observer.disconnect()
+    observer = null
+  }
+
+  // 重置动画状态
+  const allAnimatedElements = document.querySelectorAll('.animate-in-view, .scroll-animate-first')
+  allAnimatedElements.forEach((el) => {
+    el.classList.remove('animate-in-view', 'scroll-animate-first')
+  })
+
+  isInitialized.value = false
+}
+
+// 初始化页面动画
+const initializeAnimations = () => {
+  if (isInitialized.value) return
+
+  // 使用 nextTick 确保 DOM 已完全渲染
+  nextTick(() => {
+    try {
+      // 确保页面滚动到顶部
+      window.scrollTo(0, 0)
+
+      // 创建 Intersection Observer 来监听元素进入视口
+      observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // 当元素进入视口时，添加动画类
+            entry.target.classList.add('animate-in-view')
+          } else {
+            // 当元素离开视口时，移除动画类，以便下次进入时重新触发
+            entry.target.classList.remove('animate-in-view')
+          }
+        })
+      }, {
+        threshold: 0.3, // 当元素30%可见时触发
+        rootMargin: '0px 0px -100px 0px' // 提前100px触发
+      })
+
+      // 观察所有需要动画的元素
+      const animatedElements = document.querySelectorAll('.scroll-animate')
+      console.log(`找到 ${animatedElements.length} 个滚动动画元素`)
+      animatedElements.forEach((el) => {
+        if (observer) observer.observe(el)
+      })
+
+      // 为首页元素也添加滚动监听
+      const firstPageElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-scale-in')
+      console.log(`找到 ${firstPageElements.length} 个首页动画元素`)
+      firstPageElements.forEach((el) => {
+        // 给首页元素添加scroll-animate类
+        el.classList.add('scroll-animate-first')
+        if (observer) observer.observe(el)
+      })
+
+      // 强制触发首屏动画
+      setTimeout(() => {
+        const heroElements = document.querySelectorAll('.animate-fade-in-up, .animate-scale-in')
+        heroElements.forEach((el) => {
+          if (el.getBoundingClientRect().top < window.innerHeight) {
+            el.classList.add('animate-in-view')
+          }
+        })
+      }, 100)
+
+      isInitialized.value = true
+      console.log('页面动画初始化完成')
+    } catch (error) {
+      console.error('动画初始化失败:', error)
+      isInitialized.value = true // 即使失败也标记为已初始化，避免重复尝试
+    }
+  })
+}
+
+onMounted(async () => {
+  // 重置页面状态
+  resetPageState()
+
+  try {
+    // 初始化下载统计数据
+    await loadDownloadStats()
+
+    // 启动统计数据同步（每5分钟同步一次）
+    statsCleanup = startStatsSync(async (newStats) => {
+      downloadStats.value = newStats
+      // 同时更新后端原始数据
+      const rawData = await getDownloadStats()
+      if (rawData) {
+        backendStats.value = rawData
+      }
+    }, 5 * 60 * 1000)
+
+    // 初始化动画
+    initializeAnimations()
+  } catch (error) {
+    console.error('页面初始化失败:', error)
+    // 即使数据加载失败，也要初始化动画
+    initializeAnimations()
+  }
+})
+
+// 监听路由变化，确保每次回到首页都能正确初始化
+watch(() => route.path, (newPath, oldPath) => {
+  if (newPath === '/' && oldPath !== '/') {
+    console.log('返回首页，重新初始化...')
+    // 延迟一点时间确保页面完全加载
+    setTimeout(() => {
+      resetPageState()
+      initializeAnimations()
+    }, 100)
+  }
+}, { immediate: false })
+
+// 监听页面可见性变化
+const handleVisibilityChange = () => {
+  if (!document.hidden && route.path === '/') {
+    console.log('页面重新可见，检查初始化状态...')
+    // 如果页面重新可见且在首页，确保动画正常
+    if (!isInitialized.value) {
+      setTimeout(() => {
+        initializeAnimations()
+      }, 200)
+    }
+  }
+}
+
+// 添加页面可见性监听
+document.addEventListener('visibilitychange', handleVisibilityChange)
+
+onUnmounted(() => {
+  // 清理 Intersection Observer
+  if (observer) {
+    observer.disconnect()
+    observer = null
   }
 
   // 清理统计数据同步
   if (statsCleanup) {
     statsCleanup()
+    statsCleanup = null
   }
+
+  // 清理页面可见性监听
+  document.removeEventListener('visibilitychange', handleVisibilityChange)
+
+  // 重置状态
+  isInitialized.value = false
+
+  console.log('首页组件已卸载，清理完成')
 })
 </script>
