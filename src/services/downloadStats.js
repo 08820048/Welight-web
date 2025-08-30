@@ -62,7 +62,10 @@ const PLATFORM_MAPPING = {
   'macos-apple': 'macos',
   'macos-intel': 'macos',
   'linux-appimage': 'linux',
-  'linux-deb': 'linux'
+  'linux-deb': 'linux',
+  'linux-rpm': 'linux',
+  'linux-tar-x64': 'linux',
+  'linux-tar-arm64': 'linux'
 }
 
 /**
@@ -110,7 +113,10 @@ export async function initializeDownloadStats() {
     'macos-apple': 0,
     'macos-intel': 0,
     'linux-appimage': 0,
-    'linux-deb': 0
+    'linux-deb': 0,
+    'linux-rpm': 0,
+    'linux-tar-x64': 0,
+    'linux-tar-arm64': 0
   }
   
   try {
@@ -138,9 +144,14 @@ export async function initializeDownloadStats() {
       }
 
       if (platformDownloads.linux > 0) {
-        // Linux平台分配：60% AppImage, 40% deb
-        mappedStats['linux-appimage'] = Math.floor(platformDownloads.linux * 0.6)
-        mappedStats['linux-deb'] = platformDownloads.linux - mappedStats['linux-appimage']
+        // Linux平台分配：40% AppImage, 25% deb, 20% rpm, 10% tar-x64, 5% tar-arm64
+        mappedStats['linux-appimage'] = Math.floor(platformDownloads.linux * 0.4)
+        mappedStats['linux-deb'] = Math.floor(platformDownloads.linux * 0.25)
+        mappedStats['linux-rpm'] = Math.floor(platformDownloads.linux * 0.2)
+        mappedStats['linux-tar-x64'] = Math.floor(platformDownloads.linux * 0.1)
+        mappedStats['linux-tar-arm64'] = platformDownloads.linux -
+          mappedStats['linux-appimage'] - mappedStats['linux-deb'] -
+          mappedStats['linux-rpm'] - mappedStats['linux-tar-x64']
       }
       
       return mappedStats

@@ -1027,7 +1027,10 @@ const downloadStats = ref({
   'macos-apple': 0,
   'macos-intel': 0,
   'linux-appimage': 0,
-  'linux-deb': 0
+  'linux-deb': 0,
+  'linux-rpm': 0,
+  'linux-tar-x64': 0,
+  'linux-tar-arm64': 0
 })
 
 // 后端原始统计数据
@@ -1104,9 +1107,10 @@ const downloadFile = async (platform) => {
   try {
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.1_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.1_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.1_aarch64.dmg'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.0_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.0_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.0_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.2.0_x64.dmg'
     }
 
     const downloadUrl = downloadUrls[platform]

@@ -53,7 +53,7 @@
                 </svg>
               </button>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">EXE: 5.4 MB | MSI: 7.7 MB</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">EXE: 5.36 MB | MSI: 7.55 MB</p>
             <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
               <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
                 <span>EXE: {{ downloadStats['windows-installer'].toLocaleString() }} 次</span>
@@ -72,9 +72,11 @@
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">macOS</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-6">适用于 macOS 10.15+</p>
             <div class="space-y-3">
-              <button class="btn-secondary w-full opacity-50 cursor-not-allowed" disabled>
+              <button class="btn-secondary w-full" @click="downloadFile('macos-intel')">
                 Intel 芯片 (.dmg)
-                <span class="text-xs ml-2">(即将推出)</span>
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
               </button>
               <button class="btn-primary w-full" @click="downloadFile('macos-apple')">
                 Apple Silicon (.dmg)
@@ -83,10 +85,11 @@
                 </svg>
               </button>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">大小：12.2 MB</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">Intel: 12.2 MB | Apple Silicon: 12 MB</p>
             <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
-              <div class="text-xs text-gray-500 dark:text-gray-400 text-center">
-                <span>Apple Silicon: {{ downloadStats['macos-apple'].toLocaleString() }} 次下载</span>
+              <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
+                <span>Intel: {{ downloadStats['macos-intel'].toLocaleString() }} 次</span>
+                <span>Apple Silicon: {{ downloadStats['macos-apple'].toLocaleString() }} 次</span>
               </div>
             </div>
           </div>
@@ -100,20 +103,38 @@
             </div>
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Linux</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-6">适用于主流 Linux 发行版</p>
-            <div class="space-y-3">
-              <button class="btn-secondary w-full opacity-50 cursor-not-allowed" disabled>
-                AppImage
-                <span class="text-xs ml-2">(即将推出)</span>
+            <div class="space-y-2">
+              <button class="btn-primary w-full" @click="downloadFile('linux-appimage')">
+                AppImage (83.1 MB)
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
               </button>
-              <button class="btn-secondary w-full opacity-50 cursor-not-allowed" disabled>
-                Debian (.deb)
-                <span class="text-xs ml-2">(即将推出)</span>
+              <button class="btn-secondary w-full" @click="downloadFile('linux-deb')">
+                Debian (.deb) - 8.74 MB
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
               </button>
+              <button class="btn-secondary w-full" @click="downloadFile('linux-rpm')">
+                RPM (.rpm) - 8.74 MB
+                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </button>
+              <div class="grid grid-cols-2 gap-2">
+                <button class="btn-secondary text-xs py-2" @click="downloadFile('linux-tar-x64')">
+                  TAR x64 (10.1 MB)
+                </button>
+                <button class="btn-secondary text-xs py-2" @click="downloadFile('linux-tar-arm64')">
+                  TAR ARM64 (9.82 MB)
+                </button>
+              </div>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">即将推出</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">支持多种 Linux 发行版</p>
             <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
               <div class="text-xs text-gray-500 dark:text-gray-400 text-center">
-                <span>即将推出，敬请期待</span>
+                <span>AppImage: {{ downloadStats['linux-appimage'].toLocaleString() }} 次 | DEB: {{ downloadStats['linux-deb'].toLocaleString() }} 次</span>
               </div>
             </div>
           </div>
@@ -378,7 +399,10 @@ const downloadStats = ref({
   'macos-apple': 0,
   'macos-intel': 0,
   'linux-appimage': 0,
-  'linux-deb': 0
+  'linux-deb': 0,
+  'linux-rpm': 0,
+  'linux-tar-x64': 0,
+  'linux-tar-arm64': 0
 })
 
 // 后端原始统计数据
@@ -434,9 +458,18 @@ const copyQQGroup = async () => {
 const downloadFile = async (platform) => {
   // 实际下载链接映射
   const downloadUrls = {
-    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.1_x64-setup.exe',
-    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.1_x64_en-US.msi',
-    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.1_aarch64.dmg'
+    // Windows
+    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.0_x64-setup.exe',
+    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.0_x64_en-US.msi',
+    // macOS
+    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.0_aarch64.dmg',
+    'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.2.0_x64.dmg',
+    // Linux
+    'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.2.0_amd64.AppImage',
+    'linux-deb': 'https://waer.ltd/downloads/linux/Welight_2.2.0_amd64.deb',
+    'linux-rpm': 'https://waer.ltd/downloads/linux/Welight-2.2.0-1.x86_64.rpm',
+    'linux-tar-x64': 'https://waer.ltd/downloads/linux/Welight_x64.app.tar.gz',
+    'linux-tar-arm64': 'https://waer.ltd/downloads/linux/Welight_aarch64.app.tar.gz'
   }
 
   const downloadUrl = downloadUrls[platform]
