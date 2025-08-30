@@ -74,7 +74,7 @@
                 </svg>
                 <div class="flex flex-col items-center mx-2">
                   <span class="text-base">下载最新版</span>
-                  <span class="text-xs opacity-75">{{ animatedMacDownloads.toLocaleString() }} 次下载</span>
+                  <span class="text-xs opacity-75"><span class="font-semibold text-white">{{ animatedMacDownloads.toLocaleString() }}</span> 次下载</span>
                 </div>
                 <!-- Animated Download Icon -->
                 <svg class="w-4 h-4 text-white animate-enhanced-bounce group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,7 +90,7 @@
                 </svg>
                 <div class="flex flex-col items-center mx-2">
                   <span class="text-base">Windows 版本</span>
-                  <span class="text-xs opacity-75">{{ animatedWindowsDownloads.toLocaleString() }} 次下载</span>
+                  <span class="text-xs opacity-75"><span class="font-semibold text-white">{{ animatedWindowsDownloads.toLocaleString() }}</span> 次下载</span>
                 </div>
                 <!-- Animated Download Icon -->
                 <svg class="w-4 h-4 text-white animate-enhanced-bounce group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,22 +110,11 @@
 
             <!-- Download statistics and additional info -->
             <div class="flex flex-col sm:flex-row gap-4 items-center animate-fade-in-up delay-600">
-              <!-- 美化的总下载量显示 -->
-              <div class="bg-gradient-to-r from-primary-50 to-blue-50 border border-primary-200 rounded-xl px-6 py-4 shadow-sm hover:shadow-md transition-all duration-300">
-                <div class="flex items-center space-x-3">
-                  <div class="w-10 h-10 bg-gradient-to-r from-primary-500 to-blue-500 rounded-full flex items-center justify-center shadow-lg">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                    </svg>
-                  </div>
-                  <div class="flex flex-col">
-                    <span class="text-xs text-gray-500 font-medium uppercase tracking-wide">总下载量</span>
-                    <div class="flex items-baseline space-x-1">
-                      <span class="text-2xl font-bold text-gray-900 tabular-nums">{{ animatedTotalDownloads.toLocaleString() }}</span>
-                      <span class="text-sm text-gray-600 font-medium">次</span>
-                    </div>
-                  </div>
-                </div>
+              <div class="flex items-center space-x-2 text-sm text-gray-600">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                <span>总下载量：<span class="text-lg font-bold text-primary-600 tabular-nums">{{ animatedTotalDownloads.toLocaleString() }}</span> 次</span>
               </div>
               <!-- 开发模式下显示调试信息 -->
               <div v-if="isDev" class="text-xs text-gray-500 mt-2">
