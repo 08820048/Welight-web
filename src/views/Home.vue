@@ -74,7 +74,7 @@
                 </svg>
                 <div class="flex flex-col items-center mx-2">
                   <span class="text-base">下载最新版</span>
-                  <span class="text-xs opacity-75">{{ downloadStats['macos-apple'].toLocaleString() }} 次下载</span>
+                  <span class="text-xs opacity-75">{{ animatedMacDownloads.toLocaleString() }} 次下载</span>
                 </div>
                 <!-- Animated Download Icon -->
                 <svg class="w-4 h-4 text-white animate-enhanced-bounce group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,7 +90,7 @@
                 </svg>
                 <div class="flex flex-col items-center mx-2">
                   <span class="text-base">Windows 版本</span>
-                  <span class="text-xs opacity-75">{{ downloadStats['windows-installer'].toLocaleString() }} 次下载</span>
+                  <span class="text-xs opacity-75">{{ animatedWindowsDownloads.toLocaleString() }} 次下载</span>
                 </div>
                 <!-- Animated Download Icon -->
                 <svg class="w-4 h-4 text-white animate-enhanced-bounce group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,7 +114,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                <span>总下载量：{{ totalDownloads.toLocaleString() }} 次</span>
+                <span>总下载量：{{ animatedTotalDownloads.toLocaleString() }} 次</span>
               </div>
               <!-- 开发模式下显示调试信息 -->
               <div v-if="isDev" class="text-xs text-gray-500 mt-2">
@@ -1033,6 +1033,11 @@ const downloadStats = ref({
 // 后端原始统计数据
 const backendStats = ref(null)
 
+// 动画数字状态
+const animatedTotalDownloads = ref(0)
+const animatedMacDownloads = ref(0)
+const animatedWindowsDownloads = ref(0)
+
 // 计算总下载量 - 优先使用后端数据
 const totalDownloads = computed(() => {
   if (backendStats.value && backendStats.value.totalDownloads) {
@@ -1040,6 +1045,49 @@ const totalDownloads = computed(() => {
   }
   return Object.values(downloadStats.value).reduce((total, count) => total + count, 0)
 })
+
+// 数字递增动画函数
+const animateNumber = (from, to, duration, callback) => {
+  const startTime = Date.now()
+  const difference = to - from
+
+  const step = () => {
+    const elapsed = Date.now() - startTime
+    const progress = Math.min(elapsed / duration, 1)
+
+    // 使用缓动函数，让动画更自然
+    const easeOutQuart = 1 - Math.pow(1 - progress, 4)
+    const current = Math.floor(from + difference * easeOutQuart)
+
+    callback(current)
+
+    if (progress < 1) {
+      requestAnimationFrame(step)
+    } else {
+      callback(to) // 确保最终值准确
+    }
+  }
+
+  requestAnimationFrame(step)
+}
+
+// 启动下载数据动画
+const startDownloadAnimation = () => {
+  // 总下载量动画
+  animateNumber(0, totalDownloads.value, 2000, (value) => {
+    animatedTotalDownloads.value = value
+  })
+
+  // macOS下载量动画
+  animateNumber(0, downloadStats.value['macos-apple'], 1800, (value) => {
+    animatedMacDownloads.value = value
+  })
+
+  // Windows下载量动画
+  animateNumber(0, downloadStats.value['windows-installer'], 1600, (value) => {
+    animatedWindowsDownloads.value = value
+  })
+}
 
 // 横幅通知相关函数
 const closeBanner = () => {
@@ -1076,6 +1124,11 @@ const downloadFile = async (platform) => {
             backendStats.value = rawData
           }
           console.log('统计数据已更新:', newStats, '后端数据:', rawData)
+
+          // 数据更新后重新启动动画
+          setTimeout(() => {
+            startDownloadAnimation()
+          }, 300)
         } catch (error) {
           console.error('刷新统计数据失败:', error)
         }
@@ -1106,6 +1159,11 @@ const loadDownloadStats = async () => {
     const stats = await initializeDownloadStats()
     downloadStats.value = stats
     console.log('映射后的统计数据:', stats)
+
+    // 数据加载完成后，延迟启动动画
+    setTimeout(() => {
+      startDownloadAnimation()
+    }, 1000) // 延迟1秒，让页面元素先渲染
   } catch (error) {
     console.error('初始化下载统计数据失败:', error)
   }
@@ -1221,6 +1279,11 @@ onMounted(async () => {
       if (rawData) {
         backendStats.value = rawData
       }
+
+      // 定期同步时也重新启动动画
+      setTimeout(() => {
+        startDownloadAnimation()
+      }, 300)
     }, 5 * 60 * 1000)
 
     // 初始化动画
