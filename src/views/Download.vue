@@ -434,9 +434,9 @@ const copyQQGroup = async () => {
 const downloadFile = async (platform) => {
   // 实际下载链接映射
   const downloadUrls = {
-    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.1.1_x64-setup.exe',
-    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.1.1_x64_en-US.msi',
-    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.1.1_aarch64.dmg'
+    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.0_x64-setup.exe',
+    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.0_x64_en-US.msi',
+    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.0_aarch64.dmg'
   }
 
   const downloadUrl = downloadUrls[platform]

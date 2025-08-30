@@ -1,11 +1,38 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '2.1.1',
+    version: '2.2.0',
     date: '2025-08-29',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      features: [
+        '划词功能中的AI功能优化增强，新增AI功能任务后台机制',
+        '多任务并行，后台任务完成后会自动通知',
+        '新增免费的DeepSeek模型体验，用户可通过指定方式获取免费使用码',
+        '提供推广方式，方便用户体验AI功能'
+      ],
+      improvements: [
+        '调整"极简白净"主题切换时顶部菜单栏菜单配色',
+        '针对性处理超链接的markdown语法格式在公众号编辑器中的兼容性',
+        '调整增强现有主题样式、统一主题中的无序列表风格',
+        '优化文本格式转换时markdown规则检查和转换逻辑',
+        '将后续操作权交给用户处理，不占用编辑器空间，提高创作效率',
+        '其他细节优化'
+      ],
+      fixes: [
+        '解决颜色冲突导致菜单看不清的问题',
+        '调整主题数量，优化主题管理'
+      ]
+    }
+  },
+  {
+    version: '2.1.1',
+    date: '2025-08-29',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
     changes: {
       improvements: [
         '移除编辑区内容折叠功能，简化编辑器'
