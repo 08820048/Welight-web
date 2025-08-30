@@ -25,9 +25,9 @@
                   <span class="bg-white bg-opacity-20 text-xs px-2 py-1 rounded-full font-medium">最新版本</span>
                 </div>
                 <p class="text-sm text-primary-100">
-                  新版本带来更好的性能和用户体验，
-                  <span class="hidden sm:inline">包含编辑器优化和问题修复。</span>
-                  <span class="font-medium text-white">立即下载体验最新功能！</span>
+                  新增AI任务后台机制和免费DeepSeek模型体验，
+                  <span class="hidden sm:inline">包含主题优化和markdown转换改进。</span>
+                  <span class="font-medium text-white">立即下载体验AI增强功能！</span>
                 </p>
               </div>
             </div>
@@ -1096,8 +1096,6 @@ const closeBanner = () => {
   // 延迟隐藏横幅
   setTimeout(() => {
     showBanner.value = false
-    // 保存用户选择到本地存储
-    localStorage.setItem('bannerClosed', 'true')
   }, 700) // 与动画时长一致
 }
 
@@ -1256,16 +1254,10 @@ onMounted(async () => {
   // 重置页面状态
   resetPageState()
 
-  // 检查横幅是否已被关闭
-  const bannerClosed = localStorage.getItem('bannerClosed')
-  if (bannerClosed === 'true') {
-    showBanner.value = false
-  } else {
-    // 延迟显示横幅动画，让页面先加载
-    setTimeout(() => {
-      bannerVisible.value = true
-    }, 500)
-  }
+  // 延迟显示横幅动画，让页面先加载
+  setTimeout(() => {
+    bannerVisible.value = true
+  }, 500)
 
   try {
     // 初始化下载统计数据
