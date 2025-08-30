@@ -48,7 +48,7 @@
     </div>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen overflow-hidden" :class="showBanner ? 'pt-32' : 'pt-20'">
+    <section class="relative min-h-screen overflow-hidden pt-32">
       <div class="relative container-custom h-full">
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-center min-h-[calc(100vh-5rem)]">
           <!-- Left content -->
@@ -74,7 +74,7 @@
                 </svg>
                 <div class="flex flex-col items-center mx-2">
                   <span class="text-base">下载最新版</span>
-                  <span class="text-xs opacity-75"><span class="font-semibold text-white">{{ animatedMacDownloads.toLocaleString() }}</span> 次下载</span>
+                  <span class="text-xs opacity-75"><span class="font-semibold text-white tabular-nums inline-block min-w-[1rem]">{{ animatedMacDownloads.toLocaleString() }}</span> 次下载</span>
                 </div>
                 <!-- Animated Download Icon -->
                 <svg class="w-4 h-4 text-white animate-enhanced-bounce group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,7 +90,7 @@
                 </svg>
                 <div class="flex flex-col items-center mx-2">
                   <span class="text-base">Windows 版本</span>
-                  <span class="text-xs opacity-75"><span class="font-semibold text-white">{{ animatedWindowsDownloads.toLocaleString() }}</span> 次下载</span>
+                  <span class="text-xs opacity-75"><span class="font-semibold text-white tabular-nums inline-block min-w-[1rem]">{{ animatedWindowsDownloads.toLocaleString() }}</span> 次下载</span>
                 </div>
                 <!-- Animated Download Icon -->
                 <svg class="w-4 h-4 text-white animate-enhanced-bounce group-hover:animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,7 +114,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                <span>总下载量：<span class="text-lg font-bold text-primary-600 tabular-nums">{{ animatedTotalDownloads.toLocaleString() }}</span> 次</span>
+                <span>总下载量：<span class="text-lg font-bold text-primary-600 tabular-nums inline-block min-w-[3rem]">{{ animatedTotalDownloads.toLocaleString() }}</span> 次</span>
               </div>
               <!-- 开发模式下显示调试信息 -->
               <div v-if="isDev" class="text-xs text-gray-500 mt-2">
@@ -146,7 +146,7 @@
                   <!-- Main image -->
                   <div class="relative overflow-hidden rounded-2xl">
                     <img
-                      src="https://images.waer.ltd/notes/202508281311929.png"
+                      src="https://images.waer.ltd/notes/202508301847458.png"
                       alt="Welight 主题预览界面"
                       class="w-full h-auto transform group-hover:scale-105 transition-all duration-700 hero-screenshot"
                       loading="lazy"
@@ -199,7 +199,7 @@
                   <!-- Main screenshot -->
                   <div class="relative overflow-hidden rounded-2xl">
                     <img
-                      src="https://images.waer.ltd/notes/202508281313370.png"
+                      src="https://images.waer.ltd/notes/202508301851082.png"
                       alt="Welight 核心特性展示"
                       class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
                       loading="lazy"
@@ -1018,7 +1018,7 @@ const route = useRoute()
 
 // 横幅通知状态
 const showBanner = ref(true)
-const bannerVisible = ref(false)
+const bannerVisible = ref(true) // 初始就显示，避免闪动
 
 // 下载统计数据 - 从后端API获取真实统计
 const downloadStats = ref({
@@ -1254,10 +1254,7 @@ onMounted(async () => {
   // 重置页面状态
   resetPageState()
 
-  // 延迟显示横幅动画，让页面先加载
-  setTimeout(() => {
-    bannerVisible.value = true
-  }, 500)
+  // 横幅初始就显示，无需延迟
 
   try {
     // 初始化下载统计数据
