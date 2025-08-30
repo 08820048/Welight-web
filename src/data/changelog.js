@@ -1,11 +1,25 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '2.2.0',
+    version: '2.2.1',
     date: '2025-08-29',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      fixes: [
+        '修复自动更新功能的相关问题',
+        '优化应用更新检测机制',
+        '解决更新过程中的稳定性问题'
+      ]
+    }
+  },
+  {
+    version: '2.2.0',
+    date: '2025-08-29',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
     changes: {
       features: [
         '划词功能中的AI功能优化增强，新增AI功能任务后台机制',
