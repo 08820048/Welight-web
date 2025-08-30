@@ -100,12 +100,13 @@
             </div>
 
             <!-- Linux Download Button -->
-            <button class="download-btn-linux group relative overflow-hidden bg-gray-400 cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-lg inline-flex items-center justify-between max-w-xs animate-scale-in delay-800 opacity-60 mb-6" disabled>
+            <button class="download-btn-linux group relative overflow-hidden bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 inline-flex items-center justify-between max-w-xs animate-scale-in delay-800 mb-6" @click="downloadFile('linux-appimage')">
               <!-- Linux Logo -->
               <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 01-.088.066c-.297.168-.623.336-.995.268-.4-.051-.811-.03-1.206-.125-.365-.086-.718-.224-1.05-.479-.297-.239-.543-.527-.708-.815-.194-.328-.353-.66-.401-1.058-.035-.31-.008-.579.15-.849.135-.23.355-.406.608-.523.404-.187.818-.131 1.259-.199v-.016h-.073zm-2.452 7.407h.016c.442.02.72.199 1.004.284.336.099.672.198 1.062.201.435-.006.81-.118 1.18-.284.06-.03.135-.044.195-.09.225-.136.405-.334.558-.538.404-.534.67-1.126.972-1.67.17-.3.346-.3.521-.06.299.404.413.842.477 1.314.037.279.017.558-.031.818-.064.434-.23.747-.475 1.005-.154.15-.346.3-.504.465-.225.24-.42.48-.668.671-.537.434-1.108.747-1.764.925-.612.15-1.238.12-1.854.06-.292-.03-.584-.06-.87-.135-.255-.06-.51-.135-.725-.27-.154-.09-.293-.225-.417-.375-.109-.135-.199-.284-.25-.465-.047-.181-.016-.378.031-.553.064-.24.209-.464.403-.629.226-.181.478-.284.751-.329.399-.06.818.044 1.207-.105.06-.023.12-.06.18-.104h-.011z"/>
               </svg>
-              <span class="text-base mx-2">Linux 版本 (即将推出)</span>
+              <span class="text-base mx-2">Linux 版本</span>
+              <span class="text-xs opacity-75"><span class="font-semibold text-white tabular-nums inline-block min-w-[1rem]">{{ animatedLinuxDownloads.toLocaleString() }}</span> 次下载</span>
             </button>
 
             <!-- Download statistics and additional info -->
@@ -1040,6 +1041,7 @@ const backendStats = ref(null)
 const animatedTotalDownloads = ref(0)
 const animatedMacDownloads = ref(0)
 const animatedWindowsDownloads = ref(0)
+const animatedLinuxDownloads = ref(0)
 
 // 计算总下载量 - 优先使用后端数据
 const totalDownloads = computed(() => {
@@ -1090,6 +1092,11 @@ const startDownloadAnimation = () => {
   animateNumber(0, downloadStats.value['windows-installer'], 1600, (value) => {
     animatedWindowsDownloads.value = value
   })
+
+  // Linux下载量动画
+  animateNumber(0, downloadStats.value['linux-appimage'], 1400, (value) => {
+    animatedLinuxDownloads.value = value
+  })
 }
 
 // 横幅通知相关函数
@@ -1110,7 +1117,8 @@ const downloadFile = async (platform) => {
       'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.0_x64-setup.exe',
       'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.0_x64_en-US.msi',
       'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.0_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.2.0_x64.dmg'
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.2.0_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.2.0_amd64.AppImage'
     }
 
     const downloadUrl = downloadUrls[platform]
