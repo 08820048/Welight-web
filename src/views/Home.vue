@@ -1051,48 +1051,65 @@ const totalDownloads = computed(() => {
 
 // 数字递增动画函数
 const animateNumber = (from, to, duration, callback) => {
+  // 确保输入值是有效数字
+  const fromNum = Number(from) || 0
+  const toNum = Number(to) || 0
+  const durationNum = Number(duration) || 1000
+
   const startTime = Date.now()
-  const difference = to - from
+  const difference = toNum - fromNum
 
   const step = () => {
     const elapsed = Date.now() - startTime
-    const progress = Math.min(elapsed / duration, 1)
+    const progress = Math.min(elapsed / durationNum, 1)
 
     // 使用缓动函数，让动画更自然
     const easeOutQuart = 1 - Math.pow(1 - progress, 4)
-    const current = Math.floor(from + difference * easeOutQuart)
+    const current = Math.floor(fromNum + difference * easeOutQuart)
 
     callback(current)
 
     if (progress < 1) {
       requestAnimationFrame(step)
     } else {
-      callback(to) // 确保最终值准确
+      callback(toNum) // 确保最终值准确
     }
   }
 
   requestAnimationFrame(step)
 }
 
+// 计算各平台总下载量
+const getPlatformDownloads = () => {
+  const stats = downloadStats.value
+  return {
+    windows: (stats['windows-installer'] || 0) + (stats['windows-msi'] || 0),
+    macos: (stats['macos-apple'] || 0) + (stats['macos-intel'] || 0),
+    linux: (stats['linux-appimage'] || 0) + (stats['linux-deb'] || 0) + (stats['linux-rpm'] || 0)
+  }
+}
+
 // 启动下载数据动画
 const startDownloadAnimation = () => {
+  const platformStats = getPlatformDownloads()
+
   // 总下载量动画
   animateNumber(0, totalDownloads.value, 2000, (value) => {
     animatedTotalDownloads.value = value
   })
 
-  // macOS下载量动画
-  animateNumber(0, downloadStats.value['macos-apple'], 1800, (value) => {
+  // macOS下载量动画（两种安装包总和）
+  animateNumber(0, platformStats.macos, 1800, (value) => {
     animatedMacDownloads.value = value
   })
 
-  // Windows下载量动画
-  animateNumber(0, downloadStats.value['windows-installer'], 1600, (value) => {
+  // Windows下载量动画（两种安装包总和）
+  animateNumber(0, platformStats.windows, 1600, (value) => {
     animatedWindowsDownloads.value = value
   })
 
-  // Linux下载量动画
-  animateNumber(0, downloadStats.value['linux-appimage'], 1400, (value) => {
+  // Linux下载量动画（三种安装包总和）
+  animateNumber(0, platformStats.linux, 1400, (value) => {
     animatedLinuxDownloads.value = value
   })
 }
@@ -1122,27 +1139,33 @@ const downloadFile = async (platform) => {
     const downloadUrl = downloadUrls[platform]
 
     if (downloadUrl) {
-      // 使用新的下载处理服务，传入刷新统计数据的回调
-      const refreshStats = async (newStats) => {
+      // 使用新的下载处理服务，传入更新本地统计的回调
+      const updateLocalStats = async (downloadedPlatform) => {
         try {
-          downloadStats.value = newStats
+          // 更新本地统计数据
+          const currentStats = { ...downloadStats.value }
+          if (currentStats[downloadedPlatform] !== undefined) {
+            currentStats[downloadedPlatform] += 1
+          }
+          downloadStats.value = currentStats
+
           // 同时刷新后端原始数据
           const rawData = await getDownloadStats()
           if (rawData) {
             backendStats.value = rawData
           }
-          console.log('统计数据已更新:', newStats, '后端数据:', rawData)
+          console.log('本地统计已更新:', currentStats, '后端数据:', rawData)
 
           // 数据更新后重新启动动画
           setTimeout(() => {
             startDownloadAnimation()
           }, 300)
         } catch (error) {
-          console.error('刷新统计数据失败:', error)
+          console.error('更新本地统计失败:', error)
         }
       }
 
-      await handleDownload(platform, downloadUrl, refreshStats)
+      await handleDownload(platform, downloadUrl, updateLocalStats)
     } else {
       console.log(`${platform} 版本暂不可用`)
       alert(`${platform} 版本即将推出，敬请期待！`)

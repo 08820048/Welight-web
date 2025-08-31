@@ -133,10 +133,10 @@ export async function initializeDownloadStats() {
         mappedStats['windows-msi'] = platformDownloads.windows - mappedStats['windows-installer']
       }
 
-      if (platformDownloads.mac > 0) {
+      if (platformDownloads.macos > 0) {
         // macOS平台分配：90% Apple Silicon, 10% Intel
-        mappedStats['macos-apple'] = Math.floor(platformDownloads.mac * 0.9)
-        mappedStats['macos-intel'] = platformDownloads.mac - mappedStats['macos-apple']
+        mappedStats['macos-apple'] = Math.floor(platformDownloads.macos * 0.9)
+        mappedStats['macos-intel'] = platformDownloads.macos - mappedStats['macos-apple']
       }
 
       if (platformDownloads.linux > 0) {

@@ -463,18 +463,28 @@ const downloadFile = async (platform) => {
   const downloadUrl = downloadUrls[platform]
 
   if (downloadUrl) {
-    // 使用新的下载处理服务，传入刷新统计数据的回调
-    const refreshStats = async (newStats) => {
-      downloadStats.value = newStats
-      // 同时刷新后端原始数据
-      const rawData = await getDownloadStats()
-      if (rawData) {
-        backendStats.value = rawData
+    // 使用新的下载处理服务，传入更新本地统计的回调
+    const updateLocalStats = async (downloadedPlatform) => {
+      try {
+        // 更新本地统计数据
+        const currentStats = { ...downloadStats.value }
+        if (currentStats[downloadedPlatform] !== undefined) {
+          currentStats[downloadedPlatform] += 1
+        }
+        downloadStats.value = currentStats
+
+        // 同时刷新后端原始数据
+        const rawData = await getDownloadStats()
+        if (rawData) {
+          backendStats.value = rawData
+        }
+        console.log('本地统计已更新:', currentStats, '后端数据:', rawData)
+      } catch (error) {
+        console.error('更新本地统计失败:', error)
       }
-      console.log('统计数据已更新:', newStats, '后端数据:', rawData)
     }
 
-    await handleDownload(platform, downloadUrl, refreshStats)
+    await handleDownload(platform, downloadUrl, updateLocalStats)
   } else {
     console.log(`${platform} 版本暂不可用`)
     alert(`${platform} 版本即将推出，敬请期待！`)
