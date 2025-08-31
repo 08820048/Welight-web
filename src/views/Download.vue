@@ -53,7 +53,7 @@
                 </svg>
               </button>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">EXE: 5.36 MB | MSI: 7.55 MB</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">EXE: 5.84 MB | MSI: 8.35 MB</p>
             <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
               <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
                 <span>EXE: {{ downloadStats['windows-installer'].toLocaleString() }} 次</span>
@@ -85,7 +85,7 @@
                 </svg>
               </button>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">Intel: 12.2 MB | Apple Silicon: 12 MB</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">Intel: 13.2 MB | Apple Silicon: 13 MB</p>
             <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
               <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
                 <span>Intel: {{ downloadStats['macos-intel'].toLocaleString() }} 次</span>
@@ -105,19 +105,19 @@
             <p class="text-gray-600 dark:text-gray-300 mb-6">适用于主流 Linux 发行版</p>
             <div class="space-y-2">
               <button class="btn-primary w-full" @click="downloadFile('linux-appimage')">
-                AppImage (83.1 MB)
+                AppImage (84 MB)
                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
               </button>
               <button class="btn-secondary w-full" @click="downloadFile('linux-deb')">
-                Debian (.deb) - 8.74 MB
+                Debian (.deb) - 9.8 MB
                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
               </button>
               <button class="btn-secondary w-full" @click="downloadFile('linux-rpm')">
-                RPM (.rpm) - 8.74 MB
+                RPM (.rpm) - 9.8 MB
                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
@@ -459,15 +459,15 @@ const downloadFile = async (platform) => {
   // 实际下载链接映射
   const downloadUrls = {
     // Windows
-    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.0_x64-setup.exe',
-    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.0_x64_en-US.msi',
+    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.1_x64-setup.exe',
+    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.1_x64_en-US.msi',
     // macOS
-    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.0_aarch64.dmg',
-    'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.2.0_x64.dmg',
+    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.1_aarch64.dmg',
+    'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.2.1_x64.dmg',
     // Linux
-    'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.2.0_amd64.AppImage',
-    'linux-deb': 'https://waer.ltd/downloads/linux/Welight_2.2.0_amd64.deb',
-    'linux-rpm': 'https://waer.ltd/downloads/linux/Welight-2.2.0-1.x86_64.rpm',
+    'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.2.1_amd64.AppImage',
+    'linux-deb': 'https://waer.ltd/downloads/linux/Welight_2.2.1_amd64.deb',
+    'linux-rpm': 'https://waer.ltd/downloads/linux/Welight-2.2.1-1.x86_64.rpm',
     'linux-tar-x64': 'https://waer.ltd/downloads/linux/Welight_x64.app.tar.gz',
     'linux-tar-arm64': 'https://waer.ltd/downloads/linux/Welight_aarch64.app.tar.gz'
   }

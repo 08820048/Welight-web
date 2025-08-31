@@ -559,7 +559,7 @@
                   <!-- AI Writing screenshot -->
                   <div class="relative overflow-hidden rounded-2xl">
                     <img
-                      src="https://images.waer.ltd/notes/202508291030595.png"
+                      src="https://images.waer.ltd/notes/202508302311016.png"
                       alt="AI写作助手功能展示"
                       class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
                       loading="lazy"
@@ -709,7 +709,7 @@
                   <!-- AI Content Generation screenshot -->
                   <div class="relative overflow-hidden rounded-2xl">
                     <img
-                      src="https://images.waer.ltd/notes/202508291032400.png"
+                      src="https://images.waer.ltd/notes/202508302306766.png"
                       alt="AI内容生成功能展示"
                       class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
                       loading="lazy"
@@ -1114,11 +1114,11 @@ const downloadFile = async (platform) => {
   try {
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.0_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.0_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.0_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.2.0_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.2.0_amd64.AppImage'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.1_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.1_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.1_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.2.1_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.2.1_amd64.AppImage'
     }
 
     const downloadUrl = downloadUrls[platform]
