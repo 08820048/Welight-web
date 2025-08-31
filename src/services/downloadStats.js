@@ -17,10 +17,45 @@ export async function recordDownload(referer = 'https://waer.ltd/download') {
       },
       body: `referer=${encodeURIComponent(referer)}`
     })
-    
+
     if (response.ok) {
       console.log('下载记录成功')
       return true
+    } else {
+      console.error('下载记录失败:', response.status)
+      return false
+    }
+  } catch (error) {
+    console.error('记录下载时发生错误:', error)
+    return false
+  }
+}
+
+/**
+ * 记录下载事件（指定平台）
+ * @param {string} platform - 平台名称 (MAC, WINDOWS, LINUX)
+ * @param {string} referer - 来源页面URL
+ * @returns {Promise<boolean>} 是否记录成功
+ */
+export async function recordDownloadWithPlatform(platform, referer = 'https://waer.ltd/download') {
+  try {
+    const response = await fetch(`${API_BASE_URL}/record`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: `platform=${platform}&referer=${encodeURIComponent(referer)}`
+    })
+
+    if (response.ok) {
+      const result = await response.json()
+      if (result.code === 200) {
+        console.log(`${platform} 平台下载记录成功`)
+        return true
+      } else {
+        console.error('下载记录失败:', result.message)
+        return false
+      }
     } else {
       console.error('下载记录失败:', response.status)
       return false
@@ -38,11 +73,16 @@ export async function recordDownload(referer = 'https://waer.ltd/download') {
 export async function getDownloadStats() {
   try {
     const response = await fetch(`${API_BASE_URL}/stats`)
-    
+
     if (response.ok) {
       const result = await response.json()
-      console.log('获取统计数据成功:', result.data)
-      return result.data
+      if (result.code === 200 && result.data) {
+        console.log('获取统计数据成功:', result.data)
+        return result.data
+      } else {
+        console.warn('后端返回数据格式异常:', result)
+        return null
+      }
     } else {
       console.error('获取统计数据失败:', response.status)
       return null
@@ -72,26 +112,38 @@ const PLATFORM_MAPPING = {
  * @param {string} downloadUrl - 下载链接
  * @param {Function} updateLocalStats - 更新本地统计的回调函数
  */
+// 平台映射：前端平台名称 -> API平台名称
+const PLATFORM_API_MAPPING = {
+  'windows-installer': 'WINDOWS',
+  'windows-msi': 'WINDOWS',
+  'macos-apple': 'MAC',
+  'macos-intel': 'MAC',
+  'linux-appimage': 'LINUX',
+  'linux-deb': 'LINUX',
+  'linux-rpm': 'LINUX'
+}
+
 export async function handleDownload(platform, downloadUrl, updateLocalStats) {
   try {
-    // 1. 记录下载到后端
+    // 1. 记录下载到后端（发送正确的平台名称）
+    const apiPlatform = PLATFORM_API_MAPPING[platform] || 'UNKNOWN'
     const referer = window.location.href
-    await recordDownload(referer)
-    
+    await recordDownloadWithPlatform(apiPlatform, referer)
+
     // 2. 更新本地统计（用于即时反馈）
     if (updateLocalStats) {
       updateLocalStats(platform)
     }
-    
+
     // 3. 百度统计事件追踪
     if (typeof _hmt !== 'undefined') {
       _hmt.push(['_trackEvent', 'download', platform, downloadUrl])
     }
-    
+
     // 4. 执行实际下载
     window.open(downloadUrl, '_blank')
     console.log(`开始下载 ${platform} 版本: ${downloadUrl}`)
-    
+
     return true
   } catch (error) {
     console.error('处理下载时发生错误:', error)
@@ -133,10 +185,10 @@ export async function initializeDownloadStats() {
         mappedStats['windows-msi'] = platformDownloads.windows - mappedStats['windows-installer']
       }
 
-      if (platformDownloads.macos > 0) {
+      if (platformDownloads.mac > 0) {
         // macOS平台分配：90% Apple Silicon, 10% Intel
-        mappedStats['macos-apple'] = Math.floor(platformDownloads.macos * 0.9)
-        mappedStats['macos-intel'] = platformDownloads.macos - mappedStats['macos-apple']
+        mappedStats['macos-apple'] = Math.floor(platformDownloads.mac * 0.9)
+        mappedStats['macos-intel'] = platformDownloads.mac - mappedStats['macos-apple']
       }
 
       if (platformDownloads.linux > 0) {

@@ -1043,7 +1043,7 @@ const animatedLinuxDownloads = ref(0)
 
 // 计算总下载量 - 优先使用后端数据
 const totalDownloads = computed(() => {
-  if (backendStats.value && backendStats.value.totalDownloads) {
+  if (backendStats.value && backendStats.value.totalDownloads !== undefined) {
     return backendStats.value.totalDownloads
   }
   return Object.values(downloadStats.value).reduce((total, count) => total + count, 0)
@@ -1089,9 +1089,21 @@ const getPlatformDownloads = () => {
   }
 }
 
+// 从后端数据获取平台下载量
+const getPlatformDownloadsFromBackend = () => {
+  if (backendStats.value && backendStats.value.platformDownloads) {
+    return {
+      windows: backendStats.value.platformDownloads.windows || 0,
+      macos: backendStats.value.platformDownloads.mac || 0, // 注意：API返回的是'mac'不是'macos'
+      linux: backendStats.value.platformDownloads.linux || 0
+    }
+  }
+  return getPlatformDownloads() // 回退到本地计算
+}
+
 // 启动下载数据动画
 const startDownloadAnimation = () => {
-  const platformStats = getPlatformDownloads()
+  const platformStats = getPlatformDownloadsFromBackend()
 
   // 总下载量动画
   animateNumber(0, totalDownloads.value, 2000, (value) => {
