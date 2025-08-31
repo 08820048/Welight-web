@@ -17,7 +17,7 @@
 **描述**: 记录应用下载事件
 
 **参数**:
-- `platform` (可选): 平台类型，支持 `MAC`、`WINDOWS`、`LINUX`
+- `platform` (可选): 平台类型，支持 `MAC`、`WINDOWS`、`LINUX
 - `referer` (可选): 来源页面URL
 
 **示例请求**:

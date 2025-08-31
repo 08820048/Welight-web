@@ -14,7 +14,7 @@
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
-            最新版本：v2.2.1
+            最新版本：v2.2.2
           </div>
           <div class="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -53,7 +53,7 @@
                 </svg>
               </button>
             </div>
-            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">EXE: 5.84 MB | MSI: 8.35 MB</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">EXE: 5.84 MB | MSI: 8.34 MB</p>
             <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
               <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
                 <span>EXE: {{ downloadStats['windows-installer'].toLocaleString() }} 次</span>
@@ -449,15 +449,15 @@ const downloadFile = async (platform) => {
   // 实际下载链接映射
   const downloadUrls = {
     // Windows
-    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.1_x64-setup.exe',
-    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.1_x64_en-US.msi',
+    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.2_x64-setup.exe',
+    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.2_x64_en-US.msi',
     // macOS
-    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.1_aarch64.dmg',
-    'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.2.1_x64.dmg',
+    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.2_aarch64.dmg',
+    'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.2.2_x64.dmg',
     // Linux
-    'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.2.1_amd64.AppImage',
-    'linux-deb': 'https://waer.ltd/downloads/linux/Welight_2.2.1_amd64.deb',
-    'linux-rpm': 'https://waer.ltd/downloads/linux/Welight-2.2.1-1.x86_64.rpm'
+    'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.2.2_amd64.AppImage',
+    'linux-deb': 'https://waer.ltd/downloads/linux/Welight_2.2.2_amd64.deb',
+    'linux-rpm': 'https://waer.ltd/downloads/linux/Welight-2.2.2-1.x86_64.rpm'
   }
 
   const downloadUrl = downloadUrls[platform]

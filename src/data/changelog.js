@@ -1,11 +1,25 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '2.2.1',
+    version: '2.2.2',
     date: '2025-08-29',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      improvements: [
+        '优化"苹果简约"主题样式和用户体验',
+        '优化"建国大业"主题样式和用户体验',
+        '优化应用检测更新的环境检测问题'
+      ]
+    }
+  },
+  {
+    version: '2.2.1',
+    date: '2025-08-29',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
     changes: {
       fixes: [
         '修复自动更新功能的相关问题',
