@@ -230,5 +230,8 @@
 </template>
 
 <script setup>
-// 关于页面逻辑
+import { useSEO, seoConfigs } from '@/composables/useSEO'
+
+// SEO配置
+useSEO(seoConfigs.about)
 </script>

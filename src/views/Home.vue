@@ -1021,6 +1021,10 @@ import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
 import DownloadStatsTest from '@/components/DownloadStatsTest.vue'
+import { useSEO, seoConfigs } from '@/composables/useSEO'
+
+// SEO配置
+useSEO(seoConfigs.home)
 
 // 开发模式检测
 const isDev = import.meta.env.DEV

@@ -383,6 +383,10 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
+import { useSEO, seoConfigs } from '@/composables/useSEO'
+
+// SEO配置
+useSEO(seoConfigs.download)
 
 // 下载统计数据 - 从后端API获取真实统计
 const downloadStats = ref({
