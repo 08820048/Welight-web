@@ -1,4 +1,4 @@
-import { useHead } from '@unhead/vue'
+import { onMounted } from 'vue'
 
 export function useSEO(options = {}) {
   const defaultOptions = {
@@ -12,21 +12,43 @@ export function useSEO(options = {}) {
 
   const seoOptions = { ...defaultOptions, ...options }
 
-  useHead({
-    title: seoOptions.title,
-    meta: [
-      { name: 'description', content: seoOptions.description },
-      { name: 'keywords', content: seoOptions.keywords },
-      { property: 'og:title', content: seoOptions.title },
-      { property: 'og:description', content: seoOptions.description },
-      { property: 'og:image', content: seoOptions.image },
-      { property: 'og:url', content: seoOptions.url },
-      { property: 'og:type', content: seoOptions.type },
-      { property: 'twitter:title', content: seoOptions.title },
-      { property: 'twitter:description', content: seoOptions.description },
-      { property: 'twitter:image', content: seoOptions.image },
-      { property: 'twitter:card', content: 'summary_large_image' }
-    ]
+  onMounted(() => {
+    // 更新页面标题
+    document.title = seoOptions.title
+
+    // 更新或创建meta标签
+    const updateMeta = (name, content, property = false) => {
+      const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`
+      let meta = document.querySelector(selector)
+
+      if (!meta) {
+        meta = document.createElement('meta')
+        if (property) {
+          meta.setAttribute('property', name)
+        } else {
+          meta.setAttribute('name', name)
+        }
+        document.head.appendChild(meta)
+      }
+      meta.setAttribute('content', content)
+    }
+
+    // 更新基础meta标签
+    updateMeta('description', seoOptions.description)
+    updateMeta('keywords', seoOptions.keywords)
+
+    // 更新Open Graph标签
+    updateMeta('og:title', seoOptions.title, true)
+    updateMeta('og:description', seoOptions.description, true)
+    updateMeta('og:image', seoOptions.image, true)
+    updateMeta('og:url', seoOptions.url, true)
+    updateMeta('og:type', seoOptions.type, true)
+
+    // 更新Twitter Card标签
+    updateMeta('twitter:title', seoOptions.title, true)
+    updateMeta('twitter:description', seoOptions.description, true)
+    updateMeta('twitter:image', seoOptions.image, true)
+    updateMeta('twitter:card', 'summary_large_image', true)
   })
 }
 
