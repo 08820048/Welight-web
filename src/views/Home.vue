@@ -1029,9 +1029,7 @@ const downloadStats = ref({
   'macos-intel': 0,
   'linux-appimage': 0,
   'linux-deb': 0,
-  'linux-rpm': 0,
-  'linux-tar-x64': 0,
-  'linux-tar-arm64': 0
+  'linux-rpm': 0
 })
 
 // 后端原始统计数据

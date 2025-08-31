@@ -14,7 +14,7 @@
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
-            最新版本：v1.0.0
+            最新版本：v2.2.1
           </div>
           <div class="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -103,7 +103,7 @@
             </div>
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Linux</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-6">适用于主流 Linux 发行版</p>
-            <div class="space-y-2">
+            <div class="space-y-3">
               <button class="btn-primary w-full" @click="downloadFile('linux-appimage')">
                 AppImage (84 MB)
                 <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -122,14 +122,6 @@
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
               </button>
-              <div class="grid grid-cols-2 gap-2">
-                <button class="btn-secondary text-xs py-2" @click="downloadFile('linux-tar-x64')">
-                  TAR x64 (10.1 MB)
-                </button>
-                <button class="btn-secondary text-xs py-2" @click="downloadFile('linux-tar-arm64')">
-                  TAR ARM64 (9.82 MB)
-                </button>
-              </div>
             </div>
             <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">支持多种 Linux 发行版</p>
             <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
@@ -400,9 +392,7 @@ const downloadStats = ref({
   'macos-intel': 0,
   'linux-appimage': 0,
   'linux-deb': 0,
-  'linux-rpm': 0,
-  'linux-tar-x64': 0,
-  'linux-tar-arm64': 0
+  'linux-rpm': 0
 })
 
 // 后端原始统计数据
@@ -467,9 +457,7 @@ const downloadFile = async (platform) => {
     // Linux
     'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.2.1_amd64.AppImage',
     'linux-deb': 'https://waer.ltd/downloads/linux/Welight_2.2.1_amd64.deb',
-    'linux-rpm': 'https://waer.ltd/downloads/linux/Welight-2.2.1-1.x86_64.rpm',
-    'linux-tar-x64': 'https://waer.ltd/downloads/linux/Welight_x64.app.tar.gz',
-    'linux-tar-arm64': 'https://waer.ltd/downloads/linux/Welight_aarch64.app.tar.gz'
+    'linux-rpm': 'https://waer.ltd/downloads/linux/Welight-2.2.1-1.x86_64.rpm'
   }
 
   const downloadUrl = downloadUrls[platform]
