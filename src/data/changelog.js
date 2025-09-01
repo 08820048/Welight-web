@@ -1,11 +1,28 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '2.2.2',
-    date: '2025-08-31',
+    version: '2.3.0',
+    date: '2025-09-01',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      fixes: [
+        '优化无序列表、有序列表执行的问题',
+        '优化转换功能，转换后自动执行规范检查'
+      ],
+      features: [
+        '新增语法规范检查，针对已知的公众号编辑器不兼容的语法使用进行检查定位',
+        '检测到编辑器中粘贴了markdown文章时自动执行规范检查'
+      ]
+    }
+  },
+  {
+    version: '2.2.2',
+    date: '2025-08-31',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
     changes: {
       improvements: [
         '优化"苹果简约"主题样式和用户体验',

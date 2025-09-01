@@ -21,7 +21,7 @@
               </div>
               <div class="flex-1">
                 <div class="flex items-center space-x-2 mb-1">
-                  <span class="text-lg font-bold">🎉 Welight v2.2.2 已发布！</span>
+                  <span class="text-lg font-bold">🎉 Welight v2.3.0 已发布！</span>
                   <span class="bg-white bg-opacity-20 text-xs px-2 py-1 rounded-full font-medium">最新版本</span>
                 </div>
                 <p class="text-sm text-primary-100">
@@ -126,7 +126,7 @@
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                <span>总下载量：<span class="text-lg font-bold text-primary-600 tabular-nums inline-block min-w-[3rem]">{{ animatedTotalDownloads.toLocaleString() }}</span> 次</span>
+                <span>总下载量：<span class="text-lg font-bold text-primary-600 tabular-nums inline-block min-w-[3rem]">{{ animatedTotalDownloads.toLocaleString() }}</span>次</span>
               </div>
               <!-- 开发模式下显示调试信息 -->
               <div v-if="isDev" class="text-xs text-gray-500 mt-2">
@@ -1002,7 +1002,7 @@
         <!-- Bottom text -->
         <div class="text-center mt-16 scroll-animate" style="transition-delay: 1.4s;">
           <p class="text-xl md:text-2xl font-medium text-gray-600">
-            让Markdown成为你高效写作的得力助手
+            让Welight成为你高效写作的得力助手
           </p>
         </div>
       </div>
@@ -1156,11 +1156,11 @@ const downloadFile = async (platform) => {
   try {
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.2.2_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.2.2_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.2.2_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.2.2_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.2.2_amd64.AppImage'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.3.0_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.3.0_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.3.0_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.3.0_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.3.0_amd64.AppImage'
     }
 
     const downloadUrl = downloadUrls[platform]
