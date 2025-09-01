@@ -1,11 +1,23 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '2.3.0',
+    version: '2.3.1',
     date: '2025-09-01',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      fixes: [
+        '修复图片粘贴自动上传之后无法显示的问题'
+      ]
+    }
+  },
+  {
+    version: '2.3.0',
+    date: '2025-09-01',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
     changes: {
       fixes: [
         '优化无序列表、有序列表执行的问题',
