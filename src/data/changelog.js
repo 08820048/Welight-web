@@ -1,11 +1,26 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '2.3.1',
+    version: '2.3.2',
     date: '2025-09-01',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      fixes: [
+        '修复2.3.1中"规范检查"功能丢失的问题'
+      ],
+      features: [
+        '新增应用开屏加载动画'
+      ]
+    }
+  },
+  {
+    version: '2.3.1',
+    date: '2025-09-01',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
     changes: {
       fixes: [
         '修复图片粘贴自动上传之后无法显示的问题'
