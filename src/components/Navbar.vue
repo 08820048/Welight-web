@@ -70,6 +70,18 @@
             </div>
           </div>
 
+          <!-- 历史版本按钮 -->
+          <button
+            @click="showHistoryVersions"
+            class="flex items-center space-x-2 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200 group"
+            title="下载历史版本"
+          >
+            <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <span class="hidden sm:inline text-sm font-medium">历史版本</span>
+          </button>
+
           <!-- 更新日志按钮 -->
           <button
             @click="showChangelog"
@@ -90,6 +102,65 @@
       :isVisible="isChangelogVisible"
       @close="closeChangelog"
     />
+
+    <!-- 历史版本模态框 -->
+    <div v-if="isHistoryVersionsVisible" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 transform transition-all duration-300">
+        <div class="p-6">
+          <!-- 标题 -->
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-bold text-gray-900">历史版本下载</h3>
+            <button @click="closeHistoryVersions" class="text-gray-400 hover:text-gray-600 transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- 内容 -->
+          <div class="space-y-4">
+            <div class="flex items-center space-x-3 text-orange-600 bg-orange-50 p-3 rounded-lg">
+              <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+              <div>
+                <p class="font-medium">服务器资源紧张</p>
+                <p class="text-sm">历史版本暂时无法直接下载</p>
+              </div>
+            </div>
+
+            <div class="text-gray-600">
+              <p class="mb-3">如需下载历史版本，请加入我们的QQ群获取：</p>
+
+              <!-- QQ群信息 -->
+              <div class="bg-blue-50 rounded-lg p-4 space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-gray-500">QQ群号</span>
+                  <button @click="copyQQGroup" class="text-blue-600 hover:text-blue-700 text-sm">
+                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    复制
+                  </button>
+                </div>
+                <div class="text-2xl font-bold text-blue-600 text-center">474919458</div>
+                <p v-if="copied" class="text-green-600 text-sm text-center">群号已复制到剪贴板</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 按钮 -->
+          <div class="flex space-x-3 mt-6">
+            <button @click="closeHistoryVersions" class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+              关闭
+            </button>
+            <a href="https://qm.qq.com/q/Q7CbqSNmUY" target="_blank" class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center">
+              直接加群
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   </nav>
 </template>
 
@@ -99,6 +170,10 @@ import ChangelogModal from './ChangelogModal.vue'
 
 // 更新日志模态框状态
 const isChangelogVisible = ref(false)
+// 历史版本模态框状态
+const isHistoryVersionsVisible = ref(false)
+// 复制状态
+const copied = ref(false)
 
 // 显示更新日志
 const showChangelog = () => {
@@ -108,5 +183,29 @@ const showChangelog = () => {
 // 关闭更新日志
 const closeChangelog = () => {
   isChangelogVisible.value = false
+}
+
+// 显示历史版本
+const showHistoryVersions = () => {
+  isHistoryVersionsVisible.value = true
+}
+
+// 关闭历史版本
+const closeHistoryVersions = () => {
+  isHistoryVersionsVisible.value = false
+  copied.value = false
+}
+
+// 复制QQ群号
+const copyQQGroup = async () => {
+  try {
+    await navigator.clipboard.writeText('474919458')
+    copied.value = true
+    setTimeout(() => {
+      copied.value = false
+    }, 2000)
+  } catch (err) {
+    console.error('复制失败:', err)
+  }
 }
 </script>
