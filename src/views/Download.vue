@@ -377,6 +377,43 @@
         </div>
       </div>
     </section>
+
+    <!-- 反馈链接区域 -->
+    <section class="py-16 bg-gray-50 dark:bg-gray-800">
+      <div class="container-custom">
+        <div class="text-center">
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            帮助我们改进 Welight
+          </h2>
+          <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+            您的反馈对我们非常重要，让我们一起打造更好的产品
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
+            <a href="https://docs.qq.com/sheet/DS1RITFdUR1BQSURY?tdsourcetag=nt-grpaio-file"
+               target="_blank"
+               class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors duration-200 font-medium">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
+              </svg>
+              <span>问题反馈</span>
+            </a>
+            <a href="https://docs.qq.com/sheet/DS3NVaFhQeVZTSG11?tdsourcetag=nt-grpaio-file"
+               target="_blank"
+               class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors duration-200 font-medium">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+              </svg>
+              <span>功能诉求</span>
+            </a>
+          </div>
+
+          <p class="text-sm text-gray-500 dark:text-gray-400 mt-6">
+            点击上方按钮将在新窗口中打开腾讯文档，您可以直接填写反馈信息
+          </p>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
