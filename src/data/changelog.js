@@ -1,11 +1,32 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '2.3.2',
-    date: '2025-09-01',
+    version: '2.3.3',
+    date: '2025-09-02',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      fixes: [
+        '调整开屏动画展示的时机，视觉上缩短应用打开时候的加载时间'
+      ],
+      improvements: [
+        '优化AI功能，增加文本长度限制，转换功能从之前的5000字限制改为理论上的无限制，统一增加AI模型的token长度，处理上文本内容更加得心应手',
+        '优化转换功能，提供两种风格的转换支持：智能转换和简洁转换',
+        '其他细节优化和调整'
+      ],
+      features: [
+        '智能转换：在基于原文含义又尽可能不被曲解的情况下，采用更多markdown语法进行总结式的智能转换，转换后的markdown语法类型丰富，主题预览效果更体验更佳',
+        '简洁转换：基于原文结构的保守转换风格，采用基础的markdown语法格式支持，保证转换符合markdown要求的同时也尽可能多的保留原文结构'
+      ]
+    }
+  },
+  {
+    version: '2.3.2',
+    date: '2025-09-01',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
     changes: {
       fixes: [
         '修复2.3.1中"规范检查"功能丢失的问题'
