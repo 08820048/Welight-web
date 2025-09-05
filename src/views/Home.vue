@@ -562,8 +562,10 @@
                     loading="lazy"
                   />
                 </div>
-                <h4 class="text-lg font-bold text-gray-900">Ollama</h4>
-                <span class="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full font-medium">本地模型</span>
+                <h4 class="text-lg font-bold text-gray-900 relative">
+                  Ollama
+                  <sup class="text-xs text-green-600 bg-green-100 px-1.5 py-0.5 rounded-full font-medium ml-1">本地模型</sup>
+                </h4>
               </div>
             </div>
           </div>
