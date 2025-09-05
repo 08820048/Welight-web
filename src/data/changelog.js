@@ -1,11 +1,28 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '2.4.0',
-    date: '2025-09-03',
+    version: '2.4.1',
+    date: '2025-09-05',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      improvements: [
+        '整体界面UI调整，采用扁平化一体式的简洁UI风格',
+        '主题"建国大业"优化，移除公众号号内不支持的点缀效果',
+        '调整部分界面布局和应用标题等内容',
+        '新增编辑器空白内容时的默认效果，优化使用体验',
+        '调整使用码获取渠道，新增QQ群获取',
+        '在"更多"菜单中新增隐藏页面，如果Welight帮到了你，那么不妨请我喝杯咖啡吧'
+      ]
+    }
+  },
+  {
+    version: '2.4.0',
+    date: '2025-09-03',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
     changes: {
       improvements: [
         '优化"转换"功能，在划词菜单中也集成转换功能，用户可以只转换选中部分的内容，避免在文本内容过长的情况下一次性转换出现超时等异常情况',
