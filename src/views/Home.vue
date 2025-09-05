@@ -550,6 +550,22 @@
                 <h4 class="text-lg font-bold text-gray-900">Grok</h4>
               </div>
             </div>
+
+            <!-- Ollama -->
+            <div class="group scroll-animate scale-up" style="transition-delay: 0.8s;">
+              <div class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
+                <div class="w-20 h-20 flex items-center justify-center">
+                  <img
+                    src="https://images.waer.ltd/notes/202509050835689.png"
+                    alt="Ollama Logo"
+                    class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+                <h4 class="text-lg font-bold text-gray-900">Ollama</h4>
+                <span class="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full font-medium">本地模型</span>
+              </div>
+            </div>
           </div>
         </div>
 
