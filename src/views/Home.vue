@@ -158,7 +158,7 @@
                   <!-- Main image -->
                   <div class="relative overflow-hidden rounded-2xl">
                     <img
-                      src="https://images.waer.ltd/notes/202508301847458.png"
+                      src="https://images.waer.ltd/notes/202509052129898.png"
                       alt="Welight 主题预览界面"
                       class="w-full h-auto transform group-hover:scale-105 transition-all duration-700 hero-screenshot"
                       loading="lazy"
