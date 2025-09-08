@@ -137,38 +137,65 @@
               </svg>
               <div>
                 <p class="font-medium">专业技术支持</p>
-                <p class="text-sm">提供远程技术帮助服务</p>
+                <p class="text-sm">提供远程技术帮助服</p>
               </div>
             </div>
 
             <div class="text-gray-600">
+              <!-- 服务说明 -->
+              <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
+                <h4 class="font-medium text-yellow-800 mb-2 flex items-center">
+                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  重要说明
+                </h4>
+                <ul class="text-sm text-yellow-700 space-y-1">
+                  <li>• 该技术服务仅由Welight开发者个人提供</li>
+                  <li>• 主要面向不熟悉技术配置的用户群体</li>
+                  <li>• Welight软件本身完全免费，技术服务为可选付费项目</li>
+                  <li>• 大部分问题可通过官方文档和QQ群自助解决</li>
+                </ul>
+              </div>
+
               <h4 class="font-medium text-gray-900 mb-2">服务内容：</h4>
               <ul class="space-y-1 text-sm mb-4">
                 <li class="flex items-center space-x-2">
                   <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>图床配置与设置</span>
+                  <span>图床配置与设置（七牛云、阿里云等）</span>
                 </li>
                 <li class="flex items-center space-x-2">
                   <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>AI模型配置与调试</span>
+                  <span>AI模型配置与调试（OpenAI、Ollama等）</span>
                 </li>
                 <li class="flex items-center space-x-2">
                   <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>软件安装问题解决</span>
+                  <span>软件安装问题解决（各平台兼容性）</span>
                 </li>
                 <li class="flex items-center space-x-2">
                   <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                   </svg>
-                  <span>使用问题答疑</span>
+                  <span>使用问题答疑（功能使用指导）</span>
                 </li>
               </ul>
+
+              <!-- 适用人群 -->
+              <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
+                <h4 class="font-medium text-blue-800 mb-2">适用人群：</h4>
+                <ul class="text-sm text-blue-700 space-y-1">
+                  <li>• 对技术配置不熟悉的用户</li>
+                  <li>• 需要快速解决问题的商业用户</li>
+                  <li>• 希望获得一对一指导的用户</li>
+                  <li>• 遇到复杂配置问题的用户</li>
+                </ul>
+              </div>
 
               <!-- 定价信息 -->
               <div class="bg-green-50 rounded-lg p-4 space-y-2">
@@ -176,7 +203,12 @@
                   <span class="text-sm text-gray-500">服务定价</span>
                   <span class="text-lg font-bold text-green-600">5元/次</span>
                 </div>
-                <p class="text-xs text-gray-500">基础定价，复杂问题可能需要额外费用</p>
+                <div class="text-xs text-gray-500 space-y-1">
+                  <p>• 基础问题解决，一般30分钟内完成</p>
+                  <p>• 复杂配置问题可能需要额外费用</p>
+                  <p>• 远程协助，安全可靠</p>
+                  <p class="text-green-600 font-medium">💡 建议先尝试QQ群求助，大部分问题可免费解决</p>
+                </div>
               </div>
 
               <!-- 联系方式 -->
