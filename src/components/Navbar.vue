@@ -117,7 +117,7 @@
 
     <!-- 技术服务模态框 -->
     <div v-if="isTechSupportVisible" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div class="bg-white rounded-lg shadow-xl max-w-lg w-full mx-4 transform transition-all duration-300">
+      <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 transform transition-all duration-300">
         <div class="p-6">
           <!-- 标题 -->
           <div class="flex items-center justify-between mb-4">
@@ -137,93 +137,103 @@
               </svg>
               <div>
                 <p class="font-medium">专业技术支持</p>
-                <p class="text-sm">提供远程技术帮助服</p>
+                <p class="text-sm">提供远程技术帮助服务</p>
               </div>
             </div>
 
-            <div class="text-gray-600">
-              <!-- 服务说明 -->
-              <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
-                <h4 class="font-medium text-yellow-800 mb-2 flex items-center">
-                  <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  重要说明
-                </h4>
-                <ul class="text-sm text-yellow-700 space-y-1">
-                  <li>• 该技术服务仅由Welight开发者个人提供</li>
-                  <li>• 主要面向不熟悉技术配置的用户群体</li>
-                  <li>• Welight软件本身完全免费，技术服务为可选付费项目</li>
-                  <li>• 大部分问题可通过官方文档和QQ群自助解决</li>
-                </ul>
+            <!-- 服务说明 -->
+            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-3">
+              <h4 class="font-medium text-yellow-800 mb-2 flex items-center">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                重要说明
+              </h4>
+              <div class="grid md:grid-cols-2 gap-2 text-sm text-yellow-700">
+                <div>• 该技术服务仅由Welight开发者个人提供</div>
+                <div>• 主要面向不熟悉技术配置的用户群体</div>
+                <div>• Welight软件本身完全免费，技术服务为可选付费项目</div>
+                <div>• 大部分问题可通过官方文档和QQ群自助解决</div>
               </div>
+            </div>
 
-              <h4 class="font-medium text-gray-900 mb-2">服务内容：</h4>
-              <ul class="space-y-1 text-sm mb-4">
-                <li class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>图床配置与设置（七牛云、阿里云等）</span>
-                </li>
-                <li class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>AI模型配置与调试（OpenAI、Ollama等）</span>
-                </li>
-                <li class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>软件安装问题解决（各平台兼容性）</span>
-                </li>
-                <li class="flex items-center space-x-2">
-                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                  <span>使用问题答疑（功能使用指导）</span>
-                </li>
-              </ul>
+            <!-- 主要内容区域 - 使用网格布局 -->
+            <div class="grid md:grid-cols-2 gap-4 text-gray-600">
 
-              <!-- 适用人群 -->
-              <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 mb-4">
-                <h4 class="font-medium text-blue-800 mb-2">适用人群：</h4>
-                <ul class="text-sm text-blue-700 space-y-1">
-                  <li>• 对技术配置不熟悉的用户</li>
-                  <li>• 需要快速解决问题的商业用户</li>
-                  <li>• 希望获得一对一指导的用户</li>
-                  <li>• 遇到复杂配置问题的用户</li>
-                </ul>
-              </div>
-
-              <!-- 定价信息 -->
-              <div class="bg-green-50 rounded-lg p-4 space-y-2">
-                <div class="flex items-center justify-between">
-                  <span class="text-sm text-gray-500">服务定价</span>
-                  <span class="text-lg font-bold text-green-600">5元/次</span>
+              <!-- 左侧：服务内容和适用人群 -->
+              <div class="space-y-4">
+                <div>
+                  <h4 class="font-medium text-gray-900 mb-2">服务内容：</h4>
+                  <ul class="space-y-1 text-sm">
+                    <li class="flex items-center space-x-2">
+                      <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>图床配置与设置（七牛云、阿里云等）</span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                      <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>AI模型配置与调试（OpenAI、Ollama等）</span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                      <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>软件安装问题解决（各平台兼容性）</span>
+                    </li>
+                    <li class="flex items-center space-x-2">
+                      <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span>使用问题答疑（功能使用指导）</span>
+                    </li>
+                  </ul>
                 </div>
-                <div class="text-xs text-gray-500 space-y-1">
-                  <p>• 基础问题解决，一般30分钟内完成</p>
-                  <p>• 复杂配置问题可能需要额外费用</p>
-                  <p>• 远程协助，安全可靠</p>
-                  <p class="text-green-600 font-medium">💡 建议先尝试QQ群求助，大部分问题可免费解决</p>
+
+                <!-- 适用人群 -->
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                  <h4 class="font-medium text-blue-800 mb-2">适用人群：</h4>
+                  <div class="grid grid-cols-1 gap-1 text-sm text-blue-700">
+                    <div>• 对技术配置不熟悉的用户</div>
+                    <div>• 需要快速解决问题的商业用户</div>
+                    <div>• 希望获得一对一指导的用户</div>
+                    <div>• 遇到复杂配置问题的用户</div>
+                  </div>
                 </div>
               </div>
 
-              <!-- 联系方式 -->
-              <div class="bg-blue-50 rounded-lg p-4 space-y-3">
-                <div class="flex items-center justify-between">
-                  <span class="text-sm text-gray-500">技术支持QQ</span>
-                  <button @click="copyTechQQ" class="text-blue-600 hover:text-blue-700 text-sm">
-                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                    复制
-                  </button>
+              <!-- 右侧：定价和联系方式 -->
+              <div class="space-y-4">
+                <!-- 定价信息 -->
+                <div class="bg-green-50 rounded-lg p-4">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm text-gray-500">服务定价</span>
+                    <span class="text-lg font-bold text-green-600">5元/次</span>
+                  </div>
+                  <div class="text-xs text-gray-500 space-y-1">
+                    <p>• 基础问题解决，一般30分钟内完成</p>
+                    <p>• 复杂配置问题可能需要额外费用</p>
+                    <p>• 远程协助，安全可靠</p>
+                    <p class="text-green-600 font-medium">💡 建议先尝试QQ群求助，大部分问题可免费解决</p>
+                  </div>
                 </div>
-                <div class="text-2xl font-bold text-blue-600 text-center">2217021563</div>
-                <p v-if="techQQCopied" class="text-green-600 text-sm text-center">QQ号已复制到剪贴板</p>
+
+                <!-- 联系方式 -->
+                <div class="bg-blue-50 rounded-lg p-4">
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm text-gray-500">技术支持QQ</span>
+                    <button @click="copyTechQQ" class="text-blue-600 hover:text-blue-700 text-sm">
+                      <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                      复制
+                    </button>
+                  </div>
+                  <div class="text-2xl font-bold text-blue-600 text-center mb-2">2217021563</div>
+                  <p v-if="techQQCopied" class="text-green-600 text-sm text-center">QQ号已复制到剪贴板</p>
+                </div>
               </div>
             </div>
           </div>
