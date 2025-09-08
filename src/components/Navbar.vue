@@ -198,10 +198,10 @@
               <!-- 右侧：定价和联系方式 -->
               <div class="space-y-4">
                 <!-- 定价信息 -->
-                <div class="bg-green-50 rounded-lg p-4">
+                <div class="bg-gray-50 rounded-lg p-4">
                   <div class="flex items-center justify-between mb-2">
                     <span class="text-sm text-gray-500">服务定价</span>
-                    <span class="text-lg font-bold text-green-600">5元/次</span>
+                    <span class="text-lg font-bold text-gray-900">5元/次</span>
                   </div>
                   <div class="text-xs text-gray-500 space-y-1">
                     <p>• 基础问题解决，一般30分钟内完成</p>
