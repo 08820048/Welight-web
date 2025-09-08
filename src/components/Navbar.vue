@@ -116,8 +116,8 @@
     />
 
     <!-- 技术服务模态框 -->
-    <div v-if="isTechSupportVisible" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 transform transition-all duration-300">
+    <div v-if="isTechSupportVisible" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" @click="closeTechSupport">
+      <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 modal-content" @click.stop>
         <div class="p-6">
           <!-- 标题 -->
           <div class="flex items-center justify-between mb-4">
@@ -223,7 +223,7 @@
                 <!-- 联系方式 -->
                 <div class="bg-blue-50 rounded-lg p-4">
                   <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm text-gray-500">技术支持QQ</span>
+                    <span class="text-sm text-gray-500">开发者QQ</span>
                     <button @click="copyTechQQ" class="text-blue-600 hover:text-blue-700 text-sm">
                       <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -232,7 +232,8 @@
                     </button>
                   </div>
                   <div class="text-2xl font-bold text-blue-600 text-center mb-2">2217021563</div>
-                  <p v-if="techQQCopied" class="text-green-600 text-sm text-center">QQ号已复制到剪贴板</p>
+                  <p v-if="techQQCopied" class="text-green-600 text-sm text-center mb-2">QQ号已复制到剪贴板</p>
+                  <p class="text-xs text-gray-500 text-center">添加QQ请备注"服务支持"</p>
                 </div>
               </div>
             </div>
@@ -252,8 +253,8 @@
     </div>
 
     <!-- 历史版本模态框 -->
-    <div v-if="isHistoryVersionsVisible" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 transform transition-all duration-300">
+    <div v-if="isHistoryVersionsVisible" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" @click="closeHistoryVersions">
+      <div class="bg-white rounded-lg shadow-xl max-w-md w-full mx-4 modal-content" @click.stop>
         <div class="p-6">
           <!-- 标题 -->
           <div class="flex items-center justify-between mb-4">
@@ -384,3 +385,21 @@ const copyQQGroup = async () => {
   }
 }
 </script>
+
+<style scoped>
+/* 模态框动画 */
+.modal-content {
+  animation: modalFadeInUp 0.3s ease-out forwards;
+}
+
+@keyframes modalFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+</style>
