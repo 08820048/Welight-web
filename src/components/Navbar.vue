@@ -70,6 +70,18 @@
             </div>
           </div>
 
+          <!-- 技术服务按钮 -->
+          <button
+            @click="showTechSupport"
+            class="flex items-center space-x-2 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200 group"
+            title="技术服务支持"
+          >
+            <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            <span class="hidden sm:inline text-sm font-medium">技术服务</span>
+          </button>
+
           <!-- 历史版本按钮 -->
           <button
             @click="showHistoryVersions"
@@ -102,6 +114,100 @@
       :isVisible="isChangelogVisible"
       @close="closeChangelog"
     />
+
+    <!-- 技术服务模态框 -->
+    <div v-if="isTechSupportVisible" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div class="bg-white rounded-lg shadow-xl max-w-lg w-full mx-4 transform transition-all duration-300">
+        <div class="p-6">
+          <!-- 标题 -->
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-bold text-gray-900">技术服务支持</h3>
+            <button @click="closeTechSupport" class="text-gray-400 hover:text-gray-600 transition-colors">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <!-- 内容 -->
+          <div class="space-y-4">
+            <div class="flex items-center space-x-3 text-blue-600 bg-blue-50 p-3 rounded-lg">
+              <svg class="w-6 h-6 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              <div>
+                <p class="font-medium">专业技术支持</p>
+                <p class="text-sm">提供远程技术帮助服务</p>
+              </div>
+            </div>
+
+            <div class="text-gray-600">
+              <h4 class="font-medium text-gray-900 mb-2">服务内容：</h4>
+              <ul class="space-y-1 text-sm mb-4">
+                <li class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>图床配置与设置</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>AI模型配置与调试</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>软件安装问题解决</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                  <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span>使用问题答疑</span>
+                </li>
+              </ul>
+
+              <!-- 定价信息 -->
+              <div class="bg-green-50 rounded-lg p-4 space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-gray-500">服务定价</span>
+                  <span class="text-lg font-bold text-green-600">5元/次</span>
+                </div>
+                <p class="text-xs text-gray-500">基础定价，复杂问题可能需要额外费用</p>
+              </div>
+
+              <!-- 联系方式 -->
+              <div class="bg-blue-50 rounded-lg p-4 space-y-3">
+                <div class="flex items-center justify-between">
+                  <span class="text-sm text-gray-500">技术支持QQ</span>
+                  <button @click="copyTechQQ" class="text-blue-600 hover:text-blue-700 text-sm">
+                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                    复制
+                  </button>
+                </div>
+                <div class="text-2xl font-bold text-blue-600 text-center">2217021563</div>
+                <p v-if="techQQCopied" class="text-green-600 text-sm text-center">QQ号已复制到剪贴板</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 按钮 -->
+          <div class="flex space-x-3 mt-6">
+            <button @click="closeTechSupport" class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+              关闭
+            </button>
+            <a href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=2217021563&website=www.oicqzone.com" class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center">
+              联系技术支持
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- 历史版本模态框 -->
     <div v-if="isHistoryVersionsVisible" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
@@ -172,8 +278,11 @@ import ChangelogModal from './ChangelogModal.vue'
 const isChangelogVisible = ref(false)
 // 历史版本模态框状态
 const isHistoryVersionsVisible = ref(false)
+// 技术服务模态框状态
+const isTechSupportVisible = ref(false)
 // 复制状态
 const copied = ref(false)
+const techQQCopied = ref(false)
 
 // 显示更新日志
 const showChangelog = () => {
@@ -183,6 +292,30 @@ const showChangelog = () => {
 // 关闭更新日志
 const closeChangelog = () => {
   isChangelogVisible.value = false
+}
+
+// 显示技术服务
+const showTechSupport = () => {
+  isTechSupportVisible.value = true
+}
+
+// 关闭技术服务
+const closeTechSupport = () => {
+  isTechSupportVisible.value = false
+  techQQCopied.value = false
+}
+
+// 复制技术支持QQ号
+const copyTechQQ = async () => {
+  try {
+    await navigator.clipboard.writeText('2217021563')
+    techQQCopied.value = true
+    setTimeout(() => {
+      techQQCopied.value = false
+    }, 2000)
+  } catch (err) {
+    console.error('复制失败:', err)
+  }
 }
 
 // 显示历史版本

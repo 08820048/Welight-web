@@ -25,9 +25,9 @@
                   <span class="bg-white bg-opacity-20 text-xs px-2 py-1 rounded-full font-medium">最新版本</span>
                 </div>
                 <p class="text-sm text-primary-100">
-                  新增AI任务后台机制和免费DeepSeek模型体验，
-                  <span class="hidden sm:inline">包含主题优化和markdown转换改进。</span>
-                  <span class="font-medium text-white">立即下载体验AI增强功能！</span>
+                  全新的UI设计，扁平轻量化的清爽体验
+<!--                  <span class="hidden sm:inline">建议更新</span>-->
+                  <span class="font-medium text-white">建议下载更新！</span>
                 </p>
               </div>
             </div>
