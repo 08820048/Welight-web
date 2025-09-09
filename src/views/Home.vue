@@ -329,7 +329,7 @@
               <!-- Theme preview image -->
               <div class="aspect-[4/3] overflow-hidden">
                 <img
-                  src="https://images.waer.ltd/notes/202508291005187.png"
+                  src="https://images.waer.ltd/notes/202509082113229.png"
                   alt="纸质纹理主题"
                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"
@@ -355,7 +355,7 @@
               <!-- Theme preview image -->
               <div class="aspect-[4/3] overflow-hidden">
                 <img
-                  src="https://images.waer.ltd/notes/202508291005215.png"
+                  src="https://images.waer.ltd/notes/202509082114921.png"
                   alt="森林物语主题"
                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"
@@ -381,7 +381,7 @@
               <!-- Theme preview image -->
               <div class="aspect-[4/3] overflow-hidden">
                 <img
-                  src="https://images.waer.ltd/notes/202508291005282.png"
+                  src="https://images.waer.ltd/notes/202509082114104.png"
                   alt="粉色佳人主题"
                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"
@@ -401,29 +401,29 @@
             </div>
           </div>
 
-          <!-- Theme 4 - 商务简约 -->
+          <!-- Theme 4 - 水墨丹青 -->
           <div class="group scroll-animate scale-up" style="transition-delay: 0.7s;">
-            <div class="relative overflow-hidden rounded-2xl bg-slate-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="relative overflow-hidden rounded-2xl bg-gray-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
               <!-- Theme preview image -->
               <div class="aspect-[4/3] overflow-hidden">
                 <img
-                  src="https://images.waer.ltd/notes/202508291005260.png"
-                  alt="商务简约主题"
+                  src="https://images.waer.ltd/notes/202509082115670.png"
+                  alt="水墨丹青主题"
                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"
                 />
               </div>
               <!-- Theme info -->
               <div class="p-6">
-                <h3 class="text-xl font-bold text-slate-900 mb-2">商务简约</h3>
-                <p class="text-slate-700 text-sm mb-4">专业简洁的设计风格，适合商务报告和正式文档</p>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">水墨丹青</h3>
+                <p class="text-gray-700 text-sm mb-4">中国传统水墨画风格，淡雅古朴，适合文学创作和诗词分享</p>
                 <div class="flex items-center justify-between">
-                  <span class="text-xs text-slate-600 bg-slate-100 px-3 py-1 rounded-full">专业商务</span>
-                  <div class="w-6 h-6 bg-slate-200 border-2 border-slate-400 rounded-full"></div>
+                  <span class="text-xs text-gray-600 bg-gray-100 px-3 py-1 rounded-full">古典雅致</span>
+                  <div class="w-6 h-6 bg-gray-200 border-2 border-gray-400 rounded-full"></div>
                 </div>
               </div>
               <!-- Hover overlay -->
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-gray-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           </div>
 
@@ -433,7 +433,7 @@
               <!-- Theme preview image -->
               <div class="aspect-[4/3] overflow-hidden">
                 <img
-                  src="https://images.waer.ltd/notes/202508291005228.png"
+                  src="https://images.waer.ltd/notes/202509082116125.png"
                   alt="科技蓝调主题"
                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"
@@ -453,29 +453,29 @@
             </div>
           </div>
 
-          <!-- Theme 6 - 温暖橙光 -->
+          <!-- Theme 6 - 建国大业 -->
           <div class="group scroll-animate scale-up" style="transition-delay: 0.9s;">
-            <div class="relative overflow-hidden rounded-2xl bg-orange-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+            <div class="relative overflow-hidden rounded-2xl bg-red-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
               <!-- Theme preview image -->
               <div class="aspect-[4/3] overflow-hidden">
                 <img
-                  src="https://images.waer.ltd/notes/202508291005271.png"
-                  alt="温暖橙光主题"
+                  src="https://images.waer.ltd/notes/202509082117612.png"
+                  alt="建国大业主题"
                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   loading="lazy"
                 />
               </div>
               <!-- Theme info -->
               <div class="p-6">
-                <h3 class="text-xl font-bold text-orange-900 mb-2">温暖橙光</h3>
-                <p class="text-orange-700 text-sm mb-4">温暖活力的橙色调，充满阳光感，激发创作热情和积极情绪</p>
+                <h3 class="text-xl font-bold text-red-900 mb-2">建国大业</h3>
+                <p class="text-red-700 text-sm mb-4">庄重大气的红色主题，彰显爱国情怀，适合重要文档和正式场合</p>
                 <div class="flex items-center justify-between">
-                  <span class="text-xs text-orange-600 bg-orange-100 px-3 py-1 rounded-full">活力阳光</span>
-                  <div class="w-6 h-6 bg-orange-200 border-2 border-orange-400 rounded-full"></div>
+                  <span class="text-xs text-red-600 bg-red-100 px-3 py-1 rounded-full">庄重大气</span>
+                  <div class="w-6 h-6 bg-red-200 border-2 border-red-400 rounded-full"></div>
                 </div>
               </div>
               <!-- Hover overlay -->
-              <div class="absolute inset-0 bg-gradient-to-t from-orange-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-red-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
           </div>
         </div>

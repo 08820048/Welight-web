@@ -201,7 +201,7 @@
                 <div class="bg-gray-50 rounded-lg p-4">
                   <div class="flex items-center justify-between mb-2">
                     <span class="text-sm text-gray-500">服务定价</span>
-                    <span class="text-lg font-bold text-gray-900">5元/次</span>
+                    <span class="text-lg font-bold text-gray-900">9.99元/次</span>
                   </div>
                   <div class="text-xs text-gray-500 space-y-1">
                     <p>• 基础问题解决，一般30分钟内完成</p>
