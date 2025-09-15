@@ -8,7 +8,7 @@
           <span class="text-xl font-bold relative logo-gradient-text cursor-pointer">
             Welight
           </span>
-          <sup class="text-xs text-gray-500 ml-1 font-normal">v2.4.1</sup>
+          <sup class="text-xs text-gray-500 ml-1 font-normal">v2.4.2</sup>
         </router-link>
 
         <!-- Right side buttons -->
@@ -70,6 +70,20 @@
             </div>
           </div>
 
+          <!-- 公告按钮 -->
+          <button
+            @click="showAnnouncements"
+            class="relative flex items-center space-x-2 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200 group"
+            title="查看公告通知"
+          >
+            <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+            </svg>
+            <span class="hidden sm:inline text-sm font-medium">公告</span>
+            <!-- 新公告提示点 -->
+            <div v-if="hasNewAnnouncements" class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+          </button>
+
           <!-- 技术服务按钮 -->
           <button
             @click="showTechSupport"
@@ -113,6 +127,12 @@
     <ChangelogModal
       :isVisible="isChangelogVisible"
       @close="closeChangelog"
+    />
+
+    <!-- 公告模态框 -->
+    <AnnouncementModal
+      :isVisible="isAnnouncementVisible"
+      @close="closeAnnouncements"
     />
 
     <!-- 技术服务模态框 -->
@@ -305,11 +325,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import ChangelogModal from './ChangelogModal.vue'
+import AnnouncementModal from './AnnouncementModal.vue'
+import { hasNewAnnouncements as checkNewAnnouncements, markLatestAnnouncementAsViewed } from '@/data/announcements.js'
 
 // 更新日志模态框状态
 const isChangelogVisible = ref(false)
+// 公告模态框状态
+const isAnnouncementVisible = ref(false)
+// 是否有新公告
+const hasNewAnnouncements = ref(false)
 // 历史版本模态框状态
 const isHistoryVersionsVisible = ref(false)
 // 技术服务模态框状态
@@ -326,6 +352,18 @@ const showChangelog = () => {
 // 关闭更新日志
 const closeChangelog = () => {
   isChangelogVisible.value = false
+}
+
+// 显示公告
+const showAnnouncements = () => {
+  isAnnouncementVisible.value = true
+}
+
+// 关闭公告
+const closeAnnouncements = () => {
+  isAnnouncementVisible.value = false
+  // 关闭时更新新公告状态
+  hasNewAnnouncements.value = checkNewAnnouncements()
 }
 
 // 显示技术服务
@@ -375,6 +413,20 @@ const copyQQGroup = async () => {
     console.error('复制失败:', err)
   }
 }
+
+// 组件挂载时检查新公告
+onMounted(() => {
+  // 检查是否有新公告
+  hasNewAnnouncements.value = checkNewAnnouncements()
+
+  // 如果有新公告且是首次访问，自动弹出公告
+  if (hasNewAnnouncements.value) {
+    // 延迟1秒后自动弹出，给页面加载一些时间
+    setTimeout(() => {
+      isAnnouncementVisible.value = true
+    }, 1000)
+  }
+})
 </script>
 
 <style scoped>

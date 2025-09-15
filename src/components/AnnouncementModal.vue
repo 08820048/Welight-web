@@ -13,15 +13,12 @@
       <!-- 头部 -->
       <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
         <div class="flex items-center space-x-3">
-<!--          <div class="w-8 h-8 bg-primary-100 dark:bg-primary-900 rounded-lg flex items-center justify-center">-->
-<!--            <svg class="w-5 h-5 text-primary-600 dark:text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">-->
-<!--              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />-->
-<!--            </svg>-->
-<!--          </div>-->
-          <div>
-            <h2 class="text-xl font-semibold text-gray-900 dark:text-white">更新日志</h2>
-            <p class="text-sm text-gray-500 dark:text-gray-400">Welight 版本更新记录</p>
+          <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+            </svg>
           </div>
+          <h2 class="text-xl font-bold text-gray-900 dark:text-white">公告通知</h2>
         </div>
         <button 
           @click="closeModal"
@@ -34,50 +31,34 @@
       </div>
 
       <!-- 内容区域 -->
-      <div class="overflow-y-auto max-h-[calc(90vh-120px)] p-6">
-        <!-- 调试信息 -->
-        <div v-if="!changelogData || changelogData.length === 0" class="text-center py-8">
-          <p class="text-gray-500">正在加载更新日志...</p>
-        </div>
-
-        <!-- 版本列表 -->
-        <div v-else class="space-y-8">
-          <!-- 动态渲染版本 -->
-          <template v-for="(version, index) in changelogData" :key="version.version">
+      <div class="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
+        <!-- 公告列表 -->
+        <div class="space-y-8">
+          <!-- 动态渲染公告 -->
+          <template v-for="(announcement, index) in announcementData" :key="announcement.id">
             <div class="relative">
-              <!-- 版本标题 -->
+              <!-- 公告标题 -->
               <div class="flex items-center space-x-3 mb-4">
-                <div class="w-3 h-3 rounded-full" :class="getStatusDotClass(version.type)"></div>
+                <div class="w-3 h-3 rounded-full" :class="getStatusDotClass(announcement.type)"></div>
                 <div class="flex items-center space-x-2">
-                  <span class="text-lg font-semibold text-gray-900 dark:text-white">v{{ version.version }}</span>
-                  <span class="px-2 py-1 text-xs rounded-full" :class="getBadgeClass(version.badgeColor)">
-                    {{ version.badge }}
+                  <span class="text-lg font-semibold text-gray-900 dark:text-white">{{ announcement.title }}</span>
+                  <span class="px-2 py-1 text-xs rounded-full border" :class="getBadgeClass(announcement.badgeColor)">
+                    {{ announcement.badge }}
                   </span>
                 </div>
-                <span class="text-sm text-gray-500 dark:text-gray-400">{{ formatDate(version.date) }}</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400">{{ formatDate(announcement.date) }}</span>
               </div>
 
-              <!-- 更新内容 -->
-              <div class="ml-6 space-y-4">
-                <!-- 动态渲染更新类型 -->
-                <template v-for="(changes, changeType) in version.changes" :key="changeType">
-                  <div v-if="changes && changes.length > 0">
-                    <h4 class="text-sm font-medium mb-2" :class="getChangeTypeConfig(changeType).color">
-                      {{ getChangeTypeConfig(changeType).icon }} {{ getChangeTypeConfig(changeType).title }}
-                    </h4>
-                    <ul class="space-y-1 text-sm text-gray-600 dark:text-gray-300">
-                      <li v-for="change in changes" :key="change" class="flex items-start space-x-2">
-                        <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mt-2 flex-shrink-0"></span>
-                        <span>{{ change }}</span>
-                      </li>
-                    </ul>
-                  </div>
-                </template>
+              <!-- 公告内容 -->
+              <div class="ml-6">
+                <div class="prose prose-sm max-w-none dark:prose-invert">
+                  <div v-html="renderMarkdown(announcement.content)" class="text-gray-600 dark:text-gray-300"></div>
+                </div>
               </div>
             </div>
 
-            <!-- 分割线 (除了最后一个版本) -->
-            <div v-if="index < changelogData.length - 1" class="border-l-2 border-gray-200 dark:border-gray-700 ml-1.5 h-8"></div>
+            <!-- 分割线 (除了最后一个公告) -->
+            <div v-if="index < announcementData.length - 1" class="border-l-2 border-gray-200 dark:border-gray-700 ml-1.5 h-8"></div>
           </template>
         </div>
       </div>
@@ -89,7 +70,7 @@
 <!--            想要了解更多？访问我们的 -->
 <!--            <a href="https://github.com/08820048/Welight-web" target="_blank" class="text-primary-600 hover:text-primary-700 underline">GitHub 仓库</a>-->
 <!--          </div>-->
-          <button 
+          <button
             @click="closeModal"
             class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
           >
@@ -104,12 +85,12 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import {
-  changelogData,
+  announcementData,
   formatDate,
   getBadgeClass,
   getStatusDotClass,
-  getChangeTypeConfig
-} from '@/data/changelog.js'
+  markLatestAnnouncementAsViewed
+} from '@/data/announcements.js'
 
 // Props
 const props = defineProps({
@@ -122,8 +103,24 @@ const props = defineProps({
 // Emits
 const emit = defineEmits(['close'])
 
+// 简单的 Markdown 渲染函数
+const renderMarkdown = (content) => {
+  return content
+    .replace(/^# (.*$)/gim, '<h1 class="text-xl font-bold mb-4 text-gray-900 dark:text-white">$1</h1>')
+    .replace(/^## (.*$)/gim, '<h2 class="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-200">$1</h2>')
+    .replace(/^### (.*$)/gim, '<h3 class="text-base font-medium mb-2 text-gray-700 dark:text-gray-300">$1</h3>')
+    .replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="max-w-full h-auto rounded-lg shadow-md my-4 mx-auto block" loading="lazy" />')
+    .replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-gray-900 dark:text-white">$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em class="italic">$1</em>')
+    .replace(/\n\n/g, '</p><p class="mb-4">')
+    .replace(/\n/g, '<br>')
+    .replace(/^(.*)$/gm, '<p class="mb-4">$1</p>')
+}
+
 // 关闭模态框
 const closeModal = () => {
+  // 标记最新公告为已查看
+  markLatestAnnouncementAsViewed()
   emit('close')
 }
 
@@ -161,30 +158,35 @@ onUnmounted(() => {
   }
 }
 
-/* 自定义滚动条 */
+/* 滚动条样式 */
 .overflow-y-auto::-webkit-scrollbar {
   width: 6px;
 }
 
 .overflow-y-auto::-webkit-scrollbar-track {
-  background: transparent;
+  background: #f1f1f1;
+  border-radius: 3px;
 }
 
 .overflow-y-auto::-webkit-scrollbar-thumb {
-  background: rgba(156, 163, 175, 0.5);
+  background: #c1c1c1;
   border-radius: 3px;
 }
 
 .overflow-y-auto::-webkit-scrollbar-thumb:hover {
-  background: rgba(156, 163, 175, 0.7);
+  background: #a8a8a8;
 }
 
 /* 深色模式滚动条 */
+.dark .overflow-y-auto::-webkit-scrollbar-track {
+  background: #374151;
+}
+
 .dark .overflow-y-auto::-webkit-scrollbar-thumb {
-  background: rgba(75, 85, 99, 0.5);
+  background: #6b7280;
 }
 
 .dark .overflow-y-auto::-webkit-scrollbar-thumb:hover {
-  background: rgba(75, 85, 99, 0.7);
+  background: #9ca3af;
 }
 </style>

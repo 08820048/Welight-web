@@ -21,11 +21,11 @@
               </div>
               <div class="flex-1">
                 <div class="flex items-center space-x-2 mb-1">
-                  <span class="text-lg font-bold">🎉 Welight v2.4.1 已发布！</span>
+                  <span class="text-lg font-bold">🎉 Welight v2.4.2 已发布！</span>
                   <span class="bg-white bg-opacity-20 text-xs px-2 py-1 rounded-full font-medium">最新版本</span>
                 </div>
                 <p class="text-sm text-primary-100">
-                  全新的UI设计，扁平轻量化的清爽体验
+                  修复诸多已知问题，优化多款主题效果
 <!--                  <span class="hidden sm:inline">建议更新</span>-->
                   <span class="font-medium text-white">建议下载更新！</span>
                 </p>
@@ -1080,8 +1080,30 @@ const isDev = import.meta.env.DEV
 const route = useRoute()
 
 // 横幅通知状态
-const showBanner = ref(true)
-const bannerVisible = ref(true) // 初始就显示，避免闪动
+const showBanner = ref(false)
+const bannerVisible = ref(false)
+
+// 当前版本号
+const currentVersion = '2.4.2'
+
+// 检查是否应该显示版本横幅
+const shouldShowVersionBanner = () => {
+  const lastDismissedVersion = localStorage.getItem('welight_dismissed_version_banner')
+  return !lastDismissedVersion || lastDismissedVersion !== currentVersion
+}
+
+// 开发测试函数：重置横幅状态（仅在开发环境使用）
+const resetBannerForTesting = () => {
+  localStorage.removeItem('welight_dismissed_version_banner')
+  showBanner.value = true
+  bannerVisible.value = true
+  console.log('横幅状态已重置，用于测试')
+}
+
+// 在开发环境下暴露测试函数到全局
+if (import.meta.env.DEV) {
+  window.resetBannerForTesting = resetBannerForTesting
+}
 
 // 下载统计数据 - 从后端API获取真实统计
 const downloadStats = ref({
@@ -1192,6 +1214,8 @@ const startDownloadAnimation = () => {
 const closeBanner = () => {
   // 先播放收起动画
   bannerVisible.value = false
+  // 记录用户已关闭当前版本的横幅
+  localStorage.setItem('welight_dismissed_version_banner', currentVersion)
   // 延迟隐藏横幅
   setTimeout(() => {
     showBanner.value = false
@@ -1203,11 +1227,11 @@ const downloadFile = async (platform) => {
   try {
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.4.1_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.4.1_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.4.1_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.4.1_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.4.1_amd64.AppImage'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.4.2_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.4.2_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.4.2_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.4.2_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.4.2_amd64.AppImage'
     }
 
     const downloadUrl = downloadUrls[platform]
@@ -1361,7 +1385,14 @@ onMounted(async () => {
   // 重置页面状态
   resetPageState()
 
-  // 横幅初始就显示，无需延迟
+  // 检查是否应该显示版本横幅
+  if (shouldShowVersionBanner()) {
+    showBanner.value = true
+    // 延迟显示横幅动画，给页面加载一些时间
+    setTimeout(() => {
+      bannerVisible.value = true
+    }, 1000)
+  }
 
   try {
     // 初始化下载统计数据

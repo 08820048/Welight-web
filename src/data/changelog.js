@@ -1,11 +1,31 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '2.4.1',
-    date: '2025-09-05',
+    version: '2.4.2',
+    date: '2025-09-11',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      improvements: [
+        '优化"智能转换"功能，确保转换的格式符合"规范检查"规范',
+        '优化水印展示，加上排版主题名称',
+        '统一所有主题中存在列表的样式，新增"属魔少年"主题，优化水墨丹青、苹果简约、科技蓝调主题(改为海洋蓝韵)',
+        '修复主题复制到公众号之后其中的代码块出现高亮效果缺失，缩进异常的问题',
+        '修复v4.2.1版本导致的 AI 后台任务提示列表的展示位置不可见问题，确保始终显示在右下角位置',
+        '移除"导出 HTML"功能'
+      ],
+      features: [
+        '新增一款名为"默认主题"的默认主题，没有任何样式，保留原始的 markdown 渲染风格'
+      ]
+    }
+  },
+  {
+    version: '2.4.1',
+    date: '2025-09-05',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
     changes: {
       improvements: [
         '整体界面UI调整，采用扁平化一体式的简洁UI风格',
