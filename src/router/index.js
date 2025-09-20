@@ -13,6 +13,11 @@ const router = createRouter({
       path: '/download',
       name: 'download',
       component: () => import('../views/Download.vue')
+    },
+    {
+      path: '/donation',
+      name: 'donation',
+      component: () => import('../views/Donation.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {

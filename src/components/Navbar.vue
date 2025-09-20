@@ -119,6 +119,24 @@
             </svg>
             <span class="hidden sm:inline text-sm font-medium">更新日志</span>
           </button>
+
+          <!-- 捐赠支持按钮 -->
+          <div class="relative">
+            <router-link
+              to="/donation"
+              class="flex items-center space-x-2 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200 group"
+              title="捐赠支持"
+            >
+              <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+              <span class="hidden sm:inline text-sm font-medium">捐赠</span>
+            </router-link>
+            <!-- 捐赠次数徽章 -->
+            <div v-if="donationCount > 0" class="absolute -top-1 -right-1 bg-green-500 text-white text-xs px-1.5 py-0.5 rounded-full font-medium min-w-[20px] text-center">
+              +{{ donationCount }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -325,10 +343,11 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import ChangelogModal from './ChangelogModal.vue'
 import AnnouncementModal from './AnnouncementModal.vue'
 import { hasNewAnnouncements as checkNewAnnouncements, markLatestAnnouncementAsViewed } from '@/data/announcements.js'
+import { donations } from '@/data/donations.js'
 
 // 更新日志模态框状态
 const isChangelogVisible = ref(false)
@@ -336,6 +355,9 @@ const isChangelogVisible = ref(false)
 const isAnnouncementVisible = ref(false)
 // 是否有新公告
 const hasNewAnnouncements = ref(false)
+
+// 计算捐赠次数
+const donationCount = computed(() => donations.length)
 // 历史版本模态框状态
 const isHistoryVersionsVisible = ref(false)
 // 技术服务模态框状态

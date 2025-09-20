@@ -47,7 +47,7 @@
         <div>
           <h3 class="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">功能特色</h3>
           <ul class="space-y-3">
-            <li><span class="text-gray-600">17种精美主题</span></li>
+            <li><span class="text-gray-600">21种精美主题</span></li>
             <li><span class="text-gray-600">AI智能助手</span></li>
             <li><span class="text-gray-600">实时预览</span></li>
             <li><span class="text-gray-600">云存储支持</span></li>
