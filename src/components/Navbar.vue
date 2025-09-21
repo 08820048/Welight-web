@@ -124,7 +124,7 @@
           <div class="relative">
             <router-link
               to="/donation"
-              class="flex items-center space-x-2 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200 group"
+              class="flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 group donation-button"
               title="捐赠支持"
             >
               <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -452,6 +452,16 @@ onMounted(() => {
 </script>
 
 <style scoped>
+/* 捐赠按钮样式 */
+.donation-button {
+  color: #ee4668;
+}
+
+.donation-button:hover {
+  color: #d63456;
+  background-color: rgba(238, 70, 104, 0.1);
+}
+
 /* 模态框动画 */
 .modal-content {
   animation: modalFadeInUp 0.3s ease-out forwards;

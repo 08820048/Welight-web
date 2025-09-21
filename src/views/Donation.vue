@@ -165,7 +165,7 @@
     <!-- 固定背景致谢文字 -->
     <div class="fixed inset-0 pointer-events-none z-10 flex items-center justify-center">
       <div class="background-text text-6xl font-bold text-center leading-relaxed opacity-5">
-        每一份捐赠都是对 <span class="text-green-500">Welight</span> 的支持和鼓励
+        你的每一份捐赠都意义非凡！ <span class="text-green-500"></span> 
       </div>
     </div>
 
