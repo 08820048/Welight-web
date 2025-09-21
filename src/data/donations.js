@@ -1,9 +1,9 @@
 /**
  * 捐赠数据管理
- * 包含捐赠记录的数据结构和模拟数据
+ * 包含致谢名单的数据结构和模拟数据
  */
 
-// 捐赠记录数据结构
+// 致谢名单数据结构
 export const donationSchema = {
   id: 'string', // 唯一标识
   amount: 'number', // 捐赠金额
@@ -15,7 +15,7 @@ export const donationSchema = {
   isSpecial: 'boolean' // 是否为特别捐赠
 }
 
-// 捐赠记录数据
+// 致谢名单数据
 export const donations = [
   {
     id: '20250919220014551014119092',
@@ -37,20 +37,20 @@ export const donations = [
     specialTag: null,
     isSpecial: false
   }
-  // 可以在这里添加更多捐赠记录
+  // 可以在这里添加更多致谢记录
 ]
 
 /**
- * 获取所有捐赠记录
- * @returns {Array} 捐赠记录数组
+ * 获取所有致谢名单
+ * @returns {Array} 致谢名单数组
  */
 export function getAllDonations() {
   return donations.sort((a, b) => new Date(b.donationDate) - new Date(a.donationDate))
 }
 
 /**
- * 获取特别捐赠记录
- * @returns {Array} 特别捐赠记录数组
+ * 获取特别致谢记录
+ * @returns {Array} 特别致谢记录数组
  */
 export function getSpecialDonations() {
   return donations.filter(donation => donation.isSpecial)

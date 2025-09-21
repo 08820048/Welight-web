@@ -1,11 +1,8 @@
 <template>
   <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:to-gray-800">
     <div class="container mx-auto px-4 py-8 pt-24">
-      <!-- 页面标题 -->
+      <!-- 页面描述 -->
       <div class="text-center mb-12 scroll-animate animate-fade-in-up delay-100">
-        <h1 class="text-4xl font-bold text-gray-800 dark:text-white mb-4">
-          捐赠支持
-        </h1>
         <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
           您的捐赠将用于支持软件的持续开发、服务器维护、功能优化和技术支持，让更多用户受益于优质的软件体验。
         </p>
@@ -80,10 +77,10 @@
         </div>
       </div>
 
-      <!-- 所有捐赠记录 -->
+      <!-- 致谢名单 -->
       <div class="scroll-animate animate-fade-in-up delay-400">
         <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
-          捐赠记录
+          致谢名单
         </h2>
         
         <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden flat-card">
