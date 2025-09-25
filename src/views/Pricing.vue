@@ -155,14 +155,14 @@
       <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- 所有产品卡片（基于API数据） -->
         <div v-for="(product, index) in products" :key="product.id"
-          class="bg-white rounded shadow-lg p-8 flex flex-col items-center hover:scale-105 hover:shadow-xl hover:-translate-y-1 transition-transform duration-150 ease-out relative overflow-hidden product-card scroll-animate scale-up"
-          :style="`transition-delay: ${0.5 + index * 0.1}s; ${product.permanent ? 'border-color: #3498db;' : ''}`"
-          :class="{
-            'border-2 border-green-500': product.code.includes('AI_SERVICE'),
-            'border-2 border-purple-500': product.code.includes('CLOUD_STORAGE'),
-            'border-2': product.permanent,
-            'border border-gray-200': !product.code.includes('AI_SERVICE') && !product.code.includes('CLOUD_STORAGE') && !product.permanent
-          }">
+          class="bg-white rounded shadow-lg p-8 flex flex-col items-center hover:scale-105 hover:shadow-xl hover:-translate-y-1 transition-transform duration-150 ease-out relative overflow-hidden product-card scroll-animate scale-up border-2 border-white"
+          :style="`transition-delay: ${0.5 + index * 0.1}s;`">
+          <!-- 内部渐隐效果层 -->
+          <div class="absolute inset-0 pointer-events-none rounded" :class="{
+            'ai-service-gradient-overlay': product.code.includes('AI_SERVICE'),
+            'cloud-storage-gradient-overlay': product.code.includes('CLOUD_STORAGE'),
+            'permanent-gradient-overlay': product.permanent
+          }"></div>
           <div class="mb-4">
             <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full" :class="{
               'bg-green-100 text-green-700': product.code.includes('AI_SERVICE'),
@@ -591,6 +591,19 @@ function initScrollAnimations() {
 .scroll-animate.animate-in-view {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+
+/* 卡片内部渐隐效果 */
+.ai-service-gradient-overlay {
+  background: linear-gradient(to bottom, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.08) 40%, transparent 70%);
+}
+
+.cloud-storage-gradient-overlay {
+  background: linear-gradient(to bottom, rgba(168, 85, 247, 0.15) 0%, rgba(168, 85, 247, 0.08) 40%, transparent 70%);
+}
+
+.permanent-gradient-overlay {
+  background: linear-gradient(to bottom, rgba(52, 152, 219, 0.15) 0%, rgba(52, 152, 219, 0.08) 40%, transparent 70%);
 }
 
 /* 产品卡片悬停效果 - 覆盖scroll-animate的过渡 */
