@@ -12,11 +12,8 @@
           </p>
           <div class="flex items-center">
             <div class="text-center">
-              <img
-                src="https://images.waer.ltd/images/202508270916399354.jpg"
-                alt="微信公众号二维码"
-                class="w-20 h-20 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200"
-              />
+              <img src="https://images.waer.ltd/images/202508270916399354.jpg" alt="微信公众号二维码"
+                class="w-20 h-20 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200" />
               <p class="text-xs text-gray-500 mt-2">扫码关注公众号</p>
             </div>
           </div>
@@ -26,9 +23,12 @@
         <div>
           <h3 class="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">产品</h3>
           <ul class="space-y-3">
-            <li><router-link to="/download" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">下载</router-link></li>
-            <li><a href="https://waer.ltd" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">官方网站</a></li>
-            <li><a href="https://ilikexff.cn" class="text-gray-600 hover:text-primary-600 transition-colors duration-200">开发者博客</a></li>
+            <li><router-link to="/download"
+                class="text-gray-600 hover:text-primary-600 transition-colors duration-200">下载</router-link></li>
+            <li><a href="https://waer.ltd"
+                class="text-gray-600 hover:text-primary-600 transition-colors duration-200">官方网站</a></li>
+            <li><a href="https://ilikexff.cn"
+                class="text-gray-600 hover:text-primary-600 transition-colors duration-200">开发者博客</a></li>
           </ul>
 
           <!-- QQ群信息 -->
@@ -36,7 +36,8 @@
             <h4 class="text-sm font-semibold text-gray-900 mb-2">交流群</h4>
             <div class="flex items-center space-x-2">
               <svg class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                <path
+                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
               </svg>
               <span class="text-gray-600 text-sm">QQ群：474919458</span>
             </div>
@@ -62,17 +63,46 @@
             © {{ currentYear }} Welight。保留所有权利。
           </p>
           <div class="flex space-x-6 mt-4 md:mt-0">
-            <a href="https://waer.ltd" class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">官方网站</a>
-            <a href="https://ilikexff.cn" class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">开发者博客</a>
+            <a href="https://waer.ltd"
+              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">官方网站</a>
+            <a href="https://ilikexff.cn"
+              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">开发者博客</a>
+            <button @click="showTermsModal = true"
+              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">服务条款</button>
+            <button @click="showPrivacyModal = true"
+              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">隐私政策</button>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- 服务条款模态框 -->
+    <TermsOfServiceModal :isVisible="showTermsModal" @close="closeTermsModal" />
+
+    <!-- 隐私政策模态框 -->
+    <PrivacyPolicyModal :isVisible="showPrivacyModal" @close="closePrivacyModal" />
   </footer>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import TermsOfServiceModal from './TermsOfServiceModal.vue'
+import PrivacyPolicyModal from './PrivacyPolicyModal.vue'
 
 const currentYear = computed(() => new Date().getFullYear())
+
+// 服务条款模态框状态
+const showTermsModal = ref(false)
+// 隐私政策模态框状态
+const showPrivacyModal = ref(false)
+
+// 关闭服务条款模态框
+const closeTermsModal = () => {
+  showTermsModal.value = false
+}
+
+// 关闭隐私政策模态框
+const closePrivacyModal = () => {
+  showPrivacyModal.value = false
+}
 </script>

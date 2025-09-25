@@ -2,8 +2,9 @@
   <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4 pt-24">
     <div class="max-w-4xl mx-auto">
       <!-- 购买弹窗 -->
-      <div v-if="showBuyModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-        <div class="bg-white rounded-xl shadow-xl p-8 w-full max-w-md relative">
+      <div v-if="showBuyModal"
+        class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop">
+        <div class="bg-white rounded-xl shadow-xl p-8 w-full max-w-md relative modal-content">
           <button class="absolute top-3 right-3 text-gray-400 hover:text-gray-700" @click="closeBuyModal">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -38,6 +39,16 @@
                   class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400"
                   placeholder="可填写姓名或昵称" />
               </div>
+              <!-- 服务条款和隐私政策提示 -->
+              <div class="text-xs text-gray-500 text-center mb-3">
+                购买表示您已同意我们的
+                <button @click="showTermsModal = true"
+                  class="text-green-600 hover:text-green-700 underline">《服务条款》</button>
+                和
+                <button @click="showPrivacyModal = true"
+                  class="text-green-600 hover:text-green-700 underline">《隐私政策》</button>
+              </div>
+
               <button type="submit" :disabled="loading"
                 class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow flex items-center justify-center">
                 <span v-if="loading" class="animate-spin mr-2"><svg class="w-5 h-5" fill="none" stroke="currentColor"
@@ -116,15 +127,15 @@
 
       <!-- 月卡购买弹窗 -->
       <div v-if="showMonthlyCardModal"
-        class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+        class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop">
         <MonthlyCardPurchase ref="monthlyCardPurchaseRef" :preselected-service-type="selectedServiceType"
           @close="closeMonthlyCardModal" />
       </div>
 
       <!-- 月卡激活弹窗 -->
       <div v-if="showMonthlyCardActivationModal"
-        class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-        <div class="relative max-w-lg w-full mx-4">
+        class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop">
+        <div class="relative max-w-lg w-full mx-4 modal-content">
           <button @click="showMonthlyCardActivationModal = false"
             class="absolute -top-2 -right-2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 z-10">
             <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -209,19 +220,21 @@
       </div>
 
       <!-- 购买须知与接口说明 -->
-      <div class="mt-12 bg-white rounded-xl shadow p-6">
-        <h2 class="text-xl font-bold text-gray-900 mb-4">购买须知</h2>
+      <div class="mt-12 bg-white rounded-xl shadow p-6 scroll-animate fade-in-up" style="transition-delay: 1.0s;">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 scroll-animate fade-in-up" style="transition-delay: 1.1s;">购买须知
+        </h2>
         <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-6 text-sm">
-          <li>购买后许可证将自动发送到您的邮箱，请妥善保存许可证密钥。</li>
-          <li>每个许可证支持在指定数量的设备上使用。</li>
-          <li>许可证密钥请在桌面应用中输入使用。</li>
-          <li>反馈交流请通过QQ群联系开发者。</li>
-          <li>支持微信支付，订单有效期为30分钟。</li>
-          <li>产品为一次性购买，不支持退款。</li>
+          <li class="scroll-animate fade-in-up" style="transition-delay: 1.2s;">购买后许可证将自动发送到您的邮箱，请妥善保存许可证密钥。</li>
+          <li class="scroll-animate fade-in-up" style="transition-delay: 1.3s;">每个许可证支持在指定数量的设备上使用。</li>
+          <li class="scroll-animate fade-in-up" style="transition-delay: 1.4s;">许可证密钥请在桌面应用中输入使用。</li>
+          <li class="scroll-animate fade-in-up" style="transition-delay: 1.5s;">反馈交流请通过QQ群联系开发者。</li>
+          <li class="scroll-animate fade-in-up" style="transition-delay: 1.6s;">支持微信支付，订单有效期为30分钟。</li>
+          <li class="scroll-animate fade-in-up" style="transition-delay: 1.7s;">产品为一次性购买，不支持退款。</li>
         </ul>
 
-        <h2 class="text-xl font-bold text-gray-900 mb-4">技术支持</h2>
-        <div class="bg-blue-50 rounded-lg p-4 text-sm">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 scroll-animate fade-in-up" style="transition-delay: 1.8s;">技术支持
+        </h2>
+        <div class="bg-blue-50 rounded-lg p-4 text-sm scroll-animate fade-in-up" style="transition-delay: 1.9s;">
           <div class="flex items-center space-x-4">
             <div>
               <span class="font-medium text-blue-800">QQ群：</span>
@@ -238,6 +251,15 @@
         </div>
       </div>
     </div>
+
+    <!-- 定价说明悬浮按钮 -->
+    <FloatingPricingInfoButton />
+
+    <!-- 服务条款模态框 -->
+    <TermsOfServiceModal :isVisible="showTermsModal" @close="showTermsModal = false" />
+
+    <!-- 隐私政策模态框 -->
+    <PrivacyPolicyModal :isVisible="showPrivacyModal" @close="showPrivacyModal = false" />
   </div>
 </template>
 
@@ -254,6 +276,9 @@ import {
 } from '../services/licenseService.js'
 import MonthlyCardPurchase from '../components/MonthlyCardPurchase.vue'
 import MonthlyCardActivation from '../components/MonthlyCardActivation.vue'
+import FloatingPricingInfoButton from '../components/FloatingPricingInfoButton.vue'
+import TermsOfServiceModal from '../components/TermsOfServiceModal.vue'
+import PrivacyPolicyModal from '../components/PrivacyPolicyModal.vue'
 
 // 响应式数据
 const products = ref([])
@@ -261,6 +286,8 @@ const loadingProducts = ref(true)
 const showBuyModal = ref(false)
 const showMonthlyCardModal = ref(false)
 const showMonthlyCardActivationModal = ref(false)
+const showTermsModal = ref(false)
+const showPrivacyModal = ref(false)
 const selectedProduct = ref(null)
 const selectedServiceType = ref('')
 const buyForm = ref({
@@ -547,5 +574,36 @@ function initScrollAnimations() {
 .hover\:scale-105:hover {
   transform: scale(1.05);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* 购买弹窗动画 */
+.modal-backdrop {
+  animation: modalBackdropFadeIn 0.3s ease-out forwards;
+}
+
+.modal-content {
+  animation: modalContentSlideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes modalBackdropFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalContentSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 </style>

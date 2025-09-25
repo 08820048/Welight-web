@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white rounded-xl shadow-xl p-8 w-full max-w-md relative">
+  <div class="bg-white rounded-xl shadow-xl p-8 w-full max-w-md relative modal-content">
     <!-- 关闭按钮 -->
     <button class="absolute top-3 right-3 text-gray-400 hover:text-gray-700" @click="$emit('close')">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -31,6 +31,14 @@
         <label class="block text-sm font-medium text-gray-700 mb-2">姓名</label>
         <input v-model="form.customerName" type="text" placeholder="可选"
           class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      </div>
+
+      <!-- 服务条款和隐私政策提示 -->
+      <div class="text-xs text-gray-500 text-center mb-3">
+        开通表示您已同意我们的
+        <button @click="showTermsModal = true" class="text-green-600 hover:text-green-700 underline">《服务条款》</button>
+        和
+        <button @click="showPrivacyModal = true" class="text-green-600 hover:text-green-700 underline">《隐私政策》</button>
       </div>
 
       <button type="submit" :disabled="loading || !form.serviceType"
@@ -93,7 +101,11 @@
       </div>
     </div>
 
+    <!-- 服务条款模态框 -->
+    <TermsOfServiceModal :isVisible="showTermsModal" @close="showTermsModal = false" />
 
+    <!-- 隐私政策模态框 -->
+    <PrivacyPolicyModal :isVisible="showPrivacyModal" @close="showPrivacyModal = false" />
   </div>
 </template>
 
@@ -107,6 +119,8 @@ import {
   purchaseMonthlyCard,
   checkOrderStatus
 } from '../services/monthlyCardService.js'
+import TermsOfServiceModal from './TermsOfServiceModal.vue'
+import PrivacyPolicyModal from './PrivacyPolicyModal.vue'
 
 // Props
 const props = defineProps({
@@ -131,6 +145,8 @@ const orderStatus = ref('')
 const paymentSuccess = ref(false)
 let pollingInterval = null
 const monthlyCardProducts = ref([])
+const showTermsModal = ref(false)
+const showPrivacyModal = ref(false)
 
 // 异步加载月卡产品数据
 async function loadMonthlyCardProducts() {
@@ -258,6 +274,23 @@ defineExpose({
 
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* 弹窗动画 */
+.modal-content {
+  animation: modalContentSlideIn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes modalContentSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 </style>
