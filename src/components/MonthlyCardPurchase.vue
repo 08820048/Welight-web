@@ -185,11 +185,11 @@ async function submitPurchase() {
     orderInfo.value = result.order
     orderStatus.value = result.order.status
 
-    // 生成二维码图片
-    if (result.qrCode) {
-      qrCodeImg.value = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(result.qrCode)}`
+    // 使用后端提供的二维码图片接口
+    if (result.order && result.order.orderNo) {
+      qrCodeImg.value = `https://ilikexff.cn/api/payment/orders/${result.order.orderNo}/qrcode-image`
     } else {
-      console.warn('未找到二维码数据:', result)
+      console.warn('未找到订单号:', result)
     }
 
     // 开始轮询支付状态

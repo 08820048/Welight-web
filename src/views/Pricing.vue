@@ -46,7 +46,7 @@
                     <path d="M12 2v4" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
                     <path d="M12 18v4" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
                   </svg></span>
-                创建订单并获取支付二维码
+                确认购买
               </button>
               <div v-if="errorMsg" class="text-red-600 text-sm mt-2">{{ errorMsg }}</div>
             </form>
@@ -396,9 +396,9 @@ const submitBuy = async () => {
     orderInfo.value = order
     orderStatus.value = order.status
 
-    // 生成二维码图片
-    if (order.qrCode) {
-      qrCodeImg.value = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(order.qrCode)}`
+    // 使用后端提供的二维码图片接口
+    if (order.orderNo) {
+      qrCodeImg.value = `https://ilikexff.cn/api/payment/orders/${order.orderNo}/qrcode-image`
     }
 
     // 开始轮询订单状态
