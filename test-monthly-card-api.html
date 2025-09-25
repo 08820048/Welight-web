@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>月卡API测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .result { background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 3px; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; }
+        button { padding: 8px 16px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        input, select { padding: 8px; margin: 5px; border: 1px solid #ddd; border-radius: 3px; }
+        .form-group { margin: 10px 0; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>月卡服务API测试</h1>
+    
+    <div class="test-section">
+        <h2>1. 购买月卡</h2>
+        <div class="form-group">
+            <label>服务类型:</label>
+            <select id="purchase-service-type">
+                <option value="AI_SERVICE">AI服务</option>
+                <option value="CLOUD_STORAGE">云存储服务</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>邮箱:</label>
+            <input type="email" id="purchase-email" placeholder="test@example.com" value="test@example.com">
+        </div>
+        <div class="form-group">
+            <label>姓名:</label>
+            <input type="text" id="purchase-name" placeholder="测试用户" value="测试用户">
+        </div>
+        <button onclick="testPurchaseMonthlyCard()">购买月卡</button>
+        <div id="purchase-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. 激活月卡</h2>
+        <div class="form-group">
+            <label>月卡编码:</label>
+            <input type="text" id="activate-card-code" placeholder="AI-1727251200001-ABC12345">
+        </div>
+        <div class="form-group">
+            <label>邮箱:</label>
+            <input type="email" id="activate-email" placeholder="test@example.com" value="test@example.com">
+        </div>
+        <button onclick="testActivateMonthlyCard()">激活月卡</button>
+        <div id="activate-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. 验证月卡</h2>
+        <div class="form-group">
+            <label>月卡编码:</label>
+            <input type="text" id="validate-card-code" placeholder="AI-1727251200001-ABC12345">
+        </div>
+        <div class="form-group">
+            <label>邮箱:</label>
+            <input type="email" id="validate-email" placeholder="test@example.com" value="test@example.com">
+        </div>
+        <div class="form-group">
+            <label>服务类型:</label>
+            <select id="validate-service-type">
+                <option value="">不指定</option>
+                <option value="AI_SERVICE">AI服务</option>
+                <option value="CLOUD_STORAGE">云存储服务</option>
+            </select>
+        </div>
+        <button onclick="testValidateMonthlyCard()">验证月卡</button>
+        <div id="validate-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>4. 查询月卡信息</h2>
+        <div class="form-group">
+            <label>月卡编码:</label>
+            <input type="text" id="query-card-code" placeholder="AI-1727251200001-ABC12345">
+        </div>
+        <button onclick="testGetMonthlyCardInfo()">查询月卡信息</button>
+        <div id="query-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>5. 查询客户月卡列表</h2>
+        <div class="form-group">
+            <label>邮箱:</label>
+            <input type="email" id="list-email" placeholder="test@example.com" value="test@example.com">
+        </div>
+        <div class="form-group">
+            <label>服务类型过滤:</label>
+            <select id="list-service-type">
+                <option value="">全部</option>
+                <option value="AI_SERVICE">AI服务</option>
+                <option value="CLOUD_STORAGE">云存储服务</option>
+            </select>
+        </div>
+        <button onclick="testGetMonthlyCardsList()">查询月卡列表</button>
+        <div id="list-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>6. 检查有效月卡</h2>
+        <div class="form-group">
+            <label>邮箱:</label>
+            <input type="email" id="check-email" placeholder="test@example.com" value="test@example.com">
+        </div>
+        <div class="form-group">
+            <label>服务类型:</label>
+            <select id="check-service-type">
+                <option value="AI_SERVICE">AI服务</option>
+                <option value="CLOUD_STORAGE">云存储服务</option>
+            </select>
+        </div>
+        <button onclick="testCheckValidMonthlyCard()">检查有效月卡</button>
+        <div id="check-result" class="result"></div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'https://ilikexff.cn/api';
+        
+        function displayResult(elementId, data, isError = false) {
+            const element = document.getElementById(elementId);
+            element.className = `result ${isError ? 'error' : 'success'}`;
+            element.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+        
+        // 购买月卡
+        async function testPurchaseMonthlyCard() {
+            try {
+                const serviceType = document.getElementById('purchase-service-type').value;
+                const email = document.getElementById('purchase-email').value;
+                const name = document.getElementById('purchase-name').value;
+                
+                const purchaseData = {
+                    serviceType: serviceType,
+                    customerEmail: email,
+                    customerName: name,
+                    clientInfo: 'API Test',
+                    paymentMethod: 'WECHAT_NATIVE',
+                    remark: `${serviceType}月卡购买测试`
+                };
+                
+                const response = await fetch(`${API_BASE_URL}/monthly-cards/purchase`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(purchaseData)
+                });
+                
+                const data = await response.json();
+                displayResult('purchase-result', data);
+            } catch (error) {
+                displayResult('purchase-result', { error: error.message }, true);
+            }
+        }
+        
+        // 激活月卡
+        async function testActivateMonthlyCard() {
+            try {
+                const cardCode = document.getElementById('activate-card-code').value;
+                const email = document.getElementById('activate-email').value;
+                
+                if (!cardCode) {
+                    displayResult('activate-result', { error: '请输入月卡编码' }, true);
+                    return;
+                }
+                
+                const activateData = {
+                    cardCode: cardCode,
+                    customerEmail: email,
+                    clientInfo: 'API Test'
+                };
+                
+                const response = await fetch(`${API_BASE_URL}/monthly-cards/activate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(activateData)
+                });
+                
+                const data = await response.json();
+                displayResult('activate-result', data);
+            } catch (error) {
+                displayResult('activate-result', { error: error.message }, true);
+            }
+        }
+        
+        // 验证月卡
+        async function testValidateMonthlyCard() {
+            try {
+                const cardCode = document.getElementById('validate-card-code').value;
+                const email = document.getElementById('validate-email').value;
+                const serviceType = document.getElementById('validate-service-type').value;
+                
+                if (!cardCode) {
+                    displayResult('validate-result', { error: '请输入月卡编码' }, true);
+                    return;
+                }
+                
+                const validateData = {
+                    cardCode: cardCode,
+                    customerEmail: email
+                };
+                
+                if (serviceType) {
+                    validateData.serviceType = serviceType;
+                }
+                
+                const response = await fetch(`${API_BASE_URL}/monthly-cards/validate`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(validateData)
+                });
+                
+                const data = await response.json();
+                displayResult('validate-result', data);
+            } catch (error) {
+                displayResult('validate-result', { error: error.message }, true);
+            }
+        }
+        
+        // 查询月卡信息
+        async function testGetMonthlyCardInfo() {
+            try {
+                const cardCode = document.getElementById('query-card-code').value;
+                
+                if (!cardCode) {
+                    displayResult('query-result', { error: '请输入月卡编码' }, true);
+                    return;
+                }
+                
+                const response = await fetch(`${API_BASE_URL}/monthly-cards/${cardCode}`);
+                const data = await response.json();
+                displayResult('query-result', data);
+            } catch (error) {
+                displayResult('query-result', { error: error.message }, true);
+            }
+        }
+        
+        // 查询月卡列表
+        async function testGetMonthlyCardsList() {
+            try {
+                const email = document.getElementById('list-email').value;
+                const serviceType = document.getElementById('list-service-type').value;
+                
+                if (!email) {
+                    displayResult('list-result', { error: '请输入邮箱地址' }, true);
+                    return;
+                }
+                
+                let url = `${API_BASE_URL}/monthly-cards?customerEmail=${encodeURIComponent(email)}`;
+                if (serviceType) {
+                    url += `&serviceType=${serviceType}`;
+                }
+                
+                const response = await fetch(url);
+                const data = await response.json();
+                displayResult('list-result', data);
+            } catch (error) {
+                displayResult('list-result', { error: error.message }, true);
+            }
+        }
+        
+        // 检查有效月卡
+        async function testCheckValidMonthlyCard() {
+            try {
+                const email = document.getElementById('check-email').value;
+                const serviceType = document.getElementById('check-service-type').value;
+                
+                if (!email) {
+                    displayResult('check-result', { error: '请输入邮箱地址' }, true);
+                    return;
+                }
+                
+                const url = `${API_BASE_URL}/monthly-cards/check-valid?customerEmail=${encodeURIComponent(email)}&serviceType=${serviceType}`;
+                const response = await fetch(url);
+                const data = await response.json();
+                displayResult('check-result', data);
+            } catch (error) {
+                displayResult('check-result', { error: error.message }, true);
+            }
+        }
+    </script>
+</body>
+</html>

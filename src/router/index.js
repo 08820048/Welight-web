@@ -23,6 +23,11 @@ const router = createRouter({
       path: '/pricing',
       name: 'pricing',
       component: () => import('../views/Pricing.vue')
+    },
+    {
+      path: '/monthly-cards',
+      name: 'monthly-cards',
+      component: () => import('../views/MonthlyCards.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {

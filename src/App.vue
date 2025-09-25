@@ -1,11 +1,11 @@
 <template>
   <div id="app">
     <Navbar />
-    <main class="min-h-screen bg-white">
+    <main>
       <RouterView />
     </main>
     <Footer />
-    
+
     <!-- 悬浮捐赠按钮 -->
     <FloatingDonationButton />
   </div>
