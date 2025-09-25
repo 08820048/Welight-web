@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .result { background: #f5f5f5; padding: 10px; margin: 10px 0; border-radius: 3px; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; }
+        button { padding: 8px 16px; margin: 5px; background: #007bff; color: white; border: none; border-radius: 3px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>许可证购买API测试</h1>
+    
+    <div class="test-section">
+        <h2>1. 测试获取产品列表</h2>
+        <button onclick="testGetProducts()">获取产品列表</button>
+        <div id="products-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>2. 测试创建订单</h2>
+        <input type="email" id="test-email" placeholder="测试邮箱" value="test@example.com">
+        <input type="text" id="test-name" placeholder="测试姓名" value="测试用户">
+        <button onclick="testCreateOrder()">创建测试订单</button>
+        <div id="order-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>3. 测试查询订单状态</h2>
+        <input type="text" id="order-no" placeholder="订单号">
+        <button onclick="testGetOrderStatus()">查询订单状态</button>
+        <div id="status-result" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>4. 测试获取许可证</h2>
+        <input type="email" id="license-email" placeholder="客户邮箱" value="test@example.com">
+        <button onclick="testGetLicenses()">获取许可证列表</button>
+        <div id="license-result" class="result"></div>
+    </div>
+
+    <script>
+        const API_BASE_URL = 'https://ilikexff.cn/api';
+        
+        function displayResult(elementId, data, isError = false) {
+            const element = document.getElementById(elementId);
+            element.className = `result ${isError ? 'error' : 'success'}`;
+            element.innerHTML = `<pre>${JSON.stringify(data, null, 2)}</pre>`;
+        }
+        
+        async function testGetProducts() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/products`);
+                const data = await response.json();
+                displayResult('products-result', data);
+            } catch (error) {
+                displayResult('products-result', { error: error.message }, true);
+            }
+        }
+        
+        async function testCreateOrder() {
+            try {
+                const email = document.getElementById('test-email').value;
+                const name = document.getElementById('test-name').value;
+                
+                const orderData = {
+                    productCode: 'WELIGHT_STANDARD',
+                    customerEmail: email,
+                    customerName: name,
+                    paymentMethod: 'WECHAT_NATIVE',
+                    clientInfo: 'API Test',
+                    remark: 'API测试订单'
+                };
+                
+                const response = await fetch(`${API_BASE_URL}/payment/orders`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(orderData)
+                });
+                
+                const data = await response.json();
+                displayResult('order-result', data);
+                
+                // 如果创建成功，自动填入订单号
+                if (data.code === 200 && data.data && data.data.order) {
+                    document.getElementById('order-no').value = data.data.order.orderNo;
+                }
+            } catch (error) {
+                displayResult('order-result', { error: error.message }, true);
+            }
+        }
+        
+        async function testGetOrderStatus() {
+            try {
+                const orderNo = document.getElementById('order-no').value;
+                if (!orderNo) {
+                    displayResult('status-result', { error: '请输入订单号' }, true);
+                    return;
+                }
+                
+                const response = await fetch(`${API_BASE_URL}/payment/orders/${orderNo}`);
+                const data = await response.json();
+                displayResult('status-result', data);
+            } catch (error) {
+                displayResult('status-result', { error: error.message }, true);
+            }
+        }
+        
+        async function testGetLicenses() {
+            try {
+                const email = document.getElementById('license-email').value;
+                if (!email) {
+                    displayResult('license-result', { error: '请输入邮箱地址' }, true);
+                    return;
+                }
+                
+                const response = await fetch(`${API_BASE_URL}/licenses?customerEmail=${encodeURIComponent(email)}`);
+                const data = await response.json();
+                displayResult('license-result', data);
+            } catch (error) {
+                displayResult('license-result', { error: error.message }, true);
+            }
+        }
+        
+        // 页面加载时自动测试获取产品列表
+        window.onload = function() {
+            testGetProducts();
+        };
+    </script>
+</body>
+</html>
