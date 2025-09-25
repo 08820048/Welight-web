@@ -4,33 +4,51 @@
       <!-- 购买弹窗 -->
       <div v-if="showBuyModal" class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
         <div class="bg-white rounded-xl shadow-xl p-8 w-full max-w-md relative">
-          <button class="absolute top-3 right-3 text-gray-400 hover:text-gray-700" @click="showBuyModal = false">
+          <button class="absolute top-3 right-3 text-gray-400 hover:text-gray-700" @click="closeBuyModal">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
           <h2 class="text-2xl font-bold mb-4 text-blue-700">购买许可证</h2>
-          <form @submit.prevent="submitBuy" class="space-y-4">
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">邮箱或QQ号</label>
-              <input v-model="buyForm.user" required type="text" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400" placeholder="请输入邮箱或QQ号" />
+          <div v-if="!orderInfo">
+            <form @submit.prevent="submitBuy" class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">邮箱 <span class="text-red-500">*</span></label>
+                <input v-model="buyForm.customerEmail" required type="email" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400" placeholder="请输入邮箱（用于接收许可证）" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">姓名（选填）</label>
+                <input v-model="buyForm.customerName" type="text" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400" placeholder="可填写姓名或昵称" />
+              </div>
+              <button type="submit" :disabled="loading" class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow flex items-center justify-center">
+                <span v-if="loading" class="animate-spin mr-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/><path d="M12 2v4" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M12 18v4" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg></span>
+                创建订单并获取支付二维码
+              </button>
+              <div v-if="errorMsg" class="text-red-600 text-sm mt-2">{{ errorMsg }}</div>
+            </form>
+          </div>
+          <div v-else>
+            <div class="mb-4 text-center">
+              <div class="text-lg font-bold text-blue-700 mb-1">订单金额：¥{{ orderInfo.amount }} {{ orderInfo.currency }}</div>
+              <div class="text-gray-600 mb-2">请使用微信扫码支付</div>
+              <img :src="qrCodeImg" alt="支付二维码" class="mx-auto w-40 h-40 rounded shadow border border-gray-200" v-if="qrCodeImg" />
+              <div class="text-xs text-gray-400 mt-2">订单号：{{ orderInfo.orderNo }}</div>
+              <div v-if="orderStatus === 'PAID'" class="text-green-600 font-bold mt-2">支付成功！正在获取许可证...</div>
+              <div v-else-if="orderStatus === 'EXPIRED'" class="text-red-600 font-bold mt-2">订单已过期，请重新下单</div>
+              <div v-else class="text-blue-600 mt-2">支付后自动获取许可证，无需手动刷新</div>
             </div>
-            <div>
-              <label class="block text-sm font-medium text-gray-700 mb-1">设备唯一标识（可选）</label>
-              <input v-model="buyForm.device" type="text" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-400" placeholder="如有请填写" />
+            <div v-if="licenseInfo" class="bg-green-50 border border-green-200 rounded p-4 mt-4 text-green-700">
+              <div class="font-bold mb-2">许可证信息</div>
+              <div>许可证密钥：<span class="font-mono text-blue-700">{{ licenseInfo.licenseKey }}</span></div>
+              <div>产品：{{ licenseInfo.productCode }}</div>
+              <div>邮箱：{{ licenseInfo.customerEmail }}</div>
+              <div>状态：{{ licenseInfo.statusDescription }}</div>
+              <div v-if="licenseInfo.permanent">有效期：永久</div>
+              <div v-else>有效期至：{{ licenseInfo.expiredAt }}</div>
+              <div>最大激活数：{{ licenseInfo.maxActivations }}</div>
+              <div>当前激活数：{{ licenseInfo.currentActivations }}</div>
             </div>
-            <button type="submit" :disabled="loading" class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors shadow flex items-center justify-center">
-              <span v-if="loading" class="animate-spin mr-2"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" fill="none"/><path d="M12 2v4" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M12 18v4" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg></span>
-              提交购买
-            </button>
-            <div v-if="errorMsg" class="text-red-600 text-sm mt-2">{{ errorMsg }}</div>
-            <div v-if="result" class="bg-green-50 border border-green-200 rounded p-4 mt-4 text-green-700">
-              <div class="font-bold mb-2">购买成功！</div>
-              <div>许可证密钥：<span class="font-mono text-blue-700">{{ result.license_key }}</span></div>
-              <div>授权类型：{{ result.type }}</div>
-              <div>有效期：{{ result.expire }}</div>
-            </div>
-          </form>
+          </div>
         </div>
       </div>
       <!-- 标题区 -->
@@ -141,37 +159,110 @@ import { ref } from 'vue'
 
 const showBuyModal = ref(false)
 const buyForm = ref({
-  user: '',
-  device: ''
+  customerEmail: '',
+  customerName: ''
 })
 const loading = ref(false)
-const result = ref(null)
 const errorMsg = ref('')
+const orderInfo = ref(null)
+const orderStatus = ref('')
+const licenseInfo = ref(null)
+let pollingTimer = null
 
+const qrCodeImg = ref('')
+
+// 关闭弹窗时清理状态
+function closeBuyModal() {
+  showBuyModal.value = false
+  buyForm.value = {
+    customerEmail: '',
+    customerName: '',
+    clientInfo: ''
+  }
+  loading.value = false
+  errorMsg.value = ''
+  orderInfo.value = null
+  orderStatus.value = ''
+  licenseInfo.value = null
+  qrCodeImg.value = ''
+  if (pollingTimer) {
+    clearInterval(pollingTimer)
+    pollingTimer = null
+  }
+}
+
+// 创建订单
 const submitBuy = async () => {
   loading.value = true
   errorMsg.value = ''
-  result.value = null
+  orderInfo.value = null
+  orderStatus.value = ''
+  licenseInfo.value = null
+  qrCodeImg.value = ''
   try {
-    const res = await fetch('https://welight.fun/api/license/buy', {
+    const res = await fetch('https://ilikexff.cn/api/payment/create-order', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        type: 'personal',
-        user: buyForm.value.user,
-        device: buyForm.value.device
+        productCode: 'WELIGHT_STANDARD',
+        customerEmail: buyForm.value.customerEmail,
+        customerName: buyForm.value.customerName,
+        clientInfo: buyForm.value.clientInfo,
+        remark: '桌面应用购买'
       })
     })
     const data = await res.json()
-    if (data.success) {
-      result.value = data
+    if (data.code === 200 && data.data) {
+      orderInfo.value = data.data
+      orderStatus.value = data.data.status
+      // 生成二维码图片
+      qrCodeImg.value = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(data.data.qrCode)}`
+      // 开始轮询订单状态
+      pollingTimer = setInterval(checkOrderStatus, 3500)
     } else {
-      errorMsg.value = data.message || '购买失败，请稍后重试'
+      errorMsg.value = data.message || '订单创建失败，请稍后重试'
     }
   } catch (e) {
     errorMsg.value = '网络错误，请稍后重试'
   }
   loading.value = false
+}
+
+// 轮询订单状态
+const checkOrderStatus = async () => {
+  if (!orderInfo.value) return
+  try {
+    const res = await fetch(`https://ilikexff.cn/api/payment/order-status/${orderInfo.value.orderNo}`)
+    const data = await res.json()
+    if (data.code === 200 && data.data) {
+      orderStatus.value = data.data.status
+      if (orderStatus.value === 'PAID') {
+        clearInterval(pollingTimer)
+        pollingTimer = null
+        // 获取许可证信息
+        fetchLicenseInfo()
+      }
+      if (orderStatus.value === 'EXPIRED' || orderStatus.value === 'CANCELLED') {
+        clearInterval(pollingTimer)
+        pollingTimer = null
+      }
+    }
+  } catch (e) {
+    // 网络错误忽略，继续轮询
+  }
+}
+
+// 获取许可证信息
+const fetchLicenseInfo = async () => {
+  try {
+    const res = await fetch(`https://ilikexff.cn/api/licenses/by-order/${orderInfo.value.orderNo}`)
+    const data = await res.json()
+    if (data.code === 200 && data.data) {
+      licenseInfo.value = data.data
+    }
+  } catch (e) {
+    // 忽略错误
+  }
 }
 </script>
 
