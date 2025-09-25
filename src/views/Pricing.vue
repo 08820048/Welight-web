@@ -155,19 +155,20 @@
       <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- 所有产品卡片（基于API数据） -->
         <div v-for="(product, index) in products" :key="product.id"
-          class="bg-white rounded-2xl shadow-lg p-8 flex flex-col items-center hover:scale-105 transition-all duration-500 relative scroll-animate scale-up"
-          :style="`transition-delay: ${0.5 + index * 0.1}s;`" :class="{
+          class="bg-white rounded shadow-lg p-8 flex flex-col items-center hover:scale-105 hover:shadow-xl hover:-translate-y-1 transition-transform duration-150 ease-out relative overflow-hidden product-card scroll-animate scale-up"
+          :style="`transition-delay: ${0.5 + index * 0.1}s; ${product.permanent ? 'border-color: #3498db;' : ''}`"
+          :class="{
             'border-2 border-green-500': product.code.includes('AI_SERVICE'),
             'border-2 border-purple-500': product.code.includes('CLOUD_STORAGE'),
-            'border-2 border-blue-500': product.permanent,
+            'border-2': product.permanent,
             'border border-gray-200': !product.code.includes('AI_SERVICE') && !product.code.includes('CLOUD_STORAGE') && !product.permanent
           }">
           <div class="mb-4">
             <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full" :class="{
               'bg-green-100 text-green-700': product.code.includes('AI_SERVICE'),
               'bg-purple-100 text-purple-700': product.code.includes('CLOUD_STORAGE'),
-              'bg-blue-100 text-blue-700': product.permanent
-            }">
+              'text-white': product.permanent
+            }" :style="product.permanent ? 'background-color: #3498db;' : ''">
               {{ product.name }}
             </span>
           </div>
@@ -216,14 +217,18 @@
           <!-- 其他产品正常购买按钮 -->
           <button v-else class="w-full py-2 px-4 text-white rounded-lg font-semibold transition-colors shadow" :class="{
             'bg-green-700 hover:bg-green-800': product.code.includes('AI_SERVICE'),
-            'bg-blue-600 hover:bg-blue-700': product.permanent
-          }" @click="handleProductPurchase(product)">
+          }" :style="product.permanent ? 'background-color: #3498db;' : ''"
+            @mouseover="product.permanent ? $event.target.style.backgroundColor = '#2980b9' : null"
+            @mouseout="product.permanent ? $event.target.style.backgroundColor = '#3498db' : null"
+            @click="handleProductPurchase(product)">
             立即购买
           </button>
-          <span v-if="product.permanent"
-            class="absolute top-2 right-2 bg-yellow-400 text-xs font-bold px-2 py-1 rounded">
-            推荐
-          </span>
+          <!-- 右上角条状标签 - 参考源码实现 -->
+          <div v-if="!product.code.includes('MONTHLY')"
+            class="absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg"
+            style="background-color: #3498db;">
+            {{ product.permanent ? '推荐' : '热门' }}
+          </div>
         </div>
       </div>
 
@@ -588,10 +593,14 @@ function initScrollAnimations() {
   transform: translateY(0) scale(1);
 }
 
-/* 悬停效果增强 */
-.hover\:scale-105:hover {
-  transform: scale(1.05);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+/* 产品卡片悬停效果 - 覆盖scroll-animate的过渡 */
+.product-card {
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out !important;
+}
+
+.product-card:hover {
+  transform: scale(1.05) translateY(-4px) !important;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
 }
 
 /* 购买弹窗动画 */
