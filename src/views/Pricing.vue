@@ -177,13 +177,21 @@
               原价 ¥{{ getOriginalPrice(product) }}{{ product.permanent ? '' : '/月' }}
             </div>
             <!-- 现价显示 -->
-            <span class="text-3xl font-bold" :class="{
-              'text-green-700': product.code.includes('AI_SERVICE'),
-              'text-purple-600': product.code.includes('CLOUD_STORAGE'),
-              'text-blue-600': product.permanent
-            }">
-              {{ formatPrice(product.price, product.currency) }}{{ product.permanent ? '' : '/月' }}
-            </span>
+            <div class="text-center">
+              <!-- 月卡产品显示折合天价格 -->
+              <div v-if="product.code.includes('MONTHLY')" class="flex items-baseline justify-center space-x-1">
+                <span class="text-lg font-light" style="color: #737a87;">月卡低至</span>
+                <span class="text-lg font-light" style="color: #737a87;">¥</span>
+                <span class="text-3xl font-bold text-black">{{ getDailyPrice(product) }}</span>
+                <span class="text-lg font-light" style="color: #737a87;">/天</span>
+              </div>
+              <!-- 其他产品显示原价格 -->
+              <div v-else class="flex items-baseline justify-center space-x-1">
+                <span class="text-lg font-light" style="color: #737a87;">¥</span>
+                <span class="text-3xl font-bold text-black">{{ product.price }}</span>
+                <span class="text-lg font-light" style="color: #737a87;">{{ product.permanent ? '/永久' : '/月' }}</span>
+              </div>
+            </div>
             <!-- 折扣标签 -->
             <div v-if="getDiscountPercent(product)" class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full mt-1">
               {{ getDiscountPercent(product) }}折
@@ -516,6 +524,16 @@ function getDiscountPercent(product) {
   }
   const discount = Math.round((1 - product.price / originalPrice) * 10) / 10
   return discount
+}
+
+// 计算月卡折合天价格
+function getDailyPrice(product) {
+  if (!product.code.includes('MONTHLY')) {
+    return null
+  }
+  // 按30天计算
+  const dailyPrice = (product.price / 30).toFixed(2)
+  return dailyPrice
 }
 
 // 初始化滚动动画

@@ -35,7 +35,7 @@
 
       <!-- 服务条款和隐私政策提示 -->
       <div class="text-xs text-gray-500 text-center mb-3">
-        开通表示您已同意我们的
+        购买表示您已同意我们的
         <button @click="showTermsModal = true" class="text-green-600 hover:text-green-700 underline">《服务条款》</button>
         和
         <button @click="showPrivacyModal = true" class="text-green-600 hover:text-green-700 underline">《隐私政策》</button>
