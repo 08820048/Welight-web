@@ -166,23 +166,7 @@
       </div>
     </div>
 
-    <!-- 弹幕留言系统 -->
-    <div class="fixed inset-0 pointer-events-none z-20 overflow-hidden">
-      <div 
-        v-for="(barrage, index) in visibleBarrages" 
-        :key="barrage.id"
-        class="absolute whitespace-nowrap text-lg font-medium opacity-80 barrage-item"
-        :style="{
-          top: barrage.top + 'px',
-          left: barrage.left + 'px',
-          color: barrage.color,
-          animationDuration: barrage.duration + 's',
-          animationDelay: barrage.delay + 's'
-        }"
-      >
-        {{ barrage.message }}
-      </div>
-    </div>
+
     </div>
   </div>
 </template>
@@ -211,14 +195,7 @@ const animatedTotalCount = ref(0)
 const animatedSpecialCount = ref(0)
 const animatedAverageAmount = ref(0)
 
-/**
- * 弹幕系统数据
- */
-const visibleBarrages = ref([])
-const barrageColors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff']
-const maxVisibleBarrages = 8 // 最大同时显示的弹幕数量
-let barrageInterval = null
-let barrageIdCounter = 0
+
 
 /**
  * 数字递增动画函数
@@ -247,7 +224,6 @@ function animateNumber(from, to, duration, callback) {
       callback(toNum) // 确保最终值准确
     }
   }
-
   requestAnimationFrame(step)
 }
 
@@ -276,87 +252,11 @@ function startStatsAnimation() {
   })
 }
 
-/**
- * 获取所有有效留言
- */
-function getValidMessages() {
-  const messages = []
-  allDonations.value.forEach(donation => {
-    if (donation.message && donation.message.trim()) {
-      messages.push({
-        text: donation.message.trim(),
-        donor: donation.donorName || '匿名'
-      })
-    }
-  })
-  return messages
-}
 
-/**
- * 创建新弹幕
- */
-function createBarrage() {
-  const messages = getValidMessages()
-  if (messages.length === 0) return
 
-  // 随机选择一条留言
-  const randomMessage = messages[Math.floor(Math.random() * messages.length)]
-  
-  // 生成弹幕对象
-  const barrage = {
-    id: ++barrageIdCounter,
-    message: `${randomMessage.donor}: ${randomMessage.text}`,
-    top: Math.random() * (window.innerHeight - 200) + 100, // 避免太靠近顶部和底部
-    left: window.innerWidth, // 从右侧开始
-    color: barrageColors[Math.floor(Math.random() * barrageColors.length)],
-    duration: Math.random() * 5 + 8, // 8-13秒的动画时长
-    delay: 0
-  }
 
-  // 添加到可见弹幕列表
-  visibleBarrages.value.push(barrage)
 
-  // 性能优化：限制最大弹幕数量
-  if (visibleBarrages.value.length > maxVisibleBarrages) {
-    visibleBarrages.value.shift() // 移除最早的弹幕
-  }
 
-  // 设置定时器移除弹幕
-  setTimeout(() => {
-    const index = visibleBarrages.value.findIndex(b => b.id === barrage.id)
-    if (index > -1) {
-      visibleBarrages.value.splice(index, 1)
-    }
-  }, barrage.duration * 1000 + 1000) // 动画结束后1秒移除
-}
-
-/**
- * 启动弹幕系统
- */
-function startBarrageSystem() {
-  const messages = getValidMessages()
-  if (messages.length === 0) return
-
-  // 每3-6秒创建一个新弹幕
-  const createNextBarrage = () => {
-    createBarrage()
-    const nextDelay = Math.random() * 3000 + 3000 // 3-6秒
-    barrageInterval = setTimeout(createNextBarrage, nextDelay)
-  }
-
-  createNextBarrage()
-}
-
-/**
- * 停止弹幕系统
- */
-function stopBarrageSystem() {
-  if (barrageInterval) {
-    clearTimeout(barrageInterval)
-    barrageInterval = null
-  }
-  visibleBarrages.value = []
-}
 
 /**
  * 初始化数据
@@ -372,13 +272,33 @@ function initData() {
   }, 500)
 }
 
+// 防抖函数
+function debounce(func, wait) {
+  let timeout
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout)
+      func(...args)
+    }
+    clearTimeout(timeout)
+    timeout = setTimeout(later, wait)
+  }
+}
+
+// 缓存DOM元素，避免重复查询
+let scrollElements = []
+
 /**
- * 滚动动画处理
+ * 滚动动画处理（优化版本）
  */
 function handleScrollAnimation() {
-  const elements = document.querySelectorAll('.scroll-animate')
-  
-  elements.forEach(element => {
+  // 使用缓存的元素列表
+  scrollElements.forEach(element => {
+    // 检查元素是否已经动画过
+    if (element.classList.contains('animate-in-view')) {
+      return
+    }
+    
     const rect = element.getBoundingClientRect()
     const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0
     
@@ -388,32 +308,31 @@ function handleScrollAnimation() {
   })
 }
 
+// 创建防抖版本的滚动处理函数
+const debouncedScrollHandler = debounce(handleScrollAnimation, 16) // 约60fps
+
 /**
  * 组件挂载时初始化数据和动画
  */
 onMounted(() => {
   initData()
   
-  // 初始检查可见元素
+  // 缓存滚动动画元素
   setTimeout(() => {
+    scrollElements = Array.from(document.querySelectorAll('.scroll-animate'))
     handleScrollAnimation()
   }, 100)
   
-  // 启动弹幕系统
-  setTimeout(() => {
-    startBarrageSystem()
-  }, 2000) // 延迟2秒启动，让页面先加载完成
-  
-  // 监听滚动事件
-  window.addEventListener('scroll', handleScrollAnimation)
+  // 监听滚动事件（使用防抖版本）
+  window.addEventListener('scroll', debouncedScrollHandler, { passive: true })
 })
 
 /**
  * 组件卸载时清理事件监听
  */
 onUnmounted(() => {
-  window.removeEventListener('scroll', handleScrollAnimation)
-  stopBarrageSystem() // 停止弹幕系统
+  window.removeEventListener('scroll', debouncedScrollHandler)
+  scrollElements = []
 })
 </script>
 
@@ -440,23 +359,26 @@ onUnmounted(() => {
   }
 }
 
-/* 渐变动画 */
+/* 渐变动画（优化版本） */
 .bg-gradient-to-br {
-  background-size: 400% 400%;
-  animation: gradientShift 10s ease infinite;
+  background-size: 200% 200%;
+  animation: gradientShift 15s ease-in-out infinite;
+  will-change: background-position;
 }
 
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
+  0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
-/* 扁平化卡片样式 */
+/* 扁平化卡片样式（优化版本） */
 .flat-card {
-  transition: all 0.3s ease;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+              border-color 0.2s ease, 
+              background-color 0.2s ease;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
+  will-change: transform;
 }
 
 .dark .flat-card {
@@ -464,7 +386,7 @@ onUnmounted(() => {
 }
 
 .flat-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px) translateZ(0);
   border-color: rgba(59, 130, 246, 0.5);
   background: rgba(255, 255, 255, 0.95);
 }
@@ -489,32 +411,7 @@ onUnmounted(() => {
   text-shadow: 0 0 30px rgba(102, 126, 234, 0.1);
 }
 
-/* 弹幕动画样式 */
-.barrage-item {
-  animation: barrageMove linear forwards;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-  font-weight: 600;
-  border-radius: 20px;
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
 
-@keyframes barrageMove {
-  0% {
-    transform: translateX(0);
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(-120vw);
-    opacity: 0;
-  }
-}
+
+
 </style>

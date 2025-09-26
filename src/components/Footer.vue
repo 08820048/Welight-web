@@ -25,8 +25,8 @@
           <ul class="space-y-3">
             <li><router-link to="/download"
                 class="text-gray-600 hover:text-primary-600 transition-colors duration-200">下载</router-link></li>
-            <li><a href="https://waer.ltd"
-                class="text-gray-600 hover:text-primary-600 transition-colors duration-200">官方网站</a></li>
+            <!-- <li><a href="https://waer.ltd"
+                class="text-gray-600 hover:text-primary-600 transition-colors duration-200">官方网站</a></li> -->
             <li><a href="https://ilikexff.cn"
                 class="text-gray-600 hover:text-primary-600 transition-colors duration-200">开发者博客</a></li>
           </ul>
@@ -63,10 +63,10 @@
             © {{ currentYear }} Welight。保留所有权利。
           </p>
           <div class="flex space-x-6 mt-4 md:mt-0">
-            <a href="https://waer.ltd"
-              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">官方网站</a>
-            <a href="https://ilikexff.cn"
-              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">开发者博客</a>
+            <!-- <a href="https://waer.ltd"
+              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">官方网站</a> -->
+            <!-- <a href="https://ilikexff.cn"
+              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">开发者博客</a> -->
             <button @click="showTermsModal = true"
               class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">服务条款</button>
             <button @click="showPrivacyModal = true"

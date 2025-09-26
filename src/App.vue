@@ -6,8 +6,11 @@
     </main>
     <Footer />
 
-    <!-- 悬浮捐赠按钮 - 在定价页面隐藏 -->
-    <FloatingDonationButton v-if="!isPricingPage" />
+    <!-- 悬浮捐赠按钮 - 只在捐赠页面显示 -->
+    <FloatingDonationButton v-if="isDonationPage" />
+    
+    <!-- 回到顶部按钮 - 全站可用 -->
+    <BackToTop />
   </div>
 </template>
 
@@ -17,12 +20,13 @@ import { computed } from 'vue'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 import FloatingDonationButton from './components/FloatingDonationButton.vue'
+import BackToTop from './components/BackToTop.vue'
 
 const route = useRoute()
 
-// 检查是否为定价页面
-const isPricingPage = computed(() => {
-  return route.name === 'pricing' || route.path === '/pricing'
+// 检查是否为捐赠页面
+const isDonationPage = computed(() => {
+  return route.name === 'donation' || route.path === '/donation'
 })
 </script>
 

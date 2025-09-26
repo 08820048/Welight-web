@@ -1150,10 +1150,7 @@
     </section>
 
 
-    <!-- 开发模式下的API测试组件 -->
-    <div v-if="isDev" class="fixed bottom-4 right-4 z-50">
-      <DownloadStatsTest />
-    </div>
+
   </div>
 </template>
 
@@ -1161,7 +1158,6 @@
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
-import DownloadStatsTest from '@/components/DownloadStatsTest.vue'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
 
 // SEO配置
