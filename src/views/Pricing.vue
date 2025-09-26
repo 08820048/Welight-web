@@ -3,8 +3,8 @@
     <div class="max-w-4xl mx-auto">
       <!-- 购买弹窗 -->
       <div v-if="showBuyModal"
-        class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop">
-        <div class="bg-white rounded-xl shadow-xl p-8 w-full max-w-md relative modal-content">
+        class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop animate-fade-in">
+        <div class="bg-white rounded-xl shadow-xl p-8 w-full max-w-md relative modal-content animate-scale-in">
           <button class="absolute top-3 right-3 text-gray-400 hover:text-gray-700" @click="closeBuyModal">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -112,14 +112,13 @@
         </div>
       </div>
       <!-- 标题区 -->
-      <div class="text-center mb-10 scroll-animate fade-in-up" style="transition-delay: 0.1s;">
-        <h1 class="text-4xl font-extrabold text-gray-900 mb-2 scroll-animate fade-in-up"
-          style="transition-delay: 0.2s;">定价与服务购买</h1>
-        <p class="text-lg text-gray-600 mb-4 scroll-animate fade-in-up" style="transition-delay: 0.3s;">
+      <div class="text-center mb-10 animate-fade-in-up delay-100">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-2 animate-fade-in-up delay-200">定价与服务购买</h1>
+        <p class="text-lg text-gray-600 mb-4 animate-fade-in-up delay-300">
           选择适合您的许可证或月卡服务，享受完整功能与优质服务</p>
-        <div class="flex justify-center space-x-4 scroll-animate fade-in-up" style="transition-delay: 0.4s;">
+        <div class="flex justify-center space-x-4 animate-scale-in delay-400">
           <button @click="showMonthlyCardActivationModal = true"
-            class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300 text-sm transform hover:scale-105">
+            class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300 text-sm transform hover:scale-105 animate-enhanced-bounce delay-500">
             已有月卡？点击激活
           </button>
         </div>
@@ -127,15 +126,15 @@
 
       <!-- 月卡购买弹窗 -->
       <div v-if="showMonthlyCardModal"
-        class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop">
+        class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop animate-fade-in">
         <MonthlyCardPurchase ref="monthlyCardPurchaseRef" :preselected-service-type="selectedServiceType"
-          @close="closeMonthlyCardModal" />
+          @close="closeMonthlyCardModal" class="animate-scale-in" />
       </div>
 
       <!-- 月卡激活弹窗 -->
       <div v-if="showMonthlyCardActivationModal"
-        class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop">
-        <div class="relative max-w-lg w-full mx-4 modal-content">
+        class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop animate-fade-in">
+        <div class="relative max-w-lg w-full mx-4 modal-content animate-scale-in">
           <button @click="showMonthlyCardActivationModal = false"
             class="absolute -top-2 -right-2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 z-10">
             <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -147,16 +146,16 @@
       </div>
 
       <!-- 产品卡片区 -->
-      <div v-if="loadingProducts" class="text-center py-12">
+      <div v-if="loadingProducts" class="text-center py-12 animate-fade-in-up delay-600">
         <div class="animate-spin inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full"></div>
-        <p class="mt-2 text-gray-600">正在加载产品信息...</p>
+        <p class="mt-2 text-gray-600 animate-fade-in-up delay-700">正在加载产品信息...</p>
       </div>
 
       <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- 所有产品卡片（基于API数据） -->
         <div v-for="(product, index) in products" :key="product.id"
-          class="bg-white rounded shadow-lg p-8 flex flex-col items-center hover:scale-105 hover:shadow-xl hover:-translate-y-1 transition-transform duration-150 ease-out relative overflow-hidden product-card scroll-animate scale-up border-2 border-white"
-          :style="`transition-delay: ${0.5 + index * 0.1}s;`">
+          class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center hover:scale-105 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ease-out relative overflow-hidden product-card animate-scale-in border-2 border-white group"
+          :class="`delay-${600 + index * 100}`">
           <!-- 内部渐隐效果层 -->
           <div class="absolute inset-0 pointer-events-none rounded" :class="{
             'ai-service-gradient-overlay': product.code.includes('AI_SERVICE'),
@@ -233,21 +232,21 @@
       </div>
 
       <!-- 购买须知与接口说明 -->
-      <div class="mt-12 bg-white rounded-xl shadow p-6 scroll-animate fade-in-up" style="transition-delay: 1.0s;">
-        <h2 class="text-xl font-bold text-gray-900 mb-4 scroll-animate fade-in-up" style="transition-delay: 1.1s;">购买须知
+      <div class="mt-12 bg-white rounded-xl shadow-lg p-6 animate-fade-in-up delay-1000">
+        <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1100">购买须知
         </h2>
         <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-6 text-sm">
-          <li class="scroll-animate fade-in-up" style="transition-delay: 1.2s;">购买后许可证将自动发送到您的邮箱，请妥善保存许可证密钥。</li>
-          <li class="scroll-animate fade-in-up" style="transition-delay: 1.3s;">每个许可证支持在指定数量的设备上使用。</li>
-          <li class="scroll-animate fade-in-up" style="transition-delay: 1.4s;">许可证密钥请在桌面应用中输入使用。</li>
-          <li class="scroll-animate fade-in-up" style="transition-delay: 1.5s;">反馈交流请通过QQ群联系开发者。</li>
-          <li class="scroll-animate fade-in-up" style="transition-delay: 1.6s;">支持微信支付，订单有效期为30分钟。</li>
-          <li class="scroll-animate fade-in-up" style="transition-delay: 1.7s;">产品为一次性购买，不支持退款。</li>
+          <li class="animate-fade-in-up delay-1200">购买后许可证将自动发送到您的邮箱，请妥善保存许可证密钥。</li>
+          <li class="animate-fade-in-up delay-1300">每个许可证支持在指定数量的设备上使用。</li>
+          <li class="animate-fade-in-up delay-1400">许可证密钥请在桌面应用中输入使用。</li>
+          <li class="animate-fade-in-up delay-1500">反馈交流请通过QQ群联系开发者。</li>
+          <li class="animate-fade-in-up delay-1600">支持微信支付，订单有效期为30分钟。</li>
+          <li class="animate-fade-in-up delay-1700">产品为一次性购买，不支持退款。</li>
         </ul>
 
-        <h2 class="text-xl font-bold text-gray-900 mb-4 scroll-animate fade-in-up" style="transition-delay: 1.8s;">技术支持
+        <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1800">技术支持
         </h2>
-        <div class="bg-blue-50 rounded-lg p-4 text-sm scroll-animate fade-in-up" style="transition-delay: 1.9s;">
+        <div class="bg-blue-50 rounded-lg p-4 text-sm animate-scale-in delay-1900">
           <div class="flex items-center space-x-4">
             <div>
               <span class="font-medium text-blue-800">QQ群：</span>
@@ -557,7 +556,14 @@ function initScrollAnimations() {
 
   // 观察所有需要动画的元素
   setTimeout(() => {
-    const animateElements = document.querySelectorAll('.scroll-animate')
+    // 观察 scroll-animate 元素
+    const scrollAnimateElements = document.querySelectorAll('.scroll-animate')
+    scrollAnimateElements.forEach((el) => {
+      scrollObserver.observe(el)
+    })
+
+    // 观察新的动画类名元素
+    const animateElements = document.querySelectorAll('.animate-fade-in-up, .animate-scale-in, .animate-fade-in-left, .animate-enhanced-bounce')
     animateElements.forEach((el) => {
       scrollObserver.observe(el)
     })
@@ -591,6 +597,76 @@ function initScrollAnimations() {
 .scroll-animate.animate-in-view {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+
+/* 新的动画类名触发机制 */
+.animate-fade-in-up.animate-in-view {
+  opacity: 1;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-scale-in.animate-in-view {
+  opacity: 1;
+  animation: scaleIn 0.8s ease-out forwards;
+}
+
+.animate-fade-in-left.animate-in-view {
+  opacity: 1;
+  animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.animate-enhanced-bounce.animate-in-view {
+  opacity: 1;
+  animation: enhanced-bounce 1.5s ease-in-out;
+}
+
+/* 动画关键帧定义 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes enhanced-bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0,0,0);
+  }
+  40%, 43% {
+    transform: translate3d(0,-8px,0);
+  }
+  70% {
+    transform: translate3d(0,-4px,0);
+  }
+  90% {
+    transform: translate3d(0,-2px,0);
+  }
 }
 
 /* 卡片内部渐隐效果 */
