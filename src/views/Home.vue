@@ -1163,6 +1163,41 @@ import { useSEO, seoConfigs } from '@/composables/useSEO'
 // SEO配置
 useSEO(seoConfigs.home)
 
+/**
+ * 动态加载撒花特效库
+ */
+function loadConfettiLibrary() {
+  return new Promise((resolve, reject) => {
+    if (typeof confetti !== 'undefined') {
+      resolve()
+      return
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js'
+    script.onload = () => resolve()
+    script.onerror = () => reject(new Error('Failed to load confetti library'))
+    document.head.appendChild(script)
+  })
+}
+
+/**
+ * 触发彩虹撒花特效
+ */
+async function triggerRainbowConfetti() {
+  try {
+    await loadConfettiLibrary()
+    confetti({
+      particleCount: 150,
+      spread: 60,
+      origin: { y: 0.6 },
+      colors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8']
+    })
+  } catch (error) {
+    console.error('彩虹撒花特效加载失败:', error)
+  }
+}
+
 // 开发模式检测
 const isDev = import.meta.env.DEV
 
@@ -1315,6 +1350,9 @@ const closeBanner = () => {
 // 下载文件函数
 const downloadFile = async (platform) => {
   try {
+    // 触发彩虹撒花特效
+    triggerRainbowConfetti()
+    
     // 实际下载链接映射
     const downloadUrls = {
       'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.4.2_x64-setup.exe',
@@ -1502,6 +1540,9 @@ onMounted(async () => {
         startDownloadAnimation()
       }, 300)
     }, 5 * 60 * 1000)
+
+    // 预加载撒花特效库
+    loadConfettiLibrary().catch(console.error)
 
     // 初始化动画
     initializeAnimations()

@@ -116,7 +116,7 @@
         <h1 class="text-4xl font-extrabold text-gray-900 mb-2 animate-fade-in-up delay-200">定价与服务购买</h1>
         <p class="text-lg text-gray-600 mb-4 animate-fade-in-up delay-300">
           选择适合您的许可证或月卡服务，享受完整功能与优质服务</p>
-        <div class="flex justify-center space-x-4 animate-scale-in delay-400">
+        <div class="flex justify-center animate-scale-in delay-400">
           <button @click="showMonthlyCardActivationModal = true"
             class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300 text-sm transform hover:scale-105 animate-enhanced-bounce delay-500">
             已有月卡？点击激活
@@ -211,7 +211,7 @@
           <!-- 云存储服务敬请期待 -->
           <button v-if="product.code.includes('CLOUD_STORAGE')"
             class="w-full py-2 px-4 bg-gray-400 text-white rounded-lg font-semibold cursor-not-allowed shadow" disabled>
-            敬请期待
+            即将推出
           </button>
           <!-- 其他产品正常购买按钮 -->
           <button v-else class="w-full py-2 px-4 text-white rounded-lg font-semibold transition-colors shadow" :class="{
@@ -255,10 +255,6 @@
                 点击加入
               </a>
             </div>
-            <!-- <div>
-              <span class="font-medium text-blue-800">邮箱：</span>
-              <span class="text-blue-600">ilikexff@163.com</span>
-            </div> -->
           </div>
         </div>
       </div>
@@ -292,6 +288,62 @@ import FloatingPricingInfoButton from '../components/FloatingPricingInfoButton.v
 import TermsOfServiceModal from '../components/TermsOfServiceModal.vue'
 import PrivacyPolicyModal from '../components/PrivacyPolicyModal.vue'
 
+/**
+ * 动态加载撒花特效库
+ */
+function loadConfettiLibrary() {
+  return new Promise((resolve, reject) => {
+    console.log('🔍 检查confetti库状态，当前类型:', typeof confetti)
+    if (typeof confetti !== 'undefined') {
+      console.log('✅ confetti库已存在，无需重复加载')
+      resolve()
+      return
+    }
+
+    console.log('📦 开始动态加载confetti库...')
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js'
+    script.onload = () => {
+      console.log('✅ confetti库加载成功，类型:', typeof confetti)
+      resolve()
+    }
+    script.onerror = (error) => {
+      console.error('❌ confetti库加载失败:', error)
+      reject(new Error('Failed to load confetti library'))
+    }
+    document.head.appendChild(script)
+    console.log('📡 script标签已添加到head')
+  })
+}
+
+/**
+ * 触发支付成功撒花特效
+ */
+async function triggerPaymentSuccessConfetti() {
+  try {
+    console.log('🎯 开始触发支付成功撒花特效...')
+    await loadConfettiLibrary()
+    console.log('📦 撒花库加载完成，confetti类型:', typeof confetti)
+
+    if (typeof confetti === 'undefined') {
+      throw new Error('confetti库未正确加载')
+    }
+
+    console.log('🎊 执行撒花特效...')
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#22C55E', '#4ADE80', '#BBF7D0', '#F1F5F9', '#10B981']
+    })
+    console.log('✅ 撒花特效执行完成')
+  } catch (error) {
+    console.error('❌ 撒花特效加载失败:', error)
+    // 显示用户友好的错误提示
+    alert('撒花特效加载失败，但支付已成功完成！')
+  }
+}
+
 // 响应式数据
 const products = ref([])
 const loadingProducts = ref(true)
@@ -324,6 +376,8 @@ onMounted(async () => {
   await loadProducts()
   // 初始化滚动动画
   initScrollAnimations()
+  // 预加载撒花特效库
+  loadConfettiLibrary().catch(console.error)
 })
 
 onUnmounted(() => {
@@ -351,8 +405,6 @@ async function loadProducts() {
     loadingProducts.value = false
   }
 }
-
-
 
 // 打开购买弹窗
 function openBuyModal(product = null) {
@@ -484,14 +536,27 @@ async function startPollingOrderStatus(orderNo) {
 // 获取许可证信息
 async function fetchLicenseInfo(customerEmail) {
   try {
+    console.log('🔍 开始获取许可证信息，邮箱:', customerEmail)
     const licenses = await getLicensesByEmail(customerEmail)
+    console.log('📄 获取到的许可证数量:', licenses ? licenses.length : 0)
+
     if (licenses && licenses.length > 0) {
       // 获取最新的许可证（按创建时间排序，取第一个）
       const latestLicense = licenses.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))[0]
       licenseInfo.value = latestLicense
+      console.log('✅ 许可证信息已更新:', latestLicense.licenseKey)
+
+      // 支付成功，触发撒花特效
+      console.log('⏰ 500ms后将触发撒花特效...')
+      setTimeout(() => {
+        console.log('🎊 开始执行撒花特效')
+        triggerPaymentSuccessConfetti()
+      }, 500) // 延迟500ms让用户看到许可证信息后再撒花
+    } else {
+      console.log('⚠️ 未找到有效的许可证')
     }
   } catch (error) {
-    console.error('获取许可证信息失败:', error)
+    console.error('❌ 获取许可证信息失败:', error)
   }
 }
 
@@ -626,6 +691,7 @@ function initScrollAnimations() {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -637,6 +703,7 @@ function initScrollAnimations() {
     opacity: 0;
     transform: scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -648,6 +715,7 @@ function initScrollAnimations() {
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -655,17 +723,26 @@ function initScrollAnimations() {
 }
 
 @keyframes enhanced-bounce {
-  0%, 20%, 53%, 80%, 100% {
-    transform: translate3d(0,0,0);
+
+  0%,
+  20%,
+  53%,
+  80%,
+  100% {
+    transform: translate3d(0, 0, 0);
   }
-  40%, 43% {
-    transform: translate3d(0,-8px,0);
+
+  40%,
+  43% {
+    transform: translate3d(0, -8px, 0);
   }
+
   70% {
-    transform: translate3d(0,-4px,0);
+    transform: translate3d(0, -4px, 0);
   }
+
   90% {
-    transform: translate3d(0,-2px,0);
+    transform: translate3d(0, -2px, 0);
   }
 }
 
