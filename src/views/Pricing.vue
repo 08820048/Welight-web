@@ -163,11 +163,11 @@
             'permanent-gradient-overlay': product.permanent
           }"></div>
           <div class="mb-4">
-            <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full" :class="{
-              'bg-orange-100 text-orange-700': product.code.includes('AI_SERVICE'),
-              'bg-purple-100 text-purple-700': product.code.includes('CLOUD_STORAGE'),
-              'text-white': product.permanent
-            }" :style="product.permanent ? 'background-color: #3498db;' : ''">
+            <span class="inline-block text-sm font-semibold" :class="{
+              'text-orange-700': product.code.includes('AI_SERVICE'),
+              'text-purple-700': product.code.includes('CLOUD_STORAGE'),
+              'text-blue-600': product.permanent
+            }">
               {{ product.name }}
             </span>
           </div>
