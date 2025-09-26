@@ -165,7 +165,7 @@
           }"></div>
           <div class="mb-4">
             <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full" :class="{
-              'bg-green-100 text-green-700': product.code.includes('AI_SERVICE'),
+              'bg-orange-100 text-orange-700': product.code.includes('AI_SERVICE'),
               'bg-purple-100 text-purple-700': product.code.includes('CLOUD_STORAGE'),
               'text-white': product.permanent
             }" :style="product.permanent ? 'background-color: #3498db;' : ''">
@@ -200,14 +200,14 @@
           </div>
           <div class="text-gray-500 mb-6">{{ product.description }}</div>
           <ul class="text-sm text-gray-700 space-y-2 mb-6 text-left w-full">
-            <li v-if="product.permanent">✔ 永久授权</li>
-            <li v-else>✔ {{ product.validityDays }}天有效期</li>
-            <li v-if="product.permanent">✔ 支持 3 台设备激活</li>
-            <li v-if="product.code.includes('AI_SERVICE')">✔ 支持应用内所有AI功能</li>
-            <li v-if="product.code.includes('CLOUD_STORAGE')">✔ 云端存储服务</li>
-            <li v-if="product.permanent">✔ 所有核心功能</li>
-            <li>✔ 免费更新</li>
-            <li>✔ 技术支持</li>
+            <li v-if="product.permanent"><span class="text-green-600">✔</span> 永久授权</li>
+            <li v-else><span class="text-green-600">✔</span> {{ product.validityDays }}天有效期</li>
+            <li v-if="product.permanent"><span class="text-green-600">✔</span> 支持 3 台设备激活</li>
+            <li v-if="product.code.includes('AI_SERVICE')"><span class="text-green-600">✔</span> 支持应用内所有AI功能</li>
+            <li v-if="product.code.includes('CLOUD_STORAGE')"><span class="text-green-600">✔</span> 云端存储服务</li>
+            <li v-if="product.permanent"><span class="text-green-600">✔</span> 所有核心功能</li>
+            <li><span class="text-green-600">✔</span> 免费更新</li>
+            <li><span class="text-green-600">✔</span> 技术支持</li>
           </ul>
           <!-- 云存储服务敬请期待 -->
           <button v-if="product.code.includes('CLOUD_STORAGE')"
@@ -216,7 +216,7 @@
           </button>
           <!-- 其他产品正常购买按钮 -->
           <button v-else class="w-full py-2 px-4 text-white rounded-lg font-semibold transition-colors shadow" :class="{
-            'bg-green-700 hover:bg-green-800': product.code.includes('AI_SERVICE'),
+            'bg-orange-600 hover:bg-orange-700': product.code.includes('AI_SERVICE'),
           }" :style="product.permanent ? 'background-color: #3498db;' : ''"
             @mouseover="product.permanent ? $event.target.style.backgroundColor = '#2980b9' : null"
             @mouseout="product.permanent ? $event.target.style.backgroundColor = '#3498db' : null"
@@ -595,7 +595,7 @@ function initScrollAnimations() {
 
 /* 卡片内部渐隐效果 */
 .ai-service-gradient-overlay {
-  background: linear-gradient(to bottom, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.08) 40%, transparent 70%);
+  background: linear-gradient(to bottom, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0.08) 40%, transparent 70%);
 }
 
 .cloud-storage-gradient-overlay {
