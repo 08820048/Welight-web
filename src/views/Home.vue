@@ -54,7 +54,7 @@
             <h1
               class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight animate-fade-in-up delay-100">
               <span class="block animate-fade-in-left delay-200">智能高效的</span>
-              <span class="block gradient-text animate-fade-in-left delay-300">公众号推文&排版美化体验</span>
+              <span class="block gradient-text animate-fade-in-left delay-300">公众号编辑&排版美化体验</span>
             </h1>
 
             <!-- Description -->
@@ -179,7 +179,7 @@
 
                   <!-- Main image -->
                   <div class="relative overflow-hidden rounded-2xl">
-                    <img src="https://images.waer.ltd/notes/202509052129898.png" alt="Welight 主题预览界面"
+                    <img src="https://images.waer.ltd/notes/202509261137622.png" alt="Welight 主题预览界面"
                       class="w-full h-auto transform group-hover:scale-105 transition-all duration-700 hero-screenshot"
                       loading="lazy" />
                   </div>
@@ -241,7 +241,7 @@
 
                   <!-- Main screenshot -->
                   <div class="relative overflow-hidden rounded-2xl">
-                    <img src="https://images.waer.ltd/notes/202508301851082.png" alt="Welight 核心特性展示"
+                    <img src="https://images.waer.ltd/notes/202509261144654.png" alt="Welight 核心特性展示"
                       class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
                       loading="lazy" />
                   </div>
@@ -386,7 +386,7 @@
               class="relative overflow-hidden rounded-2xl bg-amber-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
               <!-- Theme preview image -->
               <div class="aspect-[4/3] overflow-hidden">
-                <img src="https://images.waer.ltd/notes/202509082113229.png" alt="纸质纹理主题"
+                <img src="https://images.waer.ltd/notes/202509261147920.png" alt="纸质纹理主题"
                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   loading="lazy" />
               </div>
@@ -412,7 +412,7 @@
               class="relative overflow-hidden rounded-2xl bg-emerald-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
               <!-- Theme preview image -->
               <div class="aspect-[4/3] overflow-hidden">
-                <img src="https://images.waer.ltd/notes/202509082114921.png" alt="森林物语主题"
+                <img src="https://images.waer.ltd/notes/202509261148027.png" alt="森林物语主题"
                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   loading="lazy" />
               </div>
@@ -432,48 +432,22 @@
             </div>
           </div>
 
-          <!-- Theme 3 - 粉色佳人 -->
+          <!-- Theme 3 - 苹果简约 -->
           <div class="group scroll-animate scale-up" style="transition-delay: 0.6s;">
-            <div
-              class="relative overflow-hidden rounded-2xl bg-pink-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-              <!-- Theme preview image -->
-              <div class="aspect-[4/3] overflow-hidden">
-                <img src="https://images.waer.ltd/notes/202509082114104.png" alt="粉色佳人主题"
-                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                  loading="lazy" />
-              </div>
-              <!-- Theme info -->
-              <div class="p-6">
-                <h3 class="text-xl font-bold text-pink-900 mb-2">粉色佳人</h3>
-                <p class="text-pink-700 text-sm mb-4">温柔浪漫的粉色调，充满少女心，适合生活分享和情感表达</p>
-                <div class="flex items-center justify-between">
-                  <span class="text-xs text-pink-600 bg-pink-100 px-3 py-1 rounded-full">浪漫温馨</span>
-                  <div class="w-6 h-6 bg-pink-200 border-2 border-pink-400 rounded-full"></div>
-                </div>
-              </div>
-              <!-- Hover overlay -->
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-pink-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              </div>
-            </div>
-          </div>
-
-          <!-- Theme 4 - 水墨丹青 -->
-          <div class="group scroll-animate scale-up" style="transition-delay: 0.7s;">
             <div
               class="relative overflow-hidden rounded-2xl bg-gray-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
               <!-- Theme preview image -->
               <div class="aspect-[4/3] overflow-hidden">
-                <img src="https://images.waer.ltd/notes/202509082115670.png" alt="水墨丹青主题"
+                <img src="https://images.waer.ltd/notes/202509261149397.png" alt="苹果简约主题"
                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   loading="lazy" />
               </div>
               <!-- Theme info -->
               <div class="p-6">
-                <h3 class="text-xl font-bold text-gray-900 mb-2">水墨丹青</h3>
-                <p class="text-gray-700 text-sm mb-4">中国传统水墨画风格，淡雅古朴，适合文学创作和诗词分享</p>
+                <h3 class="text-xl font-bold text-gray-900 mb-2">苹果简约</h3>
+                <p class="text-gray-700 text-sm mb-4">简洁优雅的设计风格，灵感来自苹果产品，适合商务文档和专业展示</p>
                 <div class="flex items-center justify-between">
-                  <span class="text-xs text-gray-600 bg-gray-100 px-3 py-1 rounded-full">古典雅致</span>
+                  <span class="text-xs text-gray-600 bg-gray-100 px-3 py-1 rounded-full">简约优雅</span>
                   <div class="w-6 h-6 bg-gray-200 border-2 border-gray-400 rounded-full"></div>
                 </div>
               </div>
@@ -484,54 +458,80 @@
             </div>
           </div>
 
-          <!-- Theme 5 - 科技蓝调 -->
-          <div class="group scroll-animate scale-up" style="transition-delay: 0.8s;">
+          <!-- Theme 4 - 墨韵书香 -->
+          <div class="group scroll-animate scale-up" style="transition-delay: 0.7s;">
             <div
-              class="relative overflow-hidden rounded-2xl bg-blue-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              class="relative overflow-hidden rounded-2xl bg-slate-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
               <!-- Theme preview image -->
               <div class="aspect-[4/3] overflow-hidden">
-                <img src="https://images.waer.ltd/notes/202509082116125.png" alt="科技蓝调主题"
+                <img src="https://images.waer.ltd/notes/202509261152782.png" alt="墨韵书香主题"
                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   loading="lazy" />
               </div>
               <!-- Theme info -->
               <div class="p-6">
-                <h3 class="text-xl font-bold text-blue-900 mb-2">科技蓝调</h3>
-                <p class="text-blue-700 text-sm mb-4">现代科技感的蓝色调，充满未来感，适合技术文档和创新内容</p>
+                <h3 class="text-xl font-bold text-slate-900 mb-2">墨韵书香</h3>
+                <p class="text-slate-700 text-sm mb-4">融合传统书法与现代设计，散发浓郁书香气息，适合学术写作和文化内容</p>
                 <div class="flex items-center justify-between">
-                  <span class="text-xs text-blue-600 bg-blue-100 px-3 py-1 rounded-full">科技未来</span>
-                  <div class="w-6 h-6 bg-blue-200 border-2 border-blue-400 rounded-full"></div>
+                  <span class="text-xs text-slate-600 bg-slate-100 px-3 py-1 rounded-full">书香墨韵</span>
+                  <div class="w-6 h-6 bg-slate-200 border-2 border-slate-400 rounded-full"></div>
                 </div>
               </div>
               <!-- Hover overlay -->
               <div
-                class="absolute inset-0 bg-gradient-to-t from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                class="absolute inset-0 bg-gradient-to-t from-slate-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               </div>
             </div>
           </div>
 
-          <!-- Theme 6 - 建国大业 -->
-          <div class="group scroll-animate scale-up" style="transition-delay: 0.9s;">
+          <!-- Theme 5 - 海洋蓝韵 -->
+          <div class="group scroll-animate scale-up" style="transition-delay: 0.8s;">
             <div
-              class="relative overflow-hidden rounded-2xl bg-red-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              class="relative overflow-hidden rounded-2xl bg-cyan-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
               <!-- Theme preview image -->
               <div class="aspect-[4/3] overflow-hidden">
-                <img src="https://images.waer.ltd/notes/202509082117612.png" alt="建国大业主题"
+                <img src="https://images.waer.ltd/notes/202509261151555.png" alt="海洋蓝韵主题"
                   class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   loading="lazy" />
               </div>
               <!-- Theme info -->
               <div class="p-6">
-                <h3 class="text-xl font-bold text-red-900 mb-2">建国大业</h3>
-                <p class="text-red-700 text-sm mb-4">庄重大气的红色主题，彰显爱国情怀，适合重要文档和正式场合</p>
+                <h3 class="text-xl font-bold text-cyan-900 mb-2">海洋蓝韵</h3>
+                <p class="text-cyan-700 text-sm mb-4">深邃如海的蓝色韵律，宁静致远，适合思考性内容和深度文章</p>
                 <div class="flex items-center justify-between">
-                  <span class="text-xs text-red-600 bg-red-100 px-3 py-1 rounded-full">庄重大气</span>
-                  <div class="w-6 h-6 bg-red-200 border-2 border-red-400 rounded-full"></div>
+                  <span class="text-xs text-cyan-600 bg-cyan-100 px-3 py-1 rounded-full">宁静致远</span>
+                  <div class="w-6 h-6 bg-cyan-200 border-2 border-cyan-400 rounded-full"></div>
                 </div>
               </div>
               <!-- Hover overlay -->
               <div
-                class="absolute inset-0 bg-gradient-to-t from-red-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                class="absolute inset-0 bg-gradient-to-t from-cyan-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              </div>
+            </div>
+          </div>
+
+          <!-- Theme 6 - 梦幻紫韵 -->
+          <div class="group scroll-animate scale-up" style="transition-delay: 0.9s;">
+            <div
+              class="relative overflow-hidden rounded-2xl bg-purple-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
+              <!-- Theme preview image -->
+              <div class="aspect-[4/3] overflow-hidden">
+                <img src="https://images.waer.ltd/notes/202509261153113.png" alt="梦幻紫韵主题"
+                  class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  loading="lazy" />
+              </div>
+              <!-- Theme info -->
+              <div class="p-6">
+                <h3 class="text-xl font-bold text-purple-900 mb-2">梦幻紫韵</h3>
+                <p class="text-purple-700 text-sm mb-4">神秘优雅的紫色调，充满梦幻色彩，适合创意内容和艺术表达</p>
+                <div class="flex items-center justify-between">
+                  <span class="text-xs text-purple-600 bg-purple-100 px-3 py-1 rounded-full">梦幻神秘</span>
+                  <div class="w-6 h-6 bg-purple-200 border-2 border-purple-400 rounded-full"></div>
+                </div>
+              </div>
+              <!-- Hover overlay -->
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-purple-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               </div>
             </div>
           </div>

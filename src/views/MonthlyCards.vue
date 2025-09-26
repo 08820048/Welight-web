@@ -1,14 +1,14 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-12 px-4 mt-20">
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-32 pb-12 px-4">
     <div class="max-w-4xl mx-auto">
       <!-- 标题区 -->
-      <div class="text-center mb-10">
-        <h1 class="text-4xl font-extrabold text-gray-900 mb-2">我的月卡服务</h1>
-        <p class="text-lg text-gray-600">管理您的AI服务和云存储月卡</p>
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold text-gray-900 mb-4">我的月卡服务</h1>
+        <p class="text-xl text-gray-600">管理您的AI服务和云存储月卡</p>
       </div>
 
       <!-- 查询表单 -->
-      <div class="bg-white rounded-xl shadow p-6 mb-8">
+      <div class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-6 mb-8">
         <div class="flex flex-col md:flex-row gap-4">
           <div class="flex-1">
             <label class="block text-sm font-medium text-gray-700 mb-2">邮箱地址</label>
@@ -58,7 +58,7 @@
         <div 
           v-for="card in monthlyCards" 
           :key="card.id"
-          class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow"
+          class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-6 hover:shadow-xl hover:bg-white/90 transition-all duration-300"
         >
           <div class="flex items-start justify-between mb-4">
             <div>
@@ -135,11 +135,13 @@
         </router-link>
       </div>
     </div>
+
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import $message from '../utils/message.js'
 import {
   getMonthlyCardsByEmail,
   activateMonthlyCard,
@@ -198,10 +200,10 @@ async function activateCard(card) {
     if (result.valid) {
       // 更新卡片状态
       Object.assign(card, result.cardInfo)
-      alert('月卡激活成功！')
+      $message.success('月卡已成功激活，您现在可以使用相关服务了！')
     }
   } catch (error) {
-    alert(`激活失败：${error.message}`)
+    $message.error(`激活过程中出现错误：${error.message}`)
   }
 }
 
@@ -219,12 +221,12 @@ async function validateCard(card) {
     if (result.valid) {
       // 更新卡片状态
       Object.assign(card, result.cardInfo)
-      alert('月卡验证成功，状态已更新！')
+      $message.success('月卡验证通过，状态信息已更新！')
     } else {
-      alert(`验证失败：${result.failureReason || '月卡无效'}`)
+      $message.warning(`验证未通过：${result.failureReason || '月卡状态无效或已过期'}`)
     }
   } catch (error) {
-    alert(`验证失败：${error.message}`)
+    $message.error(`验证过程中出现错误：${error.message}`)
   }
 }
 

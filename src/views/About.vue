@@ -1,7 +1,7 @@
 <template>
-  <div class="min-h-screen pt-20">
+  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-20">
     <!-- Hero Section -->
-    <section class="section-padding bg-gradient-to-br from-primary-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+    <section class="section-padding">
       <div class="container-custom text-center">
         <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
           关于我们
