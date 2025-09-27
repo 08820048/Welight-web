@@ -122,61 +122,6 @@ import {
 import TermsOfServiceModal from './TermsOfServiceModal.vue'
 import PrivacyPolicyModal from './PrivacyPolicyModal.vue'
 
-/**
- * 动态加载撒花特效库
- */
-function loadConfettiLibrary() {
-  return new Promise((resolve, reject) => {
-    console.log('🔍 [月卡] 检查confetti库状态，当前类型:', typeof confetti)
-    if (typeof confetti !== 'undefined') {
-      console.log('✅ [月卡] confetti库已存在，无需重复加载')
-      resolve()
-      return
-    }
-    
-    console.log('📦 [月卡] 开始动态加载confetti库...')
-    const script = document.createElement('script')
-    script.src = 'https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js'
-    script.onload = () => {
-      console.log('✅ [月卡] confetti库加载成功，类型:', typeof confetti)
-      resolve()
-    }
-    script.onerror = (error) => {
-      console.error('❌ [月卡] confetti库加载失败:', error)
-      reject(new Error('Failed to load confetti library'))
-    }
-    document.head.appendChild(script)
-    console.log('📡 [月卡] script标签已添加到head')
-  })
-}
-
-/**
- * 触发月卡购买成功撒花特效
- */
-async function triggerMonthlyCardSuccessConfetti() {
-  try {
-    console.log('🎯 [月卡] 开始触发月卡购买成功撒花特效...')
-    await loadConfettiLibrary()
-    console.log('📦 [月卡] 撒花库加载完成，confetti类型:', typeof confetti)
-    
-    if (typeof confetti === 'undefined') {
-      throw new Error('confetti库未正确加载')
-    }
-    
-    console.log('🎊 [月卡] 执行撒花特效...')
-    confetti({
-      particleCount: 100,
-      spread: 70,
-      origin: { y: 0.6 },
-      colors: ['#10B981', '#059669', '#047857', '#065F46', '#34D399', '#6EE7B7', '#A7F3D0', '#D1FAE5']
-    })
-    console.log('✅ [月卡] 撒花特效执行完成')
-  } catch (error) {
-    console.error('❌ [月卡] 撒花特效加载失败:', error)
-    // 不显示错误提示，避免影响用户体验
-  }
-}
-
 // Props
 const props = defineProps({
   preselectedServiceType: {
@@ -292,11 +237,6 @@ function startPaymentPolling(orderNo) {
         orderStatus.value = 'PAID'
         paymentSuccess.value = true
         console.log('支付成功！月卡编码已发送到邮箱')
-        
-        // 延迟触发撒花特效，让用户看到支付成功状态
-        setTimeout(() => {
-          triggerMonthlyCardSuccessConfetti()
-        }, 500)
       }
     } catch (error) {
       console.error('查询订单状态失败:', error)

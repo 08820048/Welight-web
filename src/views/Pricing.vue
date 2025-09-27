@@ -151,29 +151,33 @@
         <p class="mt-2 text-gray-600 animate-fade-in-up delay-700">正在加载产品信息...</p>
       </div>
 
-      <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
         <!-- 所有产品卡片（基于API数据） -->
         <div v-for="(product, index) in products" :key="product.id"
-          class="bg-white rounded-xl shadow-lg p-8 flex flex-col items-center hover:scale-105 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 ease-out relative overflow-hidden product-card animate-scale-in border-2 border-white group"
-          :class="`delay-${600 + index * 100}`">
+          class="bg-white rounded-xl shadow-lg flex flex-col items-center relative overflow-hidden product-card animate-scale-in border-2 border-white group"
+          :class="[
+            `delay-${600 + index * 100}`,
+            product.permanent ? 'p-10 recommended-card' : 'p-8'
+          ]">
           <!-- 内部渐隐效果层 -->
           <div class="absolute inset-0 pointer-events-none rounded" :class="{
             'ai-service-gradient-overlay': product.code.includes('AI_SERVICE'),
             'cloud-storage-gradient-overlay': product.code.includes('CLOUD_STORAGE'),
             'permanent-gradient-overlay': product.permanent
           }"></div>
-          <div class="mb-4">
-            <span class="inline-block text-sm font-semibold" :class="{
-              'text-orange-700': product.code.includes('AI_SERVICE'),
-              'text-purple-700': product.code.includes('CLOUD_STORAGE'),
-              'text-blue-600': product.permanent
+          <div class="mb-4 transform transition-all duration-200 group-hover:scale-102">
+            <span class="inline-block text-sm font-semibold transition-colors duration-200" :class="{
+              'text-orange-600 group-hover:text-orange-700': product.code.includes('AI_SERVICE'),
+              'text-purple-700 group-hover:text-purple-800': product.code.includes('CLOUD_STORAGE'),
+              'text-blue-600 group-hover:text-blue-700': product.permanent
             }">
               {{ product.name }}
             </span>
           </div>
-          <div class="flex flex-col items-center mb-2">
+          <div class="flex flex-col items-center mb-2 transform transition-all duration-200 group-hover:scale-101">
             <!-- 原价显示 -->
-            <div v-if="getOriginalPrice(product)" class="text-sm text-gray-400 line-through mb-1">
+            <div v-if="getOriginalPrice(product)"
+              class="text-sm text-gray-400 line-through mb-1 transition-colors duration-200 group-hover:text-gray-500">
               原价 ¥{{ getOriginalPrice(product) }}{{ product.permanent ? '' : '/月' }}
             </div>
             <!-- 现价显示 -->
@@ -214,19 +218,19 @@
             即将推出
           </button>
           <!-- 其他产品正常购买按钮 -->
-          <button v-else class="w-full py-2 px-4 text-white rounded-lg font-semibold transition-colors shadow" :class="{
-            'bg-orange-600 hover:bg-orange-700': product.code.includes('AI_SERVICE'),
-          }" :style="product.permanent ? 'background-color: #3498db;' : ''"
-            @mouseover="product.permanent ? $event.target.style.backgroundColor = '#2980b9' : null"
-            @mouseout="product.permanent ? $event.target.style.backgroundColor = '#3498db' : null"
-            @click="handleProductPurchase(product)">
+          <button v-else
+            class="w-full py-2 px-4 text-white rounded-lg font-semibold shadow transform transition-all duration-200 hover:shadow-lg purchase-button"
+            :class="{
+              'bg-orange-600 hover:bg-orange-700': product.code.includes('AI_SERVICE'),
+              'bg-blue-500 hover:bg-blue-600': product.permanent
+            }" @click="handleProductPurchase(product)">
             立即购买
           </button>
           <!-- 右上角条状标签 - 参考源码实现 -->
           <div v-if="!product.code.includes('MONTHLY')"
-            class="absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg"
+            class="absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105"
             style="background-color: #3498db;">
-            {{ product.permanent ? '推荐' : '热门' }}
+            {{ product.permanent ? '最受欢迎' : '热门' }}
           </div>
         </div>
       </div>
@@ -396,8 +400,22 @@ async function loadProducts() {
     loadingProducts.value = true
     const productList = await getProducts()
     if (productList && productList.length > 0) {
-      // 使用API返回的所有产品，不进行过滤
-      products.value = productList
+      // 重新排序：AI服务、许可证（中间推荐位置）、云存储
+      const sortedProducts = []
+
+      // 1. AI服务产品
+      const aiProducts = productList.filter(p => p.code.includes('AI_SERVICE'))
+      sortedProducts.push(...aiProducts)
+
+      // 2. 许可证产品（放在中间突出推荐）
+      const licenseProducts = productList.filter(p => p.permanent)
+      sortedProducts.push(...licenseProducts)
+
+      // 3. 云存储产品
+      const storageProducts = productList.filter(p => p.code.includes('CLOUD_STORAGE'))
+      sortedProducts.push(...storageProducts)
+
+      products.value = sortedProducts
     }
   } catch (error) {
     console.error('加载产品列表失败:', error)
@@ -634,6 +652,8 @@ function initScrollAnimations() {
     })
   }, 100)
 }
+
+
 </script>
 
 <style scoped>
@@ -759,15 +779,74 @@ function initScrollAnimations() {
   background: linear-gradient(to bottom, rgba(52, 152, 219, 0.15) 0%, rgba(52, 152, 219, 0.08) 40%, transparent 70%);
 }
 
-/* 产品卡片悬停效果 - 覆盖scroll-animate的过渡 */
+/* 产品卡片丝滑悬停效果 */
 .product-card {
-  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out !important;
+  transform: translateY(0) scale(1);
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1),
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.3s ease-out;
+  will-change: transform, box-shadow, filter;
+  backface-visibility: hidden;
 }
 
 .product-card:hover {
-  transform: scale(1.05) translateY(-4px) !important;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.15),
+    0 10px 20px -5px rgba(0, 0, 0, 0.1),
+    0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  filter: brightness(1.01);
 }
+
+
+
+
+
+/* 渐隐效果层的hover增强 */
+.product-card:hover .ai-service-gradient-overlay {
+  background: linear-gradient(to bottom, rgba(249, 115, 22, 0.2) 0%, rgba(249, 115, 22, 0.1) 40%, transparent 70%);
+  transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover .cloud-storage-gradient-overlay {
+  background: linear-gradient(to bottom, rgba(168, 85, 247, 0.2) 0%, rgba(168, 85, 247, 0.1) 40%, transparent 70%);
+  transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.product-card:hover .permanent-gradient-overlay {
+  background: linear-gradient(to bottom, rgba(52, 152, 219, 0.2) 0%, rgba(52, 152, 219, 0.1) 40%, transparent 70%);
+  transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 为渐隐效果层添加基础过渡 */
+.ai-service-gradient-overlay,
+.cloud-storage-gradient-overlay,
+.permanent-gradient-overlay {
+  transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* 购买按钮简洁动效 */
+.purchase-button {
+  transition: all 0.2s ease-out;
+}
+
+.purchase-button:hover {
+  transform: translateY(-1px);
+}
+
+.purchase-button:active {
+  transform: translateY(0);
+}
+
+/* 自定义微缩放效果 */
+.group-hover\:scale-102:hover {
+  transform: scale(1.02);
+}
+
+.group-hover\:scale-101:hover {
+  transform: scale(1.01);
+}
+
+
 
 /* 购买弹窗动画 */
 .modal-backdrop {
