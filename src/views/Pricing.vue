@@ -165,15 +165,15 @@
             'cloud-storage-gradient-overlay': product.code.includes('CLOUD_STORAGE'),
             'permanent-gradient-overlay': product.permanent
           }"></div>
-          <div class="mb-4 transform transition-all duration-200 group-hover:scale-102">
-            <span class="inline-block text-sm font-semibold transition-colors duration-200" :class="{
-              'text-orange-600 group-hover:text-orange-700': product.code.includes('AI_SERVICE'),
-              'text-purple-700 group-hover:text-purple-800': product.code.includes('CLOUD_STORAGE'),
-              'text-blue-600 group-hover:text-blue-700': product.permanent
-            }">
-              {{ product.name }}
-            </span>
-          </div>
+          
+          <!-- 产品名称标签 -->
+          <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full" :class="{
+            'bg-orange-100 text-orange-700': product.code.includes('AI_SERVICE'),
+            'bg-purple-100 text-purple-700': product.code.includes('CLOUD_STORAGE'),
+            'text-white': product.permanent
+          }" :style="product.permanent ? 'background-color: #3498db;' : ''">
+            {{ product.name }}
+          </span>
           <div class="flex flex-col items-center mb-2 transform transition-all duration-200 group-hover:scale-101">
             <!-- 原价显示 -->
             <div v-if="getOriginalPrice(product)"
