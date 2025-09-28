@@ -36,7 +36,7 @@
           如果您觉得我们的软件对您有帮助，欢迎通过以下方式支持我们的开发工作
         </p>
         
-        <!-- 捐赠方式选择 -->
+        <!-- 赞助方式选择 -->
         <div class="flex justify-center space-x-4 mb-6">
           <button
             @click="activeTab = 'wechat'"
@@ -76,7 +76,7 @@
 
         <!-- 提示文字 -->
         <p class="text-sm text-gray-500 dark:text-gray-400 text-center mt-4">
-          {{ activeTab === 'wechat' ? '使用微信扫描上方二维码进行捐赠' : '使用支付宝扫描上方二维码进行捐赠' }}
+          {{ activeTab === 'wechat' ? '使用微信扫描上方二维码进行赞助' : '使用支付宝扫描上方二维码进行赞助' }}
         </p>
       </div>
     </div>

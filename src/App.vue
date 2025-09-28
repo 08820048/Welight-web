@@ -6,7 +6,7 @@
     </main>
     <Footer />
 
-    <!-- 悬浮捐赠按钮 - 只在捐赠页面显示 -->
+    <!-- 悬浮赞助按钮 - 只在赞助页面显示 -->
     <FloatingDonationButton v-if="isDonationPage" />
     
     <!-- 回到顶部按钮 - 全站可用 -->
@@ -24,7 +24,7 @@ import BackToTop from './components/BackToTop.vue'
 
 const route = useRoute()
 
-// 检查是否为捐赠页面
+// 检查是否为赞助页面
 const isDonationPage = computed(() => {
   return route.name === 'donation' || route.path === '/donation'
 })

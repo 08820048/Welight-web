@@ -1,5 +1,5 @@
 <template>
-  <!-- 悬浮捐赠按钮 -->
+  <!-- 悬浮赞助按钮 -->
   <div class="fixed bottom-6 right-6 z-40">
     <button
       @click="openDonationModal"
@@ -17,13 +17,13 @@
       
       <!-- 文字标签 -->
       <span class="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-gray-900 text-white text-sm px-3 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
-        捐赠支持
+        赞助支持
         <div class="absolute left-full top-1/2 transform -translate-y-1/2 w-0 h-0 border-l-4 border-l-gray-900 border-t-4 border-t-transparent border-b-4 border-b-transparent"></div>
       </span>
     </button>
   </div>
 
-  <!-- 捐赠模态框 -->
+  <!-- 赞助模态框 -->
   <DonationModal 
     :isVisible="showDonationModal" 
     @close="closeDonationModal" 
@@ -38,15 +38,15 @@ import DonationModal from './DonationModal.vue'
 const showDonationModal = ref(false)
 
 /**
- * 打开捐赠模态框
- */
+   * 打开赞助模态框
+   */
 const openDonationModal = () => {
   showDonationModal.value = true
 }
 
 /**
- * 关闭捐赠模态框
- */
+   * 关闭赞助模态框
+   */
 const closeDonationModal = () => {
   showDonationModal.value = false
 }

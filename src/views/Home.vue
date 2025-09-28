@@ -19,7 +19,7 @@
               </div>
               <div class="flex-1">
                 <div class="flex items-center space-x-2 mb-1">
-                  <span class="text-lg font-bold">🎉 Welight v3.0.0 已发布！</span>
+                  <span class="text-lg font-bold">🎉 Welight v3.0.1 已发布！</span>
                   <span class="bg-white bg-opacity-20 text-xs px-2 py-1 rounded-full font-medium">最新版本</span>
                 </div>
                 <p class="text-sm text-primary-100">
@@ -1209,7 +1209,7 @@ const showBanner = ref(false)
 const bannerVisible = ref(false)
 
 // 当前版本号
-const currentVersion = '3.0.0'
+const currentVersion = '3.0.1'
 
 // 检查是否应该显示版本横幅
 const shouldShowVersionBanner = () => {
@@ -1355,12 +1355,12 @@ const downloadFile = async (platform) => {
     
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.0.0_x64-setup.exe',
-        'windows-msi': 'https://waer.ltd/downloads/windows/Welight_3.0.0_x64_en-US.msi',
-        'macos-apple': 'https://waer.ltd/downloads/mac/Welight_3.0.0_aarch64.dmg',
-        'macos-intel': 'https://waer.ltd/downloads/mac/Welight_3.0.0_x64.dmg',
-        'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_3.0.0_amd64.AppImage',
-        'linux-deb': 'https://waer.ltd/downloads/linux/Welight_3.0.0_amd64.deb'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.0.1_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_3.0.1_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_3.0.1_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_3.0.1_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_3.0.1_amd64.AppImage',
+      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_3.0.1_amd64.deb'
     }
 
     const downloadUrl = downloadUrls[platform]

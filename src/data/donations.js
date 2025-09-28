@@ -1,18 +1,18 @@
 /**
- * 捐赠数据管理
+ * 赞助数据管理
  * 包含致谢名单的数据结构和模拟数据
  */
 
 // 致谢名单数据结构
 export const donationSchema = {
   id: 'string', // 唯一标识
-  amount: 'number', // 捐赠金额
-  donorName: 'string', // 捐赠者昵称
-  donationDate: 'string', // 捐赠日期 (ISO格式)
-  message: 'string', // 捐赠留言
-  channel: 'string', // 捐赠渠道
-  specialTag: 'string|null', // 特别捐赠标识
-  isSpecial: 'boolean' // 是否为特别捐赠
+  amount: 'number', // 赞助金额
+  donorName: 'string', // 赞助者昵称
+  donationDate: 'string', // 赞助日期 (ISO格式)
+  message: 'string', // 赞助留言
+  channel: 'string', // 赞助渠道
+  specialTag: 'string|null', // 特别赞助标识
+  isSpecial: 'boolean' // 是否为特别赞助
 }
 
 // 致谢名单数据
@@ -24,7 +24,7 @@ export const donations = [
     donationDate: '2025-09-19T18:05:14+08:00',
     message: '支持大佬，一点小心意',
     channel: '收钱码收款',
-    specialTag: '首位捐赠者',
+    specialTag: '首位赞助者',
     isSpecial: true
   },
   {
@@ -67,7 +67,7 @@ export function getSpecialDonations() {
 }
 
 /**
- * 获取捐赠统计信息
+ * 获取赞助统计信息
  * @returns {Object} 统计信息对象
  */
 export function getDonationStats() {
@@ -133,11 +133,11 @@ export const titleTemplates = [
 ]
 
 /**
- * 基于现有捐赠数据动态生成头衔配置
+ * 基于现有赞助数据动态生成头衔配置
  * @returns {Array} 动态头衔配置数组
  */
 function generateDynamicTitleConfig() {
-  // 获取所有捐赠金额并排序
+  // 获取所有赞助金额并排序
   const amounts = donations.map((d) => d.amount).sort((a, b) => b - a)
   const uniqueAmounts = [...new Set(amounts)]
 
@@ -172,9 +172,9 @@ function generateDynamicTitleConfig() {
 }
 
 /**
- * 根据捐赠金额获取头衔信息（动态版本）
- * @param {number} amount 捐赠金额
- * @returns {Object} 头衔信息对象
+ * 根据赞助金额获取头衔信息（动态版本）
+ * @param {number} amount 赞助金额
+ * @returns {Object|null} 头衔信息
  */
 export function getTitleByAmount(amount) {
   const numAmount = Number(amount) || 0
@@ -209,8 +209,8 @@ export function getTitleByAmount(amount) {
 }
 
 /**
- * 按头衔等级排序获取捐赠列表
- * @returns {Array} 按头衔等级排序的捐赠列表
+ * 按头衔等级排序获取赞助列表
+ * @returns {Array} 按头衔等级排序的赞助列表
  */
 export function getDonationsByTitleLevel() {
   const allDonations = getAllDonations()
@@ -222,7 +222,7 @@ export function getDonationsByTitleLevel() {
       return b.amount - a.amount
     }
 
-    // 金额相同时，按时间排序（最新捐赠的在前）
+    // 金额相同时，按时间排序（最新赞助的在前）
     return new Date(b.donationDate) - new Date(a.donationDate)
   })
 

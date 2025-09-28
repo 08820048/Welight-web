@@ -8,7 +8,7 @@
           <span class="text-xl font-bold relative logo-gradient-text cursor-pointer">
             Welight
           </span>
-          <sup class="text-xs text-gray-500 ml-1 font-normal">v3.0.0</sup>
+          <sup class="text-xs text-gray-500 ml-1 font-normal">v3.0.1</sup>
         </router-link>
 
         <!-- Right side buttons -->
@@ -146,19 +146,19 @@
             <span class="hidden sm:inline text-sm font-medium">更新日志</span>
           </button>
 
-          <!-- 捐赠支持按钮 -->
+          <!-- 赞助支持按钮 -->
           <div class="relative">
             <router-link to="/donation"
               class="flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 group donation-button"
-              title="捐赠支持">
+              title="赞助支持">
               <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-200" fill="none"
                 stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
-              <span class="hidden sm:inline text-sm font-medium">捐赠</span>
+              <span class="hidden sm:inline text-sm font-medium">赞助</span>
             </router-link>
-            <!-- 捐赠次数徽章 -->
+            <!-- 赞助次数徽章 -->
             <div v-if="donationCount > 0"
               class="absolute -top-1 -right-1 bg-green-500 text-white text-xs px-1.5 py-0.5 rounded-full font-medium min-w-[20px] text-center">
               +{{ donationCount }}
@@ -329,7 +329,7 @@ const isAnnouncementVisible = ref(false)
 // 是否有新公告
 const hasNewAnnouncements = ref(false)
 
-// 计算捐赠次数
+// 计算赞助次数
 const donationCount = computed(() => donations.length)
 
 // 技术服务模态框状态
@@ -402,7 +402,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* 捐赠按钮样式 */
+/* 赞助按钮样式 */
 .donation-button {
   color: #ee4668;
 }

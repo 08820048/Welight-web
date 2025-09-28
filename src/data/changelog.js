@@ -1,19 +1,38 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '3.0.0',
+    version: '3.0.1',
     date: '2025-09-28',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
     changes: {
       fixes: [
-        '修复代码块横向滚动条消失的问题，当前的情况是代码长度会自动换行'
+        '修复正常试用期期间，使用一键复制功能出现的试用期状态异常的提示问题',
+        '修复试用期心跳检测传输的应用版本号错误的问题'
       ],
+      improvements: [
+        '优化许可证使用策略，试用期期间也可以通过许可证管理界面输入购买的许可证进行永久激活'
+      ],
+      features: [
+        '新增设置功能，用户可以通过设置界面根据自己的喜好调整应用设置',
+        '自动主题推荐控制',
+        '水印开关控制'
+      ]
+    }
+  },
+  {
+    version: '3.0.1',
+    date: '2025-09-28',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
+    changes: {
+      fixes: ['修复代码块横向滚动条消失的问题，当前的情况是代码长度会自动换行'],
       improvements: [
         '优化消息提示体验，增加可关闭支持，用户可以手动关闭提示消息',
         '囊中羞涩，暂时禁用"检查更新"功能，后续视情况开放',
-        '调整"捐赠"功能的入口位置，移动到顶部菜单栏',
+        '调整"赞助"功能的入口位置，移动到顶部菜单栏',
         '优化应用界面，移除应用内的滚动条，提升使用体验',
         '优化文件保存逻辑，新文件保存时自动提取文章一级标题作为默认文件名，同时编辑区上方的.md文件名也会根据一级标题实时更新，不再是"未知文档"',
         '细节优化手机预览模式，提升体验',
@@ -48,9 +67,7 @@ export const changelogData = [
         '修复v4.2.1版本导致的 AI 后台任务提示列表的展示位置不可见问题，确保始终显示在右下角位置',
         '移除"导出 HTML"功能'
       ],
-      features: [
-        '新增一款名为"默认主题"的默认主题，没有任何样式，保留原始的 markdown 渲染风格'
-      ]
+      features: ['新增一款名为"默认主题"的默认主题，没有任何样式，保留原始的 markdown 渲染风格']
     }
   },
   {
@@ -66,7 +83,7 @@ export const changelogData = [
         '调整部分界面布局和应用标题等内容',
         '新增编辑器空白内容时的默认效果，优化使用体验',
         '调整使用码获取渠道，新增QQ群获取',
-        '在"更多"菜单中新增捐赠页面，如果Welight帮到了你，那么不妨请我喝杯咖啡吧'
+        '在"更多"菜单中新增赞助页面，如果Welight帮到了你，那么不妨请我喝杯咖啡吧'
       ]
     }
   },
@@ -96,9 +113,7 @@ export const changelogData = [
     badge: '稳定版',
     badgeColor: 'blue',
     changes: {
-      fixes: [
-        '调整开屏动画展示的时机，视觉上缩短应用打开时候的加载时间'
-      ],
+      fixes: ['调整开屏动画展示的时机，视觉上缩短应用打开时候的加载时间'],
       improvements: [
         '优化AI功能，增加文本长度限制，转换功能从之前的5000字限制改为理论上的无限制，统一增加AI模型的token长度，处理上文本内容更加得心应手',
         '优化转换功能，提供两种风格的转换支持：智能转换和简洁转换',
@@ -117,12 +132,8 @@ export const changelogData = [
     badge: '稳定版',
     badgeColor: 'blue',
     changes: {
-      fixes: [
-        '修复2.3.1中"规范检查"功能丢失的问题'
-      ],
-      features: [
-        '新增应用开屏加载动画'
-      ]
+      fixes: ['修复2.3.1中"规范检查"功能丢失的问题'],
+      features: ['新增应用开屏加载动画']
     }
   },
   {
@@ -132,9 +143,7 @@ export const changelogData = [
     badge: '稳定版',
     badgeColor: 'blue',
     changes: {
-      fixes: [
-        '修复图片粘贴自动上传之后无法显示的问题'
-      ]
+      fixes: ['修复图片粘贴自动上传之后无法显示的问题']
     }
   },
   {
@@ -144,10 +153,7 @@ export const changelogData = [
     badge: '稳定版',
     badgeColor: 'blue',
     changes: {
-      fixes: [
-        '优化无序列表、有序列表执行的问题',
-        '优化转换功能，转换后自动执行规范检查'
-      ],
+      fixes: ['优化无序列表、有序列表执行的问题', '优化转换功能，转换后自动执行规范检查'],
       features: [
         '新增语法规范检查，针对已知的公众号编辑器不兼容的语法使用进行检查定位',
         '检测到编辑器中粘贴了markdown文章时自动执行规范检查'
@@ -175,11 +181,7 @@ export const changelogData = [
     badge: '稳定版',
     badgeColor: 'blue',
     changes: {
-      fixes: [
-        '修复自动更新功能的相关问题',
-        '优化应用更新检测机制',
-        '解决更新过程中的稳定性问题'
-      ]
+      fixes: ['修复自动更新功能的相关问题', '优化应用更新检测机制', '解决更新过程中的稳定性问题']
     }
   },
   {
@@ -203,10 +205,7 @@ export const changelogData = [
         '将后续操作权交给用户处理，不占用编辑器空间，提高创作效率',
         '其他细节优化'
       ],
-      fixes: [
-        '解决颜色冲突导致菜单看不清的问题',
-        '调整主题数量，优化主题管理'
-      ]
+      fixes: ['解决颜色冲突导致菜单看不清的问题', '调整主题数量，优化主题管理']
     }
   },
   {
@@ -216,12 +215,8 @@ export const changelogData = [
     badge: '稳定版',
     badgeColor: 'blue',
     changes: {
-      improvements: [
-        '移除编辑区内容折叠功能，简化编辑器'
-      ],
-      fixes: [
-        '修复 Windows 版本构建失败的 BUG'
-      ]
+      improvements: ['移除编辑区内容折叠功能，简化编辑器'],
+      fixes: ['修复 Windows 版本构建失败的 BUG']
     }
   },
   {
@@ -266,12 +261,7 @@ export const changelogData = [
         '跨平台支持（Windows、macOS、Linux）',
         '全新的官方网站上线'
       ],
-      improvements: [
-        '应用启动速度优化',
-        '内存使用效率提升',
-        '用户界面体验优化',
-        '编辑器性能提升'
-      ],
+      improvements: ['应用启动速度优化', '内存使用效率提升', '用户界面体验优化', '编辑器性能提升'],
       fixes: [
         '修复了编辑器稳定性问题',
         '解决了 macOS 上的兼容性问题',
@@ -279,7 +269,6 @@ export const changelogData = [
       ]
     }
   }
-
 ]
 
 // 获取最新版本信息
@@ -289,12 +278,12 @@ export const getLatestVersion = () => {
 
 // 根据版本号获取更新信息
 export const getVersionInfo = (version) => {
-  return changelogData.find(item => item.version === version)
+  return changelogData.find((item) => item.version === version)
 }
 
 // 获取所有发布版本（排除 alpha）
 export const getReleaseVersions = () => {
-  return changelogData.filter(item => item.type !== 'alpha')
+  return changelogData.filter((item) => item.type !== 'alpha')
 }
 
 // 格式化日期

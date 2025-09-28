@@ -377,7 +377,7 @@ body, html {
   animation: scaleIn 0.8s ease-out forwards;
 }
 
-/* 特殊捐赠标识发光动效 */
+/* 特殊赞助标识发光动效 */
 .special-glow {
   position: relative;
   animation: specialGlow 2s ease-in-out infinite;
