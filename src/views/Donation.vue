@@ -129,7 +129,7 @@
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="text-sm text-gray-600 dark:text-gray-300">
-                      {{ formatDate(donation.donationDate) }}
+                      {{ formatDate(donation.date) }}
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
@@ -145,7 +145,7 @@
                   <td class="px-6 py-4 whitespace-nowrap">
                     <span 
                       v-if="donation.isSpecial" 
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200 animate-pulse special-glow"
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
                     >
                       {{ donation.specialTag }}
                     </span>
@@ -262,7 +262,13 @@ function startStatsAnimation() {
  * 初始化数据
  */
 function initData() {
-  allDonations.value = getAllDonations()
+  // 获取所有捐赠数据
+  const donations = getAllDonations()
+  allDonations.value = donations.map(donation => ({
+    ...donation,
+    date: donation.donationDate // 映射日期字段
+  }))
+  
   specialDonations.value = getSpecialDonations()
   stats.value = getDonationStats()
   
@@ -410,6 +416,8 @@ onUnmounted(() => {
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 30px rgba(102, 126, 234, 0.1);
 }
+
+
 
 
 

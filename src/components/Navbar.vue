@@ -8,7 +8,7 @@
           <span class="text-xl font-bold relative logo-gradient-text cursor-pointer">
             Welight
           </span>
-          <sup class="text-xs text-gray-500 ml-1 font-normal">v2.4.2</sup>
+          <sup class="text-xs text-gray-500 ml-1 font-normal">v3.0.0</sup>
         </router-link>
 
         <!-- Right side buttons -->
@@ -108,7 +108,7 @@
 
           <!-- 定价菜单按钮 -->
           <router-link to="/pricing"
-            class="flex items-center space-x-2 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200 group"
+            class="flex items-center space-x-2 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200 group relative"
             title="定价与购买">
             <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-200" fill="none"
               stroke="currentColor" viewBox="0 0 24 24">
@@ -116,6 +116,10 @@
                 d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
             </svg>
             <span class="hidden sm:inline text-sm font-medium">定价</span>
+            <!-- NEW 标识 - 纯色弹跳效果 -->
+            <span class="absolute -top-2 -right-2 text-white text-xs px-2 py-1 rounded-full font-bold shadow-xl bg-purple-400 new-bounce">
+              NEW
+            </span>
           </router-link>
 
           <!-- 月卡管理按钮 -->
@@ -422,6 +426,23 @@ onMounted(() => {
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
+  }
+}
+
+/* NEW标识弹跳动画 */
+.new-bounce {
+  animation: newBounce 2s ease-in-out infinite;
+}
+
+@keyframes newBounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  40% {
+    transform: translateY(-8px) scale(1.1);
+  }
+  60% {
+    transform: translateY(-4px) scale(1.05);
   }
 }
 </style>

@@ -19,7 +19,7 @@
               </div>
               <div class="flex-1">
                 <div class="flex items-center space-x-2 mb-1">
-                  <span class="text-lg font-bold">🎉 Welight v2.4.2 已发布！</span>
+                  <span class="text-lg font-bold">🎉 Welight v3.0.0 已发布！</span>
                   <span class="bg-white bg-opacity-20 text-xs px-2 py-1 rounded-full font-medium">最新版本</span>
                 </div>
                 <p class="text-sm text-primary-100">
@@ -119,7 +119,7 @@
             <!-- Linux Download Button -->
             <button
               class="download-btn-linux group relative overflow-hidden bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 inline-flex items-center justify-between max-w-xs animate-scale-in delay-800 mb-6"
-              @click="downloadFile('linux-appimage')">
+              @click="downloadFile('linux-deb')">
               <!-- Linux Logo -->
               <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
                 <path
@@ -128,7 +128,7 @@
               <div class="flex flex-col items-center mx-2">
                 <div class="flex items-center space-x-1">
                   <span class="text-base">Linux 版本</span>
-                  <sup class="bg-white bg-opacity-20 text-xs px-1.5 py-0.5 rounded-full font-medium">AppImage</sup>
+                  <sup class="bg-white bg-opacity-20 text-xs px-1.5 py-0.5 rounded-full font-medium">DEB</sup>
                 </div>
                 <span class="text-xs opacity-75"><span
                     class="font-semibold text-white tabular-nums inline-block min-w-[1rem]">{{
@@ -1209,7 +1209,7 @@ const showBanner = ref(false)
 const bannerVisible = ref(false)
 
 // 当前版本号
-const currentVersion = '2.4.2'
+const currentVersion = '3.0.0'
 
 // 检查是否应该显示版本横幅
 const shouldShowVersionBanner = () => {
@@ -1355,11 +1355,12 @@ const downloadFile = async (platform) => {
     
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_2.4.2_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_2.4.2_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_2.4.2_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_2.4.2_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_2.4.2_amd64.AppImage'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.0.0_x64-setup.exe',
+        'windows-msi': 'https://waer.ltd/downloads/windows/Welight_3.0.0_x64_en-US.msi',
+        'macos-apple': 'https://waer.ltd/downloads/mac/Welight_3.0.0_aarch64.dmg',
+        'macos-intel': 'https://waer.ltd/downloads/mac/Welight_3.0.0_x64.dmg',
+        'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_3.0.0_amd64.AppImage',
+        'linux-deb': 'https://waer.ltd/downloads/linux/Welight_3.0.0_amd64.deb'
     }
 
     const downloadUrl = downloadUrls[platform]
