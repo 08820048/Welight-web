@@ -12,7 +12,7 @@
           </p>
           <div class="flex items-center">
             <div class="text-center">
-              <img src="https://images.waer.ltd/images/202508270916399354.jpg" alt="微信公众号二维码"
+              <img src="https://images.waer.ltd/notes/202509282306627.jpg" alt="微信公众号二维码"
                 class="w-20 h-20 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-200" />
               <p class="text-xs text-gray-500 mt-2">扫码关注公众号</p>
             </div>

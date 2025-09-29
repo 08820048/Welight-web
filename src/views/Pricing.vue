@@ -165,7 +165,7 @@
             'cloud-storage-gradient-overlay': product.code.includes('CLOUD_STORAGE'),
             'permanent-gradient-overlay': product.permanent
           }"></div>
-          
+
           <!-- 产品名称标签 -->
           <span class="inline-block text-xs font-semibold px-3 py-1 rounded-full" :class="{
             'bg-orange-100 text-orange-700': product.code.includes('AI_SERVICE'),
@@ -205,6 +205,7 @@
           <ul class="text-sm text-gray-700 space-y-2 mb-6 text-left w-full">
             <li v-if="product.permanent"><span class="text-green-600">✔</span> 永久授权</li>
             <li v-else><span class="text-green-600">✔</span> {{ product.validityDays }}天有效期</li>
+            <li v-if="product.permanent"><span class="text-green-600">✔</span> 7天免费试用</li>
             <li v-if="product.permanent"><span class="text-green-600">✔</span> 支持 3 台设备激活</li>
             <li v-if="product.code.includes('AI_SERVICE')"><span class="text-green-600">✔</span> 支持应用内所有AI功能</li>
             <li v-if="product.code.includes('CLOUD_STORAGE')"><span class="text-green-600">✔</span> 云端存储服务</li>
