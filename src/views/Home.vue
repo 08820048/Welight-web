@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+  <div class="min-h-screen pattern-grid-lg text-gray-200 bg-white">
     <!-- 顶部横幅通知 -->
     <div v-if="showBanner" class="fixed top-16 left-0 right-0 z-40 overflow-hidden">
       <div

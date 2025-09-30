@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-20">
+  <div class="min-h-screen pattern-grid-lg text-gray-200 bg-white pt-20">
     <!-- Hero Section -->
     <section class="section-padding">
       <div class="container-custom text-center">

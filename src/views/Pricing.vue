@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-12 px-4 pt-24">
+  <div class="min-h-screen pattern-grid-lg text-gray-200 bg-white py-12 px-4 pt-24">
     <div class="max-w-4xl mx-auto">
       <!-- 购买弹窗 -->
       <div v-if="showBuyModal"
@@ -241,6 +241,7 @@
         <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1100">购买须知
         </h2>
         <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-6 text-sm">
+          <li class="animate-fade-in-up delay-1700">请在应用使用过程中确保网络通畅，关闭VPN，避免状态检测异常，影响你的使用体验</li>
           <li class="animate-fade-in-up delay-1200">购买后许可证将自动发送到您的邮箱，请妥善保存许可证密钥。</li>
           <li class="animate-fade-in-up delay-1300">每个许可证支持在指定数量的设备上使用。</li>
           <li class="animate-fade-in-up delay-1400">许可证密钥请在桌面应用中输入使用。</li>
@@ -249,7 +250,7 @@
           <li class="animate-fade-in-up delay-1700">产品为一次性购买，不支持退款。</li>
         </ul>
 
-        <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1800">技术支持
+        <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1800">交流反馈
         </h2>
         <div class="bg-blue-50 rounded-lg p-4 text-sm animate-scale-in delay-1900">
           <div class="flex items-center space-x-4">

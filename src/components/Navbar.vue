@@ -116,9 +116,9 @@
                 d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
             </svg>
             <span class="hidden sm:inline text-sm font-medium">定价</span>
-            <!-- NEW 标识 - 纯色弹跳效果 -->
-            <span class="absolute -top-2 -right-2 text-white text-xs px-2 py-1 rounded-full font-bold shadow-xl bg-purple-400 new-bounce">
-              NEW
+            <!-- 庆 标识 - 国庆节优惠 -->
+            <span class="absolute -top-2 -right-2 text-white text-xs px-2 py-1 rounded-full font-bold shadow-xl bg-red-500 new-bounce">
+              庆
             </span>
           </router-link>
 
@@ -316,7 +316,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import ChangelogModal from './ChangelogModal.vue'
 import AnnouncementModal from './AnnouncementModal.vue'
 import { hasNewAnnouncements as checkNewAnnouncements, markLatestAnnouncementAsViewed } from '@/data/announcements.js'
@@ -384,6 +384,71 @@ const copyTechQQ = async () => {
   }
 }
 
+// 动态加载confetti库
+function loadConfettiLibrary() {
+  return new Promise((resolve, reject) => {
+    if (typeof confetti !== 'undefined') {
+      resolve()
+      return
+    }
+    
+    const script = document.createElement('script')
+    script.src = 'https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js'
+    script.onload = () => resolve()
+    script.onerror = () => reject(new Error('Failed to load confetti library'))
+    document.head.appendChild(script)
+  })
+}
+
+// 触发国庆节庆祝撒花特效
+async function triggerCelebrationConfetti() {
+  try {
+    await loadConfettiLibrary()
+    
+    // 获取定价菜单元素的位置
+    const pricingElement = document.querySelector('a[href="/pricing"]')
+    let originX = 0.8 // 默认位置（右侧）
+    let originY = 0.1 // 默认位置（顶部）
+    
+    if (pricingElement) {
+      const rect = pricingElement.getBoundingClientRect()
+      // 计算相对于窗口的位置比例
+      originX = (rect.left + rect.width / 2) / window.innerWidth
+      originY = (rect.top + rect.height / 2) / window.innerHeight
+    }
+    
+    // 国庆节主题撒花 - 红色和金色，从定价菜单位置开始
+    confetti({
+      particleCount: 150,
+      spread: 80,
+      origin: { x: originX, y: originY },
+      colors: ['#DC2626', '#EF4444', '#F59E0B', '#FBBF24', '#FEF3C7']
+    })
+    
+    // 延迟一点再来一次，增加庆祝效果
+    setTimeout(() => {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { x: originX, y: originY },
+        colors: ['#DC2626', '#EF4444', '#F59E0B', '#FBBF24']
+      })
+    }, 300)
+    
+    // 第三轮撒花，增加更多庆祝效果
+    setTimeout(() => {
+      confetti({
+        particleCount: 80,
+        spread: 60,
+        origin: { x: originX, y: originY },
+        colors: ['#DC2626', '#F59E0B', '#FEF3C7']
+      })
+    }, 600)
+  } catch (error) {
+    console.error('撒花特效加载失败:', error)
+  }
+}
+
 
 
 // 组件挂载时检查新公告
@@ -398,6 +463,24 @@ onMounted(() => {
       isAnnouncementVisible.value = true
     }, 1000)
   }
+
+  // 预加载confetti库
+  loadConfettiLibrary().catch(console.error)
+
+  // 设置定时撒花特效 - 每10秒触发一次国庆节庆祝撒花
+  const confettiInterval = setInterval(() => {
+    triggerCelebrationConfetti()
+  }, 10000) // 10秒间隔
+
+  // 页面加载后3秒触发第一次撒花
+  setTimeout(() => {
+    triggerCelebrationConfetti()
+  }, 3000)
+
+  // 组件卸载时清除定时器
+  onUnmounted(() => {
+    clearInterval(confettiInterval)
+  })
 })
 </script>
 

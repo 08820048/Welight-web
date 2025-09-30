@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-32 pb-12 px-4">
+  <div class="min-h-screen pattern-grid-lg text-gray-200 bg-white pt-32 pb-12 px-4">
     <div class="max-w-4xl mx-auto">
       <!-- 标题区 -->
       <div class="text-center mb-12 scroll-animate fade-in-up" style="transition-delay: 0.1s;">

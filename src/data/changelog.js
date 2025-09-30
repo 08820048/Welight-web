@@ -22,7 +22,7 @@ export const changelogData = [
     }
   },
   {
-    version: '3.0.1',
+    version: '3.0.0',
     date: '2025-09-28',
     type: 'release',
     badge: '稳定版',

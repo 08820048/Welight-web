@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:to-gray-800">
+  <div class="min-h-screen pattern-grid-lg text-gray-200 bg-white dark:pattern-grid-lg dark:text-gray-600 dark:bg-gray-900">
     <div class="container mx-auto px-4 py-8 pt-24">
       <!-- 页面描述 -->
       <div class="text-center mb-12 scroll-animate animate-fade-in-up delay-100">
