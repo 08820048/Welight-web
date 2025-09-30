@@ -59,7 +59,7 @@
 
             <!-- Description -->
             <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed animate-fade-in-up delay-400">
-              Welight 是一款专为微信公众号创作者打造的拥有更优性能、智能、快捷轻量的免费排版工具，排版与编辑，亦可兼得。
+              Welight 是一款专为微信公众号创作者打造的拥有更优性能、智能、快捷轻量的排版应用，排版与编辑，亦可兼得。
             </p>
 
             <!-- CTA buttons -->
@@ -1172,7 +1172,7 @@ function loadConfettiLibrary() {
       resolve()
       return
     }
-    
+
     const script = document.createElement('script')
     script.src = 'https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js'
     script.onload = () => resolve()
@@ -1352,7 +1352,7 @@ const downloadFile = async (platform) => {
   try {
     // 触发彩虹撒花特效
     triggerRainbowConfetti()
-    
+
     // 实际下载链接映射
     const downloadUrls = {
       'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.0.1_x64-setup.exe',
