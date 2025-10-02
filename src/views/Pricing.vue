@@ -174,7 +174,7 @@
             'bg-blue-100 text-blue-700': product.code.includes('CREDITS'),
             'text-white': product.permanent && !product.code.includes('CREDITS')
           }" :style="product.permanent && !product.code.includes('CREDITS') ? 'background-color: #3498db;' : ''">
-            {{ product.name }}
+            {{ product.code.includes('CREDITS') ? (product.packageName || product.name) : product.name }}
           </span>
           <div class="flex flex-col items-center mb-2 transform transition-all duration-200 group-hover:scale-101">
             <!-- 原价显示 -->
@@ -210,7 +210,8 @@
               {{ getDiscountPercent(product) }}折
             </div>
             <!-- 积分套餐永久有效标签 -->
-            <div v-if="product.code.includes('CREDITS')" class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full mt-1">
+            <div v-if="product.code.includes('CREDITS')"
+              class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full mt-1">
               永久有效
             </div>
           </div>
@@ -218,10 +219,13 @@
           <ul class="text-sm text-gray-700 space-y-2 mb-6 text-left w-full">
             <!-- 积分套餐功能列表 -->
             <template v-if="product.code.includes('CREDITS')">
-              <li><span class="text-green-600">✔</span> {{ getCreditsAmount(product) }}积分</li>
+              <li><span class="text-green-600">✔</span> {{ getCreditsAmountLocal(product) }}积分</li>
               <li><span class="text-green-600">✔</span> 支持AI功能使用</li>
               <li><span class="text-green-600">✔</span> 永久有效</li>
               <li><span class="text-green-600">✔</span> 灵活消费</li>
+              <li><span class="text-green-600">✔</span> 按需使用</li>
+              <li><span class="text-green-600">✔</span> 免费更新</li>
+              <li><span class="text-green-600">✔</span> 技术支持</li>
             </template>
             <!-- 其他产品功能列表 -->
             <template v-else>
@@ -241,14 +245,13 @@
             class="w-full py-2 px-4 bg-gray-400 text-white rounded-lg font-semibold cursor-not-allowed shadow" disabled>
             即将推出
           </button>
-          <!-- 积分套餐敬请期待 -->
+          <!-- 积分套餐购买 -->
           <div v-else-if="product.code.includes('CREDITS')" class="space-y-2">
-            <button
-              class="w-full py-2 px-4 bg-gray-100 text-gray-500 rounded-lg font-semibold cursor-not-allowed shadow" disabled>
-              即将推出
+            <button @click="purchaseProduct(product)"
+              class="w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold shadow transition-colors duration-200">
+              立即购买
             </button>
-            <button
-              @click="showCreditsModal = true"
+            <button @click="showCreditsModal = true"
               class="w-full py-2 px-4 bg-green-50 text-green-600 border border-green-200 rounded-lg font-medium hover:bg-green-100 transition-colors duration-200">
               更多套餐
             </button>
@@ -310,69 +313,17 @@
     <!-- 隐私政策模态框 -->
     <PrivacyPolicyModal :isVisible="showPrivacyModal" @close="showPrivacyModal = false" />
 
-    <!-- 积分套餐弹窗 -->
-    <div v-if="showCreditsModal"
-      class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop animate-fade-in">
-      <div class="relative max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto modal-content animate-scale-in">
-        <div class="bg-white rounded-xl shadow-2xl p-6">
-          <!-- 弹窗头部 -->
-          <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-gray-900">积分套餐</h2>
-            <button @click="showCreditsModal = false"
-              class="bg-gray-100 rounded-full p-2 hover:bg-gray-200 transition-colors duration-200">
-              <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-          
-          <!-- 积分套餐网格 -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" v-if="allCreditsProducts.length > 0">
-            <div v-for="product in allCreditsProducts" :key="product.id"
-              class="group relative bg-gradient-to-br from-green-50 to-white border border-green-100 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-              
-              <!-- 产品名称标签 -->
-              <div class="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4" style="background-color: rgba(49, 200, 145, 0.1); color: #31c891;">
-                {{ product.name }}
-              </div>
-              
-              <!-- 价格显示 -->
-              <div class="mb-4">
-                <div class="text-sm font-medium mb-1 text-gray-700">积分套餐 ¥{{ product.price }}/永久</div>
-                <div class="text-3xl font-bold text-gray-900">¥{{ product.price }}</div>
-              </div>
-              
-              <!-- 永久有效标签 -->
-              <div class="inline-block bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded mb-4">
-                永久有效
-              </div>
-              
-              <!-- 功能列表 -->
-              <ul class="space-y-2 mb-6 text-sm text-gray-600">
-                <li><span class="text-green-600">✔</span> {{ getCreditsAmount(product) }}积分</li>
-                <li><span class="text-green-600">✔</span> 支持AI功能使用</li>
-                <li><span class="text-green-600">✔</span> 永久有效</li>
-                <li><span class="text-green-600">✔</span> 灵活消费</li>
-              </ul>
-              
-              <!-- 购买按钮 -->
-              <button
-                class="w-full py-2 px-4 text-gray-500 bg-gray-100 rounded-lg font-semibold cursor-not-allowed shadow" disabled>
-                即将推出
-              </button>
-              
-              <!-- 月卡风格渐变覆盖层 -->
-              <div class="absolute inset-0 rounded-xl monthly-card-gradient-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-            </div>
-          </div>
-          
-          <!-- 加载状态 -->
-          <div v-else class="text-center py-12">
-            <div class="animate-spin inline-block w-8 h-8 border-4 border-t-transparent rounded-full" style="border-color: #31c891; border-top-color: transparent;"></div>
-            <p class="mt-4 text-gray-600">加载积分套餐中...</p>
-          </div>
-        </div>
-      </div>
+    <!-- 积分套餐购买组件 -->
+    <CreditsPurchase v-if="showCreditsModal" @close="showCreditsModal = false"
+      @success="handleCreditsPurchaseSuccess" />
+
+    <!-- 成功提示Toast -->
+    <div v-if="showToast"
+      class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center space-x-2 animate-slide-in">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      </svg>
+      <span>{{ toastMessage }}</span>
     </div>
   </div>
 </template>
@@ -388,8 +339,12 @@ import {
   getOrderStatusDescription,
   getClientInfo
 } from '../services/licenseService.js'
+import {
+  getCreditPackages
+} from '../services/creditsService.js'
 import MonthlyCardPurchase from '../components/MonthlyCardPurchase.vue'
 import MonthlyCardActivation from '../components/MonthlyCardActivation.vue'
+import CreditsPurchase from '../components/CreditsPurchase.vue'
 import FloatingPricingInfoButton from '../components/FloatingPricingInfoButton.vue'
 import TermsOfServiceModal from '../components/TermsOfServiceModal.vue'
 import PrivacyPolicyModal from '../components/PrivacyPolicyModal.vue'
@@ -461,6 +416,8 @@ const showTermsModal = ref(false)
 const showPrivacyModal = ref(false)
 const showCreditsModal = ref(false)
 const selectedProduct = ref(null)
+const toastMessage = ref('')
+const showToast = ref(false)
 const selectedServiceType = ref('')
 const buyForm = ref({
   customerEmail: '',
@@ -502,33 +459,156 @@ onUnmounted(() => {
 async function loadProducts() {
   try {
     loadingProducts.value = true
-    const productList = await getProducts()
-    if (productList && productList.length > 0) {
-      // 重新排序：AI服务、许可证（中间推荐位置）、积分套餐、云存储
-      const sortedProducts = []
 
-      // 1. AI服务产品
-      const aiProducts = productList.filter(p => p.code.includes('AI_SERVICE'))
+    // 获取所有产品（包括许可证和积分套餐）
+    const allProducts = await getProducts()
+
+    console.log('获取到的所有产品:', allProducts)
+
+    // 重新排序：AI服务、积分套餐（中间推荐位置）、许可证、云存储
+    const sortedProducts = []
+    let licenseProduct = null
+
+    // 1. AI服务产品
+    if (allProducts && allProducts.length > 0) {
+      const aiProducts = allProducts.filter(p =>
+        (p.code && p.code.includes('AI_SERVICE')) ||
+        (p.productCode && p.productCode.includes('AI_SERVICE'))
+      )
       sortedProducts.push(...aiProducts)
-
-      // 2. 许可证产品（放在中间突出推荐）- 排除积分套餐
-      const licenseProducts = productList.filter(p => p.permanent && !p.code.includes('CREDITS'))
-      sortedProducts.push(...licenseProducts)
-
-      // 3. 积分套餐产品（只显示基础套餐）
-      const creditsProducts = productList.filter(p => p.code === 'CREDITS_500')
-      sortedProducts.push(...creditsProducts)
-      
-      // 保存所有积分套餐到弹窗使用
-      const allCredits = productList.filter(p => p.code.includes('CREDITS'))
-      allCreditsProducts.value = allCredits
-
-      // 4. 云存储产品
-      const storageProducts = productList.filter(p => p.code.includes('CLOUD_STORAGE'))
-      sortedProducts.push(...storageProducts)
-
-      products.value = sortedProducts
     }
+
+    // 2. 先保存许可证产品，稍后添加
+    if (allProducts && allProducts.length > 0) {
+      licenseProduct = allProducts.find(p =>
+        p.permanent &&
+        !(p.code && p.code.includes('CREDITS')) &&
+        !(p.productCode && p.productCode.includes('CREDITS'))
+      )
+    }
+
+    // 3. 积分套餐产品（使用新的API获取）
+    try {
+      const creditPackagesResult = await getCreditPackages()
+      if (creditPackagesResult.success && creditPackagesResult.data) {
+        const creditPackages = creditPackagesResult.data
+
+        // 转换API数据格式为组件期望的格式
+        const convertedPackages = creditPackages
+          .filter(pkg => pkg.isActive !== false) // 只显示激活的套餐
+          .map(pkg => ({
+            id: pkg.id,
+            packageCode: pkg.code,
+            packageName: pkg.name,
+            packageDescription: pkg.description || '',
+            credits: pkg.credits,
+            originalPrice: pkg.price,
+            currentPrice: pkg.price,
+            discount: pkg.discountPercentage || 0,
+            packageType: (pkg.isCustom === true || pkg.code === 'CREDITS_CUSTOM') ? 'CUSTOM' : 'STANDARD',
+            isActive: pkg.isActive,
+            displayOrder: pkg.sortOrder || 0,
+            features: [
+              `${pkg.credits}积分`,
+              pkg.description || '适用于所有AI服务',
+              '永不过期'
+            ],
+            costPerCredit: pkg.pricePerCredit,
+            recommendedFor: pkg.recommendTag || '用户',
+            isPopular: pkg.recommendTag === '热门选择',
+            // 保留原始API字段以便兼容
+            code: pkg.code,
+            name: pkg.name,
+            description: pkg.description,
+            price: pkg.price,
+            permanent: false
+          }))
+
+        // 保存所有积分套餐到弹窗使用
+        allCreditsProducts.value = convertedPackages
+        console.log('保存的积分套餐数据:', convertedPackages)
+
+        // 选择一个标准积分套餐作为热门套餐展示
+        // 优先选择有推荐标签的，其次选择中等价位的标准套餐
+        let selectedPackage = null
+
+        // 1. 优先选择有"热门"或"推荐"标签的套餐
+        selectedPackage = convertedPackages.find(p =>
+          p.isActive &&
+          p.packageType === 'STANDARD' &&
+          (p.recommendedFor?.includes('热门') || p.isPopular || p.recommendTag?.includes('热门'))
+        )
+
+        // 2. 如果没有热门套餐，选择中等价位的标准套餐（500-1000积分范围）
+        if (!selectedPackage) {
+          selectedPackage = convertedPackages.find(p =>
+            p.isActive &&
+            p.packageType === 'STANDARD' &&
+            p.credits >= 500 &&
+            p.credits <= 1000
+          )
+        }
+
+        // 3. 如果还没有，就选择第一个标准套餐
+        if (!selectedPackage) {
+          selectedPackage = convertedPackages.find(p =>
+            p.isActive &&
+            p.packageType === 'STANDARD'
+          )
+        }
+
+        // 4. 最后兜底，选择任意一个激活的套餐
+        if (!selectedPackage && convertedPackages.length > 0) {
+          selectedPackage = convertedPackages.find(p => p.isActive) || convertedPackages[0]
+        }
+
+        if (selectedPackage) {
+          // 积分套餐放在中间位置（第2位）
+          sortedProducts.push(selectedPackage)
+          console.log('选择的热门积分套餐:', selectedPackage.name, selectedPackage.credits + '积分')
+        }
+      } else {
+        console.warn('获取积分套餐失败，使用降级数据:', creditPackagesResult.error)
+        // 使用降级数据（模拟数据已经是正确格式）
+        if (creditPackagesResult.data) {
+          allCreditsProducts.value = creditPackagesResult.data
+          const recommendedCredits = creditPackagesResult.data.filter(p =>
+            p.packageCode === 'CREDITS_500' || p.isPopular
+          )
+          if (recommendedCredits.length > 0) {
+            const convertedPackage = {
+              ...recommendedCredits[0],
+              code: recommendedCredits[0].packageCode,
+              name: recommendedCredits[0].packageName,
+              description: recommendedCredits[0].packageDescription,
+              price: recommendedCredits[0].currentPrice,
+              permanent: false
+            }
+            sortedProducts.push(convertedPackage)
+          }
+        }
+      }
+    } catch (error) {
+      console.error('加载积分套餐时发生错误:', error)
+    }
+
+    // 3. 许可证产品（放在积分套餐后面）
+    if (licenseProduct) {
+      sortedProducts.push(licenseProduct)
+    }
+
+    // 4. 云存储产品
+    if (allProducts && allProducts.length > 0) {
+      const storageProducts = allProducts.filter(p =>
+        (p.code && p.code.includes('CLOUD_STORAGE')) ||
+        (p.productCode && p.productCode.includes('CLOUD_STORAGE'))
+      )
+      sortedProducts.push(...storageProducts)
+    }
+
+    products.value = sortedProducts
+    console.log('最终产品列表:', sortedProducts)
+
   } catch (error) {
     console.error('加载产品列表失败:', error)
   } finally {
@@ -736,10 +816,19 @@ function getDailyPrice(product) {
 }
 
 // 获取积分套餐的积分数量
-function getCreditsAmount(product) {
+function getCreditsAmountLocal(product) {
+  if (!product) return 0
+
+  // 如果产品直接有credits字段（新的积分套餐数据结构）
+  if (product.credits) {
+    return product.credits
+  }
+
+  // 兼容旧的数据结构
   if (!product.code.includes('CREDITS') || !product.metadata) {
     return 0
   }
+
   try {
     const metadata = JSON.parse(product.metadata)
     return metadata.credits || 0
@@ -779,6 +868,74 @@ function initScrollAnimations() {
   }, 100)
 }
 
+// 统一的产品购买方法
+async function purchaseProduct(product) {
+  try {
+    if (product.code.includes('CREDITS')) {
+      // 积分套餐购买流程 - 直接打开积分套餐购买组件
+      showCreditsModal.value = true
+    } else if (product.code.includes('MONTHLY')) {
+      // 月卡产品，使用月卡购买流程
+      let serviceType = ''
+      if (product.code.includes('AI_SERVICE')) {
+        serviceType = 'AI_SERVICE'
+      } else if (product.code.includes('CLOUD_STORAGE')) {
+        serviceType = 'CLOUD_STORAGE'
+      }
+      openMonthlyCardModal(serviceType)
+    } else {
+      // 许可证产品，使用许可证购买流程
+      openBuyModal(product)
+    }
+  } catch (error) {
+    console.error('购买失败:', error)
+    alert(`购买失败：${error.message}`)
+  }
+}
+
+
+
+// 处理积分套餐购买成功
+function handleCreditsPurchaseSuccess(result) {
+  showCreditsModal.value = false
+
+  // 显示成功消息
+  const message = `🎉 积分购买成功！获得 ${result.credits || 0} 积分`
+
+  // 显示撒花特效
+  loadConfettiLibrary().then(() => {
+    if (typeof confetti !== 'undefined') {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      })
+    }
+  }).catch(error => {
+    console.warn('撒花特效加载失败:', error)
+  })
+
+  // 显示现代化的成功提示
+  showSuccessToast(message)
+}
+
+// 显示成功提示toast
+function showSuccessToast(message) {
+  toastMessage.value = message
+  showToast.value = true
+
+  // 3秒后自动隐藏
+  setTimeout(() => {
+    showToast.value = false
+  }, 3000)
+}
+
+
+
+
+
+
+
 
 </script>
 
@@ -786,6 +943,23 @@ function initScrollAnimations() {
 /* 现代化卡片动画与样式 */
 .bg-gradient-to-br {
   background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+}
+
+/* Toast动画 */
+@keyframes slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
 }
 
 /* 渐进式动画样式 */
