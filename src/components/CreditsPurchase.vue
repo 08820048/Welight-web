@@ -298,10 +298,46 @@ async function loadCreditPackages() {
         isPopular: pkg.recommendTag === '热门选择'
       }))
 
-      creditPackages.value = convertedPackages
+      // 对积分套餐进行排序：按金额从小到大，自定义套餐放在最后
+      const sortedPackages = [...convertedPackages].sort((a, b) => {
+        // 自定义套餐始终排在最后
+        if (a.packageType === 'CUSTOM' && b.packageType !== 'CUSTOM') {
+          return 1
+        }
+        if (b.packageType === 'CUSTOM' && a.packageType !== 'CUSTOM') {
+          return -1
+        }
+        if (a.packageType === 'CUSTOM' && b.packageType === 'CUSTOM') {
+          return 0 // 如果都是自定义套餐，保持原顺序
+        }
+
+        // 标准套餐按价格从小到大排序
+        return a.currentPrice - b.currentPrice
+      })
+
+      creditPackages.value = sortedPackages
     } else {
       // 使用降级数据（模拟数据已经是正确格式）
-      creditPackages.value = result.data || []
+      const mockData = result.data || []
+
+      // 对模拟数据也进行同样的排序
+      const sortedMockData = [...mockData].sort((a, b) => {
+        // 自定义套餐始终排在最后
+        if (a.packageType === 'CUSTOM' && b.packageType !== 'CUSTOM') {
+          return 1
+        }
+        if (b.packageType === 'CUSTOM' && a.packageType !== 'CUSTOM') {
+          return -1
+        }
+        if (a.packageType === 'CUSTOM' && b.packageType === 'CUSTOM') {
+          return 0
+        }
+
+        // 标准套餐按价格从小到大排序
+        return a.currentPrice - b.currentPrice
+      })
+
+      creditPackages.value = sortedMockData
       if (result.error) {
         console.warn('使用模拟数据:', result.error)
       }
