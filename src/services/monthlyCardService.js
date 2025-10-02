@@ -28,7 +28,7 @@ export const MONTHLY_CARD_PRODUCTS = [
     code: 'AI_SERVICE_MONTHLY',
     serviceType: 'AI_SERVICE',
     name: 'AI服务月卡',
-    description: 'WeLight AI服务月卡，包含应用内文章转换、翻译、润色等所有AI功能，有效期30天',
+    description: 'WeLight AI服务月卡，包含应用内文章排版、翻译、润色等所有AI功能，有效期30天',
     price: 0.5,
     currency: 'CNY',
     validityDays: 30,
