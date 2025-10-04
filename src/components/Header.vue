@@ -31,19 +31,19 @@
           <router-link to="/pricing" class="hover:text-slate-900 transition-colors font-medium relative"
             active-class="text-primary-600">
             定价
-            <span
+            <!-- <span
               class="absolute -top-2 -right-3 text-white text-xs px-1.5 py-0.5 rounded-full font-bold shadow-sm bg-gradient-to-r from-red-500 to-orange-500 scale-90">
               庆
-            </span>
+            </span> -->
           </router-link>
           <router-link to="/donation"
             class="hover:text-pink-700 transition-colors font-medium text-pink-600 relative flex items-center gap-1.5"
             active-class="text-pink-700">
             赞助
-            <div v-if="donationCount > 0"
+            <!-- <div v-if="donationCount > 0"
               class="bg-yellow-400 text-slate-900 text-xs px-1.5 py-0.5 rounded-full font-bold min-w-[20px] text-center shadow-sm scale-75">
               +{{ donationCount }}
-            </div>
+            </div> -->
           </router-link>
           <button @click="showChangelog"
             class="hover:text-slate-900 transition-colors font-medium flex items-center gap-1.5">

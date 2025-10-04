@@ -25,11 +25,11 @@
               </div>
               <div class="flex-1">
                 <div class="flex items-center space-x-2 mb-1">
-                  <span class="text-lg font-bold">🎉 Welight v3.0.1 已发布！</span>
+                  <span class="text-lg font-bold">🎉 Welight v3.1.0 已发布！</span>
                   <span class="bg-white bg-opacity-20 text-xs px-2 py-1 rounded-full font-medium">最新版本</span>
                 </div>
                 <p class="text-sm text-primary-100">
-                  修复诸多已知问题，优化多款主题效果
+                  新增文章背景效果、AI创作模块、热门资讯板块，AI模型大换血！
                   <!--                  <span class="hidden sm:inline">建议更新</span>-->
                   <span class="font-medium text-white">建议下载更新！</span>
                 </p>
@@ -1215,7 +1215,7 @@ const showBanner = ref(false)
 const bannerVisible = ref(false)
 
 // 当前版本号
-const currentVersion = '3.0.1'
+const currentVersion = '3.1.0'
 
 // 检查是否应该显示版本横幅
 const shouldShowVersionBanner = () => {
