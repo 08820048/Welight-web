@@ -1,5 +1,11 @@
 <template>
-  <div class="min-h-screen pattern-grid-lg text-gray-200 bg-white dark:pattern-grid-lg dark:text-gray-600 dark:bg-gray-900">
+  <div class="min-h-screen text-gray-200 dark:text-gray-600 relative overflow-hidden">
+    <!-- Spline 3D 背景 -->
+    <div class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+      <iframe src="https://my.spline.design/celestialflowabstractdigitalform-ObUlVgj70g2y4bbx5vBKSfxN/" frameborder="0"
+        width="100%" height="100%" class="w-full h-full pointer-events-none" id="aura-spline">
+      </iframe>
+    </div>
     <div class="container mx-auto px-4 py-8 pt-24">
       <!-- 页面描述 -->
       <div class="text-center mb-12 scroll-animate animate-fade-in-up delay-100">
@@ -15,39 +21,43 @@
         <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
           致谢名单
         </h2>
-        
-        <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden flat-card">
+
+        <div
+          class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden flat-card">
           <div class="overflow-x-auto">
             <table class="w-full">
               <thead class="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                  <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  <th
+                    class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     赞助者
                   </th>
-                  <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  <th
+                    class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     金额
                   </th>
-                  <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  <th
+                    class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     时间
                   </th>
-                  <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  <th
+                    class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     渠道
                   </th>
-                  <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  <th
+                    class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     留言
                   </th>
-                  <th class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  <th
+                    class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     标识
                   </th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
-                <tr 
-                  v-for="donation in allDonations" 
-                  :key="donation.id"
+                <tr v-for="donation in allDonations" :key="donation.id"
                   class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                  :class="{ 'bg-yellow-50 dark:bg-yellow-900/20': donation.isSpecial }"
-                >
+                  :class="{ 'bg-yellow-50 dark:bg-yellow-900/20': donation.isSpecial }">
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
                       <div class="text-sm font-medium text-gray-900 dark:text-white">
@@ -76,10 +86,8 @@
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <span 
-                      v-if="donation.isSpecial" 
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200"
-                    >
+                    <span v-if="donation.isSpecial"
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
                       {{ donation.specialTag }}
                     </span>
                     <span v-else class="text-gray-400 dark:text-gray-500">-</span>
@@ -92,16 +100,13 @@
       </div>
 
       <!-- 特别赞助展示 -->
-        <div v-if="specialDonations.length > 0" class="mb-12 scroll-animate animate-fade-in-up delay-400">
-          <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
-            特别赞助
-          </h2>
+      <div v-if="specialDonations.length > 0" class="mb-12 scroll-animate animate-fade-in-up delay-400">
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+          特别赞助
+        </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div 
-            v-for="donation in specialDonations" 
-            :key="donation.id"
-            class="bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900 dark:to-orange-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6 border-2 border-yellow-300 dark:border-yellow-600 flat-card"
-          >
+          <div v-for="donation in specialDonations" :key="donation.id"
+            class="bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900 dark:to-orange-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6 border-2 border-yellow-300 dark:border-yellow-600 flat-card">
             <div class="flex items-center justify-between mb-4">
               <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                 {{ donation.specialTag }}
@@ -130,12 +135,12 @@
       </div>
 
       <!-- 感谢信息 -->
-    <!-- 固定背景致谢文字 -->
-    <div class="fixed inset-0 pointer-events-none z-10 flex items-center justify-center">
-      <div class="background-text text-6xl font-bold text-center leading-relaxed opacity-5">
-        你的每一份赞助都意义非凡！ <span class="text-green-500"></span> 
+      <!-- 固定背景致谢文字 -->
+      <div class="fixed inset-0 pointer-events-none z-10 flex items-center justify-center">
+        <div class="background-text text-6xl font-bold text-center leading-relaxed opacity-5">
+          你的每一份赞助都意义非凡！ <span class="text-green-500"></span>
+        </div>
       </div>
-    </div>
 
 
     </div>
@@ -175,7 +180,7 @@ function initData() {
     ...donation,
     date: donation.donationDate // 映射日期字段
   }))
-  
+
   specialDonations.value = getSpecialDonations()
 }
 
@@ -205,10 +210,10 @@ function handleScrollAnimation() {
     if (element.classList.contains('animate-in-view')) {
       return
     }
-    
+
     const rect = element.getBoundingClientRect()
     const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0
-    
+
     if (isVisible) {
       element.classList.add('animate-in-view')
     }
@@ -223,13 +228,13 @@ const debouncedScrollHandler = debounce(handleScrollAnimation, 16) // 约60fps
  */
 onMounted(() => {
   initData()
-  
+
   // 缓存滚动动画元素
   setTimeout(() => {
     scrollElements = Array.from(document.querySelectorAll('.scroll-animate'))
     handleScrollAnimation()
   }, 100)
-  
+
   // 监听滚动事件（使用防抖版本）
   window.addEventListener('scroll', debouncedScrollHandler, { passive: true })
 })
@@ -254,12 +259,12 @@ onUnmounted(() => {
   .overflow-x-auto {
     font-size: 0.875rem;
   }
-  
+
   .px-6 {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   .py-4 {
     padding-top: 0.75rem;
     padding-bottom: 0.75rem;
@@ -274,15 +279,22 @@ onUnmounted(() => {
 }
 
 @keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 /* 扁平化卡片样式（优化版本） */
 .flat-card {
-  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
-              border-color 0.2s ease, 
-              background-color 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    border-color 0.2s ease,
+    background-color 0.2s ease;
   background: rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(10px);
   will-change: transform;
@@ -317,10 +329,4 @@ onUnmounted(() => {
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 30px rgba(102, 126, 234, 0.1);
 }
-
-
-
-
-
-
 </style>

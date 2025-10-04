@@ -1,5 +1,11 @@
 <template>
-  <div class="min-h-screen pattern-grid-lg text-gray-200 bg-white">
+  <div class="min-h-screen text-gray-200 relative overflow-hidden">
+    <!-- Spline 3D 背景 -->
+    <div class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+      <iframe src="https://my.spline.design/celestialflowabstractdigitalform-ObUlVgj70g2y4bbx5vBKSfxN/" frameborder="0"
+        width="100%" height="100%" class="w-full h-full pointer-events-none" id="aura-spline">
+      </iframe>
+    </div>
     <!-- 顶部横幅通知 -->
     <div v-if="showBanner" class="fixed top-16 left-0 right-0 z-40 overflow-hidden">
       <div

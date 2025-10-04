@@ -1,5 +1,11 @@
 <template>
-  <div class="min-h-screen pattern-grid-lg text-gray-200 bg-white pt-32 pb-12 px-4">
+  <div class="min-h-screen text-gray-200 pt-32 pb-12 px-4 relative overflow-hidden">
+    <!-- Spline 3D 背景 -->
+    <div class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+      <iframe src="https://my.spline.design/celestialflowabstractdigitalform-ObUlVgj70g2y4bbx5vBKSfxN/" frameborder="0"
+        width="100%" height="100%" class="w-full h-full pointer-events-none" id="aura-spline">
+      </iframe>
+    </div>
     <div class="max-w-4xl mx-auto">
       <!-- 标题区 -->
       <div class="text-center mb-12 scroll-animate fade-in-up" style="transition-delay: 0.1s;">
@@ -8,34 +14,27 @@
       </div>
 
       <!-- 查询表单 -->
-      <div class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-6 mb-8 scroll-animate scale-up" style="transition-delay: 0.3s;">
+      <div
+        class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-6 mb-8 scroll-animate scale-up"
+        style="transition-delay: 0.3s;">
         <div class="flex flex-col md:flex-row gap-4">
           <div class="flex-1">
             <label class="block text-sm font-medium text-gray-700 mb-2">邮箱地址</label>
-            <input 
-              v-model="queryForm.customerEmail" 
-              type="email" 
-              placeholder="输入购买时使用的邮箱"
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <input v-model="queryForm.customerEmail" type="email" placeholder="输入购买时使用的邮箱"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" />
           </div>
           <div class="md:w-48">
             <label class="block text-sm font-medium text-gray-700 mb-2">服务类型</label>
-            <select 
-              v-model="queryForm.serviceType" 
-              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
+            <select v-model="queryForm.serviceType"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
               <option value="">全部</option>
               <option value="AI_SERVICE">AI服务</option>
               <option value="CLOUD_STORAGE">云存储服务</option>
             </select>
           </div>
           <div class="md:w-32 flex items-end">
-            <button 
-              @click="queryCards"
-              :disabled="loading || !queryForm.customerEmail"
-              class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50"
-            >
+            <button @click="queryCards" :disabled="loading || !queryForm.customerEmail"
+              class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50">
               查询
             </button>
           </div>
@@ -55,12 +54,9 @@
 
       <!-- 月卡列表 -->
       <div v-if="!loading && monthlyCards.length > 0" class="space-y-6">
-        <div 
-          v-for="(card, index) in monthlyCards" 
-          :key="card.id"
+        <div v-for="(card, index) in monthlyCards" :key="card.id"
           class="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/20 p-6 hover:shadow-xl hover:bg-white/90 transition-all duration-300 scroll-animate fade-in-up"
-          :style="`transition-delay: ${0.5 + index * 0.1}s;`"
-        >
+          :style="`transition-delay: ${0.5 + index * 0.1}s;`">
           <div class="flex items-start justify-between mb-4">
             <div>
               <h3 class="text-xl font-bold text-gray-900">{{ card.serviceTypeDescription }}</h3>
@@ -102,17 +98,12 @@
 
           <!-- 操作按钮 -->
           <div class="mt-4 flex space-x-2">
-            <button 
-              v-if="card.status === 'INACTIVE'"
-              @click="activateCard(card)"
-              class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm"
-            >
+            <button v-if="card.status === 'INACTIVE'" @click="activateCard(card)"
+              class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors text-sm">
               激活月卡
             </button>
-            <button 
-              @click="validateCard(card)"
-              class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm"
-            >
+            <button @click="validateCard(card)"
+              class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
               验证状态
             </button>
           </div>
@@ -120,18 +111,18 @@
       </div>
 
       <!-- 空状态 -->
-      <div v-if="!loading && monthlyCards.length === 0 && queryForm.customerEmail" class="text-center py-12 scroll-animate fade-in-up" style="transition-delay: 0.5s;">
+      <div v-if="!loading && monthlyCards.length === 0 && queryForm.customerEmail"
+        class="text-center py-12 scroll-animate fade-in-up" style="transition-delay: 0.5s;">
         <div class="text-gray-400 mb-4">
           <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
           </svg>
         </div>
         <h3 class="text-lg font-medium text-gray-900 mb-2">暂无月卡记录</h3>
         <p class="text-gray-500 mb-4">该邮箱下没有找到月卡记录</p>
-        <router-link 
-          to="/pricing" 
-          class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-        >
+        <router-link to="/pricing"
+          class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
           去购买月卡
         </router-link>
       </div>
@@ -176,7 +167,7 @@ async function queryCards() {
       queryForm.value.customerEmail.trim(),
       queryForm.value.serviceType || null
     )
-    
+
     if (cards && cards.length > 0) {
       monthlyCards.value = cards
       // 数据加载完成后重新初始化动画
@@ -199,9 +190,9 @@ async function activateCard(card) {
       customerEmail: queryForm.value.customerEmail,
       clientInfo: getClientInfo()
     }
-    
+
     const result = await activateMonthlyCard(activateData)
-    
+
     if (result.valid) {
       // 更新卡片状态
       Object.assign(card, result.cardInfo)
@@ -220,9 +211,9 @@ async function validateCard(card) {
       customerEmail: queryForm.value.customerEmail,
       serviceType: card.serviceType
     }
-    
+
     const result = await validateMonthlyCard(validateData)
-    
+
     if (result.valid) {
       // 更新卡片状态
       Object.assign(card, result.cardInfo)
@@ -378,7 +369,7 @@ const initializeAnimations = () => {
 onMounted(() => {
   // 重置页面状态
   resetPageState()
-  
+
   // 初始化动画
   initializeAnimations()
 })
@@ -447,6 +438,7 @@ onUnmounted(() => {
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
