@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Navbar />
+    <Header />
     <main>
       <RouterView />
     </main>
@@ -8,7 +8,7 @@
 
     <!-- 悬浮赞助按钮 - 只在赞助页面显示 -->
     <FloatingDonationButton v-if="isDonationPage" />
-    
+
     <!-- 回到顶部按钮 - 全站可用 -->
     <BackToTop />
   </div>
@@ -17,7 +17,7 @@
 <script setup>
 import { RouterView, useRoute } from 'vue-router'
 import { computed } from 'vue'
-import Navbar from './components/Navbar.vue'
+import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import FloatingDonationButton from './components/FloatingDonationButton.vue'
 import BackToTop from './components/BackToTop.vue'
