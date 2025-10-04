@@ -45,31 +45,27 @@
               +{{ donationCount }}
             </div>
           </router-link>
-          <a href="https://docs.waer.ltd/" target="_blank"
-            class="hover:text-slate-900 transition-colors font-medium flex items-center gap-1 relative">
-            文档
-            <span class="text-white text-xs px-1.5 py-0.5 rounded-full font-medium bg-orange-500 scale-75">
-              完善中
-            </span>
-            <svg class="w-3 h-3 opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
+          <button @click="showChangelog"
+            class="hover:text-slate-900 transition-colors font-medium flex items-center gap-1.5">
+            更新日志
+          </button>
         </nav>
 
         <!-- 右侧按钮组 -->
         <div class="flex items-center gap-3">
-          <!-- 更新日志按钮 -->
-          <button @click="showChangelog"
-            class="hidden md:inline-flex items-center gap-2 px-3 py-2 text-sm text-slate-700 hover:text-slate-900 transition-all duration-200"
-            title="更新日志">
+          <!-- 文档按钮 -->
+          <a href="https://docs.waer.ltd/" target="_blank"
+            class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-white/30 text-sm text-slate-700 shadow-sm hover:bg-white/70 transition-all duration-200 backdrop-blur-sm"
+            title="查看文档">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
-            <span class="hidden lg:inline">更新日志</span>
-          </button>
+            <span>文档</span>
+            <span class="text-white text-xs px-1.5 py-0.5 rounded-full font-medium bg-orange-500">
+              完善中
+            </span>
+          </a>
 
           <!-- 移动端菜单按钮 -->
           <button @click="toggleMobileMenu"
