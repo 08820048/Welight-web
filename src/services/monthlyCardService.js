@@ -390,7 +390,7 @@ export function getCardStatusDescription(status) {
 export function getClientInfo() {
   const userAgent = navigator.userAgent
   const platform = navigator.platform
-  const version = 'WeLight Web v3.1.0'
+  const version = 'WeLight Web v3.1.2'
 
   return `${version} (${platform}) - ${userAgent.substring(0, 100)}`
 }

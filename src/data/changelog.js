@@ -1,11 +1,26 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '3.1.0',
+    version: '3.1.2',
     date: '2025-10-04',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      fixes: ['紧急修复试用期无法使用AI服务的问题', '修复本地Ollama模型请求出现400的问题'],
+      improvements: [
+        '调整新闻资讯，新增"头条热搜"、"全网热搜"、"国际新闻"，并调整布局',
+        '其他细节优化'
+      ],
+      features: []
+    }
+  },
+  {
+    version: '3.1.0',
+    date: '2025-10-04',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
     changes: {
       features: [
         '新增文章背景效果，在"主题编辑"面板中选择"背景"菜单，即可使用你喜欢的背景',

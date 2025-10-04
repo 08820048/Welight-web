@@ -25,11 +25,11 @@
               </div>
               <div class="flex-1">
                 <div class="flex items-center space-x-2 mb-1">
-                  <span class="text-lg font-bold">🎉 Welight v3.1.0 已发布！</span>
+                  <span class="text-lg font-bold">🎉 Welight v3.1.2 已发布！</span>
                   <span class="bg-white bg-opacity-20 text-xs px-2 py-1 rounded-full font-medium">最新版本</span>
                 </div>
                 <p class="text-sm text-primary-100">
-                  新增文章背景效果、AI创作模块、热门资讯板块，AI模型大换血！
+                  紧急修复试用期无法使用AI服务的问题，新增头条热搜、全网热搜等资讯！
                   <!--                  <span class="hidden sm:inline">建议更新</span>-->
                   <span class="font-medium text-white">建议下载更新！</span>
                 </p>
@@ -1215,7 +1215,7 @@ const showBanner = ref(false)
 const bannerVisible = ref(false)
 
 // 当前版本号
-const currentVersion = '3.1.0'
+const currentVersion = '3.1.2'
 
 // 检查是否应该显示版本横幅
 const shouldShowVersionBanner = () => {
@@ -1361,12 +1361,12 @@ const downloadFile = async (platform) => {
 
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.1.0_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_3.1.0_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_3.1.0_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_3.1.0_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_3.1.0_amd64.AppImage',
-      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_3.1.0_amd64.deb'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.1.2_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_3.1.2_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_3.1.2_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_3.1.2_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_3.1.2_amd64.AppImage',
+      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_3.1.2_amd64.deb'
     }
 
     const downloadUrl = downloadUrls[platform]
