@@ -1,7 +1,5 @@
 <template>
-  <header
-    class="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-white/30 border-b border-white/20 transition-all duration-300"
-    :class="{ 'shadow-lg shadow-black/5': isScrolled }">
+  <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
     <div class="container-custom">
       <div class="flex gap-4 md:py-4 py-3 items-center justify-between w-full">
         <!-- Logo 和品牌信息 -->
@@ -64,9 +62,9 @@
         <div class="flex items-center gap-3">
           <!-- 更新日志按钮 -->
           <button @click="showChangelog"
-            class="hidden md:inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/50 border border-white/30 text-sm text-slate-700 shadow-sm hover:bg-white/70 transition-all duration-200 backdrop-blur-sm"
+            class="hidden md:inline-flex items-center gap-2 px-3 py-2 text-sm text-slate-700 hover:text-slate-900 transition-all duration-200"
             title="更新日志">
-            <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
@@ -75,7 +73,7 @@
 
           <!-- 移动端菜单按钮 -->
           <button @click="toggleMobileMenu"
-            class="lg:hidden inline-flex items-center gap-2 px-3 py-2 rounded-full bg-white/50 border border-white/30 text-sm text-slate-700 shadow-sm hover:bg-white/70 transition backdrop-blur-sm"
+            class="lg:hidden inline-flex items-center gap-2 px-3 py-2 text-sm text-slate-700 hover:text-slate-900 transition"
             aria-label="菜单">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path v-if="!isMobileMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
