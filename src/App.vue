@@ -1,5 +1,12 @@
 <template>
   <div id="app">
+    <!-- Spline 3D 背景 - 全局只加载一次 -->
+    <div class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
+      <iframe src="https://my.spline.design/celestialflowabstractdigitalform-ObUlVgj70g2y4bbx5vBKSfxN/" frameborder="0"
+        width="100%" height="100%" class="w-full h-full pointer-events-none" id="aura-spline" loading="lazy">
+      </iframe>
+    </div>
+
     <Header />
     <main>
       <RouterView />
