@@ -36,7 +36,7 @@
     </section>
 
     <!-- Download Options -->
-    <section class="section-padding bg-white dark:bg-gray-900">
+    <section class="section-padding relative z-10">
       <div class="container-custom">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
           <!-- Windows -->
@@ -162,7 +162,7 @@
     </section>
 
     <!-- System Requirements -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <section class="section-padding relative z-10">
       <div class="container-custom">
         <div class="text-center mb-12">
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -184,7 +184,7 @@
     </section>
 
     <!-- Installation Guide -->
-    <section class="section-padding bg-white dark:bg-gray-900">
+    <section class="section-padding relative z-10">
       <div class="container-custom">
         <div class="text-center mb-12">
           <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -356,7 +356,7 @@
     </section>
 
     <!-- Support Section -->
-    <section class="section-padding bg-gray-50 dark:bg-gray-800">
+    <section class="section-padding relative z-10">
       <div class="container-custom text-center">
         <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
           需要帮助？
@@ -417,7 +417,7 @@
     </section>
 
     <!-- 反馈链接区域 -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-800">
+    <section class="py-16 relative z-10">
       <div class="container-custom">
         <div class="text-center">
           <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
