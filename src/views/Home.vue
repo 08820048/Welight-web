@@ -1361,12 +1361,12 @@ const downloadFile = async (platform) => {
 
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.0.1_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_3.0.1_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_3.0.1_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_3.0.1_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_3.0.1_amd64.AppImage',
-      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_3.0.1_amd64.deb'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.1.0_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_3.1.0_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_3.1.0_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_3.1.0_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_3.1.0_amd64.AppImage',
+      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_3.1.0_amd64.deb'
     }
 
     const downloadUrl = downloadUrls[platform]
