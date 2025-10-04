@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-gray-50 border-t border-gray-200 relative z-10">
+  <footer class="bg-white/20 backdrop-blur-lg border-t border-white/20 relative z-10">
     <div class="container-custom py-12">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <!-- 品牌信息 -->
