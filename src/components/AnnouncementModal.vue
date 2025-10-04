@@ -1,29 +1,24 @@
 <template>
   <!-- 模态框背景 -->
-  <div 
-    v-if="isVisible" 
-    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-    @click="closeModal"
-  >
+  <div v-if="isVisible" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100] p-4"
+    @click="closeModal">
     <!-- 模态框内容 -->
     <div
       class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] overflow-hidden modal-content"
-      @click.stop
-    >
+      @click.stop>
       <!-- 头部 -->
       <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
         <div class="flex items-center space-x-3">
           <div class="w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center">
             <svg class="w-5 h-5 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
             </svg>
           </div>
           <h2 class="text-xl font-bold text-gray-900 dark:text-white">公告通知</h2>
         </div>
-        <button 
-          @click="closeModal"
-          class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
-        >
+        <button @click="closeModal"
+          class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
@@ -58,7 +53,8 @@
             </div>
 
             <!-- 分割线 (除了最后一个公告) -->
-            <div v-if="index < announcementData.length - 1" class="border-l-2 border-gray-200 dark:border-gray-700 ml-1.5 h-8"></div>
+            <div v-if="index < announcementData.length - 1"
+              class="border-l-2 border-gray-200 dark:border-gray-700 ml-1.5 h-8"></div>
           </template>
         </div>
       </div>
@@ -66,14 +62,12 @@
       <!-- 底部 -->
       <div class="border-t border-gray-200 dark:border-gray-700 p-6">
         <div class="flex items-center justify-between">
-<!--          <div class="text-sm text-gray-500 dark:text-gray-400">-->
-<!--            想要了解更多？访问我们的 -->
-<!--            <a href="https://github.com/08820048/Welight-web" target="_blank" class="text-primary-600 hover:text-primary-700 underline">GitHub 仓库</a>-->
-<!--          </div>-->
-          <button
-            @click="closeModal"
-            class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors"
-          >
+          <!--          <div class="text-sm text-gray-500 dark:text-gray-400">-->
+          <!--            想要了解更多？访问我们的 -->
+          <!--            <a href="https://github.com/08820048/Welight-web" target="_blank" class="text-primary-600 hover:text-primary-700 underline">GitHub 仓库</a>-->
+          <!--          </div>-->
+          <button @click="closeModal"
+            class="px-4 py-2 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors">
             关闭
           </button>
         </div>
@@ -152,6 +146,7 @@ onUnmounted(() => {
     opacity: 0;
     transform: translateY(20px) scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
