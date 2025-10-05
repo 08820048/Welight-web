@@ -11,7 +11,7 @@
           <span class="text-xl font-bold relative logo-gradient-text cursor-pointer">
             Welight
           </span>
-          <sup class="text-xs text-gray-500 ml-1 font-normal">v3.0.1</sup>
+          <sup class="text-xs text-gray-500 ml-1 font-normal">v3.1.3</sup>
         </router-link>
 
         <!-- Right side buttons -->

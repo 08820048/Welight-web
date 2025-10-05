@@ -577,34 +577,47 @@
               </div>
             </div>
 
-            <!-- Gemini -->
+            <!-- 智谱 -->
             <div class="group scroll-animate scale-up" style="transition-delay: 0.6s;">
               <div
                 class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
                 <div class="w-20 h-20 flex items-center justify-center">
-                  <img src="https://images.waer.ltd/notes/202508281524560.png" alt="Gemini Logo"
+                  <img src="/智谱.png" alt="智谱 Logo"
                     class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
                     loading="lazy" />
                 </div>
-                <h4 class="text-lg font-bold text-gray-900">Gemini</h4>
+                <h4 class="text-lg font-bold text-gray-900">智谱</h4>
               </div>
             </div>
 
-            <!-- Grok -->
+            <!-- Qwen -->
             <div class="group scroll-animate scale-up" style="transition-delay: 0.7s;">
               <div
                 class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
                 <div class="w-20 h-20 flex items-center justify-center">
-                  <img src="https://images.waer.ltd/notes/202508281524601.png" alt="Grok Logo"
+                  <img src="/qwen.png" alt="Qwen Logo"
                     class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
                     loading="lazy" />
                 </div>
-                <h4 class="text-lg font-bold text-gray-900">Grok</h4>
+                <h4 class="text-lg font-bold text-gray-900">Qwen</h4>
+              </div>
+            </div>
+
+            <!-- Kimi -->
+            <div class="group scroll-animate scale-up" style="transition-delay: 0.8s;">
+              <div
+                class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
+                <div class="w-20 h-20 flex items-center justify-center">
+                  <img src="/kimi.png" alt="Kimi Logo"
+                    class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
+                    loading="lazy" />
+                </div>
+                <h4 class="text-lg font-bold text-gray-900">Kimi</h4>
               </div>
             </div>
 
             <!-- Ollama -->
-            <div class="group scroll-animate scale-up" style="transition-delay: 0.8s;">
+            <div class="group scroll-animate scale-up" style="transition-delay: 0.9s;">
               <div
                 class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
                 <div class="w-20 h-20 flex items-center justify-center relative">
