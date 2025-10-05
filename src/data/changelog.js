@@ -1,11 +1,31 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '3.1.2',
-    date: '2025-10-04',
+    version: '3.1.3',
+    date: '2025-10-05',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      fixes: [
+        '修复qwen模型不能正常使用的问题',
+        '修复AI创作产出格式不是markdown的问题',
+        '修复自定义背景效果时影响主题效果的问题',
+        '修复AI模型密钥配置出现错乱的BUG'
+      ],
+      improvements: [
+        '美化"编辑主题"功能中的背景功能，调整内容和背景左右内边距的大小，提升视觉体验',
+        'AI服务全系积分降价，在原来的积分基础上统一下调2点积分，积分更耐用'
+      ],
+      features: ['新增AI创作完成是否自动打开编辑的设置项，在AI创作页面中的侧边菜单栏中']
+    }
+  },
+  {
+    version: '3.1.2',
+    date: '2025-10-04',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
     changes: {
       fixes: ['紧急修复试用期无法使用AI服务的问题', '修复本地Ollama模型请求出现400的问题'],
       improvements: [

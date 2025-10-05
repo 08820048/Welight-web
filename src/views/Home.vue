@@ -19,11 +19,11 @@
               </div>
               <div class="flex-1">
                 <div class="flex items-center space-x-2 mb-1">
-                  <span class="text-lg font-bold">🎉 Welight v3.1.2 已发布！</span>
+                  <span class="text-lg font-bold">🎉 Welight v3.1.3 已发布！</span>
                   <span class="bg-white bg-opacity-20 text-xs px-2 py-1 rounded-full font-medium">最新版本</span>
                 </div>
                 <p class="text-sm text-primary-100">
-                  紧急修复试用期无法使用AI服务的问题，新增头条热搜、全网热搜等资讯！
+                  修复qwen模型问题，AI积分降价，新增AI创作自动打开编辑设置！
                   <!--                  <span class="hidden sm:inline">建议更新</span>-->
                   <span class="font-medium text-white">建议下载更新！</span>
                 </p>
@@ -54,12 +54,12 @@
             <h1
               class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight animate-fade-in-up delay-100">
               <span class="block animate-fade-in-left delay-200">智能高效的</span>
-              <span class="block gradient-text animate-fade-in-left delay-300">公众号编辑&排版美化体验</span>
+              <span class="block gradient-text animate-fade-in-left delay-300">公众号文章创作&排版体验</span>
             </h1>
 
             <!-- Description -->
             <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed animate-fade-in-up delay-400">
-              Welight 是一款专为微信公众号创作者打造的拥有更优性能、智能、快捷轻量的排版应用，排版与编辑，亦可兼得。
+              Welight 是一款专为微信公众号创作者打造的拥有更优性能、智能、快捷轻量的排版应用，排版与创作，亦可兼得。
             </p>
 
             <!-- CTA buttons -->
@@ -1209,7 +1209,7 @@ const showBanner = ref(false)
 const bannerVisible = ref(false)
 
 // 当前版本号
-const currentVersion = '3.1.2'
+const currentVersion = '3.1.3'
 
 // 检查是否应该显示版本横幅
 const shouldShowVersionBanner = () => {
@@ -1355,12 +1355,12 @@ const downloadFile = async (platform) => {
 
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.1.2_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_3.1.2_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_3.1.2_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_3.1.2_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_3.1.2_amd64.AppImage',
-      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_3.1.2_amd64.deb'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.1.3_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_3.1.3_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_3.1.3_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_3.1.3_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_3.1.3_amd64.AppImage',
+      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_3.1.3_amd64.deb'
     }
 
     const downloadUrl = downloadUrls[platform]
