@@ -10,12 +10,14 @@
 
       <!-- 免责声明内容 -->
       <div class="bg-white rounded-xl shadow-lg p-8 space-y-8 animate-fade-in-up delay-200">
-        
+
         <!-- 重要提示 -->
         <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded">
           <div class="flex items-start">
-            <svg class="w-6 h-6 text-red-500 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            <svg class="w-6 h-6 text-red-500 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
             <div>
               <h3 class="text-red-800 font-bold mb-2">重要提示</h3>
@@ -29,7 +31,8 @@
         <!-- 1. 应用定位与功能说明 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-            <span class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">1</span>
+            <span
+              class="w-8 h-8 bg-blue-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">1</span>
             应用定位与功能说明
           </h2>
           <div class="pl-11 space-y-3 text-gray-700">
@@ -51,7 +54,8 @@
         <!-- 2. AI 功能使用声明 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-            <span class="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">2</span>
+            <span
+              class="w-8 h-8 bg-purple-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">2</span>
             AI 功能使用声明
           </h2>
           <div class="pl-11 space-y-3 text-gray-700">
@@ -72,14 +76,16 @@
             </ul>
 
             <h3 class="font-bold text-gray-900 mt-4">2.3 AI 模型来源</h3>
-            <p>Welight 集成的 AI 功能基于第三方 AI 服务提供商（如 DeepSeek、智谱、Qwen、Kimi、Ollama 等）。这些 AI 模型的输出结果由第三方服务提供商生成，Welight 不对其准确性、完整性或适用性做任何保证。</p>
+            <p>Welight 集成的 AI 功能基于第三方 AI 服务提供商（如 DeepSeek、智谱、Qwen、Kimi、Ollama 等）。这些 AI 模型的输出结果由第三方服务提供商生成，Welight
+              不对其准确性、完整性或适用性做任何保证。</p>
           </div>
         </section>
 
         <!-- 3. 内容合法性声明 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-            <span class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">3</span>
+            <span
+              class="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">3</span>
             内容合法性声明
           </h2>
           <div class="pl-11 space-y-3 text-gray-700">
@@ -113,7 +119,8 @@
         <!-- 4. 免责条款 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-            <span class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">4</span>
+            <span
+              class="w-8 h-8 bg-orange-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">4</span>
             免责条款
           </h2>
           <div class="pl-11 space-y-3 text-gray-700">
@@ -149,7 +156,8 @@
         <!-- 5. 知识产权声明 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-            <span class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">5</span>
+            <span
+              class="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">5</span>
             知识产权声明
           </h2>
           <div class="pl-11 space-y-3 text-gray-700">
@@ -165,7 +173,8 @@
         <!-- 6. 争议解决 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-            <span class="w-8 h-8 bg-indigo-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">6</span>
+            <span
+              class="w-8 h-8 bg-indigo-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">6</span>
             争议解决
           </h2>
           <div class="pl-11 space-y-3 text-gray-700">
@@ -180,7 +189,8 @@
         <!-- 7. 声明更新 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4 flex items-center">
-            <span class="w-8 h-8 bg-gray-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">7</span>
+            <span
+              class="w-8 h-8 bg-gray-500 text-white rounded-full flex items-center justify-center mr-3 text-sm">7</span>
             声明更新
           </h2>
           <div class="pl-11 space-y-3 text-gray-700">
@@ -193,16 +203,19 @@
           <h2 class="text-xl font-bold text-gray-900 mb-4">联系我们</h2>
           <p class="text-gray-700 mb-3">如果您对本免责声明有任何疑问或建议，请通过以下方式联系我们：</p>
           <ul class="space-y-2 text-gray-700">
-            <li><strong>QQ群：</strong>752636088</li>
-            <li><strong>官方网站：</strong><a href="https://welight.waer.ltd" class="text-blue-600 hover:underline">https://welight.waer.ltd</a></li>
+            <li><strong>QQ群：</strong>474919458</li>
+            <li><strong>官方网站：</strong><a href="https://welight.waer.ltd"
+                class="text-blue-600 hover:underline">https://welight.waer.ltd</a></li>
           </ul>
         </section>
 
         <!-- 同意确认 -->
         <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded">
           <div class="flex items-start">
-            <svg class="w-6 h-6 text-yellow-500 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            <svg class="w-6 h-6 text-yellow-500 mt-0.5 mr-3 flex-shrink-0" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <div>
               <h3 class="text-yellow-800 font-bold mb-2">用户确认</h3>
@@ -217,7 +230,7 @@
 
       <!-- 返回按钮 -->
       <div class="text-center mt-8">
-        <router-link to="/" 
+        <router-link to="/"
           class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />

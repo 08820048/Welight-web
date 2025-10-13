@@ -10,11 +10,12 @@
 
       <!-- 隐私政策内容 -->
       <div class="bg-white rounded-xl shadow-lg p-8 space-y-6 animate-fade-in-up delay-200">
-        
+
         <!-- 引言 -->
         <div class="text-gray-700 space-y-3">
           <p class="leading-relaxed">
-            Welight（以下简称"我们"）深知个人信息对您的重要性，我们将按照法律法规的规定，保护您的个人信息及隐私安全。我们制定本《隐私政策》并特别提示：希望您在使用 Welight 及相关服务前仔细阅读并理解本《隐私政策》，以便做出适当的选择。
+            Welight（以下简称"我们"）深知个人信息对您的重要性，我们将按照法律法规的规定，保护您的个人信息及隐私安全。我们制定本《隐私政策》并特别提示：希望您在使用 Welight
+            及相关服务前仔细阅读并理解本《隐私政策》，以便做出适当的选择。
           </p>
           <p class="leading-relaxed">
             本《隐私政策》将帮助您了解：
@@ -30,7 +31,7 @@
         <!-- 一、我们收集的信息 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4">一、我们收集的信息</h2>
-          
+
           <div class="space-y-4 text-gray-700">
             <div>
               <h3 class="font-bold text-gray-900 mb-2">1. 您主动提供的信息</h3>
@@ -65,7 +66,7 @@
         <!-- 二、我们如何使用收集的信息 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4">二、我们如何使用收集的信息</h2>
-          
+
           <div class="space-y-3 text-gray-700">
             <p>我们会将收集到的信息用于以下用途：</p>
             <ul class="list-disc pl-6 space-y-2">
@@ -82,7 +83,7 @@
         <!-- 三、信息的存储和保护 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4">三、信息的存储和保护</h2>
-          
+
           <div class="space-y-4 text-gray-700">
             <div>
               <h3 class="font-bold text-gray-900 mb-2">1. 信息存储</h3>
@@ -116,7 +117,7 @@
         <!-- 四、信息的共享、转让和公开披露 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4">四、信息的共享、转让和公开披露</h2>
-          
+
           <div class="space-y-4 text-gray-700">
             <div>
               <h3 class="font-bold text-gray-900 mb-2">1. 共享</h3>
@@ -147,7 +148,7 @@
         <!-- 五、您的权利 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4">五、您的权利</h2>
-          
+
           <div class="space-y-3 text-gray-700">
             <p>按照中国相关的法律法规，您对自己的个人信息享有以下权利：</p>
             <ul class="list-disc pl-6 space-y-2">
@@ -171,7 +172,7 @@
         <!-- 六、未成年人保护 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4">六、未成年人保护</h2>
-          
+
           <div class="space-y-3 text-gray-700">
             <p>我们非常重视对未成年人个人信息的保护。若您是18周岁以下的未成年人，在使用我们的服务前，应事先取得您的家长或法定监护人的同意。</p>
             <p>若您是未成年人的监护人，当您对您所监护的未成年人的个人信息有相关疑问时，请通过本政策公示的联系方式与我们联系。</p>
@@ -181,9 +182,10 @@
         <!-- 七、隐私政策的更新 -->
         <section>
           <h2 class="text-2xl font-bold text-gray-900 mb-4">七、隐私政策的更新</h2>
-          
+
           <div class="space-y-3 text-gray-700">
-            <p>我们可能会适时修订本《隐私政策》的条款，该等修订构成本《隐私政策》的一部分。如该等修订造成您在本《隐私政策》下权利的实质减少，我们将在修订生效前通过在主页上显著位置提示或向您发送电子邮件或以其他方式通知您。</p>
+            <p>我们可能会适时修订本《隐私政策》的条款，该等修订构成本《隐私政策》的一部分。如该等修订造成您在本《隐私政策》下权利的实质减少，我们将在修订生效前通过在主页上显著位置提示或向您发送电子邮件或以其他方式通知您。
+            </p>
             <p>在该种情况下，若您继续使用我们的服务，即表示同意受经修订的本《隐私政策》的约束。</p>
           </div>
         </section>
@@ -193,8 +195,9 @@
           <h2 class="text-xl font-bold text-gray-900 mb-4">八、如何联系我们</h2>
           <p class="text-gray-700 mb-3">如果您对本隐私政策有任何疑问、意见或建议，请通过以下方式与我们联系：</p>
           <ul class="space-y-2 text-gray-700">
-            <li><strong>QQ群：</strong>752636088</li>
-            <li><strong>官方网站：</strong><a href="https://welight.waer.ltd" class="text-blue-600 hover:underline">https://welight.waer.ltd</a></li>
+            <li><strong>QQ群：</strong>474919458</li>
+            <li><strong>官方网站：</strong><a href="https://welight.waer.ltd"
+                class="text-blue-600 hover:underline">https://welight.waer.ltd</a></li>
           </ul>
           <p class="text-gray-700 mt-3">一般情况下，我们将在15个工作日内回复。</p>
         </section>
@@ -203,7 +206,7 @@
 
       <!-- 返回按钮 -->
       <div class="text-center mt-8">
-        <router-link to="/" 
+        <router-link to="/"
           class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105">
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -229,6 +232,7 @@ onMounted(() => {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -248,4 +252,3 @@ html {
   scroll-behavior: smooth;
 }
 </style>
-
