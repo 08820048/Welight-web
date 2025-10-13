@@ -117,15 +117,10 @@ article {
   /* 移除 opacity，改为在子元素上控制 */
 }
 
-article::before,
-article::after {
+article::before {
   content: "";
   position: absolute;
   border-radius: inherit;
-  z-index: -1;
-}
-
-article::before {
   z-index: -1;
   inset: calc(var(--_bg-dot-offset) * -1);
   background-image: radial-gradient(var(--_bg-dot-color) 1px, transparent 0px);
@@ -133,11 +128,6 @@ article::before {
   background-size: 5px 5px;
   background-position: center;
   border-radius: calc(var(--_border-radius) + var(--_bg-dot-offset));
-}
-
-article::after {
-  background-color: white;
-  inset: 0;
 }
 
 /* 定义每张卡片的样式 */
