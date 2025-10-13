@@ -46,6 +46,16 @@ export const donations = [
     channel: '收钱码收款',
     specialTag: '先行者',
     isSpecial: true
+  },
+  {
+    id: '20251013081920',
+    amount: 20.0,
+    donorName: '哥布林医生',
+    donationDate: '2025-10-13T08:19:20+08:00',
+    message: '支持一下',
+    channel: '微信转账',
+    specialTag: null,
+    isSpecial: false
   }
   // 可以在这里添加更多致谢记录
 ]
@@ -55,7 +65,7 @@ export const donations = [
  * @returns {Array} 致谢名单数组
  */
 export function getAllDonations() {
-  return [...donations].sort((a, b) => new Date(b.donationDate) - new Date(a.donationDate))
+  return [...donations].sort((a, b) => b.amount - a.amount)
 }
 
 /**

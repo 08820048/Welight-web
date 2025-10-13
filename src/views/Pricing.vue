@@ -268,8 +268,8 @@
           <!-- 右上角条状标签 - 参考源码实现 -->
           <div v-if="!product.code.includes('MONTHLY')"
             class="absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105"
-            :style="{ 'background-color': product.code.includes('CREDITS') ? '#31c891' : '#3498db' }">
-            {{ product.permanent && !product.code.includes('CREDITS') ? '最受欢迎' : '热门' }}
+            :style="{ 'background-color': product.code.includes('CREDITS') ? '#31c891' : '#e24545' }">
+            {{ product.permanent && !product.code.includes('CREDITS') ? '限时特惠' : '热门' }}
           </div>
         </div>
       </div>
@@ -285,7 +285,7 @@
           <li class="animate-fade-in-up delay-1400">许可证密钥请在桌面应用中输入使用。</li>
           <li class="animate-fade-in-up delay-1500">反馈交流请通过QQ群联系开发者。</li>
           <li class="animate-fade-in-up delay-1600">支持微信支付，订单有效期为30分钟。</li>
-          <li class="animate-fade-in-up delay-1700">产品为一次性购买，不支持退款。</li>
+          <li class="animate-fade-in-up delay-1700">产品存在代码性质，拥有可复制性，因此购买后，无法退款</li>
         </ul>
 
         <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1800">交流反馈
@@ -786,7 +786,7 @@ function copyLicenseKey() {
 function getOriginalPrice(product) {
   // 根据产品代码返回原价
   if (product.permanent) {
-    return 30 // 许可证原价
+    return 49.9 // 许可证原价
   } else if (product.code.includes('AI_SERVICE')) {
     return 9.9 // AI服务原价
   } else if (product.code.includes('CLOUD_STORAGE')) {

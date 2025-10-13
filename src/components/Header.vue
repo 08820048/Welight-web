@@ -11,14 +11,14 @@
           <div class="hidden sm:block">
             <div class="text-lg font-semibold tracking-tight text-slate-900 flex items-center gap-2">
               Welight
-              <sup class="text-xs text-slate-500 font-normal">v3.1.3</sup>
+              <sup class="text-xs text-slate-500 font-normal">v3.2.0</sup>
             </div>
             <div class="text-xs text-slate-500">智能高效的公众号编辑器</div>
           </div>
         </router-link>
 
         <!-- 导航菜单 - 桌面端 -->
-        <nav class="hidden lg:flex items-center gap-6 text-sm text-slate-600">
+        <nav class="hidden lg:flex items-center gap-8 text-sm text-slate-600">
           <router-link to="/" class="hover:text-slate-900 transition-colors font-medium"
             active-class="text-primary-600">
             首页
@@ -45,10 +45,6 @@
               +{{ donationCount }}
             </div> -->
           </router-link>
-          <button @click="showChangelog"
-            class="hover:text-slate-900 transition-colors font-medium flex items-center gap-1.5">
-            更新日志
-          </button>
 
           <!-- 交流反馈下拉菜单 -->
           <div class="relative group">
@@ -102,6 +98,17 @@
 
         <!-- 右侧按钮组 -->
         <div class="flex items-center gap-3">
+          <!-- 更新日志按钮 -->
+          <button @click="showChangelog"
+            class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-white/30 text-sm text-slate-700 shadow-sm hover:bg-white/70 transition-all duration-200 backdrop-blur-sm"
+            title="查看更新日志">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+            <span>更新日志</span>
+          </button>
+
           <!-- 文档按钮 -->
           <a href="https://docs.waer.ltd/" target="_blank"
             class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-white/30 text-sm text-slate-700 shadow-sm hover:bg-white/70 transition-all duration-200 backdrop-blur-sm"
