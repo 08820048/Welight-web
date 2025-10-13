@@ -67,55 +67,22 @@
               class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">官方网站</a> -->
             <!-- <a href="https://ilikexff.cn"
               class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">开发者博客</a> -->
-            <button @click="showTermsModal = true"
-              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">服务条款</button>
-            <button @click="showPrivacyModal = true"
-              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">隐私政策</button>
-            <button @click="showDisclaimerModal = true"
-              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">免责声明</button>
+            <router-link to="/terms"
+              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">服务条款</router-link>
+            <router-link to="/privacy"
+              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">隐私政策</router-link>
+            <router-link to="/disclaimer"
+              class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">免责声明</router-link>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- 服务条款模态框 -->
-    <TermsOfServiceModal :isVisible="showTermsModal" @close="closeTermsModal" />
-
-    <!-- 隐私政策模态框 -->
-    <PrivacyPolicyModal :isVisible="showPrivacyModal" @close="closePrivacyModal" />
-
-    <!-- 免责声明模态框 -->
-    <DisclaimerModal :isVisible="showDisclaimerModal" @close="closeDisclaimerModal" />
   </footer>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-import TermsOfServiceModal from './TermsOfServiceModal.vue'
-import PrivacyPolicyModal from './PrivacyPolicyModal.vue'
-import DisclaimerModal from './DisclaimerModal.vue'
+import { computed } from 'vue'
 
 const currentYear = computed(() => new Date().getFullYear())
-
-// 服务条款模态框状态
-const showTermsModal = ref(false)
-// 隐私政策模态框状态
-const showPrivacyModal = ref(false)
-// 免责声明模态框状态
-const showDisclaimerModal = ref(false)
-
-// 关闭服务条款模态框
-const closeTermsModal = () => {
-  showTermsModal.value = false
-}
-
-// 关闭隐私政策模态框
-const closePrivacyModal = () => {
-  showPrivacyModal.value = false
-}
-
-// 关闭免责声明模态框
-const closeDisclaimerModal = () => {
-  showDisclaimerModal.value = false
-}
 </script>

@@ -28,6 +28,21 @@ const router = createRouter({
       path: '/monthly-cards',
       name: 'monthly-cards',
       component: () => import('../views/MonthlyCards.vue')
+    },
+    {
+      path: '/terms',
+      name: 'terms',
+      component: () => import('../views/Terms.vue')
+    },
+    {
+      path: '/privacy',
+      name: 'privacy',
+      component: () => import('../views/Privacy.vue')
+    },
+    {
+      path: '/disclaimer',
+      name: 'disclaimer',
+      component: () => import('../views/Disclaimer.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {
