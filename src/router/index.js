@@ -43,11 +43,6 @@ const router = createRouter({
       path: '/disclaimer',
       name: 'disclaimer',
       component: () => import('../views/Disclaimer.vue')
-    },
-    {
-      path: '/card-stack-test',
-      name: 'card-stack-test',
-      component: () => import('../views/CardStackTest.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {

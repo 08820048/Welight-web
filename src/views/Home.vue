@@ -160,7 +160,7 @@
 
           </div>
 
-          <!-- Right image -->
+          <!-- Right image - Card Stack -->
           <div
             class="order-1 lg:order-2 lg:col-span-3 flex items-center justify-end relative pl-8 lg:pl-12 animate-fade-in-right delay-300">
             <!-- Background glow effect -->
@@ -168,38 +168,66 @@
               class="absolute inset-0 bg-gradient-to-br from-primary-200/20 via-blue-200/10 to-purple-200/20 rounded-3xl blur-3xl">
             </div>
 
-            <!-- Main screenshot container -->
+            <!-- Card Stack Container -->
             <div class="relative w-full max-w-3xl ml-auto animate-scale-in delay-500">
-              <div class="relative transform transition-all duration-700 group perspective-1000">
-                <!-- Screenshot with enhanced styling -->
-                <div
-                  class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20 hero-screenshot-container">
-                  <!-- Subtle inner glow -->
-                  <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
+              <section class="hero-card-stack-section">
+                <!-- Radio inputs for card switching -->
+                <input class="sr-only" id="hero-card-1" type="radio" name="hero-panel" checked />
+                <input class="sr-only" id="hero-card-2" type="radio" name="hero-panel" />
+                <input class="sr-only" id="hero-card-3" type="radio" name="hero-panel" />
 
-                  <!-- Main image -->
-                  <div class="relative overflow-hidden rounded-2xl">
-                    <img src="https://images.waer.ltd/notes/202509261137622.png" alt="Welight 主题预览界面"
-                      class="w-full h-auto transform group-hover:scale-105 transition-all duration-700 hero-screenshot"
-                      loading="lazy" />
-                  </div>
+                <!-- Card 1 - AI 智能创作 -->
+                <article class="hero-card">
+                  <label for="hero-card-1" class="hero-card-label">
+                    <header class="hero-card-header">
+                      <h3>Welight首页展示</h3>
+                      <span class="hero-next-arrow" @click.stop>
+                        <label for="hero-card-2">&#10539;</label>
+                      </span>
+                    </header>
+                    <div class="hero-card-content">
+                      <img src="https://images.waer.ltd/notes/202510131433244.png" alt="AI 智能创作" loading="lazy" />
+                    </div>
+                  </label>
+                </article>
 
-                  <!-- Enhanced shadow layers -->
-                  <div
-                    class="absolute -inset-4 bg-gradient-to-br from-primary-500/10 to-purple-500/10 rounded-3xl blur-xl -z-10">
-                  </div>
-                  <div
-                    class="absolute -inset-8 bg-gradient-to-br from-blue-500/5 to-indigo-500/5 rounded-3xl blur-2xl -z-20">
-                  </div>
-                </div>
+                <!-- Card 2 - 精美主题排版 -->
+                <article class="hero-card">
+                  <label for="hero-card-2" class="hero-card-label">
+                    <header class="hero-card-header">
+                      <h3>AI智能创作</h3>
+                      <span class="hero-next-arrow" @click.stop>
+                        <label for="hero-card-3">&#10539;</label>
+                      </span>
+                    </header>
+                    <div class="hero-card-content">
+                      <img src="https://images.waer.ltd/notes/202510131434961.png" alt="精美主题排版" loading="lazy" />
+                    </div>
+                  </label>
+                </article>
 
-                <!-- Floating accent elements -->
-                <div
-                  class="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-primary-400/30 to-blue-400/30 rounded-full blur-xl animate-pulse">
-                </div>
-                <div
-                  class="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse delay-1000">
-                </div>
+                <!-- Card 3 - 高效编辑体验 -->
+                <article class="hero-card">
+                  <label for="hero-card-3" class="hero-card-label">
+                    <header class="hero-card-header">
+                      <h3>编辑排版体验</h3>
+                      <span class="hero-next-arrow" @click.stop>
+                        <label for="hero-card-1">&#10539;</label>
+                      </span>
+                    </header>
+                    <div class="hero-card-content">
+                      <img src="https://images.waer.ltd/notes/202510131435237.png" alt="高效编辑体验" loading="lazy" />
+                    </div>
+                  </label>
+                </article>
+              </section>
+
+              <!-- Floating accent elements -->
+              <div
+                class="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-primary-400/30 to-blue-400/30 rounded-full blur-xl animate-pulse pointer-events-none">
+              </div>
+              <div
+                class="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse delay-1000 pointer-events-none">
               </div>
             </div>
           </div>
@@ -1617,3 +1645,285 @@ onUnmounted(() => {
   console.log('首页组件已卸载，清理完成')
 })
 </script>
+
+<style scoped>
+/* Hero 卡片堆叠效果样式 */
+.hero-card-stack-section {
+  /* 默认值 */
+  --_offset-steps: 1.5rem;
+  --_scale-steps: 3;
+  --_opacity-steps: 12;
+  --_ani-duration: 300ms;
+
+  /* 计算值 - 负值让卡片向上偏移 */
+  --_offset-steps-two: calc(var(--_offset-steps) * -1);
+  --_offset-steps-three: calc(var(--_offset-steps) * -2);
+
+  --scale-steps-two: calc(1 - var(--_scale-steps) * 0.01);
+  --scale-steps-three: calc(1 - var(--_scale-steps) * 0.02);
+
+  --opacity-steps-two: calc(1 - var(--_opacity-steps) * 0.01);
+  --opacity-steps-three: calc(1 - var(--_opacity-steps) * 0.02);
+
+  position: relative;
+  width: 100%;
+  min-height: calc(350px + var(--_offset-steps) * 2);
+  margin-top: 60px;
+}
+
+@media (min-width: 600px) {
+  .hero-card-stack-section {
+    --_offset-steps: 2rem;
+    margin-top: 80px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-card-stack-section {
+    min-height: calc(400px + var(--_offset-steps) * 2);
+    margin-top: 100px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-card-stack-section {
+    --_offset-steps: 2.5rem;
+    min-height: calc(460px + var(--_offset-steps) * 2);
+    margin-top: 120px;
+  }
+}
+
+.hero-card {
+  --_bg-alpha: 0.5;
+  --_border-radius: 12px;
+  --_bg-dot-offset: 20px;
+  --_bg-dot-color: var(--_bg-clr);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  isolation: isolate;
+  background-color: white;
+  transition: all 500ms ease-in-out, box-shadow 200ms ease-in-out;
+  border-radius: var(--_border-radius);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+  transform: translateY(var(--_offset, 0)) scale(var(--_scale, 1));
+  transform-origin: top center;
+  order: var(--_order);
+  z-index: var(--_order);
+  opacity: var(--_opacity);
+  pointer-events: var(--_pointer-event, auto);
+}
+
+.hero-card::before,
+.hero-card::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.hero-card::before {
+  z-index: -2;
+  inset: calc(var(--_bg-dot-offset) * -1);
+  background-image: radial-gradient(var(--_bg-dot-color) 1px, transparent 0px);
+  background-repeat: repeat;
+  background-size: 5px 5px;
+  background-position: center;
+  border-radius: calc(var(--_border-radius) + var(--_bg-dot-offset));
+}
+
+.hero-card::after {
+  background-color: white;
+  inset: 0;
+  z-index: -1;
+}
+
+/* 卡片标签 - 让整个卡片可点击 */
+.hero-card-label {
+  display: block;
+  cursor: var(--_pointer-cursor, pointer);
+  width: 100%;
+  height: 100%;
+  pointer-events: var(--_pointer-event, auto);
+}
+
+/* 当前激活的卡片悬停效果 */
+.hero-card-stack-section:has(input:nth-child(1):checked) .hero-card:nth-of-type(1):hover,
+.hero-card-stack-section:has(input:nth-child(2):checked) .hero-card:nth-of-type(2):hover,
+.hero-card-stack-section:has(input:nth-child(3):checked) .hero-card:nth-of-type(3):hover {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hero-card-label>header {
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--_bg-clr);
+  transition: background-color var(--_ani-duration) ease-in-out;
+  border-radius: var(--_border-radius) var(--_border-radius) 0 0;
+}
+
+.hero-next-arrow {
+  display: inline-block;
+  pointer-events: auto;
+}
+
+.hero-next-arrow>label {
+  padding: 0;
+  color: white;
+  font-size: 1.5rem;
+  transition: rotate 300ms ease-in-out;
+  cursor: pointer;
+  user-select: none;
+  display: inline-block;
+}
+
+.hero-next-arrow>label:hover {
+  rotate: 90deg;
+}
+
+.hero-card-label>header>h3 {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: white;
+  transition: translate var(--_ani-duration) ease-in-out;
+}
+
+.hero-card-content {
+  position: relative;
+  padding: 0;
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  border-radius: 0 0 var(--_border-radius) var(--_border-radius);
+}
+
+@media (min-width: 768px) {
+  .hero-card-content {
+    height: 320px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-card-content {
+    height: 380px;
+  }
+}
+
+.hero-card-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--_ani-duration) ease-in-out;
+  display: block;
+}
+
+/* 定义每张卡片的样式 */
+.hero-card:nth-of-type(1) {
+  --_bg-clr: rgba(59, 130, 246, var(--_bg-alpha, 1));
+  --_order: var(--_1-order, 3);
+  --_scale: var(--_1-scale, 1);
+  --_opacity: var(--_1-opacity, 1);
+  --_offset: var(--_1-offset, 0);
+  --_pointer-event: var(--_1-pointer-event, auto);
+  --_pointer-cursor: var(--_1-pointer-cursor, pointer);
+}
+
+.hero-card:nth-of-type(2) {
+  --_bg-clr: rgba(168, 85, 247, var(--_bg-alpha, 1));
+  --_order: var(--_2-order, 2);
+  --_scale: var(--_2-scale, var(--scale-steps-two));
+  --_opacity: var(--_2-opacity, var(--opacity-steps-two));
+  --_offset: var(--_2-offset, var(--_offset-steps-two));
+  --_pointer-event: var(--_2-pointer-event, none);
+  --_pointer-cursor: var(--_2-pointer-cursor, default);
+}
+
+.hero-card:nth-of-type(3) {
+  --_bg-clr: rgba(236, 72, 153, var(--_bg-alpha, 1));
+  --_order: var(--_3-order, 1);
+  --_scale: var(--_3-scale, var(--scale-steps-three));
+  --_opacity: var(--_3-opacity, var(--opacity-steps-three));
+  --_offset: var(--_3-offset, var(--_offset-steps-three));
+  --_pointer-event: var(--_3-pointer-event, none);
+  --_pointer-cursor: var(--_3-pointer-cursor, default);
+}
+
+/* 卡片 1 选中 */
+.hero-card-stack-section:has(input:nth-child(1):checked) {
+  --_1-order: 3;
+  --_1-scale: 1;
+  --_1-opacity: 1;
+  --_1-offset: 0;
+  --_1-pointer-event: auto;
+  --_1-pointer-cursor: pointer;
+
+  --_2-order: 2;
+  --_2-scale: var(--scale-steps-two);
+  --_2-opacity: var(--opacity-steps-two);
+  --_2-offset: var(--_offset-steps-two);
+
+  --_3-order: 1;
+  --_3-scale: var(--scale-steps-three);
+  --_3-opacity: var(--opacity-steps-three);
+  --_3-offset: var(--_offset-steps-three);
+}
+
+/* 卡片 2 选中 */
+.hero-card-stack-section:has(input:nth-child(2):checked) {
+  --_2-order: 3;
+  --_2-scale: 1;
+  --_2-opacity: 1;
+  --_2-offset: 0;
+  --_2-pointer-event: auto;
+  --_2-pointer-cursor: pointer;
+
+  --_3-order: 2;
+  --_3-scale: var(--scale-steps-two);
+  --_3-opacity: var(--opacity-steps-two);
+  --_3-offset: var(--_offset-steps-two);
+
+  --_1-order: 1;
+  --_1-scale: var(--scale-steps-three);
+  --_1-opacity: var(--opacity-steps-three);
+  --_1-offset: var(--_offset-steps-three);
+}
+
+/* 卡片 3 选中 */
+.hero-card-stack-section:has(input:nth-child(3):checked) {
+  --_3-order: 3;
+  --_3-scale: 1;
+  --_3-opacity: 1;
+  --_3-offset: 0;
+  --_3-pointer-event: auto;
+  --_3-pointer-cursor: pointer;
+
+  --_1-order: 2;
+  --_1-scale: var(--scale-steps-two);
+  --_1-opacity: var(--opacity-steps-two);
+  --_1-offset: var(--_offset-steps-two);
+
+  --_2-order: 1;
+  --_2-scale: var(--scale-steps-three);
+  --_2-opacity: var(--opacity-steps-three);
+  --_2-offset: var(--_offset-steps-three);
+}
+
+/* 工具类 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+</style>
