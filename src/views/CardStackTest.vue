@@ -134,34 +134,34 @@ article::before {
 article:nth-of-type(1) {
   --_bg-clr: rgba(59, 130, 246, var(--_bg-alpha, 1));
   /* 蓝色 */
-  --_order: var(--_1-order);
-  --_scale: var(--_1-scale);
-  --_opacity: var(--_1-opacity);
-  --_offset: var(--_1-offset);
-  --_pointer-event: var(--_1-pointer-event);
-  --_pointer-cursor: var(--_1-pointer-cursor);
+  --_order: var(--_1-order, 3);
+  --_scale: var(--_1-scale, 1);
+  --_opacity: var(--_1-opacity, 1);
+  --_offset: var(--_1-offset, 0);
+  --_pointer-event: var(--_1-pointer-event, auto);
+  --_pointer-cursor: var(--_1-pointer-cursor, pointer);
 }
 
 article:nth-of-type(2) {
   --_bg-clr: rgba(168, 85, 247, var(--_bg-alpha, 1));
   /* 紫色 */
-  --_order: var(--_2-order);
-  --_scale: var(--_2-scale);
-  --_opacity: var(--_2-opacity);
-  --_offset: var(--_2-offset);
-  --_pointer-event: var(--_2-pointer-event);
-  --_pointer-cursor: var(--_2-pointer-cursor);
+  --_order: var(--_2-order, 2);
+  --_scale: var(--_2-scale, 0.75);
+  --_opacity: var(--_2-opacity, 0.7);
+  --_offset: var(--_2-offset, -6rem);
+  --_pointer-event: var(--_2-pointer-event, none);
+  --_pointer-cursor: var(--_2-pointer-cursor, default);
 }
 
 article:nth-of-type(3) {
   --_bg-clr: rgba(236, 72, 153, var(--_bg-alpha, 1));
   /* 粉色 */
-  --_order: var(--_3-order);
-  --_scale: var(--_3-scale);
-  --_opacity: var(--_3-opacity);
-  --_offset: var(--_3-offset);
-  --_pointer-event: var(--_3-pointer-event);
-  --_pointer-cursor: var(--_3-pointer-cursor);
+  --_order: var(--_3-order, 1);
+  --_scale: var(--_3-scale, 0.5);
+  --_opacity: var(--_3-opacity, 0.4);
+  --_offset: var(--_3-offset, -12rem);
+  --_pointer-event: var(--_3-pointer-event, none);
+  --_pointer-cursor: var(--_3-pointer-cursor, default);
 }
 
 /* 焦点状态 */
