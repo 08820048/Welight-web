@@ -13,20 +13,8 @@
             <h2>AI 智能创作</h2>
             <label for="card-2">&#10539;</label>
           </header>
-          <div>
+          <div class="card-content">
             <img src="https://images.waer.ltd/notes/202510131433244.png" alt="AI 创作">
-            <div class="content">
-              <p class="text-gray-700 leading-relaxed">
-                <strong>强大的 AI 辅助创作功能</strong><br>
-                集成多个主流 AI 模型，包括 DeepSeek、智谱、Qwen、Kimi 等，为您提供智能文章生成、内容扩展、摘要提取等功能。
-              </p>
-              <p class="text-gray-700 leading-relaxed">
-                支持自定义 AI 提示词，让创作更符合您的风格和需求。AI 自动配图功能（Beta）让您的文章更加生动。
-              </p>
-              <p class="text-gray-700 leading-relaxed">
-                无论是灵感枯竭还是时间紧迫，AI 助手都能帮您快速产出高质量内容。
-              </p>
-            </div>
           </div>
         </article>
 
@@ -35,20 +23,8 @@
             <h2>精美主题排版</h2>
             <label for="card-3">&#10539;</label>
           </header>
-          <div>
+          <div class="card-content">
             <img src="https://images.waer.ltd/notes/202510131434961.png" alt="主题排版">
-            <div class="content">
-              <p class="text-gray-700 leading-relaxed">
-                <strong>21+ 精美主题任您选择</strong><br>
-                从简约现代到古典优雅，从科技感到文艺范，每一款主题都经过精心设计，让您的文章脱颖而出。
-              </p>
-              <p class="text-gray-700 leading-relaxed">
-                支持主题自定义编辑，调整颜色、字体、间距等参数，打造专属于您的排版风格。自定义主题会自动保存，随时可以复用。
-              </p>
-              <p class="text-gray-700 leading-relaxed">
-                新增主题预览功能，选择主题时可以实时查看效果，让排版更加直观高效。
-              </p>
-            </div>
           </div>
         </article>
 
@@ -57,20 +33,8 @@
             <h2>高效编辑体验</h2>
             <label for="card-1">&#10539;</label>
           </header>
-          <div>
+          <div class="card-content">
             <img src="https://images.waer.ltd/notes/202510131435237.png" alt="编辑体验">
-            <div class="content">
-              <p class="text-gray-700 leading-relaxed">
-                <strong>流畅的 Markdown 编辑体验</strong><br>
-                支持完整的 Markdown 语法，实时预览，所见即所得。代码高亮、表格、公式等高级功能一应俱全。
-              </p>
-              <p class="text-gray-700 leading-relaxed">
-                内容模板功能让您可以保存常用的文章结构，一键应用，大幅提升创作效率。云存储支持让您的作品随时随地可访问。
-              </p>
-              <p class="text-gray-700 leading-relaxed">
-                图片处理、背景自定义、一键复制到公众号后台，每一个细节都为提升您的创作体验而设计。
-              </p>
-            </div>
           </div>
         </article>
       </section>
@@ -311,42 +275,34 @@ article>header>h2 {
   opacity: var(--_opacity, 0);
 }
 
-article>div {
+article>div.card-content {
   position: relative;
-  padding: 2rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  place-items: start;
-  gap: 2rem;
+  padding: 0;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 0 0 var(--_border-radius) var(--_border-radius);
 }
 
-@media (min-width: 600px) {
-  article>div {
-    grid-template-columns: 200px 1fr;
+@media (min-width: 768px) {
+  article>div.card-content {
+    height: 500px;
+  }
+}
+
+@media (min-width: 1024px) {
+  article>div.card-content {
+    height: 600px;
   }
 }
 
 article img {
   width: 100%;
-  height: 200px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 8px;
   transition: var(--_ani-duration) ease-in-out;
   opacity: var(--_opacity, 0);
-}
-
-article .content {
-  width: 100%;
-  max-height: 200px;
-  overflow-y: auto;
-}
-
-article p {
-  transition: var(--_ani-duration) ease-in-out;
-  transition-delay: 500ms;
-  opacity: var(--_opacity, 0);
-  margin: 0 0 1rem 0;
-  font-size: 0.9rem;
+  display: block;
 }
 
 /* 工具类 */
