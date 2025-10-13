@@ -220,7 +220,7 @@
             <!-- 积分套餐功能列表 -->
             <template v-if="product.code.includes('CREDITS')">
               <li><span class="text-green-600">✔</span> {{ getCreditsAmountLocal(product) }}积分</li>
-              <li><span class="text-green-600">✔</span> 支持AI功能使用</li>
+              <li><span class="text-green-600">✔</span> 支持所有AI功能使用</li>
               <li><span class="text-green-600">✔</span> 永久有效</li>
               <li><span class="text-green-600">✔</span> 灵活消费</li>
               <li><span class="text-green-600">✔</span> 按需使用</li>
