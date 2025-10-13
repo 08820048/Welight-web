@@ -114,13 +114,18 @@ article {
   order: var(--_order);
   z-index: var(--_order);
   scale: var(--_scale);
-  /* 移除 opacity，改为在子元素上控制 */
+  opacity: var(--_opacity);
 }
 
-article::before {
+article::before,
+article::after {
   content: "";
   position: absolute;
   border-radius: inherit;
+  z-index: -1;
+}
+
+article::before {
   z-index: -1;
   inset: calc(var(--_bg-dot-offset) * -1);
   background-image: radial-gradient(var(--_bg-dot-color) 1px, transparent 0px);
@@ -128,6 +133,11 @@ article::before {
   background-size: 5px 5px;
   background-position: center;
   border-radius: calc(var(--_border-radius) + var(--_bg-dot-offset));
+}
+
+article::after {
+  background-color: white;
+  inset: 0;
 }
 
 /* 定义每张卡片的样式 */
@@ -237,9 +247,8 @@ article>header {
   align-items: center;
   justify-content: space-between;
   background-color: var(--_bg-clr);
-  transition: background-color var(--_ani-duration) ease-in-out, opacity var(--_ani-duration) ease-in-out;
+  transition: background-color var(--_ani-duration) ease-in-out;
   border-radius: var(--_border-radius) var(--_border-radius) 0 0;
-  opacity: var(--_opacity, 1);
 }
 
 article>header>label {
@@ -271,8 +280,6 @@ article>div.card-content {
   height: 400px;
   overflow: hidden;
   border-radius: 0 0 var(--_border-radius) var(--_border-radius);
-  opacity: var(--_opacity, 1);
-  transition: opacity var(--_ani-duration) ease-in-out;
 }
 
 @media (min-width: 768px) {
