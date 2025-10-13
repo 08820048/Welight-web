@@ -2,7 +2,7 @@
   <div class="min-h-screen pt-20 pb-12 flex items-center justify-center bg-gray-50">
     <div class="container mx-auto px-4">
       <h1 class="text-3xl font-bold text-center mb-12">卡片堆叠效果测试</h1>
-      
+
       <section class="card-stack-section">
         <input class="sr-only" id="card-1" type="radio" name="panel" checked />
         <input class="sr-only" id="card-2" type="radio" name="panel" />
@@ -14,7 +14,7 @@
             <label for="card-2">&#10539;</label>
           </header>
           <div>
-            <img src="https://images.waer.ltd/notes/202509282306627.jpg" alt="AI 创作">
+            <img src="https://images.waer.ltd/notes/202510131433244.png" alt="AI 创作">
             <div class="content">
               <p class="text-gray-700 leading-relaxed">
                 <strong>强大的 AI 辅助创作功能</strong><br>
@@ -36,7 +36,7 @@
             <label for="card-3">&#10539;</label>
           </header>
           <div>
-            <img src="https://images.waer.ltd/notes/202509282306627.jpg" alt="主题排版">
+            <img src="https://images.waer.ltd/notes/202510131434961.png" alt="主题排版">
             <div class="content">
               <p class="text-gray-700 leading-relaxed">
                 <strong>21+ 精美主题任您选择</strong><br>
@@ -58,7 +58,7 @@
             <label for="card-1">&#10539;</label>
           </header>
           <div>
-            <img src="https://images.waer.ltd/notes/202509282306627.jpg" alt="编辑体验">
+            <img src="https://images.waer.ltd/notes/202510131435237.png" alt="编辑体验">
             <div class="content">
               <p class="text-gray-700 leading-relaxed">
                 <strong>流畅的 Markdown 编辑体验</strong><br>
@@ -76,7 +76,7 @@
       </section>
 
       <div class="text-center mt-12">
-        <router-link to="/" 
+        <router-link to="/"
           class="inline-flex items-center px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all duration-300">
           返回首页
         </router-link>
@@ -97,12 +97,17 @@ onMounted(() => {
 /* 卡片堆叠效果样式 */
 .card-stack-section {
   /* 默认值 */
-  --_offset-steps: 6rem; /* 向上移动的距离 */
-  --_scale-steps: 25; /* 后面卡片的缩放比例 */
-  --_opacity-steps: 15; /* 后面卡片的透明度 */
+  --_offset-steps: 6rem;
+  /* 向上移动的距离 */
+  --_scale-steps: 25;
+  /* 后面卡片的缩放比例 */
+  --_opacity-steps: 15;
+  /* 后面卡片的透明度 */
 
-  --_ani-duration: 300ms; /* 卡片元素的过渡时间 */
-  --_ani-delay: 200ms; /* 卡片元素的延迟时间 */
+  --_ani-duration: 300ms;
+  /* 卡片元素的过渡时间 */
+  --_ani-delay: 200ms;
+  /* 卡片元素的延迟时间 */
 
   /* 计算值 */
   --_offset-steps-two: calc(var(--_offset-steps) * -1);
@@ -173,7 +178,8 @@ article::after {
 
 /* 定义每张卡片的样式 */
 article:nth-of-type(1) {
-  --_bg-clr: rgba(59, 130, 246, var(--_bg-alpha, 1)); /* 蓝色 */
+  --_bg-clr: rgba(59, 130, 246, var(--_bg-alpha, 1));
+  /* 蓝色 */
   --_order: var(--_1-order);
   --_scale: var(--_1-scale);
   --_opacity: var(--_1-opacity);
@@ -183,7 +189,8 @@ article:nth-of-type(1) {
 }
 
 article:nth-of-type(2) {
-  --_bg-clr: rgba(168, 85, 247, var(--_bg-alpha, 1)); /* 紫色 */
+  --_bg-clr: rgba(168, 85, 247, var(--_bg-alpha, 1));
+  /* 紫色 */
   --_order: var(--_2-order);
   --_scale: var(--_2-scale);
   --_opacity: var(--_2-opacity);
@@ -193,7 +200,8 @@ article:nth-of-type(2) {
 }
 
 article:nth-of-type(3) {
-  --_bg-clr: rgba(236, 72, 153, var(--_bg-alpha, 1)); /* 粉色 */
+  --_bg-clr: rgba(236, 72, 153, var(--_bg-alpha, 1));
+  /* 粉色 */
   --_order: var(--_3-order);
   --_scale: var(--_3-scale);
   --_opacity: var(--_3-opacity);
@@ -269,7 +277,7 @@ article:nth-of-type(3) {
   --_2-offset: var(--_offset-steps-three);
 }
 
-article > header {
+article>header {
   padding: 0.75rem 1.5rem;
   display: flex;
   align-items: center;
@@ -279,7 +287,7 @@ article > header {
   border-radius: var(--_border-radius) var(--_border-radius) 0 0;
 }
 
-article > header > label {
+article>header>label {
   padding: 0;
   color: white;
   font-size: 1.5rem;
@@ -289,11 +297,11 @@ article > header > label {
   user-select: none;
 }
 
-article > header > label:hover {
+article>header>label:hover {
   rotate: 90deg;
 }
 
-article > header > h2 {
+article>header>h2 {
   margin: 0;
   font-weight: 600;
   font-size: 1.25rem;
@@ -303,7 +311,7 @@ article > header > h2 {
   opacity: var(--_opacity, 0);
 }
 
-article > div {
+article>div {
   position: relative;
   padding: 2rem;
   display: grid;
@@ -313,7 +321,7 @@ article > div {
 }
 
 @media (min-width: 600px) {
-  article > div {
+  article>div {
     grid-template-columns: 200px 1fr;
   }
 }
@@ -354,4 +362,3 @@ article p {
   border-width: 0;
 }
 </style>
-
