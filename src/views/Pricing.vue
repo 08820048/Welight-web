@@ -117,9 +117,9 @@
         <p class="text-lg text-gray-600 mb-4 animate-fade-in-up delay-300">
           选择适合您的许可证或月卡服务，享受完整功能与优质服务</p>
         <div class="flex justify-center animate-scale-in delay-400">
-          <button @click="showMonthlyCardActivationModal = true"
-            class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-300 text-sm transform hover:scale-105 animate-enhanced-bounce delay-500">
-            已有月卡？点击激活
+          <button disabled
+            class="px-4 py-2 bg-gray-400 text-white rounded-lg cursor-not-allowed transition-all duration-300 text-sm opacity-60">
+            已有月卡？点击激活（暂时禁用）
           </button>
         </div>
       </div>
@@ -283,6 +283,7 @@
           <li class="animate-fade-in-up delay-1200">购买后许可证将自动发送到您的邮箱，请妥善保存许可证密钥。</li>
           <li class="animate-fade-in-up delay-1300">每个许可证支持在指定数量的设备上使用。</li>
           <li class="animate-fade-in-up delay-1400">许可证密钥请在桌面应用中输入使用。</li>
+          <li class="animate-fade-in-up delay-1450">许可证购买后，可以选择购买积分套餐使用，也可以选择自己配置AI密钥进行使用。</li>
           <li class="animate-fade-in-up delay-1500">反馈交流请通过QQ群联系开发者。</li>
           <li class="animate-fade-in-up delay-1600">支持微信支付，订单有效期为30分钟。</li>
           <li class="animate-fade-in-up delay-1700">产品存在代码性质，拥有可复制性，因此购买后，无法退款</li>
