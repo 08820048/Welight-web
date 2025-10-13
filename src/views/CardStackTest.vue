@@ -270,9 +270,7 @@ article>header>h2 {
   font-weight: 600;
   font-size: 1.25rem;
   color: white;
-  transition: translate var(--_ani-duration) ease-in-out, opacity var(--_ani-duration) ease-in-out;
-  transition-delay: var(--_delay-h2, 0);
-  opacity: var(--_opacity, 0);
+  transition: translate var(--_ani-duration) ease-in-out;
 }
 
 article>div.card-content {
@@ -301,7 +299,6 @@ article img {
   height: 100%;
   object-fit: cover;
   transition: var(--_ani-duration) ease-in-out;
-  opacity: var(--_opacity, 0);
   display: block;
 }
 
