@@ -114,7 +114,7 @@ article {
   order: var(--_order);
   z-index: var(--_order);
   scale: var(--_scale);
-  opacity: var(--_opacity);
+  /* 移除 opacity，改为在子元素上控制 */
 }
 
 article::before,
@@ -247,8 +247,9 @@ article>header {
   align-items: center;
   justify-content: space-between;
   background-color: var(--_bg-clr);
-  transition: background-color var(--_ani-duration) ease-in-out;
+  transition: background-color var(--_ani-duration) ease-in-out, opacity var(--_ani-duration) ease-in-out;
   border-radius: var(--_border-radius) var(--_border-radius) 0 0;
+  opacity: var(--_opacity, 1);
 }
 
 article>header>label {
@@ -280,6 +281,8 @@ article>div.card-content {
   height: 400px;
   overflow: hidden;
   border-radius: 0 0 var(--_border-radius) var(--_border-radius);
+  opacity: var(--_opacity, 1);
+  transition: opacity var(--_ani-duration) ease-in-out;
 }
 
 @media (min-width: 768px) {
