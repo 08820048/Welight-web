@@ -218,7 +218,7 @@ import AnnouncementModal from './AnnouncementModal.vue'
 import PromotionBanner from './PromotionBanner.vue'
 import { hasNewAnnouncements as checkNewAnnouncements } from '@/data/announcements.js'
 import { donations } from '@/data/donations.js'
-import { getMenuPromotions } from '@/data/promotions.js'
+import { getMenuPromotions, hasNewPromotions, markLatestPromotionAsViewed } from '@/data/promotions.js'
 
 // 滚动状态
 const isScrolled = ref(false)
@@ -257,6 +257,10 @@ const showPromotionBanner = (promotion) => {
 // 关闭活动条幅
 const closePromotionBanner = () => {
   isPromotionBannerVisible.value = false
+  // 标记活动为已查看
+  if (currentPromotion.value) {
+    markLatestPromotionAsViewed()
+  }
   currentPromotion.value = null
 }
 
@@ -304,11 +308,20 @@ onMounted(() => {
   // 加载活动菜单
   loadMenuPromotions()
 
+  // 检查是否有新活动需要自动弹出
+  const hasNewPromo = hasNewPromotions()
+
   // 如果有新公告，延迟弹出
   if (hasNewAnnouncements.value) {
     setTimeout(() => {
       isAnnouncementVisible.value = true
     }, 1000)
+  }
+  // 如果没有新公告但有新活动，延迟弹出活动条幅
+  else if (hasNewPromo && menuPromotions.value.length > 0) {
+    setTimeout(() => {
+      showPromotionBanner(menuPromotions.value[0])
+    }, 1500) // 延迟1.5秒，避免与公告冲突
   }
 })
 

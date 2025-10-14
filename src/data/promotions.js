@@ -67,4 +67,30 @@ export function getMenuPromotions() {
   return getActivePromotions().filter((promo) => promo.showInMenu)
 }
 
+// 检查是否有新活动（用户未查看过的）
+export const hasNewPromotions = () => {
+  const lastViewedId = localStorage.getItem('welight_last_viewed_promotion')
+  const activePromotions = getMenuPromotions()
+
+  if (activePromotions.length === 0) return false
+  if (!lastViewedId) return true
+
+  // 获取最新的活动
+  const latestPromotion = activePromotions[0]
+  return latestPromotion && latestPromotion.id !== lastViewedId
+}
+
+// 标记活动为已查看
+export const markPromotionAsViewed = (promotionId) => {
+  localStorage.setItem('welight_last_viewed_promotion', promotionId)
+}
+
+// 标记最新活动为已查看
+export const markLatestPromotionAsViewed = () => {
+  const activePromotions = getMenuPromotions()
+  if (activePromotions.length > 0) {
+    markPromotionAsViewed(activePromotions[0].id)
+  }
+}
+
 export default promotions
