@@ -94,6 +94,17 @@
               </div>
             </div>
           </div>
+
+          <!-- 活动菜单项 -->
+          <button v-for="promo in menuPromotions" :key="promo.id" @click="showPromotionBanner(promo)"
+            class="relative font-bold flex items-center gap-1.5 group/promo promotion-menu-item">
+            <span class="promotion-text">{{ promo.name }}</span>
+            <span v-if="promo.menuBadge" class="promotion-flame">{{ promo.menuBadge }}</span>
+            <span v-if="promo.menuBadgeText"
+              class="absolute -top-2 -right-3 text-white text-xs px-1.5 py-0.5 rounded-full font-bold shadow-sm bg-gradient-to-r from-red-500 to-orange-500 scale-90 animate-pulse">
+              {{ promo.menuBadgeText }}
+            </span>
+          </button>
         </nav>
 
         <!-- 右侧按钮组 -->
@@ -169,6 +180,18 @@
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             交流讨论
           </router-link>
+          <!-- 移动端活动菜单项 -->
+          <button v-for="promo in menuPromotions" :key="promo.id" @click="showPromotionBanner(promo); closeMobileMenu()"
+            class="w-full text-left px-4 py-2 hover:bg-orange-50 rounded-lg transition-all font-bold flex items-center justify-between promotion-menu-item-mobile">
+            <span class="flex items-center gap-2">
+              <span v-if="promo.menuBadge" class="promotion-flame">{{ promo.menuBadge }}</span>
+              <span class="promotion-text">{{ promo.name }}</span>
+            </span>
+            <span v-if="promo.menuBadgeText"
+              class="text-white text-xs px-2 py-0.5 rounded-full font-bold bg-gradient-to-r from-red-500 to-orange-500 animate-pulse">
+              {{ promo.menuBadgeText }}
+            </span>
+          </button>
           <router-link to="/donation" @click="closeMobileMenu"
             class="block px-4 py-2 text-pink-600 hover:bg-pink-50 rounded-lg transition-colors font-medium">
             ❤️ 赞助支持
@@ -182,6 +205,9 @@
 
     <!-- 公告模态框 -->
     <AnnouncementModal :isVisible="isAnnouncementVisible" @close="closeAnnouncements" />
+
+    <!-- 活动条幅 -->
+    <PromotionBanner v-model="isPromotionBannerVisible" :promotion="currentPromotion" @close="closePromotionBanner" />
   </header>
 </template>
 
@@ -189,8 +215,10 @@
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import ChangelogModal from './ChangelogModal.vue'
 import AnnouncementModal from './AnnouncementModal.vue'
+import PromotionBanner from './PromotionBanner.vue'
 import { hasNewAnnouncements as checkNewAnnouncements } from '@/data/announcements.js'
 import { donations } from '@/data/donations.js'
+import { getMenuPromotions } from '@/data/promotions.js'
 
 // 滚动状态
 const isScrolled = ref(false)
@@ -209,6 +237,28 @@ const hasNewAnnouncements = ref(false)
 
 // 计算赞助次数
 const donationCount = computed(() => donations.length)
+
+// 活动相关状态
+const isPromotionBannerVisible = ref(false)
+const currentPromotion = ref(null)
+const menuPromotions = ref([])
+
+// 获取菜单中的活动
+const loadMenuPromotions = () => {
+  menuPromotions.value = getMenuPromotions()
+}
+
+// 显示活动条幅
+const showPromotionBanner = (promotion) => {
+  currentPromotion.value = promotion
+  isPromotionBannerVisible.value = true
+}
+
+// 关闭活动条幅
+const closePromotionBanner = () => {
+  isPromotionBannerVisible.value = false
+  currentPromotion.value = null
+}
 
 // 切换移动端菜单
 const toggleMobileMenu = () => {
@@ -251,6 +301,9 @@ onMounted(() => {
   window.addEventListener('scroll', handleScroll)
   hasNewAnnouncements.value = checkNewAnnouncements()
 
+  // 加载活动菜单
+  loadMenuPromotions()
+
   // 如果有新公告，延迟弹出
   if (hasNewAnnouncements.value) {
     setTimeout(() => {
@@ -280,5 +333,89 @@ onUnmounted(() => {
 .mobile-menu-leave-to {
   opacity: 0;
   transform: translateY(-10px);
+}
+
+/* 活动菜单项样式 */
+.promotion-menu-item {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.promotion-menu-item:hover {
+  transform: translateY(-2px);
+}
+
+/* 活动文字渐变和动画 */
+.promotion-text {
+  background: #ff4444;
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: 'ZCOOL XiaoWei', 'Ma Shan Zheng', 'Noto Serif SC', 'STKaiti', 'KaiTi', serif;
+  font-size: 1.5rem;
+  /* 24px */
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 20px rgba(255, 68, 68, 0.4), 0 2px 10px rgba(255, 68, 68, 0.3);
+}
+
+
+
+/* 火焰图标动画 */
+.promotion-flame {
+  display: inline-block;
+  animation: flame-flicker 1.5s ease-in-out infinite, flame-float 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 107, 107, 0.6)) drop-shadow(0 0 12px rgba(255, 142, 83, 0.4));
+}
+
+/* 火焰闪烁动画 */
+@keyframes flame-flicker {
+
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+
+  25% {
+    transform: scale(1.1) rotate(-5deg);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(0.95) rotate(5deg);
+    opacity: 1;
+  }
+
+  75% {
+    transform: scale(1.05) rotate(-3deg);
+    opacity: 0.95;
+  }
+}
+
+/* 火焰上下浮动 */
+@keyframes flame-float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* 悬停时增强效果 */
+.promotion-menu-item:hover .promotion-flame {
+  animation: flame-flicker 0.8s ease-in-out infinite, flame-float 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(255, 107, 107, 0.8)) drop-shadow(0 0 16px rgba(255, 142, 83, 0.6));
+}
+
+.promotion-menu-item:hover .promotion-text {
+  text-shadow: 0 0 30px rgba(255, 68, 68, 0.6), 0 4px 15px rgba(255, 68, 68, 0.4);
+  transform: scale(1.05);
 }
 </style>
