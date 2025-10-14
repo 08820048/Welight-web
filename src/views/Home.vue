@@ -170,11 +170,11 @@
 
             <!-- Card Stack Container -->
             <div class="relative w-full max-w-3xl ml-auto animate-scale-in delay-500">
-              <section class="hero-card-stack-section">
+              <section class="hero-card-stack-section" @mouseenter="pauseAutoSwitch" @mouseleave="resumeAutoSwitch">
                 <!-- Radio inputs for card switching -->
-                <input class="sr-only" id="hero-card-1" type="radio" name="hero-panel" checked />
-                <input class="sr-only" id="hero-card-2" type="radio" name="hero-panel" />
-                <input class="sr-only" id="hero-card-3" type="radio" name="hero-panel" />
+                <input ref="heroCard1" class="sr-only" id="hero-card-1" type="radio" name="hero-panel" checked />
+                <input ref="heroCard2" class="sr-only" id="hero-card-2" type="radio" name="hero-panel" />
+                <input ref="heroCard3" class="sr-only" id="hero-card-3" type="radio" name="hero-panel" />
 
                 <!-- Card 1 - AI 智能创作 -->
                 <article class="hero-card">
@@ -1204,6 +1204,48 @@ import { useSEO, seoConfigs } from '@/composables/useSEO'
 // SEO配置
 useSEO(seoConfigs.home)
 
+// Hero卡片自动切换
+const heroCard1 = ref(null)
+const heroCard2 = ref(null)
+const heroCard3 = ref(null)
+let autoSwitchTimer = null
+let isAutoSwitchPaused = false
+
+// 自动切换卡片
+const startAutoSwitch = () => {
+  if (autoSwitchTimer) {
+    clearInterval(autoSwitchTimer)
+  }
+
+  let currentIndex = 0
+  const cards = [heroCard1, heroCard2, heroCard3]
+
+  autoSwitchTimer = setInterval(() => {
+    if (!isAutoSwitchPaused && cards[0].value) {
+      currentIndex = (currentIndex + 1) % 3
+      cards[currentIndex].value.checked = true
+    }
+  }, 4000) // 每4秒切换一次
+}
+
+// 暂停自动切换（鼠标悬停时）
+const pauseAutoSwitch = () => {
+  isAutoSwitchPaused = true
+}
+
+// 恢复自动切换（鼠标离开时）
+const resumeAutoSwitch = () => {
+  isAutoSwitchPaused = false
+}
+
+// 停止自动切换
+const stopAutoSwitch = () => {
+  if (autoSwitchTimer) {
+    clearInterval(autoSwitchTimer)
+    autoSwitchTimer = null
+  }
+}
+
 /**
  * 动态加载撒花特效库
  */
@@ -1588,10 +1630,20 @@ onMounted(async () => {
 
     // 初始化动画
     initializeAnimations()
+
+    // 启动Hero卡片自动切换（延迟启动，等待页面加载完成）
+    setTimeout(() => {
+      startAutoSwitch()
+    }, 2000)
   } catch (error) {
     console.error('页面初始化失败:', error)
     // 即使数据加载失败，也要初始化动画
     initializeAnimations()
+
+    // 启动Hero卡片自动切换
+    setTimeout(() => {
+      startAutoSwitch()
+    }, 2000)
   }
 })
 
@@ -1638,6 +1690,9 @@ onUnmounted(() => {
 
   // 清理页面可见性监听
   document.removeEventListener('visibilitychange', handleVisibilityChange)
+
+  // 停止Hero卡片自动切换
+  stopAutoSwitch()
 
   // 重置状态
   isInitialized.value = false
@@ -1825,7 +1880,7 @@ onUnmounted(() => {
 
 /* 定义每张卡片的样式 */
 .hero-card:nth-of-type(1) {
-  --_bg-clr: rgba(59, 130, 246, var(--_bg-alpha, 1));
+  --_bg-clr: #07c160;
   --_order: var(--_1-order, 3);
   --_scale: var(--_1-scale, 1);
   --_opacity: var(--_1-opacity, 1);
@@ -1835,7 +1890,7 @@ onUnmounted(() => {
 }
 
 .hero-card:nth-of-type(2) {
-  --_bg-clr: rgba(168, 85, 247, var(--_bg-alpha, 1));
+  --_bg-clr: #2c69eb;
   --_order: var(--_2-order, 2);
   --_scale: var(--_2-scale, var(--scale-steps-two));
   --_opacity: var(--_2-opacity, var(--opacity-steps-two));
@@ -1845,7 +1900,7 @@ onUnmounted(() => {
 }
 
 .hero-card:nth-of-type(3) {
-  --_bg-clr: rgba(236, 72, 153, var(--_bg-alpha, 1));
+  --_bg-clr: #ed5d0e;
   --_order: var(--_3-order, 1);
   --_scale: var(--_3-scale, var(--scale-steps-three));
   --_opacity: var(--_3-opacity, var(--opacity-steps-three));

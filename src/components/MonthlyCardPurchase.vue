@@ -36,9 +36,9 @@
       <!-- 服务条款和隐私政策提示 -->
       <div class="text-xs text-gray-500 text-center mb-3">
         购买表示您已同意我们的
-        <button @click="showTermsModal = true" class="text-green-600 hover:text-green-700 underline">《服务条款》</button>
+        <router-link to="/terms" class="text-green-600 hover:text-green-700 underline">《服务条款》</router-link>
         和
-        <button @click="showPrivacyModal = true" class="text-green-600 hover:text-green-700 underline">《隐私政策》</button>
+        <router-link to="/privacy" class="text-green-600 hover:text-green-700 underline">《隐私政策》</router-link>
       </div>
 
       <button type="submit" :disabled="loading || !form.serviceType"
@@ -101,11 +101,6 @@
       </div>
     </div>
 
-    <!-- 服务条款模态框 -->
-    <TermsOfServiceModal :isVisible="showTermsModal" @close="showTermsModal = false" />
-
-    <!-- 隐私政策模态框 -->
-    <PrivacyPolicyModal :isVisible="showPrivacyModal" @close="showPrivacyModal = false" />
   </div>
 </template>
 
@@ -119,8 +114,6 @@ import {
   purchaseMonthlyCard,
   checkOrderStatus
 } from '../services/monthlyCardService.js'
-import TermsOfServiceModal from './TermsOfServiceModal.vue'
-import PrivacyPolicyModal from './PrivacyPolicyModal.vue'
 
 // Props
 const props = defineProps({
@@ -145,8 +138,6 @@ const orderStatus = ref('')
 const paymentSuccess = ref(false)
 let pollingInterval = null
 const monthlyCardProducts = ref([])
-const showTermsModal = ref(false)
-const showPrivacyModal = ref(false)
 
 // 异步加载月卡产品数据
 async function loadMonthlyCardProducts() {

@@ -61,7 +61,7 @@
             <div
               class="absolute top-full left-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60]">
               <div class="py-2">
-                <a href="https://qm.qq.com/q/hmxppllpqE" target="_blank"
+                <router-link to="/community"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600 transition-colors duration-200">
                   <div class="flex items-center space-x-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,7 +70,7 @@
                     </svg>
                     <span>交流讨论</span>
                   </div>
-                </a>
+                </router-link>
                 <a href="https://docs.qq.com/sheet/DS1RITFdUR1BQSURY?tdsourcetag=nt-grpaio-file" target="_blank"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600 transition-colors duration-200">
                   <div class="flex items-center space-x-2">
@@ -165,6 +165,10 @@
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             文档
           </a>
+          <router-link to="/community" @click="closeMobileMenu"
+            class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
+            交流讨论
+          </router-link>
           <router-link to="/donation" @click="closeMobileMenu"
             class="block px-4 py-2 text-pink-600 hover:bg-pink-50 rounded-lg transition-colors font-medium">
             ❤️ 赞助支持

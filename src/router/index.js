@@ -43,6 +43,11 @@ const router = createRouter({
       path: '/disclaimer',
       name: 'disclaimer',
       component: () => import('../views/Disclaimer.vue')
+    },
+    {
+      path: '/community',
+      name: 'community',
+      component: () => import('../views/Community.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {

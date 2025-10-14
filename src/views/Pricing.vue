@@ -42,11 +42,9 @@
               <!-- 服务条款和隐私政策提示 -->
               <div class="text-xs text-gray-500 text-center mb-3">
                 购买表示您已同意我们的
-                <button @click="showTermsModal = true"
-                  class="text-green-600 hover:text-green-700 underline">《服务条款》</button>
+                <router-link to="/terms" class="text-green-600 hover:text-green-700 underline">《服务条款》</router-link>
                 和
-                <button @click="showPrivacyModal = true"
-                  class="text-green-600 hover:text-green-700 underline">《隐私政策》</button>
+                <router-link to="/privacy" class="text-green-600 hover:text-green-700 underline">《隐私政策》</router-link>
               </div>
 
               <button type="submit" :disabled="loading"
@@ -229,6 +227,23 @@
             </template>
             <!-- 其他产品功能列表 -->
             <template v-else>
+              <li v-if="product.permanent" class="relative">
+                <div
+                  class="flex items-center justify-between bg-gradient-to-r from-orange-50 to-red-50 -mx-2 px-2 py-1.5 rounded-lg border border-orange-200">
+                  <span class="flex items-center gap-1.5">
+                    <span class="text-green-600">✔</span>
+                    <span class="font-medium text-gray-900">附赠100积分</span>
+                  </span>
+                  <span
+                    class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold text-white bg-gradient-to-r from-orange-500 to-red-500 rounded-full shadow-sm animate-pulse">
+                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" />
+                    </svg>
+                    限时
+                  </span>
+                </div>
+              </li>
               <li v-if="product.permanent"><span class="text-green-600">✔</span> 永久授权</li>
               <li v-else><span class="text-green-600">✔</span> {{ product.validityDays }}天有效期</li>
               <li v-if="product.permanent"><span class="text-green-600">✔</span> 7天免费试用</li>
@@ -308,12 +323,6 @@
     <!-- 定价说明悬浮按钮 -->
     <FloatingPricingInfoButton />
 
-    <!-- 服务条款模态框 -->
-    <TermsOfServiceModal :isVisible="showTermsModal" @close="showTermsModal = false" />
-
-    <!-- 隐私政策模态框 -->
-    <PrivacyPolicyModal :isVisible="showPrivacyModal" @close="showPrivacyModal = false" />
-
     <!-- 积分套餐购买组件 -->
     <CreditsPurchase v-if="showCreditsModal" @close="showCreditsModal = false"
       @success="handleCreditsPurchaseSuccess" />
@@ -347,8 +356,6 @@ import MonthlyCardPurchase from '../components/MonthlyCardPurchase.vue'
 import MonthlyCardActivation from '../components/MonthlyCardActivation.vue'
 import CreditsPurchase from '../components/CreditsPurchase.vue'
 import FloatingPricingInfoButton from '../components/FloatingPricingInfoButton.vue'
-import TermsOfServiceModal from '../components/TermsOfServiceModal.vue'
-import PrivacyPolicyModal from '../components/PrivacyPolicyModal.vue'
 
 /**
  * 动态加载撒花特效库
@@ -413,8 +420,6 @@ const loadingProducts = ref(true)
 const showBuyModal = ref(false)
 const showMonthlyCardModal = ref(false)
 const showMonthlyCardActivationModal = ref(false)
-const showTermsModal = ref(false)
-const showPrivacyModal = ref(false)
 const showCreditsModal = ref(false)
 const selectedProduct = ref(null)
 const toastMessage = ref('')
