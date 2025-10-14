@@ -58,7 +58,7 @@
 
       <!-- 底部版权信息 -->
       <div class="mt-8 pt-8 border-t border-gray-200">
-        <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-4">
           <p class="text-gray-500 text-sm">
             © {{ currentYear }} Welight。保留所有权利。
           </p>
@@ -74,6 +74,15 @@
             <router-link to="/disclaimer"
               class="text-gray-500 hover:text-primary-600 text-sm transition-colors duration-200">免责声明</router-link>
           </div>
+        </div>
+        <!-- 备案信息 - 居中显示 -->
+        <div class="text-center">
+          <p class="text-gray-400 text-xs">
+            <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer"
+              class="hover:text-primary-600 transition-colors duration-200">
+              黔ICP备2021010295号-1
+            </a>
+          </p>
         </div>
       </div>
     </div>
