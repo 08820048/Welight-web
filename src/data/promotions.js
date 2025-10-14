@@ -34,6 +34,7 @@ const promotions = [
             <div class="promo-info-item promo-rules-item">
               <h3>活动规则</h3>
               <ul>
+                <li>活动时间：10月20日 - 11月14日</li>
                 <li>活动期间购买的所有商品均可享受对应优惠</li>
                 <li>优惠不可叠加使用，以最优惠价格为准</li>
                 <li>赠送的积分将在订单完成后自动发放到账户</li>
@@ -42,7 +43,7 @@ const promotions = [
           </div>
           <div class="promo-actions">
             <a href="/pricing" class="promo-btn-main">立即抢购</a>
-            <a href="/community" class="promo-btn-sub">加入社群</a>
+            <a href="/community" class="promo-btn-sub">加入社群，享更多福利</a>
           </div>
         </div>
       `

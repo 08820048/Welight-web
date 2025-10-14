@@ -37,8 +37,8 @@
             </span> -->
           </router-link>
           <router-link to="/donation"
-            class="hover:text-pink-700 transition-colors font-medium text-pink-600 relative flex items-center gap-1.5"
-            active-class="text-pink-700">
+            class="hover:text-slate-900 transition-colors font-medium relative flex items-center gap-1.5"
+            active-class="text-primary-600">
             赞助
             <!-- <div v-if="donationCount > 0"
               class="bg-yellow-400 text-slate-900 text-xs px-1.5 py-0.5 rounded-full font-bold min-w-[20px] text-center shadow-sm scale-75">
@@ -193,7 +193,7 @@
             </span>
           </button>
           <router-link to="/donation" @click="closeMobileMenu"
-            class="block px-4 py-2 text-pink-600 hover:bg-pink-50 rounded-lg transition-colors font-medium">
+            class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors font-medium">
             ❤️ 赞助支持
           </router-link>
         </nav>
@@ -358,7 +358,6 @@ onUnmounted(() => {
   /* 24px */
   font-weight: 900;
   letter-spacing: 0.08em;
-  text-shadow: 0 0 20px rgba(255, 68, 68, 0.4), 0 2px 10px rgba(255, 68, 68, 0.3);
 }
 
 
@@ -415,7 +414,6 @@ onUnmounted(() => {
 }
 
 .promotion-menu-item:hover .promotion-text {
-  text-shadow: 0 0 30px rgba(255, 68, 68, 0.6), 0 4px 15px rgba(255, 68, 68, 0.4);
   transform: scale(1.05);
 }
 </style>

@@ -33,6 +33,17 @@
 
             <!-- 倒计时区域 -->
             <div v-if="promotion && countdown.total > 0" class="countdown-section">
+              <!-- 倒计时提示文字 - 上方居中 -->
+              <div class="countdown-hint">
+                <svg class="hint-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span class="hint-text">
+                  {{ countdownPhase === 'preheat' ? '距离活动开始' : '距离活动结束' }}
+                </span>
+              </div>
+
               <div class="countdown-wrapper">
                 <div class="countdown-item">
                   <div class="countdown-digit" :class="{ 'flash-animation': flashDays }">{{ countdown.days }}</div>
@@ -55,35 +66,6 @@
                   </div>
                   <div class="countdown-label">秒</div>
                 </div>
-              </div>
-
-              <!-- 社群提醒引导 -->
-              <div class="community-reminder">
-                <div class="reminder-card">
-                  <div class="reminder-icon">
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z">
-                      </path>
-                    </svg>
-                  </div>
-                  <div class="reminder-content">
-                    <h4 class="reminder-title">
-                      {{ countdownPhase === 'preheat' ? '想第一时间获得活动通知？' : '不想错过任何优惠信息？' }}
-                    </h4>
-                    <p class="reminder-desc">
-                      加入 Welight 官方社群，活动开始时我们会在群内第一时间通知您！
-                    </p>
-                  </div>
-                </div>
-                <a href="/community" class="join-community-btn">
-                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
-                    </path>
-                  </svg>
-                  立即加入社群，获取活动提醒
-                </a>
               </div>
             </div>
 
@@ -250,8 +232,6 @@ const triggerFlash = (unit) => {
   }
 }
 
-
-
 // 启动倒计时
 const startCountdown = () => {
   calculateCountdown()
@@ -411,14 +391,52 @@ onUnmounted(() => {
 /* 倒计时区域 */
 .countdown-section {
   margin: 30px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .countdown-wrapper {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-bottom: 32px;
   flex-wrap: wrap;
+}
+
+/* 倒计时提示文字 - 上方居中 */
+.countdown-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.countdown-hint:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.hint-icon {
+  width: 18px;
+  height: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  flex-shrink: 0;
+}
+
+.hint-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .countdown-item {
@@ -494,113 +512,12 @@ onUnmounted(() => {
   }
 }
 
-/* 社群提醒引导 */
-.community-reminder {
-  margin-top: 32px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.reminder-card {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 20px;
-  display: flex;
-  gap: 20px;
-  align-items: flex-start;
-  transition: all 0.3s ease;
-}
-
-.reminder-card:hover {
-  background: rgba(255, 255, 255, 0.15);
-  border-color: rgba(255, 255, 255, 0.3);
-  transform: translateY(-2px);
-}
-
-.reminder-icon {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.reminder-content {
-  flex: 1;
-  text-align: left;
-}
-
-.reminder-title {
-  color: white;
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0 0 8px 0;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-}
-
-.reminder-desc {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 15px;
-  line-height: 1.6;
-  margin: 0;
-}
-
-.join-community-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 16px 24px;
-  background: white;
-  color: #ff4444;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 700;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  position: relative;
-  overflow: hidden;
-}
-
-.join-community-btn::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 68, 68, 0.2), transparent);
-  transition: left 0.5s;
-}
-
-.join-community-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(255, 68, 68, 0.3);
-}
-
-.join-community-btn:hover::before {
-  left: 100%;
-}
-
-.join-community-btn:active {
-  transform: translateY(-1px);
-}
-
-
-
 /* 响应式调整 */
 @media (max-width: 640px) {
+  .countdown-section {
+    gap: 12px;
+  }
+
   .countdown-wrapper {
     gap: 10px;
   }
@@ -620,31 +537,17 @@ onUnmounted(() => {
     font-size: 12px;
   }
 
-  .reminder-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
+  .countdown-hint {
+    padding: 6px 16px;
   }
 
-  .reminder-icon {
-    margin: 0 auto;
+  .hint-icon {
+    width: 16px;
+    height: 16px;
   }
 
-  .reminder-content {
-    text-align: center;
-  }
-
-  .reminder-title {
-    font-size: 16px;
-  }
-
-  .reminder-desc {
-    font-size: 14px;
-  }
-
-  .join-community-btn {
-    font-size: 15px;
-    padding: 14px 20px;
+  .hint-text {
+    font-size: 12px;
   }
 }
 </style>
