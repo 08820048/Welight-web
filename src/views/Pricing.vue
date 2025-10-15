@@ -1,6 +1,43 @@
 <template>
   <div class="min-h-screen text-gray-200 py-12 px-4 pt-24 relative overflow-hidden">
     <div class="max-w-4xl mx-auto">
+      <!-- 服务状态提示横幅 -->
+      <div v-if="serviceStatus && !isServiceCurrentlyAvailable"
+        class="mb-6 p-4 rounded-lg border-l-4 animate-fade-in-up" :class="{
+          'bg-yellow-50 border-yellow-400': serviceStatus.statusCode === 'MAINTENANCE' || serviceStatus.statusCode === 'DEGRADED',
+          'bg-red-50 border-red-400': serviceStatus.statusCode === 'FAULT'
+        }">
+        <div class="flex items-start">
+          <div class="flex-shrink-0">
+            <svg class="w-5 h-5 mt-0.5" :class="{
+              'text-yellow-600': serviceStatus.statusCode === 'MAINTENANCE' || serviceStatus.statusCode === 'DEGRADED',
+              'text-red-600': serviceStatus.statusCode === 'FAULT'
+            }" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3 flex-1">
+            <h3 class="text-sm font-medium" :class="{
+              'text-yellow-800': serviceStatus.statusCode === 'MAINTENANCE' || serviceStatus.statusCode === 'DEGRADED',
+              'text-red-800': serviceStatus.statusCode === 'FAULT'
+            }">
+              {{ serviceStatus.statusName }}
+            </h3>
+            <div class="mt-1 text-sm" :class="{
+              'text-yellow-700': serviceStatus.statusCode === 'MAINTENANCE' || serviceStatus.statusCode === 'DEGRADED',
+              'text-red-700': serviceStatus.statusCode === 'FAULT'
+            }">
+              <p>{{ serviceStatus.message }}</p>
+              <p v-if="serviceStatus.estimatedRecoveryTime" class="mt-1">
+                预计恢复时间: {{ formatRecoveryTime(serviceStatus.estimatedRecoveryTime) }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 购买弹窗 -->
       <div v-if="showBuyModal"
         class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop animate-fade-in">
@@ -262,23 +299,32 @@
           </button>
           <!-- 积分套餐购买 -->
           <div v-else-if="product.code.includes('CREDITS')" class="space-y-2">
-            <button @click="purchaseProduct(product)"
-              class="w-full py-2 px-4 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold shadow transition-colors duration-200">
-              立即购买
+            <button @click="purchaseProduct(product)" :disabled="!isServiceCurrentlyAvailable"
+              :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
+              class="w-full py-2 px-4 text-white rounded-lg font-semibold shadow transition-colors duration-200" :class="{
+                'bg-green-600 hover:bg-green-700': isServiceCurrentlyAvailable,
+                'bg-gray-400 cursor-not-allowed': !isServiceCurrentlyAvailable
+              }">
+              {{ getPurchaseButtonText(product) }}
             </button>
-            <button @click="showCreditsModal = true"
-              class="w-full py-2 px-4 bg-green-50 text-green-600 border border-green-200 rounded-lg font-medium hover:bg-green-100 transition-colors duration-200">
+            <button @click="showCreditsModal = true" :disabled="!isServiceCurrentlyAvailable"
+              class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
+                'bg-green-50 text-green-600 border-green-200 hover:bg-green-100': isServiceCurrentlyAvailable,
+                'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed': !isServiceCurrentlyAvailable
+              }">
               更多套餐
             </button>
           </div>
           <!-- 其他产品正常购买按钮 -->
-          <button v-else
-            class="w-full py-2 px-4 text-white rounded-lg font-semibold shadow transform transition-all duration-200 hover:shadow-lg purchase-button"
+          <button v-else @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
+            :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
+            class="w-full py-2 px-4 text-white rounded-lg font-semibold shadow transform transition-all duration-200 purchase-button"
             :class="{
-              'bg-orange-600 hover:bg-orange-700': product.code.includes('AI_SERVICE'),
-              'bg-blue-500 hover:bg-blue-600': product.permanent
-            }" @click="handleProductPurchase(product)">
-            立即购买
+              'bg-orange-600 hover:bg-orange-700 hover:shadow-lg': product.code.includes('AI_SERVICE') && isServiceCurrentlyAvailable,
+              'bg-blue-500 hover:bg-blue-600 hover:shadow-lg': product.permanent && isServiceCurrentlyAvailable,
+              'bg-gray-400 cursor-not-allowed': !isServiceCurrentlyAvailable
+            }">
+            {{ getPurchaseButtonText(product) }}
           </button>
           <!-- 右上角条状标签 - 参考源码实现 -->
           <div v-if="!product.code.includes('MONTHLY')"
@@ -339,7 +385,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, computed } from 'vue'
 import {
   getProducts,
   createPaymentOrder,
@@ -352,6 +398,13 @@ import {
 import {
   getCreditPackages
 } from '../services/creditsService.js'
+import {
+  getServiceStatus,
+  isServiceAvailable,
+  getStatusDisplayText,
+  getStatusTooltip,
+  createServiceStatusMonitor
+} from '../services/serviceStatusService.js'
 import MonthlyCardPurchase from '../components/MonthlyCardPurchase.vue'
 import MonthlyCardActivation from '../components/MonthlyCardActivation.vue'
 import CreditsPurchase from '../components/CreditsPurchase.vue'
@@ -439,12 +492,81 @@ let pollingPromise = null
 const qrCodeImg = ref('')
 const monthlyCardPurchaseRef = ref(null)
 
+// 服务状态相关
+const serviceStatus = ref(null)
+let statusMonitor = null
+
 // 滚动动画相关
 let scrollObserver = null
+
+// 计算属性：服务是否可用
+const isServiceCurrentlyAvailable = computed(() => {
+  return isServiceAvailable(serviceStatus.value)
+})
+
+// 获取购买按钮文本
+function getPurchaseButtonText(product) {
+  if (!isServiceCurrentlyAvailable.value) {
+    return getStatusDisplayText(serviceStatus.value)
+  }
+  return '立即购买'
+}
+
+// 格式化恢复时间
+function formatRecoveryTime(dateTimeStr) {
+  if (!dateTimeStr) return ''
+
+  try {
+    const date = new Date(dateTimeStr)
+    const year = date.getFullYear()
+    const month = String(date.getMonth() + 1).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
+    const hours = String(date.getHours()).padStart(2, '0')
+    const minutes = String(date.getMinutes()).padStart(2, '0')
+
+    return `${year}-${month}-${day} ${hours}:${minutes}`
+  } catch (error) {
+    console.error('日期格式化失败:', error)
+    return dateTimeStr
+  }
+}
+
+// 初始化服务状态
+async function initServiceStatus() {
+  try {
+    // 获取初始服务状态
+    serviceStatus.value = await getServiceStatus()
+    console.log('服务状态:', serviceStatus.value)
+
+    // 创建状态监控器，每5分钟检查一次
+    statusMonitor = createServiceStatusMonitor((newStatus) => {
+      console.log('服务状态更新:', newStatus)
+      serviceStatus.value = newStatus
+
+      // 如果服务状态变为不可用，显示提示
+      if (!isServiceAvailable(newStatus)) {
+        showSuccessToast(`⚠️ ${newStatus.statusName}: ${newStatus.message}`)
+      }
+    }, 5 * 60 * 1000) // 5分钟检查一次
+
+    // 启动监控
+    await statusMonitor.start()
+  } catch (error) {
+    console.error('初始化服务状态失败:', error)
+    // 失败时使用默认正常状态
+    serviceStatus.value = {
+      statusCode: 'NORMAL',
+      statusName: '服务正常',
+      available: true
+    }
+  }
+}
 
 // 生命周期钩子
 onMounted(async () => {
   await loadProducts()
+  // 初始化服务状态检查
+  await initServiceStatus()
   // 初始化滚动动画
   initScrollAnimations()
   // 预加载撒花特效库
@@ -454,6 +576,11 @@ onMounted(async () => {
 onUnmounted(() => {
   if (pollingPromise) {
     pollingPromise = null
+  }
+  // 停止服务状态监控
+  if (statusMonitor) {
+    statusMonitor.stop()
+    statusMonitor = null
   }
   // 清理滚动监听器
   if (scrollObserver) {

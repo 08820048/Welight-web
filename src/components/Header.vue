@@ -98,6 +98,9 @@
           <!-- 活动菜单项 -->
           <button v-for="promo in menuPromotions" :key="promo.id" @click="showPromotionBanner(promo)"
             class="relative font-bold flex items-center gap-1.5 group/promo promotion-menu-item">
+            <!-- 迷你倒计时 - 放在上方 -->
+            <MiniCountdown :promotion="promo" @click.stop="showPromotionBanner(promo)" class="absolute -top-5"
+              style="left: 65px;" />
             <span class="promotion-text">{{ promo.name }}</span>
             <span v-if="promo.menuBadge" class="promotion-flame">{{ promo.menuBadge }}</span>
             <span v-if="promo.menuBadgeText"
@@ -216,6 +219,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 import ChangelogModal from './ChangelogModal.vue'
 import AnnouncementModal from './AnnouncementModal.vue'
 import PromotionBanner from './PromotionBanner.vue'
+import MiniCountdown from './MiniCountdown.vue'
 import { hasNewAnnouncements as checkNewAnnouncements } from '@/data/announcements.js'
 import { donations } from '@/data/donations.js'
 import { getMenuPromotions, hasNewPromotions, markLatestPromotionAsViewed } from '@/data/promotions.js'
