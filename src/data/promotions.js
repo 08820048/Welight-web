@@ -31,6 +31,11 @@ const promotions = [
               <p>全场 <strong>8.8折</strong></p>
               <span>所有积分套餐享受特别折扣</span>
             </div>
+            <div class="promo-info-item">
+              <h3>许可证限制特惠中</h3>
+              <p>特惠现价<strong>14.99元</strong></p>
+              <span>活动结束后恢复原价<strong>49.99元</strong></span>
+            </div>
             <div class="promo-info-item promo-rules-item">
               <h3>活动规则</h3>
               <ul>
@@ -43,7 +48,7 @@ const promotions = [
           </div>
           <div class="promo-actions">
             <a href="/pricing" class="promo-btn-main">立即抢购</a>
-            <a href="/community" class="promo-btn-sub">加入社群，享更多福利</a>
+            <a href="https://qm.qq.com/q/nNA64h5d6K" class="promo-btn-sub">加入社群，享更多福利</a>
           </div>
         </div>
       `

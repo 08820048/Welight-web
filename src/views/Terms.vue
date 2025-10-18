@@ -171,7 +171,7 @@
 
             <p><span class="font-semibold">2.</span> 本协议中的标题仅为方便而设，不影响对本协议的理解。</p>
 
-            <p><span class="font-semibold">3.</span> 如果您对本协议或本服务有任何疑问，请通过 QQ 474919458</p>
+            <p><span class="font-semibold">3.</span> 如果您对本协议或本服务有任何疑问，请通过 QQ 1071558803</p>
           </div>
         </section>
 
@@ -180,7 +180,7 @@
           <h2 class="text-xl font-bold text-gray-900 mb-4">联系我们</h2>
           <p class="text-gray-700 mb-3">如果您对本服务条款有任何疑问或建议，请通过以下方式联系我们：</p>
           <ul class="space-y-2 text-gray-700">
-            <li><strong>QQ群：</strong>474919458</li>
+            <li><strong>QQ群：</strong>1071558803</li>
             <li><strong>官方网站：</strong><a href="https://welight.waer.ltd"
                 class="text-blue-600 hover:underline">https://welight.waer.ltd</a></li>
           </ul>
