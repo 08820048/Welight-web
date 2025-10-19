@@ -32,7 +32,7 @@ const promotions = [
               <span>所有积分套餐享受特别折扣</span>
             </div>
             <div class="promo-info-item">
-              <h3>许可证限制特惠中</h3>
+              <h3>许可证限时特惠中</h3>
               <p>特惠现价<strong>14.99元</strong></p>
               <span>活动结束后恢复原价<strong>49.99元</strong></span>
             </div>
