@@ -124,7 +124,7 @@
           </button>
 
           <!-- 文档按钮 -->
-          <a href="https://docs.waer.ltd/" target="_blank"
+          <router-link to="/documentation"
             class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-white/30 text-sm text-slate-700 shadow-sm hover:bg-white/70 transition-all duration-200 backdrop-blur-sm"
             title="查看文档">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -132,10 +132,7 @@
                 d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
             <span>文档</span>
-            <span class="text-white text-xs px-1.5 py-0.5 rounded-full font-medium bg-orange-500">
-              完善中
-            </span>
-          </a>
+          </router-link>
 
           <!-- 移动端菜单按钮 -->
           <button @click="toggleMobileMenu"
@@ -175,10 +172,10 @@
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             月卡管理
           </router-link>
-          <a href="https://docs.waer.ltd/" target="_blank"
+          <router-link to="/documentation" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             文档
-          </a>
+          </router-link>
           <router-link to="/community" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             交流讨论

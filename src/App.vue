@@ -1,22 +1,12 @@
 <template>
   <div id="app">
-    <!-- Spline 3D 背景 - 懒加载 -->
-    <div class="fixed top-0 left-0 w-full h-full z-0 pointer-events-none">
-      <iframe v-if="shouldLoadSpline"
-        src="https://my.spline.design/celestialflowabstractdigitalform-ObUlVgj70g2y4bbx5vBKSfxN/" frameborder="0"
-        width="100%" height="100%" class="w-full h-full pointer-events-none" id="aura-spline">
-      </iframe>
-      <!-- 加载前的占位背景 -->
-      <div v-else
-        class="w-full h-full bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-purple-900 dark:to-indigo-900">
-      </div>
-    </div>
+    <!-- 文档页禁用 3D 背景，其他页面可再启用 -->
 
     <Header />
     <main>
       <RouterView />
     </main>
-    <Footer />
+    <Footer v-if="showFooter" />
 
     <!-- 悬浮赞助按钮 - 只在赞助页面显示 -->
     <FloatingDonationButton v-if="isDonationPage" />
@@ -40,6 +30,9 @@ const route = useRoute()
 const isDonationPage = computed(() => {
   return route.name === 'donation' || route.path === '/donation'
 })
+
+// 文档页不显示 Footer，避免双滚动条
+const showFooter = computed(() => route.name !== 'documentation' && route.path !== '/documentation')
 
 // 懒加载 Spline
 const shouldLoadSpline = ref(false)
