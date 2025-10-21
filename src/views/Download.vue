@@ -15,7 +15,7 @@
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
-            最新版本：v3.2.0
+            最新版本：v3.2.5
           </div>
           <div
             class="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
@@ -204,7 +204,8 @@
               class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6 mb-6">
               <h4 class="text-lg font-semibold text-yellow-800 dark:text-yellow-200 mb-3">⚠️ 常见问题：安全警告</h4>
               <p class="text-yellow-700 dark:text-yellow-300 mb-3">在 macOS 上首次安装时，您可能会看到以下安全警告：</p>
-              <div class="bg-gray-100 dark:bg-gray-800 rounded p-3 mb-3 font-mono text-sm">
+              <div class="bg-red-100 dark:bg-red-800 rounded p-3 mb-3 font-mono text-sm"
+                style="color: red; font-weight: 700; font-size: 1.5rem;">
                 "Welight" 已损坏，无法打开。你应该将它移到废纸篓。
               </div>
               <p class="text-yellow-700 dark:text-yellow-300 font-semibold">这是正常现象！这是因为我们的应用没有经过 Apple 的代码签名和公证服务。</p>
@@ -382,7 +383,7 @@
               <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-6">
                 <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">QQ群号</p>
                 <div class="flex items-center justify-center space-x-2">
-                  <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">474919458</span>
+                  <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">1071558803</span>
                   <button @click="copyQQGroup"
                     class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -497,7 +498,7 @@ const closeQQModal = () => {
 // 复制QQ群号
 const copyQQGroup = async () => {
   try {
-    await navigator.clipboard.writeText('474919458')
+    await navigator.clipboard.writeText('1071558803')
     copied.value = true
     setTimeout(() => {
       copied.value = false
@@ -505,7 +506,7 @@ const copyQQGroup = async () => {
   } catch (error) {
     // 如果浏览器不支持clipboard API，使用传统方法
     const textArea = document.createElement('textarea')
-    textArea.value = '474919458'
+    textArea.value = '1071558803'
     document.body.appendChild(textArea)
     textArea.select()
     document.execCommand('copy')
@@ -522,15 +523,15 @@ const downloadFile = async (platform) => {
   // 实际下载链接映射
   const downloadUrls = {
     // Windows
-    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.2.0_x64-setup.exe',
-    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_3.2.0_x64_en-US.msi',
+    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.2.5_x64-setup.exe',
+    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_3.2.5_x64_en-US.msi',
     // macOS 下载链接
-    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_3.2.0_aarch64.dmg',
-    'macos-intel': 'https://waer.ltd/downloads/mac/Welight_3.2.0_x64.dmg',
+    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_3.2.5_aarch64.dmg',
+    'macos-intel': 'https://waer.ltd/downloads/mac/Welight_3.2.5_x64.dmg',
     // Linux 下载链接
-    'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_3.2.0_amd64.AppImage',
-    'linux-deb': 'https://waer.ltd/downloads/linux/Welight_3.2.0_amd64.deb',
-    'linux-rpm': 'https://waer.ltd/downloads/linux/Welight-3.2.0-1.x86_64.rpm'
+    'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_3.2.5_amd64.AppImage',
+    'linux-deb': 'https://waer.ltd/downloads/linux/Welight_3.2.5_amd64.deb',
+    'linux-rpm': 'https://waer.ltd/downloads/linux/Welight-3.2.5-1.x86_64.rpm'
   }
 
   const downloadUrl = downloadUrls[platform]

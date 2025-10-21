@@ -125,7 +125,7 @@ export async function getLicensesByEmail(customerEmail) {
 export function getClientInfo() {
   const userAgent = navigator.userAgent
   const platform = navigator.platform
-  const version = 'WeLight Web v3.2.0'
+  const version = 'WeLight Web v3.2.5'
 
   return `${version} (${platform}) - ${userAgent.substring(0, 100)}`
 }

@@ -269,7 +269,7 @@
                   class="flex items-center justify-between bg-gradient-to-r from-orange-50 to-red-50 -mx-2 px-2 py-1.5 rounded-lg border border-orange-200">
                   <span class="flex items-center gap-1.5">
                     <span class="text-green-600">✔</span>
-                    <span class="font-medium text-gray-900">附赠100积分</span>
+                    <span class="font-medium text-gray-900">附赠300积分</span>
                   </span>
                   <span
                     class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold text-white bg-gradient-to-r from-orange-500 to-red-500 rounded-full shadow-sm animate-pulse">

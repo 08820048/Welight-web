@@ -11,7 +11,7 @@
           <div class="hidden sm:block">
             <div class="text-lg font-semibold tracking-tight text-slate-900 flex items-center gap-2">
               Welight
-              <sup class="text-xs text-slate-500 font-normal">v3.2.0</sup>
+              <sup class="text-xs text-slate-500 font-normal">v3.2.5</sup>
             </div>
             <div class="text-xs text-slate-500">智能高效的公众号编辑器</div>
           </div>
@@ -61,7 +61,7 @@
             <div
               class="absolute top-full left-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60]">
               <div class="py-2">
-                <router-link to="/community"
+                <a href="https://qm.qq.com/q/nNA64h5d6K" target="_blank"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600 transition-colors duration-200">
                   <div class="flex items-center space-x-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -70,7 +70,7 @@
                     </svg>
                     <span>交流讨论</span>
                   </div>
-                </router-link>
+                </a>
                 <a href="https://docs.qq.com/sheet/DS1RITFdUR1BQSURY?tdsourcetag=nt-grpaio-file" target="_blank"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600 transition-colors duration-200">
                   <div class="flex items-center space-x-2">
