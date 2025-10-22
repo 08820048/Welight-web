@@ -1,7 +1,7 @@
 <template>
   <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-    <div class="container-custom">
-      <div class="flex gap-4 md:py-4 py-3 items-center justify-between w-full">
+    <div class="w-full px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-4 justify-between h-16 w-full -ml-4 sm:-ml-6 lg:-ml-8">
         <!-- Logo 和品牌信息 -->
         <router-link to="/" class="flex items-center gap-3 group">
           <div

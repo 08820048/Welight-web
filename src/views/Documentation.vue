@@ -13,31 +13,16 @@
 
       <!-- 侧边栏 -->
       <aside :class="[
-        'fixed top-16 left-0 h-[calc(100vh-4rem)] w-80 bg-white border-r border-gray-200 shadow-sm transition-transform duration-300 z-50 overflow-hidden',
+        'fixed top-16 left-0 h-[calc(100vh-4rem)] w-80 bg-gray-50 border-r border-gray-200 shadow-sm transition-transform duration-300 z-50 overflow-hidden',
         'lg:sticky lg:top-16 lg:translate-x-0',
         mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       ]">
         <div class="flex flex-col h-full">
-          <!-- 搜索框 -->
-          <div class="p-4 border-b border-gray-100">
-            <div class="relative">
-              <input 
-                v-model="searchQuery" 
-                type="text" 
-                placeholder="搜索文档..."
-                class="w-full pl-10 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-400 bg-gray-50"
-                @keydown="handleSearchKeydown"
-              />
-              <svg class="absolute left-3 top-2.5 h-4 w-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-            </div>
-          </div>
 
           <!-- 导航菜单 -->
-          <nav class="flex-1 overflow-y-auto p-4">
+          <nav ref="menuScroll" class="flex-1 overflow-y-auto p-4">
             <div v-for="category in filteredCategories" :key="category.id" class="mb-6">
-              <h3 class="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 px-2">
+              <h3 class="text-sm font-bold text-gray-900 mb-3 px-2">
                 {{ category.title }}
               </h3>
               <ul class="space-y-1">
@@ -45,7 +30,7 @@
                   <button 
                     @click="setCurrentPage(page.id)" 
                     :class="[
-                      'w-full text-left px-3 py-2 text-sm rounded-lg transition-colors duration-150',
+                      'w-full text-left px-3 py-2 text-sm rounded-none transition-colors duration-150',
                       currentPageId === page.id 
                         ? 'bg-blue-50 text-blue-700 font-medium' 
                         : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
@@ -54,11 +39,17 @@
                     {{ page.title }}
                   </button>
                   <!-- 动态二级目录：当前页面的 H3 标题 -->
-                  <ul v-if="currentPageId === page.id && currentHeadings.length" class="mt-1 ml-6 space-y-0.5">
+                  <ul v-if="currentPageId === page.id && currentHeadings.length" class="mt-1 ml-6 space-y-0.5 subheadings" :class="{ 'subline-active': !!activeHeadingId }">
                     <li v-for="h in currentHeadings" :key="h.id">
                       <button 
                         @click="scrollToHeading(h.id)"
-                        class="w-full text-left px-2 py-1 text-xs rounded hover:bg-gray-100 text-gray-600 hover:text-gray-800"
+                        :data-heading-id="h.id"
+                        :class="[
+                          'subitem-btn w-full text-left pl-3 pr-2 py-1 text-xs rounded-none hover:bg-gray-100 transition-colors relative',
+                          activeHeadingId === h.id 
+                            ? 'active-subitem text-green-700 font-medium pb-1 -mb-px' 
+                            : 'text-gray-600 hover:text-gray-800'
+                        ]"
                       >
                         {{ h.text }}
                       </button>
@@ -69,13 +60,7 @@
             </div>
           </nav>
 
-          <!-- 版本信息 -->
-          <div class="p-4 border-t border-gray-100">
-            <div class="text-xs text-gray-500 text-center">
-              <p>Welight 文档 v2.0</p>
-              <p class="mt-1">最后更新: {{ formatDate(new Date()) }}</p>
-            </div>
-          </div>
+
         </div>
       </aside>
 
@@ -90,7 +75,7 @@
       </button>
 
       <!-- 主内容区域 - 与侧边栏并排布局，无额外内边距 -->
-      <main class="flex-1 h-[calc(100vh-4rem)] overflow-y-auto">
+      <main ref="contentScroll" class="flex-1 h-[calc(100vh-4rem)] overflow-y-auto">
         <div class="max-w-4xl mx-auto px-6 py-8">
           <!-- 面包屑导航已移除 -->
 
@@ -148,7 +133,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github.css'
@@ -176,8 +161,48 @@ const currentPageId = ref(pickDefaultPageId())
 const defaultFirstPageId = computed(() => pickDefaultPageId())
 const searchQuery = ref('')
 const mobileMenuOpen = ref(false)
+const contentScroll = ref(null)
+const menuScroll = ref(null)
+const activeHeadingId = ref(null)
+let headingObserver = null
+// 监听内容渲染后初始化滚动联动（ScrollSpy）
+const destroyHeadingObserver = () => {
+  if (headingObserver) {
+    headingObserver.disconnect()
+    headingObserver = null
+  }
+}
 
-// 配置 marked，确保生成标题 id
+const initHeadingObserver = () => {
+  destroyHeadingObserver()
+  const rootEl = contentScroll.value
+  if (!rootEl) return
+  const nodes = rootEl.querySelectorAll('.markdown-content h3[id]')
+  if (!nodes.length) return
+
+  // 初始高亮第一个
+  activeHeadingId.value = nodes[0].id
+
+  headingObserver = new IntersectionObserver((entries) => {
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)
+    if (visible.length) {
+      activeHeadingId.value = visible[0].target.id
+    }
+  }, {
+    root: rootEl,
+    rootMargin: '0px 0px -60% 0px',
+    threshold: [0, 0.25, 0.5, 1]
+  })
+  nodes.forEach(n => headingObserver.observe(n))
+}
+
+onUnmounted(() => {
+  destroyHeadingObserver()
+})
+
+// 配置 marked，确保生成标题 id 与高亮
 marked.setOptions({
   highlight: function(code, lang) {
     if (lang && hljs.getLanguage(lang)) {
@@ -191,6 +216,29 @@ marked.setOptions({
   },
   breaks: true,
   gfm: true
+})
+
+// 扩展：支持 ==...== 文本高亮（转换为 <mark>）
+marked.use({
+  extensions: [
+    {
+      name: 'mark',
+      level: 'inline',
+      start(src) {
+        const i = src.indexOf('==')
+        return i === -1 ? undefined : i
+      },
+      tokenizer(src) {
+        const m = src.match(/^==(.+?)==/)
+        if (m) {
+          return { type: 'mark', raw: m[0], text: m[1] }
+        }
+      },
+      renderer(token) {
+        return `<mark>${token.text}</mark>`
+      }
+    }
+  ]
 })
 
 // 简易 slugger（与目录一致）
@@ -208,9 +256,7 @@ const makeSlugger = () => {
   }
 }
 
-const currentPage = computed(() => {
-  return getDocumentationPage(currentPageId.value)
-})
+const currentPage = computed(() => getDocumentationPage(currentPageId.value))
 
 // 提取 H3 标题
 const currentHeadings = computed(() => {
@@ -227,7 +273,7 @@ const currentHeadings = computed(() => {
   return list
 })
 
-// 渲染 HTML 并为 H3 添加与目录一致的 id
+// 渲染 HTML 并为 H3 添加与目录一致的 id，同时处理提示框和任务列表
 const renderedContent = computed(() => {
   if (!currentPage.value) return ''
   const html = marked.parse(currentPage.value.content)
@@ -240,6 +286,48 @@ const renderedContent = computed(() => {
       const id = heads[i]?.id
       if (id) el.id = id
     })
+
+    // 转换 GitHub 风格提示框：[!TIP]、[!IMPORTANT] 等
+    const titles = { tip: '提示', note: '备注', important: '重要', warning: '警告', caution: '注意' }
+    doc.body.querySelectorAll('blockquote').forEach((bq) => {
+      const first = bq.firstElementChild
+      if (first && first.tagName === 'P') {
+        const marker = first.textContent.trim()
+        const m = marker.match(/^\[\!(TIP|NOTE|IMPORTANT|WARNING|CAUTION)\]$/i)
+        if (m) {
+          const type = m[1].toLowerCase()
+          const box = doc.createElement('div')
+          box.className = `admonition admonition-${type}`
+
+          const titleEl = doc.createElement('div')
+          titleEl.className = 'admonition-title'
+          titleEl.textContent = titles[type] || m[1]
+
+          const contentEl = doc.createElement('div')
+          contentEl.className = 'admonition-content'
+
+          // 去掉标记行，并把剩余内容迁移到内容容器
+          bq.removeChild(first)
+          while (bq.firstChild) {
+            contentEl.appendChild(bq.firstChild)
+          }
+
+          box.appendChild(titleEl)
+          box.appendChild(contentEl)
+          bq.replaceWith(box)
+        }
+      }
+    })
+
+    // 修复任务列表：为含复选框的列表项添加类，并确保禁用
+    doc.body.querySelectorAll('li').forEach((li) => {
+      const checkbox = li.querySelector('input[type="checkbox"]')
+      if (checkbox) {
+        li.classList.add('task-list-item')
+        checkbox.setAttribute('disabled', '')
+      }
+    })
+
     return doc.body.innerHTML
   } catch (e) {
     console.error('Heading id injection failed:', e)
@@ -247,13 +335,8 @@ const renderedContent = computed(() => {
   }
 })
 
-const allPages = computed(() => {
-  return documentationConfig.pages
-})
-
-const allCategories = computed(() => {
-  return getDocumentationCategories()
-})
+const allPages = computed(() => documentationConfig.pages)
+const allCategories = computed(() => getDocumentationCategories())
 
 const orderedPages = computed(() => {
   const result = []
@@ -272,9 +355,7 @@ const filteredCategories = computed(() => {
   }
   const searchResults = searchDocumentationPages(searchQuery.value)
   const categoryIds = [...new Set(searchResults.map(page => page.category))]
-  return allCategories.value.filter(category => 
-    categoryIds.includes(category.id)
-  )
+  return allCategories.value.filter(category => categoryIds.includes(category.id))
 })
 
 const previousPage = computed(() => {
@@ -287,7 +368,22 @@ const nextPage = computed(() => {
   return currentIndex < orderedPages.value.length - 1 ? orderedPages.value[currentIndex + 1] : null
 })
 
-// 方法
+// 渲染完成后，初始化滚动联动观察器
+watch(() => renderedContent.value, () => {
+  nextTick(() => initHeadingObserver())
+})
+
+// 初次挂载后初始化观察器，确保滚动联动生效
+onMounted(() => {
+  nextTick(() => initHeadingObserver())
+})
+
+// 页面切换后重新建立观察器
+watch(currentPageId, () => {
+  activeHeadingId.value = null
+  nextTick(() => initHeadingObserver())
+})
+
 const getPagesByCategory = (categoryId) => {
   if (searchQuery.value.trim()) {
     const searchResults = searchDocumentationPages(searchQuery.value)
@@ -295,63 +391,57 @@ const getPagesByCategory = (categoryId) => {
   }
   return getDocumentationPagesByCategory(categoryId)
 }
+const pad2 = (n) => String(n).padStart(2, '0')
+const formatDate = (input) => {
+  const date = input instanceof Date ? input : new Date(input)
+  if (isNaN(date)) return ''
+  const y = date.getFullYear()
+  const m = pad2(date.getMonth() + 1)
+  const d = pad2(date.getDate())
+  return `${y}-${m}-${d}`
+}
 
 const setCurrentPage = (pageId) => {
+  if (!pageId) return
+  if (currentPageId.value === pageId) {
+    nextTick(() => initHeadingObserver())
+    return
+  }
   currentPageId.value = pageId
-  mobileMenuOpen.value = false
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+  activeHeadingId.value = null
+  if (contentScroll.value) {
+    // 切换页面时将内容滚动到顶部，避免旧位置残留
+    contentScroll.value.scrollTo({ top: 0, behavior: 'auto' })
+  }
 }
 
 const scrollToHeading = (headingId) => {
-  const el = document.querySelector(`.markdown-content h3#${CSS.escape(headingId)}`)
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  const container = contentScroll.value
+  const target = document.getElementById(headingId)
+  if (!container || !target) return
+  // 计算目标在容器内的相对位置，并做轻微上边距偏移
+  const offset = target.getBoundingClientRect().top - container.getBoundingClientRect().top
+  const top = offset + container.scrollTop - 8
+  container.scrollTo({ top, behavior: 'smooth' })
+  activeHeadingId.value = headingId
+}
+
+const ensureActiveHeadingVisible = () => {
+  const container = menuScroll.value
+  if (!container) return
+  const el = container.querySelector('.active-subitem')
+  if (!el) return
+  const cRect = container.getBoundingClientRect()
+  const eRect = el.getBoundingClientRect()
+  if (eRect.top < cRect.top) {
+    container.scrollTop += eRect.top - cRect.top - 8
+  } else if (eRect.bottom > cRect.bottom) {
+    container.scrollTop += eRect.bottom - cRect.bottom + 8
   }
 }
 
-const handleSearchKeydown = (event) => {
-  if (event.key === 'Escape') {
-    searchQuery.value = ''
-  }
-  if (event.ctrlKey && event.key === 'k') {
-    event.preventDefault()
-    event.target.focus()
-  }
-}
-
-const formatDate = (date) => {
-  return date.toLocaleDateString('zh-CN')
-}
-
-// 监听器
-watch(searchQuery, () => {
-  if (searchQuery.value.trim()) {
-    const searchResults = searchDocumentationPages(searchQuery.value)
-    if (searchResults.length > 0 && !searchResults.find(page => page.id === currentPageId.value)) {
-      currentPageId.value = searchResults[0].id
-    }
-  }
-})
-
-// 生命周期
-onMounted(() => {
-  document.title = 'Welight 文档'
-  if (!getDocumentationPage(currentPageId.value)) {
-    currentPageId.value = pickDefaultPageId()
-  }
-  const handleKeydown = (event) => {
-    if (event.ctrlKey && event.key === 'k') {
-      event.preventDefault()
-      const searchInput = document.querySelector('input[placeholder="搜索文档..."]')
-      if (searchInput) {
-        searchInput.focus()
-      }
-    }
-  }
-  document.addEventListener('keydown', handleKeydown)
-  return () => {
-    document.removeEventListener('keydown', handleKeydown)
-  }
+watch(activeHeadingId, () => {
+  nextTick(() => ensureActiveHeadingVisible())
 })
 </script>
 
@@ -415,6 +505,39 @@ onMounted(() => {
   @apply border-l-4 border-blue-500 pl-4 py-3 mb-4 bg-blue-50 text-gray-700 italic leading-relaxed;
 }
 
+/* 新增：按键显示样式 */
+:deep(.markdown-content kbd) {
+  @apply inline-block font-mono text-sm bg-gray-100 border border-gray-300 border-b-2 rounded-md px-2 py-0.5 shadow-sm text-gray-800;
+}
+
+/* 新增：提示框基础样式 */
+:deep(.markdown-content .admonition) {
+  @apply my-4 rounded-lg p-4 text-gray-800;
+}
+:deep(.markdown-content .admonition-title) {
+  @apply font-semibold mb-2;
+}
+:deep(.markdown-content .admonition-content > :last-child) {
+  @apply mb-0;
+}
+
+/* 新增：不同类型提示框的配色 */
+:deep(.markdown-content .admonition-tip) {
+  @apply border-l-4 border-green-500 bg-green-50;
+}
+:deep(.markdown-content .admonition-note) {
+  @apply border-l-4 border-blue-500 bg-blue-50;
+}
+:deep(.markdown-content .admonition-important) {
+  @apply border-l-4 border-orange-500 bg-orange-50;
+}
+:deep(.markdown-content .admonition-warning) {
+  @apply border-l-4 border-yellow-500 bg-yellow-50;
+}
+:deep(.markdown-content .admonition-caution) {
+  @apply border-l-4 border-yellow-600 bg-yellow-50;
+}
+
 :deep(.markdown-content blockquote p) {
   @apply mb-0;
 }
@@ -446,5 +569,39 @@ onMounted(() => {
 /* 代码高亮样式覆盖 */
 :deep(.markdown-content .hljs) {
   @apply bg-gray-50 text-gray-800;
+}
+/* 新增：mark 高亮样式 */
+:deep(.markdown-content mark) {
+  @apply bg-yellow-100 rounded px-1 text-gray-900;
+}
+
+/* 新增：任务列表样式 */
+:deep(.markdown-content .task-list-item) {
+  list-style: none;
+}
+:deep(.markdown-content .task-list-item input[type="checkbox"]) {
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+/* 侧栏二级标题子列表：统一竖线与活动底线 */
+.subheadings { position: relative; }
+.subheadings::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0; width: 1px;
+  background-color: #D1D5DB; /* gray-300 */
+}
+.subheadings.subline-active::before {
+  background-color: #D1D5DB; /* gray-300：激活时也保持灰色 */
+}
+.subitem-btn { position: relative; }
+.subitem-btn.active-subitem::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem; /* 与 pl-3 对齐，保证不越过竖线 */
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(to right, #22c55e 0%, #22c55e 45%, rgba(34,197,94,0.6) 70%, rgba(34,197,94,0.25) 85%, rgba(34,197,94,0) 100%);
 }
 </style>

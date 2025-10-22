@@ -8,21 +8,15 @@ export const documentationConfig = {
   categories: [
     {
       id: 'quick-start',
-      title: '开始入门',
+      title: '基本功能',
       icon: 'rocket',
       color: 'emerald'
     },
     {
       id: 'core-features',
-      title: '核心功能',
+      title: '主题系统',
       icon: 'star',
       color: 'blue'
-    },
-    {
-      id: 'advanced',
-      title: '高级功能',
-      icon: 'cog',
-      color: 'purple'
     },
     {
       id: 'help',
