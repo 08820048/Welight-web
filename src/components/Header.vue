@@ -129,14 +129,18 @@
           </router-link>
 
           <!-- 文档按钮（颜色调整） -->
-          <router-link to="/documentation"
-            class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white text-sm shadow-sm hover:bg-blue-700 transition-all duration-200"
+          <router-link to="/documentation" @click="markDocsUpdateViewed"
+            class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white text-sm shadow-sm hover:bg-blue-700 transition-all duration-200 relative"
             title="查看文档">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
             <span>文档</span>
+            <span v-if="hasDocsUpdate"
+              class="absolute -top-2 -right-2 text-white text-xs px-1.5 py-0.5 rounded-full font-bold shadow-sm bg-gradient-to-r from-red-500 to-orange-500 scale-90 animate-pulse">
+              有更新
+            </span>
           </router-link>
 
           <!-- 移动端菜单按钮 -->
@@ -225,6 +229,7 @@ import MiniCountdown from './MiniCountdown.vue'
 import { hasNewAnnouncements as checkNewAnnouncements } from '@/data/announcements.js'
 import { donations } from '@/data/donations.js'
 import { getMenuPromotions, hasNewPromotions, markLatestPromotionAsViewed } from '@/data/promotions.js'
+import { getLatestVersion } from '@/data/changelog.js'
 
 // 滚动状态
 const isScrolled = ref(false)
@@ -248,6 +253,14 @@ const donationCount = computed(() => donations.length)
 const isPromotionBannerVisible = ref(false)
 const currentPromotion = ref(null)
 const menuPromotions = ref([])
+
+// 文档更新提示
+const hasDocsUpdate = ref(false)
+const latestVersion = getLatestVersion()
+const markDocsUpdateViewed = () => {
+  localStorage.setItem('welight_docs_last_viewed_version', latestVersion.version)
+  hasDocsUpdate.value = false
+}
 
 // 获取菜单中的活动
 const loadMenuPromotions = () => {
@@ -313,6 +326,10 @@ onMounted(() => {
 
   // 加载活动菜单
   loadMenuPromotions()
+
+  // 检查文档是否有更新（基于版本）
+  const lastViewedDocs = localStorage.getItem('welight_docs_last_viewed_version')
+  hasDocsUpdate.value = !lastViewedDocs || lastViewedDocs !== latestVersion.version
 
   // 检查是否有新活动需要自动弹出
   const hasNewPromo = hasNewPromotions()

@@ -22,7 +22,10 @@
           <!-- 导航菜单 -->
           <nav ref="menuScroll" class="flex-1 overflow-y-auto p-4">
             <div v-for="category in filteredCategories" :key="category.id" class="mb-6">
-              <h3 class="text-sm font-bold text-gray-900 mb-3 px-2">
+              <h3 :class="['text-sm font-bold mb-3 px-2 flex items-center gap-2', categoryTheme[category.color]?.title || 'text-gray-900']">
+                <span class="inline-flex items-center justify-center w-5 h-5 rounded-md bg-gray-100 text-current">
+                  <component :is="categoryIconComponents[category.icon] || FileText" class="w-4 h-4" />
+                </span>
                 {{ category.title }}
               </h3>
               <ul class="space-y-1">
@@ -32,7 +35,7 @@
                     :class="[
                       'menu-btn w-full text-left px-3 py-2 text-sm rounded-none relative transition-all duration-200 ease-out',
                       currentPageId === page.id 
-                        ? 'bg-blue-50 text-blue-700 font-medium menu-active' 
+                        ? [categoryTheme[category.color]?.activeBg || 'bg-blue-50', categoryTheme[category.color]?.activeText || 'text-blue-700', 'font-medium menu-active'] 
                         : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                     ]"
                   >
@@ -47,7 +50,7 @@
                         :class="[
                           'subitem-btn w-full text-left pl-3 pr-2 py-1 text-xs rounded-none hover:bg-gray-100 transition-colors relative',
                           activeHeadingId === h.id 
-                            ? 'active-subitem text-green-700 font-medium pb-1 -mb-px' 
+                            ? ['active-subitem', categoryTheme[category.color]?.activeText || 'text-green-700', 'font-medium pb-1 -mb-px'] 
                             : 'text-gray-600 hover:text-gray-800'
                         ]"
                       >
@@ -144,6 +147,25 @@ import {
   getDocumentationCategories,
   searchDocumentationPages 
 } from '@/data/documentation.js'
+import { Rocket, Star, Cog, HelpCircle, FileText } from 'lucide-vue-next'
+
+// 文档分类图标（Lucide 图标组件映射）
+const categoryIconComponents = {
+  rocket: Rocket,
+  star: Star,
+  cog: Cog,
+  'question-circle': HelpCircle,
+  document: FileText
+}
+
+// 文档分类颜色主题（Tailwind 静态类映射，避免动态类被裁剪）
+const categoryTheme = {
+  emerald: { title: 'text-emerald-700', activeBg: 'bg-emerald-50', activeText: 'text-emerald-700' },
+  blue: { title: 'text-blue-700', activeBg: 'bg-blue-50', activeText: 'text-blue-700' },
+  purple: { title: 'text-purple-700', activeBg: 'bg-purple-50', activeText: 'text-purple-700' },
+  orange: { title: 'text-orange-700', activeBg: 'bg-orange-50', activeText: 'text-orange-700' },
+  gray: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-800' },
+}
 
 // 选择默认页面（左侧菜单第一项：第一个有页面的分类的第一个页面）
 const pickDefaultPageId = () => {
@@ -290,11 +312,16 @@ const renderedContent = computed(() => {
     // 转换 GitHub 风格提示框：[!TIP]、[!IMPORTANT] 等（新增图标）
     const titles = { tip: '提示', note: '备注', important: '重要', warning: '警告', caution: '注意' }
     const icons = {
-      tip: '<svg class="admonition-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>',
-      note: '<svg class="admonition-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>',
-      important: '<svg class="admonition-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>',
-      warning: '<svg class="admonition-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v4m0 4h.01M10.29 3.86l-8.48 14.7A2 2 0 003.52 22h16.96a2 2 0 001.71-3.44L13.71 3.86a2 2 0 00-3.42 0z"/></svg>',
-      caution: '<svg class="admonition-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v4m0 4h.01M10.29 3.86l-8.48 14.7A2 2 0 003.52 22h16.96a2 2 0 001.71-3.44L13.71 3.86a2 2 0 00-3.42 0z"/></svg>'
+      // Note：信息圆圈
+      note: '<svg class="admonition-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>',
+      // Tip：灯泡
+      tip: '<svg class="admonition-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 18h6m-3 0v3M7 10a5 5 0 0110 0c0 1.657-.895 3.157-2.25 4.05-.39.265-.75.84-.75 1.45V17H9.999v-1.5c0-.61-.36-1.185-.75-1.45C7.895 13.157 7 11.657 7 10z"/></svg>',
+      // Important：感叹号圆圈
+      important: '<svg class="admonition-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v5m0 4h.01"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>',
+      // Warning：三角警示
+      warning: '<svg class="admonition-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v4m0 4h.01"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.29 3.86l-8.48 14.7A2 2 0 003.52 22h16.96a2 2 0 001.71-3.44L13.71 3.86a2 2 0 00-3.42 0z"/></svg>',
+      // Caution：圆圈感叹号（红色系）
+      caution: '<svg class="admonition-icon w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v5m0 4h.01"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>'
     }
     doc.body.querySelectorAll('blockquote').forEach((bq) => {
       const first = bq.firstElementChild
@@ -308,7 +335,7 @@ const renderedContent = computed(() => {
 
           const titleEl = doc.createElement('div')
           titleEl.className = 'admonition-title'
-          titleEl.innerHTML = `${icons[type] || icons.note}<span class="admonition-label">${titles[type] || m[1]}</span>`
+          titleEl.innerHTML = `<span class="admonition-icon-wrap">${icons[type] || icons.note}</span><span class="admonition-label">${titles[type] || m[1]}</span>`
 
           const contentEl = doc.createElement('div')
           contentEl.className = 'admonition-content'
@@ -522,10 +549,10 @@ watch(activeHeadingId, () => {
   @apply my-4 rounded-none p-4 text-gray-800;
 }
 :deep(.markdown-content .admonition-title) {
-  @apply font-semibold mb-2 flex items-center gap-2;
+  @apply font-semibold mb-2 flex items-center gap-3; 
 }
 :deep(.markdown-content .admonition-title .admonition-label) {
-  @apply leading-5;
+  @apply leading-5 text-gray-900;
 }
 :deep(.markdown-content .admonition-content > :last-child) {
   @apply mb-0;
@@ -539,21 +566,28 @@ watch(activeHeadingId, () => {
   @apply border-l-4 border-blue-500 bg-blue-50;
 }
 :deep(.markdown-content .admonition-important) {
-  @apply border-l-4 border-orange-500 bg-orange-50;
+  @apply border-l-4 border-purple-500 bg-purple-50; /* 重要改为紫色系 */
 }
 :deep(.markdown-content .admonition-warning) {
   @apply border-l-4 border-yellow-500 bg-yellow-50;
 }
 :deep(.markdown-content .admonition-caution) {
-  @apply border-l-4 border-yellow-600 bg-yellow-50;
+  @apply border-l-4 border-red-500 bg-red-50; /* 注意改为红色系 */
 }
 
-/* 图标颜色与尺寸 */
+/* 图标容器的类型配色（底色+描边） */
+:deep(.markdown-content .admonition-tip .admonition-icon-wrap) { @apply bg-green-50 ring-green-200; }
+:deep(.markdown-content .admonition-note .admonition-icon-wrap) { @apply bg-blue-50 ring-blue-200; }
+:deep(.markdown-content .admonition-important .admonition-icon-wrap) { @apply bg-purple-50 ring-purple-200; }
+:deep(.markdown-content .admonition-warning .admonition-icon-wrap) { @apply bg-yellow-50 ring-yellow-200; }
+:deep(.markdown-content .admonition-caution .admonition-icon-wrap) { @apply bg-red-50 ring-red-200; }
+
+/* 图标颜色（跟随类型） */
 :deep(.markdown-content .admonition-tip .admonition-icon) { @apply text-green-600; }
 :deep(.markdown-content .admonition-note .admonition-icon) { @apply text-blue-600; }
-:deep(.markdown-content .admonition-important .admonition-icon) { @apply text-orange-600; }
+:deep(.markdown-content .admonition-important .admonition-icon) { @apply text-purple-600; }
 :deep(.markdown-content .admonition-warning .admonition-icon) { @apply text-yellow-600; }
-:deep(.markdown-content .admonition-caution .admonition-icon) { @apply text-yellow-700; }
+:deep(.markdown-content .admonition-caution .admonition-icon) { @apply text-red-600; }
 
 :deep(.markdown-content blockquote p) {
   @apply mb-0;
@@ -619,7 +653,22 @@ watch(activeHeadingId, () => {
   right: 0;
   bottom: 0;
   height: 2px;
-  background: linear-gradient(to right, #22c55e 0%, #22c55e 45%, rgba(34,197,94,0.6) 70%, rgba(34,197,94,0.25) 85%, rgba(34,197,94,0) 100%);
+  background-color: currentColor; /* 线条颜色继承当前文字颜色 */
+  /* 调整遮罩停靠点：更靠左开始衰减 */
+  -webkit-mask-image: linear-gradient(to right,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 20%,
+    rgba(0,0,0,0.6) 40%,
+    rgba(0,0,0,0.25) 60%,
+    rgba(0,0,0,0) 100%
+  );
+  mask-image: linear-gradient(to right,
+    rgba(0,0,0,1) 0%,
+    rgba(0,0,0,1) 20%,
+    rgba(0,0,0,0.6) 40%,
+    rgba(0,0,0,0.25) 60%,
+    rgba(0,0,0,0) 100%
+  );
 }
 
 /* 顶级目录项激活动画：左侧指示条与颜色过渡 */
@@ -629,7 +678,7 @@ watch(activeHeadingId, () => {
   position: absolute;
   left: 0; top: 0; bottom: 0;
   width: 2px;
-  background-color: #3B82F6; /* blue-500 */
+  background-color: currentColor; /* 跟随文本颜色以映射分类色 */
   transform: scaleY(0);
   opacity: 0;
   transition: transform 180ms ease-out, opacity 180ms ease-out;

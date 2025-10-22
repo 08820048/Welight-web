@@ -19,6 +19,12 @@ export const documentationConfig = {
       color: 'blue'
     },
     {
+      id: 'config',
+      title: '配置管理',
+      icon: 'cog',
+      color: 'purple'
+    },
+    {
       id: 'help',
       title: '帮助支持',
       icon: 'question-circle',
