@@ -121,9 +121,9 @@
             <button 
               v-if="previousPage"
               @click="setCurrentPage(previousPage.id)"
-              class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              class="inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:underline focus:outline-none"
             >
-              <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
               </svg>
               {{ previousPage.title }}
@@ -133,10 +133,10 @@
             <button 
               v-if="nextPage"
               @click="setCurrentPage(nextPage.id)"
-              class="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              class="inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:underline focus:outline-none"
             >
               {{ nextPage.title }}
-              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
               </svg>
             </button>
@@ -255,6 +255,17 @@ const allCategories = computed(() => {
   return getDocumentationCategories()
 })
 
+const orderedPages = computed(() => {
+  const result = []
+  for (const cat of allCategories.value) {
+    const pages = getDocumentationPagesByCategory(cat.id)
+    if (pages && pages.length) {
+      result.push(...pages)
+    }
+  }
+  return result
+})
+
 const filteredCategories = computed(() => {
   if (!searchQuery.value.trim()) {
     return allCategories.value
@@ -267,13 +278,13 @@ const filteredCategories = computed(() => {
 })
 
 const previousPage = computed(() => {
-  const currentIndex = allPages.value.findIndex(page => page.id === currentPageId.value)
-  return currentIndex > 0 ? allPages.value[currentIndex - 1] : null
+  const currentIndex = orderedPages.value.findIndex(page => page.id === currentPageId.value)
+  return currentIndex > 0 ? orderedPages.value[currentIndex - 1] : null
 })
 
 const nextPage = computed(() => {
-  const currentIndex = allPages.value.findIndex(page => page.id === currentPageId.value)
-  return currentIndex < allPages.value.length - 1 ? allPages.value[currentIndex + 1] : null
+  const currentIndex = orderedPages.value.findIndex(page => page.id === currentPageId.value)
+  return currentIndex < orderedPages.value.length - 1 ? orderedPages.value[currentIndex + 1] : null
 })
 
 // 方法
