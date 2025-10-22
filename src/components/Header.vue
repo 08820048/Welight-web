@@ -95,6 +95,11 @@
             </div>
           </div>
 
+          <!-- 更新日志：文本菜单 -->
+          <button @click="showChangelog" class="hover:text-slate-900 transition-colors font-medium" title="查看更新日志">
+            更新日志
+          </button>
+
           <!-- 活动菜单项 -->
           <button v-for="promo in menuPromotions" :key="promo.id" @click="showPromotionBanner(promo)"
             class="relative font-bold flex items-center gap-1.5 group/promo promotion-menu-item">
@@ -112,20 +117,20 @@
 
         <!-- 右侧按钮组 -->
         <div class="flex items-center gap-3">
-          <!-- 更新日志按钮 -->
-          <button @click="showChangelog"
-            class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-white/30 text-sm text-slate-700 shadow-sm hover:bg-white/70 transition-all duration-200 backdrop-blur-sm"
-            title="查看更新日志">
+          <!-- 前往下载按钮 -->
+          <router-link to="/download"
+            class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-600 text-white text-sm shadow-sm hover:bg-green-700 transition-all duration-200"
+            title="前往下载">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                d="M4 4v16h16V4H4zm8 4v6m0 0l-3-3m3 3l3-3" />
             </svg>
-            <span>更新日志</span>
-          </button>
+            <span>前往下载</span>
+          </router-link>
 
-          <!-- 文档按钮 -->
+          <!-- 文档按钮（颜色调整） -->
           <router-link to="/documentation"
-            class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 border border-white/30 text-sm text-slate-700 shadow-sm hover:bg-white/70 transition-all duration-200 backdrop-blur-sm"
+            class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-600 text-white text-sm shadow-sm hover:bg-blue-700 transition-all duration-200"
             title="查看文档">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

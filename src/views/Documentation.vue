@@ -30,10 +30,10 @@
                   <button 
                     @click="setCurrentPage(page.id)" 
                     :class="[
-                      'w-full text-left px-3 py-2 text-sm rounded-none transition-colors duration-150',
+                      'menu-btn w-full text-left px-3 py-2 text-sm rounded-none relative transition-all duration-200 ease-out',
                       currentPageId === page.id 
-                        ? 'bg-blue-50 text-blue-700 font-medium' 
-                        : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                        ? 'bg-blue-50 text-blue-700 font-medium menu-active' 
+                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
                     ]"
                   >
                     {{ page.title }}
@@ -287,8 +287,15 @@ const renderedContent = computed(() => {
       if (id) el.id = id
     })
 
-    // 转换 GitHub 风格提示框：[!TIP]、[!IMPORTANT] 等
+    // 转换 GitHub 风格提示框：[!TIP]、[!IMPORTANT] 等（新增图标）
     const titles = { tip: '提示', note: '备注', important: '重要', warning: '警告', caution: '注意' }
+    const icons = {
+      tip: '<svg class="admonition-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>',
+      note: '<svg class="admonition-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>',
+      important: '<svg class="admonition-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"/></svg>',
+      warning: '<svg class="admonition-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v4m0 4h.01M10.29 3.86l-8.48 14.7A2 2 0 003.52 22h16.96a2 2 0 001.71-3.44L13.71 3.86a2 2 0 00-3.42 0z"/></svg>',
+      caution: '<svg class="admonition-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v4m0 4h.01M10.29 3.86l-8.48 14.7A2 2 0 003.52 22h16.96a2 2 0 001.71-3.44L13.71 3.86a2 2 0 00-3.42 0z"/></svg>'
+    }
     doc.body.querySelectorAll('blockquote').forEach((bq) => {
       const first = bq.firstElementChild
       if (first && first.tagName === 'P') {
@@ -301,7 +308,7 @@ const renderedContent = computed(() => {
 
           const titleEl = doc.createElement('div')
           titleEl.className = 'admonition-title'
-          titleEl.textContent = titles[type] || m[1]
+          titleEl.innerHTML = `${icons[type] || icons.note}<span class="admonition-label">${titles[type] || m[1]}</span>`
 
           const contentEl = doc.createElement('div')
           contentEl.className = 'admonition-content'
@@ -512,10 +519,13 @@ watch(activeHeadingId, () => {
 
 /* 新增：提示框基础样式 */
 :deep(.markdown-content .admonition) {
-  @apply my-4 rounded-lg p-4 text-gray-800;
+  @apply my-4 rounded-none p-4 text-gray-800;
 }
 :deep(.markdown-content .admonition-title) {
-  @apply font-semibold mb-2;
+  @apply font-semibold mb-2 flex items-center gap-2;
+}
+:deep(.markdown-content .admonition-title .admonition-label) {
+  @apply leading-5;
 }
 :deep(.markdown-content .admonition-content > :last-child) {
   @apply mb-0;
@@ -537,6 +547,13 @@ watch(activeHeadingId, () => {
 :deep(.markdown-content .admonition-caution) {
   @apply border-l-4 border-yellow-600 bg-yellow-50;
 }
+
+/* 图标颜色与尺寸 */
+:deep(.markdown-content .admonition-tip .admonition-icon) { @apply text-green-600; }
+:deep(.markdown-content .admonition-note .admonition-icon) { @apply text-blue-600; }
+:deep(.markdown-content .admonition-important .admonition-icon) { @apply text-orange-600; }
+:deep(.markdown-content .admonition-warning .admonition-icon) { @apply text-yellow-600; }
+:deep(.markdown-content .admonition-caution .admonition-icon) { @apply text-yellow-700; }
 
 :deep(.markdown-content blockquote p) {
   @apply mb-0;
@@ -603,5 +620,22 @@ watch(activeHeadingId, () => {
   bottom: 0;
   height: 2px;
   background: linear-gradient(to right, #22c55e 0%, #22c55e 45%, rgba(34,197,94,0.6) 70%, rgba(34,197,94,0.25) 85%, rgba(34,197,94,0) 100%);
+}
+
+/* 顶级目录项激活动画：左侧指示条与颜色过渡 */
+.menu-btn { position: relative; }
+.menu-btn::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background-color: #3B82F6; /* blue-500 */
+  transform: scaleY(0);
+  opacity: 0;
+  transition: transform 180ms ease-out, opacity 180ms ease-out;
+}
+.menu-btn.menu-active::before {
+  transform: scaleY(1);
+  opacity: 1;
 }
 </style>
