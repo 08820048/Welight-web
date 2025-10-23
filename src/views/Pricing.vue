@@ -356,8 +356,8 @@
           <div class="flex items-center space-x-4">
             <div>
               <span class="font-medium text-blue-800">QQ群：</span>
-              <a href="https://qm.qq.com/q/UwZnWu2pu8" target="_blank"
-                class="text-blue-600 hover:text-blue-800 underline">
+              <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=U4EFNYA9KuxK3OOQJQRfmzrfpwn3NM%2BHScNavJLkDXANe7H%2BONEQvGMvVI2LRrx2&busi_data=eyJncm91cENvZGUiOiIxMDcxNTU4ODAzIiwidG9rZW4iOiI3N2krQUx6VTVoTXVwOVRBRU52djl6R3k2VDYyNWR1RXl4bk92S2Y5SzNWVTBrUTlmeitCNEN6OS92KzZoMElqIiwidWluIjoiMjIxNzAyMTU2MyJ9&data=xN0g96ZxEMQlgiGFEWHsx8x0rZ0Qz9zmsBlJXrOxz6m1DVOYht3OeVZLFTMy6bGTC-Nc4yxMX25CDwocSJMQRLkcxdIUz6736qxlkysN8AE&svctype=5&tempid=h5_group_info"
+                target="_blank" class="text-blue-600 hover:text-blue-800 underline">
                 点击加入
               </a>
             </div>
