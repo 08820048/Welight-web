@@ -330,7 +330,7 @@
           <div v-if="!product.code.includes('MONTHLY')"
             class="absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105"
             :style="{ 'background-color': product.code.includes('CREDITS') ? '#31c891' : '#e24545' }">
-            {{ product.permanent && !product.code.includes('CREDITS') ? '限时特惠' : '热门' }}
+            {{ product.permanent && !product.code.includes('CREDITS') ? '限时特惠' : '限时8.8折' }}
           </div>
         </div>
       </div>
