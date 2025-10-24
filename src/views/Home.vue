@@ -279,7 +279,7 @@
 
                   <!-- Main screenshot -->
                   <div class="relative overflow-hidden rounded-2xl">
-                    <img src="https://images.waer.ltd/notes/202509261144654.png" alt="Welight 核心特性展示"
+                    <img src="https://images.waer.ltd/notes/202510241638251.png" alt="Welight 核心特性展示"
                       class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
                       loading="lazy" />
                   </div>
@@ -661,7 +661,7 @@
 
                   <!-- AI Writing screenshot -->
                   <div class="relative overflow-hidden rounded-2xl">
-                    <img src="https://images.waer.ltd/notes/202508302311016.png" alt="AI写作助手功能展示"
+                    <img src="https://images.waer.ltd/notes/202510241641924.png" alt="AI写作助手功能展示"
                       class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
                       loading="lazy" />
                   </div>
@@ -828,7 +828,7 @@
 
                   <!-- AI Content Generation screenshot -->
                   <div class="relative overflow-hidden rounded-2xl">
-                    <img src="https://images.waer.ltd/notes/202508302306766.png" alt="AI内容生成功能展示"
+                    <img src="https://images.waer.ltd/notes/202510231026622.png" alt="AI内容生成功能展示"
                       class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
                       loading="lazy" />
                   </div>
