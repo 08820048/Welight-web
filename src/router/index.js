@@ -53,6 +53,11 @@ const router = createRouter({
       path: '/documentation',
       name: 'documentation',
       component: () => import('../views/Documentation.vue')
+    },
+    {
+      path: '/release-history',
+      name: 'release-history',
+      component: () => import('../views/ReleaseHistory.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {

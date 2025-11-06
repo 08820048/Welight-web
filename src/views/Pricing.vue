@@ -186,23 +186,36 @@
         <p class="mt-2 text-gray-600 animate-fade-in-up delay-700">正在加载产品信息...</p>
       </div>
 
-      <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
+      <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end relative">
         <!-- 所有产品卡片（基于API数据） -->
-        <div v-for="(product, index) in products" :key="product.id"
-          class="bg-white rounded-xl shadow-lg flex flex-col items-center relative overflow-hidden product-card animate-scale-in border-2 border-white group"
-          :class="[
-            `delay-${600 + index * 100}`,
-            product.permanent ? 'p-10 recommended-card' : 'p-8'
-          ]">
-          <!-- 内部渐隐效果层 -->
-          <div class="absolute inset-0 pointer-events-none rounded" :class="{
-            'ai-service-gradient-overlay': product.code.includes('AI_SERVICE'),
-            'cloud-storage-gradient-overlay': product.code.includes('CLOUD_STORAGE'),
-            'monthly-card-gradient-overlay': product.code.includes('CREDITS'),
-            'permanent-gradient-overlay': product.permanent && !product.code.includes('CREDITS')
-          }"></div>
+        <div v-for="(product, index) in products" :key="product.id" class="relative">
+          <!-- 下滑指示器 - 只在企业专享卡片右侧显示 -->
+          <div v-if="product.isEnterprise" class="hidden md:block absolute -right-40 top-0 animate-bounce-slow z-10">
+            <div class="flex flex-col items-center gap-2">
+              <div class="bg-blue-500 text-white px-3 py-2 rounded-lg shadow-lg text-sm font-medium whitespace-nowrap">
+                下滑阅读购买须知
+              </div>
+              <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </div>
+          </div>
 
-          <!-- 产品名称标签 -->
+          <div
+            class="bg-white rounded-xl shadow-lg flex flex-col items-center relative overflow-hidden product-card animate-scale-in border-2 border-white group"
+            :class="[
+              `delay-${600 + index * 100}`,
+              product.permanent ? 'p-10 recommended-card' : 'p-8'
+            ]">
+            <!-- 内部渐隐效果层 -->
+            <div class="absolute inset-0 pointer-events-none rounded" :class="{
+              'ai-service-gradient-overlay': product.code.includes('AI_SERVICE'),
+              'cloud-storage-gradient-overlay': product.code.includes('CLOUD_STORAGE'),
+              'monthly-card-gradient-overlay': product.code.includes('CREDITS'),
+              'permanent-gradient-overlay': product.permanent && !product.code.includes('CREDITS')
+            }"></div>
+
+            <!-- 产品名称标签 -->
           <span class="inline-block text-lg font-bold mb-2" :class="{
             'text-orange-700': product.code.includes('AI_SERVICE'),
             'text-purple-700': product.code.includes('CLOUD_STORAGE'),
@@ -329,8 +342,9 @@
           <!-- 右上角条状标签 - 参考源码实现 -->
           <div v-if="!product.code.includes('MONTHLY')"
             class="absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105"
-            :style="{ 'background-color': product.code.includes('CREDITS') ? '#31c891' : '#e24545' }">
-            {{ product.permanent && !product.code.includes('CREDITS') ? '限时特惠' : '限时8.8折' }}
+            :style="{ 'background-color': product.isEnterprise ? '#ff9800' : (product.code.includes('CREDITS') ? '#31c891' : '#e24545') }">
+            {{ product.isEnterprise ? '高性价比' : (product.permanent && !product.code.includes('CREDITS') ? '限时特惠' : '限时8.8折') }}
+          </div>
           </div>
         </div>
       </div>
@@ -598,37 +612,93 @@ async function loadProducts() {
 
     console.log('获取到的所有产品:', allProducts)
 
-    // 重新排序：AI服务、积分套餐（中间推荐位置）、许可证、云存储
+    // 重新排序：入门积分套餐、许可证、企业专享积分套餐
     const sortedProducts = []
     let licenseProduct = null
 
-    // 1. AI服务产品
-    if (allProducts && allProducts.length > 0) {
-      const aiProducts = allProducts.filter(p =>
-        (p.code && p.code.includes('AI_SERVICE')) ||
-        (p.productCode && p.productCode.includes('AI_SERVICE'))
-      )
-      sortedProducts.push(...aiProducts)
+    // 1. 入门推荐积分套餐（8.8元，200积分）
+    const entryPackage = {
+      id: 'entry-credits',
+      packageCode: 'CREDITS_200',
+      packageName: '入门推荐',
+      packageDescription: '新手友好的积分套餐',
+      credits: 200,
+      originalPrice: 10.0,
+      currentPrice: 8.8,
+      discount: 0.88,
+      packageType: 'STANDARD',
+      isActive: true,
+      displayOrder: 1,
+      features: [
+        '200积分',
+        '适用于所有AI服务',
+        '永不过期',
+        '新手推荐',
+        '限时8.8折'
+      ],
+      costPerCredit: 0.044,
+      recommendedFor: '新手用户',
+      isPopular: false,
+      isEnterprise: false,
+      code: 'CREDITS_200',
+      name: '入门推荐',
+      description: '新手友好的积分套餐',
+      price: 8.8,
+      permanent: false
     }
+    sortedProducts.push(entryPackage)
 
-    // 2. 先保存许可证产品，稍后添加
+    // 2. 许可证产品（中间位置）
     if (allProducts && allProducts.length > 0) {
       licenseProduct = allProducts.find(p =>
         p.permanent &&
         !(p.code && p.code.includes('CREDITS')) &&
         !(p.productCode && p.productCode.includes('CREDITS'))
       )
+      if (licenseProduct) {
+        sortedProducts.push(licenseProduct)
+      }
     }
 
-    // 3. 积分套餐产品（使用新的API获取）
+    // 3. 企业专享积分套餐（77.44元，2000积分）
+    const enterprisePackage = {
+      id: 'enterprise-credits',
+      packageCode: 'CREDITS_2000',
+      packageName: '企业专享',
+      packageDescription: '高性价比企业级积分套餐',
+      credits: 2000,
+      originalPrice: 88.0,
+      currentPrice: 77.44,
+      discount: 0.88,
+      packageType: 'STANDARD',
+      isActive: true,
+      displayOrder: 10,
+      features: [
+        '2000积分',
+        '适用于所有AI服务',
+        '永不过期',
+        '高性价比',
+        '企业级服务'
+      ],
+      costPerCredit: 0.03872,
+      recommendedFor: '企业用户',
+      isPopular: false,
+      isEnterprise: true,
+      code: 'CREDITS_2000',
+      name: '企业专享',
+      description: '高性价比企业级积分套餐',
+      price: 77.44,
+      permanent: false
+    }
+    sortedProducts.push(enterprisePackage)
+
+    // 获取所有积分套餐用于弹窗显示
     try {
       const creditPackagesResult = await getCreditPackages()
       if (creditPackagesResult.success && creditPackagesResult.data) {
         const creditPackages = creditPackagesResult.data
-
-        // 转换API数据格式为组件期望的格式
         const convertedPackages = creditPackages
-          .filter(pkg => pkg.isActive !== false) // 只显示激活的套餐
+          .filter(pkg => pkg.isActive !== false)
           .map(pkg => ({
             id: pkg.id,
             packageCode: pkg.code,
@@ -649,94 +719,19 @@ async function loadProducts() {
             costPerCredit: pkg.pricePerCredit,
             recommendedFor: pkg.recommendTag || '用户',
             isPopular: pkg.recommendTag === '热门选择',
-            // 保留原始API字段以便兼容
             code: pkg.code,
             name: pkg.name,
             description: pkg.description,
             price: pkg.price,
             permanent: false
           }))
-
-        // 保存所有积分套餐到弹窗使用
         allCreditsProducts.value = convertedPackages
-        console.log('保存的积分套餐数据:', convertedPackages)
-
-        // 选择一个标准积分套餐作为热门套餐展示
-        // 优先选择有推荐标签的，其次选择中等价位的标准套餐
-        let selectedPackage = null
-
-        // 1. 优先选择有"热门"或"推荐"标签的套餐
-        selectedPackage = convertedPackages.find(p =>
-          p.isActive &&
-          p.packageType === 'STANDARD' &&
-          (p.recommendedFor?.includes('热门') || p.isPopular || p.recommendTag?.includes('热门'))
-        )
-
-        // 2. 如果没有热门套餐，选择中等价位的标准套餐（500-1000积分范围）
-        if (!selectedPackage) {
-          selectedPackage = convertedPackages.find(p =>
-            p.isActive &&
-            p.packageType === 'STANDARD' &&
-            p.credits >= 500 &&
-            p.credits <= 1000
-          )
-        }
-
-        // 3. 如果还没有，就选择第一个标准套餐
-        if (!selectedPackage) {
-          selectedPackage = convertedPackages.find(p =>
-            p.isActive &&
-            p.packageType === 'STANDARD'
-          )
-        }
-
-        // 4. 最后兜底，选择任意一个激活的套餐
-        if (!selectedPackage && convertedPackages.length > 0) {
-          selectedPackage = convertedPackages.find(p => p.isActive) || convertedPackages[0]
-        }
-
-        if (selectedPackage) {
-          // 积分套餐放在中间位置（第2位）
-          sortedProducts.push(selectedPackage)
-          console.log('选择的热门积分套餐:', selectedPackage.name, selectedPackage.credits + '积分')
-        }
       } else {
-        console.warn('获取积分套餐失败，使用降级数据:', creditPackagesResult.error)
-        // 使用降级数据（模拟数据已经是正确格式）
-        if (creditPackagesResult.data) {
-          allCreditsProducts.value = creditPackagesResult.data
-          const recommendedCredits = creditPackagesResult.data.filter(p =>
-            p.packageCode === 'CREDITS_500' || p.isPopular
-          )
-          if (recommendedCredits.length > 0) {
-            const convertedPackage = {
-              ...recommendedCredits[0],
-              code: recommendedCredits[0].packageCode,
-              name: recommendedCredits[0].packageName,
-              description: recommendedCredits[0].packageDescription,
-              price: recommendedCredits[0].currentPrice,
-              permanent: false
-            }
-            sortedProducts.push(convertedPackage)
-          }
-        }
+        allCreditsProducts.value = [entryPackage, enterprisePackage]
       }
     } catch (error) {
       console.error('加载积分套餐时发生错误:', error)
-    }
-
-    // 3. 许可证产品（放在积分套餐后面）
-    if (licenseProduct) {
-      sortedProducts.push(licenseProduct)
-    }
-
-    // 4. 云存储产品
-    if (allProducts && allProducts.length > 0) {
-      const storageProducts = allProducts.filter(p =>
-        (p.code && p.code.includes('CLOUD_STORAGE')) ||
-        (p.productCode && p.productCode.includes('CLOUD_STORAGE'))
-      )
-      sortedProducts.push(...storageProducts)
+      allCreditsProducts.value = [entryPackage, enterprisePackage]
     }
 
     products.value = sortedProducts
@@ -1290,6 +1285,20 @@ function showSuccessToast(message) {
 }
 
 
+
+/* 下滑指示器缓慢弹跳动画 */
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+}
 
 /* 购买弹窗动画 */
 .modal-backdrop {

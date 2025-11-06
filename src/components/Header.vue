@@ -100,6 +100,12 @@
             更新日志
           </button>
 
+          <!-- 历史版本 -->
+          <router-link to="/release-history" class="hover:text-slate-900 transition-colors font-medium"
+            active-class="text-primary-600" title="下载历史版本">
+            历史版本
+          </router-link>
+
           <!-- 活动菜单项 -->
           <button v-for="promo in menuPromotions" :key="promo.id" @click="showPromotionBanner(promo)"
             class="relative font-bold flex items-center gap-1.5 group/promo promotion-menu-item">
@@ -176,6 +182,10 @@
           <router-link to="/download" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             下载
+          </router-link>
+          <router-link to="/release-history" @click="closeMobileMenu"
+            class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
+            历史版本
           </router-link>
           <router-link to="/monthly-cards" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">

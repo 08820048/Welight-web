@@ -60,11 +60,97 @@
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">关于定价</h3>
             <div class="text-gray-600 dark:text-gray-300 space-y-4 text-sm leading-relaxed">
               <p>
-                应用目前的买断价格为 14.99 元，也就是一杯奶茶的钱，你可以得到一个应用的终身使用授权。相比市面上很多同类产品 28,138每月的会员价，四舍五入welight 等于免费。同时，对于应用内的 AI 服务和云存储服务，我们也推出了可选的阅读月卡，如果你懒得折腾自己配置云存储和 AI 服务，那么可以选择购买我们提供的月卡服务，激活即可用，目前对于 AI 服务的定价也才 4.99 元/月。你获得的是应用内一个月的AI 无限量使用权，完整使用应用内所有的 AI 功能。
+                应用目前的买断价格为 14.99 元，也就是一杯奶茶的钱，你可以得到一个应用的终身使用授权。相比市面上很多同类产品 28,138每月的会员价，四舍五入welight 等于免费。
+              </p>
+              <p>
+                对于应用内的 AI 服务，我们提供了灵活的积分套餐制度。你可以根据自己的使用需求购买不同规格的积分套餐，积分永久有效，按需使用。当然，如果你懒得折腾，也可以选择自己配置 AI 密钥进行使用。
               </p>
               <div class="bg-blue-50 dark:bg-blue-900/30 border-l-4 border-blue-400 p-4 rounded-r-lg">
                 <p class="text-blue-800 dark:text-blue-200 text-sm">
                   <strong>注意：</strong>随着后续 AI 功能的增加，我们可能会对价格进行适当调整，但始终相信，我们的定价绝对远低于同类产品。这一点毋庸置疑！
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <!-- AI服务计费说明 -->
+          <section class="mb-6">
+            <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">AI服务计费说明</h3>
+            <div class="text-gray-600 dark:text-gray-300 space-y-4 text-sm leading-relaxed">
+              <p>
+                使用积分套餐时，不同的AI功能会消耗不同数量的积分。以下是各项功能的积分消耗明细：
+              </p>
+              <div class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 overflow-x-auto">
+                <table class="w-full text-sm">
+                  <thead>
+                    <tr class="border-b border-gray-200 dark:border-gray-700">
+                      <th class="text-left py-2 px-3 font-semibold text-gray-900 dark:text-white">功能名称</th>
+                      <th class="text-left py-2 px-3 font-semibold text-gray-900 dark:text-white">功能说明</th>
+                      <th class="text-right py-2 px-3 font-semibold text-gray-900 dark:text-white">积分消耗</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <tr>
+                      <td class="py-2 px-3">翻译</td>
+                      <td class="py-2 px-3">AI智能翻译服务</td>
+                      <td class="py-2 px-3 text-right"><span class="inline-block bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">8</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-3">续写</td>
+                      <td class="py-2 px-3">AI智能续写服务</td>
+                      <td class="py-2 px-3 text-right"><span class="inline-block bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">8</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-3">润色</td>
+                      <td class="py-2 px-3">AI文本润色服务</td>
+                      <td class="py-2 px-3 text-right"><span class="inline-block bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-2 py-1 rounded">13</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-3">摘要</td>
+                      <td class="py-2 px-3">AI文本摘要服务</td>
+                      <td class="py-2 px-3 text-right"><span class="inline-block bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">8</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-3">智能排版</td>
+                      <td class="py-2 px-3">AI智能排版服务</td>
+                      <td class="py-2 px-3 text-right"><span class="inline-block bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-2 py-1 rounded">13</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-3">基础排版</td>
+                      <td class="py-2 px-3">AI基础排版服务</td>
+                      <td class="py-2 px-3 text-right"><span class="inline-block bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">8</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-3">作表</td>
+                      <td class="py-2 px-3">AI表格生成服务</td>
+                      <td class="py-2 px-3 text-right"><span class="inline-block bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">8</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-3">作图</td>
+                      <td class="py-2 px-3">AI图表生成服务</td>
+                      <td class="py-2 px-3 text-right"><span class="inline-block bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 px-2 py-1 rounded">13</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-3">解释</td>
+                      <td class="py-2 px-3">AI内容解释服务</td>
+                      <td class="py-2 px-3 text-right"><span class="inline-block bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded">8</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-3">AI创作</td>
+                      <td class="py-2 px-3">AI创意写作服务</td>
+                      <td class="py-2 px-3 text-right"><span class="inline-block bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-2 py-1 rounded">20</span></td>
+                    </tr>
+                    <tr>
+                      <td class="py-2 px-3">AI配图</td>
+                      <td class="py-2 px-3">AI配图生成服务</td>
+                      <td class="py-2 px-3 text-right"><span class="inline-block bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 px-2 py-1 rounded">15</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="bg-amber-50 dark:bg-amber-900/30 border-l-4 border-amber-400 p-4 rounded-r-lg">
+                <p class="text-amber-800 dark:text-amber-200 text-sm">
+                  <strong>提示：</strong>积分套餐永久有效，不会过期。您可以根据自己的使用频率选择合适的套餐，随用随买，灵活方便。
                 </p>
               </div>
             </div>
