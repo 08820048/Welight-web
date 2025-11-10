@@ -20,7 +20,7 @@ const promotions = [
       bgColor: '#ff4444',
       content: `
         <div class="promo-clean-layout">
-          <div class="promo-info-grid">
+          <div class="promo-info-grid-new">
             <div class="promo-info-item">
               <h3>购买永久许可证</h3>
               <p>附赠 <strong>300积分</strong></p>
@@ -33,17 +33,8 @@ const promotions = [
             </div>
             <div class="promo-info-item">
               <h3>许可证限时特惠中</h3>
-              <p>特惠现价<strong>14.99元</strong></p>
-              <span>活动结束后恢复原价<strong>49.99元</strong></span>
-            </div>
-            <div class="promo-info-item promo-rules-item">
-              <h3>活动规则</h3>
-              <ul>
-                <li>活动时间：10月20日 - 11月14日</li>
-                <li>活动期间购买的所有商品均可享受对应优惠</li>
-                <li>优惠不可叠加使用，以最优惠价格为准</li>
-                <li>赠送的积分将在订单完成后自动发放到账户</li>
-              </ul>
+              <p>特惠现价 <strong>14.99元/永久</strong></p>
+              <span>活动结束后恢复原价 <strong>49.99元/每年</strong></span>
             </div>
           </div>
           <div class="promo-actions">

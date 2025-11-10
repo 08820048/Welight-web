@@ -8,7 +8,18 @@
   <!-- 活动条幅内容 -->
   <transition name="banner-slide">
     <div v-if="isVisible" class="fixed top-0 left-0 right-0 z-[101] shadow-2xl">
-      <div :style="{ backgroundColor: promotion?.banner?.bgColor || '#ff4444' }">
+      <div :style="{ backgroundColor: promotion?.banner?.bgColor || '#ff4444' }" class="relative">
+        <!-- 活动规则 - 左下角 -->
+        <div class="absolute bottom-4 left-4 text-left z-10 promo-rules-corner">
+          <h3 class="text-white text-sm font-semibold mb-2">活动规则</h3>
+          <ul class="text-white/80 text-xs space-y-1">
+            <li>活动时间：10月20日 - 11月14日</li>
+            <li>活动期间购买的所有商品均可享受对应优惠</li>
+            <li>优惠不可叠加使用，以最优惠价格为准</li>
+            <li>赠送的积分将在订单完成后自动发放到账户</li>
+          </ul>
+        </div>
+
         <!-- 关闭按钮 -->
         <button @click="close"
           class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full transition-all z-10 group">
@@ -560,15 +571,36 @@ onUnmounted(() => {
   margin: 0;
 }
 
-.promo-info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1.5fr;
-  gap: 40px;
+.promo-rules-corner {
+  max-width: 280px;
+}
+
+.promo-rules-corner h3 {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.promo-rules-corner ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.promo-rules-corner li {
+  line-height: 1.5;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.promo-info-grid-new {
+  display: flex;
+  gap: 80px;
+  justify-content: center;
   margin-bottom: 40px;
 }
 
 .promo-info-item {
   text-align: center;
+  flex: 1;
+  max-width: 280px;
 }
 
 .promo-info-item h3 {
@@ -587,44 +619,25 @@ onUnmounted(() => {
 
 .promo-info-item strong {
   color: #4ade80;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 800;
   text-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
+  white-space: nowrap;
 }
 
 .promo-info-item span {
   color: rgba(255, 255, 255, 0.75);
   font-size: 14px;
   display: block;
+  white-space: nowrap;
 }
 
-.promo-rules-item ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: left;
-}
 
-.promo-rules-item li {
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 14px;
-  line-height: 2;
-  padding-left: 20px;
-  position: relative;
-}
-
-.promo-rules-item li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: rgba(255, 255, 255, 0.6);
-}
 
 .promo-actions {
   display: flex;
   justify-content: center;
   gap: 20px;
-  margin-top: 40px;
 }
 
 .promo-btn-main,
@@ -660,12 +673,14 @@ onUnmounted(() => {
   transform: translateY(-3px);
 }
 
-@media (max-width: 768px) {
-  .promo-info-grid {
-    grid-template-columns: 1fr;
-    gap: 10px;
+@media (max-width: 1024px) {
+  .promo-info-grid-new {
+    flex-direction: column;
+    gap: 20px;
   }
+}
 
+@media (max-width: 768px) {
   .promo-actions {
     flex-direction: column;
     gap: 15px;
