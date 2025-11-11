@@ -1,6 +1,34 @@
 // 公告数据
 export const announcementData = [
   {
+    id: 'announcement-2025-11-11',
+    title: '许可证定价调整通知',
+    date: '2025-11-11',
+    type: 'important',
+    badge: '重要公告',
+    badgeColor: 'red',
+    content: `# 许可证定价调整通知
+
+尊敬的 Welight 用户：
+
+为了提供更好的 AI 服务和持续更新，我们将于 **2025年11月15日**（也就是双十一活动结束后）调整定价：
+
+## 📢 新价格
+
+**¥49.99/年**（原 ¥14.99/永久）
+
+## 🎁 老用户权益
+
+已购买永久许可证的用户，将**永久保留所有功能**，无需额外付费。
+
+---
+
+感谢您的支持！
+
+**Welight 开发团队**
+*2025年11月11日*`
+  },
+  {
     id: 'announcement-2025-09-15',
     title: 'Welight 更新频率调整',
     date: '2025-09-15',
@@ -65,14 +93,14 @@ export const getLatestAnnouncement = () => {
 
 // 根据ID获取公告
 export const getAnnouncementById = (id) => {
-  return announcementData.find(item => item.id === id)
+  return announcementData.find((item) => item.id === id)
 }
 
 // 检查是否有新公告（用户未查看过的）
 export const hasNewAnnouncements = () => {
   const lastViewedId = localStorage.getItem('welight_last_viewed_announcement')
   if (!lastViewedId) return true
-  
+
   const latestAnnouncement = getLatestAnnouncement()
   return latestAnnouncement && latestAnnouncement.id !== lastViewedId
 }
