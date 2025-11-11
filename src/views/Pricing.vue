@@ -332,22 +332,26 @@
               </button>
             </div>
             <!-- 其他产品正常购买按钮 -->
-            <button v-else @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
-              :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
-              class="w-full py-2 px-4 text-white rounded-lg font-semibold shadow transform transition-all duration-200 purchase-button"
-              :class="{
-                'bg-orange-600 hover:bg-orange-700 hover:shadow-lg': product.code.includes('AI_SERVICE') && isServiceCurrentlyAvailable,
-                'bg-blue-500 hover:bg-blue-600 hover:shadow-lg': product.permanent && isServiceCurrentlyAvailable,
-                'bg-gray-400 cursor-not-allowed': !isServiceCurrentlyAvailable
-              }">
-              {{ getPurchaseButtonText(product) }}
-            </button>
+            <div v-else class="btn-container w-full" :class="{
+              'btn-container-blue': product.permanent,
+              'btn-container-orange': product.code.includes('AI_SERVICE')
+            }">
+              <div class="btn-drawer transition-top">限时优惠</div>
+              <div class="btn-drawer transition-bottom">立即抢购</div>
+
+              <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
+                :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''" class="btn w-full" :class="{
+                  'opacity-50 cursor-not-allowed': !isServiceCurrentlyAvailable
+                }">
+                <span class="btn-text">{{ getPurchaseButtonText(product) }}</span>
+              </button>
+            </div>
             <!-- 右上角条状标签 - 参考源码实现 -->
             <div v-if="!product.code.includes('MONTHLY')"
               class="absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105"
               :style="{ 'background-color': product.isEnterprise ? '#ff9800' : (product.code.includes('CREDITS') ? '#31c891' : '#e24545') }">
               {{ product.isEnterprise ? '高性价比' : (product.permanent && !product.code.includes('CREDITS') ? '限时特惠' :
-              '限时8.8折') }}
+                '限时8.8折') }}
             </div>
           </div>
         </div>
@@ -1268,17 +1272,314 @@ function showSuccessToast(message) {
   transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* 购买按钮简洁动效 */
-.purchase-button {
-  transition: all 0.2s ease-out;
+/* 新购买按钮样式 */
+.btn-container {
+  --btn-color: #d8ff7c;
+  --corner-color: #0002;
+  --corner-dist: 24px;
+  --corner-multiplier: 1.5;
+  --timing-function: cubic-bezier(0, 0, 0, 2.5);
+  --duration: 250ms;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.purchase-button:hover {
-  transform: translateY(-1px);
+/* 蓝色按钮 - 许可证 */
+.btn-container-blue {
+  --btn-color: #3b82f6;
 }
 
-.purchase-button:active {
-  transform: translateY(0);
+/* 橙色按钮 - AI服务 */
+.btn-container-orange {
+  --btn-color: #ea580c;
+}
+
+.btn {
+  position: relative;
+  min-width: 160px;
+  min-height: calc(var(--corner-dist) * 2);
+  border-radius: 16px;
+  border: none;
+  padding: 0.25em 1em;
+
+  background: linear-gradient(#fff2, #0001), var(--btn-color);
+  box-shadow:
+    1px 1px 2px -1px #fff inset,
+    0 2px 1px #00000010,
+    0 4px 2px #00000010,
+    0 8px 4px #00000010,
+    0 16px 8px #00000010,
+    0 32px 16px #00000010;
+
+  transition:
+    transform var(--duration) var(--timing-function),
+    filter var(--duration) var(--timing-function);
+  -webkit-transition:
+    transform var(--duration) var(--timing-function),
+    -webkit-filter var(--duration) var(--timing-function);
+
+  cursor: pointer;
+}
+
+.btn-drawer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+
+  min-height: 32px;
+  border-radius: 16px;
+  border: none;
+  padding: 0.25em 1em;
+  font-size: 0.8em;
+  font-weight: 600;
+  font-family: "Poppins", monospace;
+  color: #0009;
+
+  background: linear-gradient(#fff2, #0001), var(--btn-color);
+  background-color: #fbff13;
+  opacity: 0;
+
+  transition:
+    transform calc(0.5 * var(--duration)) ease,
+    filter var(--duration) var(--timing-function),
+    opacity calc(0.5 * var(--duration)) ease;
+  -webkit-transition:
+    transform calc(0.5 * var(--duration)) ease,
+    -webkit-filter var(--duration) var(--timing-function),
+    opacity calc(0.5 * var(--duration)) ease;
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+}
+
+.transition-top {
+  top: 0;
+  left: 0;
+  border-radius: 12px 12px 0 0;
+  align-items: start;
+}
+
+.transition-bottom {
+  bottom: 0;
+  right: 0;
+  border-radius: 0 0 12px 12px;
+  align-items: end;
+}
+
+.btn-text {
+  display: inline-block;
+
+  font-size: 1.25em;
+  font-family: "Syne", "Poppins", "Inter", sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  -webkit-filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+
+  transition:
+    transform var(--duration) var(--timing-function),
+    filter var(--duration) var(--timing-function),
+    color var(--duration) var(--timing-function);
+  -webkit-transition:
+    transform var(--duration) var(--timing-function),
+    -webkit-filter var(--duration) var(--timing-function),
+    color var(--duration) var(--timing-function);
+}
+
+.btn-corner {
+  position: absolute;
+  width: 32px;
+
+  fill: none;
+  stroke: var(--corner-color);
+
+  transition:
+    transform var(--duration) var(--timing-function),
+    filter var(--duration) var(--timing-function);
+  -webkit-transition:
+    transform var(--duration) var(--timing-function),
+    -webkit-filter var(--duration) var(--timing-function);
+}
+
+.btn-corner:nth-of-type(1) {
+  top: 0;
+  left: 0;
+  transform: translate(calc(-1 * var(--corner-dist)),
+      calc(-1 * var(--corner-dist))) rotate(90deg);
+}
+
+.btn-corner:nth-of-type(2) {
+  top: 0;
+  right: 0;
+  transform: translate(var(--corner-dist), calc(-1 * var(--corner-dist))) rotate(180deg);
+}
+
+.btn-corner:nth-of-type(3) {
+  bottom: 0;
+  right: 0;
+  transform: translate(var(--corner-dist), var(--corner-dist)) rotate(-90deg);
+}
+
+.btn-corner:nth-of-type(4) {
+  bottom: 0;
+  left: 0;
+  transform: translate(calc(-1 * var(--corner-dist)), var(--corner-dist)) rotate(0deg);
+}
+
+.btn-container:has(.btn:hover),
+.btn-container:has(.btn:focus-visible) {
+  .btn {
+    transform: scale(1.05);
+    filter: drop-shadow(0 16px 16px #0002);
+    -webkit-filter: drop-shadow(0 16px 16px #0002);
+  }
+
+  .transition-top {
+    transform: translateY(-24px) rotateZ(4deg);
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+    animation: hue-anim 3s infinite linear;
+    -webkit-animation: hue-anim 3s infinite linear;
+    opacity: 1;
+  }
+
+  .transition-bottom {
+    transform: translateY(24px) rotateZ(4deg);
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+    animation: hue-anim 3s infinite linear;
+    -webkit-animation: hue-anim 3s infinite linear;
+    opacity: 1;
+  }
+
+  .btn-text {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+    -webkit-filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+    transform: scale(1.05);
+    color: #ffffff;
+  }
+
+  --corner-color: #0004;
+
+  .btn-corner:first-of-type {
+    transform: translate(calc(-1 * var(--corner-multiplier) * var(--corner-dist)),
+        calc(-1 * var(--corner-multiplier) * var(--corner-dist))) rotate(90deg);
+    filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+  }
+
+  .btn-corner:nth-of-type(2) {
+    transform: translate(calc(var(--corner-multiplier) * var(--corner-dist)),
+        calc(-1 * var(--corner-multiplier) * var(--corner-dist))) rotate(180deg);
+    filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+  }
+
+  @-moz-document url-prefix() {
+    .btn-corner:nth-of-type(2) {
+      filter: drop-shadow(10px -10px 1px var(--corner-color)) drop-shadow(20px -20px 2px var(--corner-color));
+    }
+  }
+
+  .btn-corner:nth-of-type(3) {
+    transform: translate(calc(var(--corner-multiplier) * var(--corner-dist)),
+        calc(var(--corner-multiplier) * var(--corner-dist))) rotate(-90deg);
+    filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+  }
+
+  .btn-corner:nth-of-type(4) {
+    transform: translate(calc(-1 * var(--corner-multiplier) * var(--corner-dist)),
+        calc(var(--corner-multiplier) * var(--corner-dist))) rotate(0deg);
+    filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+  }
+}
+
+.btn-container:has(.btn:active) {
+  .btn {
+    transform: scale(0.95);
+    filter: drop-shadow(0 10px 4px #0002);
+    -webkit-filter: drop-shadow(0 10px 4px #0002);
+  }
+
+  .transition-top,
+  .transition-bottom {
+    transform: translateY(0px) scale(0.5);
+  }
+
+  .btn-text {
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    -webkit-filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    transform: scale(1);
+    color: #ffffff;
+  }
+
+  --corner-color: #0005;
+  --corner-multiplier: 0.95;
+
+  .btn-corner:first-of-type {
+    transform: translate(calc(-1 * var(--corner-multiplier) * var(--corner-dist)),
+        calc(-1 * var(--corner-multiplier) * var(--corner-dist))) rotate(90deg);
+    filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+  }
+
+  .btn-corner:nth-of-type(2) {
+    transform: translate(calc(var(--corner-multiplier) * var(--corner-dist)),
+        calc(-1 * var(--corner-multiplier) * var(--corner-dist))) rotate(180deg);
+    filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+  }
+
+  @-moz-document url-prefix() {
+    .btn-corner:nth-of-type(2) {
+      filter: drop-shadow(10px -10px 2px var(--corner-color)) drop-shadow(20px -20px 3px var(--corner-color));
+    }
+  }
+
+  .btn-corner:nth-of-type(3) {
+    transform: translate(calc(var(--corner-multiplier) * var(--corner-dist)),
+        calc(var(--corner-multiplier) * var(--corner-dist))) rotate(-90deg);
+    filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+  }
+
+  .btn-corner:nth-of-type(4) {
+    transform: translate(calc(-1 * var(--corner-multiplier) * var(--corner-dist)),
+        calc(var(--corner-multiplier) * var(--corner-dist))) rotate(0deg);
+    filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+  }
+}
+
+@keyframes hue-anim {
+
+  0%,
+  100% {
+    filter: hue-rotate(0deg);
+    -webkit-filter: hue-rotate(0deg);
+  }
+
+  50% {
+    filter: hue-rotate(-70deg);
+    -webkit-filter: hue-rotate(-70deg);
+  }
+}
+
+@-webkit-keyframes hue-anim {
+
+  0%,
+  100% {
+    -webkit-filter: hue-rotate(0deg);
+  }
+
+  50% {
+    -webkit-filter: hue-rotate(-70deg);
+  }
 }
 
 /* 自定义微缩放效果 */
