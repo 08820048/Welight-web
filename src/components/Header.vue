@@ -107,7 +107,7 @@
           </a>
 
           <!-- 主题预览 -->
-          <a href="http://localhost:5173/wl/themes" target="_blank"
+          <a href="https://waer.ltd/wl/themes" target="_blank"
             class="hover:text-slate-900 transition-colors font-medium" title="主题预览">
             主题预览
           </a>
@@ -208,7 +208,7 @@
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             网页版
           </a>
-          <a href="http://localhost:5173/wl/themes" target="_blank" @click="closeMobileMenu"
+          <a href="https://waer.ltd/wl/themes" target="_blank" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             主题预览
           </a>
