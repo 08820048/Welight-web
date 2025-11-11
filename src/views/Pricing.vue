@@ -347,7 +347,7 @@
               class="absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105"
               :style="{ 'background-color': product.isEnterprise ? '#ff9800' : (product.code.includes('CREDITS') ? '#31c891' : '#e24545') }">
               {{ product.isEnterprise ? '高性价比' : (product.permanent && !product.code.includes('CREDITS') ? '限时特惠' :
-                '限时8.8折') }}
+              '限时8.8折') }}
             </div>
           </div>
         </div>
@@ -366,6 +366,8 @@
           <li class="animate-fade-in-up delay-1500">反馈交流请通过QQ群联系开发者。</li>
           <li class="animate-fade-in-up delay-1600">支持微信支付，订单有效期为30分钟。</li>
           <li class="animate-fade-in-up delay-1700">产品存在代码性质，拥有可复制性，因此购买后，无法退款</li>
+          <li class="animate-fade-in-up delay-1700">网页版本支持更多丰富的主题，使用网页版主题需要使用激活后的许可证进行验证。</li>
+          <li class="animate-fade-in-up delay-1700">由于默认的云存储服务额度有限，建议您配置自己的图床进行使用</li>
         </ul>
 
         <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1800">交流反馈

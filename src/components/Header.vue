@@ -106,6 +106,12 @@
             网页版
           </a>
 
+          <!-- 主题预览 -->
+          <a href="http://localhost:5173/wl/themes" target="_blank"
+            class="hover:text-slate-900 transition-colors font-medium" title="主题预览">
+            主题预览
+          </a>
+
           <!-- 活动菜单项 -->
           <button v-for="promo in menuPromotions" :key="promo.id" @click="showPromotionBanner(promo)"
             class="relative font-bold flex items-center gap-1.5 group/promo promotion-menu-item">
@@ -128,21 +134,30 @@
             <span class="button__text">前往下载</span>
             <span class="button__icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 35" class="svg">
-                <path d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z"></path>
-                <path d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z"></path>
-                <path d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z"></path>
+                <path
+                  d="M17.5,22.131a1.249,1.249,0,0,1-1.25-1.25V2.187a1.25,1.25,0,0,1,2.5,0V20.881A1.25,1.25,0,0,1,17.5,22.131Z">
+                </path>
+                <path
+                  d="M17.5,22.693a3.189,3.189,0,0,1-2.262-.936L8.487,15.006a1.249,1.249,0,0,1,1.767-1.767l6.751,6.751a.7.7,0,0,0,.99,0l6.751-6.751a1.25,1.25,0,0,1,1.768,1.767l-6.752,6.751A3.191,3.191,0,0,1,17.5,22.693Z">
+                </path>
+                <path
+                  d="M31.436,34.063H3.564A3.318,3.318,0,0,1,.25,30.749V22.011a1.25,1.25,0,0,1,2.5,0v8.738a.815.815,0,0,0,.814.814H31.436a.815.815,0,0,0,.814-.814V22.011a1.25,1.25,0,1,1,2.5,0v8.738A3.318,3.318,0,0,1,31.436,34.063Z">
+                </path>
               </svg>
             </span>
           </router-link>
 
           <!-- 文档按钮 -->
-          <router-link to="/documentation" @click="markDocsUpdateViewed" class="hidden md:block doc-button-new" title="查看文档">
+          <router-link to="/documentation" @click="markDocsUpdateViewed" class="hidden md:block doc-button-new"
+            title="查看文档">
             <div>
               <div class="pencil"></div>
               <div class="folder">
                 <div class="top">
                   <svg viewBox="0 0 24 27">
-                    <path d="M1,0 L23,0 C23.5522847,-1.01453063e-16 24,0.44771525 24,1 L24,8.17157288 C24,8.70200585 23.7892863,9.21071368 23.4142136,9.58578644 L20.5857864,12.4142136 C20.2107137,12.7892863 20,13.2979941 20,13.8284271 L20,26 C20,26.5522847 19.5522847,27 19,27 L1,27 C0.44771525,27 6.76353751e-17,26.5522847 0,26 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z"></path>
+                    <path
+                      d="M1,0 L23,0 C23.5522847,-1.01453063e-16 24,0.44771525 24,1 L24,8.17157288 C24,8.70200585 23.7892863,9.21071368 23.4142136,9.58578644 L20.5857864,12.4142136 C20.2107137,12.7892863 20,13.2979941 20,13.8284271 L20,26 C20,26.5522847 19.5522847,27 19,27 L1,27 C0.44771525,27 6.76353751e-17,26.5522847 0,26 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z">
+                    </path>
                   </svg>
                 </div>
                 <div class="paper"></div>
@@ -192,6 +207,10 @@
           <a href="https://waer.ltd/wl/" target="_blank" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             网页版
+          </a>
+          <a href="http://localhost:5173/wl/themes" target="_blank" @click="closeMobileMenu"
+            class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
+            主题预览
           </a>
           <router-link to="/monthly-cards" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
@@ -482,7 +501,9 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-.download-button, .download-button .button__icon, .download-button .button__text {
+.download-button,
+.download-button .button__icon,
+.download-button .button__text {
   transition: all 0.3s;
 }
 
@@ -562,7 +583,7 @@ onUnmounted(() => {
   background: var(--bg, var(--background));
 }
 
-.doc-button-new > div {
+.doc-button-new>div {
   top: 0;
   left: 0;
   bottom: 0;
@@ -573,7 +594,7 @@ onUnmounted(() => {
   background: var(--background-left);
 }
 
-.doc-button-new > div .folder {
+.doc-button-new>div .folder {
   width: 23px;
   height: 27px;
   position: absolute;
@@ -581,7 +602,7 @@ onUnmounted(() => {
   top: 6.5px;
 }
 
-.doc-button-new > div .folder .top {
+.doc-button-new>div .folder .top {
   left: 0;
   top: 0;
   z-index: 2;
@@ -590,7 +611,7 @@ onUnmounted(() => {
   transition: transform 0.4s ease var(--fd, 0.3s);
 }
 
-.doc-button-new > div .folder .top svg {
+.doc-button-new>div .folder .top svg {
   width: 24px;
   height: 27px;
   display: block;
@@ -600,9 +621,9 @@ onUnmounted(() => {
   transform: perspective(120px) rotateY(var(--fr, 0deg));
 }
 
-.doc-button-new > div .folder:before,
-.doc-button-new > div .folder:after,
-.doc-button-new > div .folder .paper {
+.doc-button-new>div .folder:before,
+.doc-button-new>div .folder:after,
+.doc-button-new>div .folder .paper {
   content: "";
   position: absolute;
   left: var(--l, 0);
@@ -613,14 +634,14 @@ onUnmounted(() => {
   background: var(--b, var(--folder-inner));
 }
 
-.doc-button-new > div .folder:before {
+.doc-button-new>div .folder:before {
   box-shadow: 0 1.5px 3px var(--shadow), 0 2.5px 5px var(--shadow), 0 3.5px 7px var(--shadow);
   transform: translateX(var(--fx, 0));
   transition: transform 0.4s ease var(--fd, 0.3s);
 }
 
-.doc-button-new > div .folder:after,
-.doc-button-new > div .folder .paper {
+.doc-button-new>div .folder:after,
+.doc-button-new>div .folder .paper {
   --l: 1px;
   --t: 1px;
   --w: 21px;
@@ -628,18 +649,18 @@ onUnmounted(() => {
   --b: var(--paper-behind);
 }
 
-.doc-button-new > div .folder:after {
+.doc-button-new>div .folder:after {
   transform: translate(var(--pbx, 0), var(--pby, 0));
   transition: transform 0.4s ease var(--pbd, 0s);
 }
 
-.doc-button-new > div .folder .paper {
+.doc-button-new>div .folder .paper {
   z-index: 1;
   --b: var(--paper);
 }
 
-.doc-button-new > div .folder .paper:before,
-.doc-button-new > div .folder .paper:after {
+.doc-button-new>div .folder .paper:before,
+.doc-button-new>div .folder .paper:after {
   content: "";
   width: var(--wp, 14px);
   height: 2px;
@@ -652,12 +673,12 @@ onUnmounted(() => {
   box-shadow: 0 12px 0 0 var(--paper-lines), 0 24px 0 0 var(--paper-lines);
 }
 
-.doc-button-new > div .folder .paper:after {
+.doc-button-new>div .folder .paper:after {
   --tp: 6px;
   --wp: 10px;
 }
 
-.doc-button-new > div .pencil {
+.doc-button-new>div .pencil {
   height: 2px;
   width: 3px;
   border-radius: 1px 1px 0 0;
@@ -671,8 +692,8 @@ onUnmounted(() => {
   transition: transform 0.4s ease var(--pbd, 0s);
 }
 
-.doc-button-new > div .pencil:before,
-.doc-button-new > div .pencil:after {
+.doc-button-new>div .pencil:before,
+.doc-button-new>div .pencil:after {
   content: "";
   position: absolute;
   display: block;
@@ -684,12 +705,12 @@ onUnmounted(() => {
   left: var(--l, -1px);
 }
 
-.doc-button-new > div .pencil:before {
+.doc-button-new>div .pencil:before {
   -webkit-clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px);
   clip-path: polygon(0 5%, 5px 5%, 5px 17px, 50% 20px, 0 17px);
 }
 
-.doc-button-new > div .pencil:after {
+.doc-button-new>div .pencil:after {
   --b: none;
   --w: 3px;
   --h: 6px;
