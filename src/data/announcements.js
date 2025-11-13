@@ -7,26 +7,7 @@ export const announcementData = [
     type: 'important',
     badge: '重要公告',
     badgeColor: 'red',
-    content: `# 许可证定价调整通知
-
-尊敬的 Welight 用户：
-
-为了提供更好的 AI 服务和持续更新，我们将于 **2025年11月15日**（也就是双十一活动结束后）调整定价：
-
-## 新价格
-
-**¥49.99/年**（原 ¥14.99/永久）
-
-## 老用户权益
-
-已购买永久许可证的用户，将**永久保留所有功能**，无需额外付费。
-
----
-
-感谢您的支持！
-
-**Welight 开发者**
-*2025年11月11日*`
+    content: `![许可证定价调整通知](https://ultimate-img.oss-cn-beijing.aliyuncs.com/welight/ilikexff@gmail.com/20251113/36a865a5b72244d39c95bae5265e9f35.png)`
   },
   {
     id: 'announcement-2025-09-15',

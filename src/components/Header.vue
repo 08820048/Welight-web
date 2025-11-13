@@ -499,6 +499,7 @@ onUnmounted(() => {
   border: 1px solid #17795E;
   background-color: #209978;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .download-button,
