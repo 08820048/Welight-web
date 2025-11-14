@@ -387,7 +387,7 @@
           <li class="animate-fade-in-up delay-1600">支持微信支付，订单有效期为30分钟。</li>
           <li class="animate-fade-in-up delay-1700">产品存在代码性质，拥有可复制性，因此购买后，无法退款</li>
           <li class="animate-fade-in-up delay-1700">网页版本支持更多丰富的主题，使用网页版主题需要使用激活后的许可证进行验证。</li>
-          <li class="animate-fade-in-up delay-1700">由于默认的云存储服务额度有限，建议您配置自己的图床进行使用</li>
+          <li class="animate-fade-in-up delay-1700">默认内置的图片云存储服务和 AI 服务一样作为可选服务，您也可以选择配置自己的图床进行使用</li>
         </ul>
 
         <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1800">交流反馈
