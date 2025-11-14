@@ -148,6 +148,7 @@ import {
   searchDocumentationPages 
 } from '@/data/documentation.js'
 import { Rocket, Star, Cog, HelpCircle, FileText } from 'lucide-vue-next'
+import mermaid from 'mermaid'
 
 // 文档分类图标（Lucide 图标组件映射）
 const categoryIconComponents = {
@@ -362,6 +363,17 @@ const renderedContent = computed(() => {
       }
     })
 
+    // 新增：将 ```mermaid 代码块转换为 <div class="mermaid">，以便后续渲染
+    doc.body
+      .querySelectorAll('pre code.language-mermaid, pre code[class*="language-mermaid"]')
+      .forEach((codeEl) => {
+        const pre = codeEl.parentElement?.tagName === 'PRE' ? codeEl.parentElement : codeEl.closest('pre')
+        const div = doc.createElement('div')
+        div.className = 'mermaid'
+        div.textContent = codeEl.textContent || ''
+        if (pre) pre.replaceWith(div)
+      })
+
     return doc.body.innerHTML
   } catch (e) {
     console.error('Heading id injection failed:', e)
@@ -404,18 +416,47 @@ const nextPage = computed(() => {
 
 // 渲染完成后，初始化滚动联动观察器
 watch(() => renderedContent.value, () => {
-  nextTick(() => initHeadingObserver())
+  nextTick(() => {
+    initHeadingObserver()
+    renderMermaid()
+  })
 })
 
-// 初次挂载后初始化观察器，确保滚动联动生效
-onMounted(() => {
-  nextTick(() => initHeadingObserver())
-})
+// Mermaid 渲染：在内容更新后初始化并渲染图表
+const renderMermaid = async () => {
+  try {
+    const container = contentScroll.value?.querySelector('.markdown-content')
+    if (!container) return
+    const diagrams = Array.from(container.querySelectorAll('.mermaid'))
+    if (!diagrams.length) return
+
+    for (let i = 0; i < diagrams.length; i++) {
+      const el = diagrams[i]
+      const code = (el.textContent || '').trim()
+      if (!code) continue
+      try {
+        // 先校验语法，便于捕获具体错误
+        await mermaid.parse(code)
+        const { svg, bindFunctions } = await mermaid.render(`mermaid-${Date.now()}-${i}`, code)
+        el.innerHTML = svg
+        if (bindFunctions) bindFunctions(el)
+      } catch (err) {
+        console.error('Mermaid diagram parse/render failed:', err)
+        el.innerHTML = `<pre class="not-prose text-xs text-red-700 bg-red-50 border border-red-200 rounded p-2 overflow-auto">Mermaid 解析失败：${(err && err.message) ? err.message : String(err)}</pre>`
+      }
+    }
+  } catch (err) {
+    console.error('Mermaid render failed:', err)
+  }
+}
 
 // 页面切换后重新建立观察器
 watch(currentPageId, () => {
   activeHeadingId.value = null
-  nextTick(() => initHeadingObserver())
+  nextTick(() => {
+    initHeadingObserver()
+    renderMermaid()
+  })
 })
 
 const getPagesByCategory = (categoryId) => {
@@ -476,6 +517,14 @@ const ensureActiveHeadingVisible = () => {
 
 watch(activeHeadingId, () => {
   nextTick(() => ensureActiveHeadingVisible())
+})
+
+onMounted(() => {
+  mermaid.initialize({ startOnLoad: false, securityLevel: 'loose', theme: 'default' })
+  nextTick(() => {
+    initHeadingObserver()
+    renderMermaid()
+  })
 })
 </script>
 
@@ -687,4 +736,7 @@ watch(activeHeadingId, () => {
   transform: scaleY(1);
   opacity: 1;
 }
+
+/* Mermaid block spacing */
+:deep(.markdown-content .mermaid) { @apply my-4; }
 </style>

@@ -186,151 +186,173 @@
         <p class="mt-2 text-gray-600 animate-fade-in-up delay-700">正在加载产品信息...</p>
       </div>
 
-      <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end">
+      <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end relative">
         <!-- 所有产品卡片（基于API数据） -->
-        <div v-for="(product, index) in products" :key="product.id"
-          class="bg-white rounded-xl shadow-lg flex flex-col items-center relative overflow-hidden product-card animate-scale-in border-2 border-white group"
-          :class="[
-            `delay-${600 + index * 100}`,
-            product.permanent ? 'p-10 recommended-card' : 'p-8'
-          ]">
-          <!-- 内部渐隐效果层 -->
-          <div class="absolute inset-0 pointer-events-none rounded" :class="{
-            'ai-service-gradient-overlay': product.code.includes('AI_SERVICE'),
-            'cloud-storage-gradient-overlay': product.code.includes('CLOUD_STORAGE'),
-            'monthly-card-gradient-overlay': product.code.includes('CREDITS'),
-            'permanent-gradient-overlay': product.permanent && !product.code.includes('CREDITS')
-          }"></div>
+        <div v-for="(product, index) in products" :key="product.id" class="relative">
+          <!-- 下滑指示器 - 只在企业专享卡片右侧显示 -->
+          <div v-if="product.isEnterprise" class="hidden md:block absolute -right-40 top-0 animate-bounce-slow z-10">
+            <div class="flex flex-col items-center gap-2">
+              <div class="bg-blue-500 text-white px-3 py-2 rounded-lg shadow-lg text-sm font-medium whitespace-nowrap">
+                下滑阅读购买须知
+              </div>
+              <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+            </div>
+          </div>
 
-          <!-- 产品名称标签 -->
-          <span class="inline-block text-lg font-bold mb-2" :class="{
-            'text-orange-700': product.code.includes('AI_SERVICE'),
-            'text-purple-700': product.code.includes('CLOUD_STORAGE'),
-            'text-blue-700': product.code.includes('CREDITS'),
-            'text-blue-600': product.permanent && !product.code.includes('CREDITS')
-          }">
-            {{ product.code.includes('CREDITS') ? (product.packageName || product.name) : product.name }}
-          </span>
-          <div class="flex flex-col items-center mb-2 transform transition-all duration-200 group-hover:scale-101">
-            <!-- 原价显示 -->
-            <div v-if="getOriginalPrice(product)"
-              class="text-sm text-gray-400 line-through mb-1 transition-colors duration-200 group-hover:text-gray-500">
-              原价 ¥{{ getOriginalPrice(product) }}{{ product.permanent ? '' : '/月' }}
-            </div>
-            <!-- 现价显示 -->
-            <div class="text-center">
-              <!-- 月卡产品显示折合天价格 -->
-              <div v-if="product.code.includes('MONTHLY')" class="flex items-baseline justify-center space-x-1">
-                <span class="text-lg font-light" style="color: #737a87;">月卡低至</span>
-                <span class="text-lg font-light" style="color: #737a87;">¥</span>
-                <span class="text-3xl font-bold text-black">{{ getDailyPrice(product) }}</span>
-                <span class="text-lg font-light" style="color: #737a87;">/天</span>
-              </div>
-              <!-- 积分套餐显示月卡风格价格 -->
-              <div v-else-if="product.code.includes('CREDITS')" class="flex items-baseline justify-center space-x-1">
-                <span class="text-lg font-light text-gray-700">积分套餐</span>
-                <span class="text-lg font-light" style="color: #737a87;">¥</span>
-                <span class="text-3xl font-bold text-gray-900">{{ product.price }}</span>
-                <span class="text-lg font-light" style="color: #737a87;">/永久</span>
-              </div>
-              <!-- 其他产品显示原价格 -->
-              <div v-else class="flex items-baseline justify-center space-x-1">
-                <span class="text-lg font-light" style="color: #737a87;">¥</span>
-                <span class="text-3xl font-bold text-black">{{ product.price }}</span>
-                <span class="text-lg font-light" style="color: #737a87;">{{ product.permanent ? '/永久' : '/月' }}</span>
-              </div>
-            </div>
-            <!-- 折扣标签 -->
-            <div v-if="getDiscountPercent(product)" class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full mt-1">
-              {{ getDiscountPercent(product) }}折
-            </div>
-            <!-- 积分套餐永久有效标签 -->
-            <div v-if="product.code.includes('CREDITS')"
-              class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full mt-1">
-              永久有效
-            </div>
-          </div>
-          <div class="text-gray-500 mb-6">{{ product.description }}</div>
-          <ul class="text-sm text-gray-700 space-y-2 mb-6 text-left w-full">
-            <!-- 积分套餐功能列表 -->
-            <template v-if="product.code.includes('CREDITS')">
-              <li><span class="text-green-600">✔</span> {{ getCreditsAmountLocal(product) }}积分</li>
-              <li><span class="text-green-600">✔</span> 支持所有AI功能使用</li>
-              <li><span class="text-green-600">✔</span> 永久有效</li>
-              <li><span class="text-green-600">✔</span> 灵活消费</li>
-              <li><span class="text-green-600">✔</span> 按需使用</li>
-              <li><span class="text-green-600">✔</span> 免费更新</li>
-              <li><span class="text-green-600">✔</span> 技术支持</li>
-            </template>
-            <!-- 其他产品功能列表 -->
-            <template v-else>
-              <li v-if="product.permanent" class="relative">
-                <div
-                  class="flex items-center justify-between bg-gradient-to-r from-orange-50 to-red-50 -mx-2 px-2 py-1.5 rounded-lg border border-orange-200">
-                  <span class="flex items-center gap-1.5">
-                    <span class="text-green-600">✔</span>
-                    <span class="font-medium text-gray-900">附赠300积分</span>
-                  </span>
-                  <span
-                    class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold text-white bg-gradient-to-r from-orange-500 to-red-500 rounded-full shadow-sm animate-pulse">
-                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                      <path
-                        d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" />
-                    </svg>
-                    限时
-                  </span>
-                </div>
-              </li>
-              <li v-if="product.permanent"><span class="text-green-600">✔</span> 永久授权</li>
-              <li v-else><span class="text-green-600">✔</span> {{ product.validityDays }}天有效期</li>
-              <li v-if="product.permanent"><span class="text-green-600">✔</span> 7天免费试用</li>
-              <li v-if="product.permanent"><span class="text-green-600">✔</span> 支持 3 台设备激活</li>
-              <li v-if="product.code.includes('AI_SERVICE')"><span class="text-green-600">✔</span> 支持应用内所有AI功能</li>
-              <li v-if="product.code.includes('CLOUD_STORAGE')"><span class="text-green-600">✔</span> 云端存储服务</li>
-              <li v-if="product.permanent"><span class="text-green-600">✔</span> 所有核心功能</li>
-              <li><span class="text-green-600">✔</span> 免费更新</li>
-              <li><span class="text-green-600">✔</span> 技术支持</li>
-            </template>
-          </ul>
-          <!-- 云存储服务敬请期待 -->
-          <button v-if="product.code.includes('CLOUD_STORAGE')"
-            class="w-full py-2 px-4 bg-gray-400 text-white rounded-lg font-semibold cursor-not-allowed shadow" disabled>
-            即将推出
-          </button>
-          <!-- 积分套餐购买 -->
-          <div v-else-if="product.code.includes('CREDITS')" class="space-y-2">
-            <button @click="purchaseProduct(product)" :disabled="!isServiceCurrentlyAvailable"
-              :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
-              class="w-full py-2 px-4 text-white rounded-lg font-semibold shadow transition-colors duration-200" :class="{
-                'bg-green-600 hover:bg-green-700': isServiceCurrentlyAvailable,
-                'bg-gray-400 cursor-not-allowed': !isServiceCurrentlyAvailable
-              }">
-              {{ getPurchaseButtonText(product) }}
-            </button>
-            <button @click="showCreditsModal = true" :disabled="!isServiceCurrentlyAvailable"
-              class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
-                'bg-green-50 text-green-600 border-green-200 hover:bg-green-100': isServiceCurrentlyAvailable,
-                'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed': !isServiceCurrentlyAvailable
-              }">
-              更多套餐
-            </button>
-          </div>
-          <!-- 其他产品正常购买按钮 -->
-          <button v-else @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
-            :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
-            class="w-full py-2 px-4 text-white rounded-lg font-semibold shadow transform transition-all duration-200 purchase-button"
-            :class="{
-              'bg-orange-600 hover:bg-orange-700 hover:shadow-lg': product.code.includes('AI_SERVICE') && isServiceCurrentlyAvailable,
-              'bg-blue-500 hover:bg-blue-600 hover:shadow-lg': product.permanent && isServiceCurrentlyAvailable,
-              'bg-gray-400 cursor-not-allowed': !isServiceCurrentlyAvailable
+          <div
+            class="bg-white rounded-xl shadow-lg flex flex-col items-center relative overflow-hidden product-card animate-scale-in border-2 border-white group"
+            :class="[
+              `delay-${600 + index * 100}`,
+              product.permanent ? 'p-10 recommended-card' : 'p-8'
+            ]">
+            <!-- 内部渐隐效果层 -->
+            <div class="absolute inset-0 pointer-events-none rounded" :class="{
+              'ai-service-gradient-overlay': product.code.includes('AI_SERVICE'),
+              'cloud-storage-gradient-overlay': product.code.includes('CLOUD_STORAGE'),
+              'monthly-card-gradient-overlay': product.code.includes('CREDITS'),
+              'permanent-gradient-overlay': product.permanent && !product.code.includes('CREDITS')
+            }"></div>
+
+            <!-- 产品名称标签 -->
+            <span class="inline-block text-lg font-bold mb-2" :class="{
+              'text-orange-700': product.code.includes('AI_SERVICE'),
+              'text-purple-700': product.code.includes('CLOUD_STORAGE'),
+              'text-blue-700': product.code.includes('CREDITS'),
+              'text-blue-600': product.permanent && !product.code.includes('CREDITS')
             }">
-            {{ getPurchaseButtonText(product) }}
-          </button>
-          <!-- 右上角条状标签 - 参考源码实现 -->
-          <div v-if="!product.code.includes('MONTHLY')"
-            class="absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105"
-            :style="{ 'background-color': product.code.includes('CREDITS') ? '#31c891' : '#e24545' }">
-            {{ product.permanent && !product.code.includes('CREDITS') ? '限时特惠' : '热门' }}
+              {{ product.code.includes('CREDITS') ? (product.packageName || product.name) : product.name }}
+            </span>
+            <div class="flex flex-col items-center mb-2 transform transition-all duration-200 group-hover:scale-101">
+              <!-- 原价显示 -->
+              <div v-if="getOriginalPrice(product)"
+                class="text-sm text-gray-400 line-through mb-1 transition-colors duration-200 group-hover:text-gray-500">
+                原价¥{{ getOriginalPrice(product) }}{{ product.permanent ? '/年' : '/月' }}
+              </div>
+              <!-- 现价显示 -->
+              <div class="text-center">
+                <!-- 月卡产品显示折合天价格 -->
+                <div v-if="product.code.includes('MONTHLY')" class="flex items-baseline justify-center space-x-1">
+                  <span class="text-lg font-light" style="color: #737a87;">月卡低至</span>
+                  <span class="text-lg font-light" style="color: #737a87;">¥</span>
+                  <span class="text-3xl font-bold text-black">{{ getDailyPrice(product) }}</span>
+                  <span class="text-lg font-light" style="color: #737a87;">/天</span>
+                </div>
+                <!-- 积分套餐显示月卡风格价格 -->
+                <div v-else-if="product.code.includes('CREDITS')" class="flex items-baseline justify-center space-x-1">
+                  <span class="text-lg font-light text-gray-700">积分套餐</span>
+                  <span class="text-lg font-light" style="color: #737a87;">¥</span>
+                  <span class="text-3xl font-bold text-gray-900">{{ product.price }}</span>
+                  <span class="text-lg font-light" style="color: #737a87;">/永久</span>
+                </div>
+                <!-- 其他产品显示原价格 -->
+                <div v-else class="flex items-baseline justify-center space-x-1">
+                  <span class="text-lg font-light" style="color: #737a87;">¥</span>
+                  <span class="text-3xl font-bold text-black">{{ product.price }}</span>
+                  <span class="text-lg font-light" style="color: #737a87;">{{ product.permanent ? '/永久' : '/月' }}</span>
+                </div>
+              </div>
+              <!-- 折扣标签 -->
+              <div v-if="getDiscountPercent(product)"
+                class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full mt-1">
+                {{ getDiscountPercent(product) }}折
+              </div>
+              <!-- 积分套餐永久有效标签 -->
+              <div v-if="product.code.includes('CREDITS')"
+                class="text-xs bg-green-100 text-green-700 px-2 py-1 rounded-full mt-1">
+                永久有效
+              </div>
+            </div>
+            <div class="text-gray-500 mb-6">{{ product.description }}</div>
+            <ul class="text-sm text-gray-700 space-y-2 mb-6 text-left w-full">
+              <!-- 积分套餐功能列表 -->
+              <template v-if="product.code.includes('CREDITS')">
+                <li><span class="text-green-600">✔</span> {{ getCreditsAmountLocal(product) }}积分</li>
+                <li><span class="text-green-600">✔</span> 支持所有AI功能使用</li>
+                <li><span class="text-green-600">✔</span> 永久有效</li>
+                <li><span class="text-green-600">✔</span> 灵活消费</li>
+                <li><span class="text-green-600">✔</span> 按需使用</li>
+                <li><span class="text-green-600">✔</span> 免费更新</li>
+                <li><span class="text-green-600">✔</span> 技术支持</li>
+              </template>
+              <!-- 其他产品功能列表 -->
+              <template v-else>
+                <li v-if="product.permanent" class="relative">
+                  <div
+                    class="flex items-center justify-between bg-gradient-to-r from-orange-50 to-red-50 -mx-2 px-2 py-1.5 rounded-lg border border-orange-200">
+                    <span class="flex items-center gap-1.5">
+                      <span class="text-green-600">✔</span>
+                      <span class="font-medium text-gray-900">附赠300积分</span>
+                    </span>
+                    <span
+                      class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold text-white bg-gradient-to-r from-orange-500 to-red-500 rounded-full shadow-sm animate-pulse">
+                      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                          d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" />
+                      </svg>
+                      限时
+                    </span>
+                  </div>
+                </li>
+                <li v-if="product.permanent"><span class="text-green-600">✔</span> 永久授权</li>
+                <li v-else><span class="text-green-600">✔</span> {{ product.validityDays }}天有效期</li>
+                <li v-if="product.permanent"><span class="text-green-600">✔</span> 7天免费试用</li>
+                <li v-if="product.permanent"><span class="text-green-600">✔</span> 支持 3 台设备激活</li>
+                <li v-if="product.code.includes('AI_SERVICE')"><span class="text-green-600">✔</span> 支持应用内所有AI功能</li>
+                <li v-if="product.code.includes('CLOUD_STORAGE')"><span class="text-green-600">✔</span> 云端存储服务</li>
+                <li v-if="product.permanent"><span class="text-green-600">✔</span> 所有核心功能</li>
+                <li><span class="text-green-600">✔</span> 免费更新</li>
+                <li><span class="text-green-600">✔</span> 技术支持</li>
+              </template>
+            </ul>
+            <!-- 云存储服务敬请期待 -->
+            <button v-if="product.code.includes('CLOUD_STORAGE')"
+              class="w-full py-2 px-4 bg-gray-400 text-white rounded-lg font-semibold cursor-not-allowed shadow"
+              disabled>
+              即将推出
+            </button>
+            <!-- 积分套餐购买 -->
+            <div v-else-if="product.code.includes('CREDITS')" class="space-y-2">
+              <button @click="purchaseProduct(product)" :disabled="!isServiceCurrentlyAvailable"
+                :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
+                class="w-full py-2 px-4 text-white rounded-lg font-semibold shadow transition-colors duration-200"
+                :class="{
+                  'bg-green-600 hover:bg-green-700': isServiceCurrentlyAvailable,
+                  'bg-gray-400 cursor-not-allowed': !isServiceCurrentlyAvailable
+                }">
+                {{ getPurchaseButtonText(product) }}
+              </button>
+              <button @click="showCreditsModal = true" :disabled="!isServiceCurrentlyAvailable"
+                class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
+                  'bg-green-50 text-green-600 border-green-200 hover:bg-green-100': isServiceCurrentlyAvailable,
+                  'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed': !isServiceCurrentlyAvailable
+                }">
+                更多套餐
+              </button>
+            </div>
+            <!-- 其他产品正常购买按钮 -->
+            <div v-else class="btn-container w-full" :class="{
+              'btn-container-blue': product.permanent,
+              'btn-container-orange': product.code.includes('AI_SERVICE')
+            }">
+              <div class="btn-drawer transition-top">限时优惠</div>
+              <div class="btn-drawer transition-bottom">立即抢购</div>
+
+              <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
+                :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''" class="btn w-full" :class="{
+                  'opacity-50 cursor-not-allowed': !isServiceCurrentlyAvailable
+                }">
+                <span class="btn-text">{{ getPurchaseButtonText(product) }}</span>
+              </button>
+            </div>
+            <!-- 右上角条状标签 - 参考源码实现 -->
+            <div v-if="!product.code.includes('MONTHLY')"
+              class="absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105"
+              :style="{ 'background-color': product.isEnterprise ? '#ff9800' : (product.code.includes('CREDITS') ? '#31c891' : '#e24545') }">
+              {{ product.isEnterprise ? '高性价比' : (product.permanent && !product.code.includes('CREDITS') ? '限时特惠' :
+                '限时8.8折') }}
+            </div>
           </div>
         </div>
       </div>
@@ -348,6 +370,8 @@
           <li class="animate-fade-in-up delay-1500">反馈交流请通过QQ群联系开发者。</li>
           <li class="animate-fade-in-up delay-1600">支持微信支付，订单有效期为30分钟。</li>
           <li class="animate-fade-in-up delay-1700">产品存在代码性质，拥有可复制性，因此购买后，无法退款</li>
+          <li class="animate-fade-in-up delay-1700">网页版本支持更多丰富的主题，使用网页版主题需要使用激活后的许可证进行验证。</li>
+          <li class="animate-fade-in-up delay-1700">由于默认的云存储服务额度有限，建议您配置自己的图床进行使用</li>
         </ul>
 
         <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1800">交流反馈
@@ -356,8 +380,8 @@
           <div class="flex items-center space-x-4">
             <div>
               <span class="font-medium text-blue-800">QQ群：</span>
-              <a href="https://qm.qq.com/q/UwZnWu2pu8" target="_blank"
-                class="text-blue-600 hover:text-blue-800 underline">
+              <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=U4EFNYA9KuxK3OOQJQRfmzrfpwn3NM%2BHScNavJLkDXANe7H%2BONEQvGMvVI2LRrx2&busi_data=eyJncm91cENvZGUiOiIxMDcxNTU4ODAzIiwidG9rZW4iOiI3N2krQUx6VTVoTXVwOVRBRU52djl6R3k2VDYyNWR1RXl4bk92S2Y5SzNWVTBrUTlmeitCNEN6OS92KzZoMElqIiwidWluIjoiMjIxNzAyMTU2MyJ9&data=xN0g96ZxEMQlgiGFEWHsx8x0rZ0Qz9zmsBlJXrOxz6m1DVOYht3OeVZLFTMy6bGTC-Nc4yxMX25CDwocSJMQRLkcxdIUz6736qxlkysN8AE&svctype=5&tempid=h5_group_info"
+                target="_blank" class="text-blue-600 hover:text-blue-800 underline">
                 点击加入
               </a>
             </div>
@@ -598,37 +622,93 @@ async function loadProducts() {
 
     console.log('获取到的所有产品:', allProducts)
 
-    // 重新排序：AI服务、积分套餐（中间推荐位置）、许可证、云存储
+    // 重新排序：入门积分套餐、许可证、企业专享积分套餐
     const sortedProducts = []
     let licenseProduct = null
 
-    // 1. AI服务产品
-    if (allProducts && allProducts.length > 0) {
-      const aiProducts = allProducts.filter(p =>
-        (p.code && p.code.includes('AI_SERVICE')) ||
-        (p.productCode && p.productCode.includes('AI_SERVICE'))
-      )
-      sortedProducts.push(...aiProducts)
+    // 1. 入门推荐积分套餐（8.8元，200积分）
+    const entryPackage = {
+      id: 'entry-credits',
+      packageCode: 'CREDITS_200',
+      packageName: '入门推荐',
+      packageDescription: '新手友好的积分套餐',
+      credits: 200,
+      originalPrice: 10.0,
+      currentPrice: 8.8,
+      discount: 0.88,
+      packageType: 'STANDARD',
+      isActive: true,
+      displayOrder: 1,
+      features: [
+        '200积分',
+        '适用于所有AI服务',
+        '永不过期',
+        '新手推荐',
+        '限时8.8折'
+      ],
+      costPerCredit: 0.044,
+      recommendedFor: '新手用户',
+      isPopular: false,
+      isEnterprise: false,
+      code: 'CREDITS_200',
+      name: '入门推荐',
+      description: '新手友好的积分套餐',
+      price: 8.8,
+      permanent: false
     }
+    sortedProducts.push(entryPackage)
 
-    // 2. 先保存许可证产品，稍后添加
+    // 2. 许可证产品（中间位置）
     if (allProducts && allProducts.length > 0) {
       licenseProduct = allProducts.find(p =>
         p.permanent &&
         !(p.code && p.code.includes('CREDITS')) &&
         !(p.productCode && p.productCode.includes('CREDITS'))
       )
+      if (licenseProduct) {
+        sortedProducts.push(licenseProduct)
+      }
     }
 
-    // 3. 积分套餐产品（使用新的API获取）
+    // 3. 企业专享积分套餐（77.44元，2000积分）
+    const enterprisePackage = {
+      id: 'enterprise-credits',
+      packageCode: 'CREDITS_2000',
+      packageName: '企业专享',
+      packageDescription: '高性价比企业级积分套餐',
+      credits: 2000,
+      originalPrice: 88.0,
+      currentPrice: 77.44,
+      discount: 0.88,
+      packageType: 'STANDARD',
+      isActive: true,
+      displayOrder: 10,
+      features: [
+        '2000积分',
+        '适用于所有AI服务',
+        '永不过期',
+        '高性价比',
+        '企业级服务'
+      ],
+      costPerCredit: 0.03872,
+      recommendedFor: '企业用户',
+      isPopular: false,
+      isEnterprise: true,
+      code: 'CREDITS_2000',
+      name: '企业专享',
+      description: '高性价比企业级积分套餐',
+      price: 77.44,
+      permanent: false
+    }
+    sortedProducts.push(enterprisePackage)
+
+    // 获取所有积分套餐用于弹窗显示
     try {
       const creditPackagesResult = await getCreditPackages()
       if (creditPackagesResult.success && creditPackagesResult.data) {
         const creditPackages = creditPackagesResult.data
-
-        // 转换API数据格式为组件期望的格式
         const convertedPackages = creditPackages
-          .filter(pkg => pkg.isActive !== false) // 只显示激活的套餐
+          .filter(pkg => pkg.isActive !== false)
           .map(pkg => ({
             id: pkg.id,
             packageCode: pkg.code,
@@ -649,94 +729,19 @@ async function loadProducts() {
             costPerCredit: pkg.pricePerCredit,
             recommendedFor: pkg.recommendTag || '用户',
             isPopular: pkg.recommendTag === '热门选择',
-            // 保留原始API字段以便兼容
             code: pkg.code,
             name: pkg.name,
             description: pkg.description,
             price: pkg.price,
             permanent: false
           }))
-
-        // 保存所有积分套餐到弹窗使用
         allCreditsProducts.value = convertedPackages
-        console.log('保存的积分套餐数据:', convertedPackages)
-
-        // 选择一个标准积分套餐作为热门套餐展示
-        // 优先选择有推荐标签的，其次选择中等价位的标准套餐
-        let selectedPackage = null
-
-        // 1. 优先选择有"热门"或"推荐"标签的套餐
-        selectedPackage = convertedPackages.find(p =>
-          p.isActive &&
-          p.packageType === 'STANDARD' &&
-          (p.recommendedFor?.includes('热门') || p.isPopular || p.recommendTag?.includes('热门'))
-        )
-
-        // 2. 如果没有热门套餐，选择中等价位的标准套餐（500-1000积分范围）
-        if (!selectedPackage) {
-          selectedPackage = convertedPackages.find(p =>
-            p.isActive &&
-            p.packageType === 'STANDARD' &&
-            p.credits >= 500 &&
-            p.credits <= 1000
-          )
-        }
-
-        // 3. 如果还没有，就选择第一个标准套餐
-        if (!selectedPackage) {
-          selectedPackage = convertedPackages.find(p =>
-            p.isActive &&
-            p.packageType === 'STANDARD'
-          )
-        }
-
-        // 4. 最后兜底，选择任意一个激活的套餐
-        if (!selectedPackage && convertedPackages.length > 0) {
-          selectedPackage = convertedPackages.find(p => p.isActive) || convertedPackages[0]
-        }
-
-        if (selectedPackage) {
-          // 积分套餐放在中间位置（第2位）
-          sortedProducts.push(selectedPackage)
-          console.log('选择的热门积分套餐:', selectedPackage.name, selectedPackage.credits + '积分')
-        }
       } else {
-        console.warn('获取积分套餐失败，使用降级数据:', creditPackagesResult.error)
-        // 使用降级数据（模拟数据已经是正确格式）
-        if (creditPackagesResult.data) {
-          allCreditsProducts.value = creditPackagesResult.data
-          const recommendedCredits = creditPackagesResult.data.filter(p =>
-            p.packageCode === 'CREDITS_500' || p.isPopular
-          )
-          if (recommendedCredits.length > 0) {
-            const convertedPackage = {
-              ...recommendedCredits[0],
-              code: recommendedCredits[0].packageCode,
-              name: recommendedCredits[0].packageName,
-              description: recommendedCredits[0].packageDescription,
-              price: recommendedCredits[0].currentPrice,
-              permanent: false
-            }
-            sortedProducts.push(convertedPackage)
-          }
-        }
+        allCreditsProducts.value = [entryPackage, enterprisePackage]
       }
     } catch (error) {
       console.error('加载积分套餐时发生错误:', error)
-    }
-
-    // 3. 许可证产品（放在积分套餐后面）
-    if (licenseProduct) {
-      sortedProducts.push(licenseProduct)
-    }
-
-    // 4. 云存储产品
-    if (allProducts && allProducts.length > 0) {
-      const storageProducts = allProducts.filter(p =>
-        (p.code && p.code.includes('CLOUD_STORAGE')) ||
-        (p.productCode && p.productCode.includes('CLOUD_STORAGE'))
-      )
-      sortedProducts.push(...storageProducts)
+      allCreditsProducts.value = [entryPackage, enterprisePackage]
     }
 
     products.value = sortedProducts
@@ -919,7 +924,7 @@ function copyLicenseKey() {
 function getOriginalPrice(product) {
   // 根据产品代码返回原价
   if (product.permanent) {
-    return 49.9 // 许可证原价
+    return 49.99 // 许可证原价
   } else if (product.code.includes('AI_SERVICE')) {
     return 9.9 // AI服务原价
   } else if (product.code.includes('CLOUD_STORAGE')) {
@@ -1267,17 +1272,314 @@ function showSuccessToast(message) {
   transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* 购买按钮简洁动效 */
-.purchase-button {
-  transition: all 0.2s ease-out;
+/* 新购买按钮样式 */
+.btn-container {
+  --btn-color: #d8ff7c;
+  --corner-color: #0002;
+  --corner-dist: 24px;
+  --corner-multiplier: 1.5;
+  --timing-function: cubic-bezier(0, 0, 0, 2.5);
+  --duration: 250ms;
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.purchase-button:hover {
-  transform: translateY(-1px);
+/* 蓝色按钮 - 许可证 */
+.btn-container-blue {
+  --btn-color: #3b82f6;
 }
 
-.purchase-button:active {
-  transform: translateY(0);
+/* 橙色按钮 - AI服务 */
+.btn-container-orange {
+  --btn-color: #ea580c;
+}
+
+.btn {
+  position: relative;
+  min-width: 160px;
+  min-height: calc(var(--corner-dist) * 2);
+  border-radius: 16px;
+  border: none;
+  padding: 0.25em 1em;
+
+  background: linear-gradient(#fff2, #0001), var(--btn-color);
+  box-shadow:
+    1px 1px 2px -1px #fff inset,
+    0 2px 1px #00000010,
+    0 4px 2px #00000010,
+    0 8px 4px #00000010,
+    0 16px 8px #00000010,
+    0 32px 16px #00000010;
+
+  transition:
+    transform var(--duration) var(--timing-function),
+    filter var(--duration) var(--timing-function);
+  -webkit-transition:
+    transform var(--duration) var(--timing-function),
+    -webkit-filter var(--duration) var(--timing-function);
+
+  cursor: pointer;
+}
+
+.btn-drawer {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+
+  min-height: 32px;
+  border-radius: 16px;
+  border: none;
+  padding: 0.25em 1em;
+  font-size: 0.8em;
+  font-weight: 600;
+  font-family: "Poppins", monospace;
+  color: #0009;
+
+  background: linear-gradient(#fff2, #0001), var(--btn-color);
+  background-color: #fbff13;
+  opacity: 0;
+
+  transition:
+    transform calc(0.5 * var(--duration)) ease,
+    filter var(--duration) var(--timing-function),
+    opacity calc(0.5 * var(--duration)) ease;
+  -webkit-transition:
+    transform calc(0.5 * var(--duration)) ease,
+    -webkit-filter var(--duration) var(--timing-function),
+    opacity calc(0.5 * var(--duration)) ease;
+  filter: blur(2px);
+  -webkit-filter: blur(2px);
+}
+
+.transition-top {
+  top: 0;
+  left: 0;
+  border-radius: 12px 12px 0 0;
+  align-items: start;
+}
+
+.transition-bottom {
+  bottom: 0;
+  right: 0;
+  border-radius: 0 0 12px 12px;
+  align-items: end;
+}
+
+.btn-text {
+  display: inline-block;
+
+  font-size: 1.25em;
+  font-family: "Syne", "Poppins", "Inter", sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  -webkit-filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+
+  transition:
+    transform var(--duration) var(--timing-function),
+    filter var(--duration) var(--timing-function),
+    color var(--duration) var(--timing-function);
+  -webkit-transition:
+    transform var(--duration) var(--timing-function),
+    -webkit-filter var(--duration) var(--timing-function),
+    color var(--duration) var(--timing-function);
+}
+
+.btn-corner {
+  position: absolute;
+  width: 32px;
+
+  fill: none;
+  stroke: var(--corner-color);
+
+  transition:
+    transform var(--duration) var(--timing-function),
+    filter var(--duration) var(--timing-function);
+  -webkit-transition:
+    transform var(--duration) var(--timing-function),
+    -webkit-filter var(--duration) var(--timing-function);
+}
+
+.btn-corner:nth-of-type(1) {
+  top: 0;
+  left: 0;
+  transform: translate(calc(-1 * var(--corner-dist)),
+      calc(-1 * var(--corner-dist))) rotate(90deg);
+}
+
+.btn-corner:nth-of-type(2) {
+  top: 0;
+  right: 0;
+  transform: translate(var(--corner-dist), calc(-1 * var(--corner-dist))) rotate(180deg);
+}
+
+.btn-corner:nth-of-type(3) {
+  bottom: 0;
+  right: 0;
+  transform: translate(var(--corner-dist), var(--corner-dist)) rotate(-90deg);
+}
+
+.btn-corner:nth-of-type(4) {
+  bottom: 0;
+  left: 0;
+  transform: translate(calc(-1 * var(--corner-dist)), var(--corner-dist)) rotate(0deg);
+}
+
+.btn-container:has(.btn:hover),
+.btn-container:has(.btn:focus-visible) {
+  .btn {
+    transform: scale(1.05);
+    filter: drop-shadow(0 16px 16px #0002);
+    -webkit-filter: drop-shadow(0 16px 16px #0002);
+  }
+
+  .transition-top {
+    transform: translateY(-24px) rotateZ(4deg);
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+    animation: hue-anim 3s infinite linear;
+    -webkit-animation: hue-anim 3s infinite linear;
+    opacity: 1;
+  }
+
+  .transition-bottom {
+    transform: translateY(24px) rotateZ(4deg);
+    filter: blur(0px);
+    -webkit-filter: blur(0px);
+    animation: hue-anim 3s infinite linear;
+    -webkit-animation: hue-anim 3s infinite linear;
+    opacity: 1;
+  }
+
+  .btn-text {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+    -webkit-filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+    transform: scale(1.05);
+    color: #ffffff;
+  }
+
+  --corner-color: #0004;
+
+  .btn-corner:first-of-type {
+    transform: translate(calc(-1 * var(--corner-multiplier) * var(--corner-dist)),
+        calc(-1 * var(--corner-multiplier) * var(--corner-dist))) rotate(90deg);
+    filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+  }
+
+  .btn-corner:nth-of-type(2) {
+    transform: translate(calc(var(--corner-multiplier) * var(--corner-dist)),
+        calc(-1 * var(--corner-multiplier) * var(--corner-dist))) rotate(180deg);
+    filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+  }
+
+  @-moz-document url-prefix() {
+    .btn-corner:nth-of-type(2) {
+      filter: drop-shadow(10px -10px 1px var(--corner-color)) drop-shadow(20px -20px 2px var(--corner-color));
+    }
+  }
+
+  .btn-corner:nth-of-type(3) {
+    transform: translate(calc(var(--corner-multiplier) * var(--corner-dist)),
+        calc(var(--corner-multiplier) * var(--corner-dist))) rotate(-90deg);
+    filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+  }
+
+  .btn-corner:nth-of-type(4) {
+    transform: translate(calc(-1 * var(--corner-multiplier) * var(--corner-dist)),
+        calc(var(--corner-multiplier) * var(--corner-dist))) rotate(0deg);
+    filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 1px var(--corner-color)) drop-shadow(-20px 20px 2px var(--corner-color));
+  }
+}
+
+.btn-container:has(.btn:active) {
+  .btn {
+    transform: scale(0.95);
+    filter: drop-shadow(0 10px 4px #0002);
+    -webkit-filter: drop-shadow(0 10px 4px #0002);
+  }
+
+  .transition-top,
+  .transition-bottom {
+    transform: translateY(0px) scale(0.5);
+  }
+
+  .btn-text {
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    -webkit-filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+    transform: scale(1);
+    color: #ffffff;
+  }
+
+  --corner-color: #0005;
+  --corner-multiplier: 0.95;
+
+  .btn-corner:first-of-type {
+    transform: translate(calc(-1 * var(--corner-multiplier) * var(--corner-dist)),
+        calc(-1 * var(--corner-multiplier) * var(--corner-dist))) rotate(90deg);
+    filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+  }
+
+  .btn-corner:nth-of-type(2) {
+    transform: translate(calc(var(--corner-multiplier) * var(--corner-dist)),
+        calc(-1 * var(--corner-multiplier) * var(--corner-dist))) rotate(180deg);
+    filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+  }
+
+  @-moz-document url-prefix() {
+    .btn-corner:nth-of-type(2) {
+      filter: drop-shadow(10px -10px 2px var(--corner-color)) drop-shadow(20px -20px 3px var(--corner-color));
+    }
+  }
+
+  .btn-corner:nth-of-type(3) {
+    transform: translate(calc(var(--corner-multiplier) * var(--corner-dist)),
+        calc(var(--corner-multiplier) * var(--corner-dist))) rotate(-90deg);
+    filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+  }
+
+  .btn-corner:nth-of-type(4) {
+    transform: translate(calc(-1 * var(--corner-multiplier) * var(--corner-dist)),
+        calc(var(--corner-multiplier) * var(--corner-dist))) rotate(0deg);
+    filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+    -webkit-filter: drop-shadow(-10px 10px 2px var(--corner-color)) drop-shadow(-20px 20px 3px var(--corner-color));
+  }
+}
+
+@keyframes hue-anim {
+
+  0%,
+  100% {
+    filter: hue-rotate(0deg);
+    -webkit-filter: hue-rotate(0deg);
+  }
+
+  50% {
+    filter: hue-rotate(-70deg);
+    -webkit-filter: hue-rotate(-70deg);
+  }
+}
+
+@-webkit-keyframes hue-anim {
+
+  0%,
+  100% {
+    -webkit-filter: hue-rotate(0deg);
+  }
+
+  50% {
+    -webkit-filter: hue-rotate(-70deg);
+  }
 }
 
 /* 自定义微缩放效果 */
@@ -1290,6 +1592,23 @@ function showSuccessToast(message) {
 }
 
 
+
+/* 下滑指示器缓慢弹跳动画 */
+.animate-bounce-slow {
+  animation: bounce-slow 3s ease-in-out infinite;
+}
+
+@keyframes bounce-slow {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+}
 
 /* 购买弹窗动画 */
 .modal-backdrop {

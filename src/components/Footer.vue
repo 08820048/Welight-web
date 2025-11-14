@@ -25,6 +25,8 @@
           <ul class="space-y-3">
             <li><router-link to="/download"
                 class="text-gray-600 hover:text-primary-600 transition-colors duration-200">下载</router-link></li>
+            <li><router-link to="/release-history"
+                class="text-gray-600 hover:text-primary-600 transition-colors duration-200">历史版本</router-link></li>
             <!-- <li><a href="https://waer.ltd"
                 class="text-gray-600 hover:text-primary-600 transition-colors duration-200">官方网站</a></li> -->
             <li><a href="https://ilikexff.cn"
