@@ -195,7 +195,7 @@
           <h2 class="text-xl font-bold text-gray-900 mb-4">八、如何联系我们</h2>
           <p class="text-gray-700 mb-3">如果您对本隐私政策有任何疑问、意见或建议，请通过以下方式与我们联系：</p>
           <ul class="space-y-2 text-gray-700">
-            <li><strong>QQ群：</strong>474919458</li>
+            <li><strong>QQ群：</strong>1071558803</li>
             <li><strong>官方网站：</strong><a href="https://welight.waer.ltd"
                 class="text-blue-600 hover:underline">https://welight.waer.ltd</a></li>
           </ul>

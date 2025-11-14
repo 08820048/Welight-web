@@ -18,9 +18,8 @@
         <div class="flex items-center space-x-2">
           <!-- Documentation links -->
           <div class="hidden md:flex items-center space-x-2">
-            <a
-              href="https://docs.waer.ltd/"
-              target="_blank"
+            <router-link
+              to="/documentation"
               class="relative flex items-center space-x-2 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200 group"
               title="查看使用文档"
             >
@@ -38,27 +37,7 @@
                 />
               </svg>
               <span class="hidden sm:inline text-sm font-medium">文档</span>
-              <!-- 完善中角标 -->
-              <span
-                class="absolute -top-1 -right-1 bg-orange-500 text-white text-xs px-1.5 py-0.5 rounded-full font-medium whitespace-nowrap"
-              >
-                完善中...
-              </span>
-              <!-- 外部链接图标 -->
-              <svg
-                class="w-3 h-3 ml-1 opacity-60"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                />
-              </svg>
-            </a>
+            </router-link>
           </div>
 
           <!-- 反馈菜单 -->

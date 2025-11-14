@@ -269,7 +269,7 @@
                   class="flex items-center justify-between bg-gradient-to-r from-orange-50 to-red-50 -mx-2 px-2 py-1.5 rounded-lg border border-orange-200">
                   <span class="flex items-center gap-1.5">
                     <span class="text-green-600">✔</span>
-                    <span class="font-medium text-gray-900">附赠100积分</span>
+                    <span class="font-medium text-gray-900">附赠300积分</span>
                   </span>
                   <span
                     class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold text-white bg-gradient-to-r from-orange-500 to-red-500 rounded-full shadow-sm animate-pulse">
@@ -344,7 +344,7 @@
           <li class="animate-fade-in-up delay-1200">购买后许可证将自动发送到您的邮箱，请妥善保存许可证密钥。</li>
           <li class="animate-fade-in-up delay-1300">每个许可证支持在指定数量的设备上使用。</li>
           <li class="animate-fade-in-up delay-1400">许可证密钥请在桌面应用中输入使用。</li>
-          <li class="animate-fade-in-up delay-1450">许可证购买后，可以选择购买积分套餐使用，也可以选择自己配置AI密钥进行使用。</li>
+          <li class="animate-fade-in-up delay-1450">许可证购买后，所有AI功能可以选择购买积分套餐使用，也可以选择自己配置AI密钥进行使用。</li>
           <li class="animate-fade-in-up delay-1500">反馈交流请通过QQ群联系开发者。</li>
           <li class="animate-fade-in-up delay-1600">支持微信支付，订单有效期为30分钟。</li>
           <li class="animate-fade-in-up delay-1700">产品存在代码性质，拥有可复制性，因此购买后，无法退款</li>

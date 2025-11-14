@@ -25,7 +25,7 @@ import {
 /**
  * 测试积分套餐查询功能
  */
-async function testGetCreditPackages() {
+export async function testGetCreditPackages() {
   console.log('🧪 测试：获取积分套餐列表')
   
   try {

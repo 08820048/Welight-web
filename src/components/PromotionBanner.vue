@@ -81,7 +81,7 @@
           </div>
 
           <!-- 活动内容 -->
-          <div v-html="promotion?.banner?.content"></div>
+          <div v-html="promotion?.banner?.content" style="width: 110%;"></div>
         </div>
       </div>
     </div>
@@ -562,7 +562,7 @@ onUnmounted(() => {
 
 .promo-info-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr 1.5fr;
   gap: 40px;
   margin-bottom: 40px;
 }
@@ -663,7 +663,7 @@ onUnmounted(() => {
 @media (max-width: 768px) {
   .promo-info-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 10px;
   }
 
   .promo-actions {
