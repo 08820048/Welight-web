@@ -205,14 +205,14 @@
             class="bg-white rounded-xl shadow-lg flex flex-col items-center relative overflow-hidden product-card animate-scale-in border-2 border-white group"
             :class="[
               `delay-${600 + index * 100}`,
-              product.permanent ? 'p-10 recommended-card' : 'p-8'
+              isLicenseProduct(product) ? 'p-10 recommended-card' : 'p-8'
             ]">
             <!-- 内部渐隐效果层 -->
             <div class="absolute inset-0 pointer-events-none rounded" :class="{
               'ai-service-gradient-overlay': product.code.includes('AI_SERVICE'),
               'cloud-storage-gradient-overlay': product.code.includes('CLOUD_STORAGE'),
               'monthly-card-gradient-overlay': product.code.includes('CREDITS'),
-              'permanent-gradient-overlay': product.permanent && !product.code.includes('CREDITS')
+              'permanent-gradient-overlay': isLicenseProduct(product)
             }"></div>
 
             <!-- 产品名称标签 -->
@@ -220,7 +220,7 @@
               'text-orange-700': product.code.includes('AI_SERVICE'),
               'text-purple-700': product.code.includes('CLOUD_STORAGE'),
               'text-blue-700': product.code.includes('CREDITS'),
-              'text-blue-600': product.permanent && !product.code.includes('CREDITS')
+              'text-blue-600': isLicenseProduct(product)
             }">
               {{ product.code.includes('CREDITS') ? (product.packageName || product.name) : product.name }}
             </span>
@@ -228,7 +228,7 @@
               <!-- 原价显示 -->
               <div v-if="getOriginalPrice(product)"
                 class="text-sm text-gray-400 line-through mb-1 transition-colors duration-200 group-hover:text-gray-500">
-                原价¥{{ getOriginalPrice(product) }}{{ product.permanent ? '/年' : '/月' }}
+                原价¥{{ getOriginalPrice(product) }}{{ isLicenseProduct(product) ? '/年' : '/月' }}
               </div>
               <!-- 现价显示 -->
               <div class="text-center">
@@ -246,11 +246,18 @@
                   <span class="text-3xl font-bold text-gray-900">{{ product.price }}</span>
                   <span class="text-lg font-light" style="color: #737a87;">/永久</span>
                 </div>
+                <!-- 许可证产品显示折合天价格 -->
+                <div v-else-if="isLicenseProduct(product)" class="flex items-baseline justify-center space-x-1">
+                  <span class="text-lg font-light" style="color: #737a87;">低至</span>
+                  <span class="text-lg font-light" style="color: #737a87;">¥</span>
+                  <span class="text-3xl font-bold text-black">{{ getLicenseDailyPrice(product) }}</span>
+                  <span class="text-lg font-light" style="color: #737a87;">/天</span>
+                </div>
                 <!-- 其他产品显示原价格 -->
                 <div v-else class="flex items-baseline justify-center space-x-1">
                   <span class="text-lg font-light" style="color: #737a87;">¥</span>
                   <span class="text-3xl font-bold text-black">{{ product.price }}</span>
-                  <span class="text-lg font-light" style="color: #737a87;">{{ product.permanent ? '/永久' : '/月' }}</span>
+                  <span class="text-lg font-light" style="color: #737a87;">/月</span>
                 </div>
               </div>
               <!-- 折扣标签 -->
@@ -269,39 +276,30 @@
               <!-- 积分套餐功能列表 -->
               <template v-if="product.code.includes('CREDITS')">
                 <li><span class="text-green-600">✔</span> {{ getCreditsAmountLocal(product) }}积分</li>
-                <li><span class="text-green-600">✔</span> 支持所有AI功能使用</li>
+                <li><span class="text-green-600">✔</span> AI 功能消费</li>
+                <li><span class="text-green-600">✔</span> 图片存储消费</li>
                 <li><span class="text-green-600">✔</span> 永久有效</li>
                 <li><span class="text-green-600">✔</span> 灵活消费</li>
                 <li><span class="text-green-600">✔</span> 按需使用</li>
                 <li><span class="text-green-600">✔</span> 免费更新</li>
                 <li><span class="text-green-600">✔</span> 技术支持</li>
               </template>
+              <!-- 许可证产品功能列表 -->
+              <template v-else-if="isLicenseProduct(product)">
+                <li><span class="text-green-600">✔</span> {{ product.validityDays }}天有效期</li>
+                <li><span class="text-green-600">✔</span> 附赠 150 积分</li>
+                <li><span class="text-green-600">✔</span> 7天免费试用</li>
+                <li><span class="text-green-600">✔</span> 支持 {{ product.maxActivations }} 台设备激活</li>
+                <li><span class="text-green-600">✔</span> 网页版和桌面端共用</li>
+                <li><span class="text-green-600">✔</span> 所有核心功能</li>
+                <li><span class="text-green-600">✔</span> 免费更新</li>
+                <li><span class="text-green-600">✔</span> 技术支持</li>
+              </template>
               <!-- 其他产品功能列表 -->
               <template v-else>
-                <li v-if="product.permanent" class="relative">
-                  <div
-                    class="flex items-center justify-between bg-gradient-to-r from-orange-50 to-red-50 -mx-2 px-2 py-1.5 rounded-lg border border-orange-200">
-                    <span class="flex items-center gap-1.5">
-                      <span class="text-green-600">✔</span>
-                      <span class="font-medium text-gray-900">附赠300积分</span>
-                    </span>
-                    <span
-                      class="inline-flex items-center gap-1 px-2 py-0.5 text-xs font-bold text-white bg-gradient-to-r from-orange-500 to-red-500 rounded-full shadow-sm animate-pulse">
-                      <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                        <path
-                          d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" />
-                      </svg>
-                      限时
-                    </span>
-                  </div>
-                </li>
-                <li v-if="product.permanent"><span class="text-green-600">✔</span> 永久授权</li>
-                <li v-else><span class="text-green-600">✔</span> {{ product.validityDays }}天有效期</li>
-                <li v-if="product.permanent"><span class="text-green-600">✔</span> 7天免费试用</li>
-                <li v-if="product.permanent"><span class="text-green-600">✔</span> 支持 3 台设备激活</li>
                 <li v-if="product.code.includes('AI_SERVICE')"><span class="text-green-600">✔</span> 支持应用内所有AI功能</li>
                 <li v-if="product.code.includes('CLOUD_STORAGE')"><span class="text-green-600">✔</span> 云端存储服务</li>
-                <li v-if="product.permanent"><span class="text-green-600">✔</span> 所有核心功能</li>
+                <li v-else><span class="text-green-600">✔</span> {{ product.validityDays }}天有效期</li>
                 <li><span class="text-green-600">✔</span> 免费更新</li>
                 <li><span class="text-green-600">✔</span> 技术支持</li>
               </template>
@@ -331,12 +329,30 @@
                 更多套餐
               </button>
             </div>
+            <!-- 许可证产品购买按钮 -->
+            <div v-else-if="isLicenseProduct(product)" class="space-y-2 w-full">
+              <div class="btn-container w-full btn-container-blue">
+                <div class="btn-drawer transition-top">全网最低</div>
+                <div class="btn-drawer transition-bottom">立即抢购</div>
+
+                <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
+                  :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''" class="btn w-full"
+                  :class="{
+                    'opacity-50 cursor-not-allowed': !isServiceCurrentlyAvailable
+                  }">
+                  <span class="btn-text">{{ getPurchaseButtonText(product) }}</span>
+                </button>
+              </div>
+              <button disabled
+                class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200 bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed">
+                产品续费
+              </button>
+            </div>
             <!-- 其他产品正常购买按钮 -->
             <div v-else class="btn-container w-full" :class="{
-              'btn-container-blue': product.permanent,
               'btn-container-orange': product.code.includes('AI_SERVICE')
             }">
-              <div class="btn-drawer transition-top">限时优惠</div>
+              <div class="btn-drawer transition-top">全网最低</div>
               <div class="btn-drawer transition-bottom">立即抢购</div>
 
               <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
@@ -350,7 +366,7 @@
             <div v-if="!product.code.includes('MONTHLY')"
               class="absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105"
               :style="{ 'background-color': product.isEnterprise ? '#ff9800' : (product.code.includes('CREDITS') ? '#31c891' : '#e24545') }">
-              {{ product.isEnterprise ? '高性价比' : (product.permanent && !product.code.includes('CREDITS') ? '限时特惠' :
+              {{ product.isEnterprise ? '高性价比' : (isLicenseProduct(product) ? '最受欢迎' :
                 '限时8.8折') }}
             </div>
           </div>
@@ -625,82 +641,117 @@ async function loadProducts() {
     // 重新排序：入门积分套餐、许可证、企业专享积分套餐
     const sortedProducts = []
     let licenseProduct = null
+    let entryPackage = null
+    let enterprisePackage = null
 
-    // 1. 入门推荐积分套餐（8.8元，200积分）
-    const entryPackage = {
-      id: 'entry-credits',
-      packageCode: 'CREDITS_200',
-      packageName: '入门推荐',
-      packageDescription: '新手友好的积分套餐',
-      credits: 200,
-      originalPrice: 10.0,
-      currentPrice: 8.8,
-      discount: 0.88,
-      packageType: 'STANDARD',
-      isActive: true,
-      displayOrder: 1,
-      features: [
-        '200积分',
-        '适用于所有AI服务',
-        '永不过期',
-        '新手推荐',
-        '限时8.8折'
-      ],
-      costPerCredit: 0.044,
-      recommendedFor: '新手用户',
-      isPopular: false,
-      isEnterprise: false,
-      code: 'CREDITS_200',
-      name: '入门推荐',
-      description: '新手友好的积分套餐',
-      price: 8.8,
-      permanent: false
-    }
-    sortedProducts.push(entryPackage)
-
-    // 2. 许可证产品（中间位置）
+    // 1. 从后端获取入门推荐积分套餐（CREDITS_200）
     if (allProducts && allProducts.length > 0) {
-      licenseProduct = allProducts.find(p =>
-        p.permanent &&
-        !(p.code && p.code.includes('CREDITS')) &&
-        !(p.productCode && p.productCode.includes('CREDITS'))
-      )
-      if (licenseProduct) {
-        sortedProducts.push(licenseProduct)
+      const entryProduct = allProducts.find(p => p.code === 'CREDITS_200')
+      if (entryProduct) {
+        // 解析 metadata 获取积分信息
+        let credits = 200
+        try {
+          const metadata = JSON.parse(entryProduct.metadata || '{}')
+          credits = metadata.credits || 200
+        } catch (e) {
+          console.warn('解析入门套餐 metadata 失败:', e)
+        }
+
+        entryPackage = {
+          id: entryProduct.id,
+          packageCode: entryProduct.code,
+          packageName: entryProduct.name,
+          packageDescription: entryProduct.description || '新手友好的积分套餐',
+          credits: credits,
+          originalPrice: entryProduct.price,
+          currentPrice: entryProduct.price,
+          discount: 1,
+          packageType: 'STANDARD',
+          isActive: entryProduct.isActive,
+          displayOrder: entryProduct.sortOrder || 1,
+          features: [
+            `${credits}积分`,
+            '适用于所有AI服务',
+            '永不过期',
+            '新手推荐'
+          ],
+          costPerCredit: credits > 0 ? entryProduct.price / credits : 0,
+          recommendedFor: '新手用户',
+          isPopular: false,
+          isEnterprise: false,
+          code: entryProduct.code,
+          name: entryProduct.name,
+          description: entryProduct.description,
+          price: entryProduct.price,
+          permanent: false
+        }
+        sortedProducts.push(entryPackage)
       }
     }
 
-    // 3. 企业专享积分套餐（77.44元，2000积分）
-    const enterprisePackage = {
-      id: 'enterprise-credits',
-      packageCode: 'CREDITS_2000',
-      packageName: '企业专享',
-      packageDescription: '高性价比企业级积分套餐',
-      credits: 2000,
-      originalPrice: 88.0,
-      currentPrice: 77.44,
-      discount: 0.88,
-      packageType: 'STANDARD',
-      isActive: true,
-      displayOrder: 10,
-      features: [
-        '2000积分',
-        '适用于所有AI服务',
-        '永不过期',
-        '高性价比',
-        '企业级服务'
-      ],
-      costPerCredit: 0.03872,
-      recommendedFor: '企业用户',
-      isPopular: false,
-      isEnterprise: true,
-      code: 'CREDITS_2000',
-      name: '企业专享',
-      description: '高性价比企业级积分套餐',
-      price: 77.44,
-      permanent: false
+    // 2. 许可证产品（中间位置）
+    if (allProducts && allProducts.length > 0) {
+      // 修改识别逻辑：通过产品代码判断是否为许可证产品
+      // 许可证产品的 code 通常包含 WELIGHT 或 LICENSE，且不包含 CREDITS
+      licenseProduct = allProducts.find(p =>
+        (p.code && (p.code.includes('WELIGHT') || p.code.includes('LICENSE'))) &&
+        !(p.code && p.code.includes('CREDITS')) &&
+        !(p.productCode && p.productCode.includes('CREDITS'))
+      )
+      console.log('查找到的许可证产品:', licenseProduct)
+      if (licenseProduct) {
+        sortedProducts.push(licenseProduct)
+        console.log('许可证产品已添加到列表')
+      } else {
+        console.warn('未找到许可证产品')
+      }
     }
-    sortedProducts.push(enterprisePackage)
+
+    // 3. 从后端获取企业专享积分套餐（CREDITS_2000）
+    if (allProducts && allProducts.length > 0) {
+      const enterpriseProduct = allProducts.find(p => p.code === 'CREDITS_2000')
+      if (enterpriseProduct) {
+        // 解析 metadata 获取积分信息
+        let credits = 2000
+        try {
+          const metadata = JSON.parse(enterpriseProduct.metadata || '{}')
+          credits = metadata.credits || 2000
+        } catch (e) {
+          console.warn('解析企业套餐 metadata 失败:', e)
+        }
+
+        enterprisePackage = {
+          id: enterpriseProduct.id,
+          packageCode: enterpriseProduct.code,
+          packageName: enterpriseProduct.name,
+          packageDescription: enterpriseProduct.description || '高性价比企业级积分套餐',
+          credits: credits,
+          originalPrice: enterpriseProduct.price,
+          currentPrice: enterpriseProduct.price,
+          discount: 1,
+          packageType: 'STANDARD',
+          isActive: enterpriseProduct.isActive,
+          displayOrder: enterpriseProduct.sortOrder || 10,
+          features: [
+            `${credits}积分`,
+            '适用于所有AI服务',
+            '永不过期',
+            '高性价比',
+            '企业级服务'
+          ],
+          costPerCredit: credits > 0 ? enterpriseProduct.price / credits : 0,
+          recommendedFor: '企业用户',
+          isPopular: false,
+          isEnterprise: true,
+          code: enterpriseProduct.code,
+          name: enterpriseProduct.name,
+          description: enterpriseProduct.description,
+          price: enterpriseProduct.price,
+          permanent: false
+        }
+        sortedProducts.push(enterprisePackage)
+      }
+    }
 
     // 获取所有积分套餐用于弹窗显示
     try {
@@ -737,11 +788,19 @@ async function loadProducts() {
           }))
         allCreditsProducts.value = convertedPackages
       } else {
-        allCreditsProducts.value = [entryPackage, enterprisePackage]
+        // 如果获取失败，使用已加载的入门和企业套餐作为后备
+        const fallbackPackages = []
+        if (entryPackage) fallbackPackages.push(entryPackage)
+        if (enterprisePackage) fallbackPackages.push(enterprisePackage)
+        allCreditsProducts.value = fallbackPackages
       }
     } catch (error) {
       console.error('加载积分套餐时发生错误:', error)
-      allCreditsProducts.value = [entryPackage, enterprisePackage]
+      // 如果获取失败，使用已加载的入门和企业套餐作为后备
+      const fallbackPackages = []
+      if (entryPackage) fallbackPackages.push(entryPackage)
+      if (enterprisePackage) fallbackPackages.push(enterprisePackage)
+      allCreditsProducts.value = fallbackPackages
     }
 
     products.value = sortedProducts
@@ -920,11 +979,16 @@ function copyLicenseKey() {
   }
 }
 
+// 判断是否是许可证产品
+function isLicenseProduct(product) {
+  return product.code && (product.code.includes('WELIGHT') || product.code.includes('LICENSE')) && !product.code.includes('CREDITS')
+}
+
 // 获取产品原价
 function getOriginalPrice(product) {
   // 根据产品代码返回原价
-  if (product.permanent) {
-    return 49.99 // 许可证原价
+  if (isLicenseProduct(product)) {
+    return 79.99 // 许可证原价
   } else if (product.code.includes('AI_SERVICE')) {
     return 9.9 // AI服务原价
   } else if (product.code.includes('CLOUD_STORAGE')) {
@@ -950,6 +1014,16 @@ function getDailyPrice(product) {
   }
   // 按30天计算
   const dailyPrice = (product.price / 30).toFixed(2)
+  return dailyPrice
+}
+
+// 计算许可证折合天价格
+function getLicenseDailyPrice(product) {
+  if (!isLicenseProduct(product)) {
+    return null
+  }
+  // 按365天计算
+  const dailyPrice = (product.price / 365).toFixed(2)
   return dailyPrice
 }
 

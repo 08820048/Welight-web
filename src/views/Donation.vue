@@ -8,7 +8,26 @@
         </p>
       </div>
 
-
+      <!-- 赞助者福利 -->
+      <div class="mb-12 scroll-animate animate-fade-in-up delay-200">
+        <div
+          class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-blue-200 dark:border-blue-700 rounded-lg p-6 max-w-3xl mx-auto">
+          <div class="flex items-center justify-center space-x-3 mb-3">
+            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7">
+              </path>
+            </svg>
+            <h3 class="text-xl font-bold text-gray-800 dark:text-white">赞助者福利</h3>
+          </div>
+          <p class="text-center text-lg text-gray-700 dark:text-gray-300">
+            每位赞助者每月可获得 <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">500 积分</span> 奖励
+          </p>
+          <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-2">
+            积分可用于 AI 功能消费和图片存储服务
+          </p>
+        </div>
+      </div>
 
       <!-- 致谢名单 -->
       <div class="mb-16 scroll-animate animate-fade-in-up delay-300">
