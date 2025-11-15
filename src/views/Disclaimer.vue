@@ -1,5 +1,7 @@
 <template>
-  <div class="min-h-screen pt-20 pb-12 relative overflow-hidden">
+  <div class="circuit-wrapper">
+    <div class="circuit-background"></div>
+    <div class="min-h-screen pt-20 pb-12 relative overflow-hidden" style="position: relative; z-index: 1;">
     <div class="container mx-auto px-4 py-12 max-w-4xl">
       <!-- 页面标题 -->
       <div class="text-center mb-12 animate-fade-in-up">
@@ -252,6 +254,8 @@
       </div>
     </div>
   </div>
+  </div>
+
 </template>
 
 <script setup>
@@ -286,5 +290,60 @@ onMounted(() => {
 
 html {
   scroll-behavior: smooth;
+}
+
+/* 电路板背景效果 */
+.circuit-wrapper {
+  min-height: 100%;
+  width: 100%;
+  position: relative;
+  background-color: white;
+}
+
+.circuit-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 19px,
+      rgba(75, 85, 99, 0.08) 19px,
+      rgba(75, 85, 99, 0.08) 20px,
+      transparent 20px,
+      transparent 39px,
+      rgba(75, 85, 99, 0.08) 39px,
+      rgba(75, 85, 99, 0.08) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 19px,
+      rgba(75, 85, 99, 0.08) 19px,
+      rgba(75, 85, 99, 0.08) 20px,
+      transparent 20px,
+      transparent 39px,
+      rgba(75, 85, 99, 0.08) 39px,
+      rgba(75, 85, 99, 0.08) 40px
+    ),
+    radial-gradient(
+      circle at 20px 20px,
+      rgba(55, 65, 81, 0.12) 2px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 40px 40px,
+      rgba(55, 65, 81, 0.12) 2px,
+      transparent 2px
+    );
+  background-size:
+    40px 40px,
+    40px 40px,
+    40px 40px,
+    40px 40px;
 }
 </style>
