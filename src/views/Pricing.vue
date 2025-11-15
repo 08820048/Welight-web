@@ -363,7 +363,8 @@
               </button>
             </div>
             <!-- 右上角条状标签 - 参考源码实现 -->
-            <div v-if="!product.code.includes('MONTHLY')"
+            <div
+              v-if="!product.code.includes('MONTHLY') && !product.code.includes('CREDITS_200') && !product.code.includes('CREDITS_2000')"
               class="absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105"
               :style="{ 'background-color': product.isEnterprise ? '#ff9800' : (product.code.includes('CREDITS') ? '#31c891' : '#e24545') }">
               {{ product.isEnterprise ? '高性价比' : (isLicenseProduct(product) ? '最受欢迎' :
