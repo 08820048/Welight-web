@@ -12,7 +12,7 @@
 
         <!-- 侧边栏 -->
         <aside :class="[
-          'fixed top-16 left-0 h-[calc(100vh-4rem)] w-80 bg-white/80 backdrop-blur-sm border-r border-gray-200 shadow-sm transition-transform duration-300 z-50 overflow-hidden',
+          'fixed top-16 left-0 h-[calc(100vh-4rem)] w-80 border-r border-gray-200 shadow-sm transition-transform duration-300 z-50 overflow-hidden',
           'lg:sticky lg:top-16 lg:translate-x-0',
           mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         ]">
