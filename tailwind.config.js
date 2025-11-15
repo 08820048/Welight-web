@@ -1,9 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{vue,js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -18,7 +15,7 @@ export default {
           600: '#07c160',
           700: '#059142',
           800: '#047857',
-          900: '#064e3b',
+          900: '#064e3b'
         },
         gray: {
           50: '#f9fafb',
@@ -30,33 +27,33 @@ export default {
           600: '#4b5563',
           700: '#374151',
           800: '#1f2937',
-          900: '#111827',
+          900: '#111827'
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['YouYuan', '幼圆', 'PingFang SC', 'Microsoft YaHei', 'sans-serif'],
+        mono: ['JetBrains Mono', 'monospace']
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'slide-up': 'slideUp 0.5s ease-out',
-        'float': 'float 3s ease-in-out infinite',
+        float: 'float 3s ease-in-out infinite'
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          '100%': { opacity: '1' }
         },
         slideUp: {
           '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
+          '100%': { transform: 'translateY(0)', opacity: '1' }
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(-10px)' }
         }
       }
-    },
+    }
   },
-  plugins: [],
+  plugins: []
 }
