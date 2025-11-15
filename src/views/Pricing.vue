@@ -134,7 +134,7 @@
                 <div>产品：{{ licenseInfo.productCode }}</div>
                 <div>邮箱：{{ licenseInfo.customerEmail }}</div>
                 <div>状态：{{ licenseInfo.statusDescription }}</div>
-                <div v-if="licenseInfo.permanent">有效期：永久</div>
+                <div v-if="licenseInfo.permanent">有效期：1年</div>
                 <div v-else>有效期至：{{ licenseInfo.expiredAt }}</div>
                 <div>最大激活数：{{ licenseInfo.maxActivations }}</div>
                 <div>当前激活数：{{ licenseInfo.currentActivations }}</div>
@@ -146,6 +146,118 @@
           </div>
         </div>
       </div>
+
+      <!-- 续费弹窗 -->
+      <div v-if="showRenewModal"
+        class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop animate-fade-in">
+        <div class="bg-white rounded-xl shadow-xl p-8 w-full max-w-md relative modal-content animate-scale-in">
+          <button class="absolute top-3 right-3 text-gray-400 hover:text-gray-700" @click="closeRenewModal">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <h2 class="text-2xl font-bold mb-4 text-blue-700">许可证续费</h2>
+
+          <!-- 未创建订单时显示表单 -->
+          <div v-if="!renewOrderInfo">
+            <form @submit.prevent="submitRenewForm" class="space-y-4">
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">许可证密钥</label>
+                <input v-model="renewForm.licenseKey" type="text" required placeholder="APEX-XXXX-XXXX-XXXX-XXXX"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">客户邮箱</label>
+                <input v-model="renewForm.customerEmail" type="email" required placeholder="your@email.com"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900" />
+                <p class="text-xs text-gray-500 mt-1">请输入购买许可证时使用的邮箱</p>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">续费年数</label>
+                <select v-model.number="renewForm.renewYears"
+                  class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900">
+                  <option :value="1">1年 - ¥{{ getLicenseYearlyPrice(1) }}</option>
+                  <option :value="2">2年 - ¥{{ getLicenseYearlyPrice(2) }}</option>
+                  <option :value="3">3年 - ¥{{ getLicenseYearlyPrice(3) }}</option>
+                  <option :value="4">4年 - ¥{{ getLicenseYearlyPrice(4) }}</option>
+                  <option :value="5">5年 - ¥{{ getLicenseYearlyPrice(5) }}</option>
+                </select>
+              </div>
+              <div v-if="renewErrorMsg" class="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                {{ renewErrorMsg }}
+              </div>
+              <button type="submit" :disabled="renewLoading"
+                class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                {{ renewLoading ? '处理中...' : '创建续费订单' }}
+              </button>
+            </form>
+          </div>
+
+          <!-- 创建订单后显示支付信息 -->
+          <div v-else>
+            <div class="text-center">
+              <div class="mb-4">
+                <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-3">
+                  <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 class="text-lg font-semibold text-gray-900 mb-2">请扫码支付</h3>
+                <p class="text-sm text-gray-600 mb-4">
+                  续费 {{ renewForm.renewYears }} 年 - ¥{{ getLicenseYearlyPrice(renewForm.renewYears) }}
+                </p>
+              </div>
+
+              <!-- 支付二维码 -->
+              <div v-if="renewQrCodeImg" class="mb-4 flex justify-center">
+                <img :src="renewQrCodeImg" alt="支付二维码" class="w-64 h-64 border-2 border-gray-200 rounded-lg" />
+              </div>
+
+              <!-- 订单状态 -->
+              <div class="mb-4 p-3 bg-gray-50 rounded-lg">
+                <div class="text-sm text-gray-600">
+                  <div class="flex justify-between mb-1">
+                    <span>订单号：</span>
+                    <span class="font-mono text-xs">{{ renewOrderInfo.orderNo }}</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>订单状态：</span>
+                    <span class="font-semibold" :class="{
+                      'text-yellow-600': renewOrderStatus === 'PENDING',
+                      'text-green-600': renewOrderStatus === 'PAID',
+                      'text-red-600': renewOrderStatus === 'EXPIRED' || renewOrderStatus === 'CANCELLED'
+                    }">
+                      {{ getOrderStatusDescription(renewOrderStatus) }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 支付成功提示 -->
+              <div v-if="renewOrderStatus === 'PAID'" class="p-4 bg-green-50 border border-green-200 rounded-lg">
+                <div class="flex items-center justify-center text-green-700 mb-2">
+                  <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="font-semibold">续费成功！</span>
+                </div>
+                <p class="text-sm text-green-600">许可证有效期已延长，无需重新激活设备</p>
+              </div>
+
+              <!-- 等待支付提示 -->
+              <div v-else-if="renewOrderStatus === 'PENDING'" class="text-sm text-gray-500">
+                <div class="flex items-center justify-center mb-2">
+                  <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-600 mr-2"></div>
+                  <span>等待支付...</span>
+                </div>
+                <p>请使用微信扫描二维码完成支付</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- 标题区 -->
       <div class="text-center mb-10 animate-fade-in-up delay-100">
         <h1 class="text-4xl font-extrabold text-gray-900 mb-2 animate-fade-in-up delay-200">定价与服务购买</h1>
@@ -343,8 +455,11 @@
                   <span class="btn-text">{{ getPurchaseButtonText(product) }}</span>
                 </button>
               </div>
-              <button disabled
-                class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200 bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed">
+              <button @click="openRenewModal" :disabled="!isServiceCurrentlyAvailable"
+                class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
+                  'bg-blue-50 text-blue-600 border-blue-200 hover:bg-blue-100': isServiceCurrentlyAvailable,
+                  'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed': !isServiceCurrentlyAvailable
+                }">
                 产品续费
               </button>
             </div>
@@ -432,6 +547,7 @@ import {
   createPaymentOrder,
   pollOrderStatus,
   getLicensesByEmail,
+  renewLicense,
   formatPrice,
   getOrderStatusDescription,
   getClientInfo
@@ -532,6 +648,20 @@ let pollingPromise = null
 
 const qrCodeImg = ref('')
 const monthlyCardPurchaseRef = ref(null)
+
+// 续费相关响应式数据
+const showRenewModal = ref(false)
+const renewForm = ref({
+  licenseKey: '',
+  customerEmail: '',
+  renewYears: 1
+})
+const renewLoading = ref(false)
+const renewErrorMsg = ref('')
+const renewOrderInfo = ref(null)
+const renewOrderStatus = ref('')
+const renewQrCodeImg = ref('')
+let renewPollingPromise = null
 
 // 服务状态相关
 const serviceStatus = ref(null)
@@ -1026,6 +1156,101 @@ function getLicenseDailyPrice(product) {
   // 按365天计算
   const dailyPrice = (product.price / 365).toFixed(2)
   return dailyPrice
+}
+
+// 获取许可证年度价格（用于续费）
+function getLicenseYearlyPrice(years = 1) {
+  // 从products列表中找到许可证产品
+  const licenseProduct = products.value.find(p => isLicenseProduct(p))
+  if (!licenseProduct) {
+    return '0.00' // 如果找不到许可证产品，返回默认值
+  }
+  const totalPrice = (licenseProduct.price * years).toFixed(2)
+  return totalPrice
+}
+
+// ==================== 续费相关函数 ====================
+
+// 打开续费弹窗
+function openRenewModal() {
+  showRenewModal.value = true
+}
+
+// 关闭续费弹窗并清理状态
+function closeRenewModal() {
+  showRenewModal.value = false
+  renewForm.value = {
+    licenseKey: '',
+    customerEmail: '',
+    renewYears: 1
+  }
+  renewLoading.value = false
+  renewErrorMsg.value = ''
+  renewOrderInfo.value = null
+  renewOrderStatus.value = ''
+  renewQrCodeImg.value = ''
+  if (renewPollingPromise) {
+    renewPollingPromise = null
+  }
+}
+
+// 提交续费表单
+async function submitRenewForm() {
+  renewLoading.value = true
+  renewErrorMsg.value = ''
+  renewOrderInfo.value = null
+  renewOrderStatus.value = ''
+  renewQrCodeImg.value = ''
+
+  try {
+    const renewData = {
+      licenseKey: renewForm.value.licenseKey.trim(),
+      customerEmail: renewForm.value.customerEmail.trim(),
+      renewYears: renewForm.value.renewYears,
+      remark: `Web端续费 - ${renewForm.value.renewYears}年`
+    }
+
+    const result = await renewLicense(renewData)
+    renewOrderInfo.value = result.order
+    renewOrderStatus.value = result.order.status
+
+    // 使用后端提供的二维码图片接口
+    if (result.order && result.order.orderNo) {
+      renewQrCodeImg.value = `https://ilikexff.cn/api/payment/orders/${result.order.orderNo}/qrcode-image`
+    }
+
+    // 开始轮询订单状态
+    startRenewPollingOrderStatus(result.order.orderNo)
+
+  } catch (error) {
+    renewErrorMsg.value = error.message || '续费订单创建失败，请稍后重试'
+  } finally {
+    renewLoading.value = false
+  }
+}
+
+// 开始轮询续费订单状态
+function startRenewPollingOrderStatus(orderNo) {
+  renewPollingPromise = pollOrderStatus(
+    orderNo,
+    (status) => {
+      renewOrderStatus.value = status.status
+    },
+    3000,
+    200
+  ).then(async (finalStatus) => {
+    if (finalStatus.status === 'PAID') {
+      // 续费支付成功，触发撒花特效
+      setTimeout(() => {
+        triggerPaymentSuccessConfetti()
+      }, 500)
+    }
+  }).catch((error) => {
+    console.error('轮询续费订单状态失败:', error)
+    renewErrorMsg.value = '订单状态查询超时，请稍后手动查看'
+  }).finally(() => {
+    renewPollingPromise = null
+  })
 }
 
 // 获取积分套餐的积分数量

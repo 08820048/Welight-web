@@ -173,6 +173,46 @@ export async function pollOrderStatus(orderNo, onStatusChange, interval = 3000, 
 }
 
 /**
+ * 许可证续费
+ * @param {Object} renewData - 续费数据
+ * @param {string} renewData.licenseKey - 许可证密钥
+ * @param {string} renewData.customerEmail - 客户邮箱
+ * @param {number} renewData.renewYears - 续费年数（1-5）
+ * @param {string} renewData.paymentMethod - 支付方式，默认"WECHAT_NATIVE"
+ * @param {string} renewData.remark - 备注信息（可选）
+ * @returns {Promise<Object>} 续费订单信息
+ */
+export async function renewLicense(renewData) {
+  try {
+    const requestData = {
+      paymentMethod: 'WECHAT_NATIVE',
+      ...renewData
+    }
+
+    const response = await fetch(`${API_BASE_URL}/licenses/renew`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(requestData)
+    })
+
+    const result = await response.json()
+
+    if (result.code === 200 && result.data) {
+      console.log('创建续费订单成功:', result.data)
+      return result.data
+    } else {
+      console.error('创建续费订单失败:', result.message)
+      throw new Error(result.message || '续费订单创建失败')
+    }
+  } catch (error) {
+    console.error('创建续费订单时发生错误:', error)
+    throw error
+  }
+}
+
+/**
  * 格式化价格显示
  * @param {number} price - 价格
  * @param {string} currency - 货币代码
