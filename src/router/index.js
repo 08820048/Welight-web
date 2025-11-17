@@ -58,6 +58,11 @@ const router = createRouter({
       path: '/release-history',
       name: 'release-history',
       component: () => import('../views/ReleaseHistory.vue')
+    },
+    {
+      path: '/font-test',
+      name: 'font-test',
+      component: () => import('../views/FontTest.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {
