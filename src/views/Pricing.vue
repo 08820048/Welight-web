@@ -1,7 +1,7 @@
 <template>
   <div class="relative min-h-screen bg-white">
     <AnimatedGridPattern
-      :num-squares="50"
+      :num-squares="20"
       :max-opacity="0.15"
       :duration="4"
     />
