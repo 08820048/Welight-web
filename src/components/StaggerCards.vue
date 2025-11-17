@@ -182,3 +182,5 @@ onMounted(() => {
 onUnmounted(() => {
   window.removeEventListener('resize', updateSize)
 })
+
+</script>
