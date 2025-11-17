@@ -2,8 +2,8 @@
   <svg
     ref="containerRef"
     aria-hidden="true"
-    :class="cn('pointer-events-none absolute inset-0 h-full w-full fill-gray-400/30 stroke-gray-400/30', className)"
-    v-bind="$attrs"
+    class="pointer-events-none absolute inset-0 h-full w-full"
+    style="z-index: 0;"
   >
     <defs>
       <pattern
@@ -17,12 +17,13 @@
         <path
           :d="`M.5 ${height}V.5H${width}`"
           fill="none"
+          stroke="rgba(156, 163, 175, 0.2)"
           :stroke-dasharray="strokeDasharray"
         />
       </pattern>
     </defs>
     <rect width="100%" height="100%" :fill="`url(#${patternId})`" />
-    <svg :x="x" :y="y" class="overflow-visible">
+    <g>
       <rect
         v-for="(square, index) in squares"
         :key="`${square.pos[0]}-${square.pos[1]}-${index}`"
@@ -30,15 +31,15 @@
         :height="height - 1"
         :x="square.pos[0] * width + 1"
         :y="square.pos[1] * height + 1"
-        fill="currentColor"
+        fill="rgba(59, 130, 246, 0.5)"
         stroke-width="0"
+        class="animated-square"
         :style="{
-          opacity: 0,
           animation: `fadeInOut ${duration}s ease-in-out ${index * 0.1}s infinite`
         }"
         @animationiteration="updateSquarePosition(square.id)"
       />
-    </svg>
+    </g>
   </svg>
 </template>
 
@@ -70,13 +71,9 @@ const props = defineProps({
     type: Number,
     default: 50
   },
-  className: {
-    type: String,
-    default: ''
-  },
   maxOpacity: {
     type: Number,
-    default: 0.5
+    default: 0.3
   },
   duration: {
     type: Number,
@@ -92,10 +89,6 @@ const containerRef = ref(null)
 const dimensions = ref({ width: 0, height: 0 })
 const squares = ref([])
 const patternId = ref(`pattern-${Math.random().toString(36).substr(2, 9)}`)
-
-const cn = (...classes) => {
-  return classes.filter(Boolean).join(' ')
-}
 
 const getPos = () => {
   return [
@@ -124,6 +117,14 @@ const updateSquarePosition = (id) => {
 let resizeObserver = null
 
 onMounted(() => {
+  // 初始化尺寸
+  if (containerRef.value) {
+    dimensions.value = {
+      width: containerRef.value.clientWidth,
+      height: containerRef.value.clientHeight
+    }
+  }
+
   // 初始化 ResizeObserver
   resizeObserver = new ResizeObserver((entries) => {
     for (let entry of entries) {
