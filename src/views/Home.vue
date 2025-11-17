@@ -421,133 +421,9 @@
             </p>
           </div>
 
-          <!-- Themes showcase grid -->
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            <!-- Theme 1 - 橙心橙意 -->
-            <div class="group scroll-animate scale-up" style="transition-delay: 0.4s;">
-              <div
-                class="relative overflow-hidden rounded-2xl bg-amber-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                <!-- Theme preview image -->
-                <div class="aspect-[3/3] overflow-hidden">
-                  <img src="https://images.waer.ltd/notes/202510192006088.jpg" alt="橙心橙意主题"
-                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    loading="lazy" />
-                </div>
-                <!-- Theme info -->
-                <div class="p-6">
-                  <h3 class="text-xl font-bold text-amber-900 mb-2">橙心橙意</h3>
-                </div>
-                <!-- Hover overlay -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-amber-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                </div>
-              </div>
-            </div>
-
-            <!-- Theme 2 - 浮云山居 -->
-            <div class="group scroll-animate scale-up" style="transition-delay: 0.5s;">
-              <div
-                class="relative overflow-hidden rounded-2xl bg-emerald-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                <!-- Theme preview image -->
-                <div class="aspect-[3/3] overflow-hidden">
-                  <img src="https://images.waer.ltd/notes/202510192005728.jpg" alt="浮云山居主题"
-                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    loading="lazy" />
-                </div>
-                <!-- Theme info -->
-                <div class="p-6">
-                  <h3 class="text-xl font-bold text-emerald-900 mb-2">浮云山居</h3>
-                </div>
-                <!-- Hover overlay -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-emerald-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                </div>
-              </div>
-            </div>
-
-            <!-- Theme 3 - 极简序列 -->
-            <div class="group scroll-animate scale-up" style="transition-delay: 0.6s;">
-              <div
-                class="relative overflow-hidden rounded-2xl bg-gray-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                <!-- Theme preview image -->
-                <div class="aspect-[3/3] overflow-hidden">
-                  <img src="https://images.waer.ltd/notes/202510192005760.jpg" alt="极简序列主题"
-                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    loading="lazy" />
-                </div>
-                <!-- Theme info -->
-                <div class="p-6">
-                  <h3 class="text-xl font-bold text-gray-900 mb-2">极简序列</h3>
-                </div>
-                <!-- Hover overlay -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-gray-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                </div>
-              </div>
-            </div>
-
-            <!-- Theme 4 - 诗意简约 -->
-            <div class="group scroll-animate scale-up" style="transition-delay: 0.7s;">
-              <div
-                class="relative overflow-hidden rounded-2xl bg-slate-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                <!-- Theme preview image -->
-                <div class="aspect-[3/3] overflow-hidden">
-                  <img src="https://images.waer.ltd/notes/202510192005773.jpg" alt="诗意简约主题"
-                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    loading="lazy" />
-                </div>
-                <!-- Theme info -->
-                <div class="p-6">
-                  <h3 class="text-xl font-bold text-slate-900 mb-2">诗意简约</h3>
-                </div>
-                <!-- Hover overlay -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-slate-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                </div>
-              </div>
-            </div>
-
-            <!-- Theme 5 - 赤焰丹心 -->
-            <div class="group scroll-animate scale-up" style="transition-delay: 0.8s;">
-              <div
-                class="relative overflow-hidden rounded-2xl bg-cyan-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                <!-- Theme preview image -->
-                <div class="aspect-[3/3] overflow-hidden">
-                  <img src="https://images.waer.ltd/notes/202510192005663.jpg" alt="赤焰丹心主题"
-                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    loading="lazy" />
-                </div>
-                <!-- Theme info -->
-                <div class="p-6">
-                  <h3 class="text-xl font-bold text-cyan-900 mb-2">赤焰丹心</h3>
-                </div>
-                <!-- Hover overlay -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-cyan-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                </div>
-              </div>
-            </div>
-
-            <!-- Theme 6 - 童趣彩虹 -->
-            <div class="group scroll-animate scale-up" style="transition-delay: 0.9s;">
-              <div
-                class="relative overflow-hidden rounded-2xl bg-purple-50 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2">
-                <!-- Theme preview image -->
-                <div class="aspect-[3/3] overflow-hidden">
-                  <img src="https://images.waer.ltd/notes/202510192005700.jpg" alt="童趣彩虹主题"
-                    class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                    loading="lazy" />
-                </div>
-                <!-- Theme info -->
-                <div class="p-6">
-                  <h3 class="text-xl font-bold text-purple-900 mb-2">童趣彩虹</h3>
-                </div>
-                <!-- Hover overlay -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-t from-purple-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                </div>
-              </div>
-            </div>
+          <!-- Themes showcase - Stagger Cards -->
+          <div class="scroll-animate" style="transition-delay: 0.4s;">
+            <StaggerCards />
           </div>
 
           <!-- Bottom text section -->
@@ -1189,6 +1065,7 @@ import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
+import StaggerCards from '@/components/StaggerCards.vue'
 
 // SEO配置
 useSEO(seoConfigs.home)
