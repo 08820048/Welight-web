@@ -134,7 +134,7 @@
 </template>
 
 <script setup>
-import AnimatedGridPattern from \'@/components/AnimatedGridPattern.vue\'
+import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import $message from '../utils/message.js'
 import {

@@ -126,7 +126,7 @@
 </template>
 
 <script setup>
-import AnimatedGridPattern from \'@/components/AnimatedGridPattern.vue\'
+import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
