@@ -1,15 +1,15 @@
 <template>
-  <div class="relative w-full overflow-hidden bg-transparent" :style="{ height: '600px' }">
+  <div class="relative w-full overflow-hidden bg-transparent" :style="{ height: '700px' }">
     <!-- Cards -->
     <div
       v-for="(theme, index) in themesList"
       :key="theme.tempId"
       @click="handleMove(getPosition(index))"
       :class="[
-        'absolute left-1/2 top-1/2 cursor-pointer border-2 p-6 sm:p-8 transition-all duration-500 ease-in-out',
+        'absolute left-1/2 top-1/2 cursor-pointer border-2 overflow-hidden transition-all duration-500 ease-in-out',
         getPosition(index) === 0
-          ? 'z-10 bg-primary-600 text-white border-primary-600'
-          : 'z-0 bg-white text-gray-900 border-gray-200 hover:border-primary-400'
+          ? 'z-10 border-primary-600 shadow-lg'
+          : 'z-0 border-gray-200 hover:border-primary-400'
       ]"
       :style="getCardStyle(index)"
     >
@@ -28,30 +28,23 @@
       <img
         :src="theme.imgSrc"
         :alt="theme.name"
-        class="mb-4 w-full h-32 sm:h-40 object-cover"
-        :style="{ boxShadow: '3px 3px 0px rgba(0, 0, 0, 0.1)' }"
+        class="w-full h-full object-cover"
         loading="lazy"
       />
 
-      <!-- 主题名称 -->
-      <h3
+      <!-- 主题名称标签 -->
+      <div
         :class="[
-          'text-lg sm:text-xl font-bold mb-2',
-          getPosition(index) === 0 ? 'text-white' : 'text-gray-900'
+          'absolute bottom-0 left-0 right-0 py-3 px-4 text-center',
+          getPosition(index) === 0
+            ? 'bg-primary-600 text-white'
+            : 'bg-white/95 backdrop-blur-sm text-gray-900'
         ]"
       >
-        {{ theme.name }}
-      </h3>
-
-      <!-- 主题描述 -->
-      <p
-        :class="[
-          'text-sm',
-          getPosition(index) === 0 ? 'text-white/90' : 'text-gray-600'
-        ]"
-      >
-        {{ theme.description }}
-      </p>
+        <h3 class="text-base sm:text-lg font-bold">
+          {{ theme.name }}
+        </h3>
+      </div>
     </div>
 
     <!-- 导航按钮 -->
@@ -122,7 +115,7 @@ const themes = [
   }
 ]
 
-const cardSize = ref(365)
+const cardSize = ref(420)
 const themesList = ref([...themes])
 
 const getPosition = (index) => {
@@ -171,7 +164,7 @@ const handleMove = (steps) => {
 
 const updateSize = () => {
   const matches = window.matchMedia('(min-width: 640px)').matches
-  cardSize.value = matches ? 365 : 290
+  cardSize.value = matches ? 420 : 320
 }
 
 onMounted(() => {
