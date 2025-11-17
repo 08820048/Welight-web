@@ -555,6 +555,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
+import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import {
   getProducts,
   createPaymentOrder,

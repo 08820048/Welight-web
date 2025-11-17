@@ -161,6 +161,7 @@
 </template>
 
 <script setup>
+import AnimatedGridPattern from \'@/components/AnimatedGridPattern.vue\'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
 
 // SEO配置

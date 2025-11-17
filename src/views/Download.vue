@@ -467,6 +467,7 @@
 </template>
 
 <script setup>
+import AnimatedGridPattern from \'@/components/AnimatedGridPattern.vue\'
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
 import { useSEO, seoConfigs } from '@/composables/useSEO'

@@ -171,6 +171,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { getAllDonations, getSpecialDonations, formatAmount, formatDate } from '@/data/donations.js'
+import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 
 /**
  * 响应式数据

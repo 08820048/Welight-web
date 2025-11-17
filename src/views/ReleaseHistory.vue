@@ -148,6 +148,7 @@
 </template>
 
 <script setup>
+import AnimatedGridPattern from \'@/components/AnimatedGridPattern.vue\'
 import { computed } from 'vue'
 import { useSEO } from '@/composables/useSEO'
 import { changelogData } from '@/data/changelog.js'

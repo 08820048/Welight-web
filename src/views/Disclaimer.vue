@@ -263,6 +263,7 @@
 </template>
 
 <script setup>
+import AnimatedGridPattern from \'@/components/AnimatedGridPattern.vue\'
 import { onMounted } from 'vue'
 
 onMounted(() => {
