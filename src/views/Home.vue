@@ -21,11 +21,11 @@
                 </div>
                 <div class="flex-1">
                   <div class="flex items-center space-x-2 mb-1">
-                    <span class="text-lg font-bold">🎉 Welight v3.2.5 已发布！</span>
+                    <span class="text-lg font-bold">🎉 Welight v4.0.0 已发布！</span>
                     <span class="bg-white bg-opacity-20 text-xs px-2 py-1 rounded-full font-medium">最新版本</span>
                   </div>
                   <p class="text-sm text-primary-100">
-                    新增内容模板、主题预览、AI自动配图功能，优化主题编辑体验！
+                    全新幼圆字体设计，优化电路板背景效果，提升视觉体验！
                     <!--                  <span class="hidden sm:inline">建议更新</span>-->
                     <span class="font-medium text-white">建议下载更新！</span>
                   </p>
@@ -1281,7 +1281,7 @@ const showBanner = ref(false)
 const bannerVisible = ref(false)
 
 // 当前版本号
-const currentVersion = '3.2.5'
+const currentVersion = '4.0.0'
 
 // 检查是否应该显示版本横幅
 const shouldShowVersionBanner = () => {
@@ -1427,12 +1427,12 @@ const downloadFile = async (platform) => {
 
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_3.2.5_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_3.2.5_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_3.2.5_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_3.2.5_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_3.2.5_amd64.AppImage',
-      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_3.2.5_amd64.deb'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.0.0_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.0.0_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.0.0_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.0.0_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.0.0_amd64.AppImage',
+      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.0.0_amd64.deb'
     }
 
     const downloadUrl = downloadUrls[platform]

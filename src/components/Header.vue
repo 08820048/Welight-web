@@ -11,7 +11,7 @@
           <div class="hidden sm:block">
             <div class="text-lg font-semibold tracking-tight text-slate-900 flex items-center gap-2">
               Welight
-              <sup class="text-xs text-slate-500 font-normal">v3.2.5</sup>
+              <sup class="text-xs text-slate-500 font-normal">v4.0.0</sup>
             </div>
             <div class="text-xs text-slate-500">智能高效的公众号编辑器</div>
           </div>

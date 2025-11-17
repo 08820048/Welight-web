@@ -1,15 +1,28 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '3.2.5',
-    date: '2025-10-19',
+    version: '4.0.0',
+    date: '2025-11-17',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
-      changes: {
-      fixes: [
-        '修复自定义提示词效果不能生效的问题'
+    changes: {
+      features: [
+        '全新的幼圆字体设计，提升视觉体验',
+        '优化电路板背景效果，统一全站视觉风格',
+        '新增字体测试页面，方便预览不同字体效果'
       ],
+      improvements: ['优化全局字体渲染效果', '提升页面加载性能', '改进跨平台字体兼容性']
+    }
+  },
+  {
+    version: '3.2.5',
+    date: '2025-10-19',
+    type: 'release',
+    badge: '稳定版',
+    badgeColor: 'blue',
+    changes: {
+      fixes: ['修复自定义提示词效果不能生效的问题'],
       improvements: [
         '优化一键排版提示词的自定义功能,在原有基础上新增可视化配置选项,不会 markdown 语法也可以轻松配置自己的提示词',
         '重构了屠魔少年主题',
