@@ -1,9 +1,11 @@
 <template>
   <div class="relative min-h-screen bg-white">
     <AnimatedGridPattern
-      :num-squares="20"
-      :max-opacity="0.15"
-      :duration="4"
+      :num-squares="30"
+      :max-opacity="0.1"
+      :duration="3"
+      :repeat-delay="1"
+      class-name="[mask-image:radial-gradient(500px_circle_at_center,white,transparent)] inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
     />
     <div class="min-h-screen text-gray-200 pt-20 relative overflow-hidden" style="position: relative; z-index: 1;">
       <!-- Hero Section -->

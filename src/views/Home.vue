@@ -53,9 +53,11 @@
       <!-- Hero Section -->
       <section class="relative min-h-screen overflow-hidden flex items-center">
         <div class="relative container-custom w-full py-20">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <!-- Left content -->
-            <div class="space-y-10">
+          <!-- Vertical Layout: Top content, Bottom images -->
+          <div class="flex flex-col items-center text-center space-y-16">
+
+            <!-- Top content: Badge + Title + Description + Buttons + Stats -->
+            <div class="max-w-4xl mx-auto space-y-8">
               <!-- Badge -->
               <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-900 text-white rounded-full text-xs font-medium animate-fade-in-up">
                 <span class="relative flex h-1.5 w-1.5">
@@ -67,13 +69,16 @@
 
               <!-- Main heading -->
               <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.1] tracking-tight animate-fade-in-up">
-                智能高效的<br />
-                公众号文章<br />
-                <span class="text-gray-400">创作&排版体验</span>
+                智能高效的公众号文章<span class="text-gray-400">创作&排版体验</span>
               </h1>
 
+              <!-- Description -->
+              <p class="text-xl text-gray-500 leading-relaxed animate-fade-in-up max-w-2xl mx-auto">
+                专为微信公众号创作者打造的智能排版应用，拥有更优性能、更快捷的操作体验。
+              </p>
+
               <!-- CTA buttons -->
-              <div class="flex flex-wrap gap-3 animate-fade-in-up">
+              <div class="flex flex-wrap justify-center gap-3 animate-fade-in-up">
                 <!-- macOS Download Button -->
                 <button @click="downloadFile('macos-apple')" class="group">
                   <router-link to="/download"
@@ -124,7 +129,7 @@
               </div>
 
               <!-- Download statistics -->
-              <div class="flex items-center gap-4 text-sm text-gray-500 animate-fade-in-up">
+              <div class="flex items-center justify-center gap-4 text-sm text-gray-500 animate-fade-in-up">
                 <span>{{ animatedTotalDownloads.toLocaleString() }} 次下载</span>
                 <span>·</span>
                 <router-link to="/download" class="text-gray-900 hover:text-gray-600 transition-colors">
@@ -133,19 +138,12 @@
               </div>
             </div>
 
-            <!-- Right content: Description + Product Images -->
-            <div class="order-1 lg:order-2 space-y-8">
-              <!-- Description -->
-              <p class="text-xl text-gray-500 leading-relaxed animate-fade-in-up">
-                专为微信公众号创作者打造的智能排版应用，拥有更优性能、更快捷的操作体验。
-              </p>
-
-              <!-- Product Images - Linear.app Style 3D Showcase (2 layers with offset) -->
-              <div class="flex items-center justify-center relative animate-fade-in-up -mr-8 lg:-mr-16">
-                <div class="relative w-full max-w-4xl">
+            <!-- Bottom: Product Images - Linear.app Style 3D Showcase (2 layers with offset) -->
+            <div class="w-full flex items-center justify-center relative animate-fade-in-up">
+              <div class="relative w-full max-w-6xl px-4">
                 <!-- Perspective container -->
                 <div class="[perspective:1200px] [perspective-origin:50%_50%]">
-                  <div class="relative [transform-style:preserve-3d] [transform:rotateX(4deg)_rotateY(-2deg)_rotateZ(0.5deg)] transition-transform duration-700 hover:[transform:rotateX(3deg)_rotateY(-1deg)_rotateZ(0deg)]">
+                  <div class="relative [transform-style:preserve-3d] [transform:rotateX(4deg)_rotateY(-2deg)_rotateZ(-5deg)] transition-transform duration-700 hover:[transform:rotateX(3deg)_rotateY(-1deg)_rotateZ(-3deg)]">
 
                     <!-- Back panel (left side visible) -->
                     <div class="absolute top-1 -left-8 w-full [transform:translateZ(-30px)_translateX(-20px)_scale(1.01)] opacity-70">
@@ -180,8 +178,8 @@
                   </div>
                 </div>
               </div>
-              </div>
             </div>
+
           </div>
         </div>
       </section>
