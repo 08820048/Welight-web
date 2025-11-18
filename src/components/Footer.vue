@@ -12,6 +12,14 @@
           <p class="text-sm text-gray-600 dark:text-gray-400 max-w-md">
             关注 Welight 的最新功能更新、使用技巧和排版灵感，让你的创作体验更加高效、顺滑。
           </p>
+          <div class="mt-4">
+            <p class="text-xs text-gray-500 dark:text-gray-500 mb-2">扫码关注微信公众号，获取最新使用技巧和更新通知</p>
+            <img
+              src="https://images.waer.ltd/notes/202510141839217.jpg"
+              alt="微信公众号二维码"
+              class="w-20 h-20 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm"
+            />
+          </div>
         </div>
 
         <!-- 导航链接 -->
@@ -100,27 +108,28 @@
           </ul>
         </div>
 
-        <!-- 订阅更新 & 公众号 -->
+        <!-- 友情链接 -->
         <div>
-          <h3 class="mb-4 text-base font-semibold">订阅更新</h3>
-          <p class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-            留下邮箱，未来有重要版本更新或活动时会优先通知你。
+          <h3 class="mb-4 text-base font-semibold">友情链接</h3>
+          <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+            <li>
+              <a
+                href="https://plugins.jetbrains.com/plugin/27300-codepins--code-bookmarks"
+                target="_blank"
+                class="flex items-center gap-2 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+              >
+                <span
+                  class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-gray-400 text-[10px]"
+                >
+                  CP
+                </span>
+                <span>Codepins - Code Bookmarks</span>
+              </a>
+            </li>
+          </ul>
+          <p class="mt-3 text-xs text-gray-500 dark:text-gray-500">
+            欢迎与 Welight 互换友链，可通过文档页或社区渠道联系作者。
           </p>
-          <form class="relative w-full max-w-sm">
-            <div class="relative">
-              <input type="email" placeholder="你的邮箱地址"
-                class="flex h-10 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-50 dark:bg-gray-900 dark:border-gray-700 dark:text-gray-100 dark:placeholder:text-gray-500 dark:focus-visible:ring-gray-100 dark:focus-visible:ring-offset-gray-900 pr-28" />
-              <button type="button"
-                class="absolute right-0 top-0 inline-flex h-full items-center justify-center rounded-md rounded-l-none bg-gray-900 px-4 text-sm font-medium text-white hover:bg-gray-800 transition-colors">
-                订阅
-              </button>
-            </div>
-          </form>
-          <div class="mt-6">
-            <p class="text-xs text-gray-500 dark:text-gray-500 mb-2">也可以直接扫码关注微信公众号</p>
-            <img src="https://images.waer.ltd/notes/202510141839217.jpg" alt="微信公众号二维码"
-              class="w-20 h-20 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm" />
-          </div>
         </div>
       </div>
 
