@@ -168,18 +168,12 @@
             </p>
           </div>
 
-          <!-- Hero Image with 3D perspective -->
+          <!-- Hero Image with DisplayCard Style -->
           <div class="mb-24 scroll-animate">
-            <div class="relative [perspective:800px]">
-              <div class="relative [transform:rotateX(6deg)_skewY(-2deg)_skewX(-2deg)] transition-transform duration-700 hover:[transform:rotateX(0deg)_skewY(0deg)_skewX(0deg)]">
-                <div class="relative rounded-xl overflow-hidden border border-gray-200 shadow-[0_20px_70px_-10px_rgba(0,0,0,0.3)]">
-                  <!-- Radial gradient overlay -->
-                  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.1),transparent_50%)] pointer-events-none z-10"></div>
-                  <img src="https://images.waer.ltd/notes/202510241638251.png" alt="Welight 核心特性展示"
-                    class="w-full h-auto" loading="lazy" />
-                </div>
-              </div>
-            </div>
+            <ImageDisplayCard
+              image-url="https://images.waer.ltd/notes/202510241638251.png"
+              alt="Welight 核心特性展示"
+            />
           </div>
 
           <!-- Features Display Cards -->
@@ -679,6 +673,7 @@ import { useSEO, seoConfigs } from '@/composables/useSEO'
 import StaggerCards from '@/components/StaggerCards.vue'
 import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import DisplayCards from '@/components/DisplayCards.vue'
+import ImageDisplayCard from '@/components/ImageDisplayCard.vue'
 import { Wand2, Command, Copy, BarChart3, Palette, Sparkles } from 'lucide-vue-next'
 
 // SEO配置
@@ -689,19 +684,19 @@ const featuresGroup1 = [
   {
     icon: Wand2,
     title: '划词工具栏',
-    description: '快速应用格式、AI 快捷功能',
+    description: '选中文本即可显示划词工具栏，快速应用格式、预设的 AI 快捷功能',
     titleClassName: 'text-gray-900',
   },
   {
     icon: Command,
-    title: 'Slash 命令',
-    description: '快速插入语法、操作功能',
+    title: 'Slash 命令菜单',
+    description: '输入斜杠即可打开命令菜单，快速插入语法、操作功能',
     titleClassName: 'text-gray-900',
   },
   {
     icon: Copy,
-    title: '一键复制',
-    description: '所见即所得，粘贴即可发布',
+    title: '预览一键复制',
+    description: '满意的排版风格一键复制，粘贴微信编辑器即可发布，所见即所得',
     titleClassName: 'text-gray-900',
   },
 ]
@@ -709,20 +704,20 @@ const featuresGroup1 = [
 const featuresGroup2 = [
   {
     icon: BarChart3,
-    title: '智能图表',
-    description: '图表格式自动转码',
+    title: '智能图表转换',
+    description: '采用 ChartJs 图表渲染集成，图表格式自动转码，数据转表弹指可得',
     titleClassName: 'text-gray-900',
   },
   {
     icon: Palette,
-    title: '丰富主题',
-    description: '专业美观的视觉效果',
+    title: '丰富主题样式',
+    description: '精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果',
     titleClassName: 'text-gray-900',
   },
   {
     icon: Sparkles,
-    title: 'AI 助手',
-    description: '智能辅助，高效创作',
+    title: 'AI 智能助手',
+    description: '集成多个主流 AI 模型，为你的写作提供智能辅助，让创作更加高效',
     titleClassName: 'text-gray-900',
   },
 ]

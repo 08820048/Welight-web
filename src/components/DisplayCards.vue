@@ -4,16 +4,16 @@
       v-for="(card, index) in displayCards"
       :key="index"
       :class="cn(
-        'relative flex h-36 w-[22rem] -skew-y-[8deg] select-none flex-col justify-between rounded-xl border-2 bg-gray-100/70 backdrop-blur-sm px-4 py-3 transition-all duration-700 after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-[20rem] after:bg-gradient-to-l after:from-white after:to-transparent after:content-[\'\'] hover:border-gray-300 hover:bg-gray-100 [&>*]:flex [&>*]:items-center [&>*]:gap-2',
+        'relative flex min-h-[10rem] w-[22rem] -skew-y-[8deg] select-none flex-col justify-between rounded-xl border-2 bg-gray-100/70 backdrop-blur-sm px-4 py-3 transition-all duration-700 after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-[20rem] after:bg-gradient-to-l after:from-white after:to-transparent after:content-[\'\'] hover:border-gray-300 hover:bg-gray-100',
         card.className
       )">
-      <div>
-        <span class="relative inline-block rounded-full bg-gray-900 p-1">
+      <div class="flex items-center gap-2">
+        <span class="relative inline-block rounded-full bg-gray-900 p-1 shrink-0">
           <component :is="card.icon" class="size-4 text-white" />
         </span>
         <p :class="cn('text-lg font-medium', card.titleClassName)">{{ card.title }}</p>
       </div>
-      <p class="whitespace-nowrap text-lg text-gray-700">{{ card.description }}</p>
+      <p class="text-sm text-gray-600 leading-relaxed line-clamp-3">{{ card.description }}</p>
     </div>
   </div>
 </template>
