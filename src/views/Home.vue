@@ -144,14 +144,12 @@
           :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 1.0 } }"
           class="relative mt-8 px-2 sm:mt-12 md:mt-20">
           <div class="bg-gradient-to-b to-white absolute inset-0 z-10 from-transparent from-35% pointer-events-none"></div>
-          <div class="relative mx-auto max-w-5xl rounded-2xl border p-4 shadow-lg ring-1 ring-gray-200 bg-white" style="transform: rotateX(4deg) rotateY(-2deg) rotateZ(-5deg);">
-            <img
-              class="relative rounded-2xl aspect-[15/8]"
-              src="https://images.waer.ltd/notes/202511181307147.png"
-              alt="Welight 产品展示"
-              loading="lazy"
-            />
-          </div>
+          <DualImageDisplayCard
+            image1="https://images.waer.ltd/notes/202511181307147.png"
+            image2="https://images.waer.ltd/notes/202511181320742.png"
+            alt1="Welight 产品展示"
+            alt2="Welight 编辑界面"
+          />
         </div>
       </section>
 
@@ -674,6 +672,7 @@ import StaggerCards from '@/components/StaggerCards.vue'
 import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import DisplayCards from '@/components/DisplayCards.vue'
 import ImageDisplayCard from '@/components/ImageDisplayCard.vue'
+import DualImageDisplayCard from '@/components/DualImageDisplayCard.vue'
 import { Wand2, Command, Copy, BarChart3, Palette, Sparkles } from 'lucide-vue-next'
 
 // SEO配置
