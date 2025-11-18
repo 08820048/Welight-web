@@ -158,12 +158,16 @@
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              快捷高效的编辑体验
-            </h2>
-            <p class="text-xl text-gray-500 max-w-2xl">
-              从划词工具栏到智能排版，每一个功能都经过精心设计
-            </p>
+            <AnimatedUnderlineText
+              text="快捷高效的编辑体验"
+              text-className="text-4xl md:text-5xl font-bold text-gray-900"
+              underline-className="text-gray-900"
+            />
+            <MagicText
+              text="从划词工具栏到智能排版，每一个功能都经过精心设计"
+              container-className="mt-6 justify-center"
+              word-className="text-xl text-gray-500"
+            />
           </div>
 
           <!-- Hero Image with DisplayCard Style -->
@@ -194,12 +198,16 @@
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              丰富多样的排版主题
-            </h2>
-            <p class="text-xl text-gray-500 max-w-2xl">
-              精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果
-            </p>
+            <AnimatedUnderlineText
+              text="丰富多样的排版主题"
+              text-className="text-4xl md:text-5xl font-bold text-gray-900"
+              underline-className="text-gray-900"
+            />
+            <MagicText
+              text="精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果"
+              container-className="mt-6 justify-center"
+              word-className="text-xl text-gray-500"
+            />
           </div>
 
           <!-- Themes showcase - Stagger Cards -->
@@ -214,12 +222,16 @@
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-              一站式智能体验
-            </h2>
-            <p class="text-xl text-gray-500 max-w-2xl">
-              集成多个主流 AI 模型，为你的写作提供智能辅助
-            </p>
+            <AnimatedUnderlineText
+              text="一站式智能体验"
+              text-className="text-4xl md:text-5xl font-bold text-gray-900"
+              underline-className="text-gray-900"
+            />
+            <MagicText
+              text="集成多个主流 AI 模型，为你的写作提供智能辅助"
+              container-className="mt-6 justify-center"
+              word-className="text-xl text-gray-500"
+            />
           </div>
 
           <!-- AI Models showcase -->
@@ -311,14 +323,16 @@
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 scroll-animate"
-              style="transition-delay: 0.2s;">
-              强大的Markdown语法标准
-            </h2>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto scroll-animate"
-              style="transition-delay: 0.3s;">
-              全面支持标准Markdown语法及扩展功能，让你的文档编写更加高效和专业
-            </p>
+            <AnimatedUnderlineText
+              text="强大的Markdown语法标准"
+              text-className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900"
+              underline-className="text-gray-900"
+            />
+            <MagicText
+              text="全面支持标准Markdown语法及扩展功能，让你的文档编写更加高效和专业"
+              container-className="mt-6 justify-center max-w-3xl mx-auto"
+              word-className="text-lg md:text-xl text-gray-600"
+            />
           </div>
 
           <!-- Markdown features grid -->
@@ -381,25 +395,41 @@
           <!-- Markdown advantages -->
           <div class="text-center scroll-animate" style="transition-delay: 1.0s;">
             <div class="max-w-4xl mx-auto">
-              <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-8">为什么选择Markdown？</h3>
+              <AnimatedUnderlineText
+                text="为什么选择Markdown？"
+                text-className="text-2xl md:text-3xl font-bold text-gray-900"
+                underline-className="text-gray-900"
+              />
 
-              <div class="grid md:grid-cols-3 gap-8">
+              <div class="grid md:grid-cols-3 gap-8 mt-12">
                 <!-- Advantage 1 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.1s;">
                   <h4 class="text-xl font-bold text-gray-900 mb-3">简单高效</h4>
-                  <p class="text-gray-600">轻量级标记语言，学习成本低，书写效率高，专注内容创作</p>
+                  <MagicText
+                    text="轻量级标记语言，学习成本低，书写效率高，专注内容创作"
+                    container-className="justify-center"
+                    word-className="text-base text-gray-600"
+                  />
                 </div>
 
                 <!-- Advantage 2 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.2s;">
                   <h4 class="text-xl font-bold text-gray-900 mb-3">跨平台兼容</h4>
-                  <p class="text-gray-600">标准化格式，在任何平台和设备上都能完美显示和编辑</p>
+                  <MagicText
+                    text="标准化格式，在任何平台和设备上都能完美显示和编辑"
+                    container-className="justify-center"
+                    word-className="text-base text-gray-600"
+                  />
                 </div>
 
                 <!-- Advantage 3 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.3s;">
                   <h4 class="text-xl font-bold text-gray-900 mb-3">版本控制友好</h4>
-                  <p class="text-gray-600">纯文本格式，完美支持Git等版本控制系统，协作更便捷</p>
+                  <MagicText
+                    text="纯文本格式，完美支持Git等版本控制系统，协作更便捷"
+                    container-className="justify-center"
+                    word-className="text-base text-gray-600"
+                  />
                 </div>
               </div>
             </div>
@@ -407,9 +437,11 @@
 
           <!-- Bottom text -->
           <div class="text-center mt-16 scroll-animate" style="transition-delay: 1.4s;">
-            <p class="text-xl md:text-2xl font-medium text-gray-600">
-              让Welight成为你高效写作的得力助手
-            </p>
+            <MagicText
+              text="让Welight成为你高效写作的得力助手"
+              container-className="justify-center"
+              word-className="text-xl md:text-2xl font-medium text-gray-600"
+            />
           </div>
 
 
@@ -434,6 +466,8 @@ import ImageDisplayCard from '@/components/ImageDisplayCard.vue'
 import DualImageDisplayCard from '@/components/DualImageDisplayCard.vue'
 import MarkdownFeatureCard from '@/components/MarkdownFeatureCard.vue'
 import VerticalDisplayCards from '@/components/VerticalDisplayCards.vue'
+import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
+import MagicText from '@/components/ui/MagicText.vue'
 import { Wand2, Command, Copy, BarChart3, Palette, Sparkles, FileText, Code, Table, Calculator, Puzzle, BarChart } from 'lucide-vue-next'
 
 // SEO配置

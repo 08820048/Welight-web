@@ -7,12 +7,16 @@
     <!-- Hero Section -->
     <section class="section-padding">
       <div class="container-custom text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-          下载您的应用
-        </h1>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-          选择适合您操作系统的版本，开始智能高效的文档编辑体验
-        </p>
+        <AnimatedUnderlineText
+          text="下载您的应用"
+          text-className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white"
+          underline-className="text-gray-900 dark:text-white"
+        />
+        <MagicText
+          text="选择适合您操作系统的版本，开始智能高效的文档编辑体验"
+          container-className="mt-6 mb-8 max-w-3xl mx-auto justify-center"
+          word-className="text-xl text-gray-600 dark:text-gray-300"
+        />
         <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
           <div
             class="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200 rounded-full text-sm font-medium">
@@ -171,12 +175,16 @@
     <section class="section-padding relative z-10">
       <div class="container-custom">
         <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            系统要求
-          </h2>
-          <p class="text-lg text-gray-600 dark:text-gray-300">
-            确保您的系统满足以下最低要求
-          </p>
+          <AnimatedUnderlineText
+            text="系统要求"
+            text-className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
+            underline-className="text-gray-900 dark:text-white"
+          />
+          <MagicText
+            text="确保您的系统满足以下最低要求"
+            container-className="mt-4 justify-center"
+            word-className="text-lg text-gray-600 dark:text-gray-300"
+          />
         </div>
 
         <div class="max-w-2xl mx-auto">
@@ -193,12 +201,16 @@
     <section class="section-padding relative z-10">
       <div class="container-custom">
         <div class="text-center mb-12">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            安装指南
-          </h2>
-          <p class="text-lg text-gray-600 dark:text-gray-300">
-            详细的安装说明和故障排除指南
-          </p>
+          <AnimatedUnderlineText
+            text="安装指南"
+            text-className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
+            underline-className="text-gray-900 dark:text-white"
+          />
+          <MagicText
+            text="详细的安装说明和故障排除指南"
+            container-className="mt-4 justify-center"
+            word-className="text-lg text-gray-600 dark:text-gray-300"
+          />
         </div>
 
         <div class="max-w-4xl mx-auto prose prose-lg dark:prose-invert">
@@ -365,12 +377,16 @@
     <!-- Support Section -->
     <section class="section-padding relative z-10">
       <div class="container-custom text-center">
-        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-          需要帮助？
-        </h2>
-        <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
-          如果您在安装或使用过程中遇到问题，我们随时为您提供支持
-        </p>
+        <AnimatedUnderlineText
+          text="需要帮助？"
+          text-className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
+          underline-className="text-gray-900 dark:text-white"
+        />
+        <MagicText
+          text="如果您在安装或使用过程中遇到问题，我们随时为您提供支持"
+          container-className="mt-4 mb-8 justify-center"
+          word-className="text-lg text-gray-600 dark:text-gray-300"
+        />
         <div class="flex justify-center">
           <button @click="showQQGroup" class="btn-primary">
             联系支持
@@ -427,12 +443,16 @@
     <section class="py-16 relative z-10">
       <div class="container-custom">
         <div class="text-center">
-          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-            帮助我们改进 Welight
-          </h2>
-          <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
-            您的反馈对我们非常重要，让我们一起打造更好的产品
-          </p>
+          <AnimatedUnderlineText
+            text="帮助我们改进 Welight"
+            text-className="text-3xl font-bold text-gray-900 dark:text-white"
+            underline-className="text-gray-900 dark:text-white"
+          />
+          <MagicText
+            text="您的反馈对我们非常重要，让我们一起打造更好的产品"
+            container-className="mt-4 mb-8 justify-center"
+            word-className="text-lg text-gray-600 dark:text-gray-300"
+          />
 
           <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
             <a href="https://docs.qq.com/sheet/DS1RITFdUR1BQSURY?tdsourcetag=nt-grpaio-file" target="_blank"
@@ -469,6 +489,8 @@ import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
 import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
+import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
+import MagicText from '@/components/ui/MagicText.vue'
 
 // SEO配置
 useSEO(seoConfigs.download)
