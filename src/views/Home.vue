@@ -294,16 +294,12 @@
           <div class="grid lg:grid-cols-2 gap-16 items-center">
             <!-- Left side - AI Writing Assistant -->
             <div class="order-2 lg:order-1 scroll-animate">
-              <div class="relative [perspective:800px]">
-                <div class="relative [transform:rotateX(4deg)_skewY(-1deg)] transition-transform duration-700 hover:[transform:rotateX(0deg)_skewY(0deg)]">
-                  <div class="relative rounded-xl overflow-hidden border border-gray-200 shadow-[0_20px_70px_-10px_rgba(0,0,0,0.3)]">
-                    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.1),transparent_50%)] pointer-events-none z-10"></div>
-                    <img src="https://images.waer.ltd/notes/202510241641924.png" alt="AI写作助手功能展示"
-                      class="w-full h-auto"
-                      loading="lazy" />
-                  </div>
-                </div>
-              </div>
+              <DualImageDisplayCard
+                image1="https://images.waer.ltd/notes/202510241641924.png"
+                image2="https://images.waer.ltd/notes/202511181610748.png"
+                alt1="AI写作助手功能展示"
+                alt2="AI智能辅助界面"
+              />
             </div>
 
             <!-- Right side - AI Features -->
