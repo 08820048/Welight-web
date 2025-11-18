@@ -3,7 +3,7 @@
     ref="containerRef"
     aria-hidden="true"
     class="pointer-events-none absolute inset-0 h-full w-full"
-    style="z-index: 0;"
+    style="z-index: 0; mask-image: radial-gradient(ellipse at center, white, transparent 85%); -webkit-mask-image: radial-gradient(ellipse at center, white, transparent 85%);"
   >
     <defs>
       <pattern

@@ -52,7 +52,6 @@
 
       <!-- Hero Section -->
       <section class="relative pt-24 overflow-hidden">
-        <div class="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,#ffffff_75%)]"></div>
         <div class="mx-auto max-w-5xl px-6">
           <div class="sm:mx-auto lg:mr-auto">
             <!-- Animated content group -->
@@ -279,7 +278,7 @@
       </section>
 
       <!-- Themes Section -->
-      <section class="relative py-32 overflow-hidden bg-gray-50">
+      <section class="relative py-32 overflow-hidden">
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
