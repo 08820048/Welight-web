@@ -365,224 +365,56 @@
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             <!-- Basic Syntax -->
             <div class="scroll-animate scale-up" style="transition-delay: 0.4s;">
-              <div
-                class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-primary-300/50 transition-all duration-300 hover:shadow-lg h-full">
-                <div
-                  class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center mb-4">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">基础语法</h3>
-                <ul class="space-y-2 text-gray-600">
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
-                    标题 (H1-H6)
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
-                    粗体、斜体、删除线
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
-                    有序、无序列表
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
-                    链接和图片
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
-                    引用块
-                  </li>
-                </ul>
-              </div>
+              <MarkdownFeatureCard
+                :icon="FileText"
+                title="基础语法"
+                :features="['标题 (H1-H6)', '粗体、斜体、删除线', '有序、无序列表', '链接和图片', '引用块']"
+              />
             </div>
 
             <!-- Code Support -->
             <div class="scroll-animate scale-up" style="transition-delay: 0.5s;">
-              <div
-                class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-blue-300/50 transition-all duration-300 hover:shadow-lg h-full">
-                <div
-                  class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-4">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                  </svg>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">代码支持</h3>
-                <ul class="space-y-2 text-gray-600">
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                    行内代码
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                    代码块
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                    语法高亮
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                    多语言支持
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                    代码行号
-                  </li>
-                </ul>
-              </div>
+              <MarkdownFeatureCard
+                :icon="Code"
+                title="代码支持"
+                :features="['行内代码', '代码块', '语法高亮', '多语言支持', '代码行号']"
+              />
             </div>
 
             <!-- Tables -->
             <div class="scroll-animate scale-up" style="transition-delay: 0.6s;">
-              <div
-                class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-green-300/50 transition-all duration-300 hover:shadow-lg h-full">
-                <div
-                  class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mb-4">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M3 10h18M3 14h18m-9-4v8m-7 0h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">表格功能</h3>
-                <ul class="space-y-2 text-gray-600">
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
-                    标准表格语法
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
-                    列对齐控制
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
-                    表格样式美化
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
-                    可视化编辑
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
-                    导入导出支持
-                  </li>
-                </ul>
-              </div>
+              <MarkdownFeatureCard
+                :icon="Table"
+                title="表格功能"
+                :features="['标准表格语法', '列对齐控制', '表格样式美化', '可视化编辑', '导入导出支持']"
+              />
             </div>
 
             <!-- Math & Formulas -->
             <div class="scroll-animate scale-up" style="transition-delay: 0.7s;">
-              <div
-                class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-purple-300/50 transition-all duration-300 hover:shadow-lg h-full">
-                <div
-                  class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">数学公式</h3>
-                <ul class="space-y-2 text-gray-600">
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
-                    LaTeX 数学公式
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
-                    行内公式
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
-                    块级公式
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
-                    公式编号
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-purple-500 rounded-full mr-3"></span>
-                    实时预览
-                  </li>
-                </ul>
-              </div>
+              <MarkdownFeatureCard
+                :icon="Calculator"
+                title="数学公式"
+                :features="['LaTeX 数学公式', '行内公式', '块级公式', '公式编号', '实时预览']"
+              />
             </div>
 
             <!-- Extended Features -->
             <div class="scroll-animate scale-up" style="transition-delay: 0.8s;">
-              <div
-                class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-orange-300/50 transition-all duration-300 hover:shadow-lg h-full">
-                <div
-                  class="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center mb-4">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a1 1 0 01-1-1V9a1 1 0 011-1h1a2 2 0 100-4H4a1 1 0 01-1-1V4a1 1 0 011-1h3a1 1 0 001-1z" />
-                  </svg>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">扩展功能</h3>
-                <ul class="space-y-2 text-gray-600">
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    任务列表
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    脚注支持
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    定义列表
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    缩略语
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
-                    高亮标记
-                  </li>
-                </ul>
-              </div>
+              <MarkdownFeatureCard
+                :icon="Puzzle"
+                title="扩展功能"
+                :features="['任务列表', '脚注支持', '定义列表', '缩略语', '高亮标记']"
+              />
             </div>
 
             <!-- Diagrams -->
             <div class="scroll-animate scale-up" style="transition-delay: 0.9s;">
-              <div
-                class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-indigo-300/50 transition-all duration-300 hover:shadow-lg h-full">
-                <div
-                  class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center mb-4">
-                  <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">图表支持</h3>
-                <ul class="space-y-2 text-gray-600">
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
-                    Mermaid 图表
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
-                    流程图
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
-                    时序图
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
-                    甘特图
-                  </li>
-                  <li class="flex items-center">
-                    <span class="w-2 h-2 bg-indigo-500 rounded-full mr-3"></span>
-                    思维导图
-                  </li>
-                </ul>
-              </div>
+              <MarkdownFeatureCard
+                :icon="BarChart"
+                title="图表支持"
+                :features="['Mermaid 图表', '流程图', '时序图', '甘特图', '思维导图']"
+              />
             </div>
           </div>
 
@@ -669,7 +501,8 @@ import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import DisplayCards from '@/components/DisplayCards.vue'
 import ImageDisplayCard from '@/components/ImageDisplayCard.vue'
 import DualImageDisplayCard from '@/components/DualImageDisplayCard.vue'
-import { Wand2, Command, Copy, BarChart3, Palette, Sparkles } from 'lucide-vue-next'
+import MarkdownFeatureCard from '@/components/MarkdownFeatureCard.vue'
+import { Wand2, Command, Copy, BarChart3, Palette, Sparkles, FileText, Code, Table, Calculator, Puzzle, BarChart } from 'lucide-vue-next'
 
 // SEO配置
 useSEO(seoConfigs.home)
