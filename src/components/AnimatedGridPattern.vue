@@ -23,23 +23,7 @@
       </pattern>
     </defs>
     <rect width="100%" height="100%" :fill="`url(#${patternId})`" />
-    <g>
-      <rect
-        v-for="(square, index) in squares"
-        :key="`${square.pos[0]}-${square.pos[1]}-${index}`"
-        :width="width - 1"
-        :height="height - 1"
-        :x="square.pos[0] * width + 1"
-        :y="square.pos[1] * height + 1"
-        fill="rgba(59, 130, 246, 0.5)"
-        stroke-width="0"
-        class="animated-square"
-        :style="{
-          animation: `fadeInOut ${duration}s ease-in-out ${index * 0.1}s infinite`
-        }"
-        @animationiteration="updateSquarePosition(square.id)"
-      />
-    </g>
+    <!-- Animated squares removed -->
   </svg>
 </template>
 
