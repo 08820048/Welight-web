@@ -182,96 +182,16 @@
             </div>
           </div>
 
-          <!-- Features Grid -->
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
-            <!-- Feature 1 -->
-            <div class="scroll-animate">
-              <div class="mb-4">
-                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a1 1 0 01-1-1V9a1 1 0 011-1h1a2 2 0 100-4H4a1 1 0 01-1-1V4a1 1 0 011-1h3a1 1 0 001-1z">
-                  </path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">划词工具栏</h3>
-              <p class="text-gray-500 leading-relaxed">
-                选中文本即可显示划词工具栏，快速应用格式、预设的 AI 快捷功能
-              </p>
+          <!-- Features Display Cards -->
+          <div class="grid md:grid-cols-2 gap-16 lg:gap-24">
+            <!-- First Group -->
+            <div class="scroll-animate flex justify-center">
+              <DisplayCards :cards="featuresGroup1" />
             </div>
 
-            <!-- Feature 2 -->
-            <div class="scroll-animate">
-              <div class="mb-4">
-                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z">
-                  </path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">Slash 命令菜单</h3>
-              <p class="text-gray-500 leading-relaxed">
-                输入斜杠即可打开命令菜单，快速插入语法、操作功能
-              </p>
-            </div>
-
-            <!-- Feature 3 -->
-            <div class="scroll-animate">
-              <div class="mb-4">
-                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                  </path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">预览一键复制</h3>
-              <p class="text-gray-500 leading-relaxed">
-                满意的排版风格一键复制，粘贴微信编辑器即可发布，所见即所得
-              </p>
-            </div>
-
-            <!-- Feature 4 -->
-            <div class="scroll-animate">
-              <div class="mb-4">
-                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                  </path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">智能图表转换</h3>
-              <p class="text-gray-500 leading-relaxed">
-                采用 ChartJs 图表渲染集成，图表格式自动转码，数据转表弹指可得
-              </p>
-            </div>
-
-            <!-- Feature 5 -->
-            <div class="scroll-animate">
-              <div class="mb-4">
-                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01">
-                  </path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">丰富主题样式</h3>
-              <p class="text-gray-500 leading-relaxed">
-                精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果
-              </p>
-            </div>
-
-            <!-- Feature 6 -->
-            <div class="scroll-animate">
-              <div class="mb-4">
-                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                    d="M13 10V3L4 14h7v7l9-11h-7z">
-                  </path>
-                </svg>
-              </div>
-              <h3 class="text-lg font-semibold text-gray-900 mb-2">AI 智能助手</h3>
-              <p class="text-gray-500 leading-relaxed">
-                集成多个主流 AI 模型，为你的写作提供智能辅助，让创作更加高效
-              </p>
+            <!-- Second Group -->
+            <div class="scroll-animate flex justify-center">
+              <DisplayCards :cards="featuresGroup2" />
             </div>
           </div>
         </div>
@@ -758,9 +678,54 @@ import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadSta
 import { useSEO, seoConfigs } from '@/composables/useSEO'
 import StaggerCards from '@/components/StaggerCards.vue'
 import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
+import DisplayCards from '@/components/DisplayCards.vue'
+import { Wand2, Command, Copy, BarChart3, Palette, Sparkles } from 'lucide-vue-next'
 
 // SEO配置
 useSEO(seoConfigs.home)
+
+// Features Display Cards Data
+const featuresGroup1 = [
+  {
+    icon: Wand2,
+    title: '划词工具栏',
+    description: '快速应用格式、AI 快捷功能',
+    titleClassName: 'text-gray-900',
+  },
+  {
+    icon: Command,
+    title: 'Slash 命令',
+    description: '快速插入语法、操作功能',
+    titleClassName: 'text-gray-900',
+  },
+  {
+    icon: Copy,
+    title: '一键复制',
+    description: '所见即所得，粘贴即可发布',
+    titleClassName: 'text-gray-900',
+  },
+]
+
+const featuresGroup2 = [
+  {
+    icon: BarChart3,
+    title: '智能图表',
+    description: '图表格式自动转码',
+    titleClassName: 'text-gray-900',
+  },
+  {
+    icon: Palette,
+    title: '丰富主题',
+    description: '专业美观的视觉效果',
+    titleClassName: 'text-gray-900',
+  },
+  {
+    icon: Sparkles,
+    title: 'AI 助手',
+    description: '智能辅助，高效创作',
+    titleClassName: 'text-gray-900',
+  },
+]
 
 // Hero卡片自动切换
 const heroCard1 = ref(null)
