@@ -1,12 +1,11 @@
 <template>
   <teleport to="body">
     <!-- 模态框背景 -->
-    <div v-if="isVisible"
-      class="fixed inset-0 bg-black/80 flex items-center justify-center z-[200] p-4 overflow-y-auto animate-fade-in"
+    <div v-if="isVisible" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-4 pt-20 animate-fade-in"
       @click="closeModal">
       <!-- 模态框内容 -->
       <div
-        class="bg-white border border-gray-200 rounded-lg shadow-lg max-w-4xl w-full max-h-[90vh] overflow-hidden modal-content"
+        class="bg-white border border-gray-200 rounded-lg shadow-lg max-w-4xl w-full max-h-[85vh] overflow-hidden modal-content"
         @click.stop>
         <!-- 头部 -->
         <div class="flex items-center justify-between p-6 border-b border-gray-200">
@@ -23,7 +22,7 @@
         </div>
 
         <!-- 内容区域 -->
-        <div class="p-6 overflow-y-auto max-h-[calc(90vh-140px)]">
+        <div class="p-6 overflow-y-auto max-h-[calc(85vh-140px)]">
           <!-- 公告列表 -->
           <div class="space-y-6">
             <!-- 动态渲染公告 -->
@@ -51,6 +50,13 @@
           </div>
         </div>
 
+        <!-- 底部 -->
+        <div class="border-t border-gray-200 p-4 flex justify-end">
+          <button @click="closeModal"
+            class="px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white text-sm rounded-md transition-colors">
+            关闭
+          </button>
+        </div>
       </div>
     </div>
   </teleport>
