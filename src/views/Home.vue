@@ -518,12 +518,12 @@ const aiLeftFeatures = [
     description: '根据选中的关键词文本，一键搜索相关图片资源'
   },
   {
-    title: 'AI 转图',
+    title: 'AI 图表',
     description: '智能分析提供的文本数据，转为合适的 Mermaid 图表'
   },
   {
     title: 'AI 创作',
-    description: '输入创作主题、标题，一键快速创作文章'
+    description: '结合 10 余种实时新闻资讯，掌握创作热点，一键快速完成文章创作'
   },
   {
     title: '图库系统',
