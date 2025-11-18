@@ -290,36 +290,16 @@
             </div>
           </div>
 
-          <!-- AI Features showcase with images -->
-          <div class="grid lg:grid-cols-2 gap-16 items-center">
-            <!-- Left side - AI Writing Assistant -->
+          <!-- AI Features showcase -->
+          <div class="grid lg:grid-cols-2 gap-16 items-start">
+            <!-- Left side - AI Tools Features -->
             <div class="order-2 lg:order-1 scroll-animate">
-              <DualImageDisplayCard
-                image1="https://images.waer.ltd/notes/202510241641924.png"
-                image2="https://images.waer.ltd/notes/202511181610748.png"
-                alt1="AI写作助手功能展示"
-                alt2="AI智能辅助界面"
-                max-width="full"
-                :centered="false"
-              />
+              <VerticalDisplayCards :features="aiLeftFeatures" />
             </div>
 
-            <!-- Right side - AI Features -->
-            <div class="order-1 lg:order-2 space-y-8">
-              <!-- Main feature title -->
-              <div class="scroll-animate">
-                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                  智能写作助手
-                </h3>
-                <p class="text-lg text-gray-500 leading-relaxed">
-                  AI 深度集成到编辑器中，提供智能化的协作辅助、内容优化和创意灵感
-                </p>
-              </div>
-
-              <!-- Feature list -->
-              <div class="scroll-animate">
-                <VerticalDisplayCards :features="aiFeatures" />
-              </div>
+            <!-- Right side - AI Writing Features -->
+            <div class="order-1 lg:order-2 scroll-animate">
+              <VerticalDisplayCards :features="aiRightFeatures" />
             </div>
           </div>
 
@@ -531,8 +511,28 @@ const featuresGroup2 = [
   },
 ]
 
-// AI Features Data
-const aiFeatures = [
+// AI Features Data - Left side
+const aiLeftFeatures = [
+  {
+    title: '划词搜图',
+    description: '根据选中的关键词文本，一键搜索相关图片资源'
+  },
+  {
+    title: 'AI 转图',
+    description: '智能分析提供的文本数据，转为合适的 Mermaid 图表'
+  },
+  {
+    title: 'AI 创作',
+    description: '输入创作主题、标题，一键快速创作文章'
+  },
+  {
+    title: '图库系统',
+    description: '集成各大图片平台，超上万张图片资源免费使用，内置图床一键上传复用'
+  }
+]
+
+// AI Features Data - Right side
+const aiRightFeatures = [
   {
     title: '智能续写',
     description: 'AI 根据上下文智能续写内容，保持文章风格一致性'
