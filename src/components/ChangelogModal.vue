@@ -1,10 +1,10 @@
 <template>
   <!-- 模态框背景 -->
-  <div v-if="isVisible" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-4 animate-fade-in"
+  <div v-if="isVisible" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-4 pt-20 animate-fade-in"
     @click="closeModal">
     <!-- 模态框内容 -->
     <div
-      class="bg-white border border-gray-200 rounded-lg shadow-lg max-w-4xl w-full max-h-[90vh] overflow-hidden modal-content"
+      class="bg-white border border-gray-200 rounded-lg shadow-lg max-w-4xl w-full max-h-[85vh] overflow-hidden modal-content"
       @click.stop>
       <!-- 头部 -->
       <div class="flex items-center justify-between p-6 border-b border-gray-200">
@@ -21,7 +21,7 @@
       </div>
 
       <!-- 内容区域 -->
-      <div class="overflow-y-auto max-h-[calc(90vh-120px)] p-6">
+      <div class="overflow-y-auto max-h-[calc(85vh-140px)] p-6">
         <!-- 调试信息 -->
         <div v-if="!changelogData || changelogData.length === 0" class="text-center py-8">
           <p class="text-gray-500">正在加载更新日志...</p>
