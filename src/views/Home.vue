@@ -51,135 +51,107 @@
       </div>
 
       <!-- Hero Section -->
-      <section class="relative min-h-screen overflow-hidden flex items-center">
-        <div class="relative container-custom w-full py-20">
-          <!-- Vertical Layout: Top content, Bottom images -->
-          <div class="flex flex-col items-center text-center space-y-16">
-
-            <!-- Top content: Badge + Title + Description + Buttons + Stats -->
-            <div class="max-w-4xl mx-auto space-y-8">
+      <section class="relative pt-24 overflow-hidden">
+        <div class="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,#ffffff_75%)]"></div>
+        <div class="mx-auto max-w-5xl px-6">
+          <div class="sm:mx-auto lg:mr-auto">
+            <!-- Animated content group -->
+            <div class="space-y-8">
               <!-- Badge -->
-              <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-900 text-white rounded-full text-xs font-medium animate-fade-in-up">
-                <span class="relative flex h-1.5 w-1.5">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
-                </span>
-                v4.0.0 已发布
+              <div
+                v-motion
+                :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
+                :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.75 } }">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-900 text-white rounded-full text-xs font-medium">
+                  <span class="relative flex h-1.5 w-1.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
+                  </span>
+                  v4.0.0 已发布
+                </div>
               </div>
 
               <!-- Main heading -->
-              <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.1] tracking-tight animate-fade-in-up">
-                智能高效的公众号文章<span class="text-gray-400">创作&排版体验</span>
+              <h1
+                v-motion
+                :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
+                :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.8 } }"
+                class="mt-8 text-5xl font-medium md:text-6xl lg:mt-16 whitespace-nowrap text-gray-900">
+                智能高效的公众号文章创作&排版体验
               </h1>
 
               <!-- Description -->
-              <p class="text-xl text-gray-500 leading-relaxed animate-fade-in-up max-w-2xl mx-auto">
+              <p
+                v-motion
+                :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
+                :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.85 } }"
+                class="mt-8 max-w-2xl text-pretty text-lg text-gray-600">
                 专为微信公众号创作者打造的智能排版应用，拥有更优性能、更快捷的操作体验。
               </p>
 
-              <!-- CTA buttons -->
-              <div class="flex flex-wrap justify-center gap-3 animate-fade-in-up">
+              <!-- Download buttons and statistics -->
+              <div
+                v-motion
+                :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
+                :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.9 } }"
+                class="mt-12 flex flex-wrap items-center gap-3">
                 <!-- macOS Download Button -->
                 <button @click="downloadFile('macos-apple')" class="group">
-                  <router-link to="/download"
-                    class="download-btn-mac relative overflow-hidden bg-gray-900 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center gap-2">
+                  <div class="relative overflow-hidden bg-gray-900 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center gap-2">
                     <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                      <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                     </svg>
                     <span class="text-sm">下载 macOS 版</span>
-                    <svg class="w-4 h-4 text-white/60 group-hover:text-white group-hover:translate-x-0.5 transition-all" fill="none"
-                      stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 text-white/60 group-hover:text-white group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
-                  </router-link>
+                  </div>
                 </button>
 
                 <!-- Windows Download Button -->
                 <button @click="downloadFile('windows-installer')" class="group">
-                  <router-link to="/download"
-                    class="download-btn-windows relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 font-medium px-6 py-3 rounded-lg transition-all duration-200 border border-gray-200 hover:border-gray-300 inline-flex items-center gap-2">
+                  <div class="relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 font-medium px-6 py-3 rounded-lg transition-all duration-200 border border-gray-200 hover:border-gray-300 inline-flex items-center gap-2">
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M0,0V11.408H11.408V0ZM12.594,0V11.408H24V0ZM0,12.594V24H11.408V12.594ZM12.594,12.594V24H24V12.594Z" />
+                      <path d="M0,0V11.408H11.408V0ZM12.594,0V11.408H24V0ZM0,12.594V24H11.408V12.594ZM12.594,12.594V24H24V12.594Z" />
                     </svg>
                     <span class="text-sm">下载 Windows 版</span>
-                    <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-900 group-hover:translate-x-0.5 transition-all" fill="none"
-                      stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-900 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
-                  </router-link>
-                </button>
-
-                <!-- Linux Download Button -->
-                <button @click="downloadFile('linux-deb')" class="group">
-                  <router-link to="/download"
-                    class="download-btn-linux relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 font-medium px-6 py-3 rounded-lg transition-all duration-200 border border-gray-200 hover:border-gray-300 inline-flex items-center gap-2">
-                    <svg class="w-4 h-4 text-orange-600" viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 01-.088.066c-.297.168-.623.336-.995.268-.4-.051-.811-.03-1.206-.125-.365-.086-.718-.224-1.05-.479-.297-.239-.543-.527-.708-.815-.194-.328-.353-.66-.401-1.058-.035-.31-.008-.579.15-.849.135-.23.355-.406.608-.523.404-.187.818-.131 1.259-.199v-.016h-.073zm-2.452 7.407h.016c.442.02.72.199 1.004.284.336.099.672.198 1.062.201.435-.006.81-.118 1.18-.284.06-.03.135-.044.195-.09.225-.136.405-.334.558-.538.404-.534.67-1.126.972-1.67.17-.3.346-.3.521-.06.299.404.413.842.477 1.314.037.279.017.558-.031.818-.064.434-.23.747-.475 1.005-.154.15-.346.3-.504.465-.225.24-.42.48-.668.671-.537.434-1.108.747-1.764.925-.612.15-1.238.12-1.854.06-.292-.03-.584-.06-.87-.135-.255-.06-.51-.135-.725-.27-.154-.09-.293-.225-.417-.375-.109-.135-.199-.284-.25-.465-.047-.181-.016-.378.031-.553.064-.24.209-.464.403-.629.226-.181.478-.284.751-.329.399-.06.818.044 1.207-.105.06-.023.12-.06.18-.104h-.011z" />
-                    </svg>
-                    <span class="text-sm">下载 Linux 版</span>
-                    <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-900 group-hover:translate-x-0.5 transition-all" fill="none"
-                      stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </router-link>
-                </button>
-              </div>
-
-              <!-- Download statistics -->
-              <div class="flex items-center justify-center gap-4 text-sm text-gray-500 animate-fade-in-up">
-                <span>{{ animatedTotalDownloads.toLocaleString() }} 次下载</span>
-                <span>·</span>
-                <router-link to="/download" class="text-gray-900 hover:text-gray-600 transition-colors">
-                  查看所有版本 →
-                </router-link>
-              </div>
-            </div>
-
-            <!-- Bottom: Product Images - Linear.app Style 3D Showcase (2 layers with offset) -->
-            <div class="w-full flex items-center justify-center relative animate-fade-in-up">
-              <div class="relative w-full max-w-6xl px-4">
-                <!-- Perspective container -->
-                <div class="[perspective:1200px] [perspective-origin:50%_50%]">
-                  <div class="relative [transform-style:preserve-3d] [transform:rotateX(4deg)_rotateY(-2deg)_rotateZ(-5deg)] transition-transform duration-700 hover:[transform:rotateX(3deg)_rotateY(-1deg)_rotateZ(-3deg)]">
-
-                    <!-- Back panel (left side visible) -->
-                    <div class="absolute top-1 -left-8 w-full [transform:translateZ(-30px)_translateX(-20px)_scale(1.01)] opacity-70">
-                      <div class="relative rounded-lg overflow-hidden border border-gray-200/40 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
-                        <img
-                          src="https://images.waer.ltd/notes/202511181320742.png"
-                          alt="编辑排版体验"
-                          class="w-full h-auto"
-                          loading="lazy"
-                        />
-                        <!-- Bottom fade for back panel - stronger fade to blend with background -->
-                        <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none"></div>
-                      </div>
-                    </div>
-
-                    <!-- Front panel (main) -->
-                    <div class="relative [transform:translateZ(0px)_scale(1.01)] z-10 ml-12">
-                      <div class="relative rounded-lg overflow-hidden border border-gray-200/50 shadow-[0_10px_40px_rgba(0,0,0,0.15)]">
-                        <img
-                          src="https://images.waer.ltd/notes/202511181307147.png"
-                          alt="Welight 产品展示"
-                          class="w-full h-auto"
-                          loading="lazy"
-                        />
-                        <!-- Bottom fade gradient (Linear.app style) - stronger fade to blend with background -->
-                        <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-white via-white/90 to-transparent pointer-events-none"></div>
-                      </div>
-                    </div>
-
-                    <!-- Overall bottom fade to blend with background - much stronger -->
-                    <div class="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none [transform:translateZ(20px)]"></div>
                   </div>
+                </button>
+
+                <!-- Download statistics -->
+                <div
+                  v-motion
+                  :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
+                  :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.95 } }"
+                  class="flex items-center gap-4 text-sm text-gray-500 ml-6">
+                  <span>{{ animatedTotalDownloads.toLocaleString() }} 次下载</span>
+                  <span>·</span>
+                  <router-link to="/download" class="text-gray-900 hover:text-gray-600 transition-colors">
+                    查看所有版本 →
+                  </router-link>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
 
+        <!-- Product Image -->
+        <div
+          v-motion
+          :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
+          :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 1.0 } }"
+          class="relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
+          <div class="bg-gradient-to-b to-white absolute inset-0 z-10 from-transparent from-35%"></div>
+          <div class="relative mx-auto max-w-5xl overflow-hidden rounded-2xl border p-4 shadow-lg ring-1 ring-gray-200 bg-white" style="transform: rotateX(4deg) rotateY(-2deg) rotateZ(-5deg);">
+            <img
+              class="relative rounded-2xl aspect-[15/8]"
+              src="https://images.waer.ltd/notes/202511181307147.png"
+              alt="Welight 产品展示"
+              loading="lazy"
+            />
           </div>
         </div>
       </section>

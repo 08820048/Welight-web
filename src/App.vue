@@ -2,7 +2,7 @@
   <div id="app">
     <!-- 文档页禁用 3D 背景，其他页面可再启用 -->
 
-    <Header />
+    <ModernHeader />
     <main>
       <RouterView />
     </main>
@@ -19,7 +19,7 @@
 <script setup>
 import { RouterView, useRoute } from 'vue-router'
 import { computed, ref, onMounted } from 'vue'
-import Header from './components/Header.vue'
+import ModernHeader from './components/ModernHeader.vue'
 import Footer from './components/Footer.vue'
 import FloatingDonationButton from './components/FloatingDonationButton.vue'
 import BackToTop from './components/BackToTop.vue'
