@@ -20,21 +20,20 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" v-if="creditPackages.length > 0">
           <div v-for="pkg in creditPackages" :key="pkg.id"
-            class="group relative bg-gradient-to-br from-green-50 to-white border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            class="group relative bg-white border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             :class="{
-              'border-green-300 ring-2 ring-green-200': selectedPackage?.id === pkg.id,
-              'border-green-100': selectedPackage?.id !== pkg.id
+              'border-gray-900 ring-2 ring-gray-200': selectedPackage?.id === pkg.id,
+              'border-gray-200': selectedPackage?.id !== pkg.id
             }">
 
             <!-- 推荐标签 -->
             <div v-if="pkg.isPopular"
-              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full transform rotate-12">
+              class="absolute -top-2 -right-2 bg-gray-900 text-white text-xs font-bold px-3 py-1 rounded-full transform rotate-12">
               推荐
             </div>
 
             <!-- 产品名称标签 -->
-            <div class="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4"
-              style="background-color: rgba(49, 200, 145, 0.1); color: #31c891;">
+            <div class="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 bg-gray-100 text-gray-900">
               {{ pkg.packageName }}
             </div>
 
@@ -56,22 +55,22 @@
             </div>
 
             <!-- 永久有效标签 -->
-            <div class="inline-block bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded mb-4">
+            <div class="inline-block bg-gray-900 text-white text-xs font-semibold px-2 py-1 rounded mb-4">
               永久有效
             </div>
 
             <!-- 功能列表 -->
             <ul class="space-y-2 mb-6 text-sm text-gray-600">
               <li v-for="feature in pkg.features" :key="feature">
-                <span class="text-green-600">✔</span> {{ feature }}
+                <span class="text-gray-900">✔</span> {{ feature }}
               </li>
             </ul>
 
             <!-- 选择按钮 -->
             <button @click="selectPackage(pkg)"
               class="w-full py-2 px-4 rounded-lg font-semibold shadow transition-colors duration-200" :class="{
-                'bg-green-600 hover:bg-green-700 text-white': selectedPackage?.id !== pkg.id,
-                'bg-green-700 text-white': selectedPackage?.id === pkg.id
+                'bg-gray-900 hover:bg-gray-800 text-white': selectedPackage?.id !== pkg.id,
+                'bg-gray-800 text-white': selectedPackage?.id === pkg.id
               }">
               {{ selectedPackage?.id === pkg.id ? '已选择' : '选择套餐' }}
             </button>
@@ -80,8 +79,7 @@
 
         <!-- 加载状态 -->
         <div v-else-if="loading" class="text-center py-12">
-          <div class="animate-spin inline-block w-8 h-8 border-4 border-t-transparent rounded-full"
-            style="border-color: #31c891; border-top-color: transparent;"></div>
+          <div class="animate-spin inline-block w-8 h-8 border-4 border-gray-900 border-t-transparent rounded-full"></div>
           <p class="mt-4 text-gray-600">加载积分套餐中...</p>
         </div>
 
@@ -97,7 +95,7 @@
           <p class="text-gray-600 text-lg">暂无可用的积分套餐</p>
           <p class="text-gray-500 text-sm mt-2">请稍后重试或联系客服</p>
           <button @click="loadCreditPackages"
-            class="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+            class="mt-4 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
             重新加载
           </button>
         </div>
@@ -109,12 +107,12 @@
             <div class="flex-1">
               <label class="block text-sm font-medium text-gray-700 mb-2">积分数量</label>
               <input v-model.number="customCredits" type="number" min="100" max="10000" step="100"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500"
                 placeholder="请输入积分数量（最少100积分）">
             </div>
             <div class="text-right">
               <div class="text-sm text-gray-600">总价格</div>
-              <div class="text-xl font-bold text-green-600">¥{{ calculateCustomPrice() }}</div>
+              <div class="text-xl font-bold text-gray-900">¥{{ calculateCustomPrice() }}</div>
             </div>
           </div>
         </div>
@@ -126,13 +124,13 @@
             <div>
               <label class="block text-sm font-medium text-gray-900 mb-2">姓名</label>
               <input v-model="purchaseForm.customerName" type="text"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-900"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-900"
                 placeholder="请输入您的姓名">
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-900 mb-2">邮箱 <span class="text-red-500">*</span></label>
               <input v-model="purchaseForm.customerEmail" type="email" required
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-900"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-900"
                 placeholder="请输入您的邮箱">
             </div>
           </div>
@@ -156,7 +154,7 @@
           <!-- 购买按钮 -->
           <div class="mt-6">
             <button @click="handlePurchase" :disabled="!canPurchase || purchasing"
-              class="w-full py-3 px-6 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white rounded-lg font-semibold shadow transition-colors duration-200">
+              class="w-full py-3 px-6 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-400 text-white rounded-lg font-semibold shadow transition-colors duration-200">
               <span v-if="purchasing" class="flex items-center justify-center">
                 <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
                   viewBox="0 0 24 24">
