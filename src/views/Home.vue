@@ -51,9 +51,9 @@
       </div>
 
       <!-- Hero Section -->
-      <section class="relative min-h-screen overflow-hidden pt-32 pb-20">
-        <div class="relative container-custom h-full">
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start min-h-[calc(100vh-8rem)]">
+      <section class="relative min-h-screen overflow-hidden flex items-center">
+        <div class="relative container-custom w-full py-20">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <!-- Left content -->
             <div class="space-y-10">
               <!-- Badge -->
@@ -144,39 +144,39 @@
               <div class="flex items-center justify-center relative animate-fade-in-up -mr-8 lg:-mr-16">
                 <div class="relative w-full max-w-4xl">
                 <!-- Perspective container -->
-                <div class="[perspective:2000px] [perspective-origin:50%_50%]">
-                  <div class="relative [transform-style:preserve-3d] [transform:rotateX(20deg)_rotateY(-12deg)_rotateZ(4deg)] transition-transform duration-700 hover:[transform:rotateX(15deg)_rotateY(-8deg)_rotateZ(2deg)]">
+                <div class="[perspective:1200px] [perspective-origin:50%_50%]">
+                  <div class="relative [transform-style:preserve-3d] [transform:rotateX(4deg)_rotateY(-2deg)_rotateZ(0.5deg)] transition-transform duration-700 hover:[transform:rotateX(3deg)_rotateY(-1deg)_rotateZ(0deg)]">
 
                     <!-- Back panel (left side visible) -->
-                    <div class="absolute top-6 -left-16 w-full [transform:translateZ(-100px)_translateX(-50px)_scale(1.05)] opacity-50">
-                      <div class="relative rounded-lg overflow-hidden border border-gray-300/60 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.3)]">
+                    <div class="absolute top-1 -left-8 w-full [transform:translateZ(-30px)_translateX(-20px)_scale(1.01)] opacity-70">
+                      <div class="relative rounded-lg overflow-hidden border border-gray-200/40 shadow-[0_8px_30px_rgba(0,0,0,0.12)]">
                         <img
                           src="https://images.waer.ltd/notes/202511181320742.png"
                           alt="编辑排版体验"
                           class="w-full h-auto"
                           loading="lazy"
                         />
-                        <!-- Bottom fade for back panel -->
-                        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-gray-50 via-gray-50/40 to-transparent pointer-events-none"></div>
+                        <!-- Bottom fade for back panel - stronger fade to blend with background -->
+                        <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none"></div>
                       </div>
                     </div>
 
                     <!-- Front panel (main) -->
-                    <div class="relative [transform:translateZ(0px)_scale(1.05)] z-10 ml-12">
-                      <div class="relative rounded-lg overflow-hidden border border-gray-200 shadow-[0_50px_120px_-20px_rgba(0,0,0,0.5)]">
+                    <div class="relative [transform:translateZ(0px)_scale(1.01)] z-10 ml-12">
+                      <div class="relative rounded-lg overflow-hidden border border-gray-200/50 shadow-[0_10px_40px_rgba(0,0,0,0.15)]">
                         <img
                           src="https://images.waer.ltd/notes/202511181307147.png"
                           alt="Welight 产品展示"
                           class="w-full h-auto"
                           loading="lazy"
                         />
-                        <!-- Bottom fade gradient (Linear.app style) -->
-                        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-gray-50 via-gray-50/60 to-transparent pointer-events-none"></div>
+                        <!-- Bottom fade gradient (Linear.app style) - stronger fade to blend with background -->
+                        <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-white via-white/90 to-transparent pointer-events-none"></div>
                       </div>
                     </div>
 
-                    <!-- Overall bottom fade to blend with background -->
-                    <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-50 via-gray-50/20 to-transparent pointer-events-none [transform:translateZ(20px)]"></div>
+                    <!-- Overall bottom fade to blend with background - much stronger -->
+                    <div class="absolute inset-x-0 bottom-0 h-3/4 bg-gradient-to-t from-white via-white/60 to-transparent pointer-events-none [transform:translateZ(20px)]"></div>
                   </div>
                 </div>
               </div>
