@@ -299,6 +299,8 @@
                 image2="https://images.waer.ltd/notes/202511181610748.png"
                 alt1="AI写作助手功能展示"
                 alt2="AI智能辅助界面"
+                max-width="full"
+                :centered="false"
               />
             </div>
 

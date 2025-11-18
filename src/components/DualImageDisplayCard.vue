@@ -1,8 +1,8 @@
 <template>
-  <div class="grid [grid-template-areas:'stack'] place-items-center opacity-100 animate-in fade-in-0 duration-700">
+  <div class="grid [grid-template-areas:'stack'] opacity-100 animate-in fade-in-0 duration-700" :class="centered ? 'place-items-center' : ''">
     <!-- Card 1 - Back -->
     <div
-      class="relative w-full max-w-5xl select-none rounded-2xl border-2 border-gray-200 bg-gray-100/70 backdrop-blur-sm p-4 transition-all duration-700 [grid-area:stack] z-10 before:absolute before:w-[100%] before:outline-1 before:rounded-2xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-white/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0 after:absolute after:-right-2 after:top-[-3%] after:h-[106%] after:w-full after:bg-gradient-to-l after:from-white after:to-transparent after:content-['']"
+      :class="['relative w-full select-none rounded-2xl border-2 border-gray-200 bg-gray-100/70 backdrop-blur-sm p-4 transition-all duration-700 [grid-area:stack] z-10 before:absolute before:w-[100%] before:outline-1 before:rounded-2xl before:outline-border before:h-[100%] before:content-[\'\'] before:bg-blend-overlay before:bg-white/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0 after:absolute after:-right-2 after:top-[-3%] after:h-[106%] after:w-full after:bg-gradient-to-l after:from-white after:to-transparent after:content-[\'\']', maxWidthClass]"
       style="transform: rotateX(4deg) rotateY(-2deg) rotateZ(-5deg) translateY(0);"
       @mouseenter="card1Hover = true"
       @mouseleave="card1Hover = false"
@@ -14,7 +14,7 @@
 
     <!-- Card 2 - Front -->
     <div
-      class="relative w-full max-w-5xl select-none rounded-2xl border-2 border-gray-200 bg-white backdrop-blur-sm p-4 transition-all duration-700 [grid-area:stack] z-20 after:absolute after:-right-2 after:top-[-3%] after:h-[106%] after:w-full after:bg-gradient-to-l after:from-white after:to-transparent after:content-['']"
+      :class="['relative w-full select-none rounded-2xl border-2 border-gray-200 bg-white backdrop-blur-sm p-4 transition-all duration-700 [grid-area:stack] z-20 after:absolute after:-right-2 after:top-[-3%] after:h-[106%] after:w-full after:bg-gradient-to-l after:from-white after:to-transparent after:content-[\'\']', maxWidthClass]"
       @mouseenter="card2Hover = true"
       @mouseleave="card2Hover = false"
       :style="{ transform: card2Hover ? 'rotateX(4deg) rotateY(-2deg) rotateZ(-5deg) translateX(4rem) translateY(1.5rem)' : 'rotateX(4deg) rotateY(-2deg) rotateZ(-5deg) translateX(4rem) translateY(3rem)' }">
@@ -26,9 +26,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
-defineProps({
+const props = defineProps({
   image1: {
     type: String,
     required: true
@@ -44,7 +44,19 @@ defineProps({
   alt2: {
     type: String,
     default: 'Product Image 2'
+  },
+  maxWidth: {
+    type: String,
+    default: '5xl'
+  },
+  centered: {
+    type: Boolean,
+    default: true
   }
+})
+
+const maxWidthClass = computed(() => {
+  return `max-w-${props.maxWidth}`
 })
 
 const card1Hover = ref(false)
