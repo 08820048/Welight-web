@@ -1,7 +1,9 @@
 <template>
-  <div class="circuit-wrapper">
-    <div class="circuit-background"></div>
-    <div class="min-h-screen text-gray-200 pt-20 relative overflow-hidden" style="position: relative; z-index: 1;">
+  <div class="relative min-h-screen bg-white">
+    <!-- 渐隐网格背景 -->
+    <AnimatedGridPattern />
+
+    <div class="min-h-screen text-gray-200 pt-20 relative" style="position: relative; z-index: 1;">
     <!-- Hero Section -->
     <section class="section-padding">
       <div class="container-custom text-center">
@@ -13,14 +15,14 @@
         </p>
         <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
           <div
-            class="inline-flex items-center px-4 py-2 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full text-sm font-medium">
+            class="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200 rounded-full text-sm font-medium">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
             最新版本：v4.0.0
           </div>
           <div
-            class="inline-flex items-center px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
+            class="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200 rounded-full text-sm font-medium">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -28,7 +30,7 @@
             总下载量：{{ totalDownloads.toLocaleString() }}次
           </div>
           <router-link to="/release-history"
-            class="inline-flex items-center px-4 py-2 bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full text-sm font-medium hover:bg-purple-200 dark:hover:bg-purple-800 transition-colors duration-200">
+            class="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200">
             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -46,8 +48,8 @@
           <!-- Windows -->
           <div class="card p-8 text-center hover:scale-105 transition-transform duration-300">
             <div
-              class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="currentColor">
+              class="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-gray-900 dark:text-gray-200" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M0,0V11.408H11.408V0ZM12.594,0V11.408H24V0ZM0,12.594V24H11.408V12.594ZM12.594,12.594V24H24V12.594Z" />
               </svg>
@@ -82,8 +84,8 @@
           <!-- macOS -->
           <div class="card p-8 text-center hover:scale-105 transition-transform duration-300">
             <div
-              class="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-gray-600 dark:text-gray-300" viewBox="0 0 24 24" fill="currentColor">
+              class="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-gray-900 dark:text-gray-200" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
               </svg>
@@ -118,8 +120,8 @@
           <!-- Linux -->
           <div class="card p-8 text-center hover:scale-105 transition-transform duration-300 relative">
             <div
-              class="w-16 h-16 bg-orange-100 dark:bg-orange-900 rounded-lg flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-orange-600 dark:text-orange-400" viewBox="0 0 24 24" fill="currentColor">
+              class="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-lg flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-gray-900 dark:text-gray-200" viewBox="0 0 24 24" fill="currentColor">
                 <path
                   d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 01-.088.066c-.297.168-.623.336-.995.268-.4-.051-.811-.03-1.206-.125-.365-.086-.718-.224-1.05-.479-.297-.239-.543-.527-.708-.815-.194-.328-.353-.66-.401-1.058-.035-.31-.008-.579.15-.849.135-.23.355-.406.608-.523.404-.187.818-.131 1.259-.199v-.016h-.073zm-2.452 7.407h.016c.442.02.72.199 1.004.284.336.099.672.198 1.062.201.435-.006.81-.118 1.18-.284.06-.03.135-.044.195-.09.225-.136.405-.334.558-.538.404-.534.67-1.126.972-1.67.17-.3.346-.3.521-.06.299.404.413.842.477 1.314.037.279.017.558-.031.818-.064.434-.23.747-.475 1.005-.154.15-.346.3-.504.465-.225.24-.42.48-.668.671-.537.434-1.108.747-1.764.925-.612.15-1.238.12-1.854.06-.292-.03-.584-.06-.87-.135-.255-.06-.51-.135-.725-.27-.154-.09-.293-.225-.417-.375-.109-.135-.199-.284-.25-.465-.047-.181-.016-.378.031-.553.064-.24.209-.464.403-.629.226-.181.478-.284.751-.329.399-.06.818.044 1.207-.105.06-.023.12-.06.18-.104h-.011z" />
               </svg>
@@ -127,7 +129,7 @@
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Linux</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-6">适用于主流 Linux 发行版</p>
             <!-- 角标说明 -->
-            <div class="absolute top-4 right-4 bg-red-500 text-white text-xs px-2 py-1 rounded-full shadow-lg z-10">
+            <div class="absolute top-4 right-4 bg-gray-900 text-white text-xs px-2 py-1 rounded-full shadow-lg z-10">
               构建资源紧张，暂不提供该版本
             </div>
             <div class="space-y-3">
@@ -211,14 +213,14 @@
             </h3>
 
             <div
-              class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-6 mb-6">
-              <h4 class="text-lg font-semibold text-yellow-800 dark:text-yellow-200 mb-3">⚠️ 常见问题：安全警告</h4>
-              <p class="text-yellow-700 dark:text-yellow-300 mb-3">在 macOS 上首次安装时，您可能会看到以下安全警告：</p>
-              <div class="bg-red-100 dark:bg-red-800 rounded p-3 mb-3 font-mono text-sm"
-                style="color: red; font-weight: 700; font-size: 1.5rem;">
+              class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6 mb-6">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-200 mb-3">⚠️ 常见问题：安全警告</h4>
+              <p class="text-gray-700 dark:text-gray-300 mb-3">在 macOS 上首次安装时，您可能会看到以下安全警告：</p>
+              <div class="bg-gray-100 dark:bg-gray-900 rounded p-3 mb-3 font-mono text-sm"
+                style="color: #ef4444; font-weight: 700; font-size: 1.5rem;">
                 "Welight" 已损坏，无法打开。你应该将它移到废纸篓。
               </div>
-              <p class="text-yellow-700 dark:text-yellow-300 font-semibold">这是正常现象！这是因为我们的应用没有经过 Apple 的代码签名和公证服务。</p>
+              <p class="text-gray-700 dark:text-gray-300 font-semibold">这是正常现象！这是因为我们的应用没有经过 Apple 的代码签名和公证服务。</p>
             </div>
 
             <h4 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">解决方案</h4>
@@ -253,8 +255,8 @@
                   </code>
                 </div>
                 <div
-                  class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded p-3">
-                  <p class="text-yellow-700 dark:text-yellow-300 text-sm">
+                  class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded p-3">
+                  <p class="text-gray-700 dark:text-gray-300 text-sm">
                     <strong>⚠️ 注意：</strong>请确保您信任此应用再执行此命令。此命令会移除 macOS 的隔离保护。
                   </p>
                 </div>
@@ -283,10 +285,10 @@
                 </ol>
               </div>
 
-              <div class="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-6">
-                <h4 class="text-lg font-semibold text-blue-800 dark:text-blue-200 mb-3">Windows 安全警告</h4>
-                <p class="text-blue-700 dark:text-blue-300">如果 Windows Defender 提示警告：</p>
-                <ol class="list-decimal list-inside space-y-1 text-blue-700 dark:text-blue-300 mt-2">
+              <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+                <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-200 mb-3">Windows 安全警告</h4>
+                <p class="text-gray-700 dark:text-gray-300">如果 Windows Defender 提示警告：</p>
+                <ol class="list-decimal list-inside space-y-1 text-gray-700 dark:text-gray-300 mt-2">
                   <li>点击"更多信息"</li>
                   <li>选择"仍要运行"</li>
                   <li>添加到信任列表（可选）</li>
@@ -299,9 +301,9 @@
           <div class="mb-12">
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">🛡️ 安全说明</h3>
 
-            <div class="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-6">
-              <h4 class="text-lg font-semibold text-green-800 dark:text-green-200 mb-3">✅ 应用完全安全</h4>
-              <ul class="list-disc list-inside space-y-2 text-green-700 dark:text-green-300">
+            <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
+              <h4 class="text-lg font-semibold text-gray-900 dark:text-gray-200 mb-3">✅ 应用完全安全</h4>
+              <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
                 <li><strong>正规软件</strong>：由专业团队开发的正规应用程序</li>
                 <li><strong>无恶意代码</strong>：不包含任何恶意或间谍软件</li>
                 <li><strong>本地运行</strong>：应用完全在本地运行，不上传用户数据</li>
@@ -346,7 +348,7 @@
           </div>
 
           <!-- 快速开始 -->
-          <div class="bg-gradient-to-r from-primary-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-lg p-6">
+          <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-6">
             <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">🎯 快速开始</h3>
             <p class="text-gray-600 dark:text-gray-300 mb-4">安装完成后，您可以：</p>
             <ol class="list-decimal list-inside space-y-2 text-gray-600 dark:text-gray-300">
@@ -381,8 +383,8 @@
           <div class="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-md mx-4 shadow-2xl" @click.stop>
             <div class="text-center">
               <div
-                class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                class="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg class="w-8 h-8 text-gray-900 dark:text-gray-200" fill="currentColor" viewBox="0 0 24 24">
                   <path
                     d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                 </svg>
@@ -393,16 +395,16 @@
               <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-6">
                 <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">QQ群号</p>
                 <div class="flex items-center justify-center space-x-2">
-                  <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">1071558803</span>
+                  <span class="text-2xl font-bold text-gray-900 dark:text-gray-200">1071558803</span>
                   <button @click="copyQQGroup"
-                    class="text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300">
+                    class="text-gray-900 hover:text-gray-700 dark:text-gray-200 dark:hover:text-gray-300">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
                     </svg>
                   </button>
                 </div>
-                <p v-if="copied" class="text-green-600 text-sm mt-2">群号已复制到剪贴板</p>
+                <p v-if="copied" class="text-gray-900 dark:text-gray-200 text-sm mt-2">群号已复制到剪贴板</p>
               </div>
 
               <div class="flex space-x-3">
@@ -411,7 +413,7 @@
                   关闭
                 </button>
                 <a href="https://qm.qq.com/q/Q7CbqSNmUY" target="_blank"
-                  class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center">
+                  class="flex-1 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-center">
                   直接加群
                 </a>
               </div>
@@ -434,7 +436,7 @@
 
           <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md mx-auto">
             <a href="https://docs.qq.com/sheet/DS1RITFdUR1BQSURY?tdsourcetag=nt-grpaio-file" target="_blank"
-              class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors duration-200 font-medium">
+              class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg transition-colors duration-200 font-medium">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
@@ -442,7 +444,7 @@
               <span>问题反馈</span>
             </a>
             <a href="https://docs.qq.com/sheet/DS3NVaFhQeVZTSG11?tdsourcetag=nt-grpaio-file" target="_blank"
-              class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors duration-200 font-medium">
+              class="w-full sm:w-auto inline-flex items-center justify-center space-x-2 px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg transition-colors duration-200 font-medium">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
@@ -466,6 +468,7 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
+import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 
 // SEO配置
 useSEO(seoConfigs.download)
@@ -624,58 +627,5 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* 电路板背景效果 */
-.circuit-wrapper {
-  min-height: 100%;
-  width: 100%;
-  position: relative;
-  background-color: white;
-}
-
-.circuit-background {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 19px,
-      rgba(75, 85, 99, 0.08) 19px,
-      rgba(75, 85, 99, 0.08) 20px,
-      transparent 20px,
-      transparent 39px,
-      rgba(75, 85, 99, 0.08) 39px,
-      rgba(75, 85, 99, 0.08) 40px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 19px,
-      rgba(75, 85, 99, 0.08) 19px,
-      rgba(75, 85, 99, 0.08) 20px,
-      transparent 20px,
-      transparent 39px,
-      rgba(75, 85, 99, 0.08) 39px,
-      rgba(75, 85, 99, 0.08) 40px
-    ),
-    radial-gradient(
-      circle at 20px 20px,
-      rgba(55, 65, 81, 0.12) 2px,
-      transparent 2px
-    ),
-    radial-gradient(
-      circle at 40px 40px,
-      rgba(55, 65, 81, 0.12) 2px,
-      transparent 2px
-    );
-  background-size:
-    40px 40px,
-    40px 40px,
-    40px 40px,
-    40px 40px;
-}
+/* 样式已移除，使用全局网格背景 */
 </style>
