@@ -315,30 +315,8 @@
               </div>
 
               <!-- Feature list -->
-              <div class="space-y-6">
-                <!-- Feature 1 -->
-                <div class="scroll-animate">
-                  <h4 class="text-base font-semibold text-gray-900 mb-2">智能续写</h4>
-                  <p class="text-gray-500 leading-relaxed">AI 根据上下文智能续写内容，保持文章风格一致性</p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="scroll-animate">
-                  <h4 class="text-base font-semibold text-gray-900 mb-2">多语言翻译</h4>
-                  <p class="text-gray-500 leading-relaxed">内置 13 种不同语言的 AI 翻译支持，跨语言沟通无障碍</p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="scroll-animate">
-                  <h4 class="text-base font-semibold text-gray-900 mb-2">快捷转换</h4>
-                  <p class="text-gray-500 leading-relaxed">内置 AI 文本格式智能转换，TXT 一键转写 Markdown，没有语法门槛</p>
-                </div>
-
-                <!-- Feature 4 -->
-                <div class="scroll-animate">
-                  <h4 class="text-base font-semibold text-gray-900 mb-2">内容润色</h4>
-                  <p class="text-gray-500 leading-relaxed">划词选中内容，AI 一键润色，让文字更加精彩</p>
-                </div>
+              <div class="scroll-animate">
+                <VerticalDisplayCards :features="aiFeatures" />
               </div>
             </div>
           </div>
@@ -502,6 +480,7 @@ import DisplayCards from '@/components/DisplayCards.vue'
 import ImageDisplayCard from '@/components/ImageDisplayCard.vue'
 import DualImageDisplayCard from '@/components/DualImageDisplayCard.vue'
 import MarkdownFeatureCard from '@/components/MarkdownFeatureCard.vue'
+import VerticalDisplayCards from '@/components/VerticalDisplayCards.vue'
 import { Wand2, Command, Copy, BarChart3, Palette, Sparkles, FileText, Code, Table, Calculator, Puzzle, BarChart } from 'lucide-vue-next'
 
 // SEO配置
@@ -548,6 +527,26 @@ const featuresGroup2 = [
     description: '集成多个主流 AI 模型，为你的写作提供智能辅助，让创作更加高效',
     titleClassName: 'text-gray-900',
   },
+]
+
+// AI Features Data
+const aiFeatures = [
+  {
+    title: '智能续写',
+    description: 'AI 根据上下文智能续写内容，保持文章风格一致性'
+  },
+  {
+    title: '多语言翻译',
+    description: '内置 13 种不同语言的 AI 翻译支持，跨语言沟通无障碍'
+  },
+  {
+    title: '快捷转换',
+    description: '内置 AI 文本格式智能转换，TXT 一键转写 Markdown，没有语法门槛'
+  },
+  {
+    title: '内容润色',
+    description: '划词选中内容，AI 一键润色，让文字更加精彩'
+  }
 ]
 
 // Hero卡片自动切换
