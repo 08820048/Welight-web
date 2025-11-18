@@ -1589,14 +1589,14 @@ function showSuccessToast(message) {
   justify-content: center;
 }
 
-/* 蓝色按钮 - 许可证 */
+/* 黑色按钮 - 许可证 */
 .btn-container-blue {
-  --btn-color: #3b82f6;
+  --btn-color: #111827;
 }
 
-/* 橙色按钮 - AI服务 */
+/* 黑色按钮 - AI服务 */
 .btn-container-orange {
-  --btn-color: #ea580c;
+  --btn-color: #111827;
 }
 
 .btn {
