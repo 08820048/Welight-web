@@ -151,7 +151,6 @@
           :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
           :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 1.0 } }"
           class="relative mt-8 px-2 sm:mt-12 md:mt-20">
-          <div class="bg-gradient-to-b to-white absolute inset-0 z-10 from-transparent from-35% pointer-events-none"></div>
           <TripleImageDisplayCard
             image1="https://images.waer.ltd/notes/202511181320742.png"
             image2="https://images.waer.ltd/notes/202511181307147.png"
