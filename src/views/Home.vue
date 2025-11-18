@@ -51,478 +51,359 @@
       </div>
 
       <!-- Hero Section -->
-      <section class="relative min-h-screen overflow-hidden pt-32">
+      <section class="relative min-h-screen overflow-hidden pt-32 pb-20">
         <div class="relative container-custom h-full">
-          <div class="grid grid-cols-1 lg:grid-cols-11  items-center min-h-[calc(100vh-5rem)]">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start min-h-[calc(100vh-8rem)]">
             <!-- Left content -->
-            <div class="order-2 lg:order-1 lg:col-span-5">
+            <div class="space-y-10">
+              <!-- Badge -->
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-900 text-white rounded-full text-xs font-medium animate-fade-in-up">
+                <span class="relative flex h-1.5 w-1.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
+                </span>
+                v4.0.0 已发布
+              </div>
+
               <!-- Main heading -->
-              <h1
-                class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight animate-fade-in-up delay-100">
-                <span class="block animate-fade-in-left delay-200">智能高效的</span>
-                <span class="block gradient-text animate-fade-in-left delay-300">公众号文章创作&排版体验</span>
+              <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 leading-[1.1] tracking-tight animate-fade-in-up">
+                智能高效的<br />
+                公众号文章<br />
+                <span class="text-gray-400">创作&排版体验</span>
               </h1>
 
-              <!-- Description -->
-              <p class="text-lg md:text-xl text-gray-600 mb-8 leading-relaxed animate-fade-in-up delay-400">
-                Welight 是一款专为微信公众号创作者打造的拥有更优性能、智能、快捷轻量的排版应用，排版与创作，亦可兼得。
-              </p>
-
               <!-- CTA buttons -->
-              <div class="flex flex-col sm:flex-row gap-4 mb-8 animate-fade-in-up delay-500">
+              <div class="flex flex-wrap gap-3 animate-fade-in-up">
                 <!-- macOS Download Button -->
-                <button @click="downloadFile('macos-apple')">
-                  <!-- Apple Logo -->
+                <button @click="downloadFile('macos-apple')" class="group">
                   <router-link to="/download"
-                    class="download-btn-mac group relative overflow-hidden bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center justify-between flex-1 sm:flex-none sm:min-w-[200px] animate-scale-in delay-600">
+                    class="download-btn-mac relative overflow-hidden bg-gray-900 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center gap-2">
                     <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
                       <path
                         d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                     </svg>
-                    <div class="flex flex-col items-center mx-2">
-                      <div class="flex items-center space-x-1">
-                        <span class="text-base">下载最新版</span>
-                        <sup class="bg-white bg-opacity-20 text-xs px-1.5 py-0.5 rounded-full font-medium">Apple
-                          Silicon</sup>
-                      </div>
-                      <span class="text-xs opacity-75"><span
-                          class="font-semibold text-white tabular-nums inline-block min-w-[1rem]">{{
-                            animatedMacDownloads.toLocaleString() }}</span> 次下载</span>
-                    </div>
-                    <!-- Animated Download Icon -->
-                    <svg class="w-4 h-4 text-white animate-enhanced-bounce group-hover:animate-pulse" fill="none"
+                    <span class="text-sm">下载 macOS 版</span>
+                    <svg class="w-4 h-4 text-white/60 group-hover:text-white group-hover:translate-x-0.5 transition-all" fill="none"
                       stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                   </router-link>
                 </button>
 
                 <!-- Windows Download Button -->
-                <button @click="downloadFile('windows-installer')">
-                  <!-- Windows Logo -->
+                <button @click="downloadFile('windows-installer')" class="group">
                   <router-link to="/download"
-                    class="download-btn-windows group relative overflow-hidden bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-flex items-center justify-between flex-1 sm:flex-none sm:min-w-[200px] animate-scale-in delay-700">
-                    <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    class="download-btn-windows relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 font-medium px-6 py-3 rounded-lg transition-all duration-200 border border-gray-200 hover:border-gray-300 inline-flex items-center gap-2">
+                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
                       <path
                         d="M0,0V11.408H11.408V0ZM12.594,0V11.408H24V0ZM0,12.594V24H11.408V12.594ZM12.594,12.594V24H24V12.594Z" />
                     </svg>
-                    <div class="flex flex-col items-center mx-2">
-                      <div class="flex items-center space-x-1">
-                        <span class="text-base">Windows 版本</span>
-                        <sup class="bg-white bg-opacity-20 text-xs px-1.5 py-0.5 rounded-full font-medium">EXE</sup>
-                      </div>
-                      <span class="text-xs opacity-75"><span
-                          class="font-semibold text-white tabular-nums inline-block min-w-[1rem]">{{
-                            animatedWindowsDownloads.toLocaleString() }}</span> 次下载</span>
-                    </div>
-                    <!-- Animated Download Icon -->
-                    <svg class="w-4 h-4 text-white animate-enhanced-bounce group-hover:animate-pulse" fill="none"
+                    <span class="text-sm">下载 Windows 版</span>
+                    <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-900 group-hover:translate-x-0.5 transition-all" fill="none"
                       stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                  </router-link>
+                </button>
+
+                <!-- Linux Download Button -->
+                <button @click="downloadFile('linux-deb')" class="group">
+                  <router-link to="/download"
+                    class="download-btn-linux relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 font-medium px-6 py-3 rounded-lg transition-all duration-200 border border-gray-200 hover:border-gray-300 inline-flex items-center gap-2">
+                    <svg class="w-4 h-4 text-orange-600" viewBox="0 0 24 24" fill="currentColor">
+                      <path
+                        d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 01-.088.066c-.297.168-.623.336-.995.268-.4-.051-.811-.03-1.206-.125-.365-.086-.718-.224-1.05-.479-.297-.239-.543-.527-.708-.815-.194-.328-.353-.66-.401-1.058-.035-.31-.008-.579.15-.849.135-.23.355-.406.608-.523.404-.187.818-.131 1.259-.199v-.016h-.073zm-2.452 7.407h.016c.442.02.72.199 1.004.284.336.099.672.198 1.062.201.435-.006.81-.118 1.18-.284.06-.03.135-.044.195-.09.225-.136.405-.334.558-.538.404-.534.67-1.126.972-1.67.17-.3.346-.3.521-.06.299.404.413.842.477 1.314.037.279.017.558-.031.818-.064.434-.23.747-.475 1.005-.154.15-.346.3-.504.465-.225.24-.42.48-.668.671-.537.434-1.108.747-1.764.925-.612.15-1.238.12-1.854.06-.292-.03-.584-.06-.87-.135-.255-.06-.51-.135-.725-.27-.154-.09-.293-.225-.417-.375-.109-.135-.199-.284-.25-.465-.047-.181-.016-.378.031-.553.064-.24.209-.464.403-.629.226-.181.478-.284.751-.329.399-.06.818.044 1.207-.105.06-.023.12-.06.18-.104h-.011z" />
+                    </svg>
+                    <span class="text-sm">下载 Linux 版</span>
+                    <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-900 group-hover:translate-x-0.5 transition-all" fill="none"
+                      stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                   </router-link>
                 </button>
               </div>
 
-              <!-- Linux Download Button -->
-              <button @click="downloadFile('linux-deb')">
-                <!-- Linux Logo -->
-                <router-link to="/download"
-                  class="download-btn-linux group relative overflow-hidden bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 hover:to-orange-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 inline-flex items-center justify-between max-w-xs animate-scale-in delay-800 mb-6">
-                  <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M12.504 0c-.155 0-.315.008-.48.021-4.226.333-3.105 4.807-3.17 6.298-.076 1.092-.3 1.953-1.05 3.02-.885 1.051-2.127 2.75-2.716 4.521-.278.832-.41 1.684-.287 2.489a.424.424 0 00-.11.135c-.26.268-.45.6-.663.839-.199.199-.485.267-.797.4-.313.136-.658.269-.864.68-.09.189-.136.394-.132.602 0 .199.027.4.055.536.058.399.116.728.04.97-.249.68-.28 1.145-.106 1.484.174.334.535.47.94.601.81.2 1.91.135 2.774.6.926.466 1.866.67 2.616.47.526-.116.97-.464 1.208-.946.587-.003 1.23-.269 2.26-.334.699-.058 1.574.267 2.577.2.025.134.063.198.114.333l.003.003c.391.778 1.113 1.132 1.884 1.071.771-.06 1.592-.536 2.257-1.306.631-.765 1.683-1.084 2.378-1.503.348-.199.629-.469.649-.853.023-.4-.2-.811-.714-1.376v-.097l-.003-.003c-.17-.2-.25-.535-.338-.926-.085-.401-.182-.786-.492-1.046h-.003c-.059-.054-.123-.067-.188-.135a.357.357 0 00-.19-.064c.431-1.278.264-2.55-.173-3.694-.533-1.41-1.465-2.638-2.175-3.483-.796-1.005-1.576-1.957-1.56-3.368.026-2.152.236-6.133-3.544-6.139zm.529 3.405h.013c.213 0 .396.062.584.198.19.135.33.332.438.533.105.259.158.459.166.724 0-.02.006-.04.006-.06v.105a.086.086 0 01-.004-.021l-.004-.024a1.807 1.807 0 01-.15.706.953.953 0 01-.213.335.71.71 0 01-.088.066c-.297.168-.623.336-.995.268-.4-.051-.811-.03-1.206-.125-.365-.086-.718-.224-1.05-.479-.297-.239-.543-.527-.708-.815-.194-.328-.353-.66-.401-1.058-.035-.31-.008-.579.15-.849.135-.23.355-.406.608-.523.404-.187.818-.131 1.259-.199v-.016h-.073zm-2.452 7.407h.016c.442.02.72.199 1.004.284.336.099.672.198 1.062.201.435-.006.81-.118 1.18-.284.06-.03.135-.044.195-.09.225-.136.405-.334.558-.538.404-.534.67-1.126.972-1.67.17-.3.346-.3.521-.06.299.404.413.842.477 1.314.037.279.017.558-.031.818-.064.434-.23.747-.475 1.005-.154.15-.346.3-.504.465-.225.24-.42.48-.668.671-.537.434-1.108.747-1.764.925-.612.15-1.238.12-1.854.06-.292-.03-.584-.06-.87-.135-.255-.06-.51-.135-.725-.27-.154-.09-.293-.225-.417-.375-.109-.135-.199-.284-.25-.465-.047-.181-.016-.378.031-.553.064-.24.209-.464.403-.629.226-.181.478-.284.751-.329.399-.06.818.044 1.207-.105.06-.023.12-.06.18-.104h-.011z" />
-                  </svg>
-                  <div class="flex flex-col items-center mx-2">
-                    <div class="flex items-center space-x-1">
-                      <span class="text-base">Linux 版本</span>
-                      <sup class="bg-white bg-opacity-20 text-xs px-1.5 py-0.5 rounded-full font-medium">DEB</sup>
-                    </div>
-                    <span class="text-xs opacity-75"><span
-                        class="font-semibold text-white tabular-nums inline-block min-w-[1rem]">{{
-                          animatedLinuxDownloads.toLocaleString() }}</span> 次下载</span>
-                  </div>
-                  <svg class="w-4 h-4 text-white animate-enhanced-bounce group-hover:animate-pulse" fill="none"
-                    stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
+              <!-- Download statistics -->
+              <div class="flex items-center gap-4 text-sm text-gray-500 animate-fade-in-up">
+                <span>{{ animatedTotalDownloads.toLocaleString() }} 次下载</span>
+                <span>·</span>
+                <router-link to="/download" class="text-gray-900 hover:text-gray-600 transition-colors">
+                  查看所有版本 →
                 </router-link>
-              </button>
-
-              <!-- Download statistics and additional info -->
-              <div class="flex flex-col sm:flex-row gap-4 items-center animate-fade-in-up delay-600">
-                <div class="flex items-center space-x-2 text-sm text-gray-600">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  <span>总下载量：<span class="text-lg font-bold text-primary-600 tabular-nums inline-block min-w-[3rem]">{{
-                    animatedTotalDownloads.toLocaleString() }}</span>次</span>
-                </div>
-                <!-- 开发模式下显示调试信息 -->
-                <div v-if="isDev" class="text-xs text-gray-500 mt-2">
-                  <div>后端总数: {{ backendStats?.totalDownloads || 0 }}</div>
-                  <div>映射总数: {{Object.values(downloadStats).reduce((a, b) => a + b, 0)}}</div>
-                </div>
-                <div class="text-sm text-gray-500">
-                  更多版本下载请前往
-                  <router-link to="/download"
-                    class="text-primary-600 hover:text-primary-700 underline">下载页面</router-link>
-                </div>
               </div>
-
-
             </div>
 
-            <!-- Right image - Card Stack -->
-            <div
-              class="order-1 lg:order-2 lg:col-span-6 flex items-center justify-end relative pl-1 lg:pl-1 animate-fade-in-right delay-300">
-              <!-- Background glow effect -->
-              <div
-                class="absolute inset-0 bg-gradient-to-br from-primary-200/20 via-blue-200/10 to-purple-200/20 rounded-3xl blur-3xl">
+            <!-- Right content: Description + Product Images -->
+            <div class="order-1 lg:order-2 space-y-8">
+              <!-- Description -->
+              <p class="text-xl text-gray-500 leading-relaxed animate-fade-in-up">
+                专为微信公众号创作者打造的智能排版应用，拥有更优性能、更快捷的操作体验。
+              </p>
+
+              <!-- Product Images - Linear.app Style 3D Showcase (2 layers with offset) -->
+              <div class="flex items-center justify-center relative animate-fade-in-up -mr-8 lg:-mr-16">
+                <div class="relative w-full max-w-4xl">
+                <!-- Perspective container -->
+                <div class="[perspective:2000px] [perspective-origin:50%_50%]">
+                  <div class="relative [transform-style:preserve-3d] [transform:rotateX(20deg)_rotateY(-12deg)_rotateZ(4deg)] transition-transform duration-700 hover:[transform:rotateX(15deg)_rotateY(-8deg)_rotateZ(2deg)]">
+
+                    <!-- Back panel (left side visible) -->
+                    <div class="absolute top-6 -left-16 w-full [transform:translateZ(-100px)_translateX(-50px)_scale(1.05)] opacity-50">
+                      <div class="relative rounded-lg overflow-hidden border border-gray-300/60 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.3)]">
+                        <img
+                          src="https://images.waer.ltd/notes/202511181320742.png"
+                          alt="编辑排版体验"
+                          class="w-full h-auto"
+                          loading="lazy"
+                        />
+                        <!-- Bottom fade for back panel -->
+                        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-gray-50 via-gray-50/40 to-transparent pointer-events-none"></div>
+                      </div>
+                    </div>
+
+                    <!-- Front panel (main) -->
+                    <div class="relative [transform:translateZ(0px)_scale(1.05)] z-10 ml-12">
+                      <div class="relative rounded-lg overflow-hidden border border-gray-200 shadow-[0_50px_120px_-20px_rgba(0,0,0,0.5)]">
+                        <img
+                          src="https://images.waer.ltd/notes/202511181307147.png"
+                          alt="Welight 产品展示"
+                          class="w-full h-auto"
+                          loading="lazy"
+                        />
+                        <!-- Bottom fade gradient (Linear.app style) -->
+                        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-gray-50 via-gray-50/60 to-transparent pointer-events-none"></div>
+                      </div>
+                    </div>
+
+                    <!-- Overall bottom fade to blend with background -->
+                    <div class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-50 via-gray-50/20 to-transparent pointer-events-none [transform:translateZ(20px)]"></div>
+                  </div>
+                </div>
               </div>
-
-              <!-- Card Stack Container -->
-              <div class="relative w-full max-w-3xl ml-auto animate-scale-in delay-500">
-                <section class="hero-card-stack-section" @mouseenter="pauseAutoSwitch" @mouseleave="resumeAutoSwitch">
-                  <!-- Radio inputs for card switching -->
-                  <input ref="heroCard1" class="sr-only" id="hero-card-1" type="radio" name="hero-panel" checked />
-                  <input ref="heroCard2" class="sr-only" id="hero-card-2" type="radio" name="hero-panel" />
-                  <input ref="heroCard3" class="sr-only" id="hero-card-3" type="radio" name="hero-panel" />
-
-                  <!-- Card 1 - AI 智能创作 -->
-                  <article class="hero-card">
-                    <label for="hero-card-1" class="hero-card-label">
-                      <header class="hero-card-header">
-                        <h3>Welight首页展示</h3>
-                        <span class="hero-next-arrow" @click.stop>
-                          <label for="hero-card-2">&#10539;</label>
-                        </span>
-                      </header>
-                      <div class="hero-card-content">
-                        <img src="https://images.waer.ltd/notes/202510131433244.png" alt="AI 智能创作" loading="lazy" />
-                      </div>
-                    </label>
-                  </article>
-
-                  <!-- Card 2 - 精美主题排版 -->
-                  <article class="hero-card">
-                    <label for="hero-card-2" class="hero-card-label">
-                      <header class="hero-card-header">
-                        <h3>AI智能创作</h3>
-                        <span class="hero-next-arrow" @click.stop>
-                          <label for="hero-card-3">&#10539;</label>
-                        </span>
-                      </header>
-                      <div class="hero-card-content">
-                        <img src="https://images.waer.ltd/notes/202510191834403.png" alt="精美主题排版" loading="lazy" />
-                      </div>
-                    </label>
-                  </article>
-
-                  <!-- Card 3 - 高效编辑体验 -->
-                  <article class="hero-card">
-                    <label for="hero-card-3" class="hero-card-label">
-                      <header class="hero-card-header">
-                        <h3>编辑排版体验</h3>
-                        <span class="hero-next-arrow" @click.stop>
-                          <label for="hero-card-1">&#10539;</label>
-                        </span>
-                      </header>
-                      <div class="hero-card-content">
-                        <img src="https://images.waer.ltd/notes/202510191833653.png" alt="高效编辑体验" loading="lazy" />
-                      </div>
-                    </label>
-                  </article>
-                </section>
-
-                <!-- Floating accent elements -->
-                <div
-                  class="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-primary-400/30 to-blue-400/30 rounded-full blur-xl animate-pulse pointer-events-none">
-                </div>
-                <div
-                  class="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-2xl animate-pulse delay-1000 pointer-events-none">
-                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Additional info section -->
       <!-- Features Section -->
-      <section class="relative min-h-screen py-20 overflow-hidden">
+      <section class="relative py-32 overflow-hidden">
         <div class="relative container-custom">
           <!-- Section header -->
-          <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 scroll-animate"
-              style="transition-delay: 0.2s;">
+          <div class="mb-20 scroll-animate">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               快捷高效的编辑体验
             </h2>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto scroll-animate"
-              style="transition-delay: 0.3s;">
-              快捷一键排版功能，支持智能排版和基础排版两种模式。轻松创建结构化文档，所见即所得，不需要记忆复杂的 Markdown 语法。
+            <p class="text-xl text-gray-500 max-w-2xl">
+              从划词工具栏到智能排版，每一个功能都经过精心设计
             </p>
           </div>
 
-          <!-- Main content grid -->
-          <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <!-- Left side - Screenshot -->
-            <div class="order-2 lg:order-1 scroll-animate fade-left" style="transition-delay: 0.4s;">
-              <div class="relative">
-                <!-- Background glow -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-br from-primary-200/20 via-blue-200/10 to-purple-200/20 rounded-3xl blur-3xl">
-                </div>
-
-                <!-- Screenshot container -->
-                <div class="relative transform hover:scale-105 transition-all duration-700 group">
-                  <div
-                    class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-                    <!-- Inner glow -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
-
-                    <!-- Main screenshot -->
-                    <div class="relative overflow-hidden rounded-2xl">
-                      <img src="https://images.waer.ltd/notes/202510241638251.png" alt="Welight 核心特性展示"
-                        class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
-                        loading="lazy" />
-                    </div>
-
-                    <!-- Enhanced shadows -->
-                    <div
-                      class="absolute -inset-4 bg-gradient-to-br from-primary-500/10 to-blue-500/10 rounded-3xl blur-xl -z-10">
-                    </div>
-                    <div
-                      class="absolute -inset-8 bg-gradient-to-br from-primary-500/5 to-purple-500/5 rounded-3xl blur-2xl -z-20">
-                    </div>
-                  </div>
-
-                  <!-- Floating accents -->
-                  <div
-                    class="absolute -top-6 -right-6 w-24 h-24 bg-gradient-to-br from-primary-400/30 to-blue-400/30 rounded-full blur-xl animate-pulse">
-                  </div>
-                  <div
-                    class="absolute -bottom-8 -left-8 w-32 h-32 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-full blur-2xl animate-pulse delay-1000">
-                  </div>
+          <!-- Hero Image with 3D perspective -->
+          <div class="mb-24 scroll-animate">
+            <div class="relative [perspective:800px]">
+              <div class="relative [transform:rotateX(6deg)_skewY(-2deg)_skewX(-2deg)] transition-transform duration-700 hover:[transform:rotateX(0deg)_skewY(0deg)_skewX(0deg)]">
+                <div class="relative rounded-xl overflow-hidden border border-gray-200 shadow-[0_20px_70px_-10px_rgba(0,0,0,0.3)]">
+                  <!-- Radial gradient overlay -->
+                  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.1),transparent_50%)] pointer-events-none z-10"></div>
+                  <img src="https://images.waer.ltd/notes/202510241638251.png" alt="Welight 核心特性展示"
+                    class="w-full h-auto" loading="lazy" />
                 </div>
               </div>
             </div>
+          </div>
 
-            <!-- Right side - Features -->
-            <div class="order-1 lg:order-2 space-y-8">
-              <!-- Main feature title -->
-              <div class="scroll-animate fade-right" style="transition-delay: 0.5s;">
-                <h3 class="text-2xl md:text-3xl font-bold text-primary-600 mb-4">
-                  直观的编辑体验
-                </h3>
-                <p class="text-lg text-gray-600 leading-relaxed">
-                  Welight将 Notion 的快捷辅助与经典的分屏编辑预览模式相结合,大幅提升编辑效率，让您专注内容创作，无视复杂的语法困扰。
-                </p>
+          <!-- Features Grid -->
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+            <!-- Feature 1 -->
+            <div class="scroll-animate">
+              <div class="mb-4">
+                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a1 1 0 01-1-1V9a1 1 0 011-1h1a2 2 0 100-4H4a1 1 0 01-1-1V4a1 1 0 011-1h3a1 1 0 001-1z">
+                  </path>
+                </svg>
               </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">划词工具栏</h3>
+              <p class="text-gray-500 leading-relaxed">
+                选中文本即可显示划词工具栏，快速应用格式、预设的 AI 快捷功能
+              </p>
+            </div>
 
-              <!-- Feature grid -->
-              <div class="grid md:grid-cols-2 gap-6">
-                <!-- Feature 1 -->
-                <div
-                  class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-primary-300/50 transition-all duration-300 hover:shadow-lg scroll-animate scale-up"
-                  style="transition-delay: 0.6s;">
-                  <div
-                    class="w-12 h-12 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a1 1 0 01-1-1V9a1 1 0 011-1h1a2 2 0 100-4H4a1 1 0 01-1-1V4a1 1 0 011-1h3a1 1 0 001-1z">
-                      </path>
-                    </svg>
-                  </div>
-                  <h4 class="text-lg font-semibold text-gray-900 mb-2">划词工具栏</h4>
-                  <p class="text-gray-600 text-sm">
-                    选中文本即可显示划词工具栏，快速应用格式、预设的 AI 快捷功能。
-                  </p>
-                </div>
-
-                <!-- Feature 2 -->
-                <div
-                  class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-blue-300/50 transition-all duration-300 hover:shadow-lg scroll-animate scale-up"
-                  style="transition-delay: 0.7s;">
-                  <div
-                    class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z">
-                      </path>
-                    </svg>
-                  </div>
-                  <h4 class="text-lg font-semibold text-gray-900 mb-2">Slash 命令菜单</h4>
-                  <p class="text-gray-600 text-sm">
-                    输入斜杠即可打开命令菜单，快速插入语法、操作功能。
-                  </p>
-                </div>
-
-                <!-- Feature 3 -->
-                <div
-                  class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-purple-300/50 transition-all duration-300 hover:shadow-lg scroll-animate scale-up"
-                  style="transition-delay: 0.8s;">
-                  <div
-                    class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                      </path>
-                    </svg>
-                  </div>
-                  <h4 class="text-lg font-semibold text-gray-900 mb-2">预览一键复制</h4>
-                  <p class="text-gray-600 text-sm">
-                    满意的排版风格一键复制，粘贴微信编辑器即可发布，所见即所得。
-                  </p>
-                </div>
-
-                <!-- Feature 4 -->
-                <div
-                  class="bg-white/80 backdrop-blur-sm rounded-xl p-6 border border-gray-200/50 hover:border-indigo-300/50 transition-all duration-300 hover:shadow-lg scroll-animate scale-up"
-                  style="transition-delay: 0.9s;">
-                  <div
-                    class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
-                      </path>
-                    </svg>
-                  </div>
-                  <h4 class="text-lg font-semibold text-gray-900 mb-2">智能图表转换</h4>
-                  <p class="text-gray-600 text-sm">
-                    采用ChartJs图表渲染集成，图表格式自动转码，数据转表弹指可得。
-                  </p>
-                </div>
+            <!-- Feature 2 -->
+            <div class="scroll-animate">
+              <div class="mb-4">
+                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z">
+                  </path>
+                </svg>
               </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">Slash 命令菜单</h3>
+              <p class="text-gray-500 leading-relaxed">
+                输入斜杠即可打开命令菜单，快速插入语法、操作功能
+              </p>
+            </div>
 
-              <!-- Bottom description -->
-              <div class="pt-6 scroll-animate" style="transition-delay: 1.0s;">
-                <p class="text-gray-600 leading-relaxed">
-                  Welight 将直观的内容创作与强大的功能完美结合，让每个创作者都能轻松创建结构化的优美排版效果。
-                </p>
+            <!-- Feature 3 -->
+            <div class="scroll-animate">
+              <div class="mb-4">
+                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
+                  </path>
+                </svg>
               </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">预览一键复制</h3>
+              <p class="text-gray-500 leading-relaxed">
+                满意的排版风格一键复制，粘贴微信编辑器即可发布，所见即所得
+              </p>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="scroll-animate">
+              <div class="mb-4">
+                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                  </path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">智能图表转换</h3>
+              <p class="text-gray-500 leading-relaxed">
+                采用 ChartJs 图表渲染集成，图表格式自动转码，数据转表弹指可得
+              </p>
+            </div>
+
+            <!-- Feature 5 -->
+            <div class="scroll-animate">
+              <div class="mb-4">
+                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01">
+                  </path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">丰富主题样式</h3>
+              <p class="text-gray-500 leading-relaxed">
+                精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果
+              </p>
+            </div>
+
+            <!-- Feature 6 -->
+            <div class="scroll-animate">
+              <div class="mb-4">
+                <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M13 10V3L4 14h7v7l9-11h-7z">
+                  </path>
+                </svg>
+              </div>
+              <h3 class="text-lg font-semibold text-gray-900 mb-2">AI 智能助手</h3>
+              <p class="text-gray-500 leading-relaxed">
+                集成多个主流 AI 模型，为你的写作提供智能辅助，让创作更加高效
+              </p>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Themes Section -->
-      <section class="relative min-h-screen py-20 overflow-hidden">
+      <section class="relative py-32 overflow-hidden bg-gray-50">
         <div class="relative container-custom">
           <!-- Section header -->
-          <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 scroll-animate"
-              style="transition-delay: 0.2s;">
+          <div class="mb-20 scroll-animate">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               丰富多样的排版主题
             </h2>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto scroll-animate"
-              style="transition-delay: 0.3s;">
-              精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果，高级感满满。
+            <p class="text-xl text-gray-500 max-w-2xl">
+              精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果
             </p>
           </div>
 
           <!-- Themes showcase - Stagger Cards -->
-          <div class="scroll-animate" style="transition-delay: 0.4s;">
+          <div class="scroll-animate">
             <StaggerCards />
-          </div>
-
-          <!-- Bottom text section -->
-          <div class="text-center scroll-animate" style="transition-delay: 1.0s;">
-            <h3 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4">更多主题持续更新</h3>
-            <p class="text-lg text-gray-600 max-w-2xl mx-auto">我们不断推出新的主题设计，让你的文档始终保持新鲜感</p>
           </div>
         </div>
       </section>
 
       <!-- AI Integration Section -->
-      <section class="relative min-h-screen py-20 overflow-hidden">
+      <section class="relative py-32 overflow-hidden">
         <div class="relative container-custom">
           <!-- Section header -->
-          <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 scroll-animate"
-              style="transition-delay: 0.2s;">
+          <div class="mb-20 scroll-animate">
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
               一站式智能体验
             </h2>
-            <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto scroll-animate"
-              style="transition-delay: 0.3s;">
-              Welight目前已集成多个主流AI模型，为你的写作提供智能辅助，让创作更加高效和灵感无限
+            <p class="text-xl text-gray-500 max-w-2xl">
+              集成多个主流 AI 模型，为你的写作提供智能辅助
             </p>
           </div>
 
           <!-- AI Models showcase -->
-          <div class="mb-16">
-
+          <div class="mb-20">
             <!-- Models grid -->
-            <div class="flex flex-wrap justify-center items-center gap-12 mb-12">
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
               <!-- DeepSeek -->
-              <div class="group scroll-animate scale-up" style="transition-delay: 0.5s;">
-                <div
-                  class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
-                  <div class="w-20 h-20 flex items-center justify-center">
+              <div class="group scroll-animate">
+                <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                  <div class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
                     <img src="https://images.waer.ltd/notes/202508281524593.png" alt="DeepSeek Logo"
-                      class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
+                      class="w-full h-full object-contain"
                       loading="lazy" />
                   </div>
-                  <h4 class="text-lg font-bold text-gray-900">DeepSeek</h4>
+                  <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">DeepSeek</h4>
                 </div>
               </div>
 
               <!-- 智谱 -->
-              <div class="group scroll-animate scale-up" style="transition-delay: 0.6s;">
-                <div
-                  class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
-                  <div class="w-20 h-20 flex items-center justify-center">
+              <div class="group scroll-animate">
+                <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                  <div class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
                     <img src="/智谱.png" alt="智谱 Logo"
-                      class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
+                      class="w-full h-full object-contain"
                       loading="lazy" />
                   </div>
-                  <h4 class="text-lg font-bold text-gray-900">智谱</h4>
+                  <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">智谱</h4>
                 </div>
               </div>
 
               <!-- Qwen -->
-              <div class="group scroll-animate scale-up" style="transition-delay: 0.7s;">
-                <div
-                  class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
-                  <div class="w-20 h-20 flex items-center justify-center">
+              <div class="group scroll-animate">
+                <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                  <div class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
                     <img src="/qwen.png" alt="Qwen Logo"
-                      class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
+                      class="w-full h-full object-contain"
                       loading="lazy" />
                   </div>
-                  <h4 class="text-lg font-bold text-gray-900">Qwen</h4>
+                  <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">Qwen</h4>
                 </div>
               </div>
 
               <!-- Kimi -->
-              <div class="group scroll-animate scale-up" style="transition-delay: 0.8s;">
-                <div
-                  class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
-                  <div class="w-20 h-20 flex items-center justify-center">
+              <div class="group scroll-animate">
+                <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                  <div class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
                     <img src="/kimi.png" alt="Kimi Logo"
-                      class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
+                      class="w-full h-full object-contain"
                       loading="lazy" />
                   </div>
-                  <h4 class="text-lg font-bold text-gray-900">Kimi</h4>
+                  <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">Kimi</h4>
                 </div>
               </div>
 
               <!-- Ollama -->
-              <div class="group scroll-animate scale-up" style="transition-delay: 0.9s;">
-                <div
-                  class="flex flex-col items-center space-y-4 p-6 rounded-xl hover:bg-white/50 transition-all duration-300">
-                  <div class="w-20 h-20 flex items-center justify-center relative">
+              <div class="group scroll-animate">
+                <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                  <div class="w-16 h-16 flex items-center justify-center relative grayscale group-hover:grayscale-0 transition-all">
                     <img src="https://images.waer.ltd/notes/202509050835689.png" alt="Ollama Logo"
-                      class="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-300"
+                      class="w-full h-full object-contain"
                       loading="lazy" />
                     <!-- 本地模型标签 -->
-                    <span
-                      class="absolute -top-1 -right-1 text-xs text-green-600 bg-green-100 px-1.5 py-0.5 rounded-full font-medium border border-white shadow-sm">本地模型</span>
+                    <span class="absolute -top-1 -right-1 text-[10px] text-green-700 bg-green-100 px-1.5 py-0.5 rounded-full font-medium">本地</span>
                   </div>
-                  <h4 class="text-lg font-bold text-gray-900">Ollama</h4>
+                  <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">Ollama</h4>
                 </div>
               </div>
             </div>
@@ -531,43 +412,14 @@
           <!-- AI Features showcase with images -->
           <div class="grid lg:grid-cols-2 gap-16 items-center">
             <!-- Left side - AI Writing Assistant -->
-            <div class="order-2 lg:order-1 scroll-animate fade-left" style="transition-delay: 0.9s;">
-              <div class="relative">
-                <!-- Background glow -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-br from-primary-200/20 via-blue-200/10 to-purple-200/20 rounded-3xl blur-3xl">
-                </div>
-
-                <!-- Screenshot container -->
-                <div class="relative transform hover:scale-105 transition-all duration-700 group">
-                  <div
-                    class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-                    <!-- Inner glow -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
-
-                    <!-- AI Writing screenshot -->
-                    <div class="relative overflow-hidden rounded-2xl">
-                      <img src="https://images.waer.ltd/notes/202510241641924.png" alt="AI写作助手功能展示"
-                        class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
-                        loading="lazy" />
-                    </div>
-
-                    <!-- Enhanced shadows -->
-                    <div
-                      class="absolute -inset-4 bg-gradient-to-br from-primary-500/10 to-blue-500/10 rounded-3xl blur-xl -z-10">
-                    </div>
-                    <div
-                      class="absolute -inset-8 bg-gradient-to-br from-primary-500/5 to-purple-500/5 rounded-3xl blur-2xl -z-20">
-                    </div>
-                  </div>
-
-                  <!-- Floating AI indicator -->
-                  <div
-                    class="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-green-400 to-green-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
+            <div class="order-2 lg:order-1 scroll-animate">
+              <div class="relative [perspective:800px]">
+                <div class="relative [transform:rotateX(4deg)_skewY(-1deg)] transition-transform duration-700 hover:[transform:rotateX(0deg)_skewY(0deg)]">
+                  <div class="relative rounded-xl overflow-hidden border border-gray-200 shadow-[0_20px_70px_-10px_rgba(0,0,0,0.3)]">
+                    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(255,255,255,0.1),transparent_50%)] pointer-events-none z-10"></div>
+                    <img src="https://images.waer.ltd/notes/202510241641924.png" alt="AI写作助手功能展示"
+                      class="w-full h-auto"
+                      loading="lazy" />
                   </div>
                 </div>
               </div>
@@ -576,178 +428,44 @@
             <!-- Right side - AI Features -->
             <div class="order-1 lg:order-2 space-y-8">
               <!-- Main feature title -->
-              <div class="scroll-animate fade-right" style="transition-delay: 1.0s;">
-                <h3 class="text-2xl md:text-3xl font-bold text-primary-600 mb-4">
+              <div class="scroll-animate">
+                <h3 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                   智能写作助手
                 </h3>
-                <p class="text-lg text-gray-600 leading-relaxed">
-                  AI深度集成到编辑器中，提供智能化的协作辅助、内容优化和创意灵感，让你的写作更加高效和专业。
+                <p class="text-lg text-gray-500 leading-relaxed">
+                  AI 深度集成到编辑器中，提供智能化的协作辅助、内容优化和创意灵感
                 </p>
               </div>
 
               <!-- Feature list -->
               <div class="space-y-6">
                 <!-- Feature 1 -->
-                <div class="flex items-start space-x-4 scroll-animate fade-right" style="transition-delay: 1.1s;">
-                  <div
-                    class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">智能续写</h4>
-                    <p class="text-gray-600">AI根据上下文智能续写内容，保持文章风格一致性</p>
-                  </div>
+                <div class="scroll-animate">
+                  <h4 class="text-base font-semibold text-gray-900 mb-2">智能续写</h4>
+                  <p class="text-gray-500 leading-relaxed">AI 根据上下文智能续写内容，保持文章风格一致性</p>
                 </div>
 
                 <!-- Feature 2 -->
-                <div class="flex items-start space-x-4 scroll-animate fade-right" style="transition-delay: 1.2s;">
-                  <div
-                    class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">多语言翻译</h4>
-                    <p class="text-gray-600">内置13中不同语言的的AI翻译支持,黑哥们儿语言是通的。</p>
-                  </div>
+                <div class="scroll-animate">
+                  <h4 class="text-base font-semibold text-gray-900 mb-2">多语言翻译</h4>
+                  <p class="text-gray-500 leading-relaxed">内置 13 种不同语言的 AI 翻译支持，跨语言沟通无障碍</p>
                 </div>
 
                 <!-- Feature 3 -->
-                <div class="flex items-start space-x-4 scroll-animate fade-right" style="transition-delay: 1.3s;">
-                  <div
-                    class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">快捷转换</h4>
-                    <p class="text-gray-600">内置AI文本格式智能转换,TXT一键转写Markdown,没有语法门槛。</p>
-                  </div>
+                <div class="scroll-animate">
+                  <h4 class="text-base font-semibold text-gray-900 mb-2">快捷转换</h4>
+                  <p class="text-gray-500 leading-relaxed">内置 AI 文本格式智能转换，TXT 一键转写 Markdown，没有语法门槛</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="scroll-animate">
+                  <h4 class="text-base font-semibold text-gray-900 mb-2">内容润色</h4>
+                  <p class="text-gray-500 leading-relaxed">划词选中内容，AI 一键润色，让文字更加精彩</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- Second AI feature section -->
-          <div class="grid lg:grid-cols-2 gap-16 items-center mt-20">
-            <!-- Left side - AI Features -->
-            <div class="space-y-8">
-              <!-- Main feature title -->
-              <div class="scroll-animate fade-left" style="transition-delay: 1.4s;">
-                <h3 class="text-2xl md:text-3xl font-bold text-primary-600 mb-4">
-                  智能内容生成
-                </h3>
-                <p class="text-lg text-gray-600 leading-relaxed">
-                  基于强大的AI模型，快速创作高质量内容，包括文章、段落扩展、摘要提取等多种创作辅助功能。
-                </p>
-              </div>
-
-              <!-- Feature list -->
-              <div class="space-y-6">
-                <!-- Feature 1 -->
-                <div class="flex items-start space-x-4 scroll-animate fade-left" style="transition-delay: 1.5s;">
-                  <div
-                    class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">内容润色</h4>
-                    <p class="text-gray-600">划词选中内容,AI一键润色，搬砖的牛马，也有文采飞扬。</p>
-                  </div>
-                </div>
-
-                <!-- Feature 2 -->
-                <div class="flex items-start space-x-4 scroll-animate fade-left" style="transition-delay: 1.6s;">
-                  <div
-                    class="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M4 6h16M4 12h16M4 18h7" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">摘要提取</h4>
-                    <p class="text-gray-600">自动提取文章指定内容关键信息，生成精准摘要,一键取舍。</p>
-                  </div>
-                </div>
-
-                <!-- Feature 3 -->
-                <div class="flex items-start space-x-4 scroll-animate fade-left" style="transition-delay: 1.7s;">
-                  <div
-                    class="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M7 4V2a1 1 0 011-1h8a1 1 0 011 1v2m-9 0h10m-10 0a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V6a2 2 0 00-2-2" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 class="text-lg font-semibold text-gray-900 mb-2">图表创作</h4>
-                    <p class="text-gray-600">智能化将文章数据转为丰富专业的数据图和表,推文逼格满满。</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right side - AI Content Generation -->
-            <div class="scroll-animate fade-right" style="transition-delay: 1.8s;">
-              <div class="relative">
-                <!-- Background glow -->
-                <div
-                  class="absolute inset-0 bg-gradient-to-br from-indigo-200/20 via-purple-200/10 to-pink-200/20 rounded-3xl blur-3xl">
-                </div>
-
-                <!-- Screenshot container -->
-                <div class="relative transform hover:scale-105 transition-all duration-700 group">
-                  <div
-                    class="relative rounded-2xl overflow-hidden shadow-2xl bg-white/10 backdrop-blur-sm border border-white/20">
-                    <!-- Inner glow -->
-                    <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent rounded-2xl"></div>
-
-                    <!-- AI Content Generation screenshot -->
-                    <div class="relative overflow-hidden rounded-2xl">
-                      <img src="https://images.waer.ltd/notes/202510231026622.png" alt="AI内容生成功能展示"
-                        class="w-full h-auto transform group-hover:scale-105 transition-all duration-700"
-                        loading="lazy" />
-                    </div>
-
-                    <!-- Enhanced shadows -->
-                    <div
-                      class="absolute -inset-4 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-3xl blur-xl -z-10">
-                    </div>
-                    <div
-                      class="absolute -inset-8 bg-gradient-to-br from-purple-500/5 to-pink-500/5 rounded-3xl blur-2xl -z-20">
-                    </div>
-                  </div>
-
-                  <!-- Floating AI indicator -->
-                  <div
-                    class="absolute -top-4 -left-4 w-16 h-16 bg-gradient-to-br from-indigo-400 to-purple-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom teaser text -->
-          <div class="text-center mt-16 scroll-animate" style="transition-delay: 1.9s;">
-            <p class="text-xl md:text-2xl font-medium text-gray-600 italic">
-              更多AI功能等你来撩....
-            </p>
-          </div>
         </div>
       </section>
 
