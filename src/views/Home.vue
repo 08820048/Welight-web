@@ -71,22 +71,30 @@
               </div>
 
               <!-- Main heading -->
-              <h1
+              <div
                 v-motion
                 :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
                 :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.8 } }"
-                class="mt-8 text-5xl font-medium md:text-6xl lg:mt-16 whitespace-nowrap text-gray-900">
-                智能高效的公众号文章创作&排版体验
-              </h1>
+                class="mt-8 lg:mt-16">
+                <AnimatedUnderlineText
+                  text="智能高效的公众号文章创作&排版体验"
+                  text-className="text-5xl font-medium md:text-6xl text-gray-900"
+                  underline-className="text-gray-900"
+                />
+              </div>
 
               <!-- Description -->
-              <p
+              <div
                 v-motion
                 :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
                 :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.85 } }"
-                class="mt-8 max-w-2xl text-pretty text-lg text-gray-600">
-                专为微信公众号创作者打造的智能排版应用，拥有更优性能、更快捷的操作体验。
-              </p>
+                class="mt-8">
+                <MagicText
+                  text="专为微信公众号创作者打造的智能排版应用，拥有更优性能、更快捷的操作体验。"
+                  container-className="max-w-2xl justify-center"
+                  word-className="text-lg text-gray-600"
+                />
+              </div>
 
               <!-- Download buttons and statistics -->
               <div
