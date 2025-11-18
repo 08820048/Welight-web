@@ -150,13 +150,13 @@ const categoryIconComponents = {
   document: FileText
 }
 
-// 文档分类颜色主题（Tailwind 静态类映射，避免动态类被裁剪）
+// 文档分类颜色主题（统一为黑白 / 灰度配色）
 const categoryTheme = {
-  emerald: { title: 'text-emerald-700', activeBg: 'bg-emerald-50', activeText: 'text-emerald-700' },
-  blue: { title: 'text-blue-700', activeBg: 'bg-blue-50', activeText: 'text-blue-700' },
-  purple: { title: 'text-purple-700', activeBg: 'bg-purple-50', activeText: 'text-purple-700' },
-  orange: { title: 'text-orange-700', activeBg: 'bg-orange-50', activeText: 'text-orange-700' },
-  gray: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-800' },
+  emerald: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-900' },
+  blue: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-900' },
+  purple: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-900' },
+  orange: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-900' },
+  gray: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-900' },
 }
 
 // 选择默认页面（左侧菜单第一项：第一个有页面的分类的第一个页面）

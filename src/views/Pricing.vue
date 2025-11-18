@@ -182,7 +182,7 @@
                 <div>
                   <label class="block text-sm font-medium text-gray-700 mb-1">续费年数</label>
                   <select v-model.number="renewForm.renewYears"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900">
+                    class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-900">
                     <option :value="1">1年 - ¥{{ getLicenseYearlyPrice(1) }}</option>
                     <option :value="2">2年 - ¥{{ getLicenseYearlyPrice(2) }}</option>
                     <option :value="3">3年 - ¥{{ getLicenseYearlyPrice(3) }}</option>
@@ -194,8 +194,8 @@
                   {{ renewErrorMsg }}
                 </div>
                 <button type="submit" :disabled="renewLoading"
-                  class="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
-                  {{ renewLoading ? '处理中...' : '创建续费订单' }}
+                  class="w-full py-2 px-4 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                  {{ renewLoading ? '处理中...' : '立即续费' }}
                 </button>
               </form>
             </div>
@@ -204,8 +204,8 @@
             <div v-else>
               <div class="text-center">
                 <div class="mb-4">
-                  <div class="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-3">
-                    <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-3">
+                    <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>

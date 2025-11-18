@@ -219,9 +219,9 @@
             />
           </div>
 
-          <!-- Themes showcase - Stagger Cards -->
+          <!-- Themes showcase - Focus Cards style (基于 DisplayCards + FocusCards 视觉) -->
           <div class="scroll-animate">
-            <StaggerCards />
+            <ThemeFocusCards />
           </div>
         </div>
       </section>
@@ -468,7 +468,7 @@ import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
-import StaggerCards from '@/components/StaggerCards.vue'
+import ThemeFocusCards from '@/components/ThemeFocusCards.vue'
 import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import DisplayCards from '@/components/DisplayCards.vue'
 import ImageDisplayCard from '@/components/ImageDisplayCard.vue'

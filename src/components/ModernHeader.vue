@@ -97,19 +97,6 @@
               更新日志
             </button>
 
-            <a 
-              href="https://waer.ltd/wl/" 
-              target="_blank"
-              class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
-              网页版
-            </a>
-
-            <a 
-              href="https://waer.ltd/wl/themes" 
-              target="_blank"
-              class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
-              主题预览
-            </a>
 
           </div>
 
@@ -229,21 +216,6 @@
               更新日志
             </button>
 
-            <a
-              href="https://waer.ltd/wl/"
-              target="_blank"
-              @click="closeMobileMenu"
-              class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
-              网页版
-            </a>
-
-            <a
-              href="https://waer.ltd/wl/themes"
-              target="_blank"
-              @click="closeMobileMenu"
-              class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
-              主题预览
-            </a>
 
             <!-- 交流反馈 -->
             <div class="border-t border-gray-200 pt-4 mt-4">

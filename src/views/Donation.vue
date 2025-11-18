@@ -1,52 +1,68 @@
 <template>
   <div class="relative min-h-screen bg-white">
-    <AnimatedGridPattern
-      :num-squares="50"
-      :max-opacity="0.15"
-      :duration="4"
-    />
-    <div class="min-h-screen text-gray-200 dark:text-gray-600 relative overflow-hidden" style="position: relative; z-index: 1;">
-    <div class="container mx-auto px-4 py-8 pt-24">
-      <!-- 页面描述 -->
-      <div class="text-center mb-12 scroll-animate animate-fade-in-up delay-100">
-        <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-          您的赞助将用于支持软件的持续开发、服务器维护、功能优化和技术支持，让更多用户受益于优质的软件体验。
-        </p>
-      </div>
+    <!-- 渐隐网格背景（与其他页面统一） -->
+    <AnimatedGridPattern />
 
-      <!-- 赞助者福利 -->
-      <div class="mb-12 scroll-animate animate-fade-in-up delay-200">
-        <div
-          class="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 border-2 border-blue-200 dark:border-blue-700 rounded-lg p-6 max-w-3xl mx-auto">
-          <div class="flex items-center justify-center space-x-3 mb-3">
-            <svg class="w-6 h-6 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7">
-              </path>
-            </svg>
-            <h3 class="text-xl font-bold text-gray-800 dark:text-white">赞助者福利</h3>
-          </div>
-          <p class="text-center text-lg text-gray-700 dark:text-gray-300">
-            每位赞助者每月可获得 <span class="text-2xl font-bold text-blue-600 dark:text-blue-400">500 积分</span> 奖励
-          </p>
-          <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-2">
-            积分可用于 AI 功能消费和图片存储服务
-          </p>
+    <div class="min-h-screen text-gray-200 pt-20 relative overflow-hidden" style="position: relative; z-index: 1;">
+      <div class="container-custom pb-16">
+        <!-- 页面描述（统一黑白 + 动画标题风格） -->
+        <div class="max-w-3xl mx-auto text-center mb-12 scroll-animate animate-fade-in-up delay-100">
+          <AnimatedUnderlineText
+            text="赞助支持 Welight"
+            text-className="text-4xl md:text-5xl font-bold text-gray-900"
+            underline-className="text-gray-900"
+          />
+          <MagicText
+            text="感谢每一位支持 Welight 的你，您的赞助将用于支持软件的持续开发、服务器维护、功能优化和技术支持，让更多用户受益于优质的软件体验。"
+            container-className="mt-6 justify-center max-w-3xl mx-auto"
+            word-className="text-lg text-gray-600"
+          />
         </div>
-      </div>
+
+        <!-- 赞助者福利（黑白卡片风格） -->
+        <div class="mb-12 scroll-animate animate-fade-in-up delay-200">
+          <div
+            class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 max-w-3xl mx-auto shadow-soft-lg">
+            <div class="flex items-center justify-center space-x-3 mb-3">
+              <svg class="w-6 h-6 text-gray-900 dark:text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7">
+                </path>
+              </svg>
+              <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                赞助者福利
+              </h3>
+            </div>
+            <p class="text-center text-lg text-gray-700 dark:text-gray-300">
+              每位赞助者每月可获得 <span class="text-2xl font-bold text-gray-900 dark:text-white">500 积分</span> 奖励
+            </p>
+            <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-2">
+              积分可用于 AI 功能消费和图片存储服务
+            </p>
+          </div>
+        </div>
 
       <!-- 致谢名单 -->
       <div class="mb-16 scroll-animate animate-fade-in-up delay-300">
-        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
-          致谢名单
-        </h2>
+        <div class="text-center mb-8">
+          <AnimatedUnderlineText
+            text="致谢名单"
+            text-className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
+            underline-className="text-gray-900 dark:text-white"
+          />
+          <MagicText
+            text="每一份赞助我们都会认真记录，并向您致以诚挚感谢。"
+            container-className="mt-4 justify-center max-w-2xl mx-auto"
+            word-className="text-sm md:text-base text-gray-500 dark:text-gray-400"
+          />
+        </div>
 
         <div
           class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden flat-card">
-          <div class="overflow-x-auto">
-            <table class="w-full">
-              <thead class="bg-gray-50 dark:bg-gray-700">
-                <tr>
+          <div class="relative w-full overflow-auto">
+            <table class="w-full caption-bottom text-sm">
+              <thead class="bg-transparent">
+                <tr class="border-b border-gray-200 dark:border-gray-700 [&>th:not(:last-child)]:border-r [&>th]:border-gray-200 dark:[&>th]:border-gray-700">
                   <th
                     class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                     赞助者
@@ -73,10 +89,10 @@
                   </th>
                 </tr>
               </thead>
-              <tbody class="divide-y divide-gray-200 dark:divide-gray-600">
+              <tbody class="[&_tr:last-child]:border-0">
                 <tr v-for="donation in allDonations" :key="donation.id"
-                  class="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
-                  :class="{ 'bg-yellow-50 dark:bg-yellow-900/20': donation.isSpecial }">
+                  class="border-b border-gray-200 dark:border-gray-700 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800 [&>td:not(:last-child)]:border-r [&>td]:border-gray-200 dark:[&>td]:border-gray-700"
+                  :class="{ 'bg-gray-50 dark:bg-gray-900/40': donation.isSpecial }">
                   <td class="px-6 py-4 whitespace-nowrap">
                     <div class="flex items-center">
                       <div class="text-sm font-medium text-gray-900 dark:text-white">
@@ -85,7 +101,7 @@
                     </div>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm font-bold text-green-600 dark:text-green-400">
+                    <div class="text-sm font-bold text-gray-900 dark:text-white">
                       {{ formatAmount(donation.amount) }}
                     </div>
                   </td>
@@ -106,7 +122,7 @@
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap">
                     <span v-if="donation.isSpecial"
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900">
                       {{ donation.specialTag }}
                     </span>
                     <span v-else class="text-gray-400 dark:text-gray-500">-</span>
@@ -118,19 +134,19 @@
         </div>
       </div>
 
-      <!-- 特别赞助展示 -->
+      <!-- 特别赞助展示（黑白卡片风格） -->
       <div v-if="specialDonations.length > 0" class="mb-12 scroll-animate animate-fade-in-up delay-400">
-        <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6 text-center">
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
           特别赞助
         </h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div v-for="donation in specialDonations" :key="donation.id"
-            class="bg-gradient-to-r from-yellow-100 to-orange-100 dark:from-yellow-900 dark:to-orange-900 border border-gray-200 dark:border-gray-700 rounded-lg p-6 border-2 border-yellow-300 dark:border-yellow-600 flat-card">
+            class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 flat-card">
             <div class="flex items-center justify-between mb-4">
-              <span class="bg-yellow-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+              <span class="bg-gray-900 text-white px-3 py-1 rounded-full text-sm font-medium">
                 {{ donation.specialTag }}
               </span>
-              <span class="text-2xl font-bold text-yellow-700 dark:text-yellow-300">
+              <span class="text-2xl font-bold text-gray-900 dark:text-white">
                 {{ formatAmount(donation.amount) }}
               </span>
             </div>
@@ -156,8 +172,8 @@
       <!-- 感谢信息 -->
       <!-- 固定背景致谢文字 -->
       <div class="fixed inset-0 pointer-events-none z-10 flex items-center justify-center">
-        <div class="background-text text-6xl font-bold text-center leading-relaxed opacity-5">
-          你的每一份赞助都意义非凡！ <span class="text-green-500"></span>
+        <div class="background-text text-6xl font-bold text-center leading-relaxed opacity-5 text-gray-900/5">
+          你的每一份赞助都意义非凡！
         </div>
       </div>
 
@@ -172,6 +188,8 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { getAllDonations, getSpecialDonations, formatAmount, formatDate } from '@/data/donations.js'
 import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
+import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
+import MagicText from '@/components/ui/MagicText.vue'
 
 /**
  * 响应式数据

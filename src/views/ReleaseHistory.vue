@@ -1,28 +1,33 @@
 <template>
-  <div class="circuit-wrapper">
-    <div class="circuit-background"></div>
-    <div class="min-h-screen text-gray-200 pt-20 relative overflow-hidden bg-gray-50 dark:bg-gray-900" style="position: relative; z-index: 1;">
-    <!-- Hero Section -->
-    <section class="section-padding">
-      <div class="container-custom text-center">
-        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-          历史版本
-        </h1>
-        <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8">
-          下载 Welight 的历史版本，查看过往的功能和改进
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
-          <router-link to="/download"
-            class="inline-flex items-center px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-lg transition-colors duration-200 font-medium">
-            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-            </svg>
-            下载最新版本 v4.0.0
-          </router-link>
+  <div class="relative min-h-screen bg-white">
+    <!-- 渐隐网格背景，统一全站视觉 -->
+    <AnimatedGridPattern />
+    <div class="min-h-screen text-gray-200 pt-20 relative overflow-hidden" style="position: relative; z-index: 1;">
+        <!-- Hero Section -->
+      <section class="section-padding">
+        <div class="container-custom text-center">
+          <AnimatedUnderlineText
+            text="历史版本"
+            text-className="text-4xl md:text-5xl font-bold text-gray-900"
+            underline-className="text-gray-900"
+          />
+          <MagicText
+            text="下载 Welight 的历史版本，查看每一次迭代带来的功能与改进"
+            container-className="mt-6 justify-center max-w-3xl mx-auto"
+            word-className="text-xl text-gray-600"
+          />
+          <div class="mt-8 flex flex-col sm:flex-row gap-4 items-center justify-center">
+            <router-link to="/download"
+              class="inline-flex items-center px-6 py-3 bg-gray-900 hover:bg-gray-800 text-white rounded-lg transition-colors duration-200 font-medium">
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              </svg>
+              前往下载最新版本 v4.0.0
+            </router-link>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
     <!-- Release History List -->
     <section class="section-padding relative z-10">
@@ -145,6 +150,9 @@
 
 <script setup>
 import { computed } from 'vue'
+import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
+import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
+import MagicText from '@/components/ui/MagicText.vue'
 import { useSEO } from '@/composables/useSEO'
 import { changelogData } from '@/data/changelog.js'
 
@@ -216,76 +224,4 @@ const downloadRelease = (version, platform) => {
 }
 </script>
 
-<style scoped>
-.section-padding {
-  padding: 3rem 0;
-}
-
-.container-custom {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-@media (min-width: 768px) {
-  .section-padding {
-    padding: 4rem 0;
-  }
-}
-
-/* 电路板背景效果 */
-.circuit-wrapper {
-  min-height: 100%;
-  width: 100%;
-  position: relative;
-  background-color: white;
-}
-
-.circuit-background {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 0;
-  pointer-events: none;
-  background-image: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 19px,
-      rgba(75, 85, 99, 0.08) 19px,
-      rgba(75, 85, 99, 0.08) 20px,
-      transparent 20px,
-      transparent 39px,
-      rgba(75, 85, 99, 0.08) 39px,
-      rgba(75, 85, 99, 0.08) 40px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 19px,
-      rgba(75, 85, 99, 0.08) 19px,
-      rgba(75, 85, 99, 0.08) 20px,
-      transparent 20px,
-      transparent 39px,
-      rgba(75, 85, 99, 0.08) 39px,
-      rgba(75, 85, 99, 0.08) 40px
-    ),
-    radial-gradient(
-      circle at 20px 20px,
-      rgba(55, 65, 81, 0.12) 2px,
-      transparent 2px
-    ),
-    radial-gradient(
-      circle at 40px 40px,
-      rgba(55, 65, 81, 0.12) 2px,
-      transparent 2px
-    );
-  background-size:
-    40px 40px,
-    40px 40px,
-    40px 40px,
-    40px 40px;
-}
-</style>
 
