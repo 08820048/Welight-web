@@ -78,7 +78,7 @@
                 class="mt-8 lg:mt-16">
                 <AnimatedUnderlineText
                   text="智能高效的公众号文章创作&排版体验"
-                  text-className="text-5xl font-medium md:text-6xl text-gray-900"
+                  text-className="text-5xl font-medium md:text-6xl text-gray-900 whitespace-nowrap"
                   underline-className="text-gray-900"
                 />
               </div>
@@ -152,11 +152,13 @@
           :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 1.0 } }"
           class="relative mt-8 px-2 sm:mt-12 md:mt-20">
           <div class="bg-gradient-to-b to-white absolute inset-0 z-10 from-transparent from-35% pointer-events-none"></div>
-          <DualImageDisplayCard
+          <TripleImageDisplayCard
             image1="https://images.waer.ltd/notes/202511181320742.png"
             image2="https://images.waer.ltd/notes/202511181307147.png"
+            image3="https://images.waer.ltd/notes/202511181717594.png"
             alt1="Welight 编辑界面"
             alt2="Welight 产品展示"
+            alt3="Welight 功能展示"
           />
         </div>
       </section>
@@ -472,6 +474,7 @@ import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import DisplayCards from '@/components/DisplayCards.vue'
 import ImageDisplayCard from '@/components/ImageDisplayCard.vue'
 import DualImageDisplayCard from '@/components/DualImageDisplayCard.vue'
+import TripleImageDisplayCard from '@/components/TripleImageDisplayCard.vue'
 import MarkdownFeatureCard from '@/components/MarkdownFeatureCard.vue'
 import VerticalDisplayCards from '@/components/VerticalDisplayCards.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
