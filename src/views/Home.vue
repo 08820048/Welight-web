@@ -145,10 +145,10 @@
           class="relative mt-8 px-2 sm:mt-12 md:mt-20">
           <div class="bg-gradient-to-b to-white absolute inset-0 z-10 from-transparent from-35% pointer-events-none"></div>
           <DualImageDisplayCard
-            image1="https://images.waer.ltd/notes/202511181307147.png"
-            image2="https://images.waer.ltd/notes/202511181320742.png"
-            alt1="Welight 产品展示"
-            alt2="Welight 编辑界面"
+            image1="https://images.waer.ltd/notes/202511181320742.png"
+            image2="https://images.waer.ltd/notes/202511181307147.png"
+            alt1="Welight 编辑界面"
+            alt2="Welight 产品展示"
           />
         </div>
       </section>
