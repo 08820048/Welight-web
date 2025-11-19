@@ -1591,12 +1591,12 @@ function showSuccessToast(message) {
 
 /* 黑色按钮 - 许可证 */
 .btn-container-blue {
-  --btn-color: #111827;
+  --btn-color: #000000;
 }
 
 /* 黑色按钮 - AI服务 */
 .btn-container-orange {
-  --btn-color: #111827;
+  --btn-color: #000000;
 }
 
 .btn {
@@ -1743,8 +1743,6 @@ function showSuccessToast(message) {
     transform: translateY(-24px) rotateZ(4deg);
     filter: blur(0px);
     -webkit-filter: blur(0px);
-    animation: hue-anim 3s infinite linear;
-    -webkit-animation: hue-anim 3s infinite linear;
     opacity: 1;
   }
 
@@ -1752,8 +1750,6 @@ function showSuccessToast(message) {
     transform: translateY(24px) rotateZ(4deg);
     filter: blur(0px);
     -webkit-filter: blur(0px);
-    animation: hue-anim 3s infinite linear;
-    -webkit-animation: hue-anim 3s infinite linear;
     opacity: 1;
   }
 
