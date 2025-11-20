@@ -5,7 +5,7 @@
     <div class="min-h-screen text-gray-200 pt-20 relative overflow-hidden" style="position: relative; z-index: 1;">
       <!-- Hero Section -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay />
+        <WireframeOverlay class="wireframe-section-relaxed" />
         <div class="container-custom text-center relative">
           <AnimatedUnderlineText text="历史版本" text-className="text-4xl md:text-5xl font-bold text-gray-900"
             underline-className="text-gray-900" />
@@ -26,7 +26,7 @@
 
       <!-- Release History List（线框模块：历史版本列表） -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay />
+        <WireframeOverlay class="wireframe-section-relaxed" />
         <div class="container-custom max-w-4xl mx-auto relative">
           <div class="space-y-6">
             <!-- Version Item -->

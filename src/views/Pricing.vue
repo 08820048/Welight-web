@@ -1,11 +1,7 @@
 <template>
   <div class="relative min-h-screen bg-white">
-    <AnimatedGridPattern
-      :num-squares="50"
-      :max-opacity="0.15"
-      :duration="4"
-    />
-    <div class="min-h-screen text-gray-200 py-12 px-4 pt-24 relative overflow-hidden"
+    <AnimatedGridPattern :num-squares="50" :max-opacity="0.15" :duration="4" />
+    <div class="min-h-screen text-gray-200 px-4 pt-20 pb-12 relative overflow-hidden"
       style="position: relative; z-index: 1;">
       <div class="max-w-4xl mx-auto">
         <!-- 服务状态提示横幅 -->
@@ -265,189 +261,208 @@
           </div>
         </div>
 
-        <!-- 标题区（线框模块：定价与服务购买） -->
-        <section class="relative mb-10 animate-fade-in-up delay-100">
-          <WireframeOverlay />
-          <div class="text-center relative max-w-3xl mx-auto px-4 md:px-8">
-            <AnimatedUnderlineText
-              text="定价与服务购买"
-              text-className="text-4xl font-extrabold text-gray-900"
-              underline-className="text-gray-900"
-            />
-            <MagicText
-              text="选择适合您的许可证或积分服务，享受便捷功能与优质体验"
-              container-className="mt-6 justify-center"
-              word-className="text-lg text-gray-600"
-            />
-          </div>
-        <!-- 最近购买记录滚动展示 -->
+        <!-- 最近购买记录滚动展示：放在顶部菜单栏与定价线框之间 -->
         <RecentPurchasesTicker class="animate-fade-in-up delay-300" />
 
-
-        <!-- 月卡购买弹窗 -->
-        <div v-if="showMonthlyCardModal"
-          class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop animate-fade-in">
-          <MonthlyCardPurchase ref="monthlyCardPurchaseRef" :preselected-service-type="selectedServiceType"
-            @close="closeMonthlyCardModal" class="animate-scale-in" />
-        </div>
-
-        <!-- 月卡激活弹窗 -->
-        <div v-if="showMonthlyCardActivationModal"
-          class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop animate-fade-in">
-          <div class="relative max-w-lg w-full mx-4 modal-content animate-scale-in">
-            <button @click="showMonthlyCardActivationModal = false"
-              class="absolute -top-2 -right-2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 z-10">
-              <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-            <MonthlyCardActivation />
+        <!-- 标题区（线框模块：定价与服务购买） -->
+        <section class="relative mb-10 py-12 md:py-16 animate-fade-in-up delay-100">
+          <WireframeOverlay class="wireframe-py-12-16" />
+          <div class="text-center relative max-w-3xl mx-auto px-4 md:px-8">
+            <AnimatedUnderlineText text="定价与服务购买" text-className="text-4xl font-extrabold text-gray-900"
+              underline-className="text-gray-900" />
+            <MagicText text="选择适合您的许可证或积分服务，享受便捷功能与优质体验" container-className="mt-6 justify-center"
+              word-className="text-lg text-gray-600" />
           </div>
-        </div>
 
-        <!-- 产品卡片区 -->
-        <div v-if="loadingProducts" class="text-center py-12 animate-fade-in-up delay-600">
-          <div class="animate-spin inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full">
+          <!-- 月卡购买弹窗 -->
+          <div v-if="showMonthlyCardModal"
+            class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop animate-fade-in">
+            <MonthlyCardPurchase ref="monthlyCardPurchaseRef" :preselected-service-type="selectedServiceType"
+              @close="closeMonthlyCardModal" class="animate-scale-in" />
           </div>
-          <p class="mt-2 text-gray-600 animate-fade-in-up delay-700">正在加载产品信息...</p>
-        </div>
 
-        <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end relative">
-          <!-- 所有产品卡片（基于API数据） -->
-          <div v-for="(product, index) in products" :key="product.id" class="relative">
-            <!-- 下滑指示器 - 只在企业专享卡片右侧显示 -->
-            <div v-if="product.isEnterprise" class="hidden md:block absolute -right-40 top-0 animate-bounce-slow z-10">
-              <div class="flex flex-col items-center gap-2">
-                <div
-                  class="bg-gray-900 text-white px-3 py-2 rounded-lg shadow-lg text-sm font-medium whitespace-nowrap">
-                  下滑阅读购买须知
-                </div>
-                <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          <!-- 月卡激活弹窗 -->
+          <div v-if="showMonthlyCardActivationModal"
+            class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50 modal-backdrop animate-fade-in">
+            <div class="relative max-w-lg w-full mx-4 modal-content animate-scale-in">
+              <button @click="showMonthlyCardActivationModal = false"
+                class="absolute -top-2 -right-2 bg-white rounded-full p-2 shadow-lg hover:bg-gray-100 z-10">
+                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
-              </div>
-            </div>
-
-            <div
-              class="bg-white rounded-xl shadow-lg flex flex-col items-center relative overflow-hidden product-card animate-scale-in border-2 border-white group"
-              :class="[
-                `delay-${600 + index * 100}`,
-                isLicenseProduct(product) ? 'p-10 recommended-card' : 'p-8'
-              ]">
-              <!-- 产品名称标签 -->
-              <span class="inline-block text-lg font-bold mb-2 text-gray-900">
-                {{ product.code.includes('CREDITS') ? (product.packageName || product.name) : product.name }}
-              </span>
-              <div class="flex flex-col items-center mb-2 transform transition-all duration-200 group-hover:scale-101">
-                <!-- 原价显示 -->
-                <div v-if="getOriginalPrice(product)"
-                  class="text-sm text-gray-400 line-through mb-1 transition-colors duration-200 group-hover:text-gray-500">
-                  原价¥{{ getOriginalPrice(product) }}{{ isLicenseProduct(product) ? '/年' : '/月' }}
-                </div>
-                <!-- 现价显示 -->
-                <div class="text-center">
-                  <!-- 月卡产品显示折合天价格 -->
-                  <div v-if="product.code.includes('MONTHLY')" class="flex items-baseline justify-center space-x-1">
-                    <span class="text-lg font-light" style="color: #737a87;">月卡低至</span>
-                    <span class="text-lg font-light" style="color: #737a87;">¥</span>
-                    <span class="text-3xl font-bold text-black">{{ getDailyPrice(product) }}</span>
-                    <span class="text-lg font-light" style="color: #737a87;">/天</span>
-                  </div>
-                  <!-- 积分套餐显示月卡风格价格 -->
-                  <div v-else-if="product.code.includes('CREDITS')"
-                    class="flex items-baseline justify-center space-x-1">
-                    <span class="text-lg font-light text-gray-700">积分套餐</span>
-                    <span class="text-lg font-light" style="color: #737a87;">¥</span>
-                    <span class="text-3xl font-bold text-gray-900">{{ product.price }}</span>
-                    <span class="text-lg font-light" style="color: #737a87;">/永久</span>
-                  </div>
-                  <!-- 许可证产品显示折合天价格 -->
-                  <div v-else-if="isLicenseProduct(product)" class="flex items-baseline justify-center space-x-1">
-                    <span class="text-lg font-light" style="color: #737a87;">低至</span>
-                    <span class="text-lg font-light" style="color: #737a87;">¥</span>
-                    <span class="text-3xl font-bold text-black">{{ getLicenseDailyPrice(product) }}</span>
-                    <span class="text-lg font-light" style="color: #737a87;">/天</span>
-                  </div>
-                  <!-- 其他产品显示原价格 -->
-                  <div v-else class="flex items-baseline justify-center space-x-1">
-                    <span class="text-lg font-light" style="color: #737a87;">¥</span>
-                    <span class="text-3xl font-bold text-black">{{ product.price }}</span>
-                    <span class="text-lg font-light" style="color: #737a87;">/月</span>
-                  </div>
-                </div>
-                <!-- 折扣标签 -->
-                <div v-if="getDiscountPercent(product)"
-                  class="text-xs bg-gray-100 text-gray-900 px-2 py-1 rounded-full mt-1">
-                  {{ getDiscountPercent(product) }}折
-                </div>
-                <!-- 积分套餐永久有效标签 -->
-                <div v-if="product.code.includes('CREDITS')"
-                  class="text-xs bg-gray-900 text-white px-2 py-1 rounded-full mt-1">
-                  永久有效
-                </div>
-              </div>
-              <div class="text-gray-500 mb-6">{{ product.description }}</div>
-              <ul class="text-sm text-gray-700 space-y-2 mb-6 text-left w-full">
-                <!-- 积分套餐功能列表 -->
-                <template v-if="product.code.includes('CREDITS')">
-                  <li><span class="text-gray-900">✔</span> {{ getCreditsAmountLocal(product) }}积分</li>
-                  <li><span class="text-gray-900">✔</span> AI 功能消费</li>
-                  <li><span class="text-gray-900">✔</span> 图片存储消费</li>
-                  <li><span class="text-gray-900">✔</span> 永久有效</li>
-                  <li><span class="text-gray-900">✔</span> 灵活消费</li>
-                  <li><span class="text-gray-900">✔</span> 按需使用</li>
-                  <li><span class="text-gray-900">✔</span> 免费更新</li>
-                  <li><span class="text-gray-900">✔</span> 技术支持</li>
-                </template>
-                <!-- 许可证产品功能列表 -->
-                <template v-else-if="isLicenseProduct(product)">
-                  <li><span class="text-gray-900">✔</span> {{ product.validityDays }}天有效期</li>
-                  <li><span class="text-gray-900">✔</span> 附赠 150 积分</li>
-                  <li><span class="text-gray-900">✔</span> 7天免费试用</li>
-                  <li><span class="text-gray-900">✔</span> 支持 {{ product.maxActivations }} 台设备激活</li>
-                  <li><span class="text-gray-900">✔</span> 网页版和桌面端共用</li>
-                  <li><span class="text-gray-900">✔</span> 所有核心功能</li>
-                  <li><span class="text-gray-900">✔</span> 免费更新</li>
-                  <li><span class="text-gray-900">✔</span> 技术支持</li>
-                </template>
-                <!-- 其他产品功能列表 -->
-                <template v-else>
-                  <li v-if="product.code.includes('AI_SERVICE')"><span class="text-gray-900">✔</span> 支持应用内所有AI功能</li>
-                  <li v-if="product.code.includes('CLOUD_STORAGE')"><span class="text-gray-900">✔</span> 云端存储服务</li>
-                  <li v-else><span class="text-gray-900">✔</span> {{ product.validityDays }}天有效期</li>
-                  <li><span class="text-gray-900">✔</span> 免费更新</li>
-                  <li><span class="text-gray-900">✔</span> 技术支持</li>
-                </template>
-              </ul>
-              <!-- 云存储服务敬请期待 -->
-              <button v-if="product.code.includes('CLOUD_STORAGE')"
-                class="w-full py-2 px-4 bg-gray-400 text-white rounded-lg font-semibold cursor-not-allowed shadow"
-                disabled>
-                即将推出
               </button>
-              <!-- 积分套餐购买 -->
-              <div v-else-if="product.code.includes('CREDITS')" class="space-y-2">
-                <button @click="purchaseProduct(product)" :disabled="!isServiceCurrentlyAvailable"
-                  :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
-                  class="w-full py-2 px-4 text-white rounded-lg font-semibold shadow transition-colors duration-200"
-                  :class="{
-                    'bg-gray-900 hover:bg-gray-800': isServiceCurrentlyAvailable,
-                    'bg-gray-400 cursor-not-allowed': !isServiceCurrentlyAvailable
-                  }">
-                  {{ getPurchaseButtonText(product) }}
-                </button>
-                <button @click="showCreditsModal = true" :disabled="!isServiceCurrentlyAvailable"
-                  class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
-                    'bg-gray-50 text-gray-900 border-gray-200 hover:bg-gray-100': isServiceCurrentlyAvailable,
-                    'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed': !isServiceCurrentlyAvailable
-                  }">
-                  更多套餐
-                </button>
+              <MonthlyCardActivation />
+            </div>
+          </div>
+
+          <!-- 产品卡片区 -->
+          <div v-if="loadingProducts" class="text-center py-12 animate-fade-in-up delay-600">
+            <div class="animate-spin inline-block w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full">
+            </div>
+            <p class="mt-2 text-gray-600 animate-fade-in-up delay-700">正在加载产品信息...</p>
+          </div>
+
+          <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end relative">
+            <!-- 所有产品卡片（基于API数据） -->
+            <div v-for="(product, index) in products" :key="product.id" class="relative">
+              <!-- 下滑指示器 - 只在企业专享卡片右侧显示 -->
+              <div v-if="product.isEnterprise"
+                class="hidden md:block absolute -right-40 top-0 animate-bounce-slow z-10">
+                <div class="flex flex-col items-center gap-2">
+                  <div
+                    class="bg-gray-900 text-white px-3 py-2 rounded-lg shadow-lg text-sm font-medium whitespace-nowrap">
+                    下滑阅读购买须知
+                  </div>
+                  <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </div>
               </div>
-              <!-- 许可证产品购买按钮 -->
-              <div v-else-if="isLicenseProduct(product)" class="space-y-2 w-full">
-                <div class="btn-container w-full btn-container-blue">
+
+              <div
+                class="bg-white rounded-xl shadow-lg flex flex-col items-center relative overflow-hidden product-card animate-scale-in border-2 border-white group"
+                :class="[
+                  `delay-${600 + index * 100}`,
+                  isLicenseProduct(product) ? 'p-10 recommended-card' : 'p-8'
+                ]">
+                <!-- 产品名称标签 -->
+                <span class="inline-block text-lg font-bold mb-2 text-gray-900">
+                  {{ product.code.includes('CREDITS') ? (product.packageName || product.name) : product.name }}
+                </span>
+                <div
+                  class="flex flex-col items-center mb-2 transform transition-all duration-200 group-hover:scale-101">
+                  <!-- 原价显示 -->
+                  <div v-if="getOriginalPrice(product)"
+                    class="text-sm text-gray-400 line-through mb-1 transition-colors duration-200 group-hover:text-gray-500">
+                    原价¥{{ getOriginalPrice(product) }}{{ isLicenseProduct(product) ? '/年' : '/月' }}
+                  </div>
+                  <!-- 现价显示 -->
+                  <div class="text-center">
+                    <!-- 月卡产品显示折合天价格 -->
+                    <div v-if="product.code.includes('MONTHLY')" class="flex items-baseline justify-center space-x-1">
+                      <span class="text-lg font-light" style="color: #737a87;">月卡低至</span>
+                      <span class="text-lg font-light" style="color: #737a87;">¥</span>
+                      <span class="text-3xl font-bold text-black">{{ getDailyPrice(product) }}</span>
+                      <span class="text-lg font-light" style="color: #737a87;">/天</span>
+                    </div>
+                    <!-- 积分套餐显示月卡风格价格 -->
+                    <div v-else-if="product.code.includes('CREDITS')"
+                      class="flex items-baseline justify-center space-x-1">
+                      <span class="text-lg font-light text-gray-700">积分套餐</span>
+                      <span class="text-lg font-light" style="color: #737a87;">¥</span>
+                      <span class="text-3xl font-bold text-gray-900">{{ product.price }}</span>
+                      <span class="text-lg font-light" style="color: #737a87;">/永久</span>
+                    </div>
+                    <!-- 许可证产品显示折合天价格 -->
+                    <div v-else-if="isLicenseProduct(product)" class="flex items-baseline justify-center space-x-1">
+                      <span class="text-lg font-light" style="color: #737a87;">低至</span>
+                      <span class="text-lg font-light" style="color: #737a87;">¥</span>
+                      <span class="text-3xl font-bold text-black">{{ getLicenseDailyPrice(product) }}</span>
+                      <span class="text-lg font-light" style="color: #737a87;">/天</span>
+                    </div>
+                    <!-- 其他产品显示原价格 -->
+                    <div v-else class="flex items-baseline justify-center space-x-1">
+                      <span class="text-lg font-light" style="color: #737a87;">¥</span>
+                      <span class="text-3xl font-bold text-black">{{ product.price }}</span>
+                      <span class="text-lg font-light" style="color: #737a87;">/月</span>
+                    </div>
+                  </div>
+                  <!-- 折扣标签 -->
+                  <div v-if="getDiscountPercent(product)"
+                    class="text-xs bg-gray-100 text-gray-900 px-2 py-1 rounded-full mt-1">
+                    {{ getDiscountPercent(product) }}折
+                  </div>
+                  <!-- 积分套餐永久有效标签 -->
+                  <div v-if="product.code.includes('CREDITS')"
+                    class="text-xs bg-gray-900 text-white px-2 py-1 rounded-full mt-1">
+                    永久有效
+                  </div>
+                </div>
+                <div class="text-gray-500 mb-6">{{ product.description }}</div>
+                <ul class="text-sm text-gray-700 space-y-2 mb-6 text-left w-full">
+                  <!-- 积分套餐功能列表 -->
+                  <template v-if="product.code.includes('CREDITS')">
+                    <li><span class="text-gray-900">✔</span> {{ getCreditsAmountLocal(product) }}积分</li>
+                    <li><span class="text-gray-900">✔</span> AI 功能消费</li>
+                    <li><span class="text-gray-900">✔</span> 图片存储消费</li>
+                    <li><span class="text-gray-900">✔</span> 永久有效</li>
+                    <li><span class="text-gray-900">✔</span> 灵活消费</li>
+                    <li><span class="text-gray-900">✔</span> 按需使用</li>
+                    <li><span class="text-gray-900">✔</span> 免费更新</li>
+                    <li><span class="text-gray-900">✔</span> 技术支持</li>
+                  </template>
+                  <!-- 许可证产品功能列表 -->
+                  <template v-else-if="isLicenseProduct(product)">
+                    <li><span class="text-gray-900">✔</span> {{ product.validityDays }}天有效期</li>
+                    <li><span class="text-gray-900">✔</span> 附赠 150 积分</li>
+                    <li><span class="text-gray-900">✔</span> 7天免费试用</li>
+                    <li><span class="text-gray-900">✔</span> 支持 {{ product.maxActivations }} 台设备激活</li>
+                    <li><span class="text-gray-900">✔</span> 网页版和桌面端共用</li>
+                    <li><span class="text-gray-900">✔</span> 所有核心功能</li>
+                    <li><span class="text-gray-900">✔</span> 免费更新</li>
+                    <li><span class="text-gray-900">✔</span> 技术支持</li>
+                  </template>
+                  <!-- 其他产品功能列表 -->
+                  <template v-else>
+                    <li v-if="product.code.includes('AI_SERVICE')"><span class="text-gray-900">✔</span> 支持应用内所有AI功能</li>
+                    <li v-if="product.code.includes('CLOUD_STORAGE')"><span class="text-gray-900">✔</span> 云端存储服务</li>
+                    <li v-else><span class="text-gray-900">✔</span> {{ product.validityDays }}天有效期</li>
+                    <li><span class="text-gray-900">✔</span> 免费更新</li>
+                    <li><span class="text-gray-900">✔</span> 技术支持</li>
+                  </template>
+                </ul>
+                <!-- 云存储服务敬请期待 -->
+                <button v-if="product.code.includes('CLOUD_STORAGE')"
+                  class="w-full py-2 px-4 bg-gray-400 text-white rounded-lg font-semibold cursor-not-allowed shadow"
+                  disabled>
+                  即将推出
+                </button>
+                <!-- 积分套餐购买 -->
+                <div v-else-if="product.code.includes('CREDITS')" class="space-y-2">
+                  <button @click="purchaseProduct(product)" :disabled="!isServiceCurrentlyAvailable"
+                    :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
+                    class="w-full py-2 px-4 text-white rounded-lg font-semibold shadow transition-colors duration-200"
+                    :class="{
+                      'bg-gray-900 hover:bg-gray-800': isServiceCurrentlyAvailable,
+                      'bg-gray-400 cursor-not-allowed': !isServiceCurrentlyAvailable
+                    }">
+                    {{ getPurchaseButtonText(product) }}
+                  </button>
+                  <button @click="showCreditsModal = true" :disabled="!isServiceCurrentlyAvailable"
+                    class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
+                      'bg-gray-50 text-gray-900 border-gray-200 hover:bg-gray-100': isServiceCurrentlyAvailable,
+                      'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed': !isServiceCurrentlyAvailable
+                    }">
+                    更多套餐
+                  </button>
+                </div>
+                <!-- 许可证产品购买按钮 -->
+                <div v-else-if="isLicenseProduct(product)" class="space-y-2 w-full">
+                  <div class="btn-container w-full btn-container-blue">
+                    <div class="btn-drawer transition-top">全网最低</div>
+                    <div class="btn-drawer transition-bottom">立即抢购</div>
+
+                    <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
+                      :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''" class="btn w-full"
+                      :class="{
+                        'opacity-50 cursor-not-allowed': !isServiceCurrentlyAvailable
+                      }">
+                      <span class="btn-text">{{ getPurchaseButtonText(product) }}</span>
+                    </button>
+                  </div>
+                  <button @click="openRenewModal" :disabled="!isServiceCurrentlyAvailable"
+                    class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
+                      'bg-gray-50 text-gray-900 border-gray-200 hover:bg-gray-100': isServiceCurrentlyAvailable,
+                      'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed': !isServiceCurrentlyAvailable
+                    }">
+                    产品续费
+                  </button>
+                </div>
+                <!-- 其他产品正常购买按钮 -->
+                <div v-else class="btn-container w-full" :class="{
+                  'btn-container-orange': product.code.includes('AI_SERVICE')
+                }">
                   <div class="btn-drawer transition-top">全网最低</div>
                   <div class="btn-drawer transition-bottom">立即抢购</div>
 
@@ -459,44 +474,21 @@
                     <span class="btn-text">{{ getPurchaseButtonText(product) }}</span>
                   </button>
                 </div>
-                <button @click="openRenewModal" :disabled="!isServiceCurrentlyAvailable"
-                  class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
-                    'bg-gray-50 text-gray-900 border-gray-200 hover:bg-gray-100': isServiceCurrentlyAvailable,
-                    'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed': !isServiceCurrentlyAvailable
-                  }">
-                  产品续费
-                </button>
-              </div>
-              <!-- 其他产品正常购买按钮 -->
-              <div v-else class="btn-container w-full" :class="{
-                'btn-container-orange': product.code.includes('AI_SERVICE')
-              }">
-                <div class="btn-drawer transition-top">全网最低</div>
-                <div class="btn-drawer transition-bottom">立即抢购</div>
-
-                <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
-                  :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''" class="btn w-full"
-                  :class="{
-                    'opacity-50 cursor-not-allowed': !isServiceCurrentlyAvailable
-                  }">
-                  <span class="btn-text">{{ getPurchaseButtonText(product) }}</span>
-                </button>
-              </div>
-              <!-- 右上角条状标签 - 参考源码实现 -->
-              <div
-                v-if="!product.code.includes('MONTHLY') && !product.code.includes('CREDITS_200') && !product.code.includes('CREDITS_2000')"
-                class="absolute top-4 -right-10 bg-gray-900 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105">
-                {{ product.isEnterprise ? '高性价比' : (isLicenseProduct(product) ? '最受欢迎' :
-                  '限时8.8折') }}
+                <!-- 右上角条状标签 - 参考源码实现 -->
+                <div
+                  v-if="!product.code.includes('MONTHLY') && !product.code.includes('CREDITS_200') && !product.code.includes('CREDITS_2000')"
+                  class="absolute top-4 -right-10 bg-gray-900 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105">
+                  {{ product.isEnterprise ? '高性价比' : (isLicenseProduct(product) ? '最受欢迎' :
+                    '限时8.8折') }}
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </section>
 
         <!-- 购买须知与接口说明（线框模块：购买须知） -->
-        <section class="mt-12 relative animate-fade-in-up delay-1000">
-          <WireframeOverlay />
+        <section class="mt-12 relative py-12 md:py-16 animate-fade-in-up delay-1000">
+          <WireframeOverlay class="wireframe-py-12-16" />
           <div class="relative max-w-3xl mx-auto px-4 md:px-8">
             <div class="bg-white rounded-xl shadow-lg p-6">
               <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1100">购买须知
@@ -1949,6 +1941,4 @@ function showSuccessToast(message) {
     transform: translateY(0) scale(1);
   }
 }
-
-
 </style>

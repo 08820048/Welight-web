@@ -1,22 +1,17 @@
 <template>
   <!-- 弹幕容器 - 固定在页面顶部 -->
-  <div
-    class="fixed top-20 left-0 right-0 z-20 pointer-events-none overflow-hidden h-32"
-  >
+  <div class="fixed top-20 left-0 right-0 z-20 pointer-events-none overflow-hidden h-32">
     <transition-group name="danmaku" tag="div" class="relative w-full h-full">
-      <div
-        v-for="item in activeDanmaku"
-        :key="item.id"
-        :style="{
-          top: `${item.lane * 36}px`,
-          animationDuration: `${item.duration}s`
-        }"
-        class="absolute right-0 danmaku-item whitespace-nowrap"
-      >
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full shadow-sm border border-gray-200 text-xs text-gray-600">
+      <div v-for="item in activeDanmaku" :key="item.id" :style="{
+        top: `${item.lane * 36}px`,
+        animationDuration: `${item.duration}s`
+      }" class="absolute right-0 danmaku-item whitespace-nowrap">
+        <div
+          class="inline-flex items-center gap-2 px-3 py-1.5 bg-white/90 backdrop-blur-sm rounded-full shadow-sm border border-gray-200 text-xs text-gray-600">
+          <span class="text-pink-500 font-medium">恭喜</span>
           <span class="font-medium text-gray-900">{{ item.purchase.customerName }}</span>
           <span class="text-gray-400">购买了</span>
-          <span class="font-medium text-gray-900">{{ item.purchase.productName }}</span>
+          <span class="font-medium text-gray-900">{{ getDisplayProductName(item.purchase) }}</span>
         </div>
       </div>
     </transition-group>
@@ -64,6 +59,21 @@ function getRandomDuration() {
 function getAvailableLane() {
   // 简单策略：随机选择一个轨道
   return Math.floor(Math.random() * props.lanes)
+}
+
+function getDisplayProductName(purchase) {
+  if (!purchase) return ''
+  const name = purchase.productName || ''
+  if (!name) return ''
+  // 包含“许可证”的都认为是许可证产品，不追加“积分套餐”
+  if (name.includes('许可证')) {
+    return name
+  }
+  // 非许可证产品：如果已经带有“积分套餐”字样，避免重复；否则补上
+  if (name.includes('积分套餐')) {
+    return name
+  }
+  return `${name}积分套餐`
 }
 
 // 发射一条弹幕
@@ -159,6 +169,7 @@ onUnmounted(() => {
     transform: translateX(0);
     opacity: 1;
   }
+
   to {
     transform: translateX(calc(-100vw - 100%));
     opacity: 1;
@@ -179,4 +190,3 @@ onUnmounted(() => {
   opacity: 0;
 }
 </style>
-

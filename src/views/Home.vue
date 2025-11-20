@@ -1,10 +1,6 @@
 <template>
   <div class="relative min-h-screen bg-white">
-    <AnimatedGridPattern
-      :num-squares="20"
-      :max-opacity="0.15"
-      :duration="4"
-    />
+    <AnimatedGridPattern :num-squares="20" :max-opacity="0.15" :duration="4" />
     <div class="min-h-screen text-gray-200 relative overflow-hidden" style="position: relative; z-index: 1;">
       <!-- 顶部横幅通知 -->
       <div v-if="showBanner" class="fixed top-16 left-0 right-0 z-40 overflow-hidden">
@@ -52,51 +48,43 @@
 
       <!-- Hero Section -->
       <section class="relative pt-24 pb-24">
-        <WireframeOverlay />
+        <WireframeOverlay class="wireframe-hero" />
         <div class="mx-auto max-w-5xl px-6">
           <div class="sm:mx-auto lg:mr-auto">
             <!-- Animated content group -->
             <div class="space-y-8">
               <!-- Main heading -->
-              <div
-                v-motion
-                :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
+              <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
                 :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.8 } }"
                 class="mt-8 lg:mt-16">
-                <AnimatedUnderlineText
-                  text="智能高效的公众号文章创作&排版体验"
+                <AnimatedUnderlineText text="智能高效的公众号文章创作&排版体验"
                   text-className="text-5xl font-medium md:text-6xl text-gray-900 whitespace-nowrap"
-                  underline-className="text-gray-900"
-                />
+                  underline-className="text-gray-900" />
               </div>
 
               <!-- Description -->
-              <div
-                v-motion
-                :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
+              <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
                 :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.85 } }"
                 class="mt-8">
-                <MagicText
-                  text="专为微信公众号创作者打造的智能排版应用，拥有更优性能、更快捷的操作体验。"
-                  container-className="max-w-2xl justify-center"
-                  word-className="text-lg text-gray-600"
-                />
+                <MagicText text="专为微信公众号创作者打造的智能排版应用，拥有更优性能、更快捷的操作体验。" container-className="max-w-2xl justify-center"
+                  word-className="text-lg text-gray-600" />
               </div>
 
               <!-- Download buttons and statistics -->
-              <div
-                v-motion
-                :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
+              <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
                 :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.9 } }"
                 class="mt-12 flex flex-wrap items-center gap-3">
                 <!-- macOS Download Button -->
                 <button @click="downloadFile('macos-apple')" class="group">
-                  <div class="relative overflow-hidden bg-gray-900 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center gap-2">
+                  <div
+                    class="relative overflow-hidden bg-gray-900 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center gap-2">
                     <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                      <path
+                        d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                     </svg>
                     <span class="text-sm">下载 macOS 版</span>
-                    <svg class="w-4 h-4 text-white/60 group-hover:text-white group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 text-white/60 group-hover:text-white group-hover:translate-x-0.5 transition-all"
+                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
@@ -104,21 +92,23 @@
 
                 <!-- Windows Download Button -->
                 <button @click="downloadFile('windows-installer')" class="group">
-                  <div class="relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 font-medium px-6 py-3 rounded-lg transition-all duration-200 border border-gray-200 hover:border-gray-300 inline-flex items-center gap-2">
+                  <div
+                    class="relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 font-medium px-6 py-3 rounded-lg transition-all duration-200 border border-gray-200 hover:border-gray-300 inline-flex items-center gap-2">
                     <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M0,0V11.408H11.408V0ZM12.594,0V11.408H24V0ZM0,12.594V24H11.408V12.594ZM12.594,12.594V24H24V12.594Z" />
+                      <path
+                        d="M0,0V11.408H11.408V0ZM12.594,0V11.408H24V0ZM0,12.594V24H11.408V12.594ZM12.594,12.594V24H24V12.594Z" />
                     </svg>
                     <span class="text-sm">下载 Windows 版</span>
-                    <svg class="w-4 h-4 text-gray-400 group-hover:text-gray-900 group-hover:translate-x-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg
+                      class="w-4 h-4 text-gray-400 group-hover:text-gray-900 group-hover:translate-x-0.5 transition-all"
+                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
                   </div>
                 </button>
 
                 <!-- Download statistics -->
-                <div
-                  v-motion
-                  :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
+                <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
                   :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.95 } }"
                   class="flex items-center gap-4 text-sm text-gray-500 ml-6">
                   <span>{{ animatedTotalDownloads.toLocaleString() }} 次下载</span>
@@ -133,46 +123,31 @@
         </div>
 
         <!-- Product Image -->
-        <div
-          v-motion
-          :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
+        <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
           :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 1.0 } }"
           class="relative mt-8 px-2 sm:mt-12 md:mt-20">
-          <TripleImageDisplayCard
-            image1="https://images.waer.ltd/notes/202511181320742.png"
+          <TripleImageDisplayCard image1="https://images.waer.ltd/notes/202511181320742.png"
             image2="https://images.waer.ltd/notes/202511181307147.png"
-            image3="https://images.waer.ltd/notes/202511181717594.png"
-            alt1="Welight 编辑界面"
-            alt2="Welight 产品展示"
-            alt3="Welight 功能展示"
-          />
+            image3="https://images.waer.ltd/notes/202511181717594.png" alt1="Welight 编辑界面" alt2="Welight 产品展示"
+            alt3="Welight 功能展示" />
         </div>
       </section>
 
       <!-- Features Section -->
       <section class="relative py-32">
-        <WireframeOverlay />
+        <WireframeOverlay class="wireframe-features" />
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <AnimatedUnderlineText
-              text="快捷高效的编辑体验"
-              text-className="text-4xl md:text-5xl font-bold text-gray-900"
-              underline-className="text-gray-900"
-            />
-            <MagicText
-              text="从划词工具栏到智能排版，每一个功能都经过精心设计"
-              container-className="mt-6 justify-center"
-              word-className="text-xl text-gray-500"
-            />
+            <AnimatedUnderlineText text="快捷高效的编辑体验" text-className="text-4xl md:text-5xl font-bold text-gray-900"
+              underline-className="text-gray-900" />
+            <MagicText text="从划词工具栏到智能排版，每一个功能都经过精心设计" container-className="mt-6 justify-center"
+              word-className="text-xl text-gray-500" />
           </div>
 
           <!-- Hero Image with DisplayCard Style -->
           <div class="mb-24 scroll-animate">
-            <ImageDisplayCard
-              image-url="https://images.waer.ltd/notes/202510241638251.png"
-              alt="Welight 核心特性展示"
-            />
+            <ImageDisplayCard image-url="https://images.waer.ltd/notes/202510241638251.png" alt="Welight 核心特性展示" />
           </div>
 
           <!-- Features Display Cards -->
@@ -192,20 +167,14 @@
 
       <!-- Themes Section -->
       <section class="relative py-32">
-        <WireframeOverlay />
+        <WireframeOverlay class="wireframe-py-32" />
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <AnimatedUnderlineText
-              text="丰富多样的排版主题"
-              text-className="text-4xl md:text-5xl font-bold text-gray-900"
-              underline-className="text-gray-900"
-            />
-            <MagicText
-              text="精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果"
-              container-className="mt-6 justify-center"
-              word-className="text-xl text-gray-500"
-            />
+            <AnimatedUnderlineText text="丰富多样的排版主题" text-className="text-4xl md:text-5xl font-bold text-gray-900"
+              underline-className="text-gray-900" />
+            <MagicText text="精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果" container-className="mt-6 justify-center"
+              word-className="text-xl text-gray-500" />
           </div>
 
           <!-- Themes showcase - Focus Cards style (基于 DisplayCards + FocusCards 视觉) -->
@@ -217,20 +186,14 @@
 
       <!-- AI Integration Section -->
       <section class="relative py-32">
-        <WireframeOverlay />
+        <WireframeOverlay class="wireframe-ai-experience" />
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <AnimatedUnderlineText
-              text="一站式智能体验"
-              text-className="text-4xl md:text-5xl font-bold text-gray-900"
-              underline-className="text-gray-900"
-            />
-            <MagicText
-              text="集成多个主流 AI 模型，为你的写作提供智能辅助"
-              container-className="mt-6 justify-center"
-              word-className="text-xl text-gray-500"
-            />
+            <AnimatedUnderlineText text="一站式智能体验" text-className="text-4xl md:text-5xl font-bold text-gray-900"
+              underline-className="text-gray-900" />
+            <MagicText text="集成多个主流 AI 模型，为你的写作提供智能辅助" container-className="mt-6 justify-center"
+              word-className="text-xl text-gray-500" />
           </div>
 
           <!-- AI Models showcase -->
@@ -240,22 +203,22 @@
               <!-- DeepSeek -->
               <div class="group scroll-animate">
                 <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
-                  <div class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
+                  <div
+                    class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
                     <img src="https://images.waer.ltd/notes/202508281524593.png" alt="DeepSeek Logo"
-                      class="w-full h-full object-contain"
-                      loading="lazy" />
+                      class="w-full h-full object-contain" loading="lazy" />
                   </div>
-                  <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">DeepSeek</h4>
+                  <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">DeepSeek
+                  </h4>
                 </div>
               </div>
 
               <!-- 智谱 -->
               <div class="group scroll-animate">
                 <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
-                  <div class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
-                    <img src="/智谱.png" alt="智谱 Logo"
-                      class="w-full h-full object-contain"
-                      loading="lazy" />
+                  <div
+                    class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
+                    <img src="/智谱.png" alt="智谱 Logo" class="w-full h-full object-contain" loading="lazy" />
                   </div>
                   <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">智谱</h4>
                 </div>
@@ -264,10 +227,9 @@
               <!-- Qwen -->
               <div class="group scroll-animate">
                 <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
-                  <div class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
-                    <img src="/qwen.png" alt="Qwen Logo"
-                      class="w-full h-full object-contain"
-                      loading="lazy" />
+                  <div
+                    class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
+                    <img src="/qwen.png" alt="Qwen Logo" class="w-full h-full object-contain" loading="lazy" />
                   </div>
                   <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">Qwen</h4>
                 </div>
@@ -276,10 +238,9 @@
               <!-- Kimi -->
               <div class="group scroll-animate">
                 <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
-                  <div class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
-                    <img src="/kimi.png" alt="Kimi Logo"
-                      class="w-full h-full object-contain"
-                      loading="lazy" />
+                  <div
+                    class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
+                    <img src="/kimi.png" alt="Kimi Logo" class="w-full h-full object-contain" loading="lazy" />
                   </div>
                   <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">Kimi</h4>
                 </div>
@@ -288,12 +249,13 @@
               <!-- Ollama -->
               <div class="group scroll-animate">
                 <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
-                  <div class="w-16 h-16 flex items-center justify-center relative grayscale group-hover:grayscale-0 transition-all">
+                  <div
+                    class="w-16 h-16 flex items-center justify-center relative grayscale group-hover:grayscale-0 transition-all">
                     <img src="https://images.waer.ltd/notes/202509050835689.png" alt="Ollama Logo"
-                      class="w-full h-full object-contain"
-                      loading="lazy" />
+                      class="w-full h-full object-contain" loading="lazy" />
                     <!-- 本地模型标签 -->
-                    <span class="absolute -top-1 -right-1 text-[10px] text-green-700 bg-green-100 px-1.5 py-0.5 rounded-full font-medium">本地</span>
+                    <span
+                      class="absolute -top-1 -right-1 text-[10px] text-green-700 bg-green-100 px-1.5 py-0.5 rounded-full font-medium">本地</span>
                   </div>
                   <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">Ollama</h4>
                 </div>
@@ -319,117 +281,81 @@
 
       <!-- Markdown Support Section -->
       <section class="relative min-h-screen py-20">
-        <WireframeOverlay />
+        <WireframeOverlay class="wireframe-py-20" />
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
-            <AnimatedUnderlineText
-              text="强大的Markdown语法标准"
+            <AnimatedUnderlineText text="强大的Markdown语法标准"
               text-className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900"
-              underline-className="text-gray-900"
-            />
-            <MagicText
-              text="全面支持标准Markdown语法及扩展功能，让你的文档编写更加高效和专业"
+              underline-className="text-gray-900" />
+            <MagicText text="全面支持标准Markdown语法及扩展功能，让你的文档编写更加高效和专业"
               container-className="mt-6 justify-center max-w-3xl mx-auto"
-              word-className="text-lg md:text-xl text-gray-600"
-            />
+              word-className="text-lg md:text-xl text-gray-600" />
           </div>
 
           <!-- Markdown features grid -->
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             <!-- Basic Syntax -->
             <div class="scroll-animate scale-up" style="transition-delay: 0.4s;">
-              <MarkdownFeatureCard
-                :icon="FileText"
-                title="基础语法"
-                :features="['标题 (H1-H6)', '粗体、斜体、删除线', '有序、无序列表', '链接和图片', '引用块']"
-              />
+              <MarkdownFeatureCard :icon="FileText" title="基础语法"
+                :features="['标题 (H1-H6)', '粗体、斜体、删除线', '有序、无序列表', '链接和图片', '引用块']" />
             </div>
 
             <!-- Code Support -->
             <div class="scroll-animate scale-up" style="transition-delay: 0.5s;">
-              <MarkdownFeatureCard
-                :icon="Code"
-                title="代码支持"
-                :features="['行内代码', '代码块', '语法高亮', '多语言支持', '代码行号']"
-              />
+              <MarkdownFeatureCard :icon="Code" title="代码支持" :features="['行内代码', '代码块', '语法高亮', '多语言支持', '代码行号']" />
             </div>
 
             <!-- Tables -->
             <div class="scroll-animate scale-up" style="transition-delay: 0.6s;">
-              <MarkdownFeatureCard
-                :icon="Table"
-                title="表格功能"
-                :features="['标准表格语法', '列对齐控制', '表格样式美化', '可视化编辑', '导入导出支持']"
-              />
+              <MarkdownFeatureCard :icon="Table" title="表格功能"
+                :features="['标准表格语法', '列对齐控制', '表格样式美化', '可视化编辑', '导入导出支持']" />
             </div>
 
             <!-- Math & Formulas -->
             <div class="scroll-animate scale-up" style="transition-delay: 0.7s;">
-              <MarkdownFeatureCard
-                :icon="Calculator"
-                title="数学公式"
-                :features="['LaTeX 数学公式', '行内公式', '块级公式', '公式编号', '实时预览']"
-              />
+              <MarkdownFeatureCard :icon="Calculator" title="数学公式"
+                :features="['LaTeX 数学公式', '行内公式', '块级公式', '公式编号', '实时预览']" />
             </div>
 
             <!-- Extended Features -->
             <div class="scroll-animate scale-up" style="transition-delay: 0.8s;">
-              <MarkdownFeatureCard
-                :icon="Puzzle"
-                title="扩展功能"
-                :features="['任务列表', '脚注支持', '定义列表', '缩略语', '高亮标记']"
-              />
+              <MarkdownFeatureCard :icon="Puzzle" title="扩展功能" :features="['任务列表', '脚注支持', '定义列表', '缩略语', '高亮标记']" />
             </div>
 
             <!-- Diagrams -->
             <div class="scroll-animate scale-up" style="transition-delay: 0.9s;">
-              <MarkdownFeatureCard
-                :icon="BarChart"
-                title="图表支持"
-                :features="['Mermaid 图表', '流程图', '时序图', '甘特图', '思维导图']"
-              />
+              <MarkdownFeatureCard :icon="BarChart" title="图表支持"
+                :features="['Mermaid 图表', '流程图', '时序图', '甘特图', '思维导图']" />
             </div>
           </div>
 
           <!-- Markdown advantages -->
           <div class="text-center scroll-animate" style="transition-delay: 1.0s;">
             <div class="max-w-4xl mx-auto">
-              <AnimatedUnderlineText
-                text="为什么选择Markdown？"
-                text-className="text-2xl md:text-3xl font-bold text-gray-900"
-                underline-className="text-gray-900"
-              />
+              <AnimatedUnderlineText text="为什么选择Markdown？" text-className="text-2xl md:text-3xl font-bold text-gray-900"
+                underline-className="text-gray-900" />
 
               <div class="grid md:grid-cols-3 gap-8 mt-12">
                 <!-- Advantage 1 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.1s;">
                   <h4 class="text-xl font-bold text-gray-900 mb-3">简单高效</h4>
-                  <MagicText
-                    text="轻量级标记语言，学习成本低，书写效率高，专注内容创作"
-                    container-className="justify-center"
-                    word-className="text-base text-gray-600"
-                  />
+                  <MagicText text="轻量级标记语言，学习成本低，书写效率高，专注内容创作" container-className="justify-center"
+                    word-className="text-base text-gray-600" />
                 </div>
 
                 <!-- Advantage 2 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.2s;">
                   <h4 class="text-xl font-bold text-gray-900 mb-3">跨平台兼容</h4>
-                  <MagicText
-                    text="标准化格式，在任何平台和设备上都能完美显示和编辑"
-                    container-className="justify-center"
-                    word-className="text-base text-gray-600"
-                  />
+                  <MagicText text="标准化格式，在任何平台和设备上都能完美显示和编辑" container-className="justify-center"
+                    word-className="text-base text-gray-600" />
                 </div>
 
                 <!-- Advantage 3 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.3s;">
                   <h4 class="text-xl font-bold text-gray-900 mb-3">版本控制友好</h4>
-                  <MagicText
-                    text="纯文本格式，完美支持Git等版本控制系统，协作更便捷"
-                    container-className="justify-center"
-                    word-className="text-base text-gray-600"
-                  />
+                  <MagicText text="纯文本格式，完美支持Git等版本控制系统，协作更便捷" container-className="justify-center"
+                    word-className="text-base text-gray-600" />
                 </div>
               </div>
             </div>
@@ -437,11 +363,8 @@
 
           <!-- Bottom text -->
           <div class="text-center mt-16 scroll-animate" style="transition-delay: 1.4s;">
-            <MagicText
-              text="让Welight成为你高效写作的得力助手"
-              container-className="justify-center"
-              word-className="text-xl md:text-2xl font-medium text-gray-600"
-            />
+            <MagicText text="让Welight成为你高效写作的得力助手" container-className="justify-center"
+              word-className="text-xl md:text-2xl font-medium text-gray-600" />
           </div>
 
 
@@ -1339,6 +1262,4 @@ onUnmounted(() => {
   white-space: nowrap;
   border-width: 0;
 }
-
-
 </style>

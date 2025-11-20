@@ -3,7 +3,8 @@
   <div class="pointer-events-none absolute inset-y-0 left-1/2 -translate-x-1/2 w-screen" aria-hidden="true">
 
     <!-- 背景斜线填充区域：只在线框矩形内部用浅蓝色细斜线做填充 -->
-    <div class="absolute inset-y-4 md:inset-y-6 inset-x-6 md:inset-x-16">
+    <!-- inset-y 值需要和父级 section 的 py-* 值保持一致 -->
+    <div class="absolute wireframe-inset inset-x-6 md:inset-x-16">
       <div class="absolute inset-0" style="
           background-image: repeating-linear-gradient(
             135deg,
@@ -14,7 +15,7 @@
           );
         "></div>
     </div>
-    <div class="absolute inset-y-4 md:inset-y-6 inset-x-6 md:inset-x-16">
+    <div class="absolute wireframe-inset inset-x-6 md:inset-x-16">
       <!-- 模块内部的一圈细线，包裹内容区域 -->
       <div class="absolute inset-x-0 top-0 h-px bg-[#cbdcfb]"></div>
       <div class="absolute inset-x-0 bottom-0 h-px bg-[#cbdcfb]"></div>
@@ -72,5 +73,5 @@
 </template>
 
 <script setup>
-// 无状态纯展示组件：依赖父级容器的 relative + padding 控制可见内容区域
+// 无状态纯展示组件：线框位置通过 Tailwind class 控制，和父级 section 的 padding 保持一致
 </script>

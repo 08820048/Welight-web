@@ -6,7 +6,7 @@
     <div class="min-h-screen text-gray-200 pt-20 relative" style="position: relative; z-index: 1;">
       <!-- Hero Section（线框模块：下载您的应用） -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay />
+        <WireframeOverlay class="wireframe-section-relaxed" />
         <div class="container-custom text-center relative">
           <AnimatedUnderlineText text="下载您的应用"
             text-className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white"
@@ -43,7 +43,7 @@
 
       <!-- Download Options（线框模块：下载选项） -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay />
+        <WireframeOverlay class="wireframe-section-relaxed" />
         <div class="container-custom relative">
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <!-- Windows -->
@@ -170,7 +170,7 @@
 
       <!-- System Requirements（线框模块：系统要求） -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay />
+        <WireframeOverlay class="wireframe-section-relaxed" />
         <div class="container-custom relative">
           <div class="text-center mb-12">
             <AnimatedUnderlineText text="系统要求"
@@ -192,7 +192,7 @@
 
       <!-- Installation Guide（线框模块：安装指南） -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay />
+        <WireframeOverlay class="wireframe-section-relaxed" />
         <div class="container-custom relative">
           <div class="text-center mb-12">
             <AnimatedUnderlineText text="安装指南"

@@ -44,6 +44,61 @@
     @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
   }
 
+  /* Wireframe inset - 默认匹配 section-padding (py-24 md:py-32 lg:py-40) */
+  .wireframe-inset {
+    @apply inset-y-24 md:inset-y-32 lg:inset-y-40;
+  }
+
+  /* Wireframe inset 变体 - 匹配不同的 section padding */
+  /* 定价等窄高模块：比内容略高一点，上下都多出一点空间 */
+  .wireframe-py-12-16 .wireframe-inset {
+    top: 0; /* 顶部线框尽量靠近 section 顶部，整体高度更紧凑 */
+    bottom: 2.5rem; /* 底部保持略多一些，完整包住卡片/内容 */
+  }
+
+  .wireframe-py-20 .wireframe-inset {
+    top: 3rem; /* Home 页 Markdown 区域：上下各留 ~2rem 空白 */
+    bottom: 3rem;
+  }
+
+  .wireframe-py-32 .wireframe-inset {
+    top: 4rem; /* Home 主题/其他 py-32 区域：上下各留 ~4rem 空白 */
+    bottom: 4rem;
+  }
+
+  /* 通用：section-padding 模块的“略微放大”版本（上下都比内容多出一些） */
+  .wireframe-section-relaxed .wireframe-inset {
+    top: 5rem;
+    bottom: 5rem;
+  }
+
+  /* 赞助页三个内容区域：线框覆盖整个 section，高度由 section 自己的 padding 决定“超出感” */
+  .wireframe-donation-main .wireframe-inset,
+  .wireframe-donation-thanks .wireframe-inset,
+  .wireframe-donation-special .wireframe-inset {
+    top: 0;
+    bottom: 0;
+  }
+
+  .wireframe-features .wireframe-inset {
+    top: 4rem; /* "快捷高效的编辑体验"：上下各留 ~4rem 空白，底部稍长一点给斜排卡片 */
+    bottom: 2.5rem;
+  }
+  .wireframe-hero .wireframe-inset {
+    top: 5.5rem; /* Hero：线框顶部只比标题略高一点点 */
+    bottom: 4rem;
+  }
+
+  .wireframe-ai-experience .wireframe-inset {
+    top: 4rem; /* "一站式智能体验"：上下各留 ~4rem 空白 */
+    bottom: 4rem;
+  }
+
+  .wireframe-header .wireframe-inset {
+    top: 0;
+    bottom: 0;
+  }
+
   /* Modern Card Styles */
   .card {
     @apply relative bg-white/80 backdrop-blur-sm rounded-2xl shadow-soft-lg hover:shadow-soft-xl transition-all duration-500 border border-gray-200/50 hover:border-gray-300/50;
