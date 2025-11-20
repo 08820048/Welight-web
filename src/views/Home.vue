@@ -56,20 +56,6 @@
           <div class="sm:mx-auto lg:mr-auto">
             <!-- Animated content group -->
             <div class="space-y-8">
-              <!-- Badge -->
-              <div
-                v-motion
-                :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
-                :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.75 } }">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-900 text-white rounded-full text-xs font-medium">
-                  <span class="relative flex h-1.5 w-1.5">
-                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-white"></span>
-                  </span>
-                  v4.0.0 已发布
-                </div>
-              </div>
-
               <!-- Main heading -->
               <div
                 v-motion
@@ -460,6 +446,9 @@
 
 
     </div>
+
+    <!-- 底部右上角购买通知滚动 -->
+    <PurchaseNotificationTicker />
   </div>
 </template>
 
@@ -478,6 +467,7 @@ import MarkdownFeatureCard from '@/components/MarkdownFeatureCard.vue'
 import VerticalDisplayCards from '@/components/VerticalDisplayCards.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
+import PurchaseNotificationTicker from '@/components/PurchaseNotificationTicker.vue'
 import { Wand2, Command, Copy, BarChart3, Palette, Sparkles, FileText, Code, Table, Calculator, Puzzle, BarChart } from 'lucide-vue-next'
 
 // SEO配置

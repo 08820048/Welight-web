@@ -5,9 +5,13 @@
       <nav class="hidden lg:flex items-center justify-between h-16">
         <!-- Left: Logo -->
         <div class="flex items-center">
-          <router-link to="/" class="flex items-center gap-2">
+          <router-link to="/" class="flex items-center gap-2 relative">
             <img src="/logo.png" alt="Welight Logo" class="w-8 h-8 rounded-lg" />
             <span class="text-lg font-semibold">Welight</span>
+            <!-- 版本角标 -->
+            <span class="absolute -top-2 -right-16 px-2 py-0.5 bg-gray-900 text-white text-[10px] font-medium rounded-full whitespace-nowrap">
+              v4.0.0
+            </span>
           </router-link>
         </div>
 

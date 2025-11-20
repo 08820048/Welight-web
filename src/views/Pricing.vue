@@ -278,6 +278,9 @@
             word-className="text-lg text-gray-600"
           />
         </div>
+        <!-- 最近购买记录滚动展示 -->
+        <RecentPurchasesTicker class="animate-fade-in-up delay-300" />
+
 
         <!-- 月卡购买弹窗 -->
         <div v-if="showMonthlyCardModal"
@@ -568,6 +571,7 @@ import MonthlyCardPurchase from '../components/MonthlyCardPurchase.vue'
 import MonthlyCardActivation from '../components/MonthlyCardActivation.vue'
 import CreditsPurchase from '../components/CreditsPurchase.vue'
 import FloatingPricingInfoButton from '../components/FloatingPricingInfoButton.vue'
+import RecentPurchasesTicker from '../components/RecentPurchasesTicker.vue'
 
 /**
  * 动态加载撒花特效库
