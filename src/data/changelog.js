@@ -1,11 +1,21 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '4.0.0',
-    date: '2025-11-17',
+    version: '4.0.1',
+    date: '2025-11-10',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      fixes: ['修复图片在预览区偶发性的占位符重复的问题']
+    }
+  },
+  {
+    version: '4.0.0',
+    date: '2025-11-17',
+    type: 'release',
+    badge: '',
+    badgeColor: '',
     changes: {
       fixes: [
         '修复赤焰丹心主题中无序和有序列表的修饰效果在公众号不显示的问题',

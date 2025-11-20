@@ -14,11 +14,18 @@
           </p>
           <div class="mt-4">
             <p class="text-xs text-gray-500 dark:text-gray-500 mb-2">扫码关注微信公众号，获取最新使用技巧和更新通知</p>
-            <img
-              src="https://images.waer.ltd/notes/202510141839217.jpg"
-              alt="微信公众号二维码"
-              class="w-20 h-20 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm"
-            />
+            <div class="flex items-center gap-3">
+              <img
+                src="https://images.waer.ltd/notes/202510141839217.jpg"
+                alt="微信公众号二维码"
+                class="w-20 h-20 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm"
+              />
+              <img
+                src="https://images.waer.ltd/notes/202511201425342.jpg"
+                alt="备用二维码"
+                class="w-20 h-20 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm"
+              />
+            </div>
           </div>
         </div>
 

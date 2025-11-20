@@ -560,15 +560,15 @@ const downloadFile = async (platform) => {
   // 实际下载链接映射
   const downloadUrls = {
     // Windows
-    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.0.0_x64-setup.exe',
-    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.0.0_x64_en-US.msi',
+    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.0.1_x64-setup.exe',
+    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.0.1_x64_en-US.msi',
     // macOS 下载链接
-    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.0.0_aarch64.dmg',
-    'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.0.0_x64.dmg',
+    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.0.1_aarch64.dmg',
+    'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.0.1_x64.dmg',
     // Linux 下载链接
-    'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.0.0_amd64.AppImage',
-    'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.0.0_amd64.deb',
-    'linux-rpm': 'https://waer.ltd/downloads/linux/Welight-4.0.0-1.x86_64.rpm'
+    'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.0.1_amd64.AppImage',
+    'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.0.1_amd64.deb',
+    'linux-rpm': 'https://waer.ltd/downloads/linux/Welight-4.0.1-1.x86_64.rpm'
   }
 
   const downloadUrl = downloadUrls[platform]

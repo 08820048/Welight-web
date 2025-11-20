@@ -10,7 +10,7 @@
             <span class="text-lg font-semibold">Welight</span>
             <!-- 版本角标 -->
             <span class="absolute -top-2 -right-16 px-2 py-0.5 bg-gray-900 text-white text-[10px] font-medium rounded-full whitespace-nowrap">
-              v4.0.0
+              v4.0.1
             </span>
           </router-link>
         </div>

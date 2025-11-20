@@ -51,7 +51,7 @@
       </div>
 
       <!-- Hero Section -->
-      <section class="relative pt-24 overflow-hidden">
+      <section class="relative pt-24 pb-24">
         <div class="mx-auto max-w-5xl px-6">
           <div class="sm:mx-auto lg:mr-auto">
             <!-- Animated content group -->
@@ -790,12 +790,12 @@ const downloadFile = async (platform) => {
 
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.0.0_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.0.0_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.0.0_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.0.0_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.0.0_amd64.AppImage',
-      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.0.0_amd64.deb'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.0.1_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.0.1_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.0.1_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.0.1_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.0.1_amd64.AppImage',
+      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.0.1_amd64.deb'
     }
 
     const downloadUrl = downloadUrls[platform]
