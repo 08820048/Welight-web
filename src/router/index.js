@@ -63,6 +63,11 @@ const router = createRouter({
       path: '/font-test',
       name: 'font-test',
       component: () => import('../views/FontTest.vue')
+    },
+    {
+      path: '/wireframe-demo',
+      name: 'wireframe-demo',
+      component: () => import('../views/WireframeDemo.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {

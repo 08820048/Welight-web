@@ -3,171 +3,180 @@
     <!-- 渐隐网格背景（与其他页面统一） -->
     <AnimatedGridPattern />
 
-    <div class="min-h-screen text-gray-200 pt-20 relative overflow-hidden" style="position: relative; z-index: 1;">
+    <div class="min-h-screen text-gray-200 pt-20 relative" style="position: relative; z-index: 1;">
       <div class="container-custom pb-16">
-        <!-- 页面描述（统一黑白 + 动画标题风格） -->
-        <div class="max-w-3xl mx-auto text-center mb-12 scroll-animate animate-fade-in-up delay-100">
-          <AnimatedUnderlineText
-            text="赞助支持 Welight"
-            text-className="text-4xl md:text-5xl font-bold text-gray-900"
-            underline-className="text-gray-900"
-          />
-          <MagicText
-            text="感谢每一位支持 Welight 的你，您的赞助将用于支持软件的持续开发、服务器维护、功能优化和技术支持，让更多用户受益于优质的软件体验。"
-            container-className="mt-6 justify-center max-w-3xl mx-auto"
-            word-className="text-lg text-gray-600"
-          />
-        </div>
-
-        <!-- 赞助者福利（黑白卡片风格） -->
-        <div class="mb-12 scroll-animate animate-fade-in-up delay-200">
-          <div
-            class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 max-w-3xl mx-auto shadow-soft-lg">
-            <div class="flex items-center justify-center space-x-3 mb-3">
-              <svg class="w-6 h-6 text-gray-900 dark:text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7">
-                </path>
-              </svg>
-              <h3 class="text-xl font-bold text-gray-900 dark:text-white">
-                赞助者福利
-              </h3>
+        <!-- 赞助支持 Welight（标题 + 描述 + 福利卡片，作为一个整体内容模块） -->
+        <section class="relative mb-16 scroll-animate animate-fade-in-up delay-100">
+          <WireframeOverlay />
+          <div class="relative max-w-3xl mx-auto px-4 md:px-8">
+            <div class="text-center mb-12">
+              <AnimatedUnderlineText
+                text="赞助支持 Welight"
+                text-className="text-4xl md:text-5xl font-bold text-gray-900"
+                underline-className="text-gray-900"
+              />
+              <MagicText
+                text="感谢每一位支持 Welight 的你，您的赞助将用于支持软件的持续开发、服务器维护、功能优化和技术支持，让更多用户受益于优质的软件体验。"
+                container-className="mt-6 justify-center max-w-3xl mx-auto"
+                word-className="text-lg text-gray-600"
+              />
             </div>
-            <p class="text-center text-lg text-gray-700 dark:text-gray-300">
-              每位赞助者每月可获得 <span class="text-2xl font-bold text-gray-900 dark:text-white">500 积分</span> 奖励
-            </p>
-            <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-2">
-              积分可用于 AI 功能消费和图片存储服务
-            </p>
+
+            <!-- 赞助者福利（黑白卡片风格） -->
+            <div
+              class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 shadow-soft-lg">
+              <div class="flex items-center justify-center space-x-3 mb-3">
+                <svg class="w-6 h-6 text-gray-900 dark:text-gray-100" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7">
+                  </path>
+                </svg>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">
+                  赞助者福利
+                </h3>
+              </div>
+              <p class="text-center text-lg text-gray-700 dark:text-gray-300">
+                每位赞助者每月可获得 <span class="text-2xl font-bold text-gray-900 dark:text-white">500 积分</span> 奖励
+              </p>
+              <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-2">
+                积分可用于 AI 功能消费和图片存储服务
+              </p>
+            </div>
           </div>
-        </div>
+        </section>
 
       <!-- 致谢名单 -->
-      <div class="mb-16 scroll-animate animate-fade-in-up delay-300">
-        <div class="text-center mb-8">
-          <AnimatedUnderlineText
-            text="致谢名单"
-            text-className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
-            underline-className="text-gray-900 dark:text-white"
-          />
-          <MagicText
-            text="每一份赞助我们都会认真记录，并向您致以诚挚感谢。"
-            container-className="mt-4 justify-center max-w-2xl mx-auto"
-            word-className="text-sm md:text-base text-gray-500 dark:text-gray-400"
-          />
-        </div>
+      <section class="relative mb-16 scroll-animate animate-fade-in-up delay-300">
+        <WireframeOverlay />
+        <div class="relative max-w-5xl mx-auto px-4 md:px-8">
+          <div class="text-center mb-8">
+            <AnimatedUnderlineText
+              text="致谢名单"
+              text-className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
+              underline-className="text-gray-900 dark:text-white"
+            />
+            <MagicText
+              text="每一份赞助我们都会认真记录，并向您致以诚挚感谢。"
+              container-className="mt-4 justify-center max-w-2xl mx-auto"
+              word-className="text-sm md:text-base text-gray-500 dark:text-gray-400"
+            />
+          </div>
 
-        <div
-          class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden flat-card">
-          <div class="relative w-full overflow-auto">
-            <table class="w-full caption-bottom text-sm">
-              <thead class="bg-transparent">
-                <tr class="border-b border-gray-200 dark:border-gray-700 [&>th:not(:last-child)]:border-r [&>th]:border-gray-200 dark:[&>th]:border-gray-700">
-                  <th
-                    class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    赞助者
-                  </th>
-                  <th
-                    class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    金额
-                  </th>
-                  <th
-                    class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    时间
-                  </th>
-                  <th
-                    class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    渠道
-                  </th>
-                  <th
-                    class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    留言
-                  </th>
-                  <th
-                    class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
-                    标识
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="[&_tr:last-child]:border-0">
-                <tr v-for="donation in allDonations" :key="donation.id"
-                  class="border-b border-gray-200 dark:border-gray-700 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800 [&>td:not(:last-child)]:border-r [&>td]:border-gray-200 dark:[&>td]:border-gray-700"
-                  :class="{ 'bg-gray-50 dark:bg-gray-900/40': donation.isSpecial }">
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="flex items-center">
-                      <div class="text-sm font-medium text-gray-900 dark:text-white">
-                        {{ donation.donorName }}
+          <div
+            class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden flat-card">
+            <div class="relative w-full overflow-auto">
+              <table class="w-full caption-bottom text-sm">
+                <thead class="bg-transparent">
+                  <tr class="border-b border-gray-200 dark:border-gray-700 [&>th:not(:last-child)]:border-r [&>th]:border-gray-200 dark:[&>th]:border-gray-700">
+                    <th
+                      class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      赞助者
+                    </th>
+                    <th
+                      class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      金额
+                    </th>
+                    <th
+                      class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      时间
+                    </th>
+                    <th
+                      class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      渠道
+                    </th>
+                    <th
+                      class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      留言
+                    </th>
+                    <th
+                      class="px-6 py-4 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                      标识
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="[&_tr:last-child]:border-0">
+                  <tr v-for="donation in allDonations" :key="donation.id"
+                    class="border-b border-gray-200 dark:border-gray-700 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800 [&>td:not(:last-child)]:border-r [&>td]:border-gray-200 dark:[&>td]:border-gray-700"
+                    :class="{ 'bg-gray-50 dark:bg-gray-900/40': donation.isSpecial }">
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="flex items-center">
+                        <div class="text-sm font-medium text-gray-900 dark:text-white">
+                          {{ donation.donorName }}
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm font-bold text-gray-900 dark:text-white">
-                      {{ formatAmount(donation.amount) }}
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-600 dark:text-gray-300">
-                      {{ formatDate(donation.date) }}
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-600 dark:text-gray-300">
-                      {{ donation.channel }}
-                    </div>
-                  </td>
-                  <td class="px-6 py-4">
-                    <div class="text-sm text-gray-600 dark:text-gray-300 max-w-xs truncate" :title="donation.message">
-                      {{ donation.message || '-' }}
-                    </div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span v-if="donation.isSpecial"
-                      class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900">
-                      {{ donation.specialTag }}
-                    </span>
-                    <span v-else class="text-gray-400 dark:text-gray-500">-</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="text-sm font-bold text-gray-900 dark:text-white">
+                        {{ formatAmount(donation.amount) }}
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="text-sm text-gray-600 dark:text-gray-300">
+                        {{ formatDate(donation.date) }}
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <div class="text-sm text-gray-600 dark:text-gray-300">
+                        {{ donation.channel }}
+                      </div>
+                    </td>
+                    <td class="px-6 py-4">
+                      <div class="text-sm text-gray-600 dark:text-gray-300 max-w-xs truncate" :title="donation.message">
+                        {{ donation.message || '-' }}
+                      </div>
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                      <span v-if="donation.isSpecial"
+                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900">
+                        {{ donation.specialTag }}
+                      </span>
+                      <span v-else class="text-gray-400 dark:text-gray-500">-</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <!-- 特别赞助展示（黑白卡片风格） -->
-      <div v-if="specialDonations.length > 0" class="mb-12 scroll-animate animate-fade-in-up delay-400">
-        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-          特别赞助
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div v-for="donation in specialDonations" :key="donation.id"
-            class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 flat-card">
-            <div class="flex items-center justify-between mb-4">
-              <span class="bg-gray-900 text-white px-3 py-1 rounded-full text-sm font-medium">
-                {{ donation.specialTag }}
-              </span>
-              <span class="text-2xl font-bold text-gray-900 dark:text-white">
-                {{ formatAmount(donation.amount) }}
-              </span>
-            </div>
-            <div class="space-y-2">
-              <div class="text-gray-700 dark:text-gray-300">
-                <span class="font-medium">赞助者：</span>{{ donation.donorName }}
+      <section v-if="specialDonations.length > 0" class="relative mb-12 scroll-animate animate-fade-in-up delay-400">
+        <WireframeOverlay />
+        <div class="relative max-w-5xl mx-auto px-4 md:px-8">
+          <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+            特别赞助
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div v-for="donation in specialDonations" :key="donation.id"
+              class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 flat-card">
+              <div class="flex items-center justify-between mb-4">
+                <span class="bg-gray-900 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  {{ donation.specialTag }}
+                </span>
+                <span class="text-2xl font-bold text-gray-900 dark:text-white">
+                  {{ formatAmount(donation.amount) }}
+                </span>
               </div>
-              <div class="text-gray-600 dark:text-gray-400 text-sm">
-                <span class="font-medium">时间：</span>{{ formatDate(donation.donationDate) }}
-              </div>
-              <div class="text-gray-600 dark:text-gray-400 text-sm">
-                <span class="font-medium">渠道：</span>{{ donation.channel }}
-              </div>
-              <div v-if="donation.message" class="mt-3 p-3 bg-white dark:bg-gray-800 rounded-lg">
-                <div class="text-gray-600 dark:text-gray-400 text-sm mb-1 font-medium">留言：</div>
-                <div class="text-gray-800 dark:text-gray-200">{{ donation.message }}</div>
+              <div class="space-y-2">
+                <div class="text-gray-700 dark:text-gray-300">
+                  <span class="font-medium">赞助者：</span>{{ donation.donorName }}
+                </div>
+                <div class="text-gray-600 dark:text-gray-400 text-sm">
+                  <span class="font-medium">时间：</span>{{ formatDate(donation.donationDate) }}
+                </div>
+                <div class="text-gray-600 dark:text-gray-400 text-sm">
+                  <span class="font-medium">渠道：</span>{{ donation.channel }}
+                </div>
+                <div v-if="donation.message" class="mt-3 p-3 bg-white dark:bg-gray-800 rounded-lg">
+                  <div class="text-gray-600 dark:text-gray-400 text-sm mb-1 font-medium">留言：</div>
+                  <div class="text-gray-800 dark:text-gray-200">{{ donation.message }}</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
       <!-- 感谢信息 -->
       <!-- 固定背景致谢文字 -->
@@ -190,6 +199,7 @@ import { getAllDonations, getSpecialDonations, formatAmount, formatDate } from '
 import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
+import WireframeOverlay from '@/components/WireframeOverlay.vue'
 
 /**
  * 响应式数据

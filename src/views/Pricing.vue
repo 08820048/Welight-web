@@ -265,19 +265,21 @@
           </div>
         </div>
 
-        <!-- 标题区 -->
-        <div class="text-center mb-10 animate-fade-in-up delay-100">
-          <AnimatedUnderlineText
-            text="定价与服务购买"
-            text-className="text-4xl font-extrabold text-gray-900"
-            underline-className="text-gray-900"
-          />
-          <MagicText
-            text="选择适合您的许可证或月卡服务，享受完整功能与优质服务"
-            container-className="mt-6 justify-center"
-            word-className="text-lg text-gray-600"
-          />
-        </div>
+        <!-- 标题区（线框模块：定价与服务购买） -->
+        <section class="relative mb-10 animate-fade-in-up delay-100">
+          <WireframeOverlay />
+          <div class="text-center relative max-w-3xl mx-auto px-4 md:px-8">
+            <AnimatedUnderlineText
+              text="定价与服务购买"
+              text-className="text-4xl font-extrabold text-gray-900"
+              underline-className="text-gray-900"
+            />
+            <MagicText
+              text="选择适合您的许可证或积分服务，享受便捷功能与优质体验"
+              container-className="mt-6 justify-center"
+              word-className="text-lg text-gray-600"
+            />
+          </div>
         <!-- 最近购买记录滚动展示 -->
         <RecentPurchasesTicker class="animate-fade-in-up delay-300" />
 
@@ -490,54 +492,58 @@
             </div>
           </div>
         </div>
+        </section>
 
-        <!-- 购买须知与接口说明 -->
-        <div class="mt-12 bg-white rounded-xl shadow-lg p-6 animate-fade-in-up delay-1000">
-          <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1100">购买须知
-          </h2>
-          <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-6 text-sm">
-            <li class="animate-fade-in-up delay-1700">请在应用使用过程中确保网络通畅，关闭VPN，避免状态检测异常，影响你的使用体验</li>
-            <li class="animate-fade-in-up delay-1200">购买后许可证将自动发送到您的邮箱，请妥善保存许可证密钥。</li>
-            <li class="animate-fade-in-up delay-1300">每个许可证支持在指定数量的设备上使用。</li>
-            <li class="animate-fade-in-up delay-1400">许可证密钥请在桌面应用中输入使用。</li>
-            <li class="animate-fade-in-up delay-1450">许可证购买后，所有AI功能可以选择购买积分套餐使用，也可以选择自己配置AI密钥进行使用。</li>
-            <li class="animate-fade-in-up delay-1500">反馈交流请通过QQ群联系开发者。</li>
-            <li class="animate-fade-in-up delay-1600">支持微信支付，订单有效期为30分钟。</li>
-            <li class="animate-fade-in-up delay-1700">产品存在代码性质，拥有可复制性，因此购买后，无法退款</li>
-            <li class="animate-fade-in-up delay-1700">网页版本支持更多丰富的主题，使用网页版主题需要使用激活后的许可证进行验证。</li>
-            <li class="animate-fade-in-up delay-1700">默认内置的图片云存储服务和 AI 服务一样作为可选服务，您也可以选择配置自己的图床进行使用</li>
-          </ul>
+        <!-- 购买须知与接口说明（线框模块：购买须知） -->
+        <section class="mt-12 relative animate-fade-in-up delay-1000">
+          <WireframeOverlay />
+          <div class="relative max-w-3xl mx-auto px-4 md:px-8">
+            <div class="bg-white rounded-xl shadow-lg p-6">
+              <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1100">购买须知
+              </h2>
+              <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-6 text-sm">
+                <li class="animate-fade-in-up delay-1700">请在应用使用过程中确保网络通畅，关闭VPN，避免状态检测异常，影响你的使用体验</li>
+                <li class="animate-fade-in-up delay-1200">购买后许可证将自动发送到您的邮箱，请妥善保存许可证密钥。</li>
+                <li class="animate-fade-in-up delay-1300">每个许可证支持在指定数量的设备上使用。</li>
+                <li class="animate-fade-in-up delay-1400">许可证密钥请在桌面应用中输入使用。</li>
+                <li class="animate-fade-in-up delay-1450">许可证购买后，所有AI功能可以选择购买积分套餐使用，也可以选择自己配置自己的图床进行使用。</li>
+                <li class="animate-fade-in-up delay-1500">反馈交流请通过QQ群联系开发者。</li>
+                <li class="animate-fade-in-up delay-1600">支持微信支付，订单有效期为30分钟。</li>
+                <li class="animate-fade-in-up delay-1700">产品存在代码性质，拥有可复制性，因此购买后，无法退款</li>
+                <li class="animate-fade-in-up delay-1700">网页版本支持更多丰富的主题，使用网页版主题需要使用激活后的许可证进行验证。</li>
+                <li class="animate-fade-in-up delay-1700">默认内置的图片云存储服务和 AI 服务一样作为可选服务，您也可以选择配置自己的图床进行使用</li>
+              </ul>
 
-          <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1800">交流反馈
-          </h2>
-          <div class="bg-blue-50 rounded-lg p-4 text-sm animate-scale-in delay-1900">
-            <div class="flex items-center space-x-4">
-              <div>
-                <span class="font-medium text-blue-800">QQ群：</span>
-                <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=U4EFNYA9KuxK3OOQJQRfmzrfpwn3NM%2BHScNavJLkDXANe7H%2BONEQvGMvVI2LRrx2&busi_data=eyJncm91cENvZGUiOiIxMDcxNTU4ODAzIiwidG9rZW4iOiI3N2krQUx6VTVoTXVwOVRBRU52djl6R3k2VDYyNWR1RXl4bk92S2Y5SzNWVTBrUTlmeitCNEN6OS92KzZoMElqIiwidWluIjoiMjIxNzAyMTU2MyJ9&data=xN0g96ZxEMQlgiGFEWHsx8x0rZ0Qz9zmsBlJXrOxz6m1DVOYht3OeVZLFTMy6bGTC-Nc4yxMX25CDwocSJMQRLkcxdIUz6736qxlkysN8AE&svctype=5&tempid=h5_group_info"
-                  target="_blank" class="text-blue-600 hover:text-blue-800 underline">
-                  点击加入
-                </a>
+              <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1800">交流反馈
+              </h2>
+              <div class="bg-blue-50 rounded-lg p-4 text-sm animate-scale-in delay-1900">
+                <div class="flex items-center space-x-4">
+                  <div>
+                    <span class="font-medium text-blue-800">QQ群：</span>
+                    <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=U4EFNYA9KuxK3OOQJQRfmzrfpwn3NM%2BHScNavJLkDXANe7H%2BONEQvGMvVI2LRrx2&busi_data=eyJncm91cENvZGUiOiIxMDcxNTU4ODAzIiwidG9rZW4iOiI3N2krQUx6VTVoTXVwOVRBRU52djl6R3k2VDYyNWR1RXl4bk92S2Y5SzNWVTBrUTlmeitCNEN6OS92KzZoMElqIiwidWluIjoiMjIxNzAyMTU2MyJ9&data=xN0g96ZxEMQlgiGFEWHsx8x0rZ0Qz9zmsBlJXrOxz6m1DVOYht3OeVZLFTMy6bGTC-Nc4yxMX25CDwocSJMQRLkcxdIUz6736qxlkysN8AE&svctype=5&tempid=h5_group_info"
+                      target="_blank" class="text-blue-600 hover:text-blue-800 underline">
+                      点击加入
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </section>
       </div>
+    </div>
 
+    <!-- 积分套餐购买组件 -->
+    <CreditsPurchase v-if="showCreditsModal" @close="showCreditsModal = false"
+      @success="handleCreditsPurchaseSuccess" />
 
-
-      <!-- 积分套餐购买组件 -->
-      <CreditsPurchase v-if="showCreditsModal" @close="showCreditsModal = false"
-        @success="handleCreditsPurchaseSuccess" />
-
-      <!-- 成功提示Toast -->
-      <div v-if="showToast"
-        class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center space-x-2 animate-slide-in">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-        </svg>
-        <span>{{ toastMessage }}</span>
-      </div>
+    <!-- 成功提示Toast -->
+    <div v-if="showToast"
+      class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg z-50 flex items-center space-x-2 animate-slide-in">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      </svg>
+      <span>{{ toastMessage }}</span>
     </div>
   </div>
 </template>
@@ -547,6 +553,7 @@ import { ref, onMounted, onUnmounted, computed } from 'vue'
 import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
+import WireframeOverlay from '@/components/WireframeOverlay.vue'
 import {
   getProducts,
   createPaymentOrder,

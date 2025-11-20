@@ -52,6 +52,7 @@
 
       <!-- Hero Section -->
       <section class="relative pt-24 pb-24">
+        <WireframeOverlay />
         <div class="mx-auto max-w-5xl px-6">
           <div class="sm:mx-auto lg:mr-auto">
             <!-- Animated content group -->
@@ -149,7 +150,8 @@
       </section>
 
       <!-- Features Section -->
-      <section class="relative py-32 overflow-hidden">
+      <section class="relative py-32">
+        <WireframeOverlay />
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
@@ -189,7 +191,8 @@
       </section>
 
       <!-- Themes Section -->
-      <section class="relative py-32 overflow-hidden">
+      <section class="relative py-32">
+        <WireframeOverlay />
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
@@ -213,7 +216,8 @@
       </section>
 
       <!-- AI Integration Section -->
-      <section class="relative py-32 overflow-hidden">
+      <section class="relative py-32">
+        <WireframeOverlay />
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
@@ -314,7 +318,8 @@
       </section>
 
       <!-- Markdown Support Section -->
-      <section class="relative min-h-screen py-20 overflow-hidden">
+      <section class="relative min-h-screen py-20">
+        <WireframeOverlay />
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
@@ -465,6 +470,7 @@ import DualImageDisplayCard from '@/components/DualImageDisplayCard.vue'
 import TripleImageDisplayCard from '@/components/TripleImageDisplayCard.vue'
 import MarkdownFeatureCard from '@/components/MarkdownFeatureCard.vue'
 import VerticalDisplayCards from '@/components/VerticalDisplayCards.vue'
+import WireframeOverlay from '@/components/WireframeOverlay.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
 import PurchaseNotificationTicker from '@/components/PurchaseNotificationTicker.vue'
