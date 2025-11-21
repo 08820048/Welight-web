@@ -414,15 +414,15 @@
                 </ul>
                 <!-- 云存储服务敬请期待 -->
                 <button v-if="product.code.includes('CLOUD_STORAGE')"
-                  class="w-full py-2 px-4 bg-gray-400 text-white rounded-lg font-semibold cursor-not-allowed shadow"
+                  class="w-full py-2 px-4 bg-gray-400 text-white rounded-md font-semibold cursor-not-allowed shadow"
                   disabled>
                   即将推出
                 </button>
-                <!-- 积分套餐购买 -->
+                <!-- 积分套餐购买（按钮风格与顶部“阅读文档”一致） -->
                 <div v-else-if="product.code.includes('CREDITS')" class="space-y-2">
                   <button @click="purchaseProduct(product)" :disabled="!isServiceCurrentlyAvailable"
                     :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
-                    class="w-full py-2 px-4 text-white rounded-lg font-semibold shadow transition-colors duration-200"
+                    class="relative inline-flex w-full items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white shadow transition-colors duration-200"
                     :class="{
                       'bg-gray-900 hover:bg-gray-800': isServiceCurrentlyAvailable,
                       'bg-gray-400 cursor-not-allowed': !isServiceCurrentlyAvailable
@@ -437,20 +437,17 @@
                     更多套餐
                   </button>
                 </div>
-                <!-- 许可证产品购买按钮 -->
+                <!-- 许可证产品购买按钮（与顶部“阅读文档”风格统一） -->
                 <div v-else-if="isLicenseProduct(product)" class="space-y-2 w-full">
-                  <div class="btn-container w-full btn-container-blue">
-                    <div class="btn-drawer transition-top">全网最低</div>
-                    <div class="btn-drawer transition-bottom">立即抢购</div>
-
-                    <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
-                      :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''" class="btn w-full"
-                      :class="{
-                        'opacity-50 cursor-not-allowed': !isServiceCurrentlyAvailable
-                      }">
-                      <span class="btn-text">{{ getPurchaseButtonText(product) }}</span>
-                    </button>
-                  </div>
+                  <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
+                    :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
+                    class="relative inline-flex w-full items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white shadow transition-colors duration-200"
+                    :class="{
+                      'bg-gray-900 hover:bg-gray-800': isServiceCurrentlyAvailable,
+                      'bg-gray-400 cursor-not-allowed': !isServiceCurrentlyAvailable
+                    }">
+                    {{ getPurchaseButtonText(product) }}
+                  </button>
                   <button @click="openRenewModal" :disabled="!isServiceCurrentlyAvailable"
                     class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
                       'bg-gray-50 text-gray-900 border-gray-200 hover:bg-gray-100': isServiceCurrentlyAvailable,
@@ -459,19 +456,16 @@
                     产品续费
                   </button>
                 </div>
-                <!-- 其他产品正常购买按钮 -->
-                <div v-else class="btn-container w-full" :class="{
-                  'btn-container-orange': product.code.includes('AI_SERVICE')
-                }">
-                  <div class="btn-drawer transition-top">全网最低</div>
-                  <div class="btn-drawer transition-bottom">立即抢购</div>
-
+                <!-- 其他产品正常购买按钮（与顶部“阅读文档”风格统一） -->
+                <div v-else class="w-full">
                   <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
-                    :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''" class="btn w-full"
+                    :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
+                    class="relative inline-flex w-full items-center justify-center rounded-md px-4 py-2 text-sm font-medium text-white shadow transition-colors duration-200"
                     :class="{
-                      'opacity-50 cursor-not-allowed': !isServiceCurrentlyAvailable
+                      'bg-gray-900 hover:bg-gray-800': isServiceCurrentlyAvailable,
+                      'bg-gray-400 cursor-not-allowed': !isServiceCurrentlyAvailable
                     }">
-                    <span class="btn-text">{{ getPurchaseButtonText(product) }}</span>
+                    {{ getPurchaseButtonText(product) }}
                   </button>
                 </div>
                 <!-- 右上角条状标签 - 参考源码实现 -->
