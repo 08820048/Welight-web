@@ -25,7 +25,31 @@
             首页
           </router-link>
 
-          <!-- 交流反馈下拉菜单 -->
+          <router-link to="/pricing"
+            class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+            active-class="bg-gray-100 text-gray-900">
+            定价
+          </router-link>
+
+          <router-link to="/donation"
+            class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+            active-class="bg-gray-100 text-gray-900">
+            赞助
+          </router-link>
+
+          <button @click="showAnnouncements"
+            class="relative inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
+            公告
+            <div v-if="hasNewAnnouncements"
+              class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+          </button>
+
+          <button @click="showChangelog"
+            class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
+            更新日志
+          </button>
+
+          <!-- 交流反馈下拉菜单，移动到最后 -->
           <div class="relative group">
             <button
               class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
@@ -79,32 +103,6 @@
               </div>
             </div>
           </div>
-
-          <button @click="showAnnouncements"
-            class="relative inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
-            公告
-            <div v-if="hasNewAnnouncements"
-              class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-          </button>
-
-          <router-link to="/pricing"
-            class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
-            active-class="bg-gray-100 text-gray-900">
-            定价
-          </router-link>
-
-          <router-link to="/donation"
-            class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
-            active-class="bg-gray-100 text-gray-900">
-            赞助
-          </router-link>
-
-          <button @click="showChangelog"
-            class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
-            更新日志
-          </button>
-
-
         </div>
 
         <!-- Right: Action Buttons + Activity Menu -->
@@ -183,12 +181,6 @@
               首页
             </router-link>
 
-            <button @click="showAnnouncements(); closeMobileMenu()"
-              class="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors flex items-center justify-between">
-              <span>公告</span>
-              <div v-if="hasNewAnnouncements" class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-            </button>
-
             <router-link to="/pricing" @click="closeMobileMenu"
               class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
               定价
@@ -199,13 +191,18 @@
               赞助
             </router-link>
 
+            <button @click="showAnnouncements(); closeMobileMenu()"
+              class="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors flex items-center justify-between">
+              <span>公告</span>
+              <div v-if="hasNewAnnouncements" class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
+            </button>
+
             <button @click="showChangelog(); closeMobileMenu()"
               class="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
               更新日志
             </button>
 
-
-            <!-- 交流反馈 -->
+            <!-- 交流反馈，移动到最后 -->
             <div class="border-t border-gray-200 pt-4 mt-4">
               <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">交流反馈</div>
               <a href="https://qm.qq.com/q/nNA64h5d6K" target="_blank" @click="closeMobileMenu"
