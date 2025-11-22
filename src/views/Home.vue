@@ -187,77 +187,21 @@
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <AnimatedUnderlineText text="一站式智能体验" text-className="text-4xl md:text-5xl font-bold text-gray-900"
-              underline-className="text-gray-900" />
-            <MagicText text="集成多个主流 AI 模型，为你的写作提供智能辅助" container-className="mt-6 justify-center"
-              word-className="text-xl text-gray-500" />
+            <AnimatedUnderlineText
+              text="一站式智能体验"
+              text-className="text-4xl md:text-5xl font-bold text-gray-900"
+              underline-className="text-gray-900"
+            />
+            <MagicText
+              text="集成多个主流 AI 模型，为你的写作提供智能辅助"
+              container-className="mt-6 justify-center max-w-2xl mx-auto"
+              word-className="text-lg md:text-xl text-gray-600"
+            />
           </div>
 
-          <!-- AI Models showcase -->
-          <div class="mb-20">
-            <!-- Models grid -->
-            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-              <!-- DeepSeek -->
-              <div class="group scroll-animate">
-                <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
-                  <div
-                    class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
-                    <img src="https://images.waer.ltd/notes/202508281524593.png" alt="DeepSeek Logo"
-                      class="w-full h-full object-contain" loading="lazy" />
-                  </div>
-                  <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">DeepSeek
-                  </h4>
-                </div>
-              </div>
-
-              <!-- 智谱 -->
-              <div class="group scroll-animate">
-                <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
-                  <div
-                    class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
-                    <img src="/智谱.png" alt="智谱 Logo" class="w-full h-full object-contain" loading="lazy" />
-                  </div>
-                  <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">智谱</h4>
-                </div>
-              </div>
-
-              <!-- Qwen -->
-              <div class="group scroll-animate">
-                <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
-                  <div
-                    class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
-                    <img src="/qwen.png" alt="Qwen Logo" class="w-full h-full object-contain" loading="lazy" />
-                  </div>
-                  <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">Qwen</h4>
-                </div>
-              </div>
-
-              <!-- Kimi -->
-              <div class="group scroll-animate">
-                <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
-                  <div
-                    class="w-16 h-16 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all">
-                    <img src="/kimi.png" alt="Kimi Logo" class="w-full h-full object-contain" loading="lazy" />
-                  </div>
-                  <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">Kimi</h4>
-                </div>
-              </div>
-
-              <!-- Ollama -->
-              <div class="group scroll-animate">
-                <div class="flex flex-col items-center gap-3 p-4 hover:bg-gray-50 rounded-lg transition-colors">
-                  <div
-                    class="w-16 h-16 flex items-center justify-center relative grayscale group-hover:grayscale-0 transition-all">
-                    <img src="https://images.waer.ltd/notes/202509050835689.png" alt="Ollama Logo"
-                      class="w-full h-full object-contain" loading="lazy" />
-                    <!-- 本地模型标签 -->
-                    <span
-                      class="absolute -top-1 -right-1 text-[10px] text-green-700 bg-green-100 px-1.5 py-0.5 rounded-full font-medium">本地</span>
-                  </div>
-                  <h4 class="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">Ollama</h4>
-                </div>
-              </div>
-            </div>
+          <!-- AI Models Glass Logo Carousel -->
+          <div class="relative mb-16 scroll-animate" style="transition-delay: 0.15s;">
+            <LogoCarousel :logos="aiModelLogos" :column-count="aiModelLogos.length" />
           </div>
 
           <!-- AI Features showcase -->
@@ -394,6 +338,7 @@ import WireframeOverlay from '@/components/WireframeOverlay.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
 import PurchaseNotificationTicker from '@/components/PurchaseNotificationTicker.vue'
+import LogoCarousel from '@/components/LogoCarousel.vue'
 import { Wand2, Command, Copy, BarChart3, Palette, Sparkles, FileText, Code, Table, Calculator, Puzzle, BarChart } from 'lucide-vue-next'
 
 // SEO配置
@@ -459,6 +404,35 @@ const aiLeftFeatures = [
   {
     title: '图库系统',
     description: '集成各大图片平台，超上万张图片资源免费使用，内置图床一键上传复用'
+  }
+]
+
+// AI Models logos for glass carousel
+const aiModelLogos = [
+  {
+    id: 'deepseek',
+    name: 'DeepSeek',
+    src: 'https://images.waer.ltd/notes/202508281524593.png'
+  },
+  {
+    id: 'zhipu',
+    name: '智谱',
+    src: '/智谱.png'
+  },
+  {
+    id: 'qwen',
+    name: 'Qwen',
+    src: '/qwen.png'
+  },
+  {
+    id: 'kimi',
+    name: 'Kimi',
+    src: '/kimi.png'
+  },
+  {
+    id: 'ollama',
+    name: 'Ollama',
+    src: 'https://images.waer.ltd/notes/202509050835689.png'
   }
 ]
 
@@ -536,6 +510,7 @@ function loadConfettiLibrary() {
 
     const script = document.createElement('script')
     script.src = 'https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js'
+
     script.onload = () => resolve()
     script.onerror = () => reject(new Error('Failed to load confetti library'))
     document.head.appendChild(script)
