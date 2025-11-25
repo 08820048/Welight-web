@@ -28,18 +28,18 @@
           <router-link to="/pricing"
             class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
             active-class="bg-gray-100 text-gray-900">
-            定价
+            购买许可
           </router-link>
 
           <router-link to="/donation"
             class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
             active-class="bg-gray-100 text-gray-900">
-            赞助
+            赞助支持
           </router-link>
 
           <button @click="showAnnouncements"
             class="relative inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
-            公告
+            公告通知
             <div v-if="hasNewAnnouncements"
               class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
           </button>
@@ -183,12 +183,12 @@
 
             <router-link to="/pricing" @click="closeMobileMenu"
               class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
-              定价
+              购买许可
             </router-link>
 
             <router-link to="/donation" @click="closeMobileMenu"
               class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
-              赞助
+              赞助支持
             </router-link>
 
             <button @click="showAnnouncements(); closeMobileMenu()"

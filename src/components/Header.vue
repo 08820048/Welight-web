@@ -25,12 +25,12 @@
           </router-link>
           <button @click="showAnnouncements"
             class="relative hover:text-slate-900 transition-colors font-medium flex items-center gap-1.5">
-            公告
+            公告通知
             <div v-if="hasNewAnnouncements" class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
           </button>
           <router-link to="/pricing" class="hover:text-slate-900 transition-colors font-medium relative"
             active-class="text-primary-600">
-            定价
+            购买许可
             <!-- <span
               class="absolute -top-2 -right-3 text-white text-xs px-1.5 py-0.5 rounded-full font-bold shadow-sm bg-gradient-to-r from-red-500 to-orange-500 scale-90">
               庆
@@ -39,7 +39,7 @@
           <router-link to="/donation"
             class="hover:text-slate-900 transition-colors font-medium relative flex items-center gap-1.5"
             active-class="text-primary-600">
-            赞助
+            赞助支持
             <!-- <div v-if="donationCount > 0"
               class="bg-yellow-400 text-slate-900 text-xs px-1.5 py-0.5 rounded-full font-bold min-w-[20px] text-center shadow-sm scale-75">
               +{{ donationCount }}
@@ -198,7 +198,7 @@
           </router-link>
           <router-link to="/pricing" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
-            定价
+            购买许可
           </router-link>
           <router-link to="/download" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
