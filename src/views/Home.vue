@@ -168,15 +168,21 @@
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <AnimatedUnderlineText text="丰富多样的排版主题" text-className="text-4xl md:text-5xl font-bold text-gray-900"
-              underline-className="text-gray-900" />
-            <MagicText text="精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果" container-className="mt-6 justify-center"
-              word-className="text-xl text-gray-500" />
+            <AnimatedUnderlineText
+              text="丰富多样的排版主题"
+              text-className="text-4xl md:text-5xl font-bold text-gray-900"
+              underline-className="text-gray-900"
+            />
+            <MagicText
+              text="精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果"
+              container-className="mt-6 justify-center"
+              word-className="text-xl text-gray-500"
+            />
           </div>
 
-          <!-- Themes showcase - Focus Cards style (基于 DisplayCards + FocusCards 视觉) -->
+          <!-- Themes showcase - Testimonials Column style -->
           <div class="scroll-animate">
-            <ThemeFocusCards />
+            <ThemeTestimonials />
           </div>
         </div>
       </section>
@@ -326,7 +332,7 @@ import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
 import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
-import ThemeFocusCards from '@/components/ThemeFocusCards.vue'
+import ThemeTestimonials from '@/components/ThemeTestimonials.vue'
 import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import DisplayCards from '@/components/DisplayCards.vue'
 import ImageDisplayCard from '@/components/ImageDisplayCard.vue'

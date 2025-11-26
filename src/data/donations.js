@@ -66,6 +66,16 @@ export const donations = [
     channel: '收钱码收款',
     specialTag: null,
     isSpecial: false
+  },
+  {
+    id: '20251125232600',
+    amount: 50.0,
+    donorName: '问不倒的闪耀',
+    donationDate: '2025-11-25T23:26:00+08:00',
+    message: '专属赞助',
+    channel: '微信红包',
+    specialTag: null,
+    isSpecial: false
   }
   // 可以在这里添加更多致谢记录
 ]
