@@ -2,19 +2,10 @@
   <section class="bg-transparent relative">
     <div class="container z-10 mx-auto">
       <div
-        class="flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden"
-      >
+        class="flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
         <TestimonialsColumn :images="firstColumn" :duration="15" />
-        <TestimonialsColumn
-          :images="secondColumn"
-          :duration="19"
-          class-name="hidden md:block"
-        />
-        <TestimonialsColumn
-          :images="thirdColumn"
-          :duration="17"
-          class-name="hidden lg:block"
-        />
+        <TestimonialsColumn :images="secondColumn" :duration="19" class-name="hidden md:block" />
+        <TestimonialsColumn :images="thirdColumn" :duration="17" class-name="hidden lg:block" />
       </div>
     </div>
   </section>
@@ -34,8 +25,8 @@ const themeImages = [
   'https://images.waer.ltd/notes/202510192005700.jpg'  // 童趣彩虹
 ]
 
-const firstColumn = computed(() => [themeImages[0], themeImages[1]])
-const secondColumn = computed(() => [themeImages[2], themeImages[3]])
-const thirdColumn = computed(() => [themeImages[4], themeImages[5]])
+// 自动按列分配图片：任何长度的 themeImages 都可以，按索引 % 3 分到三列
+const firstColumn = computed(() => themeImages.filter((_, index) => index % 3 === 0))
+const secondColumn = computed(() => themeImages.filter((_, index) => index % 3 === 1))
+const thirdColumn = computed(() => themeImages.filter((_, index) => index % 3 === 2))
 </script>
-
