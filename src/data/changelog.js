@@ -1,11 +1,27 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '4.1.0',
+    version: '4.1.1',
     date: '2025-11-29',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      improvements: ['清理冗余无用的显示和一些描述'],
+      fixes: [
+        '修复无序列表和加粗语法混用导致的公众号显示自动换行的问题',
+        '修复主题面板中的字体设置无效的问题',
+        '修复引用块过高的问题',
+        '其他已知细节处理'
+      ]
+    }
+  },
+  {
+    version: '4.1.0',
+    date: '2025-11-29',
+    type: 'release',
+    badge: '',
+    badgeColor: '',
     changes: {
       features: [
         '新增markdown格式的导入导出、html导出、pdf导出',

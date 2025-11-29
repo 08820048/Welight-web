@@ -19,12 +19,12 @@
               </div>
               <div class="flex-1 min-w-0">
                 <div class="flex items-center space-x-2 mb-0.5 flex-wrap">
-                  <span class="text-base sm:text-lg font-semibold text-gray-900">🎉 Welight v4.1.0 已发布！</span>
+                  <span class="text-base sm:text-lg font-semibold text-gray-900">🎉 Welight v4.1.1 已发布！</span>
                   <span
                     class="bg-gray-900 text-white text-xs px-2 py-0.5 rounded-md font-medium whitespace-nowrap">最新版本</span>
                 </div>
                 <p class="text-sm text-gray-600 truncate sm:whitespace-normal">
-                 全新UI界面调整、安装包精简、多个功能增强,主题丰富
+                  全新UI界面调整、安装包精简、多个功能增强,主题丰富
                   <span class="font-medium text-gray-900">建议下载更新！</span>
                 </p>
               </div>
@@ -545,7 +545,7 @@ const showBanner = ref(false)
 const bannerVisible = ref(false)
 
 // 当前版本号
-const currentVersion = '4.1.0'
+const currentVersion = '4.1.1'
 
 // 检查是否应该显示版本横幅
 const shouldShowVersionBanner = () => {
@@ -691,12 +691,12 @@ const downloadFile = async (platform) => {
 
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.1.0_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.1.0_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.1.0_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.1.0_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.1.0_amd64.AppImage',
-      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.1.0_amd64.deb'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.1.1_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.1.1_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.1.1_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.1.1_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.1.1_amd64.AppImage',
+      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.1.1_amd64.deb'
     }
 
     const downloadUrl = downloadUrls[platform]
