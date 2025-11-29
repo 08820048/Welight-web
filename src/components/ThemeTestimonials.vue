@@ -22,7 +22,19 @@ const themeImages = [
   'https://images.waer.ltd/notes/202510192005760.jpg', // 极简序列
   'https://images.waer.ltd/notes/202510192005773.jpg', // 诗意简约
   'https://images.waer.ltd/notes/202510192005663.jpg', // 赤焰丹心
-  'https://images.waer.ltd/notes/202510192005700.jpg'  // 童趣彩虹
+  'https://images.waer.ltd/notes/202511291501158.PNG',  // 童趣彩虹
+  'https://images.waer.ltd/notes/202511291458238.PNG',
+  'https://images.waer.ltd/notes/202511291458206.PNG',
+  'https://images.waer.ltd/notes/202511291458714.PNG',
+  'https://images.waer.ltd/notes/202511291458703.PNG',
+  'https://images.waer.ltd/notes/202511291458748.PNG',
+  'https://images.waer.ltd/notes/202511291458723.PNG',
+  'https://images.waer.ltd/notes/202511291458736.PNG',
+  'https://images.waer.ltd/notes/202511291458679.PNG',
+  'https://images.waer.ltd/notes/202511291500373.PNG',
+  'https://images.waer.ltd/notes/202511291500394.PNG',
+  'https://images.waer.ltd/notes/202511291501734.PNG',
+  'https://images.waer.ltd/notes/202511291501119.PNG',
 ]
 
 // 自动按列分配图片：任何长度的 themeImages 都可以，按索引 % 3 分到三列

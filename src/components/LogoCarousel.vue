@@ -1,36 +1,21 @@
 <template>
   <div class="flex justify-center">
-    <div
-      class="inline-flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:gap-x-10 px-2 md:px-0">
-      <div
-        v-for="(logo, index) in visibleLogos"
-        :key="logo.id || index"
-        class="flex flex-col items-center gap-1 text-center logo-wave"
-        :style="{ animationDelay: `${index * 0.18}s` }">
+    <div class="inline-flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:gap-x-10 px-2 md:px-0">
+      <div v-for="(logo, index) in visibleLogos" :key="logo.id || index"
+        class="flex flex-col items-center gap-1 text-center logo-wave" :style="{ animationDelay: `${index * 0.18}s` }">
         <!-- 图片阶段：只显示 logo -->
-        <div
-          v-if="phases[index] === 'image'"
+        <div v-if="phases[index] === 'image'"
           class="relative h-10 w-20 md:h-12 md:w-28 flex items-center justify-center overflow-hidden">
-          <Transition
-            mode="out-in"
-            enter-active-class="transition-opacity duration-400 ease-out"
-            enter-from-class="opacity-0"
-            enter-to-class="opacity-100"
-            leave-active-class="transition-opacity duration-300 ease-in"
-            leave-from-class="opacity-100"
+          <Transition mode="out-in" enter-active-class="transition-opacity duration-400 ease-out"
+            enter-from-class="opacity-0" enter-to-class="opacity-100"
+            leave-active-class="transition-opacity duration-300 ease-in" leave-from-class="opacity-100"
             leave-to-class="opacity-0">
-            <img
-              :key="logo.id || index"
-              :src="logo.src"
-              :alt="logo.name"
-              class="h-full w-full max-h-[80%] max-w-[80%] object-contain"
-              loading="lazy"
-            />
+            <img :key="logo.id || index" :src="logo.src" :alt="logo.name"
+              class="h-full w-full max-h-[80%] max-w-[80%] object-contain" loading="lazy" />
           </Transition>
         </div>
         <!-- 文本阶段：只显示模型名称 -->
-        <p
-          v-else-if="phases[index] === 'text'"
+        <p v-else-if="phases[index] === 'text'"
           class="text-[11px] md:text-xs text-gray-500 min-h-[1.25rem] flex items-center justify-center">
           {{ logo.name }}
         </p>
@@ -60,10 +45,10 @@ const phases = ref([])
 let timer = null
 
 
-// 固定 5 列：每个模型一列
+// 显示所有传入的 logo
 const visibleLogos = computed(() => {
   if (!props.logos.length) return []
-  return props.logos.slice(0, 5)
+  return props.logos
 })
 
 const cycleInterval = 2600
@@ -98,12 +83,16 @@ onBeforeUnmount(() => {
 
 <style scoped>
 @keyframes logo-wave-bounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   25% {
     transform: translateY(-6px);
   }
+
   75% {
     transform: translateY(4px);
   }

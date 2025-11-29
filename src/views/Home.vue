@@ -10,8 +10,7 @@
           <div class="flex items-center justify-between py-3 px-4 sm:px-6">
             <div class="flex items-center space-x-3 sm:space-x-4 flex-1 min-w-0">
               <div class="flex-shrink-0">
-                <div
-                  class="w-10 h-10 bg-gray-900 rounded-xl flex items-center justify-center">
+                <div class="w-10 h-10 bg-gray-900 rounded-xl flex items-center justify-center">
                   <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                       d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -20,11 +19,12 @@
               </div>
               <div class="flex-1 min-w-0">
                 <div class="flex items-center space-x-2 mb-0.5 flex-wrap">
-                  <span class="text-base sm:text-lg font-semibold text-gray-900">🎉 Welight v4.0.0 已发布！</span>
-                  <span class="bg-gray-900 text-white text-xs px-2 py-0.5 rounded-md font-medium whitespace-nowrap">最新版本</span>
+                  <span class="text-base sm:text-lg font-semibold text-gray-900">🎉 Welight v4.1.0 已发布！</span>
+                  <span
+                    class="bg-gray-900 text-white text-xs px-2 py-0.5 rounded-md font-medium whitespace-nowrap">最新版本</span>
                 </div>
                 <p class="text-sm text-gray-600 truncate sm:whitespace-normal">
-                  全新幼圆字体设计，优化电路板背景效果，提升视觉体验！
+                 全新UI界面调整、安装包精简、多个功能增强,主题丰富
                   <span class="font-medium text-gray-900">建议下载更新！</span>
                 </p>
               </div>
@@ -124,8 +124,8 @@
           :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 1.0 } }"
           class="relative mt-8 px-2 sm:mt-12 md:mt-20">
           <TripleImageDisplayCard image1="https://images.waer.ltd/notes/202511181320742.png"
-            image2="https://images.waer.ltd/notes/202511181307147.png"
-            image3="https://images.waer.ltd/notes/202511181717594.png" alt1="Welight 编辑界面" alt2="Welight 产品展示"
+            image2="https://images.waer.ltd/notes/202511291504772.png"
+            image3="https://images.waer.ltd/notes/202511291504772.png" alt1="Welight 编辑界面" alt2="Welight 产品展示"
             alt3="Welight 功能展示" />
         </div>
       </section>
@@ -144,7 +144,7 @@
 
           <!-- Hero Image with DisplayCard Style -->
           <div class="mb-24 scroll-animate">
-            <ImageDisplayCard image-url="https://images.waer.ltd/notes/202510241638251.png" alt="Welight 核心特性展示" />
+            <ImageDisplayCard image-url="https://images.waer.ltd/notes/202511291509882.png" alt="Welight 核心特性展示" />
           </div>
 
           <!-- Features Display Cards -->
@@ -168,16 +168,10 @@
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <AnimatedUnderlineText
-              text="丰富多样的排版主题"
-              text-className="text-4xl md:text-5xl font-bold text-gray-900"
-              underline-className="text-gray-900"
-            />
-            <MagicText
-              text="精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果"
-              container-className="mt-6 justify-center"
-              word-className="text-xl text-gray-500"
-            />
+            <AnimatedUnderlineText text="丰富多样的排版主题" text-className="text-4xl md:text-5xl font-bold text-gray-900"
+              underline-className="text-gray-900" />
+            <MagicText text="精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果" container-className="mt-6 justify-center"
+              word-className="text-xl text-gray-500" />
           </div>
 
           <!-- Themes showcase - Testimonials Column style -->
@@ -193,16 +187,10 @@
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <AnimatedUnderlineText
-              text="一站式智能体验"
-              text-className="text-4xl md:text-5xl font-bold text-gray-900"
-              underline-className="text-gray-900"
-            />
-            <MagicText
-              text="集成多个主流 AI 模型，为你的写作提供智能辅助"
-              container-className="mt-6 justify-center max-w-2xl mx-auto"
-              word-className="text-lg md:text-xl text-gray-600"
-            />
+            <AnimatedUnderlineText text="一站式智能体验" text-className="text-4xl md:text-5xl font-bold text-gray-900"
+              underline-className="text-gray-900" />
+            <MagicText text="集成多个主流 AI 模型，为你的写作提供智能辅助" container-className="mt-6 justify-center max-w-2xl mx-auto"
+              word-className="text-lg md:text-xl text-gray-600" />
           </div>
 
           <!-- AI Models Glass Logo Carousel -->
@@ -360,8 +348,8 @@ const featuresGroup1 = [
   },
   {
     icon: Command,
-    title: 'Slash 命令菜单',
-    description: '输入斜杠即可打开命令菜单，快速插入语法、操作功能',
+    title: 'AI快捷文生图',
+    description: '集成阿里千文系统、快手kolors文生图模型,一句话即可参加自己的佳作',
     titleClassName: 'text-gray-900',
   },
   {
@@ -396,8 +384,8 @@ const featuresGroup2 = [
 // AI Features Data - Left side
 const aiLeftFeatures = [
   {
-    title: '划词搜图',
-    description: '根据选中的关键词文本，一键搜索相关图片资源'
+    title: '转微信外链',
+    description: '根据引用的链接自动生成微信外链引用'
   },
   {
     title: 'AI 图表',
@@ -439,7 +427,13 @@ const aiModelLogos = [
     id: 'ollama',
     name: 'Ollama',
     src: 'https://images.waer.ltd/notes/202509050835689.png'
+  },
+  {
+    id: '豆包',
+    name: '豆包',
+    src: 'https://images.waer.ltd/notes/202511291516954.jpeg'
   }
+
 ]
 
 // AI Features Data - Right side
@@ -453,8 +447,8 @@ const aiRightFeatures = [
     description: '内置 13 种不同语言的 AI 翻译支持，跨语言沟通无障碍'
   },
   {
-    title: '快捷转换',
-    description: '内置 AI 文本格式智能转换，TXT 一键转写 Markdown，没有语法门槛'
+    title: '代码生成',
+    description: '根据文本语语意,一键生成对应的代码,技术文章高效创作'
   },
   {
     title: '内容润色',
@@ -551,7 +545,7 @@ const showBanner = ref(false)
 const bannerVisible = ref(false)
 
 // 当前版本号
-const currentVersion = '4.0.0'
+const currentVersion = '4.1.0'
 
 // 检查是否应该显示版本横幅
 const shouldShowVersionBanner = () => {
@@ -697,12 +691,12 @@ const downloadFile = async (platform) => {
 
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.0.1_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.0.1_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.0.1_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.0.1_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.0.1_amd64.AppImage',
-      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.0.1_amd64.deb'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.1.0_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.1.0_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.1.0_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.1.0_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.1.0_amd64.AppImage',
+      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.1.0_amd64.deb'
     }
 
     const downloadUrl = downloadUrls[platform]
