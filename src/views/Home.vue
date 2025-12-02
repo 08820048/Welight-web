@@ -130,6 +130,25 @@
         </div>
       </section>
 
+      <!-- Themes Section -->
+      <section class="relative py-32">
+        <WireframeOverlay class="wireframe-py-32" />
+        <div class="relative container-custom">
+          <!-- Section header -->
+          <div class="mb-20 scroll-animate">
+            <AnimatedUnderlineText text="丰富多样的排版主题" text-className="text-4xl md:text-5xl font-bold text-gray-900"
+              underline-className="text-gray-900" />
+            <MagicText text="精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果" container-className="mt-6 justify-center"
+              word-className="text-xl text-gray-500" />
+          </div>
+
+          <!-- Themes showcase - Testimonials Column style -->
+          <div class="scroll-animate">
+            <ThemeTestimonials />
+          </div>
+        </div>
+      </section>
+
       <!-- Features Section -->
       <section class="relative py-32">
         <WireframeOverlay class="wireframe-features" />
@@ -158,25 +177,6 @@
             <div class="scroll-animate flex justify-center">
               <DisplayCards :cards="featuresGroup2" />
             </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Themes Section -->
-      <section class="relative py-32">
-        <WireframeOverlay class="wireframe-py-32" />
-        <div class="relative container-custom">
-          <!-- Section header -->
-          <div class="mb-20 scroll-animate">
-            <AnimatedUnderlineText text="丰富多样的排版主题" text-className="text-4xl md:text-5xl font-bold text-gray-900"
-              underline-className="text-gray-900" />
-            <MagicText text="精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果" container-className="mt-6 justify-center"
-              word-className="text-xl text-gray-500" />
-          </div>
-
-          <!-- Themes showcase - Testimonials Column style -->
-          <div class="scroll-animate">
-            <ThemeTestimonials />
           </div>
         </div>
       </section>
