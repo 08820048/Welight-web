@@ -79,7 +79,8 @@
 
         <!-- 加载状态 -->
         <div v-else-if="loading" class="text-center py-12">
-          <div class="animate-spin inline-block w-8 h-8 border-4 border-gray-900 border-t-transparent rounded-full"></div>
+          <div class="animate-spin inline-block w-8 h-8 border-4 border-gray-900 border-t-transparent rounded-full">
+          </div>
           <p class="mt-4 text-gray-600">加载积分套餐中...</p>
         </div>
 
@@ -131,7 +132,7 @@
               <label class="block text-sm font-medium text-gray-900 mb-2">邮箱 <span class="text-red-500">*</span></label>
               <input v-model="purchaseForm.customerEmail" type="email" required
                 class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-900"
-                placeholder="请输入您的邮箱">
+                placeholder="请输入您购买许可证时绑定的邮箱">
             </div>
           </div>
 
@@ -153,9 +154,19 @@
 
           <!-- 购买按钮 -->
           <div class="mt-6">
-            <button @click="handlePurchase" :disabled="!canPurchase || purchasing"
+            <button @click="handlePurchase" :disabled="!canPurchase || purchasing || checkingLicense"
               class="w-full py-3 px-6 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-400 text-white rounded-lg font-semibold shadow transition-colors duration-200">
-              <span v-if="purchasing" class="flex items-center justify-center">
+              <span v-if="checkingLicense" class="flex items-center justify-center">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                  </path>
+                </svg>
+                正在验证许可证...
+              </span>
+              <span v-else-if="purchasing" class="flex items-center justify-center">
                 <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
                   viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -197,6 +208,48 @@
       <!-- 错误信息 -->
       <div v-if="errorMessage" class="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
         <div class="text-red-700">{{ errorMessage }}</div>
+      </div>
+
+      <!-- 积分购买确认对话框 -->
+      <div v-if="showConfirmDialog" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+        style="z-index: 10000;">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4 shadow-2xl">
+          <!-- 标题 -->
+          <div class="flex items-center mb-4">
+            <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+              <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900">购买须知</h3>
+          </div>
+
+          <!-- 内容 -->
+          <div class="mb-6 text-gray-700 text-sm leading-relaxed">
+            <p class="mb-3">
+              由于积分需要和购买许可证的邮箱进行绑定使用，因此<span class="font-semibold text-red-600">试用期期间无法购买积分</span>。
+            </p>
+            <p class="mb-3">
+              请确保您已购买了许可证并正常激活后再购买积分套餐。
+            </p>
+            <p class="text-red-600 font-semibold">
+              ⚠️ 积分购买后不支持退款，请务必确认后再进行购买。
+            </p>
+          </div>
+
+          <!-- 按钮 -->
+          <div class="flex space-x-3">
+            <button @click="cancelPurchase"
+              class="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors duration-200">
+              取消
+            </button>
+            <button @click="confirmPurchase"
+              class="flex-1 py-2.5 px-4 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-medium transition-colors duration-200">
+              我已了解，继续购买
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -246,6 +299,13 @@ const purchaseForm = ref({
   customerEmail: '',
   paymentMethod: PAYMENT_METHODS.WECHAT_NATIVE
 })
+
+// 确认对话框相关
+const showConfirmDialog = ref(false)
+let confirmDialogResolve = null
+
+// 许可证检查相关
+const checkingLicense = ref(false)
 
 // 计算属性
 const canPurchase = computed(() => {
@@ -379,8 +439,84 @@ function getFinalPrice() {
   return selectedPackage.value.currentPrice
 }
 
+// 显示积分购买确认对话框
+function showCreditsConfirmDialog() {
+  return new Promise((resolve) => {
+    confirmDialogResolve = resolve
+    showConfirmDialog.value = true
+  })
+}
+
+// 确认购买
+function confirmPurchase() {
+  showConfirmDialog.value = false
+  if (confirmDialogResolve) {
+    confirmDialogResolve(true)
+    confirmDialogResolve = null
+  }
+}
+
+// 取消购买
+function cancelPurchase() {
+  showConfirmDialog.value = false
+  if (confirmDialogResolve) {
+    confirmDialogResolve(false)
+    confirmDialogResolve = null
+  }
+}
+
+// 检查用户邮箱是否绑定有效许可证
+async function checkLicenseStatus(email) {
+  try {
+    checkingLicense.value = true
+    const response = await fetch(`https://ilikexff.cn/api/credits/check-license/${encodeURIComponent(email)}`)
+    const result = await response.json()
+
+    if (result.code === 200 && result.data) {
+      return {
+        success: true,
+        hasValidLicense: result.data.hasValidLicense,
+        statusMessage: result.data.statusMessage,
+        suggestion: result.data.suggestion
+      }
+    } else {
+      return {
+        success: false,
+        hasValidLicense: false,
+        statusMessage: result.message || '许可证状态检查失败',
+        suggestion: '请稍后重试或联系客服'
+      }
+    }
+  } catch (error) {
+    console.error('检查许可证状态失败:', error)
+    return {
+      success: false,
+      hasValidLicense: false,
+      statusMessage: '网络错误，无法检查许可证状态',
+      suggestion: '请检查网络连接后重试'
+    }
+  } finally {
+    checkingLicense.value = false
+  }
+}
+
 async function handlePurchase() {
   if (!canPurchase.value) return
+
+  // 显示确认框，提醒用户积分需要绑定许可证邮箱使用
+  const confirmed = await showCreditsConfirmDialog()
+  if (!confirmed) {
+    return // 用户点击取消，直接返回
+  }
+
+  const customerEmail = purchaseForm.value.customerEmail.trim()
+
+  // 检查用户邮箱是否绑定有效许可证
+  const licenseCheck = await checkLicenseStatus(customerEmail)
+  if (!licenseCheck.hasValidLicense) {
+    errorMessage.value = `${licenseCheck.statusMessage}${licenseCheck.suggestion ? '。' + licenseCheck.suggestion : ''}`
+    return
+  }
 
   try {
     purchasing.value = true
@@ -389,7 +525,7 @@ async function handlePurchase() {
     const orderData = {
       packageCode: selectedPackage.value.packageCode,
       customerName: purchaseForm.value.customerName.trim(),
-      customerEmail: purchaseForm.value.customerEmail.trim(),
+      customerEmail: customerEmail,
       paymentMethod: purchaseForm.value.paymentMethod
     }
 
