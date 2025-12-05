@@ -1,11 +1,23 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '4.1.1',
-    date: '2025-11-29',
+    version: '4.1.2',
+    date: '2025-12-04',
     type: 'release',
     badge: '最新版本',
     badgeColor: 'green',
+    changes: {
+      features: ['新增W009、W015、W016、W017、W018主题'],
+      improvements: ['完善左上角系统级别的菜单栏功能'],
+      fixes: ['修复试用期期间积分显示异常的问题', '修复试用期内置图床服务不能正常使用的问题']
+    }
+  },
+  {
+    version: '4.1.1',
+    date: '2025-11-29',
+    type: 'release',
+    badge: '',
+    badgeColor: '',
     changes: {
       improvements: ['清理冗余无用的显示和一些描述'],
       fixes: [

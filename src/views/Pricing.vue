@@ -389,14 +389,12 @@
                     <li><span class="text-gray-900">✔</span> 永久有效</li>
                     <li><span class="text-gray-900">✔</span> 灵活消费</li>
                     <li><span class="text-gray-900">✔</span> 按需使用</li>
-                    <li><span class="text-gray-900">✔</span> 免费更新</li>
-                    <li><span class="text-gray-900">✔</span> 技术支持</li>
                   </template>
                   <!-- 许可证产品功能列表 -->
                   <template v-else-if="isLicenseProduct(product)">
                     <li><span class="text-gray-900">✔</span> {{ product.validityDays }}天有效期</li>
                     <li><span class="text-gray-900">✔</span> 附赠 150 积分</li>
-                    <li><span class="text-gray-900">✔</span> 7天免费试用</li>
+                    <li><span class="text-gray-900">✔</span> 7天试用期(含300试用积分)</li>
                     <li><span class="text-gray-900">✔</span> 支持 {{ product.maxActivations }} 台设备激活</li>
                     <li><span class="text-gray-900">✔</span> 网页版和桌面端共用</li>
                     <li><span class="text-gray-900">✔</span> 所有核心功能</li>
@@ -408,8 +406,6 @@
                     <li v-if="product.code.includes('AI_SERVICE')"><span class="text-gray-900">✔</span> 支持应用内所有AI功能</li>
                     <li v-if="product.code.includes('CLOUD_STORAGE')"><span class="text-gray-900">✔</span> 云端存储服务</li>
                     <li v-else><span class="text-gray-900">✔</span> {{ product.validityDays }}天有效期</li>
-                    <li><span class="text-gray-900">✔</span> 免费更新</li>
-                    <li><span class="text-gray-900">✔</span> 技术支持</li>
                   </template>
                 </ul>
                 <!-- 云存储服务敬请期待 -->
@@ -473,7 +469,7 @@
                   v-if="!product.code.includes('MONTHLY') && !product.code.includes('CREDITS_200') && !product.code.includes('CREDITS_2000')"
                   class="absolute top-4 -right-10 bg-gray-900 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105">
                   {{ product.isEnterprise ? '高性价比' : (isLicenseProduct(product) ? '最受欢迎' :
-                  '限时8.8折') }}
+                    '限时8.8折') }}
                 </div>
               </div>
             </div>
@@ -499,6 +495,7 @@
                 <li class="animate-fade-in-up delay-1700">网页版本支持更多丰富的主题，使用网页版主题需要使用激活后的许可证进行验证。</li>
                 <li class="animate-fade-in-up delay-1700">默认内置的图片云存储服务和 AI 服务一样作为可选服务，您也可以选择配置自己的图床进行使用</li>
                 <li class="animate-fade-in-up delay-1700">试用期期间由于没有绑定邮箱,无法购买积分,请务必阅读后操作,否则概不退款。</li>
+                <li class="animate-fade-in-up delay-1700">试用期期间有300试用积分,用完为止,试用期过期之后跟随失效。</li>
               </ul>
 
               <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1800">交流反馈

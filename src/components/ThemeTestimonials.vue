@@ -35,6 +35,10 @@ const themeImages = [
   'https://images.waer.ltd/notes/202511291500394.PNG',
   'https://images.waer.ltd/notes/202511291501734.PNG',
   'https://images.waer.ltd/notes/202511291501119.PNG',
+  'https://images.waer.ltd/notes/202512041605616.PNG',
+  'https://images.waer.ltd/notes/202512041606933.PNG',
+  'https://images.waer.ltd/notes/202512041606830.PNG',
+  'https://images.waer.ltd/notes/202512041606827.PNG',
 ]
 
 // 自动按列分配图片：任何长度的 themeImages 都可以，按索引 % 3 分到三列
