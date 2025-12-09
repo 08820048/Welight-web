@@ -60,6 +60,16 @@ const router = createRouter({
       component: () => import('../views/ReleaseHistory.vue')
     },
     {
+      path: '/academy',
+      name: 'academy',
+      component: () => import('../views/Academy.vue')
+    },
+    {
+      path: '/academy/:slug',
+      name: 'article-detail',
+      component: () => import('../views/ArticleDetail.vue')
+    },
+    {
       path: '/font-test',
       name: 'font-test',
       component: () => import('../views/FontTest.vue')

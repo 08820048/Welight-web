@@ -44,6 +44,14 @@
     <priority>0.8</priority>
   </url>
 
+  <!-- 微光学堂 - 教程与技巧博客 -->
+  <url>
+    <loc>https://waer.ltd/academy</loc>
+    <lastmod>2025-12-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
   <!-- 赞助支持页 -->
   <url>
     <loc>https://waer.ltd/donation</loc>
