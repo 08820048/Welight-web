@@ -216,11 +216,10 @@
 
 <script setup>
 import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
-import { onMounted } from 'vue'
+import { useSEO, seoConfigs } from '@/composables/useSEO'
 
-onMounted(() => {
-  document.title = '服务条款 - Welight'
-})
+// SEO配置
+useSEO(seoConfigs.terms)
 </script>
 
 <style scoped>

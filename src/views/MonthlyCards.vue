@@ -143,6 +143,10 @@ import {
   validateMonthlyCard,
   getClientInfo
 } from '../services/monthlyCardService.js'
+import { useSEO, seoConfigs } from '@/composables/useSEO'
+
+// SEO配置
+useSEO(seoConfigs.monthlyCards)
 
 // 响应式数据
 const queryForm = ref({

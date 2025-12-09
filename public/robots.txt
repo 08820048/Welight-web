@@ -1,10 +1,21 @@
 User-agent: *
 Allow: /
 
-# 主要页面
+# 核心页面
 Allow: /download
-Allow: /changelog
-Allow: /about
+Allow: /pricing
+Allow: /documentation
+Allow: /release-history
+
+# 社区与支持
+Allow: /donation
+Allow: /community
+Allow: /monthly-cards
+
+# 法律页面
+Allow: /terms
+Allow: /privacy
+Allow: /disclaimer
 
 # 静态资源
 Allow: /assets/
@@ -12,8 +23,33 @@ Allow: /logo.png
 Allow: /*.css
 Allow: /*.js
 
+# 禁止爬取的路径（开发/测试页面）
+Disallow: /font-test
+Disallow: /wireframe-demo
+
 # 网站地图
 Sitemap: https://waer.ltd/sitemap.xml
 
-# 爬虫延迟（可选）
+# 爬虫延迟
+Crawl-delay: 1
+
+# 针对主要搜索引擎的友好配置
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 1
+
+User-agent: Sogou spider
+Allow: /
+Crawl-delay: 1
+
+User-agent: 360Spider
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bytespider
+Allow: /
 Crawl-delay: 1

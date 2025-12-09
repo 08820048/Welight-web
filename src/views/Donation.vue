@@ -193,6 +193,10 @@ import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
 import WireframeOverlay from '@/components/WireframeOverlay.vue'
+import { useSEO, seoConfigs } from '@/composables/useSEO'
+
+// SEO配置
+useSEO(seoConfigs.donation)
 
 /**
  * 响应式数据

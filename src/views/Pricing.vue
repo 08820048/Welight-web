@@ -538,6 +538,7 @@ import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
 import WireframeOverlay from '@/components/WireframeOverlay.vue'
+import { useSEO, seoConfigs } from '@/composables/useSEO'
 import {
   getProducts,
   createPaymentOrder,
@@ -563,6 +564,9 @@ import MonthlyCardActivation from '../components/MonthlyCardActivation.vue'
 import CreditsPurchase from '../components/CreditsPurchase.vue'
 import FloatingPricingInfoButton from '../components/FloatingPricingInfoButton.vue'
 import RecentPurchasesTicker from '../components/RecentPurchasesTicker.vue'
+
+// SEO配置
+useSEO(seoConfigs.pricing)
 
 /**
  * 动态加载撒花特效库

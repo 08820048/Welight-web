@@ -140,6 +140,10 @@ import {
 } from '@/data/documentation.js'
 import { Rocket, Star, Cog, HelpCircle, FileText } from 'lucide-vue-next'
 import mermaid from 'mermaid'
+import { useSEO, seoConfigs } from '@/composables/useSEO'
+
+// SEO配置
+useSEO(seoConfigs.documentation)
 
 // 文档分类图标（Lucide 图标组件映射）
 const categoryIconComponents = {
