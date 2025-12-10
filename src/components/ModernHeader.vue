@@ -49,10 +49,12 @@
             更新日志
           </button>
 
+          <!-- 微光学堂（暂时隐藏）
           <router-link to="/academy"
             class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900">
             微光学堂
           </router-link>
+          -->
 
           <!-- 交流反馈下拉菜单，移动到最后 -->
           <div class="relative group">
@@ -207,10 +209,12 @@
               更新日志
             </button>
 
+            <!-- 微光学堂（暂时隐藏）
             <router-link to="/academy" @click="closeMobileMenu"
               class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
               微光学堂
             </router-link>
+            -->
 
             <!-- 交流反馈，移动到最后 -->
             <div class="border-t border-gray-200 pt-4 mt-4">

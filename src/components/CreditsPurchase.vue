@@ -17,8 +17,25 @@
       <!-- 购买表单 -->
       <div v-if="!orderInfo && !paymentInfo" class="mb-6">
 
+        <!-- 预选套餐信息显示（直接购买模式） -->
+        <div v-if="preselectedPackage && selectedPackage" class="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-gray-900">{{ selectedPackage.packageName }}</h3>
+              <p class="text-sm text-gray-600">{{ selectedPackage.credits }}积分 · 永久有效</p>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-gray-900">¥{{ selectedPackage.currentPrice }}</div>
+              <button @click="clearPreselection" class="text-sm text-blue-600 hover:text-blue-800">
+                选择其他套餐
+              </button>
+            </div>
+          </div>
+        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" v-if="creditPackages.length > 0">
+        <!-- 套餐选择列表（仅在没有预选时显示） -->
+        <div v-if="!preselectedPackage" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          v-show="creditPackages.length > 0">
           <div v-for="pkg in creditPackages" :key="pkg.id"
             class="group relative bg-white border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
             :class="{
@@ -77,15 +94,15 @@
           </div>
         </div>
 
-        <!-- 加载状态 -->
-        <div v-else-if="loading" class="text-center py-12">
+        <!-- 加载状态（仅在没有预选时显示） -->
+        <div v-else-if="!preselectedPackage && loading" class="text-center py-12">
           <div class="animate-spin inline-block w-8 h-8 border-4 border-gray-900 border-t-transparent rounded-full">
           </div>
           <p class="mt-4 text-gray-600">加载积分套餐中...</p>
         </div>
 
-        <!-- 无数据状态 -->
-        <div v-else class="text-center py-12">
+        <!-- 无数据状态（仅在没有预选时显示） -->
+        <div v-else-if="!preselectedPackage" class="text-center py-12">
           <div class="text-gray-400 mb-4">
             <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -325,6 +342,14 @@ const canPurchase = computed(() => {
 
   return validatePurchaseOrder(orderData)
 })
+
+// 是否处于直接购买模式（有预选套餐）
+const preselectedPackage = computed(() => props.preselectedPackage)
+
+// 清除预选，显示所有套餐
+function clearPreselection() {
+  selectedPackage.value = null
+}
 
 // 方法
 async function loadCreditPackages() {

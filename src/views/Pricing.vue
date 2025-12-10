@@ -354,12 +354,12 @@
                       <span class="text-3xl font-bold text-gray-900">{{ product.price }}</span>
                       <span class="text-lg font-light" style="color: #737a87;">/永久</span>
                     </div>
-                    <!-- 许可证产品显示折合天价格 -->
+                    <!-- 许可证产品显示原价 -->
                     <div v-else-if="isLicenseProduct(product)" class="flex items-baseline justify-center space-x-1">
-                      <span class="text-lg font-light" style="color: #737a87;">低至</span>
                       <span class="text-lg font-light" style="color: #737a87;">¥</span>
-                      <span class="text-3xl font-bold text-black">{{ getLicenseDailyPrice(product) }}</span>
-                      <span class="text-lg font-light" style="color: #737a87;">/天</span>
+                      <span class="text-3xl font-bold text-black">{{ product.price }}</span>
+                      <span class="text-lg font-light" style="color: #737a87;">{{ product.permanent ? '/永久' : '/年'
+                        }}</span>
                     </div>
                     <!-- 其他产品显示原价格 -->
                     <div v-else class="flex items-baseline justify-center space-x-1">
@@ -425,7 +425,8 @@
                     }">
                     {{ getPurchaseButtonText(product) }}
                   </button>
-                  <button @click="showCreditsModal = true" :disabled="!isServiceCurrentlyAvailable"
+                  <button @click="preselectedCreditsPackage = null; showCreditsModal = true"
+                    :disabled="!isServiceCurrentlyAvailable"
                     class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
                       'bg-gray-50 text-gray-900 border-gray-200 hover:bg-gray-100': isServiceCurrentlyAvailable,
                       'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed': !isServiceCurrentlyAvailable
@@ -466,7 +467,7 @@
                 </div>
                 <!-- 右上角条状标签 - 参考源码实现 -->
                 <div
-                  v-if="!product.code.includes('MONTHLY') && !product.code.includes('CREDITS_200') && !product.code.includes('CREDITS_2000')"
+                  v-if="!product.code.includes('MONTHLY') && !product.code.includes('CREDITS_500') && !product.code.includes('CREDITS_2000')"
                   class="absolute top-4 -right-10 bg-gray-900 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105">
                   {{ product.isEnterprise ? '高性价比' : (isLicenseProduct(product) ? '最受欢迎' :
                     '限时8.8折') }}
@@ -518,8 +519,8 @@
     </div>
 
     <!-- 积分套餐购买组件 -->
-    <CreditsPurchase v-if="showCreditsModal" @close="showCreditsModal = false"
-      @success="handleCreditsPurchaseSuccess" />
+    <CreditsPurchase v-if="showCreditsModal" :preselected-package="preselectedCreditsPackage"
+      @close="showCreditsModal = false; preselectedCreditsPackage = null" @success="handleCreditsPurchaseSuccess" />
 
     <!-- 成功提示Toast -->
     <div v-if="showToast"
@@ -632,6 +633,7 @@ const showBuyModal = ref(false)
 const showMonthlyCardModal = ref(false)
 const showMonthlyCardActivationModal = ref(false)
 const showCreditsModal = ref(false)
+const preselectedCreditsPackage = ref(null)
 const selectedProduct = ref(null)
 const toastMessage = ref('')
 const showToast = ref(false)
@@ -776,15 +778,15 @@ async function loadProducts() {
     let entryPackage = null
     let enterprisePackage = null
 
-    // 1. 从后端获取入门推荐积分套餐（CREDITS_200）
+    // 1. 从后端获取入门推荐积分套餐（CREDITS_500）
     if (allProducts && allProducts.length > 0) {
-      const entryProduct = allProducts.find(p => p.code === 'CREDITS_200')
+      const entryProduct = allProducts.find(p => p.code === 'CREDITS_500')
       if (entryProduct) {
         // 解析 metadata 获取积分信息
-        let credits = 200
+        let credits = 500
         try {
           const metadata = JSON.parse(entryProduct.metadata || '{}')
-          credits = metadata.credits || 200
+          credits = metadata.credits || 500
         } catch (e) {
           console.warn('解析入门套餐 metadata 失败:', e)
         }
@@ -1118,9 +1120,9 @@ function isLicenseProduct(product) {
 
 // 获取产品原价
 function getOriginalPrice(product) {
-  // 根据产品代码返回原价
+  // 许可证产品不显示原价
   if (isLicenseProduct(product)) {
-    return 79.99 // 许可证原价
+    return null
   } else if (product.code.includes('AI_SERVICE')) {
     return 9.9 // AI服务原价
   } else if (product.code.includes('CLOUD_STORAGE')) {
@@ -1311,7 +1313,24 @@ function initScrollAnimations() {
 async function purchaseProduct(product) {
   try {
     if (product.code.includes('CREDITS')) {
-      // 积分套餐购买流程 - 直接打开积分套餐购买组件
+      // 积分套餐购买流程 - 将当前产品作为预选套餐传入
+      preselectedCreditsPackage.value = {
+        id: product.id,
+        packageCode: product.code,
+        packageName: product.packageName || product.name,
+        packageDescription: product.packageDescription || product.description,
+        credits: product.credits,
+        originalPrice: product.originalPrice || product.price,
+        currentPrice: product.currentPrice || product.price,
+        discount: product.discount || 0,
+        packageType: product.packageType || 'STANDARD',
+        isActive: product.isActive,
+        displayOrder: product.displayOrder || 0,
+        features: product.features || [`${product.credits}积分`, '适用于所有AI服务', '永不过期'],
+        costPerCredit: product.costPerCredit || 0,
+        recommendedFor: product.recommendedFor || '用户',
+        isPopular: product.isPopular || false
+      }
       showCreditsModal.value = true
     } else if (product.code.includes('MONTHLY')) {
       // 月卡产品，使用月卡购买流程
