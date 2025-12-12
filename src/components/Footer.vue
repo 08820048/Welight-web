@@ -15,16 +15,10 @@
           <div class="mt-4">
             <p class="text-xs text-gray-500 dark:text-gray-500 mb-2">扫码关注微信公众号，获取最新使用技巧和更新通知</p>
             <div class="flex items-center gap-3">
-              <img
-                src="https://images.waer.ltd/notes/202510141839217.jpg"
-                alt="微信公众号二维码"
-                class="w-20 h-20 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm"
-              />
-              <img
-                src="https://images.waer.ltd/notes/202511201425342.jpg"
-                alt="备用二维码"
-                class="w-20 h-20 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm"
-              />
+              <img src="https://images.waer.ltd/notes/202510141839217.jpg" alt="微信公众号二维码"
+                class="w-20 h-20 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm" />
+              <img src="https://images.waer.ltd/notes/202511201425342.jpg" alt="备用二维码"
+                class="w-20 h-20 rounded-lg border border-gray-200 dark:border-gray-700 shadow-sm" />
             </div>
           </div>
         </div>
@@ -112,6 +106,7 @@
                 <span>CSDN</span>
               </a>
             </li>
+
           </ul>
         </div>
 
@@ -120,17 +115,43 @@
           <h3 class="mb-4 text-base font-semibold">友情链接</h3>
           <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
             <li>
-              <a
-                href="https://plugins.jetbrains.com/plugin/27300-codepins--code-bookmarks"
-                target="_blank"
-                class="flex items-center gap-2 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
-              >
+              <a href="https://qoder.com/referral?referral_code=Ul7Io8v0RUWys2cUwypuhhYW8uGIY5To" target="_blank"
+                class="flex items-center gap-2 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
                 <span
-                  class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-gray-400 text-[10px]"
-                >
+                  class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-gray-400 text-[10px]">
+                  Qd
+                </span>
+                <span>Qoder - 智能体编程平台</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://plugins.jetbrains.com/plugin/27300-codepins--code-bookmarks" target="_blank"
+                class="flex items-center gap-2 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+                <span
+                  class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-gray-400 text-[10px]">
                   CP
                 </span>
                 <span>Codepins - Code Bookmarks</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://s.qiniu.com/6JNjmy" target="_blank"
+                class="flex items-center gap-2 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+                <span
+                  class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-gray-400 text-[10px]">
+                  QN
+                </span>
+                <span>七牛云 - 值得信赖的云存储</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.niubistar.com/list" target="_blank"
+                class="flex items-center gap-2 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+                <span
+                  class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-gray-400 text-[10px]">
+                  NB
+                </span>
+                <span>牛逼 star - GitHub互赞平台</span>
               </a>
             </li>
           </ul>

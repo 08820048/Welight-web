@@ -19,7 +19,7 @@
               </div>
               <div class="flex-1 min-w-0">
                 <div class="flex items-center space-x-2 mb-0.5 flex-wrap">
-                  <span class="text-base sm:text-lg font-semibold text-gray-900">🎉 Welight v4.1.3 已发布！</span>
+                  <span class="text-base sm:text-lg font-semibold text-gray-900">🎉 Welight v4.1.5 已发布！</span>
                   <span
                     class="bg-gray-900 text-white text-xs px-2 py-0.5 rounded-md font-medium whitespace-nowrap">最新版本</span>
                 </div>
@@ -119,14 +119,13 @@
           </div>
         </div>
 
-        <!-- Product Image -->
+        <!-- Product Video -->
         <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
           :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 1.0 } }"
           class="relative mt-8 px-2 sm:mt-12 md:mt-20">
-          <TripleImageDisplayCard image1="https://images.waer.ltd/notes/202511181320742.png"
-            image2="https://images.waer.ltd/notes/202511291504772.png"
-            image3="https://images.waer.ltd/notes/202511291504772.png" alt1="Welight 编辑界面" alt2="Welight 产品展示"
-            alt3="Welight 功能展示" />
+          <VideoDisplayCard videoUrl="https://images.waer.ltd/video/%E9%A6%96%E9%A1%B5%E5%B1%95%E7%A4%BA.mp4"
+            poster="https://images.waer.ltd/notes/202511291504772.png" />
+          <!-- 提示：请将 videoUrl 替换为您的 MP4 视频链接 -->
         </div>
       </section>
 
@@ -325,7 +324,7 @@ import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import DisplayCards from '@/components/DisplayCards.vue'
 import ImageDisplayCard from '@/components/ImageDisplayCard.vue'
 import DualImageDisplayCard from '@/components/DualImageDisplayCard.vue'
-import TripleImageDisplayCard from '@/components/TripleImageDisplayCard.vue'
+import VideoDisplayCard from '@/components/VideoDisplayCard.vue'
 import MarkdownFeatureCard from '@/components/MarkdownFeatureCard.vue'
 import VerticalDisplayCards from '@/components/VerticalDisplayCards.vue'
 import WireframeOverlay from '@/components/WireframeOverlay.vue'
@@ -545,7 +544,7 @@ const showBanner = ref(false)
 const bannerVisible = ref(false)
 
 // 当前版本号
-const currentVersion = '4.1.3'
+const currentVersion = '4.1.5'
 
 // 检查是否应该显示版本横幅
 const shouldShowVersionBanner = () => {
@@ -691,12 +690,12 @@ const downloadFile = async (platform) => {
 
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.1.3_x64-setup.exe',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.1.3_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.1.3_aarch64.dmg',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.1.3_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.1.3_amd64.AppImage',
-      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.1.3_amd64.deb'
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.1.6_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.1.6_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.1.6_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.1.6_x64.dmg',
+      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.1.6_amd64.AppImage',
+      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.1.6_amd64.deb'
     }
 
     const downloadUrl = downloadUrls[platform]

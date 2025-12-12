@@ -12,7 +12,7 @@
             <!-- 版本角标 -->
             <span
               class="absolute -top-2 -right-16 px-2 py-0.5 bg-gray-900 text-white text-[10px] font-medium rounded-full whitespace-nowrap">
-              v4.1.3
+              v4.1.6
             </span>
           </router-link>
         </div>
@@ -121,10 +121,11 @@
             <span v-if="promo.menuBadge" class="ml-1">{{ promo.menuBadge }}</span>
           </button>
 
-          <router-link to="/download"
+          <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA&versionCode=4001005"
+            target="_blank"
             class="inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium border border-gray-300 bg-white text-gray-900 transition-colors hover:bg-gray-50">
             前往下载
-          </router-link>
+          </a>
 
           <router-link to="/documentation" @click="markDocsUpdateViewed"
             class="relative inline-flex h-9 items-center justify-center rounded-md px-4 py-2 text-sm font-medium bg-gray-900 text-white transition-colors hover:bg-gray-800">
@@ -246,10 +247,11 @@
 
           <!-- Mobile Action Buttons -->
           <div class="mt-6 space-y-3 border-t border-gray-200 pt-6">
-            <router-link to="/download" @click="closeMobileMenu"
+            <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA&versionCode=4001005"
+              target="_blank" @click="closeMobileMenu"
               class="block w-full text-center px-4 py-3 text-sm font-medium border border-gray-300 bg-white text-gray-900 rounded-xl transition-colors hover:bg-gray-50">
               前往下载
-            </router-link>
+            </a>
 
             <router-link to="/documentation" @click="markDocsUpdateViewed(); closeMobileMenu()"
               class="relative block w-full text-center px-4 py-3 text-sm font-medium bg-gray-900 text-white rounded-xl transition-colors hover:bg-gray-800">

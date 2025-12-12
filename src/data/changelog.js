@@ -1,7 +1,7 @@
 // 更新日志数据
 export const changelogData = [
   {
-    version: '4.1.3',
+    version: '4.1.6',
     date: '2025-12-12',
     type: 'release',
     badge: '最新版本',
@@ -68,10 +68,7 @@ export const changelogData = [
         '全新的界面UI和配色，和官网的专业、极简、文档风格相匹配',
         '重构主题命名规则，以w001类似的代号进行统一命名，方便管理'
       ],
-      fixes: [
-        '移除AI随机排版功能',
-        '展示下架图片排版'
-      ]
+      fixes: ['移除AI随机排版功能', '展示下架图片排版']
     }
   },
   {
