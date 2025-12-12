@@ -1,10 +1,27 @@
 // 更新日志数据
 export const changelogData = [
   {
+    version: '4.1.3',
+    date: '2025-12-12',
+    type: 'release',
+    badge: '最新版本',
+    badgeColor: 'green',
+    changes: {
+      features: ['新增自动更新功能，新版本自动下载安装'],
+      fixes: [
+        '修复试用期期间积分显示异常的问题',
+        '修复划词功能中的功能环的 AI 搜索功能不会携带划词文本作为搜索参数到搜索框中的问题。',
+        '修复划词菜单失焦不会自动关闭的问题',
+        '修复主题中二级标题前面使用emoji图标会导致预览乱码的问题',
+        '调整界面布局，整体设计更干净整洁。'
+      ]
+    }
+  },
+  {
     version: '4.1.2',
     date: '2025-12-04',
     type: 'release',
-    badge: '最新版本',
+    badge: '稳定版',
     badgeColor: 'green',
     changes: {
       features: ['新增W009、W015、W016、W017、W018主题'],
@@ -16,7 +33,7 @@ export const changelogData = [
     version: '4.1.1',
     date: '2025-11-29',
     type: 'release',
-    badge: '',
+    badge: '稳定版',
     badgeColor: '',
     changes: {
       improvements: ['清理冗余无用的显示和一些描述'],
@@ -32,7 +49,7 @@ export const changelogData = [
     version: '4.1.0',
     date: '2025-11-29',
     type: 'release',
-    badge: '',
+    badge: '稳定版',
     badgeColor: '',
     changes: {
       features: [
@@ -52,7 +69,6 @@ export const changelogData = [
         '重构主题命名规则，以w001类似的代号进行统一命名，方便管理'
       ],
       fixes: [
-        'AI创作功能暂时下线，后续优化好之后会考虑再次上线。AI创作界面中的资讯已集成到编辑区左侧菜单中',
         '移除AI随机排版功能',
         '展示下架图片排版'
       ]
@@ -62,7 +78,7 @@ export const changelogData = [
     version: '4.0.1',
     date: '2025-11-10',
     type: 'release',
-    badge: '',
+    badge: '稳定版-旧版本结束',
     badgeColor: '',
     changes: {
       fixes: ['修复图片在预览区偶发性的占位符重复的问题']
@@ -72,7 +88,7 @@ export const changelogData = [
     version: '4.0.0',
     date: '2025-11-17',
     type: 'release',
-    badge: '',
+    badge: '稳定版',
     badgeColor: '',
     changes: {
       fixes: [

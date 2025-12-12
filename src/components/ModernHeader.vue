@@ -12,7 +12,7 @@
             <!-- 版本角标 -->
             <span
               class="absolute -top-2 -right-16 px-2 py-0.5 bg-gray-900 text-white text-[10px] font-medium rounded-full whitespace-nowrap">
-              v4.1.2
+              v4.1.3
             </span>
           </router-link>
         </div>
