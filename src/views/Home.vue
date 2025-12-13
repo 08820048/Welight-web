@@ -54,32 +54,32 @@
               <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
                 :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.8 } }"
                 class="mt-8 lg:mt-16">
-                <AnimatedUnderlineText text="智能高效的公众号文章创作&排版体验"
+                <AnimatedUnderlineText text="好看的排版，从来简约。"
                   text-className="text-5xl font-medium md:text-6xl text-gray-900 whitespace-nowrap"
                   underline-className="text-gray-900" />
               </div>
 
               <!-- Description -->
-              <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
+              <!-- <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
                 :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.85 } }"
                 class="mt-8">
                 <MagicText text="专为微信公众号创作者打造的智能排版应用，拥有更优性能、更快捷的操作体验。" container-className="max-w-2xl justify-center"
                   word-className="text-lg text-gray-600" />
-              </div>
+              </div> -->
 
               <!-- Download buttons and statistics -->
               <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
                 :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.9 } }"
-                class="mt-12 flex flex-wrap items-center gap-3">
+                class="mt-16 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-6">
                 <!-- macOS Download Button -->
                 <button @click="downloadFile('macos-apple')" class="group">
                   <div
-                    class="relative overflow-hidden bg-gray-900 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center gap-2">
-                    <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="currentColor">
+                    class="relative overflow-hidden bg-gray-900 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
                       <path
                         d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
                     </svg>
-                    <span class="text-sm">下载 macOS 版</span>
+                    <span class="text-base">下载 macOS 版</span>
                     <svg class="w-4 h-4 text-white/60 group-hover:text-white group-hover:translate-x-0.5 transition-all"
                       fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
@@ -90,12 +90,12 @@
                 <!-- Windows Download Button -->
                 <button @click="downloadFile('windows-installer')" class="group">
                   <div
-                    class="relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 font-medium px-6 py-3 rounded-lg transition-all duration-200 border border-gray-200 hover:border-gray-300 inline-flex items-center gap-2">
-                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    class="relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 font-medium px-6 py-3 rounded-lg transition-all duration-200 border border-gray-200 hover:border-gray-300 inline-flex items-center gap-2 shadow-sm hover:shadow-md hover:-translate-y-0.5">
+                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                       <path
                         d="M0,0V11.408H11.408V0ZM12.594,0V11.408H24V0ZM0,12.594V24H11.408V12.594ZM12.594,12.594V24H24V12.594Z" />
                     </svg>
-                    <span class="text-sm">下载 Windows 版</span>
+                    <span class="text-base">下载 Windows 版</span>
                     <svg
                       class="w-4 h-4 text-gray-400 group-hover:text-gray-900 group-hover:translate-x-0.5 transition-all"
                       fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,11 +107,16 @@
                 <!-- Download statistics -->
                 <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
                   :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.95 } }"
-                  class="flex items-center gap-4 text-sm text-gray-500 ml-6">
-                  <span>{{ animatedTotalDownloads.toLocaleString() }} 次下载</span>
-                  <span>·</span>
-                  <router-link to="/download" class="text-gray-900 hover:text-gray-600 transition-colors">
-                    查看所有版本 →
+                  class="flex items-center gap-3 text-sm text-gray-500 w-full sm:w-auto justify-center sm:ml-2">
+                  <span class="font-medium text-gray-700">{{ animatedTotalDownloads.toLocaleString() }} 次下载</span>
+                  <span class="text-gray-300">|</span>
+                  <router-link to="/download"
+                    class="text-gray-600 hover:text-gray-900 transition-colors flex items-center group">
+                    查看所有版本
+                    <svg class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none"
+                      stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
                   </router-link>
                 </div>
               </div>
