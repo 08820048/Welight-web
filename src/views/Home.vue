@@ -315,7 +315,7 @@
     </div>
 
     <!-- 底部右上角购买通知滚动 -->
-    <PurchaseNotificationTicker />
+    <!-- <PurchaseNotificationTicker /> -->
   </div>
 </template>
 
@@ -335,7 +335,7 @@ import VerticalDisplayCards from '@/components/VerticalDisplayCards.vue'
 import WireframeOverlay from '@/components/WireframeOverlay.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
-import PurchaseNotificationTicker from '@/components/PurchaseNotificationTicker.vue'
+// import PurchaseNotificationTicker from '@/components/PurchaseNotificationTicker.vue'
 import LogoCarousel from '@/components/LogoCarousel.vue'
 import { Wand2, Command, Copy, BarChart3, Palette, Sparkles, FileText, Code, Table, Calculator, Puzzle, BarChart } from 'lucide-vue-next'
 

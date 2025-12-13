@@ -262,7 +262,7 @@
         </div>
 
         <!-- 最近购买记录滚动展示：放在顶部菜单栏与定价线框之间 -->
-        <RecentPurchasesTicker class="animate-fade-in-up delay-300" />
+        <!-- <RecentPurchasesTicker class="animate-fade-in-up delay-300" /> -->
 
         <!-- 产品对比表格（线框模块：产品对比） -->
         <section class="mt-8 mb-10 relative py-8 md:py-12 animate-fade-in-up delay-400">
@@ -566,7 +566,7 @@ import MonthlyCardPurchase from '../components/MonthlyCardPurchase.vue'
 import MonthlyCardActivation from '../components/MonthlyCardActivation.vue'
 import CreditsPurchase from '../components/CreditsPurchase.vue'
 import FloatingPricingInfoButton from '../components/FloatingPricingInfoButton.vue'
-import RecentPurchasesTicker from '../components/RecentPurchasesTicker.vue'
+// import RecentPurchasesTicker from '../components/RecentPurchasesTicker.vue'
 
 // SEO配置
 useSEO(seoConfigs.pricing)
