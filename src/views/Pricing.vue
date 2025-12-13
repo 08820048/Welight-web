@@ -264,6 +264,20 @@
         <!-- 最近购买记录滚动展示：放在顶部菜单栏与定价线框之间 -->
         <RecentPurchasesTicker class="animate-fade-in-up delay-300" />
 
+        <!-- 产品对比表格（线框模块：产品对比） -->
+        <section class="mt-8 mb-10 relative py-8 md:py-12 animate-fade-in-up delay-400">
+          <WireframeOverlay class="wireframe-py-12-16" />
+          <div class="relative max-w-5xl mx-auto px-4 md:px-8">
+            <div class="text-center mb-10">
+              <h2 class="text-3xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-500">产品与服务对比</h2>
+              <p class="text-gray-600 animate-fade-in-left delay-600">一目了然，选择最适合您的方案</p>
+            </div>
+            <div class="animate-scale-in delay-600">
+              <PricingComparisonTable />
+            </div>
+          </div>
+        </section>
+
         <!-- 标题区（线框模块：定价与服务购买） -->
         <section class="relative mb-10 py-12 md:py-16 animate-fade-in-up delay-100">
           <WireframeOverlay class="wireframe-py-12-16" />
@@ -305,26 +319,11 @@
           <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-8 items-end relative">
             <!-- 所有产品卡片（基于API数据） -->
             <div v-for="(product, index) in products" :key="product.id" class="relative">
-              <!-- 下滑指示器 - 只在企业专享卡片右侧显示 -->
-              <div v-if="product.isEnterprise"
-                class="hidden md:block absolute -right-40 top-0 animate-bounce-slow z-10">
-                <div class="flex flex-col items-center gap-2">
-                  <div
-                    class="bg-gray-900 text-white px-3 py-2 rounded-lg shadow-lg text-sm font-medium whitespace-nowrap">
-                    下滑阅读购买须知
-                  </div>
-                  <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                  </svg>
-                </div>
-              </div>
-
               <div
                 class="bg-white rounded-xl shadow-lg flex flex-col items-center relative overflow-hidden product-card animate-scale-in border-2 border-white group"
                 :class="[
                   `delay-${600 + index * 100}`,
-                  isLicenseProduct(product) ? 'p-10 recommended-card' : 'p-8'
+                  index === 1 ? 'p-10 recommended-card' : 'p-8'
                 ]">
                 <!-- 产品名称标签 -->
                 <span class="inline-block text-lg font-bold mb-2 text-gray-900">
@@ -392,8 +391,8 @@
                   </template>
                   <!-- 许可证产品功能列表 -->
                   <template v-else-if="isLicenseProduct(product)">
-                    <li><span class="text-gray-900">✔</span> {{ product.validityDays }}天有效期</li>
-                    <li><span class="text-gray-900">✔</span> 附赠 150 积分</li>
+                    <li><span class="text-gray-900">✔</span> {{ product.permanent ? '终身有效' : '1年有效期' }}</li>
+                    <li><span class="text-gray-900">✔</span> 附赠 300 积分</li>
                     <li><span class="text-gray-900">✔</span> 7天试用期(含300试用积分)</li>
                     <li><span class="text-gray-900">✔</span> 支持 {{ product.maxActivations }} 台设备激活</li>
                     <li><span class="text-gray-900">✔</span> 网页版和桌面端共用</li>
@@ -443,9 +442,9 @@
                       'bg-gray-900 hover:bg-gray-800': isServiceCurrentlyAvailable,
                       'bg-gray-400 cursor-not-allowed': !isServiceCurrentlyAvailable
                     }">
-                    {{ getPurchaseButtonText(product) }}
+                    {{ product.permanent ? '一键买断' : getPurchaseButtonText(product) }}
                   </button>
-                  <button @click="openRenewModal" :disabled="!isServiceCurrentlyAvailable"
+                  <button v-if="!product.permanent" @click="openRenewModal" :disabled="!isServiceCurrentlyAvailable"
                     class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
                       'bg-gray-50 text-gray-900 border-gray-200 hover:bg-gray-100': isServiceCurrentlyAvailable,
                       'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed': !isServiceCurrentlyAvailable
@@ -466,16 +465,18 @@
                   </button>
                 </div>
                 <!-- 右上角条状标签 - 参考源码实现 -->
-                <div
-                  v-if="!product.code.includes('MONTHLY') && !product.code.includes('CREDITS_500') && !product.code.includes('CREDITS_2000')"
+                <div v-if="!product.code.includes('MONTHLY')"
                   class="absolute top-4 -right-10 bg-gray-900 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105">
-                  {{ product.isEnterprise ? '高性价比' : (isLicenseProduct(product) ? '最受欢迎' :
-                    '限时8.8折') }}
+                  {{ product.code.includes('CREDITS') ? '可选增值' : (product.isEnterprise ? '高性价比' :
+                    (isLicenseProduct(product) ? '最受欢迎' :
+                      '限时8.8折')) }}
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+
 
         <!-- 购买须知与接口说明（线框模块：购买须知） -->
         <section class="mt-12 relative py-12 md:py-16 animate-fade-in-up delay-1000">
@@ -535,6 +536,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
+import PricingComparisonTable from '@/components/PricingComparisonTable.vue'
 import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
@@ -772,118 +774,89 @@ async function loadProducts() {
 
     console.log('获取到的所有产品:', allProducts)
 
-    // 重新排序：入门积分套餐、许可证、企业专享积分套餐
+    // 重新排序：年付许可证(左)、买断制许可证(中)、热门积分套餐(右)
     const sortedProducts = []
-    let licenseProduct = null
-    let entryPackage = null
-    let enterprisePackage = null
 
-    // 1. 从后端获取入门推荐积分套餐（CREDITS_500）
+    // 1. 左边：年付套餐 (WELIGHT_STANDARD)
     if (allProducts && allProducts.length > 0) {
-      const entryProduct = allProducts.find(p => p.code === 'CREDITS_500')
-      if (entryProduct) {
-        // 解析 metadata 获取积分信息
-        let credits = 500
-        try {
-          const metadata = JSON.parse(entryProduct.metadata || '{}')
-          credits = metadata.credits || 500
-        } catch (e) {
-          console.warn('解析入门套餐 metadata 失败:', e)
-        }
-
-        entryPackage = {
-          id: entryProduct.id,
-          packageCode: entryProduct.code,
-          packageName: entryProduct.name,
-          packageDescription: entryProduct.description || '新手友好的积分套餐',
-          credits: credits,
-          originalPrice: entryProduct.price,
-          currentPrice: entryProduct.price,
-          discount: 1,
-          packageType: 'STANDARD',
-          isActive: entryProduct.isActive,
-          displayOrder: entryProduct.sortOrder || 1,
+      const yearlyProduct = allProducts.find(p => p.code === 'WELIGHT_STANDARD')
+      if (yearlyProduct) {
+        sortedProducts.push({
+          ...yearlyProduct,
           features: [
-            `${credits}积分`,
-            '适用于所有AI服务',
-            '永不过期',
-            '新手推荐'
-          ],
-          costPerCredit: credits > 0 ? entryProduct.price / credits : 0,
-          recommendedFor: '新手用户',
-          isPopular: false,
-          isEnterprise: false,
-          code: entryProduct.code,
-          name: entryProduct.name,
-          description: entryProduct.description,
-          price: entryProduct.price,
-          permanent: false
-        }
-        sortedProducts.push(entryPackage)
+            '1年有效期',
+            '支持 3 台设备激活',
+            '网页版和桌面端共用',
+            '所有核心功能',
+            '免费更新',
+            '技术支持'
+          ]
+        })
       }
     }
 
-    // 2. 许可证产品（中间位置）
+    // 2. 中间：买断套餐 (WELIGHT_STANDARD_PRO)
     if (allProducts && allProducts.length > 0) {
-      // 修改识别逻辑：通过产品代码判断是否为许可证产品
-      // 许可证产品的 code 通常包含 WELIGHT 或 LICENSE，且不包含 CREDITS
-      licenseProduct = allProducts.find(p =>
-        (p.code && (p.code.includes('WELIGHT') || p.code.includes('LICENSE'))) &&
-        !(p.code && p.code.includes('CREDITS')) &&
-        !(p.productCode && p.productCode.includes('CREDITS'))
-      )
-      console.log('查找到的许可证产品:', licenseProduct)
-      if (licenseProduct) {
-        sortedProducts.push(licenseProduct)
-        console.log('许可证产品已添加到列表')
-      } else {
-        console.warn('未找到许可证产品')
+      const lifetimeProduct = allProducts.find(p => p.code === 'WELIGHT_STANDARD_PRO')
+      if (lifetimeProduct) {
+        sortedProducts.push({
+          ...lifetimeProduct,
+          isEnterprise: true, // 使用高性价比样式
+          features: [
+            '永久有效',
+            '一次付费，终身使用',
+            '支持 3 台设备激活',
+            '网页版和桌面端共用',
+            '所有核心功能',
+            '免费更新',
+            '优先技术支持'
+          ]
+        })
       }
     }
 
-    // 3. 从后端获取企业专享积分套餐（CREDITS_2000）
+    // 3. 右边：热门积分套餐 (CREDITS_500)
     if (allProducts && allProducts.length > 0) {
-      const enterpriseProduct = allProducts.find(p => p.code === 'CREDITS_2000')
-      if (enterpriseProduct) {
+      const creditsProduct = allProducts.find(p => p.code === 'CREDITS_500')
+      if (creditsProduct) {
         // 解析 metadata 获取积分信息
-        let credits = 2000
+        let credits = 2000 // 默认值，根据API响应 CREDITS_500 对应 2000 积分
         try {
-          const metadata = JSON.parse(enterpriseProduct.metadata || '{}')
+          const metadata = JSON.parse(creditsProduct.metadata || '{}')
           credits = metadata.credits || 2000
         } catch (e) {
-          console.warn('解析企业套餐 metadata 失败:', e)
+          console.warn('解析热门套餐 metadata 失败:', e)
         }
 
-        enterprisePackage = {
-          id: enterpriseProduct.id,
-          packageCode: enterpriseProduct.code,
-          packageName: enterpriseProduct.name,
-          packageDescription: enterpriseProduct.description || '高性价比企业级积分套餐',
+        sortedProducts.push({
+          id: creditsProduct.id,
+          packageCode: creditsProduct.code,
+          packageName: creditsProduct.name,
+          packageDescription: creditsProduct.description || '适合日常使用',
           credits: credits,
-          originalPrice: enterpriseProduct.price,
-          currentPrice: enterpriseProduct.price,
+          originalPrice: creditsProduct.price,
+          currentPrice: creditsProduct.price,
           discount: 1,
           packageType: 'STANDARD',
-          isActive: enterpriseProduct.isActive,
-          displayOrder: enterpriseProduct.sortOrder || 10,
+          isActive: creditsProduct.isActive,
+          displayOrder: creditsProduct.sortOrder || 4,
           features: [
             `${credits}积分`,
             '适用于所有AI服务',
             '永不过期',
-            '高性价比',
-            '企业级服务'
+            '图片存储消费',
+            '灵活消费'
           ],
-          costPerCredit: credits > 0 ? enterpriseProduct.price / credits : 0,
-          recommendedFor: '企业用户',
-          isPopular: false,
-          isEnterprise: true,
-          code: enterpriseProduct.code,
-          name: enterpriseProduct.name,
-          description: enterpriseProduct.description,
-          price: enterpriseProduct.price,
-          permanent: false
-        }
-        sortedProducts.push(enterprisePackage)
+          costPerCredit: credits > 0 ? creditsProduct.price / credits : 0,
+          recommendedFor: '日常用户',
+          isPopular: true,
+          isEnterprise: false,
+          code: creditsProduct.code,
+          name: creditsProduct.name,
+          description: creditsProduct.description,
+          price: creditsProduct.price,
+          permanent: true
+        })
       }
     }
 
@@ -922,19 +895,13 @@ async function loadProducts() {
           }))
         allCreditsProducts.value = convertedPackages
       } else {
-        // 如果获取失败，使用已加载的入门和企业套餐作为后备
-        const fallbackPackages = []
-        if (entryPackage) fallbackPackages.push(entryPackage)
-        if (enterprisePackage) fallbackPackages.push(enterprisePackage)
-        allCreditsProducts.value = fallbackPackages
+        // 如果获取失败，使用空数组作为后备
+        allCreditsProducts.value = []
       }
     } catch (error) {
       console.error('加载积分套餐时发生错误:', error)
-      // 如果获取失败，使用已加载的入门和企业套餐作为后备
-      const fallbackPackages = []
-      if (entryPackage) fallbackPackages.push(entryPackage)
-      if (enterprisePackage) fallbackPackages.push(enterprisePackage)
-      allCreditsProducts.value = fallbackPackages
+      // 如果获取失败，使用空数组作为后备
+      allCreditsProducts.value = []
     }
 
     products.value = sortedProducts
