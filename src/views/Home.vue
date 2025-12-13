@@ -128,7 +128,7 @@
         <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
           :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 1.0 } }"
           class="relative mt-8 px-2 sm:mt-12 md:mt-20">
-          <VideoDisplayCard videoUrl="https://images.waer.ltd/video/%E9%A6%96%E9%A1%B5%E5%B1%95%E7%A4%BA.mp4"
+          <VideoDisplayCard videoUrl="https://images.waer.ltd/video/welight%20%E6%BC%94%E7%A4%BA.mp4"
             poster="https://images.waer.ltd/notes/202511291504772.png" />
           <!-- 提示：请将 videoUrl 替换为您的 MP4 视频链接 -->
         </div>
