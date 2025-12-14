@@ -165,11 +165,6 @@
               word-className="text-xl text-gray-500" />
           </div>
 
-          <!-- Hero Image with DisplayCard Style -->
-          <div class="mb-24 scroll-animate">
-            <ImageDisplayCard image-url="https://images.waer.ltd/notes/202511291509882.png" alt="Welight 核心特性展示" />
-          </div>
-
           <!-- Features Display Cards -->
           <div class="grid md:grid-cols-2 gap-16 lg:gap-24">
             <!-- First Group -->
@@ -224,7 +219,7 @@
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
-            <AnimatedUnderlineText text="强大的Markdown语法标准"
+            <AnimatedUnderlineText text="是排版工具，也是强大的Markdown编辑器"
               text-className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900"
               underline-className="text-gray-900" />
             <MagicText text="全面支持标准Markdown语法及扩展功能，让你的文档编写更加高效和专业"
@@ -272,28 +267,28 @@
           <!-- Markdown advantages -->
           <div class="text-center scroll-animate" style="transition-delay: 1.0s;">
             <div class="max-w-4xl mx-auto">
-              <AnimatedUnderlineText text="为什么选择Markdown？" text-className="text-2xl md:text-3xl font-bold text-gray-900"
+              <AnimatedUnderlineText text="为什么选择Welight？" text-className="text-2xl md:text-3xl font-bold text-gray-900"
                 underline-className="text-gray-900" />
 
               <div class="grid md:grid-cols-3 gap-8 mt-12">
                 <!-- Advantage 1 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.1s;">
                   <h4 class="text-xl font-bold text-gray-900 mb-3">简单高效</h4>
-                  <MagicText text="轻量级标记语言，学习成本低，书写效率高，专注内容创作" container-className="justify-center"
+                  <MagicText text="轻量级编辑器，学习成本低，书写效率高，专注内容创作" container-className="justify-center"
                     word-className="text-base text-gray-600" />
                 </div>
 
                 <!-- Advantage 2 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.2s;">
-                  <h4 class="text-xl font-bold text-gray-900 mb-3">跨平台兼容</h4>
-                  <MagicText text="标准化格式，在任何平台和设备上都能完美显示和编辑" container-className="justify-center"
+                  <h4 class="text-xl font-bold text-gray-900 mb-3">极简审美</h4>
+                  <MagicText text="回归创作 初衷，所见即所得，拒绝花里胡哨的图案堆叠。" container-className="justify-center"
                     word-className="text-base text-gray-600" />
                 </div>
 
                 <!-- Advantage 3 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.3s;">
-                  <h4 class="text-xl font-bold text-gray-900 mb-3">版本控制友好</h4>
-                  <MagicText text="纯文本格式，完美支持Git等版本控制系统，协作更便捷" container-className="justify-center"
+                  <h4 class="text-xl font-bold text-gray-900 mb-3">低价理念</h4>
+                  <MagicText text="就是为了抵制市面上动辄上千的会员费的同类产品来的，我们收取的仅仅是软件本身的构建费用！" container-className="justify-center"
                     word-className="text-base text-gray-600" />
                 </div>
               </div>

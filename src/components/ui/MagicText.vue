@@ -3,18 +3,14 @@
     <span
       v-for="(word, i) in words"
       :key="i"
-      class="relative mr-2 mb-2"
+      class="mr-2 mb-2"
       :class="wordClassName"
+      :style="{
+        opacity: 0.2 + ((wordOpacities[i] || 0) * 0.8),
+        transition: 'opacity 0.3s ease-in-out'
+      }"
     >
-      <span class="absolute opacity-20">{{ word }}</span>
-      <span
-        :style="{
-          opacity: wordOpacities[i] || 0,
-          transition: 'opacity 0.3s ease-in-out'
-        }"
-      >
-        {{ word }}
-      </span>
+      {{ word }}
     </span>
   </p>
 </template>
