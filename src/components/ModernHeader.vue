@@ -1,7 +1,8 @@
 <template>
-  <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-    <WireframeOverlay class="wireframe-header" />
-    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+  <header
+    class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 dark:bg-gray-900/80 dark:border-white">
+    <WireframeOverlay class="wireframe-header" :compact="true" />
+    <div class="w-full px-6 md:px-16">
       <!-- Desktop Navbar -->
       <nav class="hidden lg:flex items-center justify-between h-16">
         <!-- Left: Logo -->
@@ -20,20 +21,20 @@
         <!-- Center: Desktop Menu -->
         <div class="flex items-center gap-1">
           <router-link to="/"
-            class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
-            active-class="bg-gray-100 text-gray-900">
+            class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+            active-class="bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100">
             首页
           </router-link>
 
           <router-link to="/pricing"
-            class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
-            active-class="bg-gray-100 text-gray-900">
+            class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+            active-class="bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100">
             购买许可
           </router-link>
 
           <router-link to="/donation"
-            class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
-            active-class="bg-gray-100 text-gray-900">
+            class="inline-flex h-9 items-center justify-center rounded-full px-4 py-2 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-gray-800 dark:hover:text-gray-100"
+            active-class="bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100">
             赞助支持
           </router-link>
 
@@ -69,7 +70,7 @@
 
             <!-- Dropdown Menu -->
             <div
-              class="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-lg border border-gray-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60]">
+              class="absolute top-full left-0 mt-2 w-64 bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60]">
               <div class="p-3">
                 <a href="https://qm.qq.com/q/nNA64h5d6K" target="_blank"
                   class="flex items-start gap-3 rounded-xl p-3 hover:bg-gray-50 transition-colors">
@@ -135,6 +136,8 @@
               NEW
             </span>
           </router-link>
+
+          <ToggleTheme class="ml-1" />
         </div>
       </nav>
 
@@ -166,7 +169,7 @@
     <!-- Mobile Menu Drawer -->
     <transition name="mobile-drawer">
       <div v-if="isMobileMenuOpen"
-        class="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white shadow-2xl z-50 lg:hidden overflow-y-auto">
+        class="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-2xl z-50 lg:hidden overflow-y-auto">
         <div class="p-6">
           <!-- Mobile Menu Header -->
           <div class="flex items-center justify-between mb-6">
@@ -174,33 +177,40 @@
               <img src="/logo.png" alt="Welight Logo" class="w-8 h-8 rounded-lg" />
               <span class="text-lg font-semibold">Welight</span>
             </div>
-            <button @click="closeMobileMenu"
-              class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
+            <div class="flex items-center gap-2">
+              <button @click="toggleTheme"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 transition-colors dark:text-gray-600">
+                <Sun v-if="themeStore.isDark" class="h-5 w-5" />
+                <Moon v-else class="h-5 w-5" />
+              </button>
+              <button @click="closeMobileMenu"
+                class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
           </div>
 
           <!-- Mobile Menu Items -->
           <nav class="space-y-1">
             <router-link to="/" @click="closeMobileMenu"
-              class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
+              class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
               首页
             </router-link>
 
             <router-link to="/pricing" @click="closeMobileMenu"
-              class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
+              class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
               购买许可
             </router-link>
 
             <router-link to="/donation" @click="closeMobileMenu"
-              class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
+              class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
               赞助支持
             </router-link>
 
             <button @click="showAnnouncements(); closeMobileMenu()"
-              class="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors flex items-center justify-between">
+              class="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-between">
               <span>公告</span>
               <div v-if="hasNewAnnouncements" class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
             </button>
@@ -274,7 +284,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, onMounted, onUnmounted, nextTick } from 'vue'
 import WireframeOverlay from '@/components/WireframeOverlay.vue'
 import ChangelogModal from './ChangelogModal.vue'
 import AnnouncementModal from './AnnouncementModal.vue'
@@ -282,6 +292,51 @@ import PromotionBanner from './PromotionBanner.vue'
 import { hasNewAnnouncements as checkNewAnnouncements } from '@/data/announcements.js'
 import { getMenuPromotions, markLatestPromotionAsViewed } from '@/data/promotions.js'
 import { getLatestVersion } from '@/data/changelog.js'
+import { useThemeStore } from '@/stores/theme'
+import { Sun, Moon } from 'lucide-vue-next'
+import ToggleTheme from '@/components/ui/ToggleTheme.vue'
+
+const themeStore = useThemeStore()
+
+// 切换主题（带 View Transition 动画）
+const toggleTheme = async (event) => {
+  const isDark = themeStore.isDark
+
+  // 降级方案：不支持 View Transition API
+  if (!document.startViewTransition) {
+    themeStore.toggleTheme()
+    return
+  }
+
+  // 获取点击位置
+  const x = 0
+  const y = 0
+  const endRadius = Math.hypot(innerWidth, innerHeight)
+
+  const transition = document.startViewTransition(async () => {
+    themeStore.toggleTheme()
+    await nextTick()
+  })
+
+  // 等待伪元素创建完成
+  await transition.ready
+
+  // 执行动画
+  document.documentElement.animate(
+    {
+      clipPath: [
+        `circle(0px at ${x}px ${y}px)`,
+        `circle(${endRadius}px at ${x}px ${y}px)`
+      ]
+    },
+    {
+      duration: 500,
+      easing: 'ease-in-out',
+      // 指定动画作用于新视图的伪元素
+      pseudoElement: '::view-transition-new(root)'
+    }
+  )
+}
 
 // 移动端菜单状态
 const isMobileMenuOpen = ref(false)

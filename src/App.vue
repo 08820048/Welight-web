@@ -3,7 +3,8 @@
     <!-- 文档页禁用 3D 背景，其他页面可再启用 -->
 
     <ModernHeader />
-    <main>
+    <main
+      class="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
       <RouterView />
     </main>
     <Footer v-if="showFooter" />
@@ -19,12 +20,14 @@
 <script setup>
 import { RouterView, useRoute } from 'vue-router'
 import { computed, ref, onMounted } from 'vue'
+import { useThemeStore } from './stores/theme'
 import ModernHeader from './components/ModernHeader.vue'
 import Footer from './components/Footer.vue'
 import FloatingDonationButton from './components/FloatingDonationButton.vue'
 import BackToTop from './components/BackToTop.vue'
 
 const route = useRoute()
+const themeStore = useThemeStore()
 
 // 检查是否为赞助页面
 const isDonationPage = computed(() => {
@@ -38,6 +41,9 @@ const showFooter = computed(() => route.name !== 'documentation' && route.path !
 const shouldLoadSpline = ref(false)
 
 onMounted(() => {
+  // 初始化主题
+  themeStore.initTheme()
+
   // 使用 requestIdleCallback 在浏览器空闲时加载
   if ('requestIdleCallback' in window) {
     requestIdleCallback(() => {

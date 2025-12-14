@@ -1,14 +1,14 @@
 <template>
   <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center modal-backdrop"
     style="z-index: 9999;">
-    <div class="bg-white rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto modal-content"
+    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto modal-content"
       style="min-height: 400px;">
       <!-- 弹窗头部 -->
       <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-900">积分套餐购买</h2>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">积分套餐购买</h2>
         <button @click="$emit('close')"
-          class="bg-gray-100 rounded-full p-2 hover:bg-gray-200 transition-colors duration-200">
-          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          class="bg-gray-100 dark:bg-gray-800 rounded-full p-2 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200">
+          <svg class="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -19,15 +19,15 @@
 
         <!-- 预选套餐信息显示（直接购买模式） -->
         <div v-if="isDirectPurchaseMode && selectedPackage"
-          class="mb-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
+          class="mb-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
           <div class="flex items-center justify-between">
             <div>
-              <h3 class="font-bold text-gray-900">{{ selectedPackage.packageName }}</h3>
-              <p class="text-sm text-gray-600">{{ selectedPackage.credits }}积分 · 永久有效</p>
+              <h3 class="font-bold text-gray-900 dark:text-gray-100">{{ selectedPackage.packageName }}</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300">{{ selectedPackage.credits }}积分 · 永久有效</p>
             </div>
             <div class="text-right">
-              <div class="text-2xl font-bold text-gray-900">¥{{ selectedPackage.currentPrice }}</div>
-              <button @click="clearPreselection" class="text-sm text-blue-600 hover:text-blue-800">
+              <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">¥{{ selectedPackage.currentPrice }}</div>
+              <button @click="clearPreselection" class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
                 选择其他套餐
               </button>
             </div>
@@ -38,10 +38,10 @@
         <div v-if="!isDirectPurchaseMode" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           v-show="creditPackages.length > 0">
           <div v-for="pkg in creditPackages" :key="pkg.id"
-            class="group relative bg-white border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            class="group relative bg-white dark:bg-gray-800 border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 dark:border-gray-700"
             :class="{
               'border-gray-900 ring-2 ring-gray-200': selectedPackage?.id === pkg.id,
-              'border-gray-200': selectedPackage?.id !== pkg.id
+              'border-gray-200 dark:border-gray-700': selectedPackage?.id !== pkg.id
             }">
 
             <!-- 推荐标签 -->
@@ -51,7 +51,7 @@
             </div>
 
             <!-- 产品名称标签 -->
-            <div class="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 bg-gray-100 text-gray-900">
+            <div class="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100">
               {{ pkg.packageName }}
             </div>
 
@@ -63,9 +63,9 @@
                 <div class="text-xs text-gray-700 mt-1">最低100积分起购</div>
               </div>
               <div v-else>
-                <div class="text-sm font-medium mb-1 text-gray-800">{{ pkg.credits }}积分 ¥{{ pkg.currentPrice }}/永久
+                <div class="text-sm font-medium mb-1 text-gray-800 dark:text-gray-200">{{ pkg.credits }}积分 ¥{{ pkg.currentPrice }}/永久
                 </div>
-                <div class="text-3xl font-bold text-gray-900">¥{{ pkg.currentPrice }}</div>
+                <div class="text-3xl font-bold text-gray-900 dark:text-gray-100">¥{{ pkg.currentPrice }}</div>
                 <div v-if="pkg.originalPrice > pkg.currentPrice" class="text-sm text-gray-400 line-through">
                   原价 ¥{{ pkg.originalPrice }}
                 </div>
@@ -78,9 +78,9 @@
             </div>
 
             <!-- 功能列表 -->
-            <ul class="space-y-2 mb-6 text-sm text-gray-600">
+            <ul class="space-y-2 mb-6 text-sm text-gray-600 dark:text-gray-300">
               <li v-for="feature in pkg.features" :key="feature">
-                <span class="text-gray-900">✔</span> {{ feature }}
+                <span class="text-gray-900 dark:text-gray-100">✔</span> {{ feature }}
               </li>
             </ul>
 

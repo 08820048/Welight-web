@@ -356,14 +356,14 @@
                     <!-- 许可证产品显示原价 -->
                     <div v-else-if="isLicenseProduct(product)" class="flex items-baseline justify-center space-x-1">
                       <span class="text-lg font-light" style="color: #737a87;">¥</span>
-                      <span class="text-3xl font-bold text-black">{{ product.price }}</span>
+                      <span class="text-3xl font-bold text-black dark:text-white">{{ product.price }}</span>
                       <span class="text-lg font-light" style="color: #737a87;">{{ product.permanent ? '/永久' : '/年'
                         }}</span>
                     </div>
                     <!-- 其他产品显示原价格 -->
                     <div v-else class="flex items-baseline justify-center space-x-1">
                       <span class="text-lg font-light" style="color: #737a87;">¥</span>
-                      <span class="text-3xl font-bold text-black">{{ product.price }}</span>
+                      <span class="text-3xl font-bold text-black dark:text-white">{{ product.price }}</span>
                       <span class="text-lg font-light" style="color: #737a87;">/月</span>
                     </div>
                   </div>

@@ -1,11 +1,12 @@
 <template>
-  <div class="relative min-h-screen bg-white">
+  <div class="relative min-h-screen bg-white dark:bg-gray-900">
     <AnimatedGridPattern :num-squares="20" :max-opacity="0.15" :duration="4" />
-    <div class="min-h-screen text-gray-200 relative overflow-hidden" style="position: relative; z-index: 1;">
+    <div class="min-h-screen text-gray-800 dark:text-gray-200 relative overflow-hidden"
+      style="position: relative; z-index: 1;">
       <!-- 顶部横幅通知 -->
       <div v-if="showBanner" class="fixed top-16 left-0 right-0 z-40 overflow-hidden px-4 sm:px-6 lg:px-8">
         <div
-          class="bg-white/80 backdrop-blur-md border border-gray-200 rounded-2xl shadow-soft-lg transform transition-all duration-700 ease-out mx-auto max-w-7xl mt-4"
+          class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-2xl shadow-soft-lg transform transition-all duration-700 ease-out mx-auto max-w-7xl mt-4"
           :class="bannerVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'">
           <div class="flex items-center justify-between py-3 px-4 sm:px-6">
             <div class="flex items-center space-x-3 sm:space-x-4 flex-1 min-w-0">
@@ -45,7 +46,8 @@
 
       <!-- Hero Section -->
       <section class="relative pt-24 pb-24">
-        <WireframeOverlay class="wireframe-hero" />
+        <WireframeOverlay class="wireframe-hero"
+          inset-class="top-24 md:top-32 lg:top-40 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
         <div class="mx-auto max-w-5xl px-6">
           <div class="sm:mx-auto lg:mr-auto">
             <!-- Animated content group -->
@@ -53,10 +55,10 @@
               <!-- Main heading -->
               <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
                 :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.8 } }"
-                class="mt-8 lg:mt-16">
+                class="mt-12 lg:mt-20">
                 <AnimatedUnderlineText text="好看的排版，从来简约。"
-                  text-className="text-5xl font-medium md:text-6xl text-gray-900 whitespace-nowrap"
-                  underline-className="text-gray-900" />
+                  text-className="text-5xl font-medium md:text-6xl text-gray-900 dark:text-gray-100 whitespace-nowrap"
+                  underline-className="text-gray-900 dark:text-gray-100" />
               </div>
 
               <!-- Description -->
@@ -140,8 +142,9 @@
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <AnimatedUnderlineText text="丰富多样的排版主题" text-className="text-4xl md:text-5xl font-bold text-gray-900"
-              underline-className="text-gray-900" />
+            <AnimatedUnderlineText text="丰富多样的排版主题"
+              text-className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100"
+              underline-className="text-gray-900 dark:text-gray-100" />
             <MagicText text="精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果" container-className="mt-6 justify-center"
               word-className="text-xl text-gray-500" />
           </div>
@@ -220,11 +223,11 @@
           <!-- Section header -->
           <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
             <AnimatedUnderlineText text="是排版工具，也是强大的Markdown编辑器"
-              text-className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900"
-              underline-className="text-gray-900" />
+              text-className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100"
+              underline-className="text-gray-900 dark:text-gray-100" />
             <MagicText text="全面支持标准Markdown语法及扩展功能，让你的文档编写更加高效和专业"
               container-className="mt-6 justify-center max-w-3xl mx-auto"
-              word-className="text-lg md:text-xl text-gray-600" />
+              word-className="text-lg md:text-xl text-gray-600 dark:text-gray-300" />
           </div>
 
           <!-- Markdown features grid -->
@@ -287,7 +290,7 @@
 
                 <!-- Advantage 3 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.3s;">
-                  <h4 class="text-xl font-bold text-gray-900 mb-3">低价理念</h4>
+                  <h4 class="text-xl font-bold text-gray-900 mb-3">一杯星巴克</h4>
                   <MagicText text="为了斗争那些动辄上千的同类产品，我们收取的仅仅是软件本身的构建费用！" container-className="justify-center"
                     word-className="text-base text-gray-600" />
                 </div>
