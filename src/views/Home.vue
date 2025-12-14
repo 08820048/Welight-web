@@ -288,7 +288,7 @@
                 <!-- Advantage 3 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.3s;">
                   <h4 class="text-xl font-bold text-gray-900 mb-3">低价理念</h4>
-                  <MagicText text="就是为了抵制市面上动辄上千的会员费的同类产品来的，我们收取的仅仅是软件本身的构建费用！" container-className="justify-center"
+                  <MagicText text="为了斗争那些动辄上千的同类产品，我们收取的仅仅是软件本身的构建费用！" container-className="justify-center"
                     word-className="text-base text-gray-600" />
                 </div>
               </div>
