@@ -1,5 +1,5 @@
 <template>
-  <div class="relative min-h-screen bg-white">
+  <div class="relative min-h-screen bg-white dark:bg-gray-900">
     <AnimatedGridPattern :num-squares="50" :max-opacity="0.15" :duration="4" />
     <div class="min-h-screen text-gray-200 px-4 pt-20 pb-12 relative overflow-hidden"
       style="position: relative; z-index: 1;">
@@ -266,7 +266,8 @@
 
         <!-- 产品对比表格（线框模块：产品对比） -->
         <section class="mt-8 mb-10 relative py-8 md:py-12 animate-fade-in-up delay-400">
-          <WireframeOverlay class="wireframe-py-12-16" />
+          <WireframeOverlay class="wireframe-py-12-16"
+            inset-class="top-12 md:top-16 lg:top-20 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
           <div class="relative max-w-5xl mx-auto px-4 md:px-8">
             <div class="text-center mb-10">
               <h2 class="text-3xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-500">产品与服务对比</h2>
@@ -280,7 +281,8 @@
 
         <!-- 标题区（线框模块：定价与服务购买） -->
         <section class="relative mb-10 py-12 md:py-16 animate-fade-in-up delay-100">
-          <WireframeOverlay class="wireframe-py-12-16" />
+          <WireframeOverlay class="wireframe-py-12-16"
+            inset-class="top-12 md:top-16 lg:top-20 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
           <div class="text-center relative max-w-3xl mx-auto px-4 md:px-8">
             <AnimatedUnderlineText text="定价与服务购买" text-className="text-4xl font-extrabold text-gray-900"
               underline-className="text-gray-900" />
@@ -334,7 +336,7 @@
                   <!-- 原价显示 -->
                   <div v-if="getOriginalPrice(product)"
                     class="text-sm text-gray-400 line-through mb-1 transition-colors duration-200 group-hover:text-gray-500">
-                    原价¥{{ getOriginalPrice(product) }}{{ isLicenseProduct(product) ? '/年' : '/月' }}
+                    原价¥{{ getOriginalPrice(product) }}{{ !isLicenseProduct(product) ? '/月' : '' }}
                   </div>
                   <!-- 现价显示 -->
                   <div class="text-center">
@@ -358,7 +360,7 @@
                       <span class="text-lg font-light" style="color: #737a87;">¥</span>
                       <span class="text-3xl font-bold text-black dark:text-white">{{ product.price }}</span>
                       <span class="text-lg font-light" style="color: #737a87;">{{ product.permanent ? '/永久' : '/年'
-                        }}</span>
+                      }}</span>
                     </div>
                     <!-- 其他产品显示原价格 -->
                     <div v-else class="flex items-baseline justify-center space-x-1">
@@ -480,7 +482,8 @@
 
         <!-- 购买须知与接口说明（线框模块：购买须知） -->
         <section class="mt-12 relative py-12 md:py-16 animate-fade-in-up delay-1000">
-          <WireframeOverlay class="wireframe-py-12-16" />
+          <WireframeOverlay class="wireframe-py-12-16"
+            inset-class="top-12 md:top-16 lg:top-20 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
           <div class="relative max-w-3xl mx-auto px-4 md:px-8">
             <div class="bg-white rounded-xl shadow-lg p-6">
               <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1100">购买须知
@@ -1086,20 +1089,34 @@ function isLicenseProduct(product) {
 }
 
 // 获取产品原价
+/**
+ * 获取产品原价：用于在价格上方显示灰色的“原价¥xx”
+ *
+ * - 终身买断（许可证 permanent=true）：原价 ¥79.9
+ * - AI 服务：原价 ¥9.9
+ * - 云存储服务：原价 ¥19.9
+ * - 其它：不显示原价
+ */
 function getOriginalPrice(product) {
-  // 许可证产品不显示原价
   if (isLicenseProduct(product)) {
+    // 仅对“终身买断”显示原价
+    if (product.permanent) {
+      return 79.9
+    }
     return null
   } else if (product.code.includes('AI_SERVICE')) {
-    return 9.9 // AI服务原价
+    return 9.9
   } else if (product.code.includes('CLOUD_STORAGE')) {
-    return 19.9 // 云存储服务原价
+    return 19.9
   }
   return null
 }
 
 // 计算折扣百分比
 function getDiscountPercent(product) {
+  if (isLicenseProduct(product)) {
+    return null
+  }
   const originalPrice = getOriginalPrice(product)
   if (!originalPrice || originalPrice <= product.price) {
     return null

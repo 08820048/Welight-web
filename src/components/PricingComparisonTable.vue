@@ -7,10 +7,10 @@
             项目
           </th>
           <th scope="col" class="px-6 py-4 font-bold text-base w-1/4 min-w-[180px] text-blue-600 bg-blue-50/50">
-            许可证 (年付 ¥49.99)
+            年订阅许可 (年付 ¥29.9)
           </th>
           <th scope="col" class="px-6 py-4 font-bold text-base w-1/4 min-w-[180px] text-indigo-600 bg-indigo-50/50">
-            买断制许可证 (终身)
+            买断制许可证 (终身¥49.9)
           </th>
           <th scope="col" class="px-6 py-4 font-bold text-base w-1/3 min-w-[200px] text-purple-600 bg-purple-50/50">
             积分套餐 (如热门 ¥24 / 2000积分)
@@ -123,7 +123,7 @@
 
           </td>
           <td class="px-6 py-4 bg-indigo-50/10">
-            支持5台设备，优先技术支持
+            支持3台设备，优先技术支持
           </td>
           <td class="px-6 py-4 bg-purple-50/10">
             灵活消费，按需使用

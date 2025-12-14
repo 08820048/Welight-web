@@ -1,5 +1,5 @@
 <template>
-  <div class="relative min-h-screen bg-white">
+  <div class="relative min-h-screen bg-white dark:bg-gray-900">
     <!-- 渐隐网格背景（与其他页面统一） -->
     <AnimatedGridPattern />
 
@@ -7,7 +7,8 @@
       <div class="container-custom pb-16">
         <!-- 赞助支持 Welight（标题 + 描述 + 福利卡片，作为一个整体内容模块） -->
         <section class="relative mb-16 py-12 md:py-16 scroll-animate animate-fade-in-up delay-100">
-          <WireframeOverlay class="wireframe-donation-main" />
+          <WireframeOverlay class="wireframe-donation-main"
+            inset-class="top-12 md:top-16 lg:top-20 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
           <div class="relative max-w-3xl mx-auto px-4 md:px-8">
             <div class="text-center mb-12">
               <AnimatedUnderlineText text="赞助支持 Welight" text-className="text-4xl md:text-5xl font-bold text-gray-900"
@@ -42,7 +43,8 @@
 
         <!-- 致谢名单 -->
         <section class="relative mb-16 py-12 md:py-16 scroll-animate animate-fade-in-up delay-300">
-          <WireframeOverlay class="wireframe-donation-thanks" />
+          <WireframeOverlay class="wireframe-donation-thanks"
+            inset-class="top-12 md:top-16 lg:top-20 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
           <div class="relative max-w-5xl mx-auto px-4 md:px-8">
             <div class="text-center mb-8">
               <AnimatedUnderlineText text="致谢名单"
@@ -135,7 +137,8 @@
         <!-- 特别赞助展示（黑白卡片风格） -->
         <section v-if="specialDonations.length > 0"
           class="relative mb-12 py-12 md:py-16 scroll-animate animate-fade-in-up delay-400">
-          <WireframeOverlay class="wireframe-donation-special" />
+          <WireframeOverlay class="wireframe-donation-special"
+            inset-class="top-12 md:top-16 lg:top-20 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
           <div class="relative max-w-5xl mx-auto px-4 md:px-8">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
               特别赞助
