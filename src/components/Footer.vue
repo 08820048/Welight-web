@@ -154,6 +154,16 @@
                 <span>牛逼 star - GitHub互赞平台</span>
               </a>
             </li>
+            <li>
+              <a href="https://s.qiniu.com/JbAbea" target="_blank"
+                class="flex items-center gap-2 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+                <span
+                  class="inline-flex h-5 w-5 items-center justify-center rounded-full border border-gray-400 text-[10px]">
+                  QN
+                </span>
+                <span>七牛云AI模型</span>
+              </a>
+            </li>
           </ul>
           <p class="mt-3 text-xs text-gray-500 dark:text-gray-500">
             欢迎与 Welight 互换友链，可通过文档页或社区渠道联系作者。
