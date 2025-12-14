@@ -110,9 +110,9 @@
           </ul>
         </div>
 
-        <!-- 友情链接 -->
+        <!-- 推广链接 -->
         <div>
-          <h3 class="mb-4 text-base font-semibold">友情链接</h3>
+          <h3 class="mb-4 text-base font-semibold">推广链接</h3>
           <ul class="space-y-2 text-sm text-gray-600 dark:text-gray-400">
             <li>
               <a href="https://qoder.com/referral?referral_code=Ul7Io8v0RUWys2cUwypuhhYW8uGIY5To" target="_blank"
