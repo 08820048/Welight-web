@@ -175,7 +175,9 @@
       <div class="mt-10 border-t border-gray-200 dark:border-gray-800 pt-6">
         <div class="flex flex-col md:flex-row items-center justify-between gap-4">
           <p class="text-xs text-gray-500 dark:text-gray-500">
-            © {{ currentYear }} Welight. 保留所有权利。
+            © 2025 Welight. Made with love by
+            <a href="https://github.com/08820048" target="_blank" rel="noopener noreferrer"
+              class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 transition-colors">ornata</a>
           </p>
           <div class="flex flex-wrap items-center gap-4 text-xs text-gray-500 dark:text-gray-500">
             <router-link to="/terms"
@@ -196,9 +198,3 @@
     </div>
   </footer>
 </template>
-
-<script setup>
-import { computed } from 'vue'
-
-const currentYear = computed(() => new Date().getFullYear())
-</script>
