@@ -1,12 +1,5 @@
 <template>
   <div class="relative min-h-screen bg-white">
-    <AnimatedGridPattern
-      :num-squares="30"
-      :max-opacity="0.1"
-      :duration="3"
-      :repeat-delay="1"
-      class-name="[mask-image:radial-gradient(500px_circle_at_center,white,transparent)] inset-x-0 inset-y-[-30%] h-[200%] skew-y-12"
-    />
     <div class="min-h-screen text-gray-200 pt-20 relative overflow-hidden" style="position: relative; z-index: 1;">
       <!-- Hero Section -->
       <section class="section-padding">
@@ -247,9 +240,7 @@
 </template>
 
 <script setup>
-import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 // 功能特性页面逻辑
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

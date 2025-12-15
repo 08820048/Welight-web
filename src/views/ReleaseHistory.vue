@@ -1,11 +1,8 @@
 <template>
   <div class="relative min-h-screen bg-white">
-    <!-- 渐隐网格背景，统一全站视觉 -->
-    <AnimatedGridPattern />
     <div class="min-h-screen text-gray-200 pt-20 relative overflow-hidden" style="position: relative; z-index: 1;">
       <!-- Hero Section -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay class="wireframe-section-relaxed" />
         <div class="container-custom text-center relative">
           <AnimatedUnderlineText text="历史版本" text-className="text-4xl md:text-5xl font-bold text-gray-900"
             underline-className="text-gray-900" />
@@ -26,7 +23,6 @@
 
       <!-- Release History List（线框模块：历史版本列表） -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay class="wireframe-section-relaxed" />
         <div class="container-custom max-w-4xl mx-auto relative">
           <div class="space-y-6">
             <!-- Version Item -->
@@ -149,8 +145,6 @@
 
 <script setup>
 import { computed } from 'vue'
-import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
-import WireframeOverlay from '@/components/WireframeOverlay.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
 import { useSEO } from '@/composables/useSEO'
@@ -210,8 +204,8 @@ const downloadRelease = (version, platform) => {
 
   if (downloadUrl) {
     // 百度统计事件追踪
-    if (typeof _hmt !== 'undefined') {
-      _hmt.push(['_trackEvent', 'download-history', `${version}-${platform}`, downloadUrl])
+    if (typeof window._hmt !== 'undefined') {
+      window._hmt.push(['_trackEvent', 'download-history', `${version}-${platform}`, downloadUrl])
     }
 
     // 执行下载

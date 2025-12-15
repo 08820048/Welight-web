@@ -1,14 +1,9 @@
 <template>
   <div class="relative min-h-screen bg-white dark:bg-gray-900">
-    <!-- 渐隐网格背景（与其他页面统一） -->
-    <AnimatedGridPattern />
-
     <div class="min-h-screen text-gray-200 pt-20 relative" style="position: relative; z-index: 1;">
       <div class="container-custom pb-16">
         <!-- 赞助支持 Welight（标题 + 描述 + 福利卡片，作为一个整体内容模块） -->
         <section class="relative mb-16 py-12 md:py-16 scroll-animate animate-fade-in-up delay-100">
-          <WireframeOverlay class="wireframe-donation-main"
-            inset-class="top-12 md:top-16 lg:top-20 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
           <div class="relative max-w-3xl mx-auto px-4 md:px-8">
             <div class="text-center mb-12">
               <AnimatedUnderlineText text="赞助支持 Welight" text-className="text-4xl md:text-5xl font-bold text-gray-900"
@@ -43,8 +38,6 @@
 
         <!-- 致谢名单 -->
         <section class="relative mb-16 py-12 md:py-16 scroll-animate animate-fade-in-up delay-300">
-          <WireframeOverlay class="wireframe-donation-thanks"
-            inset-class="top-12 md:top-16 lg:top-20 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
           <div class="relative max-w-5xl mx-auto px-4 md:px-8">
             <div class="text-center mb-8">
               <AnimatedUnderlineText text="致谢名单"
@@ -55,10 +48,11 @@
             </div>
 
             <div
-              class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden flat-card">
+              class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg overflow-hidden flat-card">
               <div class="relative w-full overflow-auto">
                 <table class="w-full caption-bottom text-sm">
-                  <thead class="bg-transparent">
+                  <thead
+                    class="text-xs text-gray-700 dark:text-gray-100 uppercase bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                     <tr
                       class="border-b border-gray-200 dark:border-gray-700 [&>th:not(:last-child)]:border-r [&>th]:border-gray-200 dark:[&>th]:border-gray-700">
                       <th
@@ -90,36 +84,36 @@
                   <tbody class="[&_tr:last-child]:border-0">
                     <tr v-for="donation in allDonations" :key="donation.id"
                       class="border-b border-gray-200 dark:border-gray-700 transition-colors hover:bg-gray-50 dark:hover:bg-gray-800 [&>td:not(:last-child)]:border-r [&>td]:border-gray-200 dark:[&>td]:border-gray-700"
-                      :class="{ 'bg-gray-50 dark:bg-gray-900/40': donation.isSpecial }">
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      :class="{ 'bg-gray-50 dark:bg-gray-800/40': donation.isSpecial }">
+                      <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-800/40 dark:text-gray-100">
                         <div class="flex items-center">
-                          <div class="text-sm font-medium text-gray-900 dark:text-white">
+                          <div class="text-sm font-medium text-gray-900 dark:text-gray-100">
                             {{ donation.donorName }}
                           </div>
                         </div>
                       </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm font-bold text-gray-900 dark:text-white">
+                      <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-800/30">
+                        <div class="text-sm font-bold text-gray-900 dark:text-gray-100">
                           {{ formatAmount(donation.amount) }}
                         </div>
                       </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-800/30">
                         <div class="text-sm text-gray-600 dark:text-gray-300">
                           {{ formatDate(donation.date) }}
                         </div>
                       </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-800/30">
                         <div class="text-sm text-gray-600 dark:text-gray-300">
                           {{ donation.channel }}
                         </div>
                       </td>
-                      <td class="px-6 py-4">
+                      <td class="px-6 py-4 dark:bg-gray-800/30">
                         <div class="text-sm text-gray-600 dark:text-gray-300 max-w-xs truncate"
                           :title="donation.message">
                           {{ donation.message || '-' }}
                         </div>
                       </td>
-                      <td class="px-6 py-4 whitespace-nowrap">
+                      <td class="px-6 py-4 whitespace-nowrap dark:bg-gray-800/30">
                         <span v-if="donation.isSpecial"
                           class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900">
                           {{ donation.specialTag }}
@@ -137,8 +131,7 @@
         <!-- 特别赞助展示（黑白卡片风格） -->
         <section v-if="specialDonations.length > 0"
           class="relative mb-12 py-12 md:py-16 scroll-animate animate-fade-in-up delay-400">
-          <WireframeOverlay class="wireframe-donation-special"
-            inset-class="top-12 md:top-16 lg:top-20 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
+
           <div class="relative max-w-5xl mx-auto px-4 md:px-8">
             <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
               特别赞助
@@ -147,7 +140,8 @@
               <div v-for="donation in specialDonations" :key="donation.id"
                 class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-2xl p-6 flat-card">
                 <div class="flex items-center justify-between mb-4">
-                  <span class="bg-gray-900 text-white px-3 py-1 rounded-full text-sm font-medium">
+                  <span
+                    class="bg-gray-900 text-white dark:bg-gray-100 dark:text-gray-900 px-3 py-1 rounded-full text-sm font-medium">
                     {{ donation.specialTag }}
                   </span>
                   <span class="text-2xl font-bold text-gray-900 dark:text-white">
@@ -164,7 +158,8 @@
                   <div class="text-gray-600 dark:text-gray-400 text-sm">
                     <span class="font-medium">渠道：</span>{{ donation.channel }}
                   </div>
-                  <div v-if="donation.message" class="mt-3 p-3 bg-white dark:bg-gray-800 rounded-lg">
+                  <div v-if="donation.message"
+                    class="mt-3 p-3 bg-white dark:bg-gray-800 rounded-lg border border-gray-100 dark:border-gray-700">
                     <div class="text-gray-600 dark:text-gray-400 text-sm mb-1 font-medium">留言：</div>
                     <div class="text-gray-800 dark:text-gray-200">{{ donation.message }}</div>
                   </div>
@@ -192,10 +187,8 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { getAllDonations, getSpecialDonations, formatAmount, formatDate } from '@/data/donations.js'
-import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
-import WireframeOverlay from '@/components/WireframeOverlay.vue'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
 
 // SEO配置
@@ -343,26 +336,13 @@ onUnmounted(() => {
 /* 扁平化卡片样式（优化版本） */
 .flat-card {
   transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.2s ease,
-    background-color 0.2s ease;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
+    border-color 0.2s ease;
   will-change: transform;
-}
-
-.dark .flat-card {
-  background: rgba(31, 41, 55, 0.8);
 }
 
 .flat-card:hover {
   transform: translateY(-1px) translateZ(0);
   border-color: rgba(59, 130, 246, 0.5);
-  background: rgba(255, 255, 255, 0.95);
-}
-
-.dark .flat-card:hover {
-  border-color: rgba(59, 130, 246, 0.5);
-  background: rgba(31, 41, 55, 0.95);
 }
 
 /* 数字字体样式 */

@@ -1,12 +1,8 @@
 <template>
   <div class="relative min-h-screen bg-white">
-    <!-- 渐隐网格背景 -->
-    <AnimatedGridPattern />
-
     <div class="min-h-screen text-gray-200 pt-20 relative" style="position: relative; z-index: 1;">
       <!-- Hero Section（线框模块：下载您的应用） -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay class="wireframe-section-relaxed" />
         <div class="container-custom text-center relative">
           <AnimatedUnderlineText text="下载您的应用"
             text-className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white"
@@ -43,7 +39,6 @@
 
       <!-- Download Options（线框模块：下载选项） -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay class="wireframe-section-relaxed" />
         <div class="container-custom relative">
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <!-- Windows -->
@@ -170,7 +165,7 @@
 
       <!-- System Requirements（线框模块：系统要求） -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay class="wireframe-section-relaxed" />
+
         <div class="container-custom relative">
           <div class="text-center mb-12">
             <AnimatedUnderlineText text="系统要求"
@@ -192,7 +187,7 @@
 
       <!-- Installation Guide（线框模块：安装指南） -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay class="wireframe-section-relaxed" />
+
         <div class="container-custom relative">
           <div class="text-center mb-12">
             <AnimatedUnderlineText text="安装指南"
@@ -363,7 +358,7 @@
 
       <!-- Support Section（线框模块：支持） -->
       <section class="section-padding relative z-10">
-        <WireframeOverlay />
+
         <div class="container-custom text-center relative">
           <AnimatedUnderlineText text="需要帮助？"
             text-className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white"
@@ -424,7 +419,7 @@
 
       <!-- 反馈链接区域（线框模块：反馈） -->
       <section class="py-16 relative z-10">
-        <WireframeOverlay />
+
         <div class="container-custom relative">
           <div class="text-center">
             <AnimatedUnderlineText text="帮助我们改进 Welight"
@@ -467,8 +462,6 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
-import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
-import WireframeOverlay from '@/components/WireframeOverlay.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
 

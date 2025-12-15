@@ -1,6 +1,5 @@
 <template>
   <div class="relative min-h-screen bg-white dark:bg-gray-900">
-    <AnimatedGridPattern :num-squares="50" :max-opacity="0.15" :duration="4" />
     <div class="min-h-screen text-gray-200 px-4 pt-20 pb-12 relative overflow-hidden"
       style="position: relative; z-index: 1;">
       <div class="max-w-4xl mx-auto">
@@ -264,10 +263,8 @@
         <!-- 最近购买记录滚动展示：放在顶部菜单栏与定价线框之间 -->
         <!-- <RecentPurchasesTicker class="animate-fade-in-up delay-300" /> -->
 
-        <!-- 产品对比表格（线框模块：产品对比） -->
+        <!-- 产品对比表格 -->
         <section class="mt-8 mb-10 relative py-8 md:py-12 animate-fade-in-up delay-400">
-          <WireframeOverlay class="wireframe-py-12-16"
-            inset-class="top-12 md:top-16 lg:top-20 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
           <div class="relative max-w-5xl mx-auto px-4 md:px-8">
             <div class="text-center mb-10">
               <h2 class="text-3xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-500">产品与服务对比</h2>
@@ -279,10 +276,8 @@
           </div>
         </section>
 
-        <!-- 标题区（线框模块：定价与服务购买） -->
+        <!-- 标题区：定价与服务购买 -->
         <section class="relative mb-10 py-12 md:py-16 animate-fade-in-up delay-100">
-          <WireframeOverlay class="wireframe-py-12-16"
-            inset-class="top-12 md:top-16 lg:top-20 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
           <div class="text-center relative max-w-3xl mx-auto px-4 md:px-8">
             <AnimatedUnderlineText text="定价与服务购买" text-className="text-4xl font-extrabold text-gray-900"
               underline-className="text-gray-900" />
@@ -322,7 +317,7 @@
             <!-- 所有产品卡片（基于API数据） -->
             <div v-for="(product, index) in products" :key="product.id" class="relative">
               <div
-                class="bg-white rounded-xl shadow-lg flex flex-col items-center relative overflow-hidden product-card animate-scale-in border-2 border-white group"
+                class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 rounded-xl shadow-lg flex flex-col items-center relative overflow-hidden product-card animate-scale-in border-2 border-white dark:border-gray-700 group"
                 :class="[
                   `delay-${600 + index * 100}`,
                   index === 1 ? 'p-10 recommended-card' : 'p-8'
@@ -380,8 +375,8 @@
                     永久有效
                   </div>
                 </div>
-                <div class="text-gray-500 mb-6">{{ product.description }}</div>
-                <ul class="text-sm text-gray-700 space-y-2 mb-6 text-left w-full">
+                <div class="text-gray-500 dark:text-gray-300 mb-6">{{ product.description }}</div>
+                <ul class="text-sm text-gray-700 dark:text-gray-300 space-y-2 mb-6 text-left w-full">
                   <!-- 积分套餐功能列表 -->
                   <template v-if="product.code.includes('CREDITS')">
                     <li><span class="text-gray-900">✔</span> {{ getCreditsAmountLocal(product) }}积分</li>
@@ -429,8 +424,8 @@
                   <button @click="preselectedCreditsPackage = null; showCreditsModal = true"
                     :disabled="!isServiceCurrentlyAvailable"
                     class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
-                      'bg-gray-50 text-gray-900 border-gray-200 hover:bg-gray-100': isServiceCurrentlyAvailable,
-                      'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed': !isServiceCurrentlyAvailable
+                      'bg-gray-50 text-gray-900 border-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700 dark:hover:bg-gray-700': isServiceCurrentlyAvailable,
+                      'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed dark:bg-gray-700 dark:text-gray-500 dark:border-gray-700': !isServiceCurrentlyAvailable
                     }">
                     更多套餐
                   </button>
@@ -448,8 +443,8 @@
                   </button>
                   <button v-if="!product.permanent" @click="openRenewModal" :disabled="!isServiceCurrentlyAvailable"
                     class="w-full py-2 px-4 border rounded-lg font-medium transition-colors duration-200" :class="{
-                      'bg-gray-50 text-gray-900 border-gray-200 hover:bg-gray-100': isServiceCurrentlyAvailable,
-                      'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed': !isServiceCurrentlyAvailable
+                      'bg-gray-50 text-gray-900 border-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700 dark:hover:bg-gray-700': isServiceCurrentlyAvailable,
+                      'bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed dark:bg-gray-700 dark:text-gray-500 dark:border-gray-700': !isServiceCurrentlyAvailable
                     }">
                     产品续费
                   </button>
@@ -468,7 +463,7 @@
                 </div>
                 <!-- 右上角条状标签 - 参考源码实现 -->
                 <div v-if="!product.code.includes('MONTHLY')"
-                  class="absolute top-4 -right-10 bg-gray-900 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105">
+                  class="absolute top-4 -right-10 bg-gray-900 dark:bg-gray-800 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105">
                   {{ product.code.includes('CREDITS') ? '可选增值' : (product.isEnterprise ? '高性价比' :
                     (isLicenseProduct(product) ? '最受欢迎' :
                       '限时8.8折')) }}
@@ -482,13 +477,11 @@
 
         <!-- 购买须知与接口说明（线框模块：购买须知） -->
         <section class="mt-12 relative py-12 md:py-16 animate-fade-in-up delay-1000">
-          <WireframeOverlay class="wireframe-py-12-16"
-            inset-class="top-12 md:top-16 lg:top-20 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
           <div class="relative max-w-3xl mx-auto px-4 md:px-8">
-            <div class="bg-white rounded-xl shadow-lg p-6">
-              <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1100">购买须知
+            <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700">
+              <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in-left delay-1100">购买须知
               </h2>
-              <ul class="list-disc pl-6 text-gray-700 space-y-2 mb-6 text-sm">
+              <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 space-y-2 mb-6 text-sm">
                 <li class="animate-fade-in-up delay-1700">请在应用使用过程中确保网络通畅，关闭VPN，避免状态检测异常，影响你的使用体验</li>
                 <li class="animate-fade-in-up delay-1200">购买后许可证将自动发送到您的邮箱，请妥善保存许可证密钥。</li>
                 <li class="animate-fade-in-up delay-1300">每个许可证支持在指定数量的设备上使用。</li>
@@ -503,14 +496,16 @@
                 <li class="animate-fade-in-up delay-1700">试用期期间有300试用积分,用完为止,试用期过期之后跟随失效。</li>
               </ul>
 
-              <h2 class="text-xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-1800">交流反馈
+              <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in-left delay-1800">交流反馈
               </h2>
-              <div class="bg-blue-50 rounded-lg p-4 text-sm animate-scale-in delay-1900">
+              <div
+                class="bg-blue-50 dark:bg-gray-800 rounded-lg p-4 text-sm animate-scale-in delay-1900 border border-gray-100 dark:border-gray-700">
                 <div class="flex items-center space-x-4">
                   <div>
-                    <span class="font-medium text-blue-800">QQ群：</span>
+                    <span class="font-medium text-blue-800 dark:text-blue-300">QQ群：</span>
                     <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=U4EFNYA9KuxK3OOQJQRfmzrfpwn3NM%2BHScNavJLkDXANe7H%2BONEQvGMvVI2LRrx2&busi_data=eyJncm91cENvZGUiOiIxMDcxNTU4ODAzIiwidG9rZW4iOiI3N2krQUx6VTVoTXVwOVRBRU52djl6R3k2VDYyNWR1RXl4bk92S2Y5SzNWVTBrUTlmeitCNEN6OS92KzZoMElqIiwidWluIjoiMjIxNzAyMTU2MyJ9&data=xN0g96ZxEMQlgiGFEWHsx8x0rZ0Qz9zmsBlJXrOxz6m1DVOYht3OeVZLFTMy6bGTC-Nc4yxMX25CDwocSJMQRLkcxdIUz6736qxlkysN8AE&svctype=5&tempid=h5_group_info"
-                      target="_blank" class="text-blue-600 hover:text-blue-800 underline">
+                      target="_blank"
+                      class="text-blue-600 dark:text-blue-300 hover:text-blue-800 dark:hover:text-blue-400 underline">
                       点击加入
                     </a>
                   </div>
@@ -540,10 +535,8 @@
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
 import PricingComparisonTable from '@/components/PricingComparisonTable.vue'
-import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
-import WireframeOverlay from '@/components/WireframeOverlay.vue'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
 import {
   getProducts,
@@ -568,7 +561,7 @@ import {
 import MonthlyCardPurchase from '../components/MonthlyCardPurchase.vue'
 import MonthlyCardActivation from '../components/MonthlyCardActivation.vue'
 import CreditsPurchase from '../components/CreditsPurchase.vue'
-import FloatingPricingInfoButton from '../components/FloatingPricingInfoButton.vue'
+
 // import RecentPurchasesTicker from '../components/RecentPurchasesTicker.vue'
 
 // SEO配置
@@ -579,8 +572,8 @@ useSEO(seoConfigs.pricing)
  */
 function loadConfettiLibrary() {
   return new Promise((resolve, reject) => {
-    console.log('🔍 检查confetti库状态，当前类型:', typeof confetti)
-    if (typeof confetti !== 'undefined') {
+    console.log('🔍 检查confetti库状态，当前类型:', typeof window.confetti)
+    if (typeof window.confetti !== 'undefined') {
       console.log('✅ confetti库已存在，无需重复加载')
       resolve()
       return
@@ -590,7 +583,7 @@ function loadConfettiLibrary() {
     const script = document.createElement('script')
     script.src = 'https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js'
     script.onload = () => {
-      console.log('✅ confetti库加载成功，类型:', typeof confetti)
+      console.log('✅ confetti库加载成功，类型:', typeof window.confetti)
       resolve()
     }
     script.onerror = (error) => {
@@ -609,14 +602,14 @@ async function triggerPaymentSuccessConfetti() {
   try {
     console.log('🎯 开始触发支付成功撒花特效...')
     await loadConfettiLibrary()
-    console.log('📦 撒花库加载完成，confetti类型:', typeof confetti)
+    console.log('📦 撒花库加载完成，confetti类型:', typeof window.confetti)
 
-    if (typeof confetti === 'undefined') {
+    if (typeof window.confetti === 'undefined') {
       throw new Error('confetti库未正确加载')
     }
 
     console.log('🎊 执行撒花特效...')
-    confetti({
+    window.confetti({
       particleCount: 100,
       spread: 70,
       origin: { y: 0.6 },
@@ -1135,15 +1128,6 @@ function getDailyPrice(product) {
   return dailyPrice
 }
 
-// 计算许可证折合天价格
-function getLicenseDailyPrice(product) {
-  if (!isLicenseProduct(product)) {
-    return null
-  }
-  // 按365天计算
-  const dailyPrice = (product.price / 365).toFixed(2)
-  return dailyPrice
-}
 
 // 获取许可证年度价格（用于续费）
 function getLicenseYearlyPrice(years = 1) {
@@ -1346,8 +1330,8 @@ function handleCreditsPurchaseSuccess(result) {
 
   // 显示撒花特效
   loadConfettiLibrary().then(() => {
-    if (typeof confetti !== 'undefined') {
-      confetti({
+    if (typeof window.confetti !== 'undefined') {
+      window.confetti({
         particleCount: 100,
         spread: 70,
         origin: { y: 0.6 }

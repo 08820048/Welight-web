@@ -1,8 +1,5 @@
 <template>
   <div class="relative min-h-screen bg-white">
-    <!-- 背景动画 -->
-    <AnimatedGridPattern :num-squares="20" :max-opacity="0.15" :duration="4" />
-
     <!-- 主要内容 -->
     <div class="min-h-screen" style="position: relative; z-index: 1;">
       <!-- 顶部导航 -->
@@ -94,7 +91,6 @@
 <script setup>
 import { ref, computed, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import { getArticleBySlug, getRelatedArticles, getArticleHtmlPath } from '@/data/articles.js'
 import { useSEO } from '@/composables/useSEO'
 

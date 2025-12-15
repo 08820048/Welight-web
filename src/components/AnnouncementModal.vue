@@ -26,7 +26,7 @@
           <!-- 公告列表 -->
           <div class="space-y-6">
             <!-- 动态渲染公告 -->
-            <template v-for="(announcement, index) in announcementData" :key="announcement.id">
+            <template v-for="announcement in announcementData" :key="announcement.id">
               <div class="relative pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                 <!-- 公告标题 -->
                 <div class="flex items-start space-x-3 mb-3">

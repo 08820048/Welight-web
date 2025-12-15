@@ -1,10 +1,5 @@
 <template>
   <div class="relative min-h-screen bg-white">
-    <AnimatedGridPattern
-      :num-squares="20"
-      :max-opacity="0.15"
-      :duration="4"
-    />
     <div class="min-h-screen" style="position: relative; z-index: 1;">
       <!-- 导航栏占位 -->
       <div class="h-16"></div>
@@ -126,7 +121,6 @@
 </template>
 
 <script setup>
-import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
@@ -323,7 +317,7 @@ const renderedContent = computed(() => {
       const first = bq.firstElementChild
       if (first && first.tagName === 'P') {
         const marker = first.textContent.trim()
-        const m = marker.match(/^\[\!(TIP|NOTE|IMPORTANT|WARNING|CAUTION)\]$/i)
+        const m = marker.match(/^\[!(TIP|NOTE|IMPORTANT|WARNING|CAUTION)\]$/i)
         if (m) {
           const type = m[1].toLowerCase()
           const box = doc.createElement('div')
@@ -527,6 +521,115 @@ onMounted(() => {
 /* 自定义样式 */
 .markdown-content {
   @apply text-gray-800 leading-loose;
+}
+
+/* Dark mode readability overrides */
+.dark :deep(.markdown-content) {
+  @apply text-white;
+}
+
+.dark :deep(.markdown-content p) {
+  @apply text-white;
+}
+
+.dark :deep(.markdown-content li) {
+  @apply text-white;
+}
+
+.dark :deep(.markdown-content h1),
+.dark :deep(.markdown-content h2),
+.dark :deep(.markdown-content h3),
+.dark :deep(.markdown-content h4) {
+  @apply text-white;
+}
+
+.dark :deep(.markdown-content a) {
+  @apply text-white hover:text-blue-300;
+}
+
+.dark :deep(.markdown-content code) {
+  @apply bg-gray-800 text-gray-200;
+}
+
+.dark :deep(.markdown-content pre) {
+  @apply bg-gray-800 border border-gray-700;
+}
+
+.dark :deep(.markdown-content .hljs) {
+  @apply bg-gray-800 text-gray-200;
+}
+
+.dark :deep(.markdown-content blockquote) {
+  @apply bg-blue-900/30 border-blue-400 text-white;
+}
+
+.dark :deep(.markdown-content table) {
+  @apply border-gray-700;
+}
+
+.dark :deep(.markdown-content th),
+.dark :deep(.markdown-content td) {
+  @apply border-gray-700;
+}
+
+.dark :deep(.markdown-content th) {
+  @apply bg-gray-800;
+}
+
+.dark :deep(.markdown-content .admonition) {
+  @apply text-white;
+}
+
+.dark :deep(.markdown-content .admonition-tip) {
+  @apply border-green-400 bg-green-900/20;
+}
+
+.dark :deep(.markdown-content .admonition-note) {
+  @apply border-blue-400 bg-blue-900/20;
+}
+
+.dark :deep(.markdown-content .admonition-important) {
+  @apply border-purple-400 bg-purple-900/20;
+}
+
+.dark :deep(.markdown-content .admonition-warning) {
+  @apply border-yellow-400 bg-yellow-900/20;
+}
+
+.dark :deep(.markdown-content .admonition-caution) {
+  @apply border-red-400 bg-red-900/20;
+}
+
+.dark :deep(.markdown-content .admonition-tip .admonition-icon-wrap) {
+  @apply bg-green-900/20 ring-green-700;
+}
+
+.dark :deep(.markdown-content .admonition-note .admonition-icon-wrap) {
+  @apply bg-blue-900/20 ring-blue-700;
+}
+
+.dark :deep(.markdown-content .admonition-important .admonition-icon-wrap) {
+  @apply bg-purple-900/20 ring-purple-700;
+}
+
+.dark :deep(.markdown-content .admonition-warning .admonition-icon-wrap) {
+  @apply bg-yellow-900/20 ring-yellow-700;
+}
+
+.dark :deep(.markdown-content .admonition-caution .admonition-icon-wrap) {
+  @apply bg-red-900/20 ring-red-700;
+}
+
+.dark :deep(.markdown-content kbd) {
+  @apply bg-gray-800 border-gray-600 text-gray-200;
+}
+
+.dark :deep(.markdown-content hr) {
+  @apply border-gray-700;
+}
+
+.dark :deep(.markdown-content mark) {
+  @apply bg-yellow-700/50 text-gray-100;
 }
 
 /* 进入锚点时避免被顶部遮挡 */
@@ -797,6 +900,4 @@ onMounted(() => {
 :deep(.markdown-content .mermaid) {
   @apply my-4;
 }
-
-
 </style>

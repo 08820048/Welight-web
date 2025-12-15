@@ -59,10 +59,10 @@ onMounted(() => {
 
 
   timer = setInterval(() => {
-    // 
+    // 切换计时器，控制展示阶段（图片/文本）
     currentTime.value += 100
 
-    // 
+    // 根据每列的偏移计算当前阶段
     phases.value = visibleLogos.value.map((_, index) => {
       const offset = index * (cycleInterval / 2)
       const total = (currentTime.value + offset) % (cycleInterval * 2)

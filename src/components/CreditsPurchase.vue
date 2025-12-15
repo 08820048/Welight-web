@@ -35,8 +35,7 @@
         </div>
 
         <!-- 套餐选择列表（仅在非直接购买模式时显示） -->
-        <div v-if="!isDirectPurchaseMode" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          v-show="creditPackages.length > 0">
+        <div v-if="!isDirectPurchaseMode && creditPackages.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div v-for="pkg in creditPackages" :key="pkg.id"
             class="group relative bg-white dark:bg-gray-800 border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 dark:border-gray-700"
             :class="{

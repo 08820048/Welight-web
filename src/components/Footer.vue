@@ -51,6 +51,10 @@
               <router-link to="/release-history"
                 class="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">历史版本</router-link>
             </li>
+            <li>
+              <router-link to="/changelog"
+                class="hover:text-gray-900 dark:hover:text-gray-100 transition-colors">更新日志</router-link>
+            </li>
           </ul>
         </div>
 

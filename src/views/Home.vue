@@ -1,6 +1,5 @@
 <template>
   <div class="relative min-h-screen bg-white dark:bg-gray-900">
-    <AnimatedGridPattern :num-squares="20" :max-opacity="0.15" :duration="4" />
     <div class="min-h-screen text-gray-800 dark:text-gray-200 relative overflow-hidden"
       style="position: relative; z-index: 1;">
       <!-- 顶部横幅通知 -->
@@ -46,10 +45,8 @@
 
       <!-- Hero Section -->
       <section class="relative pt-24 pb-24">
-        <WireframeOverlay class="wireframe-hero"
-          inset-class="top-24 md:top-32 lg:top-40 bottom-8 md:bottom-12 lg:bottom-16 inset-x-6 md:inset-x-16" />
         <div class="mx-auto max-w-5xl px-6">
-          <div class="sm:mx-auto lg:mr-auto">
+          <div class="mx-auto">
             <!-- Animated content group -->
             <div class="space-y-8">
               <!-- Main heading -->
@@ -69,57 +66,50 @@
                   word-className="text-lg text-gray-600" />
               </div> -->
 
-              <!-- Download buttons and statistics -->
+              <!-- Download CTA Row -->
               <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
-                :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.9 } }"
-                class="mt-16 flex flex-col sm:flex-row flex-wrap items-center justify-center gap-6">
-                <!-- macOS Download Button -->
-                <button @click="downloadFile('macos-apple')" class="group">
-                  <div
-                    class="relative overflow-hidden bg-gray-900 hover:bg-gray-800 text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 inline-flex items-center gap-2 shadow-lg hover:shadow-xl hover:-translate-y-0.5">
-                    <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
-                    </svg>
-                    <span class="text-base">下载 macOS 版</span>
-                    <svg class="w-4 h-4 text-white/60 group-hover:text-white group-hover:translate-x-0.5 transition-all"
-                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
+                :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.95 } }"
+                class="mt-16 w-full flex items-center justify-center gap-3">
+                <!-- macOS button (black pill) -->
+                <button
+                  class="inline-flex items-center px-5 py-2.5 rounded-full bg-black text-white hover:bg-gray-900 transition-colors shadow-soft-lg"
+                  @click="downloadFile('macos-apple')">
+                  <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
+                  </svg>
+                  下载 macOS 版
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
                 </button>
 
-                <!-- Windows Download Button -->
-                <button @click="downloadFile('windows-installer')" class="group">
-                  <div
-                    class="relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 font-medium px-6 py-3 rounded-lg transition-all duration-200 border border-gray-200 hover:border-gray-300 inline-flex items-center gap-2 shadow-sm hover:shadow-md hover:-translate-y-0.5">
-                    <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M0,0V11.408H11.408V0ZM12.594,0V11.408H24V0ZM0,12.594V24H11.408V12.594ZM12.594,12.594V24H24V12.594Z" />
-                    </svg>
-                    <span class="text-base">下载 Windows 版</span>
-                    <svg
-                      class="w-4 h-4 text-gray-400 group-hover:text-gray-900 group-hover:translate-x-0.5 transition-all"
-                      fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
+                <!-- Windows button (white pill) -->
+                <button
+                  class="inline-flex items-center px-5 py-2.5 rounded-full bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 transition-colors shadow-soft"
+                  @click="downloadFile('windows-installer')">
+                  <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M0,0V11.408H11.408V0ZM12.594,0V11.408H24V0ZM0,12.594V24H11.408V12.594ZM12.594,12.594V24H24V12.594Z" />
+                  </svg>
+                  下载 Windows 版
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                  </svg>
                 </button>
 
-                <!-- Download statistics -->
-                <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
-                  :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.95 } }"
-                  class="flex items-center gap-3 text-sm text-gray-500 w-full sm:w-auto justify-center sm:ml-2">
+                <!-- Stats and all versions link -->
+                <div class="flex items-center gap-3 text-sm text-gray-500">
                   <span class="font-medium text-gray-700">{{ animatedTotalDownloads.toLocaleString() }} 次下载</span>
                   <span class="text-gray-300">|</span>
-                  <router-link to="/download"
-                    class="text-gray-600 hover:text-gray-900 transition-colors flex items-center group">
+                  <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA&versionCode=4001005"
+                    target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors flex items-center group">
                     查看所有版本
                     <svg class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none"
                       stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
                     </svg>
-                  </router-link>
+                  </a>
                 </div>
               </div>
             </div>
@@ -130,14 +120,23 @@
         <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
           :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 1.0 } }"
           class="relative mt-8 px-2 sm:mt-12 md:mt-20">
-          <VideoDisplayCard videoUrl="/videos/welight-demo.mp4" poster="/videos/welight-poster.jpg" />
+          <div
+            class="relative w-full max-w-5xl mx-auto rounded-2xl border-2 border-gray-200 bg-white/50 backdrop-blur-sm p-2 sm:p-4 shadow-xl transition-all duration-500 hover:shadow-2xl">
+            <div class="relative rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-200 aspect-video bg-gray-100">
+              <img
+                src="https://ultimate-img.oss-cn-beijing.aliyuncs.com/welight/ilikexff@gmail.com/20251215/345f804d3a2c4b40aac7ada559be5d00.png"
+                alt="Welight 预览（浅色模式）" class="w-full h-full object-cover block dark:hidden" loading="lazy" />
+              <img
+                src="https://ultimate-img.oss-cn-beijing.aliyuncs.com/welight/ilikexff@gmail.com/20251215/c997ec571e6c4adba3acab100cb5e8ce.png"
+                alt="Welight 预览（深色模式）" class="w-full h-full object-cover hidden dark:block" loading="lazy" />
+            </div>
+          </div>
           <!-- 提示：请将 videoUrl 替换为您的 MP4 视频链接 -->
         </div>
       </section>
 
       <!-- Themes Section -->
       <section class="relative py-32">
-        <WireframeOverlay class="wireframe-py-32" />
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
@@ -157,7 +156,6 @@
 
       <!-- Features Section -->
       <section class="relative py-32">
-        <WireframeOverlay class="wireframe-features" />
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
@@ -184,7 +182,6 @@
 
       <!-- AI Integration Section -->
       <section class="relative py-32">
-        <WireframeOverlay class="wireframe-ai-experience" />
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
@@ -217,7 +214,6 @@
 
       <!-- Markdown Support Section -->
       <section class="relative min-h-screen py-20">
-        <WireframeOverlay class="wireframe-py-20" />
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
@@ -322,14 +318,11 @@ import { useRoute } from 'vue-router'
 import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
 import ThemeTestimonials from '@/components/ThemeTestimonials.vue'
-import AnimatedGridPattern from '@/components/AnimatedGridPattern.vue'
 import DisplayCards from '@/components/DisplayCards.vue'
 import ImageDisplayCard from '@/components/ImageDisplayCard.vue'
 import DualImageDisplayCard from '@/components/DualImageDisplayCard.vue'
-import VideoDisplayCard from '@/components/VideoDisplayCard.vue'
 import MarkdownFeatureCard from '@/components/MarkdownFeatureCard.vue'
 import VerticalDisplayCards from '@/components/VerticalDisplayCards.vue'
-import WireframeOverlay from '@/components/WireframeOverlay.vue'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
 // import PurchaseNotificationTicker from '@/components/PurchaseNotificationTicker.vue'
@@ -504,7 +497,7 @@ const stopAutoSwitch = () => {
  */
 function loadConfettiLibrary() {
   return new Promise((resolve, reject) => {
-    if (typeof confetti !== 'undefined') {
+    if (typeof window.confetti !== 'undefined') {
       resolve()
       return
     }
@@ -524,7 +517,7 @@ function loadConfettiLibrary() {
 async function triggerRainbowConfetti() {
   try {
     await loadConfettiLibrary()
-    confetti({
+    window.confetti({
       particleCount: 150,
       spread: 60,
       origin: { y: 0.6 },

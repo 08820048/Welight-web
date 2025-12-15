@@ -30,7 +30,7 @@
           </button>
           <router-link to="/pricing" class="hover:text-slate-900 transition-colors font-medium relative"
             active-class="text-primary-600">
-            购买许可
+            定价
             <!-- <span
               class="absolute -top-2 -right-3 text-white text-xs px-1.5 py-0.5 rounded-full font-bold shadow-sm bg-gradient-to-r from-red-500 to-orange-500 scale-90">
               庆
@@ -40,7 +40,7 @@
           <router-link to="/donation"
             class="hover:text-slate-900 transition-colors font-medium relative flex items-center gap-1.5"
             active-class="text-primary-600">
-            赞助支持
+            赞助
             <!-- <div v-if="donationCount > 0"
               class="bg-yellow-400 text-slate-900 text-xs px-1.5 py-0.5 rounded-full font-bold min-w-[20px] text-center shadow-sm scale-75">
               +{{ donationCount }}
@@ -165,7 +165,7 @@
                 <div class="paper"></div>
               </div>
             </div>
-            阅读文档
+            文档
             <span v-if="hasDocsUpdate"
               class="absolute -top-2 -right-2 text-white text-xs px-1.5 py-0.5 rounded-full font-bold shadow-sm bg-gradient-to-r from-red-500 to-orange-500 scale-90 animate-pulse z-10">
               有更新
@@ -200,7 +200,7 @@
           </router-link>
           <router-link to="/pricing" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
-            购买许可
+            定价
           </router-link>
           <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA&versionCode=4001005"
             target="_blank" @click="closeMobileMenu"
@@ -241,7 +241,7 @@
           </button>
           <router-link to="/donation" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors font-medium">
-            ❤️ 赞助支持
+            ❤️ 赞助
           </router-link>
         </nav>
       </div>

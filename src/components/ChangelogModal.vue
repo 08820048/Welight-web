@@ -31,7 +31,7 @@
           <!-- 版本列表 -->
           <div v-else class="space-y-6">
             <!-- 动态渲染版本 -->
-            <template v-for="(version, index) in changelogData" :key="version.version">
+            <template v-for="version in changelogData" :key="version.version">
               <div class="relative pb-6 border-b border-gray-100 last:border-0 last:pb-0">
                 <!-- 版本标题 -->
                 <div class="flex items-start space-x-3 mb-3">

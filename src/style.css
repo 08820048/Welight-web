@@ -79,11 +79,38 @@
   color: #9ca3af;
 }
 .dark .bg-white {
-  background-color: #111827;
+  background-color: #171717;
 }
 .dark .bg-gray-50 {
   background-color: #0f172a;
 }
 .dark .border-gray-200 {
+  border-color: #374151;
+}
+
+.dark .markdown-content {
+  color: #ffffff !important;
+}
+.dark .markdown-content p,
+.dark .markdown-content li,
+.dark .markdown-content h1,
+.dark .markdown-content h2,
+.dark .markdown-content h3,
+.dark .markdown-content h4 {
+  color: #ffffff !important;
+}
+.dark .markdown-content a {
+  color: #ffffff !important;
+}
+.dark .markdown-content code,
+.dark .markdown-content pre,
+.dark .markdown-content .hljs {
+  background-color: #1f2937;
+  color: #e5e7eb;
+}
+.dark .markdown-content table,
+.dark .markdown-content th,
+.dark .markdown-content td,
+.dark .markdown-content hr {
   border-color: #374151;
 }
