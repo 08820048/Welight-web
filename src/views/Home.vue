@@ -54,7 +54,7 @@
                 :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.8 } }"
                 class="mt-12 lg:mt-20">
                 <AnimatedUnderlineText text="好看的排版，从来简约。"
-                  text-className="text-5xl font-medium md:text-6xl text-gray-900 dark:text-gray-100 whitespace-nowrap"
+                  text-className="text-5xl font-medium md:text-6xl text-gray-900 dark:text-gray-100 whitespace-nowrap font-longcang"
                   underline-className="text-gray-900 dark:text-gray-100" />
               </div>
 
@@ -123,12 +123,10 @@
           <div
             class="relative w-full max-w-5xl mx-auto rounded-2xl border-2 border-gray-200 bg-white/50 backdrop-blur-sm p-2 sm:p-4 shadow-xl transition-all duration-500 hover:shadow-2xl">
             <div class="relative rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-200 aspect-video bg-gray-100">
-              <img
-                src="https://ultimate-img.oss-cn-beijing.aliyuncs.com/welight/ilikexff@gmail.com/20251215/345f804d3a2c4b40aac7ada559be5d00.png"
-                alt="Welight 预览（浅色模式）" class="w-full h-full object-cover block dark:hidden" loading="lazy" />
-              <img
-                src="https://ultimate-img.oss-cn-beijing.aliyuncs.com/welight/ilikexff@gmail.com/20251215/c997ec571e6c4adba3acab100cb5e8ce.png"
-                alt="Welight 预览（深色模式）" class="w-full h-full object-cover hidden dark:block" loading="lazy" />
+              <img src="/assert/index.png" alt="Welight 预览（浅色模式）" class="w-full h-full object-cover block dark:hidden"
+                loading="lazy" />
+              <img src="/assert/index_dark.png" alt="Welight 预览（深色模式）"
+                class="w-full h-full object-cover hidden dark:block" loading="lazy" />
             </div>
           </div>
           <!-- 提示：请将 videoUrl 替换为您的 MP4 视频链接 -->
@@ -141,7 +139,7 @@
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
             <AnimatedUnderlineText text="丰富多样的排版主题"
-              text-className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100"
+              text-className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 font-longcang"
               underline-className="text-gray-900 dark:text-gray-100" />
             <MagicText text="精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果" container-className="mt-6 justify-center"
               word-className="text-xl text-gray-500" />
@@ -159,7 +157,8 @@
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <AnimatedUnderlineText text="快捷高效的编辑体验" text-className="text-4xl md:text-5xl font-bold text-gray-900"
+            <AnimatedUnderlineText text="快捷高效的编辑体验"
+              text-className="text-4xl md:text-5xl font-bold text-gray-900 font-longcang"
               underline-className="text-gray-900" />
             <MagicText text="从划词工具栏到智能排版，每一个功能都经过精心设计" container-className="mt-6 justify-center"
               word-className="text-xl text-gray-500" />
@@ -185,7 +184,8 @@
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
-            <AnimatedUnderlineText text="一站式智能体验" text-className="text-4xl md:text-5xl font-bold text-gray-900"
+            <AnimatedUnderlineText text="一站式智能体验"
+              text-className="text-4xl md:text-5xl font-bold text-gray-900 font-longcang"
               underline-className="text-gray-900" />
             <MagicText text="集成多个主流 AI 模型，为你的写作提供智能辅助" container-className="mt-6 justify-center max-w-2xl mx-auto"
               word-className="text-lg md:text-xl text-gray-600" />
@@ -218,7 +218,7 @@
           <!-- Section header -->
           <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
             <AnimatedUnderlineText text="是排版工具，也是强大的Markdown编辑器"
-              text-className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100"
+              text-className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 font-longcang"
               underline-className="text-gray-900 dark:text-gray-100" />
             <MagicText text="全面支持标准Markdown语法及扩展功能，让你的文档编写更加高效和专业"
               container-className="mt-6 justify-center max-w-3xl mx-auto"
@@ -265,27 +265,28 @@
           <!-- Markdown advantages -->
           <div class="text-center scroll-animate" style="transition-delay: 1.0s;">
             <div class="max-w-4xl mx-auto">
-              <AnimatedUnderlineText text="为什么选择Welight？" text-className="text-2xl md:text-3xl font-bold text-gray-900"
+              <AnimatedUnderlineText text="为什么选择Welight？"
+                text-className="text-2xl md:text-3xl font-bold text-gray-900 font-longcang"
                 underline-className="text-gray-900" />
 
               <div class="grid md:grid-cols-3 gap-8 mt-12">
                 <!-- Advantage 1 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.1s;">
-                  <h4 class="text-xl font-bold text-gray-900 mb-3">简单高效</h4>
+                  <h4 class="text-xl font-bold text-gray-900 mb-3 font-longcang">简单高效</h4>
                   <MagicText text="轻量级编辑器，学习成本低，书写效率高，专注内容创作" container-className="justify-center"
                     word-className="text-base text-gray-600" />
                 </div>
 
                 <!-- Advantage 2 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.2s;">
-                  <h4 class="text-xl font-bold text-gray-900 mb-3">极简审美</h4>
+                  <h4 class="text-xl font-bold text-gray-900 mb-3 font-longcang">极简审美</h4>
                   <MagicText text="回归创作 初衷，所见即所得，拒绝花里胡哨的图案堆叠。" container-className="justify-center"
                     word-className="text-base text-gray-600" />
                 </div>
 
                 <!-- Advantage 3 -->
                 <div class="scroll-animate fade-up text-center" style="transition-delay: 1.3s;">
-                  <h4 class="text-xl font-bold text-gray-900 mb-3">一杯星巴克</h4>
+                  <h4 class="text-xl font-bold text-gray-900 mb-3 font-longcang">一杯星巴克</h4>
                   <MagicText text="为了斗争那些动辄上千的同类产品，我们收取的仅仅是软件本身的构建费用！" container-className="justify-center"
                     word-className="text-base text-gray-600" />
                 </div>
@@ -400,32 +401,32 @@ const aiModelLogos = [
   {
     id: 'deepseek',
     name: 'DeepSeek',
-    src: 'https://images.waer.ltd/notes/202508281524593.png'
+    src: '/llm/deepseek-color.svg'
   },
   {
     id: 'zhipu',
     name: '智谱',
-    src: '/智谱.png'
+    src: '/llm/qingyan-color.svg'
   },
   {
     id: 'qwen',
     name: 'Qwen',
-    src: '/qwen.png'
+    src: '/llm/qwen-color.svg'
   },
   {
     id: 'kimi',
     name: 'Kimi',
-    src: '/kimi.png'
+    src: '/llm/kimi-color.svg'
   },
   {
     id: 'ollama',
     name: 'Ollama',
-    src: 'https://images.waer.ltd/notes/202509050835689.png'
+    src: '/llm/ollama.svg'
   },
   {
     id: '豆包',
     name: '豆包',
-    src: 'https://images.waer.ltd/notes/202511291516954.jpeg'
+    src: '/llm/doubao-color.svg'
   }
 
 ]

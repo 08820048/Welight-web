@@ -48,7 +48,8 @@ export default {
           'Roboto',
           'sans-serif'
         ],
-        mono: ['JetBrains Mono', 'SF Mono', 'Consolas', 'monospace']
+        mono: ['JetBrains Mono', 'SF Mono', 'Consolas', 'monospace'],
+        longcang: ['"Long Cang"', 'cursive', 'sans-serif']
       },
       fontSize: {
         'display-2xl': ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],

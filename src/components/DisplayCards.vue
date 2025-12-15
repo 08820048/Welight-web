@@ -27,7 +27,7 @@
         <span class="relative inline-block rounded-full bg-gray-900 dark:bg-gray-700 p-1 shrink-0">
           <component :is="card.icon" class="size-4 text-white" />
         </span>
-        <p :class="cn('text-lg font-medium text-gray-900 dark:text-gray-100', card.titleClassName)">{{ card.title }}</p>
+        <p :class="cn('text-lg font-medium text-gray-900 dark:text-gray-100 font-longcang', card.titleClassName)">{{ card.title }}</p>
       </div>
       <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">{{ card.description }}</p>
 

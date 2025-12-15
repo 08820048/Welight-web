@@ -8,7 +8,7 @@
         <div class="w-12 h-12 bg-gray-900 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4 shrink-0">
           <component :is="icon" class="w-6 h-6 text-white" />
         </div>
-        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">{{ title }}</h3>
+        <h3 class="text-xl font-bold font-longcang text-gray-900 dark:text-gray-100 mb-3">{{ title }}</h3>
         <ul class="space-y-2 text-gray-600 dark:text-gray-300 flex-1">
           <li v-for="(item, index) in features" :key="index" class="flex items-center">
             <span class="w-2 h-2 bg-gray-900 dark:bg-gray-200 rounded-full mr-3 shrink-0"></span>
@@ -25,7 +25,7 @@
         <div class="w-12 h-12 bg-gray-900 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4 shrink-0">
           <component :is="icon" class="w-6 h-6 text-white" />
         </div>
-        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">{{ title }}</h3>
+        <h3 class="text-xl font-bold font-longcang text-gray-900 dark:text-gray-100 mb-3">{{ title }}</h3>
         <ul class="space-y-2 text-gray-600 dark:text-gray-300 flex-1">
           <li v-for="(item, index) in features" :key="index" class="flex items-center">
             <span class="w-2 h-2 bg-gray-900 dark:bg-gray-200 rounded-full mr-3 shrink-0"></span>
@@ -42,7 +42,7 @@
         <div class="w-12 h-12 bg-gray-900 dark:bg-gray-700 rounded-lg flex items-center justify-center mb-4 shrink-0">
           <component :is="icon" class="w-6 h-6 text-white" />
         </div>
-        <h3 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-3">{{ title }}</h3>
+        <h3 class="text-xl font-bold font-longcang text-gray-900 dark:text-gray-100 mb-3">{{ title }}</h3>
         <ul class="space-y-2 text-gray-600 dark:text-gray-300 flex-1">
           <li v-for="(item, index) in features" :key="index" class="flex items-center">
             <span class="w-2 h-2 bg-gray-900 dark:bg-gray-200 rounded-full mr-3 shrink-0"></span>

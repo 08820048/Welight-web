@@ -267,7 +267,8 @@
         <section class="mt-8 mb-10 relative py-8 md:py-12 animate-fade-in-up delay-400">
           <div class="relative max-w-5xl mx-auto px-4 md:px-8">
             <div class="text-center mb-10">
-              <h2 class="text-3xl font-bold text-gray-900 mb-4 animate-fade-in-left delay-500">产品与服务对比</h2>
+              <AnimatedUnderlineText text="产品与服务对比" text-className="text-4xl font-extrabold text-gray-900 font-longcang"
+                underline-className="text-gray-900" />
               <p class="text-gray-600 animate-fade-in-left delay-600">一目了然，选择最适合您的方案</p>
             </div>
             <div class="animate-scale-in delay-600">
@@ -279,7 +280,7 @@
         <!-- 标题区：定价与服务购买 -->
         <section class="relative mb-10 py-12 md:py-16 animate-fade-in-up delay-100">
           <div class="text-center relative max-w-3xl mx-auto px-4 md:px-8">
-            <AnimatedUnderlineText text="定价与服务购买" text-className="text-4xl font-extrabold text-gray-900"
+            <AnimatedUnderlineText text="定价与服务购买" text-className="text-4xl font-extrabold text-gray-900 font-longcang"
               underline-className="text-gray-900" />
             <MagicText text="选择适合您的许可证或积分服务，享受便捷功能与优质体验" container-className="mt-6 justify-center"
               word-className="text-lg text-gray-600" />
@@ -479,7 +480,7 @@
         <section class="mt-12 relative py-12 md:py-16 animate-fade-in-up delay-1000">
           <div class="relative max-w-3xl mx-auto px-4 md:px-8">
             <div class="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-700">
-              <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in-left delay-1100">购买须知
+              <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in-left delay-1100 font-longcang">购买须知
               </h2>
               <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 space-y-2 mb-6 text-sm">
                 <li class="animate-fade-in-up delay-1700">请在应用使用过程中确保网络通畅，关闭VPN，避免状态检测异常，影响你的使用体验</li>
@@ -496,7 +497,7 @@
                 <li class="animate-fade-in-up delay-1700">试用期期间有300试用积分,用完为止,试用期过期之后跟随失效。</li>
               </ul>
 
-              <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in-left delay-1800">交流反馈
+              <h2 class="text-xl font-bold text-gray-900 dark:text-gray-100 mb-4 animate-fade-in-left delay-1800 font-longcang">交流反馈
               </h2>
               <div
                 class="bg-blue-50 dark:bg-gray-800 rounded-lg p-4 text-sm animate-scale-in delay-1900 border border-gray-100 dark:border-gray-700">
