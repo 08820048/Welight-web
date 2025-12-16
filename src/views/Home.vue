@@ -50,9 +50,8 @@
             <!-- Animated content group -->
             <div class="space-y-8">
               <!-- Main heading -->
-              <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
-                :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.8 } }"
-                class="mt-12 lg:mt-20">
+              <div class="mt-12 lg:mt-20 transition-all duration-[1500ms] ease-out"
+                :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
                 <AnimatedUnderlineText text="好看的排版，从来简约。"
                   text-className="text-5xl font-medium md:text-6xl text-gray-900 dark:text-gray-100 whitespace-nowrap font-longcang"
                   underline-className="text-gray-900 dark:text-gray-100" />
@@ -67,9 +66,8 @@
               </div> -->
 
               <!-- Download CTA Row -->
-              <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
-                :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 0.95 } }"
-                class="mt-16 w-full flex items-center justify-center gap-3">
+              <div class="mt-16 w-full flex items-center justify-center gap-3 transition-all duration-[1500ms] ease-out"
+                :class="ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
                 <!-- macOS button (black pill) -->
                 <button
                   class="inline-flex items-center px-5 py-2.5 rounded-full bg-black text-white hover:bg-gray-900 transition-colors shadow-soft-lg"
@@ -117,16 +115,21 @@
         </div>
 
         <!-- Product Video -->
-        <div v-motion :initial="{ opacity: 0, filter: 'blur(12px)', y: 12 }"
-          :visible="{ opacity: 1, filter: 'blur(0px)', y: 0, transition: { type: 'spring', bounce: 0.3, duration: 1.5, delay: 1.0 } }"
-          class="relative mt-8 px-2 sm:mt-12 md:mt-20">
+        <div class="relative mt-8 px-2 sm:mt-12 md:mt-20 transition-all duration-[1500ms] ease-out"
+          :class="videoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
           <div
             class="relative w-full max-w-5xl mx-auto rounded-2xl border-2 border-gray-200 bg-white/50 backdrop-blur-sm p-2 sm:p-4 shadow-xl transition-all duration-500 hover:shadow-2xl">
             <div class="relative rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-200 aspect-video bg-gray-100">
-              <img src="/assert/index.png" alt="Welight 预览（浅色模式）" class="w-full h-full object-cover block dark:hidden"
-                loading="lazy" />
-              <img src="/assert/index_dark.png" alt="Welight 预览（深色模式）"
-                class="w-full h-full object-cover hidden dark:block" loading="lazy" />
+              <picture v-if="themeStore.isDark">
+                <source srcset="/assert/index_dark.webp" type="image/webp" />
+                <img :src="heroImageSrc" alt="Welight 预览" class="w-full h-full object-cover" loading="eager"
+                  decoding="async" fetchpriority="high" width="1200" height="675" />
+              </picture>
+              <picture v-else>
+                <source srcset="/assert/index.webp" type="image/webp" />
+                <img :src="heroImageSrc" alt="Welight 预览" class="w-full h-full object-cover" loading="eager"
+                  decoding="async" fetchpriority="high" width="1200" height="675" />
+              </picture>
             </div>
           </div>
           <!-- 提示：请将 videoUrl 替换为您的 MP4 视频链接 -->
@@ -134,7 +137,7 @@
       </section>
 
       <!-- Themes Section -->
-      <section class="relative py-32">
+      <section class="relative py-32 content-auto">
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
@@ -153,7 +156,7 @@
       </section>
 
       <!-- Features Section -->
-      <section class="relative py-32">
+      <section class="relative py-32 content-auto">
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
@@ -180,7 +183,7 @@
       </section>
 
       <!-- AI Integration Section -->
-      <section class="relative py-32">
+      <section class="relative py-32 content-auto">
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="mb-20 scroll-animate">
@@ -213,7 +216,7 @@
       </section>
 
       <!-- Markdown Support Section -->
-      <section class="relative min-h-screen py-20">
+      <section class="relative min-h-screen py-20 content-auto">
         <div class="relative container-custom">
           <!-- Section header -->
           <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
@@ -329,9 +332,34 @@ import MagicText from '@/components/ui/MagicText.vue'
 // import PurchaseNotificationTicker from '@/components/PurchaseNotificationTicker.vue'
 import LogoCarousel from '@/components/LogoCarousel.vue'
 import { Wand2, Command, Copy, BarChart3, Palette, Sparkles, FileText, Code, Table, Calculator, Puzzle, BarChart } from 'lucide-vue-next'
+import { useThemeStore } from '@/stores/theme'
 
 // SEO配置
 useSEO(seoConfigs.home)
+
+// 首屏淡入动画状态
+const heroVisible = ref(false)
+const ctaVisible = ref(false)
+const videoVisible = ref(false)
+
+// 主题状态与英雄图资源
+const themeStore = useThemeStore()
+const heroImageSrc = computed(() => themeStore.isDark ? '/assert/index_dark.png' : '/assert/index.png')
+
+/** 显示首屏标题淡入 */
+function revealHero() {
+  heroVisible.value = true
+}
+
+/** 显示CTA区域淡入 */
+function revealCta() {
+  ctaVisible.value = true
+}
+
+/** 显示产品预览淡入 */
+function revealVideo() {
+  videoVisible.value = true
+}
 
 // Features Display Cards Data
 const featuresGroup1 = [
@@ -822,16 +850,6 @@ const initializeAnimations = () => {
         if (observer) observer.observe(el)
       })
 
-      // 强制触发首屏动画
-      setTimeout(() => {
-        const heroElements = document.querySelectorAll('.animate-fade-in-up, .animate-scale-in')
-        heroElements.forEach((el) => {
-          if (el.getBoundingClientRect().top < window.innerHeight) {
-            el.classList.add('animate-in-view')
-          }
-        })
-      }, 100)
-
       isInitialized.value = true
       console.log('页面动画初始化完成')
     } catch (error) {
@@ -844,6 +862,11 @@ const initializeAnimations = () => {
 onMounted(async () => {
   // 重置页面状态
   resetPageState()
+
+  // 首屏入场动画
+  setTimeout(revealHero, 800)
+  setTimeout(revealCta, 950)
+  setTimeout(revealVideo, 1000)
 
   // 检查是否应该显示版本横幅
   if (shouldShowVersionBanner()) {
@@ -872,9 +895,6 @@ onMounted(async () => {
         startDownloadAnimation()
       }, 300)
     }, 5 * 60 * 1000)
-
-    // 预加载撒花特效库
-    loadConfettiLibrary().catch(console.error)
 
     // 初始化动画
     initializeAnimations()

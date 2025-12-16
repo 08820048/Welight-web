@@ -5,9 +5,12 @@
         <div v-for="(item, i) in images" :key="`${index}-${i}`"
           class="relative rounded-2xl overflow-hidden bg-transparent dark:bg-gray-900 shadow-md hover:shadow-xl transition-all duration-300 w-full max-w-sm">
           <div class="absolute inset-0 pointer-events-none hidden dark:block bg-black/20"></div>
-          <img :src="item" :alt="`主题截图 ${i + 1}`"
-            class="w-full h-auto object-cover transition duration-300 filter dark:brightness-85 dark:contrast-115 dark:saturate-105 dark:mix-blend-multiply"
-            loading="lazy" />
+          <picture>
+            <source :srcset="toWebp(item)" type="image/webp" />
+            <img :src="item" :alt="`主题截图 ${i + 1}`"
+              class="w-full h-auto object-cover transition duration-300 filter dark:brightness-85 dark:contrast-115 dark:saturate-105 dark:mix-blend-multiply"
+              loading="lazy" decoding="async" fetchpriority="low" />
+          </picture>
         </div>
       </template>
     </div>
@@ -37,6 +40,14 @@ const props = defineProps({
 const animationStyle = computed(() => ({
   '--scroll-duration': `${props.duration}s`
 }))
+
+/**
+ * 生成 WebP 路径（不存在时浏览器自动回退到 PNG）
+ * @param {string} path 原始 PNG 路径
+ * @returns {string} WebP 路径
+ */
+const toWebp = (path) => encodeURI(path.replace(/\.png$/i, '.webp'))
+
 </script>
 
 <style scoped>

@@ -2,10 +2,7 @@
   <div :class="cn('flex flex-col items-center justify-center gap-2', $attrs.class)">
     <div class="relative inline-block">
       <h2
-        v-motion
-        :initial="{ y: -20, opacity: 0 }"
-        :visible="{ y: 0, opacity: 1, transition: { duration: 600 } }"
-        :class="cn('text-4xl md:text-5xl font-bold text-center', textClassName)"
+        :class="cn('text-4xl md:text-5xl font-bold text-center transition-all duration-700 ease-out', titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5', textClassName)"
         @mouseenter="isHovered = true"
         @mouseleave="isHovered = false"
       >
@@ -67,6 +64,7 @@ const props = defineProps({
 })
 
 const isHovered = ref(false)
+const titleVisible = ref(false)
 const pathRef = ref(null)
 const pathLength = ref(0)
 const pathOffset = ref(0)
@@ -80,6 +78,11 @@ const cn = (...classes) => {
   return classes.filter(Boolean).join(' ')
 }
 
+/** 启动标题淡入动画 */
+function startTitleFadeIn() {
+  titleVisible.value = true
+}
+
 onMounted(() => {
   if (pathRef.value) {
     const length = pathRef.value.getTotalLength()
@@ -91,10 +94,11 @@ onMounted(() => {
       pathOffset.value = 0
     }, 100)
   }
+  // 触发标题淡入
+  setTimeout(startTitleFadeIn, 100)
 })
 </script>
 
 <style scoped>
 /* Additional styles if needed */
 </style>
-

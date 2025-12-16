@@ -53,6 +53,11 @@
   .wireframe-inset {
     @apply inset-y-24 md:inset-y-32 lg:inset-y-40;
   }
+  
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
+  }
 }
 
 /* View Transition API styles for Dark Mode Toggle */

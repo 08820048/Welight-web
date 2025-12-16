@@ -76,6 +76,16 @@ export const donations = [
     channel: '微信红包',
     specialTag: null,
     isSpecial: false
+  },
+  {
+    id: '20251125232700',
+    amount: 9.99,
+    donorName: '五四设计',
+    donationDate: '2025-12-16T14:40:00+08:00',
+    message: '瑞幸分你一半',
+    channel: '微信红包',
+    specialTag: null,
+    isSpecial: false
   }
   // 可以在这里添加更多致谢记录
 ]
