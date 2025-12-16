@@ -53,7 +53,7 @@
               <div class="mt-12 lg:mt-20 transition-all duration-[1500ms] ease-out"
                 :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
                 <AnimatedUnderlineText text="好看的排版，从来简约。" :level="1"
-                  text-className="text-5xl font-medium md:text-6xl text-gray-900 dark:text-gray-100 whitespace-nowrap font-longcang"
+                  text-className="text-5xl font-medium md:text-6xl text-gray-900 dark:text-gray-100 whitespace-nowrap"
                   underline-className="text-gray-900 dark:text-gray-100" />
               </div>
 
@@ -338,13 +338,13 @@ import { useThemeStore } from '@/stores/theme'
 useSEO(seoConfigs.home)
 
 // 首屏淡入动画状态
-const heroVisible = ref(false)
-const ctaVisible = ref(false)
-const videoVisible = ref(false)
+const heroVisible = ref(true)
+const ctaVisible = ref(true)
+const videoVisible = ref(true)
 
 // 主题状态与英雄图资源
 const themeStore = useThemeStore()
-const heroImageSrc = computed(() => themeStore.isDark ? '/assert/index_dark.png' : '/assert/index.png')
+const heroImageSrc = computed(() => themeStore.isDark ? '/assert/index_dark.webp' : '/assert/index.webp')
 
 /** 显示首屏标题淡入 */
 function revealHero() {
@@ -864,9 +864,6 @@ onMounted(async () => {
   resetPageState()
 
   // 首屏入场动画
-  setTimeout(revealHero, 800)
-  setTimeout(revealCta, 950)
-  setTimeout(revealVideo, 1000)
 
   // 检查是否应该显示版本横幅
   if (shouldShowVersionBanner()) {
