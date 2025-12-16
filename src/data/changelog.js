@@ -1,6 +1,30 @@
 // 更新日志数据
 export const changelogData = [
   {
+    version: '4.1.9',
+    date: '2025-12-15',
+    type: 'release',
+    badge: '应用内更新',
+    badgeColor: 'yellow',
+    changes: {
+      features: ['新版本的更新信息支持 markdown 渲染展示'],
+      improvements: ['更新关于界面的信息', '调整导出 PDF 的功能，够用系统打印的方式保存 PDF，提高稳定性'],
+      fixes: []
+    }
+  },
+  {
+    version: '4.1.8',
+    date: '2025-12-14',
+    type: 'release',
+    badge: '应用内更新',
+    badgeColor: 'yellow',
+    changes: {
+      features: ['新增更多功能对应的快捷键支持，快捷键可以在设置界面中进行查看', '新增w020主题'],
+      improvements: ['更新开屏标语'],
+      fixes: ['修复编辑区内容全选状态下划词菜单不显示的问题']
+    }
+  },
+  {
     version: '4.1.6',
     date: '2025-12-12',
     type: 'release',

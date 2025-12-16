@@ -46,10 +46,6 @@
             class="relative text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
             active-class="text-gray-900 dark:text-gray-100">
             文档
-            <span v-if="hasDocsUpdate"
-              class="absolute -top-2 -right-4 text-white text-xs px-1.5 py-0.5 rounded-full font-bold shadow-sm bg-gradient-to-r from-red-500 to-orange-500 scale-90 animate-pulse">
-              NEW
-            </span>
           </router-link>
           <div class="relative group">
             <button
@@ -225,10 +221,6 @@
             <router-link to="/documentation" @click="markDocsUpdateViewed(); closeMobileMenu()"
               class="relative block w-full text-center px-4 py-3 text-sm font-medium bg-gray-900 text-white rounded-xl transition-colors hover:bg-gray-800">
               文档
-              <span v-if="hasDocsUpdate"
-                class="absolute -top-1 -right-1 text-white text-xs px-1.5 py-0.5 rounded-full font-bold shadow-sm bg-gradient-to-r from-red-500 to-orange-500 scale-90 animate-pulse">
-                NEW
-              </span>
             </router-link>
           </div>
         </div>
@@ -288,7 +280,7 @@ const toggleTheme = async (event) => {
       ]
     },
     {
-      duration: 500,
+      duration: 1000,
       easing: 'ease-in-out',
       // 指定动画作用于新视图的伪元素
       pseudoElement: '::view-transition-new(root)'
@@ -313,14 +305,11 @@ const isPromotionBannerVisible = ref(false)
 const currentPromotion = ref(null)
 const menuPromotions = ref([])
 
-// 文档更新提示
-const hasDocsUpdate = ref(false)
 const latestVersion = getLatestVersion()
 
 // 标记文档已查看
 const markDocsUpdateViewed = () => {
   localStorage.setItem('welight_docs_last_viewed_version', latestVersion.version)
-  hasDocsUpdate.value = false
 }
 
 // 获取菜单中的活动
@@ -386,9 +375,7 @@ onMounted(() => {
   hasNewAnnouncements.value = checkNewAnnouncements()
   loadMenuPromotions()
 
-  // 检查文档是否有更新
-  const lastViewedDocs = localStorage.getItem('welight_docs_last_viewed_version')
-  hasDocsUpdate.value = !lastViewedDocs || lastViewedDocs !== latestVersion.version
+  // 文档更新提示标识已移除
 })
 
 // 组件卸载

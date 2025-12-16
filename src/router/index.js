@@ -60,6 +60,11 @@ const router = createRouter({
       component: () => import('../views/ReleaseHistory.vue')
     },
     {
+      path: '/changelog',
+      name: 'changelog',
+      component: () => import('../views/Changelog.vue')
+    },
+    {
       path: '/academy',
       name: 'academy',
       component: () => import('../views/Academy.vue')

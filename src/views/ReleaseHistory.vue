@@ -4,8 +4,9 @@
       <!-- Hero Section -->
       <section class="section-padding relative z-10">
         <div class="container-custom text-center relative">
-          <AnimatedUnderlineText text="历史版本" text-className="text-4xl md:text-5xl font-bold text-gray-900"
-            underline-className="text-gray-900" />
+          <AnimatedUnderlineText text="历史版本"
+            text-className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white font-longcang"
+            underline-className="text-gray-900 dark:text-white" />
           <MagicText text="下载 Welight 的历史版本，查看每一次迭代带来的功能与改进" container-className="mt-6 justify-center max-w-3xl mx-auto"
             word-className="text-xl text-gray-600" />
           <div class="mt-8 flex flex-col sm:flex-row gap-4 items-center justify-center">
