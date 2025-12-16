@@ -261,6 +261,8 @@
       ;(function () {
         var hm = document.createElement('script')
         hm.src = 'https://hm.baidu.com/hm.js?b230b5eaf0524fce1852c5e90b842fa6'
+        hm.async = true
+        hm.defer = true
         var s = document.getElementsByTagName('script')[0]
         s.parentNode.insertBefore(hm, s)
       })()

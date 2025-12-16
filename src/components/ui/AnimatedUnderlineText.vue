@@ -1,33 +1,19 @@
 <template>
   <div :class="cn('flex flex-col items-center justify-center gap-2', $attrs.class)">
     <div class="relative inline-block">
-      <h2
+      <component :is="headingTag"
         :class="cn('text-4xl md:text-5xl font-bold text-center transition-all duration-700 ease-out', titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5', textClassName)"
-        @mouseenter="isHovered = true"
-        @mouseleave="isHovered = false"
-      >
+        @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         {{ text }}
-      </h2>
+      </component>
 
-      <svg
-        width="100%"
-        height="20"
-        viewBox="0 0 300 20"
-        :class="cn('absolute -bottom-4 left-0', underlineClassName)"
-        preserveAspectRatio="none"
-      >
-        <path
-          ref="pathRef"
-          :d="currentPath"
-          stroke="currentColor"
-          stroke-width="2"
-          fill="none"
-          :style="{
-            strokeDasharray: pathLength,
-            strokeDashoffset: pathOffset,
-            transition: `stroke-dashoffset ${underlineDuration}s ease-in-out, d 0.8s ease-in-out`
-          }"
-        />
+      <svg width="100%" height="20" viewBox="0 0 300 20" :class="cn('absolute -bottom-4 left-0', underlineClassName)"
+        preserveAspectRatio="none">
+        <path ref="pathRef" :d="currentPath" stroke="currentColor" stroke-width="2" fill="none" :style="{
+          strokeDasharray: pathLength,
+          strokeDashoffset: pathOffset,
+          transition: `stroke-dashoffset ${underlineDuration}s ease-in-out, d 0.8s ease-in-out`
+        }" />
       </svg>
     </div>
   </div>
@@ -60,6 +46,11 @@ const props = defineProps({
   underlineDuration: {
     type: Number,
     default: 1.5
+  },
+  level: {
+    type: Number,
+    default: 2,
+    validator: (value) => [1, 2, 3, 4, 5, 6].includes(value)
   }
 })
 
@@ -78,6 +69,13 @@ const cn = (...classes) => {
   return classes.filter(Boolean).join(' ')
 }
 
+/**
+ * 计算标题标签名称（h1-h6）
+ */
+const headingTag = computed(() => {
+  return `h${props.level}`
+})
+
 /** 启动标题淡入动画 */
 function startTitleFadeIn() {
   titleVisible.value = true
@@ -88,7 +86,7 @@ onMounted(() => {
     const length = pathRef.value.getTotalLength()
     pathLength.value = length
     pathOffset.value = length
-    
+
     // Animate the path drawing
     setTimeout(() => {
       pathOffset.value = 0

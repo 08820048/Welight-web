@@ -133,12 +133,12 @@
               <span class="text-lg font-semibold">Welight</span>
             </div>
             <div class="flex items-center gap-2">
-              <button @click="toggleTheme"
+              <button @click="toggleTheme" aria-label="切换主题"
                 class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 transition-colors dark:text-gray-600">
                 <Sun v-if="themeStore.isDark" class="h-5 w-5" />
                 <Moon v-else class="h-5 w-5" />
               </button>
-              <button @click="closeMobileMenu"
+              <button @click="closeMobileMenu" aria-label="关闭菜单"
                 class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
