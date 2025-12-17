@@ -31,8 +31,8 @@ async function toggleTheme() {
     document.documentElement.animate(
       {
         clipPath: [
-          `circle(0px at 0px 0px)`,
-          `circle(${endRadius}px at 0px 0px)`
+          `circle(0px at ${innerWidth}px 0px)`,
+          `circle(${endRadius}px at ${innerWidth}px 0px)`
         ]
       },
       {

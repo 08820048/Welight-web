@@ -9,11 +9,6 @@
           <router-link to="/" class="flex items-center gap-2 relative">
             <img src="/logo.png" alt="Welight Logo" class="w-8 h-8 rounded-lg" />
             <span class="text-lg font-semibold">Welight</span>
-            <!-- 版本角标 -->
-            <span
-              class="absolute -top-2 -right-16 px-2 py-0.5 bg-gray-900 text-white text-[10px] font-medium rounded-full whitespace-nowrap">
-              v4.1.6
-            </span>
           </router-link>
         </div>
 
@@ -25,27 +20,39 @@
           <router-link to="/"
             class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
             active-class="text-gray-900 dark:text-gray-100">
-            首页
+            <span class="inline-flex items-center gap-1.5">
+              <TvMinimal class="w-4 h-4" />首页
+            </span>
           </router-link>
           <router-link to="/pricing"
             class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
             active-class="text-gray-900 dark:text-gray-100">
-            定价
+            <span class="inline-flex items-center gap-1.5">
+              <JapaneseYen class="w-4 h-4" />定价
+            </span>
           </router-link>
           <router-link to="/donation"
             class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
             active-class="text-gray-900 dark:text-gray-100">
-            赞助
+            <span class="inline-flex items-center gap-1.5">
+              <Heart class="w-4 h-4" />
+              赞助
+            </span>
           </router-link>
           <router-link to="/download"
             class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
             active-class="text-gray-900 dark:text-gray-100">
-            下载
+            <span class="inline-flex items-center gap-1.5">
+              <DownloadIcon class="w-4 h-4" />
+              下载
+            </span>
           </router-link>
           <router-link to="/documentation" @click="markDocsUpdateViewed"
             class="relative text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
             active-class="text-gray-900 dark:text-gray-100">
-            文档
+            <span class="inline-flex items-center gap-1.5">
+              <BookOpenCheck class="w-4 h-4" />文档
+            </span>
           </router-link>
           <div class="relative group" v-if="false">
             <button
@@ -151,28 +158,41 @@
           <nav class="space-y-1">
             <router-link to="/" @click="closeMobileMenu"
               class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              首页
+              <span class="inline-flex items-center gap-2">
+                <TvMinimal class="w-4 h-4" />首页
+              </span>
             </router-link>
 
             <router-link to="/pricing" @click="closeMobileMenu"
               class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              定价
+              <span class="inline-flex items-center gap-2">
+                <JapaneseYen class="w-4 h-4" />定价
+              </span>
             </router-link>
 
             <router-link to="/donation" @click="closeMobileMenu"
               class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              赞助
+              <span class="inline-flex items-center gap-2">
+                <Heart class="w-4 h-4" />
+                赞助
+              </span>
             </router-link>
 
             <button @click="showAnnouncements(); closeMobileMenu()"
               class="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-between">
-              <span>公告</span>
+              <span class="inline-flex items-center gap-2">
+                <Megaphone class="w-4 h-4" />
+                公告
+              </span>
               <div v-if="hasNewAnnouncements" class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
             </button>
 
             <button @click="showChangelog(); closeMobileMenu()"
               class="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
-              更新日志
+              <span class="inline-flex items-center gap-2">
+                <History class="w-4 h-4" />
+                更新日志
+              </span>
             </button>
 
 
@@ -215,7 +235,9 @@
 
             <router-link to="/documentation" @click="markDocsUpdateViewed(); closeMobileMenu()"
               class="relative block w-full text-center px-4 py-3 text-sm font-medium bg-gray-900 text-white rounded-xl transition-colors hover:bg-gray-800">
-              文档
+              <span class="inline-flex items-center gap-2 justify-center">
+                <BookOpenCheck class="w-4 h-4" />文档
+              </span>
             </router-link>
           </div>
         </div>
@@ -238,7 +260,7 @@ import { hasNewAnnouncements as checkNewAnnouncements } from '@/data/announcemen
 import { getMenuPromotions, markLatestPromotionAsViewed } from '@/data/promotions.js'
 import { getLatestVersion } from '@/data/changelog.js'
 import { useThemeStore } from '@/stores/theme'
-import { Sun, Moon } from 'lucide-vue-next'
+import { Sun, Moon, TvMinimal, JapaneseYen, Heart, Megaphone, History, BookOpenCheck, Download as DownloadIcon } from 'lucide-vue-next'
 import ToggleTheme from '@/components/ui/ToggleTheme.vue'
 
 const themeStore = useThemeStore()
@@ -253,8 +275,8 @@ const toggleTheme = async (event) => {
     return
   }
 
-  // 获取点击位置
-  const x = 0
+  // 获取动画起点：右上角
+  const x = innerWidth
   const y = 0
   const endRadius = Math.hypot(innerWidth, innerHeight)
 

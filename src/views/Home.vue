@@ -434,7 +434,7 @@ const aiModelLogos = [
   {
     id: 'zhipu',
     name: '智谱',
-    src: '/llm/qingyan-color.svg'
+    src: '/llm/zhipu-color.svg'
   },
   {
     id: 'qwen',
