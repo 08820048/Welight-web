@@ -47,7 +47,7 @@
             active-class="text-gray-900 dark:text-gray-100">
             文档
           </router-link>
-          <div class="relative group">
+          <div class="relative group" v-if="false">
             <button
               class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 flex items-center gap-1.5">
               交流反馈
@@ -175,15 +175,10 @@
               更新日志
             </button>
 
-            <!-- 微光学堂（暂时隐藏）
-            <router-link to="/academy" @click="closeMobileMenu"
-              class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
-              微光学堂
-            </router-link>
-            -->
+
 
             <!-- 交流反馈，移动到最后 -->
-            <div class="border-t border-gray-200 pt-4 mt-4">
+            <div class="border-t border-gray-200 pt-4 mt-4" v-if="false">
               <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">交流反馈</div>
               <a href="https://qm.qq.com/q/nNA64h5d6K" target="_blank" @click="closeMobileMenu"
                 class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">

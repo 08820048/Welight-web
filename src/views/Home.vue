@@ -53,7 +53,7 @@
               <div class="mt-12 lg:mt-20 transition-all duration-[1500ms] ease-out"
                 :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
                 <AnimatedUnderlineText text="好看的排版，从来简约。" :level="1"
-                  text-className="text-5xl font-medium md:text-6xl text-gray-900 dark:text-gray-100 whitespace-nowrap"
+                  text-className="text-5xl font-medium md:text-6xl text-gray-900 dark:text-gray-100 whitespace-nowrap font-longcang"
                   underline-className="text-gray-900 dark:text-gray-100" />
               </div>
 
@@ -455,6 +455,12 @@ const aiModelLogos = [
     id: '豆包',
     name: '豆包',
     src: '/llm/doubao-color.svg'
+  }
+  ,
+  {
+    id: 'kolors',
+    name: 'Kolors',
+    src: '/llm/kolors-color.svg'
   }
 
 ]
