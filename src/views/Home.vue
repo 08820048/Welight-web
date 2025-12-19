@@ -118,8 +118,9 @@
         <div class="relative mt-8 px-2 sm:mt-12 md:mt-20 transition-all duration-[1500ms] ease-out"
           :class="videoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
           <div
-            class="relative w-full max-w-5xl mx-auto rounded-2xl border-2 border-gray-200 bg-white/50 backdrop-blur-sm p-2 sm:p-4 shadow-xl transition-all duration-500 hover:shadow-2xl">
-            <div class="relative rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-200 aspect-video bg-gray-100">
+            class="relative w-full max-w-5xl mx-auto rounded-2xl border-2 border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/40 backdrop-blur-sm p-2 sm:p-4 shadow-xl transition-all duration-500 hover:shadow-2xl">
+            <div
+              class="relative rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 aspect-video bg-gray-100 dark:bg-gray-800">
               <picture v-if="themeStore.isDark">
                 <source srcset="/assert/index_dark.webp" type="image/webp" />
                 <img :src="heroImageSrc" alt="Welight 预览" class="w-full h-full object-cover" loading="eager"
@@ -212,6 +213,92 @@
             </div>
           </div>
 
+        </div>
+      </section>
+
+      <!-- Secure Publish Support Section -->
+      <section class="relative py-32 content-auto">
+        <div class="relative container-custom">
+          <!-- Section header -->
+          <div class="mb-20 scroll-animate">
+            <AnimatedUnderlineText text="安全便捷的发布支持"
+              text-className="text-4xl md:text-5xl font-bold text-gray-900 font-longcang"
+              underline-className="text-gray-900" />
+            <MagicText text="支持应用内将排版后的文章一键发布到公众号草稿，服务号支持一键发布草稿，免去手动复制粘贴的繁琐。"
+              container-className="mt-6 justify-center max-w-2xl mx-auto"
+              word-className="text-lg md:text-xl text-gray-600" />
+          </div>
+
+          <div class="grid lg:grid-cols-2 gap-16 items-stretch">
+            <!-- Left: Description -->
+            <div class="order-2 lg:order-1 scroll-animate h-full">
+              <div class="flex flex-col h-full gap-6">
+                <!-- Top: tjydexp preview -->
+                <div class="flex-1 min-h-[240px] lg:min-h-[280px]">
+                  <div
+                    class="relative w-full h-full max-w-3xl mx-auto rounded-2xl border-2 border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/40 backdrop-blur-sm p-2 shadow-xl transition-all duration-500 hover:shadow-2xl">
+                    <div
+                      class="relative h-full rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 bg-gray-100 dark:bg-gray-800">
+                      <picture v-if="themeStore.isDark">
+                        <source srcset="/assert/tjydexp-dark.webp" type="image/webp" />
+                        <img src="/assert/tjydexp-dark.webp" alt="推荐阅读扩展预览" class="w-full h-full object-contain"
+                          loading="lazy" decoding="async" />
+                      </picture>
+                      <picture v-else>
+                        <source srcset="/assert/tjydexp.webp" type="image/webp" />
+                        <img src="/assert/tjydexp.webp" alt="推荐阅读扩展预览" class="w-full h-full object-contain"
+                          loading="lazy" decoding="async" />
+                      </picture>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Middle: description text -->
+                <MagicText text="文末[推荐阅读]板块一键插入，文章标题自动读取、支持多模板配置。" container-className="justify-start max-w-2xl"
+                  word-className="text-lg md:text-xl text-gray-600" />
+
+                <!-- Bottom: tjyd preview -->
+                <div class="flex-1 min-h-[240px] lg:min-h-[280px]">
+                  <div
+                    class="relative w-full h-full max-w-3xl mx-auto rounded-2xl border-2 border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/40 backdrop-blur-sm p-2 shadow-xl transition-all duration-500 hover:shadow-2xl">
+                    <div
+                      class="relative h-full rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 bg-gray-100 dark:bg-gray-800">
+                      <picture v-if="themeStore.isDark">
+                        <source srcset="/assert/tjyd-dark.webp" type="image/webp" />
+                        <img src="/assert/tjyd-dark.webp" alt="推荐阅读预览" class="w-full h-full object-contain"
+                          loading="lazy" decoding="async" />
+                      </picture>
+                      <picture v-else>
+                        <source srcset="/assert/tjyd.webp" type="image/webp" />
+                        <img src="/assert/tjyd.webp" alt="推荐阅读预览" class="w-full h-full object-contain" loading="lazy"
+                          decoding="async" />
+                      </picture>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Preview Image -->
+            <div class="order-1 lg:order-2 scroll-animate h-full">
+              <div
+                class="relative w-full h-full max-w-3xl mx-auto rounded-2xl border-2 border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/40 backdrop-blur-sm p-2 shadow-xl transition-all duration-500 hover:shadow-2xl">
+                <div
+                  class="relative h-full rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 bg-gray-100 dark:bg-gray-800">
+                  <picture v-if="themeStore.isDark">
+                    <source srcset="/assert/fbcg-dark.webp" type="image/webp" />
+                    <img src="/assert/fbcg-dark.webp" alt="发布支持预览" class="w-full h-full object-contain" loading="lazy"
+                      decoding="async" />
+                  </picture>
+                  <picture v-else>
+                    <source srcset="/assert/fbcg.webp" type="image/webp" />
+                    <img src="/assert/fbcg.webp" alt="发布支持预览" class="w-full h-full object-contain" loading="lazy"
+                      decoding="async" />
+                  </picture>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

@@ -15,11 +15,7 @@
 import { computed } from 'vue'
 import TestimonialsColumn from '@/components/ui/TestimonialsColumn.vue'
 
-/**
- * 主题截图（浅色）
- * 使用 public/themes 下的静态资源路径
- */
-const themeImages = [
+const publicThemeImages = [
   '/themes/IMG_1387 2.PNG',
   '/themes/IMG_1388 2.PNG',
   '/themes/IMG_1389 2.PNG',
@@ -38,7 +34,13 @@ const themeImages = [
   '/themes/IMG_1420 2.PNG',
   '/themes/IMG_1421 2.PNG',
   '/themes/w020.png',
+  '/themes/IMG_1513.png',
+  '/themes/IMG_1514.png',
 ]
+
+const assetThemeModules = import.meta.glob('../assets/themes/*.{png,webp}', { eager: true, as: 'url' })
+const assetThemeImages = Object.values(assetThemeModules)
+const themeImages = [...assetThemeImages, ...publicThemeImages]
 
 /**
  * 将图片按列分配（索引 % 3）
