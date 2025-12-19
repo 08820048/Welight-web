@@ -14,7 +14,7 @@
           </th>
           <th scope="col"
             class="px-6 py-4 font-bold text-base w-1/4 min-w-[180px] text-indigo-600 dark:text-indigo-300 bg-indigo-50/50 dark:bg-gray-800">
-            买断制许可证 (终身¥49.9)
+            买断制许可证 (终身¥59.9)
           </th>
           <th scope="col"
             class="px-6 py-4 font-bold text-base w-1/3 min-w-[200px] text-purple-600 dark:text-purple-300 bg-purple-50/50 dark:bg-gray-800">
