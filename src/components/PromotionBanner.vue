@@ -8,15 +8,14 @@
   <!-- 活动条幅内容 -->
   <transition name="banner-slide">
     <div v-if="isVisible" class="fixed top-0 left-0 right-0 z-[101] shadow-2xl">
-      <div :style="{ backgroundColor: promotion?.banner?.bgColor || '#ff4444' }" class="relative">
+      <div :style="bannerBackgroundStyle" class="relative">
         <!-- 活动规则 - 左下角 -->
         <div class="absolute bottom-4 left-4 text-left z-10 promo-rules-corner">
           <h3 class="text-white text-sm font-semibold mb-2">活动规则</h3>
           <ul class="text-white/80 text-xs space-y-1">
-            <li>活动时间：10月20日 - 11月14日</li>
-            <li>活动期间购买的所有商品均可享受对应优惠</li>
+            <li>活动时间：{{ activityTimeLabel }}</li>
+            <li>活动期间下单可享受对应折扣，具体以下单页为准</li>
             <li>优惠不可叠加使用，以最优惠价格为准</li>
-            <li>赠送的积分将在订单完成后自动发放到账户</li>
           </ul>
         </div>
 
@@ -100,7 +99,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue'
+import { ref, watch, onMounted, onUnmounted, computed } from 'vue'
 
 const props = defineProps({
   promotion: {
@@ -138,6 +137,40 @@ const flashMinutes = ref(false)
 const flashSeconds = ref(false)
 
 let countdownTimer = null
+
+/**
+ * 条幅背景样式（优先使用渐变）
+ * @returns {{ background?: string, backgroundColor?: string }}
+ */
+const bannerBackgroundStyle = computed(() => {
+  if (props.promotion?.banner?.bgGradient) {
+    return { background: props.promotion.banner.bgGradient }
+  }
+  return { backgroundColor: props.promotion?.banner?.bgColor || '#ff4444' }
+})
+
+/**
+ * 格式化日期为 YYYY.MM.DD
+ * @param {string|Date} date
+ * @returns {string}
+ */
+const formatDate = (date) => {
+  const d = new Date(date)
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}.${m}.${day}`
+}
+
+/**
+ * 活动时间文案（开始 - 结束）
+ */
+const activityTimeLabel = computed(() => {
+  if (!props.promotion) return ''
+  const start = formatDate(props.promotion.activityStartDate || props.promotion.preheatStartDate)
+  const end = formatDate(props.promotion.endDate)
+  return `${start} - ${end}`
+})
 
 // 计算倒计时
 const calculateCountdown = () => {

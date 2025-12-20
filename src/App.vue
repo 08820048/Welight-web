@@ -7,6 +7,7 @@
       class="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
       <RouterView />
     </main>
+    <FooterPromotionBar v-if="showFooter" />
     <Footer v-if="showFooter" />
 
     <!-- 悬浮赞助按钮 - 只在赞助页面显示 -->
@@ -23,6 +24,7 @@ import { computed, ref, onMounted } from 'vue'
 import { useThemeStore } from './stores/theme'
 import ModernHeader from './components/ModernHeader.vue'
 import Footer from './components/Footer.vue'
+import FooterPromotionBar from './components/FooterPromotionBar.vue'
 import FloatingDonationButton from './components/FloatingDonationButton.vue'
 import BackToTop from './components/BackToTop.vue'
 
