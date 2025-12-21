@@ -393,6 +393,7 @@
                     <li><span class="text-gray-900">✔</span> 附赠 300 积分</li>
                     <li><span class="text-gray-900">✔</span> 7天试用期(含300试用积分)</li>
                     <li><span class="text-gray-900">✔</span> 支持 {{ product.maxActivations }} 台设备激活</li>
+                    <li><span class="text-gray-900">✔</span> 全部主题免费(持续更新)</li>
                     <li><span class="text-gray-900">✔</span> 网页版和桌面端共用</li>
                     <li><span class="text-gray-900">✔</span> 所有核心功能</li>
                     <li><span class="text-gray-900">✔</span> 免费更新</li>
@@ -788,6 +789,7 @@ async function loadProducts() {
             '1年有效期',
             '支持 3 台设备激活',
             '网页版和桌面端共用',
+            '20余款主题免费用，永久更新',
             '所有核心功能',
             '免费更新',
             '技术支持'
@@ -808,6 +810,7 @@ async function loadProducts() {
             '一次付费，终身使用',
             '支持 3 台设备激活',
             '网页版和桌面端共用',
+            '20余款主题免费用，永久更新',
             '所有核心功能',
             '免费更新',
             '优先技术支持'

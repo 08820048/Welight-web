@@ -98,9 +98,7 @@
 
                 <!-- Stats and all versions link -->
                 <div class="flex items-center gap-3 text-sm text-gray-500">
-                  <span class="font-medium text-gray-700">{{ animatedTotalDownloads.toLocaleString() }} 次下载</span>
-                  <span class="text-gray-300">|</span>
-                  <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA&versionCode=4001005"
+                  <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA"
                     target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors flex items-center group">
                     查看所有版本
                     <svg class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none"
@@ -807,9 +805,9 @@ const downloadFile = async (platform) => {
 
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.1.6_x64-setup.exe',
+      'windows-installer': 'https://api.upgrade.toolsetlink.com/v1/tauri/download?tauriKey=2fO2OcSAKXFQ9Gf7F3IooA&versionId=634',
       'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.1.6_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.1.6_aarch64.dmg',
+      'macos-apple': 'https://api.upgrade.toolsetlink.com/v1/tauri/download?tauriKey=2fO2OcSAKXFQ9Gf7F3IooA&versionId=635',
       'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.1.6_x64.dmg',
       'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.1.6_amd64.AppImage',
       'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.1.6_amd64.deb'
