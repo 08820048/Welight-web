@@ -7,7 +7,8 @@
 const API_BASE_URL = 'https://ilikexff.cn/api'
 
 /**
- * 获取所有积分套餐
+ * 获取所有积分套餐（硬编码）
+ * 返回本地静态数据，避免依赖后端接口与缓存问题
  * @returns {Promise<Object>} 积分套餐列表响应对象
  */
 export async function getCreditPackages() {

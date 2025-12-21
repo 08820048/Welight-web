@@ -1,14 +1,14 @@
 <template>
   <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center modal-backdrop"
     style="z-index: 9999;">
-    <div class="bg-white rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto modal-content"
+    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto modal-content"
       style="min-height: 400px;">
       <!-- 弹窗头部 -->
       <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-bold text-gray-900">积分套餐购买</h2>
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-gray-100">积分套餐购买</h2>
         <button @click="$emit('close')"
-          class="bg-gray-100 rounded-full p-2 hover:bg-gray-200 transition-colors duration-200">
-          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          class="bg-gray-100 dark:bg-gray-800 rounded-full p-2 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200">
+          <svg class="w-5 h-5 text-gray-600 dark:text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -17,24 +17,40 @@
       <!-- 购买表单 -->
       <div v-if="!orderInfo && !paymentInfo" class="mb-6">
 
+        <!-- 预选套餐信息显示（直接购买模式） -->
+        <div v-if="isDirectPurchaseMode && selectedPackage"
+          class="mb-6 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="font-bold text-gray-900 dark:text-gray-100">{{ selectedPackage.packageName }}</h3>
+              <p class="text-sm text-gray-600 dark:text-gray-300">{{ selectedPackage.credits }}积分 · 永久有效</p>
+            </div>
+            <div class="text-right">
+              <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">¥{{ selectedPackage.currentPrice }}</div>
+              <button @click="clearPreselection" class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
+                选择其他套餐
+              </button>
+            </div>
+          </div>
+        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" v-if="creditPackages.length > 0">
+        <!-- 套餐选择列表（仅在非直接购买模式时显示） -->
+        <div v-if="!isDirectPurchaseMode && creditPackages.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div v-for="pkg in creditPackages" :key="pkg.id"
-            class="group relative bg-gradient-to-br from-green-50 to-white border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+            class="group relative bg-white dark:bg-gray-800 border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 dark:border-gray-700"
             :class="{
-              'border-green-300 ring-2 ring-green-200': selectedPackage?.id === pkg.id,
-              'border-green-100': selectedPackage?.id !== pkg.id
+              'border-gray-900 ring-2 ring-gray-200': selectedPackage?.id === pkg.id,
+              'border-gray-200 dark:border-gray-700': selectedPackage?.id !== pkg.id
             }">
 
             <!-- 推荐标签 -->
             <div v-if="pkg.isPopular"
-              class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full transform rotate-12">
+              class="absolute -top-2 -right-2 bg-gray-900 text-white text-xs font-bold px-3 py-1 rounded-full transform rotate-12">
               推荐
             </div>
 
             <!-- 产品名称标签 -->
-            <div class="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4"
-              style="background-color: rgba(49, 200, 145, 0.1); color: #31c891;">
+            <div class="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100">
               {{ pkg.packageName }}
             </div>
 
@@ -46,9 +62,9 @@
                 <div class="text-xs text-gray-700 mt-1">最低100积分起购</div>
               </div>
               <div v-else>
-                <div class="text-sm font-medium mb-1 text-gray-800">{{ pkg.credits }}积分 ¥{{ pkg.currentPrice }}/永久
+                <div class="text-sm font-medium mb-1 text-gray-800 dark:text-gray-200">{{ pkg.credits }}积分 ¥{{ pkg.currentPrice }}/永久
                 </div>
-                <div class="text-3xl font-bold text-gray-900">¥{{ pkg.currentPrice }}</div>
+                <div class="text-3xl font-bold text-gray-900 dark:text-gray-100">¥{{ pkg.currentPrice }}</div>
                 <div v-if="pkg.originalPrice > pkg.currentPrice" class="text-sm text-gray-400 line-through">
                   原价 ¥{{ pkg.originalPrice }}
                 </div>
@@ -56,37 +72,37 @@
             </div>
 
             <!-- 永久有效标签 -->
-            <div class="inline-block bg-green-100 text-green-700 text-xs font-semibold px-2 py-1 rounded mb-4">
+            <div class="inline-block bg-gray-900 text-white text-xs font-semibold px-2 py-1 rounded mb-4">
               永久有效
             </div>
 
             <!-- 功能列表 -->
-            <ul class="space-y-2 mb-6 text-sm text-gray-600">
+            <ul class="space-y-2 mb-6 text-sm text-gray-600 dark:text-gray-300">
               <li v-for="feature in pkg.features" :key="feature">
-                <span class="text-green-600">✔</span> {{ feature }}
+                <span class="text-gray-900 dark:text-gray-100">✔</span> {{ feature }}
               </li>
             </ul>
 
             <!-- 选择按钮 -->
             <button @click="selectPackage(pkg)"
               class="w-full py-2 px-4 rounded-lg font-semibold shadow transition-colors duration-200" :class="{
-                'bg-green-600 hover:bg-green-700 text-white': selectedPackage?.id !== pkg.id,
-                'bg-green-700 text-white': selectedPackage?.id === pkg.id
+                'bg-gray-900 hover:bg-gray-800 text-white': selectedPackage?.id !== pkg.id,
+                'bg-gray-800 text-white': selectedPackage?.id === pkg.id
               }">
               {{ selectedPackage?.id === pkg.id ? '已选择' : '选择套餐' }}
             </button>
           </div>
         </div>
 
-        <!-- 加载状态 -->
-        <div v-else-if="loading" class="text-center py-12">
-          <div class="animate-spin inline-block w-8 h-8 border-4 border-t-transparent rounded-full"
-            style="border-color: #31c891; border-top-color: transparent;"></div>
+        <!-- 加载状态（仅在非直接购买模式时显示） -->
+        <div v-else-if="!isDirectPurchaseMode && loading" class="text-center py-12">
+          <div class="animate-spin inline-block w-8 h-8 border-4 border-gray-900 border-t-transparent rounded-full">
+          </div>
           <p class="mt-4 text-gray-600">加载积分套餐中...</p>
         </div>
 
-        <!-- 无数据状态 -->
-        <div v-else class="text-center py-12">
+        <!-- 无数据状态（仅在非直接购买模式时显示） -->
+        <div v-else-if="!isDirectPurchaseMode" class="text-center py-12">
           <div class="text-gray-400 mb-4">
             <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -97,7 +113,7 @@
           <p class="text-gray-600 text-lg">暂无可用的积分套餐</p>
           <p class="text-gray-500 text-sm mt-2">请稍后重试或联系客服</p>
           <button @click="loadCreditPackages"
-            class="mt-4 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors">
+            class="mt-4 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors">
             重新加载
           </button>
         </div>
@@ -109,12 +125,12 @@
             <div class="flex-1">
               <label class="block text-sm font-medium text-gray-700 mb-2">积分数量</label>
               <input v-model.number="customCredits" type="number" min="100" max="10000" step="100"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500"
                 placeholder="请输入积分数量（最少100积分）">
             </div>
             <div class="text-right">
               <div class="text-sm text-gray-600">总价格</div>
-              <div class="text-xl font-bold text-green-600">¥{{ calculateCustomPrice() }}</div>
+              <div class="text-xl font-bold text-gray-900">¥{{ calculateCustomPrice() }}</div>
             </div>
           </div>
         </div>
@@ -126,14 +142,14 @@
             <div>
               <label class="block text-sm font-medium text-gray-900 mb-2">姓名</label>
               <input v-model="purchaseForm.customerName" type="text"
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-900"
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-900"
                 placeholder="请输入您的姓名">
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-900 mb-2">邮箱 <span class="text-red-500">*</span></label>
               <input v-model="purchaseForm.customerEmail" type="email" required
-                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 text-gray-900"
-                placeholder="请输入您的邮箱">
+                class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-900"
+                placeholder="请输入您购买许可证时绑定的邮箱">
             </div>
           </div>
 
@@ -155,9 +171,19 @@
 
           <!-- 购买按钮 -->
           <div class="mt-6">
-            <button @click="handlePurchase" :disabled="!canPurchase || purchasing"
-              class="w-full py-3 px-6 bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white rounded-lg font-semibold shadow transition-colors duration-200">
-              <span v-if="purchasing" class="flex items-center justify-center">
+            <button @click="handlePurchase" :disabled="!canPurchase || purchasing || checkingLicense"
+              class="w-full py-3 px-6 bg-gray-900 hover:bg-gray-800 disabled:bg-gray-400 text-white rounded-lg font-semibold shadow transition-colors duration-200">
+              <span v-if="checkingLicense" class="flex items-center justify-center">
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                  viewBox="0 0 24 24">
+                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                  <path class="opacity-75" fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                  </path>
+                </svg>
+                正在验证许可证...
+              </span>
+              <span v-else-if="purchasing" class="flex items-center justify-center">
                 <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
                   viewBox="0 0 24 24">
                   <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -199,6 +225,48 @@
       <!-- 错误信息 -->
       <div v-if="errorMessage" class="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
         <div class="text-red-700">{{ errorMessage }}</div>
+      </div>
+
+      <!-- 积分购买确认对话框 -->
+      <div v-if="showConfirmDialog" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center"
+        style="z-index: 10000;">
+        <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4 shadow-2xl">
+          <!-- 标题 -->
+          <div class="flex items-center mb-4">
+            <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center mr-3">
+              <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-bold text-gray-900">购买须知</h3>
+          </div>
+
+          <!-- 内容 -->
+          <div class="mb-6 text-gray-700 text-sm leading-relaxed">
+            <p class="mb-3">
+              由于积分需要和购买许可证的邮箱进行绑定使用，因此<span class="font-semibold text-red-600">试用期期间无法购买积分</span>。
+            </p>
+            <p class="mb-3">
+              请确保您已购买了许可证并正常激活后再购买积分套餐。
+            </p>
+            <p class="text-red-600 font-semibold">
+              ⚠️ 积分购买后不支持退款，请务必确认后再进行购买。
+            </p>
+          </div>
+
+          <!-- 按钮 -->
+          <div class="flex space-x-3">
+            <button @click="cancelPurchase"
+              class="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors duration-200">
+              取消
+            </button>
+            <button @click="confirmPurchase"
+              class="flex-1 py-2.5 px-4 bg-gray-900 hover:bg-gray-800 text-white rounded-lg font-medium transition-colors duration-200">
+              我已了解，继续购买
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -249,6 +317,13 @@ const purchaseForm = ref({
   paymentMethod: PAYMENT_METHODS.WECHAT_NATIVE
 })
 
+// 确认对话框相关
+const showConfirmDialog = ref(false)
+let confirmDialogResolve = null
+
+// 许可证检查相关
+const checkingLicense = ref(false)
+
 // 计算属性
 const canPurchase = computed(() => {
   if (!selectedPackage.value) return false
@@ -267,6 +342,15 @@ const canPurchase = computed(() => {
 
   return validatePurchaseOrder(orderData)
 })
+
+// 是否处于直接购买模式（有预选套餐且未清除）
+const isDirectPurchaseMode = ref(!!props.preselectedPackage)
+
+// 清除预选，显示所有套餐
+function clearPreselection() {
+  isDirectPurchaseMode.value = false
+  selectedPackage.value = null
+}
 
 // 方法
 async function loadCreditPackages() {
@@ -381,8 +465,84 @@ function getFinalPrice() {
   return selectedPackage.value.currentPrice
 }
 
+// 显示积分购买确认对话框
+function showCreditsConfirmDialog() {
+  return new Promise((resolve) => {
+    confirmDialogResolve = resolve
+    showConfirmDialog.value = true
+  })
+}
+
+// 确认购买
+function confirmPurchase() {
+  showConfirmDialog.value = false
+  if (confirmDialogResolve) {
+    confirmDialogResolve(true)
+    confirmDialogResolve = null
+  }
+}
+
+// 取消购买
+function cancelPurchase() {
+  showConfirmDialog.value = false
+  if (confirmDialogResolve) {
+    confirmDialogResolve(false)
+    confirmDialogResolve = null
+  }
+}
+
+// 检查用户邮箱是否绑定有效许可证
+async function checkLicenseStatus(email) {
+  try {
+    checkingLicense.value = true
+    const response = await fetch(`https://ilikexff.cn/api/credits/check-license/${encodeURIComponent(email)}`)
+    const result = await response.json()
+
+    if (result.code === 200 && result.data) {
+      return {
+        success: true,
+        hasValidLicense: result.data.hasValidLicense,
+        statusMessage: result.data.statusMessage,
+        suggestion: result.data.suggestion
+      }
+    } else {
+      return {
+        success: false,
+        hasValidLicense: false,
+        statusMessage: result.message || '许可证状态检查失败',
+        suggestion: '请稍后重试或联系客服'
+      }
+    }
+  } catch (error) {
+    console.error('检查许可证状态失败:', error)
+    return {
+      success: false,
+      hasValidLicense: false,
+      statusMessage: '网络错误，无法检查许可证状态',
+      suggestion: '请检查网络连接后重试'
+    }
+  } finally {
+    checkingLicense.value = false
+  }
+}
+
 async function handlePurchase() {
   if (!canPurchase.value) return
+
+  // 显示确认框，提醒用户积分需要绑定许可证邮箱使用
+  const confirmed = await showCreditsConfirmDialog()
+  if (!confirmed) {
+    return // 用户点击取消，直接返回
+  }
+
+  const customerEmail = purchaseForm.value.customerEmail.trim()
+
+  // 检查用户邮箱是否绑定有效许可证
+  const licenseCheck = await checkLicenseStatus(customerEmail)
+  if (!licenseCheck.hasValidLicense) {
+    errorMessage.value = `${licenseCheck.statusMessage}${licenseCheck.suggestion ? '。' + licenseCheck.suggestion : ''}`
+    return
+  }
 
   try {
     purchasing.value = true
@@ -391,7 +551,7 @@ async function handlePurchase() {
     const orderData = {
       packageCode: selectedPackage.value.packageCode,
       customerName: purchaseForm.value.customerName.trim(),
-      customerEmail: purchaseForm.value.customerEmail.trim(),
+      customerEmail: customerEmail,
       paymentMethod: purchaseForm.value.paymentMethod
     }
 

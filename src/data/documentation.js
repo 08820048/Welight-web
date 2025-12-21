@@ -99,7 +99,7 @@ function normalizeDocEntry(path, content) {
   const idBase = `${category}-${title}`
     .toLowerCase()
     .replace(/\s+/g, '-')
-    .replace(/[^a-z0-9\-_\x00-\x7f\u4e00-\u9fa5]/gi, '-')
+    .replace(/[^\w\u4e00-\u9fa5-]/g, '-')
   const id = idBase
   return { id, title, category, order, content }
 }

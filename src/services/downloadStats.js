@@ -136,8 +136,8 @@ export async function handleDownload(platform, downloadUrl, updateLocalStats) {
     }
 
     // 3. 百度统计事件追踪
-    if (typeof _hmt !== 'undefined') {
-      _hmt.push(['_trackEvent', 'download', platform, downloadUrl])
+    if (typeof window._hmt !== 'undefined') {
+      window._hmt.push(['_trackEvent', 'download', platform, downloadUrl])
     }
 
     // 4. 执行实际下载

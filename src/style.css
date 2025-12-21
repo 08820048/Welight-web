@@ -5,414 +5,117 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
-  
+
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family:
+      'YouYuan', '幼圆', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', sans-serif;
     line-height: 1.6;
+    @apply bg-gray-50 text-gray-900;
   }
-  
+
+  /* Dark mode overrides */
+  .dark body {
+    @apply bg-gray-900 text-gray-100;
+  }
+
   * {
     box-sizing: border-box;
   }
 }
 
 @layer components {
+  /* Modern Button Styles */
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-6 rounded-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5;
+    @apply relative overflow-hidden bg-primary-600 hover:bg-primary-700 text-white font-medium py-3 px-8 rounded-xl transition-all duration-300 shadow-soft-lg hover:shadow-soft-xl transform hover:-translate-y-0.5;
   }
 
   .btn-secondary {
-    @apply bg-gray-100 hover:bg-gray-200 text-gray-900 font-medium py-3 px-6 rounded-lg transition-all duration-200;
+    @apply relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 font-medium py-3 px-8 rounded-xl transition-all duration-300 border border-gray-200 hover:border-gray-300 shadow-soft hover:shadow-soft-lg;
   }
-  
+
+  .btn-ghost {
+    @apply relative overflow-hidden bg-transparent hover:bg-gray-100 text-gray-700 hover:text-gray-900 font-medium py-3 px-8 rounded-xl transition-all duration-300;
+  }
+
+  /* Layout */
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-24 md:py-32 lg:py-40;
   }
-  
+
   .container-custom {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-12;
+  }
+
+  /* Wireframe inset - 默认匹配 section-padding (py-24 md:py-32 lg:py-40) */
+  .wireframe-inset {
+    @apply inset-y-24 md:inset-y-32 lg:inset-y-40;
   }
   
-  .gradient-bg {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  }
-  
-  .gradient-text {
-    @apply bg-gradient-to-r from-primary-600 to-purple-600 bg-clip-text text-transparent;
-  }
-  
-  .card {
-    @apply bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200;
-  }
-
-  .feature-icon {
-    @apply w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center text-primary-600;
+  .content-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 1000px;
   }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .animation-delay-200 {
-    animation-delay: 200ms;
-  }
-
-  .animation-delay-400 {
-    animation-delay: 400ms;
-  }
-
-  .animation-delay-600 {
-    animation-delay: 600ms;
-  }
+/* View Transition API styles for Dark Mode Toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
-/* Custom download button animations */
-@layer components {
-  .download-btn-mac:hover {
-    background: linear-gradient(135deg, #07c160 0%, #059142 100%);
-  }
-
-  .download-btn-windows:hover {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-  }
-
-  .download-btn-linux:hover {
-    background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
-  }
-
-  .download-btn-mac::before,
-  .download-btn-windows::before,
-  .download-btn-linux::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
-  }
-
-  .download-btn-mac:hover::before,
-  .download-btn-windows:hover::before,
-  .download-btn-linux:hover::before {
-    left: 100%;
-  }
+/* Dark mode common overrides for existing utility classes */
+.dark .text-gray-900 {
+  color: #f3f4f6;
+}
+.dark .text-gray-800 {
+  color: #e5e7eb;
+}
+.dark .text-gray-700 {
+  color: #d1d5db;
+}
+.dark .text-gray-600 {
+  color: #cbd5e1;
+}
+.dark .text-gray-500 {
+  color: #9ca3af;
+}
+.dark .bg-white {
+  background-color: #171717;
+}
+.dark .bg-gray-50 {
+  background-color: #0f172a;
+}
+.dark .border-gray-200 {
+  border-color: #374151;
 }
 
-/* Enhanced bounce animation for download icons */
-@keyframes enhanced-bounce {
-  0%, 20%, 53%, 80%, 100% {
-    transform: translate3d(0,0,0);
-  }
-  40%, 43% {
-    transform: translate3d(0,-8px,0);
-  }
-  70% {
-    transform: translate3d(0,-4px,0);
-  }
-  90% {
-    transform: translate3d(0,-2px,0);
-  }
+.dark .markdown-content {
+  color: #ffffff !important;
 }
-
-.animate-enhanced-bounce {
-  animation: enhanced-bounce 1.5s ease-in-out infinite;
+.dark .markdown-content p,
+.dark .markdown-content li,
+.dark .markdown-content h1,
+.dark .markdown-content h2,
+.dark .markdown-content h3,
+.dark .markdown-content h4 {
+  color: #ffffff !important;
 }
-
-/* Premium single hero screenshot effects */
-@layer components {
-  .perspective-1000 {
-    perspective: 1000px;
-  }
-
-  .hero-screenshot {
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
-  }
-
-  .hero-screenshot:hover {
-    transform: scale(1.02);
-  }
-
-  /* Enhanced hero screenshot styling */
-  .hero-screenshot-container {
-    box-shadow:
-      0 40px 80px -20px rgba(0, 0, 0, 0.2),
-      0 60px 120px -30px rgba(0, 0, 0, 0.15),
-      0 0 0 1px rgba(255, 255, 255, 0.1),
-      inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  }
-
-  .hero-screenshot-container:hover {
-    box-shadow:
-      0 60px 120px -25px rgba(0, 0, 0, 0.25),
-      0 80px 160px -35px rgba(0, 0, 0, 0.2),
-      0 0 0 1px rgba(255, 255, 255, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  }
-
-  /* Enhanced glass morphism effect for side-by-side */
-  .screenshot-left::before,
-  .screenshot-right::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-      radial-gradient(circle at 30% 20%, rgba(7, 193, 96, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 70% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
-    border-radius: 1rem;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  /* Custom shadow utility */
-  .shadow-3xl {
-    box-shadow:
-      0 35px 70px -15px rgba(0, 0, 0, 0.2),
-      0 50px 100px -25px rgba(0, 0, 0, 0.15),
-      0 0 0 1px rgba(255, 255, 255, 0.15);
-  }
+.dark .markdown-content a {
+  color: #ffffff !important;
 }
-
-/* Color bleeding effect for logo */
-@layer components {
-  .logo-gradient-text {
-    background: linear-gradient(
-      90deg,
-      #07c160 0%,      /* W - full green */
-      #07c160 14.3%,   /* W end */
-      #4a9d6b 28.6%,   /* e - green bleeding to gray */
-      #7a8176 42.9%,   /* l - more gray */
-      #9a9a9a 57.2%,   /* i - mostly gray */
-      #b0b0b0 71.5%,   /* g - light gray */
-      #c0c0c0 85.8%,   /* h - lighter gray */
-      #d0d0d0 100%     /* t - lightest gray */
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 100% 100%;
-    font-weight: 600;
-    transition: all 0.3s ease;
-  }
-
-  .logo-gradient-text:hover {
-    background: linear-gradient(
-      90deg,
-      #10d876 0%,      /* W - brighter green on hover */
-      #10d876 14.3%,   /* W end */
-      #5cb070 28.6%,   /* e - more green bleeding */
-      #8a9580 42.9%,   /* l - less gray */
-      #a5a5a5 57.2%,   /* i - slightly less gray */
-      #b5b5b5 71.5%,   /* g - maintain gray */
-      #c5c5c5 85.8%,   /* h - maintain light gray */
-      #d5d5d5 100%     /* t - maintain lightest gray */
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    transform: translateX(1px);
-  }
+.dark .markdown-content code,
+.dark .markdown-content pre,
+.dark .markdown-content .hljs {
+  background-color: #1f2937;
+  color: #e5e7eb;
 }
-
-/* Progressive loading animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.dark .markdown-content table,
+.dark .markdown-content th,
+.dark .markdown-content td,
+.dark .markdown-content hr {
+  border-color: #374151;
 }
-
-@keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Animation classes - 初始状态隐藏，等待滚动触发 */
-.animate-fade-in-up {
-  opacity: 0;
-}
-
-.animate-fade-in-left {
-  opacity: 0;
-}
-
-.animate-fade-in-right {
-  opacity: 0;
-}
-
-.animate-scale-in {
-  opacity: 0;
-}
-
-/* Staggered animation delays */
-.delay-100 { animation-delay: 0.1s; }
-.delay-200 { animation-delay: 0.2s; }
-.delay-300 { animation-delay: 0.3s; }
-.delay-400 { animation-delay: 0.4s; }
-.delay-500 { animation-delay: 0.5s; }
-.delay-600 { animation-delay: 0.6s; }
-.delay-700 { animation-delay: 0.7s; }
-.delay-800 { animation-delay: 0.8s; }
-
-/* 确保section之间无缝连接 */
-section {
-  margin: 0;
-  border: none;
-}
-
-/* 移除任何可能的默认间距 */
-* {
-  box-sizing: border-box;
-}
-
-body, html {
-  margin: 0;
-  padding: 0;
-}
-
-/* Scroll-triggered animations */
-.scroll-animate {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease-out;
-}
-
-.scroll-animate.animate-in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.scroll-animate.fade-left {
-  transform: translateX(-30px);
-}
-
-.scroll-animate.fade-left.animate-in-view {
-  transform: translateX(0);
-}
-
-.scroll-animate.fade-right {
-  transform: translateX(30px);
-}
-
-.scroll-animate.fade-right.animate-in-view {
-  transform: translateX(0);
-}
-
-.scroll-animate.scale-up {
-  transform: scale(0.9);
-}
-
-.scroll-animate.scale-up.animate-in-view {
-  transform: scale(1);
-}
-
-/* 首页元素的重复动画支持 */
-.scroll-animate-first {
-  transition: all 0.8s ease-out;
-}
-
-.scroll-animate-first:not(.animate-in-view) {
-  opacity: 0;
-  animation: none !important;
-}
-
-.scroll-animate-first.animate-in-view {
-  opacity: 1;
-}
-
-/* 重新定义首页动画，使其可重复触发 */
-.scroll-animate-first.animate-fade-in-up.animate-in-view {
-  animation: fadeInUp 0.8s ease-out forwards;
-}
-
-.scroll-animate-first.animate-fade-in-left.animate-in-view {
-  animation: fadeInLeft 0.8s ease-out forwards;
-}
-
-.scroll-animate-first.animate-fade-in-right.animate-in-view {
-  animation: fadeInRight 0.8s ease-out forwards;
-}
-
-.scroll-animate-first.animate-scale-in.animate-in-view {
-  animation: scaleIn 0.8s ease-out forwards;
-}
-
-/* 特殊赞助标识发光动效 */
-.special-glow {
-  position: relative;
-  animation: specialGlow 2s ease-in-out infinite;
-}
-
-.special-glow::before {
-  content: '';
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(45deg, #fbbf24, #f59e0b, #d97706, #fbbf24);
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0;
-  animation: glowPulse 2s ease-in-out infinite;
-}
-
-@keyframes specialGlow {
-  0%, 100% {
-    box-shadow: 0 0 5px rgba(251, 191, 36, 0.3);
-  }
-  50% {
-    box-shadow: 0 0 20px rgba(251, 191, 36, 0.6), 0 0 30px rgba(251, 191, 36, 0.4);
-  }
-}
-
-@keyframes glowPulse {
-  0%, 100% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 0.3;
-  }
-}
-
-

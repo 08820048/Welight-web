@@ -6,8 +6,8 @@
  * @param {string} downloadUrl - 下载链接
  */
 export function trackDownload(platform, downloadUrl) {
-  if (typeof _hmt !== 'undefined') {
-    _hmt.push(['_trackEvent', 'download', platform, downloadUrl])
+  if (typeof window._hmt !== 'undefined') {
+    window._hmt.push(['_trackEvent', 'download', platform, downloadUrl])
   }
 }
 
@@ -16,8 +16,8 @@ export function trackDownload(platform, downloadUrl) {
  * @param {string} pageName - 页面名称
  */
 export function trackPageView(pageName) {
-  if (typeof _hmt !== 'undefined') {
-    _hmt.push(['_trackPageview', pageName])
+  if (typeof window._hmt !== 'undefined') {
+    window._hmt.push(['_trackPageview', pageName])
   }
 }
 
@@ -29,8 +29,8 @@ export function trackPageView(pageName) {
  * @param {number} value - 事件值
  */
 export function trackEvent(category, action, label, value) {
-  if (typeof _hmt !== 'undefined') {
-    _hmt.push(['_trackEvent', category, action, label, value])
+  if (typeof window._hmt !== 'undefined') {
+    window._hmt.push(['_trackEvent', category, action, label, value])
   }
 }
 

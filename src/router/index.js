@@ -53,6 +53,26 @@ const router = createRouter({
       path: '/documentation',
       name: 'documentation',
       component: () => import('../views/Documentation.vue')
+    },
+    {
+      path: '/release-history',
+      name: 'release-history',
+      component: () => import('../views/ReleaseHistory.vue')
+    },
+    {
+      path: '/changelog',
+      name: 'changelog',
+      component: () => import('../views/Changelog.vue')
+    },
+    {
+      path: '/font-test',
+      name: 'font-test',
+      component: () => import('../views/FontTest.vue')
+    },
+    {
+      path: '/wireframe-demo',
+      name: 'wireframe-demo',
+      component: () => import('../views/WireframeDemo.vue')
     }
   ],
   scrollBehavior(to, from, savedPosition) {

@@ -1,6 +1,15 @@
 // 公告数据
 export const announcementData = [
   {
+    id: 'announcement-2025-11-11',
+    title: '许可证定价调整通知',
+    date: '2025-11-11',
+    type: 'important',
+    badge: '重要公告',
+    badgeColor: 'red',
+    content: `![许可证定价调整通知](https://ultimate-img.oss-cn-beijing.aliyuncs.com/welight/ilikexff@gmail.com/20251113/36a865a5b72244d39c95bae5265e9f35.png)`
+  },
+  {
     id: 'announcement-2025-09-15',
     title: 'Welight 更新频率调整',
     date: '2025-09-15',
@@ -65,14 +74,14 @@ export const getLatestAnnouncement = () => {
 
 // 根据ID获取公告
 export const getAnnouncementById = (id) => {
-  return announcementData.find(item => item.id === id)
+  return announcementData.find((item) => item.id === id)
 }
 
 // 检查是否有新公告（用户未查看过的）
 export const hasNewAnnouncements = () => {
   const lastViewedId = localStorage.getItem('welight_last_viewed_announcement')
   if (!lastViewedId) return true
-  
+
   const latestAnnouncement = getLatestAnnouncement()
   return latestAnnouncement && latestAnnouncement.id !== lastViewedId
 }

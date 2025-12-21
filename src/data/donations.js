@@ -56,6 +56,36 @@ export const donations = [
     channel: '微信转账',
     specialTag: null,
     isSpecial: false
+  },
+  {
+    id: '20251113154000',
+    amount: 9.9,
+    donorName: '凉',
+    donationDate: '2025-11-13T15:40:00+08:00',
+    message: '喵杯美式努力肝~',
+    channel: '收钱码收款',
+    specialTag: null,
+    isSpecial: false
+  },
+  {
+    id: '20251125232600',
+    amount: 50.0,
+    donorName: '问不倒的闪耀',
+    donationDate: '2025-11-25T23:26:00+08:00',
+    message: '专属赞助',
+    channel: '微信红包',
+    specialTag: null,
+    isSpecial: false
+  },
+  {
+    id: '20251125232700',
+    amount: 9.99,
+    donorName: '五四设计',
+    donationDate: '2025-12-16T14:40:00+08:00',
+    message: '瑞幸分你一半',
+    channel: '微信红包',
+    specialTag: null,
+    isSpecial: false
   }
   // 可以在这里添加更多致谢记录
 ]

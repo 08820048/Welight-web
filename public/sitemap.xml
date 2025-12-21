@@ -3,37 +3,94 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  
-  <!-- 首页 -->
+
+  <!-- 首页 - 核心落地页 -->
   <url>
     <loc>https://waer.ltd/</loc>
-    <lastmod>2025-09-01</lastmod>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
 
-  <!-- 下载页面 -->
+  <!-- 下载页面 - 高优先级转化页 -->
   <url>
     <loc>https://waer.ltd/download</loc>
-    <lastmod>2025-09-01</lastmod>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- 定价页面 - 商业转化页 -->
+  <url>
+    <loc>https://waer.ltd/pricing</loc>
+    <lastmod>2025-12-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  
-  <!-- 更新日志页面 -->
+
+  <!-- 帮助文档 - 用户支持页 -->
   <url>
-    <loc>https://waer.ltd/changelog</loc>
-    <lastmod>2025-08-31</lastmod>
+    <loc>https://waer.ltd/documentation</loc>
+    <lastmod>2025-12-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- 历史版本 - 版本归档页 -->
+  <url>
+    <loc>https://waer.ltd/release-history</loc>
+    <lastmod>2025-12-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
-  
-  <!-- 关于页面 -->
+
+
+  <!-- 赞助支持页 -->
   <url>
-    <loc>https://waer.ltd/about</loc>
-    <lastmod>2025-08-31</lastmod>
+    <loc>https://waer.ltd/donation</loc>
+    <lastmod>2025-12-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
+  <!-- 社区交流页 -->
+  <url>
+    <loc>https://waer.ltd/community</loc>
+    <lastmod>2025-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- 月卡功能页 -->
+  <url>
+    <loc>https://waer.ltd/monthly-cards</loc>
+    <lastmod>2025-12-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+
+  <!-- 服务条款 -->
+  <url>
+    <loc>https://waer.ltd/terms</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- 隐私政策 -->
+  <url>
+    <loc>https://waer.ltd/privacy</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
+  <!-- 免责声明 -->
+  <url>
+    <loc>https://waer.ltd/disclaimer</loc>
+    <lastmod>2025-11-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.4</priority>
+  </url>
+
 </urlset>

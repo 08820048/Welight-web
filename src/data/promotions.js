@@ -20,7 +20,7 @@ const promotions = [
       bgColor: '#ff4444',
       content: `
         <div class="promo-clean-layout">
-          <div class="promo-info-grid">
+          <div class="promo-info-grid-new">
             <div class="promo-info-item">
               <h3>购买永久许可证</h3>
               <p>附赠 <strong>300积分</strong></p>
@@ -33,17 +33,79 @@ const promotions = [
             </div>
             <div class="promo-info-item">
               <h3>许可证限时特惠中</h3>
-              <p>特惠现价<strong>14.99元</strong></p>
-              <span>活动结束后恢复原价<strong>49.99元</strong></span>
+              <p>特惠现价 <strong>14.99元/永久</strong></p>
+              <span>活动结束后恢复原价 <strong>49.99元/每年</strong></span>
             </div>
-            <div class="promo-info-item promo-rules-item">
-              <h3>活动规则</h3>
-              <ul>
-                <li>活动时间：10月20日 - 11月14日</li>
-                <li>活动期间购买的所有商品均可享受对应优惠</li>
-                <li>优惠不可叠加使用，以最优惠价格为准</li>
-                <li>赠送的积分将在订单完成后自动发放到账户</li>
-              </ul>
+          </div>
+          <div class="promo-actions">
+            <a href="/pricing" class="promo-btn-main">立即抢购</a>
+            <a href="https://qm.qq.com/q/nNA64h5d6K" class="promo-btn-sub">加入社群，享更多福利</a>
+          </div>
+        </div>
+      `
+    }
+  },
+  {
+    id: 'new-year-2026',
+    name: '元旦',
+    displayName: '元旦节特惠',
+    enabled: true,
+    preheatStartDate: '2025-12-27',
+    activityStartDate: '2026-01-01',
+    endDate: '2026-01-05',
+    showInMenu: false,
+    menuBadge: '',
+    menuBadgeText: '',
+    banner: {
+      title: '元旦节特惠 · 新年焕新',
+      subtitle: '许可证全部7.5折，积分套餐全系8折',
+      bgColor: '#f97316',
+      bgGradient: 'linear-gradient(90deg, #60A5FA 0%, #6366F1 50%, #A78BFA 100%)',
+      content: `
+        <div class="promo-clean-layout">
+          <div class="promo-info-grid-new">
+            <div class="promo-info-item">
+              <h3>许可证全系折扣</h3>
+              <p>全场 <strong>7.5折</strong></p>
+              <span>限时优惠，迎新焕新</span>
+            </div>
+            <div class="promo-info-item">
+              <h3>积分套餐优惠</h3>
+              <p>全系 <strong>8折</strong></p>
+              <span>多档位套餐均享折扣</span>
+            </div>
+          </div>
+          <div class="promo-actions">
+            <a href="/pricing" class="promo-btn-main">立即抢购</a>
+            <a href="https://qm.qq.com/q/nNA64h5d6K" class="promo-btn-sub">加入社群，享更多福利</a>
+          </div>
+        </div>
+      `
+    }
+  },
+  {
+    id: 'dongzhi-2025',
+    name: '冬至',
+    displayName: '冬至特惠',
+    enabled: true,
+    preheatStartDate: '2025-12-20',
+    activityStartDate: '2025-12-21',
+    endDate: '2025-12-22',
+    showInMenu: false,
+    menuBadge: '',
+    menuBadgeText: '',
+    banner: {
+      title: '冬至特惠 · 暖冬同行',
+      subtitle: '许可证全部8折',
+      bgColor: '#3b82f6',
+      bgGradient: 'linear-gradient(90deg, #2563EB 0%, #22D3EE 50%, #2DD4BF 100%)',
+      content: `
+        <div class="promo-clean-layout">
+          <div class="promo-info-grid-new">
+            <div class="promo-info-item">
+              <h3>许可证限时折扣</h3>
+              <p>全场 <strong style="color:#ff4444">8折</strong></p>
+              <span>冬至限定优惠，仅限活动期</span>
             </div>
           </div>
           <div class="promo-actions">

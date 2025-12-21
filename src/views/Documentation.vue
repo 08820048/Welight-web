@@ -1,138 +1,123 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <!-- 导航栏占位 -->
-    <div class="h-16"></div>
+  <div class="relative min-h-screen bg-white">
+    <div class="min-h-screen" style="position: relative; z-index: 1;">
+      <!-- 导航栏占位 -->
+      <div class="h-16"></div>
 
-    <div class="flex">
-      <!-- 移动端遮罩层 -->
-      <div 
-        v-if="mobileMenuOpen" 
-        class="fixed inset-0 bg-black/50 z-40 lg:hidden"
-        @click="mobileMenuOpen = false"
-      ></div>
+      <div class="flex">
+        <!-- 移动端遮罩层 -->
+        <div v-if="mobileMenuOpen" class="fixed inset-0 bg-black/50 z-40 lg:hidden" @click="mobileMenuOpen = false">
+        </div>
 
-      <!-- 侧边栏 -->
-      <aside :class="[
-        'fixed top-16 left-0 h-[calc(100vh-4rem)] w-80 bg-gray-50 border-r border-gray-200 shadow-sm transition-transform duration-300 z-50 overflow-hidden',
-        'lg:sticky lg:top-16 lg:translate-x-0',
-        mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
-      ]">
-        <div class="flex flex-col h-full">
+        <!-- 侧边栏 -->
+        <aside :class="[
+          'fixed top-16 left-0 h-[calc(100vh-4rem)] w-80 border-r border-gray-200 shadow-sm transition-transform duration-300 z-50 overflow-hidden',
+          'lg:sticky lg:top-16 lg:translate-x-0',
+          mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        ]">
+          <div class="flex flex-col h-full">
 
-          <!-- 导航菜单 -->
-          <nav ref="menuScroll" class="flex-1 overflow-y-auto p-4">
-            <div v-for="category in filteredCategories" :key="category.id" class="mb-6">
-              <h3 :class="['text-sm font-bold mb-3 px-2 flex items-center gap-2', categoryTheme[category.color]?.title || 'text-gray-900']">
-                <span class="inline-flex items-center justify-center w-5 h-5 rounded-md bg-gray-100 text-current">
-                  <component :is="categoryIconComponents[category.icon] || FileText" class="w-4 h-4" />
-                </span>
-                {{ category.title }}
-              </h3>
-              <ul class="space-y-1">
-                <li v-for="page in getPagesByCategory(category.id)" :key="page.id">
-                  <button 
-                    @click="setCurrentPage(page.id)" 
-                    :class="[
+            <!-- 导航菜单 -->
+            <nav ref="menuScroll" class="flex-1 overflow-y-auto p-4">
+              <div v-for="category in filteredCategories" :key="category.id" class="mb-6">
+                <h3
+                  :class="['text-sm font-bold mb-3 px-2 flex items-center gap-2', categoryTheme[category.color]?.title || 'text-gray-900']">
+                  <span class="inline-flex items-center justify-center w-5 h-5 rounded-md bg-gray-100 text-current">
+                    <component :is="categoryIconComponents[category.icon] || FileText" class="w-4 h-4" />
+                  </span>
+                  {{ category.title }}
+                </h3>
+                <ul class="space-y-1">
+                  <li v-for="page in getPagesByCategory(category.id)" :key="page.id">
+                    <button @click="setCurrentPage(page.id)" :class="[
                       'menu-btn w-full text-left px-3 py-2 text-sm rounded-none relative transition-all duration-200 ease-out',
-                      currentPageId === page.id 
-                        ? [categoryTheme[category.color]?.activeBg || 'bg-blue-50', categoryTheme[category.color]?.activeText || 'text-blue-700', 'font-medium menu-active'] 
+                      currentPageId === page.id
+                        ? [categoryTheme[category.color]?.activeBg || 'bg-blue-50', categoryTheme[category.color]?.activeText || 'text-blue-700', 'font-medium menu-active']
                         : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
-                    ]"
-                  >
-                    {{ page.title }}
-                  </button>
-                  <!-- 动态二级目录：当前页面的 H3 标题 -->
-                  <ul v-if="currentPageId === page.id && currentHeadings.length" class="mt-1 ml-6 space-y-0.5 subheadings" :class="{ 'subline-active': !!activeHeadingId }">
-                    <li v-for="h in currentHeadings" :key="h.id">
-                      <button 
-                        @click="scrollToHeading(h.id)"
-                        :data-heading-id="h.id"
-                        :class="[
+                    ]">
+                      {{ page.title }}
+                    </button>
+                    <!-- 动态二级目录：当前页面的 H3 标题 -->
+                    <ul v-if="currentPageId === page.id && currentHeadings.length"
+                      class="mt-1 ml-6 space-y-0.5 subheadings" :class="{ 'subline-active': !!activeHeadingId }">
+                      <li v-for="h in currentHeadings" :key="h.id">
+                        <button @click="scrollToHeading(h.id)" :data-heading-id="h.id" :class="[
                           'subitem-btn w-full text-left pl-3 pr-2 py-1 text-xs rounded-none hover:bg-gray-100 transition-colors relative',
-                          activeHeadingId === h.id 
-                            ? ['active-subitem', categoryTheme[category.color]?.activeText || 'text-green-700', 'font-medium pb-1 -mb-px'] 
+                          activeHeadingId === h.id
+                            ? ['active-subitem', categoryTheme[category.color]?.activeText || 'text-green-700', 'font-medium pb-1 -mb-px']
                             : 'text-gray-600 hover:text-gray-800'
-                        ]"
-                      >
-                        {{ h.text }}
-                      </button>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
+                        ]">
+                          {{ h.text }}
+                        </button>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+
+
+          </div>
+        </aside>
+
+        <!-- 移动端菜单按钮 -->
+        <button @click="mobileMenuOpen = true"
+          class="fixed top-20 left-4 z-30 lg:hidden p-2 rounded-lg bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors">
+          <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+
+        <!-- 主内容区域 - 与侧边栏并排布局，无额外内边距 -->
+        <main ref="contentScroll" class="flex-1 h-[calc(100vh-4rem)] overflow-y-auto">
+          <div class="max-w-4xl mx-auto px-6 py-8">
+            <!-- 面包屑导航已移除 -->
+
+            <!-- 文档内容 -->
+            <div v-if="currentPage" class="prose prose-gray max-w-none">
+              <!-- 使用 v-html 渲染 Markdown 内容 -->
+              <div v-html="renderedContent" class="markdown-content"></div>
             </div>
-          </nav>
 
-
-        </div>
-      </aside>
-
-      <!-- 移动端菜单按钮 -->
-      <button 
-        @click="mobileMenuOpen = true"
-        class="fixed top-20 left-4 z-30 lg:hidden p-2 rounded-lg bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors"
-      >
-        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-
-      <!-- 主内容区域 - 与侧边栏并排布局，无额外内边距 -->
-      <main ref="contentScroll" class="flex-1 h-[calc(100vh-4rem)] overflow-y-auto">
-        <div class="max-w-4xl mx-auto px-6 py-8">
-          <!-- 面包屑导航已移除 -->
-
-          <!-- 文档内容 -->
-          <div v-if="currentPage" class="prose prose-gray max-w-none">
-            <!-- 使用 v-html 渲染 Markdown 内容 -->
-            <div v-html="renderedContent" class="markdown-content"></div>
-          </div>
-
-          <!-- 默认欢迎页面 -->
-          <div v-else class="text-center py-16">
-            <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-            <h3 class="text-lg font-medium text-gray-900 mb-2">欢迎使用 Welight 文档</h3>
-            <p class="text-gray-500 mb-6">请从左侧菜单选择要查看的文档内容</p>
-            <button 
-              @click="setCurrentPage(defaultFirstPageId)"
-              :disabled="!defaultFirstPageId"
-              class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-60 disabled:cursor-not-allowed"
-            >
-              开始阅读
-            </button>
-          </div>
-
-          <!-- 页面导航 -->
-          <div v-if="currentPage" class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
-            <button 
-              v-if="previousPage"
-              @click="setCurrentPage(previousPage.id)"
-              class="inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:underline focus:outline-none"
-            >
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            <!-- 默认欢迎页面 -->
+            <div v-else class="text-center py-16">
+              <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
-              {{ previousPage.title }}
-            </button>
-            <div v-else></div>
-            
-            <button 
-              v-if="nextPage"
-              @click="setCurrentPage(nextPage.id)"
-              class="inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:underline focus:outline-none"
-            >
-              {{ nextPage.title }}
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-            </button>
+              <h3 class="text-lg font-medium text-gray-900 mb-2">欢迎使用 Welight 文档</h3>
+              <p class="text-gray-500 mb-6">请从左侧菜单选择要查看的文档内容</p>
+              <button @click="setCurrentPage(defaultFirstPageId)" :disabled="!defaultFirstPageId"
+                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-60 disabled:cursor-not-allowed">
+                开始阅读
+              </button>
+            </div>
+
+            <!-- 页面导航 -->
+            <div v-if="currentPage" class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
+              <button v-if="previousPage" @click="setCurrentPage(previousPage.id)"
+                class="inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:underline focus:outline-none">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                </svg>
+                {{ previousPage.title }}
+              </button>
+              <div v-else></div>
+
+              <button v-if="nextPage" @click="setCurrentPage(nextPage.id)"
+                class="inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:underline focus:outline-none">
+                {{ nextPage.title }}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script setup>
@@ -140,14 +125,19 @@ import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github.css'
-import { 
-  documentationConfig, 
-  getDocumentationPage, 
+import {
+  documentationConfig,
+  getDocumentationPage,
   getDocumentationPagesByCategory,
   getDocumentationCategories,
-  searchDocumentationPages 
+  searchDocumentationPages
 } from '@/data/documentation.js'
 import { Rocket, Star, Cog, HelpCircle, FileText } from 'lucide-vue-next'
+import mermaid from 'mermaid'
+import { useSEO, seoConfigs } from '@/composables/useSEO'
+
+// SEO配置
+useSEO(seoConfigs.documentation)
 
 // 文档分类图标（Lucide 图标组件映射）
 const categoryIconComponents = {
@@ -158,13 +148,13 @@ const categoryIconComponents = {
   document: FileText
 }
 
-// 文档分类颜色主题（Tailwind 静态类映射，避免动态类被裁剪）
+// 文档分类颜色主题（统一为黑白 / 灰度配色）
 const categoryTheme = {
-  emerald: { title: 'text-emerald-700', activeBg: 'bg-emerald-50', activeText: 'text-emerald-700' },
-  blue: { title: 'text-blue-700', activeBg: 'bg-blue-50', activeText: 'text-blue-700' },
-  purple: { title: 'text-purple-700', activeBg: 'bg-purple-50', activeText: 'text-purple-700' },
-  orange: { title: 'text-orange-700', activeBg: 'bg-orange-50', activeText: 'text-orange-700' },
-  gray: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-800' },
+  emerald: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-900' },
+  blue: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-900' },
+  purple: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-900' },
+  orange: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-900' },
+  gray: { title: 'text-gray-900', activeBg: 'bg-gray-50', activeText: 'text-gray-900' },
 }
 
 // 选择默认页面（左侧菜单第一项：第一个有页面的分类的第一个页面）
@@ -226,7 +216,7 @@ onUnmounted(() => {
 
 // 配置 marked，确保生成标题 id 与高亮
 marked.setOptions({
-  highlight: function(code, lang) {
+  highlight: function (code, lang) {
     if (lang && hljs.getLanguage(lang)) {
       try {
         return hljs.highlight(code, { language: lang }).value
@@ -327,7 +317,7 @@ const renderedContent = computed(() => {
       const first = bq.firstElementChild
       if (first && first.tagName === 'P') {
         const marker = first.textContent.trim()
-        const m = marker.match(/^\[\!(TIP|NOTE|IMPORTANT|WARNING|CAUTION)\]$/i)
+        const m = marker.match(/^\[!(TIP|NOTE|IMPORTANT|WARNING|CAUTION)\]$/i)
         if (m) {
           const type = m[1].toLowerCase()
           const box = doc.createElement('div')
@@ -361,6 +351,17 @@ const renderedContent = computed(() => {
         checkbox.setAttribute('disabled', '')
       }
     })
+
+    // 新增：将 ```mermaid 代码块转换为 <div class="mermaid">，以便后续渲染
+    doc.body
+      .querySelectorAll('pre code.language-mermaid, pre code[class*="language-mermaid"]')
+      .forEach((codeEl) => {
+        const pre = codeEl.parentElement?.tagName === 'PRE' ? codeEl.parentElement : codeEl.closest('pre')
+        const div = doc.createElement('div')
+        div.className = 'mermaid'
+        div.textContent = codeEl.textContent || ''
+        if (pre) pre.replaceWith(div)
+      })
 
     return doc.body.innerHTML
   } catch (e) {
@@ -404,18 +405,47 @@ const nextPage = computed(() => {
 
 // 渲染完成后，初始化滚动联动观察器
 watch(() => renderedContent.value, () => {
-  nextTick(() => initHeadingObserver())
+  nextTick(() => {
+    initHeadingObserver()
+    renderMermaid()
+  })
 })
 
-// 初次挂载后初始化观察器，确保滚动联动生效
-onMounted(() => {
-  nextTick(() => initHeadingObserver())
-})
+// Mermaid 渲染：在内容更新后初始化并渲染图表
+const renderMermaid = async () => {
+  try {
+    const container = contentScroll.value?.querySelector('.markdown-content')
+    if (!container) return
+    const diagrams = Array.from(container.querySelectorAll('.mermaid'))
+    if (!diagrams.length) return
+
+    for (let i = 0; i < diagrams.length; i++) {
+      const el = diagrams[i]
+      const code = (el.textContent || '').trim()
+      if (!code) continue
+      try {
+        // 先校验语法，便于捕获具体错误
+        await mermaid.parse(code)
+        const { svg, bindFunctions } = await mermaid.render(`mermaid-${Date.now()}-${i}`, code)
+        el.innerHTML = svg
+        if (bindFunctions) bindFunctions(el)
+      } catch (err) {
+        console.error('Mermaid diagram parse/render failed:', err)
+        el.innerHTML = `<pre class="not-prose text-xs text-red-700 bg-red-50 border border-red-200 rounded p-2 overflow-auto">Mermaid 解析失败：${(err && err.message) ? err.message : String(err)}</pre>`
+      }
+    }
+  } catch (err) {
+    console.error('Mermaid render failed:', err)
+  }
+}
 
 // 页面切换后重新建立观察器
 watch(currentPageId, () => {
   activeHeadingId.value = null
-  nextTick(() => initHeadingObserver())
+  nextTick(() => {
+    initHeadingObserver()
+    renderMermaid()
+  })
 })
 
 const getPagesByCategory = (categoryId) => {
@@ -477,12 +507,129 @@ const ensureActiveHeadingVisible = () => {
 watch(activeHeadingId, () => {
   nextTick(() => ensureActiveHeadingVisible())
 })
+
+onMounted(() => {
+  mermaid.initialize({ startOnLoad: false, securityLevel: 'loose', theme: 'default' })
+  nextTick(() => {
+    initHeadingObserver()
+    renderMermaid()
+  })
+})
 </script>
 
 <style scoped>
 /* 自定义样式 */
 .markdown-content {
   @apply text-gray-800 leading-loose;
+}
+
+/* Dark mode readability overrides */
+.dark :deep(.markdown-content) {
+  @apply text-white;
+}
+
+.dark :deep(.markdown-content p) {
+  @apply text-white;
+}
+
+.dark :deep(.markdown-content li) {
+  @apply text-white;
+}
+
+.dark :deep(.markdown-content h1),
+.dark :deep(.markdown-content h2),
+.dark :deep(.markdown-content h3),
+.dark :deep(.markdown-content h4) {
+  @apply text-white;
+}
+
+.dark :deep(.markdown-content a) {
+  @apply text-white hover:text-blue-300;
+}
+
+.dark :deep(.markdown-content code) {
+  @apply bg-gray-800 text-gray-200;
+}
+
+.dark :deep(.markdown-content pre) {
+  @apply bg-gray-800 border border-gray-700;
+}
+
+.dark :deep(.markdown-content .hljs) {
+  @apply bg-gray-800 text-gray-200;
+}
+
+.dark :deep(.markdown-content blockquote) {
+  @apply bg-blue-900/30 border-blue-400 text-white;
+}
+
+.dark :deep(.markdown-content table) {
+  @apply border-gray-700;
+}
+
+.dark :deep(.markdown-content th),
+.dark :deep(.markdown-content td) {
+  @apply border-gray-700;
+}
+
+.dark :deep(.markdown-content th) {
+  @apply bg-gray-800;
+}
+
+.dark :deep(.markdown-content .admonition) {
+  @apply text-white;
+}
+
+.dark :deep(.markdown-content .admonition-tip) {
+  @apply border-green-400 bg-green-900/20;
+}
+
+.dark :deep(.markdown-content .admonition-note) {
+  @apply border-blue-400 bg-blue-900/20;
+}
+
+.dark :deep(.markdown-content .admonition-important) {
+  @apply border-purple-400 bg-purple-900/20;
+}
+
+.dark :deep(.markdown-content .admonition-warning) {
+  @apply border-yellow-400 bg-yellow-900/20;
+}
+
+.dark :deep(.markdown-content .admonition-caution) {
+  @apply border-red-400 bg-red-900/20;
+}
+
+.dark :deep(.markdown-content .admonition-tip .admonition-icon-wrap) {
+  @apply bg-green-900/20 ring-green-700;
+}
+
+.dark :deep(.markdown-content .admonition-note .admonition-icon-wrap) {
+  @apply bg-blue-900/20 ring-blue-700;
+}
+
+.dark :deep(.markdown-content .admonition-important .admonition-icon-wrap) {
+  @apply bg-purple-900/20 ring-purple-700;
+}
+
+.dark :deep(.markdown-content .admonition-warning .admonition-icon-wrap) {
+  @apply bg-yellow-900/20 ring-yellow-700;
+}
+
+.dark :deep(.markdown-content .admonition-caution .admonition-icon-wrap) {
+  @apply bg-red-900/20 ring-red-700;
+}
+
+.dark :deep(.markdown-content kbd) {
+  @apply bg-gray-800 border-gray-600 text-gray-200;
+}
+
+.dark :deep(.markdown-content hr) {
+  @apply border-gray-700;
+}
+
+.dark :deep(.markdown-content mark) {
+  @apply bg-yellow-700/50 text-gray-100;
 }
 
 /* 进入锚点时避免被顶部遮挡 */
@@ -548,12 +695,15 @@ watch(activeHeadingId, () => {
 :deep(.markdown-content .admonition) {
   @apply my-4 rounded-none p-4 text-gray-800;
 }
+
 :deep(.markdown-content .admonition-title) {
-  @apply font-semibold mb-2 flex items-center gap-3; 
+  @apply font-semibold mb-2 flex items-center gap-3;
 }
+
 :deep(.markdown-content .admonition-title .admonition-label) {
   @apply leading-5 text-gray-900;
 }
+
 :deep(.markdown-content .admonition-content > :last-child) {
   @apply mb-0;
 }
@@ -562,32 +712,66 @@ watch(activeHeadingId, () => {
 :deep(.markdown-content .admonition-tip) {
   @apply border-l-4 border-green-500 bg-green-50;
 }
+
 :deep(.markdown-content .admonition-note) {
   @apply border-l-4 border-blue-500 bg-blue-50;
 }
+
 :deep(.markdown-content .admonition-important) {
-  @apply border-l-4 border-purple-500 bg-purple-50; /* 重要改为紫色系 */
+  @apply border-l-4 border-purple-500 bg-purple-50;
+  /* 重要改为紫色系 */
 }
+
 :deep(.markdown-content .admonition-warning) {
   @apply border-l-4 border-yellow-500 bg-yellow-50;
 }
+
 :deep(.markdown-content .admonition-caution) {
-  @apply border-l-4 border-red-500 bg-red-50; /* 注意改为红色系 */
+  @apply border-l-4 border-red-500 bg-red-50;
+  /* 注意改为红色系 */
 }
 
 /* 图标容器的类型配色（底色+描边） */
-:deep(.markdown-content .admonition-tip .admonition-icon-wrap) { @apply bg-green-50 ring-green-200; }
-:deep(.markdown-content .admonition-note .admonition-icon-wrap) { @apply bg-blue-50 ring-blue-200; }
-:deep(.markdown-content .admonition-important .admonition-icon-wrap) { @apply bg-purple-50 ring-purple-200; }
-:deep(.markdown-content .admonition-warning .admonition-icon-wrap) { @apply bg-yellow-50 ring-yellow-200; }
-:deep(.markdown-content .admonition-caution .admonition-icon-wrap) { @apply bg-red-50 ring-red-200; }
+:deep(.markdown-content .admonition-tip .admonition-icon-wrap) {
+  @apply bg-green-50 ring-green-200;
+}
+
+:deep(.markdown-content .admonition-note .admonition-icon-wrap) {
+  @apply bg-blue-50 ring-blue-200;
+}
+
+:deep(.markdown-content .admonition-important .admonition-icon-wrap) {
+  @apply bg-purple-50 ring-purple-200;
+}
+
+:deep(.markdown-content .admonition-warning .admonition-icon-wrap) {
+  @apply bg-yellow-50 ring-yellow-200;
+}
+
+:deep(.markdown-content .admonition-caution .admonition-icon-wrap) {
+  @apply bg-red-50 ring-red-200;
+}
 
 /* 图标颜色（跟随类型） */
-:deep(.markdown-content .admonition-tip .admonition-icon) { @apply text-green-600; }
-:deep(.markdown-content .admonition-note .admonition-icon) { @apply text-blue-600; }
-:deep(.markdown-content .admonition-important .admonition-icon) { @apply text-purple-600; }
-:deep(.markdown-content .admonition-warning .admonition-icon) { @apply text-yellow-600; }
-:deep(.markdown-content .admonition-caution .admonition-icon) { @apply text-red-600; }
+:deep(.markdown-content .admonition-tip .admonition-icon) {
+  @apply text-green-600;
+}
+
+:deep(.markdown-content .admonition-note .admonition-icon) {
+  @apply text-blue-600;
+}
+
+:deep(.markdown-content .admonition-important .admonition-icon) {
+  @apply text-purple-600;
+}
+
+:deep(.markdown-content .admonition-warning .admonition-icon) {
+  @apply text-yellow-600;
+}
+
+:deep(.markdown-content .admonition-caution .admonition-icon) {
+  @apply text-red-600;
+}
 
 :deep(.markdown-content blockquote p) {
   @apply mb-0;
@@ -597,7 +781,8 @@ watch(activeHeadingId, () => {
   @apply w-full border-collapse border border-gray-300 mb-4;
 }
 
-:deep(.markdown-content th), :deep(.markdown-content td) {
+:deep(.markdown-content th),
+:deep(.markdown-content td) {
   @apply border border-gray-300 px-4 py-2 text-left;
 }
 
@@ -621,6 +806,7 @@ watch(activeHeadingId, () => {
 :deep(.markdown-content .hljs) {
   @apply bg-gray-50 text-gray-800;
 }
+
 /* 新增：mark 高亮样式 */
 :deep(.markdown-content mark) {
   @apply bg-yellow-100 rounded px-1 text-gray-900;
@@ -630,61 +816,88 @@ watch(activeHeadingId, () => {
 :deep(.markdown-content .task-list-item) {
   list-style: none;
 }
+
 :deep(.markdown-content .task-list-item input[type="checkbox"]) {
   margin-right: 0.5rem;
   vertical-align: middle;
 }
+
 /* 侧栏二级标题子列表：统一竖线与活动底线 */
-.subheadings { position: relative; }
+.subheadings {
+  position: relative;
+}
+
 .subheadings::before {
   content: "";
   position: absolute;
-  left: 0; top: 0; bottom: 0; width: 1px;
-  background-color: #D1D5DB; /* gray-300 */
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #D1D5DB;
+  /* gray-300 */
 }
+
 .subheadings.subline-active::before {
-  background-color: #D1D5DB; /* gray-300：激活时也保持灰色 */
+  background-color: #D1D5DB;
+  /* gray-300：激活时也保持灰色 */
 }
-.subitem-btn { position: relative; }
+
+.subitem-btn {
+  position: relative;
+}
+
 .subitem-btn.active-subitem::after {
   content: "";
   position: absolute;
-  left: 0.75rem; /* 与 pl-3 对齐，保证不越过竖线 */
+  left: 0.75rem;
+  /* 与 pl-3 对齐，保证不越过竖线 */
   right: 0;
   bottom: 0;
   height: 2px;
-  background-color: currentColor; /* 线条颜色继承当前文字颜色 */
+  background-color: currentColor;
+  /* 线条颜色继承当前文字颜色 */
   /* 调整遮罩停靠点：更靠左开始衰减 */
   -webkit-mask-image: linear-gradient(to right,
-    rgba(0,0,0,1) 0%,
-    rgba(0,0,0,1) 20%,
-    rgba(0,0,0,0.6) 40%,
-    rgba(0,0,0,0.25) 60%,
-    rgba(0,0,0,0) 100%
-  );
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 0.6) 40%,
+      rgba(0, 0, 0, 0.25) 60%,
+      rgba(0, 0, 0, 0) 100%);
   mask-image: linear-gradient(to right,
-    rgba(0,0,0,1) 0%,
-    rgba(0,0,0,1) 20%,
-    rgba(0,0,0,0.6) 40%,
-    rgba(0,0,0,0.25) 60%,
-    rgba(0,0,0,0) 100%
-  );
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 0.6) 40%,
+      rgba(0, 0, 0, 0.25) 60%,
+      rgba(0, 0, 0, 0) 100%);
 }
 
 /* 顶级目录项激活动画：左侧指示条与颜色过渡 */
-.menu-btn { position: relative; }
+.menu-btn {
+  position: relative;
+}
+
 .menu-btn::before {
   content: "";
   position: absolute;
-  left: 0; top: 0; bottom: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
   width: 2px;
-  background-color: currentColor; /* 跟随文本颜色以映射分类色 */
+  background-color: currentColor;
+  /* 跟随文本颜色以映射分类色 */
   transform: scaleY(0);
   opacity: 0;
   transition: transform 180ms ease-out, opacity 180ms ease-out;
 }
+
 .menu-btn.menu-active::before {
   transform: scaleY(1);
   opacity: 1;
+}
+
+/* Mermaid block spacing */
+:deep(.markdown-content .mermaid) {
+  @apply my-4;
 }
 </style>
