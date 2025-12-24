@@ -1,15 +1,26 @@
 <template>
   <div :class="className">
-    <div ref="animatedDiv" class="flex flex-col gap-6 pb-6 bg-transparent animate-scroll" :style="animationStyle">
+    <div
+      ref="animatedDiv"
+      class="flex flex-col gap-6 pb-6 bg-transparent animate-scroll"
+      :style="animationStyle"
+    >
       <template v-for="(_, index) in 2" :key="index">
-        <div v-for="(item, i) in images" :key="`${index}-${i}`"
-          class="relative rounded-2xl overflow-hidden bg-transparent dark:bg-gray-900 shadow-md hover:shadow-xl transition-all duration-300 w-full max-w-sm">
-          <div class="absolute inset-0 pointer-events-none hidden dark:block bg-black/20"></div>
+        <div
+          v-for="(item, i) in images"
+          :key="`${index}-${i}`"
+          class="relative rounded-2xl overflow-hidden bg-transparent shadow-md hover:shadow-xl transition-all duration-300 w-full max-w-sm"
+        >
           <picture>
             <source :srcset="toWebp(item)" type="image/webp" />
-            <img :src="item" :alt="`主题截图 ${i + 1}`"
-              class="w-full h-auto object-cover transition duration-300 filter dark:brightness-85 dark:contrast-115 dark:saturate-105 dark:mix-blend-multiply"
-              loading="lazy" decoding="async" fetchpriority="low" />
+            <img
+              :src="item"
+              :alt="`主题截图 ${i + 1}`"
+              class="w-full h-auto object-cover transition duration-300"
+              loading="lazy"
+              decoding="async"
+              fetchpriority="low"
+            />
           </picture>
         </div>
       </template>
@@ -47,7 +58,6 @@ const animationStyle = computed(() => ({
  * @returns {string} WebP 路径
  */
 const toWebp = (path) => encodeURI(path.replace(/\.png$/i, '.webp'))
-
 </script>
 
 <style scoped>
