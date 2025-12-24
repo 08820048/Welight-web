@@ -2,6 +2,7 @@
 // 集成后端API进行真实的下载量统计
 
 const API_BASE_URL = 'https://ilikexff.cn/api/download-stats'
+// 保留仅旧统计服务的实现，前端不使用需要签名的新接口
 
 /**
  * 记录下载事件（自动检测平台）
@@ -13,7 +14,7 @@ export async function recordDownload(referer = 'https://waer.ltd/download') {
     const response = await fetch(`${API_BASE_URL}/record`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: `referer=${encodeURIComponent(referer)}`
     })
@@ -42,7 +43,7 @@ export async function recordDownloadWithPlatform(platform, referer = 'https://wa
     const response = await fetch(`${API_BASE_URL}/record`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: `platform=${platform}&referer=${encodeURIComponent(referer)}`
     })
@@ -70,14 +71,16 @@ export async function recordDownloadWithPlatform(platform, referer = 'https://wa
  * 获取下载统计数据
  * @returns {Promise<Object|null>} 统计数据对象或null
  */
+/**
+ * 获取下载统计数据（旧统计服务）
+ * @returns {Promise<Object|null>} 统计数据对象或null
+ */
 export async function getDownloadStats() {
   try {
     const response = await fetch(`${API_BASE_URL}/stats`)
-
     if (response.ok) {
       const result = await response.json()
       if (result.code === 200 && result.data) {
-        console.log('获取统计数据成功:', result.data)
         return result.data
       } else {
         console.warn('后端返回数据格式异常:', result)
@@ -166,11 +169,11 @@ export async function initializeDownloadStats() {
     'linux-deb': 0,
     'linux-rpm': 0
   }
-  
+
   try {
     // 尝试从后端获取真实统计数据
     const backendStats = await getDownloadStats()
-    
+
     if (backendStats && backendStats.platformDownloads) {
       console.log('后端统计数据:', backendStats)
 
@@ -195,16 +198,16 @@ export async function initializeDownloadStats() {
         // Linux平台分配：60% AppImage, 25% deb, 15% rpm
         mappedStats['linux-appimage'] = Math.floor(platformDownloads.linux * 0.6)
         mappedStats['linux-deb'] = Math.floor(platformDownloads.linux * 0.25)
-        mappedStats['linux-rpm'] = platformDownloads.linux -
-          mappedStats['linux-appimage'] - mappedStats['linux-deb']
+        mappedStats['linux-rpm'] =
+          platformDownloads.linux - mappedStats['linux-appimage'] - mappedStats['linux-deb']
       }
-      
+
       return mappedStats
     }
   } catch (error) {
     console.error('初始化下载统计失败，使用默认数据:', error)
   }
-  
+
   // 如果后端数据获取失败，尝试从本地存储获取
   const localStats = localStorage.getItem('downloadStats')
   if (localStats) {
@@ -215,7 +218,7 @@ export async function initializeDownloadStats() {
       console.error('解析本地统计数据失败:', error)
     }
   }
-  
+
   return defaultStats
 }
 
@@ -235,13 +238,13 @@ export function startStatsSync(updateCallback, interval = 5 * 60 * 1000) {
       console.error('同步统计数据失败:', error)
     }
   }
-  
+
   // 立即执行一次
   syncStats()
-  
+
   // 设置定期同步
   const intervalId = setInterval(syncStats, interval)
-  
+
   // 返回清理函数
   return () => clearInterval(intervalId)
 }
