@@ -300,12 +300,12 @@ const themeStore = useThemeStore()
 /**
  * 判断是否处于圣诞节期间
  * @param {Date} [date=new Date()] 传入日期，默认当前时间
- * @returns {boolean} 是否在 12 月 20-26 日之间
+ * @returns {boolean} 是否在 12 月 20-27 日之间
  */
 function isInChristmasSeason(date = new Date()) {
   const month = date.getMonth() // 0-11
   const day = date.getDate()
-  return month === 11 && day >= 20 && day <= 26
+  return month === 11 && day >= 20 && day <= 27
 }
 
 const isChristmasSeason = computed(() => isInChristmasSeason())

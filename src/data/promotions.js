@@ -52,7 +52,7 @@ const promotions = [
     enabled: true,
     preheatStartDate: '2025-12-20',
     activityStartDate: '2025-12-24',
-    endDate: '2025-12-26',
+    endDate: '2025-12-27',
     showInMenu: true,
     menuBadge: '直降9.9',
     menuBadgeText: '',
