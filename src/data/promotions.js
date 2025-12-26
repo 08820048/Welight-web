@@ -46,6 +46,44 @@ const promotions = [
     }
   },
   {
+    id: 'christmas-2025',
+    name: '圣诞节',
+    displayName: '圣诞节限时活动',
+    enabled: true,
+    preheatStartDate: '2025-12-20',
+    activityStartDate: '2025-12-24',
+    endDate: '2025-12-26',
+    showInMenu: true,
+    menuBadge: '直降9.9',
+    menuBadgeText: '',
+    banner: {
+      title: '圣诞节活动 · 许可证直降9.9元',
+      subtitle: '所有许可证套餐直降 9.9 元！',
+      bgColor: '#dc2626',
+      bgGradient: 'linear-gradient(90deg, #ef4444 0%, #22c55e 100%)',
+      content: `
+        <div class="promo-clean-layout">
+          <div class="promo-info-grid-new">
+            <div class="promo-info-item">
+              <h3>许可证限时直降</h3>
+              <p>所有许可证套餐 <strong>立减 9.9 元</strong></p>
+              <span>节日限定直降优惠，仅限活动期</span>
+            </div>
+            <div class="promo-info-item">
+              <h3>买断更划算</h3>
+              <p>买断版享受同等直降优惠</p>
+              <span>活动结束后恢复原价</span>
+            </div>
+          </div>
+          <div class="promo-actions">
+            <a href="/pricing" class="promo-btn-main">立即抢购</a>
+            <a href="https://qm.qq.com/q/nNA64h5d6K" class="promo-btn-sub">加入社群，享更多福利</a>
+          </div>
+        </div>
+      `
+    }
+  },
+  {
     id: 'new-year-2026',
     name: '元旦',
     displayName: '元旦节特惠',

@@ -1,7 +1,7 @@
 <template>
   <div class="relative min-h-screen bg-white dark:bg-gray-900">
     <div class="min-h-screen text-gray-800 dark:text-gray-200 relative overflow-hidden"
-      style="position: relative; z-index: 1;">
+      style="position: relative; z-index: 1">
       <!-- 顶部横幅通知 -->
       <div v-if="showBanner" class="fixed top-16 left-0 right-0 z-40 overflow-hidden px-4 sm:px-6 lg:px-8">
         <div
@@ -50,8 +50,8 @@
             <!-- Animated content group -->
             <div class="space-y-8">
               <!-- Main heading -->
-              <div class="mt-12 lg:mt-20 transition-all duration-[1500ms] ease-out"
-                :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
+              <div class="mt-12 lg:mt-20 transition-all duration-[1500ms] ease-out" :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'
+                ">
                 <AnimatedUnderlineText text="好看的排版，从来简约。" :level="1"
                   text-className="text-5xl font-medium md:text-6xl text-gray-900 dark:text-gray-100 whitespace-nowrap font-longcang"
                   underline-className="text-gray-900 dark:text-gray-100" />
@@ -67,7 +67,8 @@
 
               <!-- Download CTA Row -->
               <div class="mt-16 w-full flex items-center justify-center gap-3 transition-all duration-[1500ms] ease-out"
-                :class="ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
+                :class="ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'
+                  ">
                 <!-- macOS button (black pill) -->
                 <button
                   class="inline-flex items-center px-5 py-2.5 rounded-full bg-black text-white hover:bg-gray-900 transition-colors shadow-soft-lg"
@@ -116,8 +117,8 @@
         </div>
 
         <!-- Product Video -->
-        <div class="relative mt-8 px-2 sm:mt-12 md:mt-20 transition-all duration-[1500ms] ease-out"
-          :class="videoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
+        <div class="relative mt-8 px-2 sm:mt-12 md:mt-20 transition-all duration-[1500ms] ease-out" :class="videoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'
+          ">
           <div
             class="relative w-full max-w-5xl mx-auto rounded-2xl border-2 border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/40 backdrop-blur-sm p-2 sm:p-4 shadow-xl transition-all duration-500 hover:shadow-2xl">
             <div
@@ -197,7 +198,7 @@
           </div>
 
           <!-- AI Models Glass Logo Carousel -->
-          <div class="relative mb-16 scroll-animate" style="transition-delay: 0.15s;">
+          <div class="relative mb-16 scroll-animate" style="transition-delay: 0.15s">
             <LogoCarousel :logos="aiModelLogos" :column-count="aiModelLogos.length" />
           </div>
 
@@ -213,7 +214,6 @@
               <VerticalDisplayCards :features="aiRightFeatures" />
             </div>
           </div>
-
         </div>
       </section>
 
@@ -307,7 +307,7 @@
       <section class="relative min-h-screen py-20 content-auto">
         <div class="relative container-custom">
           <!-- Section header -->
-          <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s;">
+          <div class="text-center mb-16 scroll-animate" style="transition-delay: 0.1s">
             <AnimatedUnderlineText text="是排版工具，也是强大的Markdown编辑器"
               text-className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-gray-100 font-longcang"
               underline-className="text-gray-900 dark:text-gray-100" />
@@ -319,42 +319,52 @@
           <!-- Markdown features grid -->
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
             <!-- Basic Syntax -->
-            <div class="scroll-animate scale-up" style="transition-delay: 0.4s;">
-              <MarkdownFeatureCard :icon="FileText" title="基础语法"
-                :features="['标题 (H1-H6)', '粗体、斜体、删除线', '有序、无序列表', '链接和图片', '引用块']" />
+            <div class="scroll-animate scale-up" style="transition-delay: 0.4s">
+              <MarkdownFeatureCard :icon="FileText" title="基础语法" :features="[
+                '标题 (H1-H6)',
+                '粗体、斜体、删除线',
+                '有序、无序列表',
+                '链接和图片',
+                '引用块'
+              ]" />
             </div>
 
             <!-- Code Support -->
-            <div class="scroll-animate scale-up" style="transition-delay: 0.5s;">
+            <div class="scroll-animate scale-up" style="transition-delay: 0.5s">
               <MarkdownFeatureCard :icon="Code" title="代码支持" :features="['行内代码', '代码块', '语法高亮', '多语言支持', '代码行号']" />
             </div>
 
             <!-- Tables -->
-            <div class="scroll-animate scale-up" style="transition-delay: 0.6s;">
-              <MarkdownFeatureCard :icon="Table" title="表格功能"
-                :features="['标准表格语法', '列对齐控制', '表格样式美化', '可视化编辑', '导入导出支持']" />
+            <div class="scroll-animate scale-up" style="transition-delay: 0.6s">
+              <MarkdownFeatureCard :icon="Table" title="表格功能" :features="[
+                '标准表格语法',
+                '列对齐控制',
+                '表格样式美化',
+                '可视化编辑',
+                '导入导出支持'
+              ]" />
             </div>
 
             <!-- Math & Formulas -->
-            <div class="scroll-animate scale-up" style="transition-delay: 0.7s;">
+            <div class="scroll-animate scale-up" style="transition-delay: 0.7s">
               <MarkdownFeatureCard :icon="Calculator" title="数学公式"
                 :features="['LaTeX 数学公式', '行内公式', '块级公式', '公式编号', '实时预览']" />
             </div>
 
             <!-- Extended Features -->
-            <div class="scroll-animate scale-up" style="transition-delay: 0.8s;">
+            <div class="scroll-animate scale-up" style="transition-delay: 0.8s">
               <MarkdownFeatureCard :icon="Puzzle" title="扩展功能" :features="['任务列表', '脚注支持', '定义列表', '缩略语', '高亮标记']" />
             </div>
 
             <!-- Diagrams -->
-            <div class="scroll-animate scale-up" style="transition-delay: 0.9s;">
+            <div class="scroll-animate scale-up" style="transition-delay: 0.9s">
               <MarkdownFeatureCard :icon="BarChart" title="图表支持"
                 :features="['Mermaid 图表', '流程图', '时序图', '甘特图', '思维导图']" />
             </div>
           </div>
 
           <!-- Markdown advantages -->
-          <div class="text-center scroll-animate" style="transition-delay: 1.0s;">
+          <div class="text-center scroll-animate" style="transition-delay: 1s">
             <div class="max-w-4xl mx-auto">
               <AnimatedUnderlineText text="为什么选择Welight？"
                 text-className="text-2xl md:text-3xl font-bold text-gray-900 font-longcang"
@@ -362,21 +372,21 @@
 
               <div class="grid md:grid-cols-3 gap-8 mt-12">
                 <!-- Advantage 1 -->
-                <div class="scroll-animate fade-up text-center" style="transition-delay: 1.1s;">
+                <div class="scroll-animate fade-up text-center" style="transition-delay: 1.1s">
                   <h4 class="text-xl font-bold text-gray-900 mb-3 font-longcang">简单高效</h4>
                   <MagicText text="轻量级编辑器，学习成本低，书写效率高，专注内容创作" container-className="justify-center"
                     word-className="text-base text-gray-600" />
                 </div>
 
                 <!-- Advantage 2 -->
-                <div class="scroll-animate fade-up text-center" style="transition-delay: 1.2s;">
+                <div class="scroll-animate fade-up text-center" style="transition-delay: 1.2s">
                   <h4 class="text-xl font-bold text-gray-900 mb-3 font-longcang">极简审美</h4>
                   <MagicText text="回归创作 初衷，所见即所得，拒绝花里胡哨的图案堆叠。" container-className="justify-center"
                     word-className="text-base text-gray-600" />
                 </div>
 
                 <!-- Advantage 3 -->
-                <div class="scroll-animate fade-up text-center" style="transition-delay: 1.3s;">
+                <div class="scroll-animate fade-up text-center" style="transition-delay: 1.3s">
                   <h4 class="text-xl font-bold text-gray-900 mb-3 font-longcang">一杯星巴克</h4>
                   <MagicText text="为了斗争那些动辄上千的同类产品，我们收取的仅仅是软件本身的构建费用！" container-className="justify-center"
                     word-className="text-base text-gray-600" />
@@ -386,17 +396,12 @@
           </div>
 
           <!-- Bottom text -->
-          <div class="text-center mt-16 scroll-animate" style="transition-delay: 1.4s;">
+          <div class="text-center mt-16 scroll-animate" style="transition-delay: 1.4s">
             <MagicText text="让Welight成为你高效写作的得力助手" container-className="justify-center"
               word-className="text-xl md:text-2xl font-medium text-gray-600" />
           </div>
-
-
         </div>
       </section>
-
-
-
     </div>
 
     <!-- 底部右上角购买通知滚动 -->
@@ -407,7 +412,12 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
+import {
+  handleDownload,
+  initializeDownloadStats,
+  startStatsSync,
+  getDownloadStats
+} from '@/services/downloadStats'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
 import ThemeTestimonials from '@/components/ThemeTestimonials.vue'
 import DisplayCards from '@/components/DisplayCards.vue'
@@ -419,7 +429,20 @@ import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
 // import PurchaseNotificationTicker from '@/components/PurchaseNotificationTicker.vue'
 import LogoCarousel from '@/components/LogoCarousel.vue'
-import { Wand2, Command, Copy, BarChart3, Palette, Sparkles, FileText, Code, Table, Calculator, Puzzle, BarChart } from 'lucide-vue-next'
+import {
+  Wand2,
+  Command,
+  Copy,
+  BarChart3,
+  Palette,
+  Sparkles,
+  FileText,
+  Code,
+  Table,
+  Calculator,
+  Puzzle,
+  BarChart
+} from 'lucide-vue-next'
 import { useThemeStore } from '@/stores/theme'
 
 // SEO配置
@@ -432,7 +455,9 @@ const videoVisible = ref(true)
 
 // 主题状态与英雄图资源
 const themeStore = useThemeStore()
-const heroImageSrc = computed(() => themeStore.isDark ? '/assert/index_dark.webp' : '/assert/index.webp')
+const heroImageSrc = computed(() =>
+  themeStore.isDark ? '/assert/index_dark.webp' : '/assert/index.webp'
+)
 
 /** 显示首屏标题淡入 */
 function revealHero() {
@@ -455,20 +480,20 @@ const featuresGroup1 = [
     icon: Wand2,
     title: '划词工具栏',
     description: '选中文本即可显示划词工具栏，快速应用格式、预设的 AI 快捷功能',
-    titleClassName: 'text-gray-900',
+    titleClassName: 'text-gray-900'
   },
   {
     icon: Command,
     title: 'AI快捷文生图',
     description: '集成阿里千文系统、快手kolors文生图模型,一句话即可参加自己的佳作',
-    titleClassName: 'text-gray-900',
+    titleClassName: 'text-gray-900'
   },
   {
     icon: Copy,
     title: '预览一键复制',
     description: '满意的排版风格一键复制，粘贴微信编辑器即可发布，所见即所得',
-    titleClassName: 'text-gray-900',
-  },
+    titleClassName: 'text-gray-900'
+  }
 ]
 
 const featuresGroup2 = [
@@ -476,20 +501,20 @@ const featuresGroup2 = [
     icon: BarChart3,
     title: '智能图表转换',
     description: '采用 ChartJs 图表渲染集成，图表格式自动转码，数据转表弹指可得',
-    titleClassName: 'text-gray-900',
+    titleClassName: 'text-gray-900'
   },
   {
     icon: Palette,
     title: '丰富主题样式',
     description: '精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果',
-    titleClassName: 'text-gray-900',
+    titleClassName: 'text-gray-900'
   },
   {
     icon: Sparkles,
     title: 'AI 智能助手',
     description: '集成多个主流 AI 模型，为你的写作提供智能辅助，让创作更加高效',
-    titleClassName: 'text-gray-900',
-  },
+    titleClassName: 'text-gray-900'
+  }
 ]
 
 // AI Features Data - Left side
@@ -543,14 +568,12 @@ const aiModelLogos = [
     id: '豆包',
     name: '豆包',
     src: '/llm/doubao-color.svg'
-  }
-  ,
+  },
   {
     id: 'kolors',
     name: 'Kolors',
     src: '/llm/kolors-color.svg'
   }
-
 ]
 
 // AI Features Data - Right side
@@ -626,7 +649,8 @@ function loadConfettiLibrary() {
     }
 
     const script = document.createElement('script')
-    script.src = 'https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js'
+    script.src =
+      'https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js'
 
     script.onload = () => resolve()
     script.onerror = () => reject(new Error('Failed to load confetti library'))
@@ -808,10 +832,10 @@ const downloadFile = async (platform) => {
 
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.1.6_x64_en-US.msi',
-      'macos-apple': 'https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.1.6_x64.dmg',
+      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.5.2_x64-setup.exe',
+      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.5.2_x64_en-US.msi',
+      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.5.2_aarch64.dmg',
+      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.5.2_x64.dmg',
       'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.1.6_amd64.AppImage',
       'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.1.6_amd64.deb'
     }
@@ -913,20 +937,23 @@ const initializeAnimations = () => {
       window.scrollTo(0, 0)
 
       // 创建 Intersection Observer 来监听元素进入视口
-      observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // 当元素进入视口时，添加动画类
-            entry.target.classList.add('animate-in-view')
-          } else {
-            // 当元素离开视口时，移除动画类，以便下次进入时重新触发
-            entry.target.classList.remove('animate-in-view')
-          }
-        })
-      }, {
-        threshold: 0.3, // 当元素30%可见时触发
-        rootMargin: '0px 0px -100px 0px' // 提前100px触发
-      })
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              // 当元素进入视口时，添加动画类
+              entry.target.classList.add('animate-in-view')
+            } else {
+              // 当元素离开视口时，移除动画类，以便下次进入时重新触发
+              entry.target.classList.remove('animate-in-view')
+            }
+          })
+        },
+        {
+          threshold: 0.3, // 当元素30%可见时触发
+          rootMargin: '0px 0px -100px 0px' // 提前100px触发
+        }
+      )
 
       // 观察所有需要动画的元素
       const animatedElements = document.querySelectorAll('.scroll-animate')
@@ -936,7 +963,9 @@ const initializeAnimations = () => {
       })
 
       // 为首页元素也添加滚动监听
-      const firstPageElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-scale-in')
+      const firstPageElements = document.querySelectorAll(
+        '.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-scale-in'
+      )
       console.log(`找到 ${firstPageElements.length} 个首页动画元素`)
       firstPageElements.forEach((el) => {
         // 给首页元素添加scroll-animate类
@@ -973,19 +1002,22 @@ onMounted(async () => {
     await loadDownloadStats()
 
     // 启动统计数据同步（每5分钟同步一次）
-    statsCleanup = startStatsSync(async (newStats) => {
-      downloadStats.value = newStats
-      // 同时更新后端原始数据
-      const rawData = await getDownloadStats()
-      if (rawData) {
-        backendStats.value = rawData
-      }
+    statsCleanup = startStatsSync(
+      async (newStats) => {
+        downloadStats.value = newStats
+        // 同时更新后端原始数据
+        const rawData = await getDownloadStats()
+        if (rawData) {
+          backendStats.value = rawData
+        }
 
-      // 定期同步时也重新启动动画
-      setTimeout(() => {
-        startDownloadAnimation()
-      }, 300)
-    }, 5 * 60 * 1000)
+        // 定期同步时也重新启动动画
+        setTimeout(() => {
+          startDownloadAnimation()
+        }, 300)
+      },
+      5 * 60 * 1000
+    )
 
     // 初始化动画
     initializeAnimations()
@@ -1007,16 +1039,20 @@ onMounted(async () => {
 })
 
 // 监听路由变化，确保每次回到首页都能正确初始化
-watch(() => route.path, (newPath, oldPath) => {
-  if (newPath === '/' && oldPath !== '/') {
-    console.log('返回首页，重新初始化...')
-    // 延迟一点时间确保页面完全加载
-    setTimeout(() => {
-      resetPageState()
-      initializeAnimations()
-    }, 100)
-  }
-}, { immediate: false })
+watch(
+  () => route.path,
+  (newPath, oldPath) => {
+    if (newPath === '/' && oldPath !== '/') {
+      console.log('返回首页，重新初始化...')
+      // 延迟一点时间确保页面完全加载
+      setTimeout(() => {
+        resetPageState()
+        initializeAnimations()
+      }, 100)
+    }
+  },
+  { immediate: false }
+)
 
 // 监听页面可见性变化
 const handleVisibilityChange = () => {
@@ -1119,7 +1155,9 @@ onUnmounted(() => {
   width: 100%;
   isolation: isolate;
   background-color: white;
-  transition: all 500ms ease-in-out, box-shadow 200ms ease-in-out;
+  transition:
+    all 500ms ease-in-out,
+    box-shadow 200ms ease-in-out;
   border-radius: var(--_border-radius);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
@@ -1133,7 +1171,7 @@ onUnmounted(() => {
 
 .hero-card::before,
 .hero-card::after {
-  content: "";
+  content: '';
   position: absolute;
   border-radius: inherit;
   pointer-events: none;

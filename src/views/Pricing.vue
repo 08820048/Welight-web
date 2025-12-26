@@ -356,7 +356,7 @@
                       <span class="text-lg font-light" style="color: #737a87;">¥</span>
                       <span class="text-3xl font-bold text-black dark:text-white">{{ product.price }}</span>
                       <span class="text-lg font-light" style="color: #737a87;">{{ product.permanent ? '/永久' : '/年'
-                      }}</span>
+                        }}</span>
                     </div>
                     <!-- 其他产品显示原价格 -->
                     <div v-else class="flex items-baseline justify-center space-x-1">
@@ -463,12 +463,16 @@
                     {{ getPurchaseButtonText(product) }}
                   </button>
                 </div>
-                <!-- 右上角条状标签 - 参考源码实现 -->
+                <!-- 右上角标签：活动期许可证改为红色“圣诞特惠” -->
                 <div v-if="!product.code.includes('MONTHLY')"
-                  class="absolute top-4 -right-10 bg-gray-900 dark:bg-gray-800 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105">
-                  {{ product.code.includes('CREDITS') ? '可选增值' : (product.isEnterprise ? '高性价比' :
-                    (isLicenseProduct(product) ? '最受欢迎' :
-                      '限时8.8折')) }}
+                  :class="[
+                    'absolute top-4 -right-10 text-white text-xs font-bold px-12 py-1 transform rotate-45 shadow-lg transition-all duration-200 group-hover:scale-105',
+                    (isChristmasPromoActive && isLicenseProduct(product)) ? 'bg-red-600' : 'bg-gray-900 dark:bg-gray-800'
+                  ]">
+                  {{ (isChristmasPromoActive && isLicenseProduct(product)) ? '圣诞特惠' :
+                    (product.code.includes('CREDITS') ? '可选增值' :
+                      (product.isEnterprise ? '高性价比' :
+                        (isLicenseProduct(product) ? '最受欢迎' : '限时8.8折'))) }}
                 </div>
               </div>
             </div>
@@ -567,6 +571,7 @@ import {
 import MonthlyCardPurchase from '../components/MonthlyCardPurchase.vue'
 import MonthlyCardActivation from '../components/MonthlyCardActivation.vue'
 import CreditsPurchase from '../components/CreditsPurchase.vue'
+import { getActivePromotions } from '@/data/promotions.js'
 
 // import RecentPurchasesTicker from '../components/RecentPurchasesTicker.vue'
 
@@ -681,6 +686,30 @@ let scrollObserver = null
 const isServiceCurrentlyAvailable = computed(() => {
   return isServiceAvailable(serviceStatus.value)
 })
+
+/**
+ * 计算是否处于“圣诞节活动”的活动期（仅在活动开始至结束期间启用）
+ * @returns {boolean} 是否处于圣诞节活动期
+ */
+function isWithinChristmasPromotionPeriod() {
+  try {
+    const promos = getActivePromotions() || []
+    const christmas = promos.find(p => p.id === 'christmas-2025')
+    if (!christmas) return false
+    const start = new Date(christmas.activityStartDate)
+    start.setHours(0, 0, 0, 0)
+    const end = new Date(christmas.endDate)
+    end.setHours(23, 59, 59, 999)
+    const now = new Date()
+    return now >= start && now <= end
+  } catch {
+    return false
+  }
+}
+
+const isChristmasPromoActive = computed(() => isWithinChristmasPromotionPeriod())
+
+// 移除节日逻辑，恢复默认效果
 
 // 获取购买按钮文本
 function getPurchaseButtonText(product) {
@@ -1557,6 +1586,8 @@ function showSuccessToast(message) {
   background: linear-gradient(to bottom, rgba(52, 152, 219, 0.2) 0%, rgba(52, 152, 219, 0.1) 40%, transparent 70%);
   transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
+
+/* 移除圣诞帽临时装饰，恢复默认样式 */
 
 /* 为渐隐效果层添加基础过渡 */
 .ai-service-gradient-overlay,
