@@ -85,18 +85,18 @@ const promotions = [
   },
   {
     id: 'new-year-2026',
-    name: '元旦',
-    displayName: '元旦节特惠',
+    name: '跨年',
+    displayName: '跨年限时活动',
     enabled: true,
-    preheatStartDate: '2025-12-27',
-    activityStartDate: '2026-01-01',
-    endDate: '2026-01-05',
+    preheatStartDate: '2025-12-28',
+    activityStartDate: '2025-12-29',
+    endDate: '2026-01-01',
     showInMenu: false,
     menuBadge: '',
     menuBadgeText: '',
     banner: {
-      title: '元旦节特惠 · 新年焕新',
-      subtitle: '许可证全部7.5折，积分套餐全系8折',
+      title: '跨年限时活动 · 新年焕新',
+      subtitle: '许可证全部6.5折，积分套餐全系8折',
       bgColor: '#f97316',
       bgGradient: 'linear-gradient(90deg, #60A5FA 0%, #6366F1 50%, #A78BFA 100%)',
       content: `
@@ -104,7 +104,7 @@ const promotions = [
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
               <h3>许可证全系折扣</h3>
-              <p>全场 <strong>7.5折</strong></p>
+              <p>全场 <strong>6.5折</strong></p>
               <span>限时优惠，迎新焕新</span>
             </div>
             <div class="promo-info-item">
