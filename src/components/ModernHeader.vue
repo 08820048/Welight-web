@@ -277,7 +277,7 @@ import ChangelogModal from './ChangelogModal.vue'
 import AnnouncementModal from './AnnouncementModal.vue'
 import PromotionBanner from './PromotionBanner.vue'
 import { hasNewAnnouncements as checkNewAnnouncements } from '@/data/announcements.js'
-import { getMenuPromotions, markLatestPromotionAsViewed } from '@/data/promotions.js'
+import { getActivePromotionsFromBackend } from '@/services/campaignService.js'
 import { getLatestVersion } from '@/data/changelog.js'
 import { useThemeStore } from '@/stores/theme'
 import {
@@ -372,8 +372,13 @@ const markDocsUpdateViewed = () => {
 }
 
 // 获取菜单中的活动
-const loadMenuPromotions = () => {
-  menuPromotions.value = getMenuPromotions()
+const loadMenuPromotions = async () => {
+  try {
+    const promos = await getActivePromotionsFromBackend()
+    menuPromotions.value = (promos || []).filter(p => p.showInMenu)
+  } catch {
+    menuPromotions.value = []
+  }
 }
 
 // 显示活动条幅
@@ -385,8 +390,13 @@ const showPromotionBanner = (promotion) => {
 // 关闭活动条幅
 const closePromotionBanner = () => {
   isPromotionBannerVisible.value = false
-  if (currentPromotion.value) {
-    markLatestPromotionAsViewed()
+  try {
+    const id = currentPromotion.value?.id || ''
+    if (id) {
+      localStorage.setItem('welight_last_viewed_promotion', id)
+    }
+  } catch {
+    // ignore
   }
   currentPromotion.value = null
 }

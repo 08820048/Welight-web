@@ -367,7 +367,7 @@ async function loadCreditPackages() {
         packageDescription: pkg.description || '',
         credits: pkg.credits,
         originalPrice: pkg.price,
-        currentPrice: pkg.price,
+        currentPrice: pkg.currentPrice || pkg.price,
         discount: pkg.discountPercentage || 0,
         packageType: (pkg.isCustom === true || pkg.code === 'CREDITS_CUSTOM') ? 'CUSTOM' : 'STANDARD',
         isActive: pkg.isActive,

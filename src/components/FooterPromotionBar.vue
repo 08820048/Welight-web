@@ -17,7 +17,7 @@
               <div class="flex flex-col md:flex-row md:items-center md:gap-3 min-w-0">
                 <div class="flex items-center gap-2 min-w-0">
                   <span class="truncate text-white font-bold">
-                    {{ currentPromotion?.displayName || currentPromotion?.name || '限时优惠活动' }}
+                    {{ currentPromotionTitle }}
                   </span>
                   <span v-if="currentPromotion?.banner?.subtitle"
                     class="hidden md:inline-block text-white/90 text-sm truncate">
@@ -70,7 +70,7 @@
 
 <script setup>
 import { ref, computed, onMounted, watch } from 'vue'
-import { getActivePromotions, markLatestPromotionAsViewed } from '@/data/promotions.js'
+import { getActivePromotionsFromBackend } from '@/services/campaignService.js'
 import PromotionBanner from './PromotionBanner.vue'
 import MiniCountdown from './MiniCountdown.vue'
 
@@ -124,11 +124,12 @@ const activePromotions = ref([])
 const isPromotionBannerVisible = ref(false)
 const isMinimized = ref(false)
 
-/**
- * 加载当前有效活动
- */
-function loadActivePromotions() {
-  activePromotions.value = getActivePromitionsSafe()
+async function loadActivePromotions() {
+  try {
+    activePromotions.value = await getActivePromotionsFromBackend()
+  } catch {
+    activePromotions.value = []
+  }
 }
 
 /**
@@ -136,25 +137,36 @@ function loadActivePromotions() {
  * @returns {Array<Object>}
  */
 function getActivePromitionsSafe() {
-  try {
-    return getActivePromotions()
-  } catch {
-    return []
-  }
+  return activePromotions.value || []
 }
 
 /**
  * 当前展示的活动（取最新一个）
  */
 const currentPromotion = computed(() => {
-  return activePromotions.value.length > 0 ? activePromotions.value[0] : null
+  const list = Array.isArray(activePromotions.value) ? activePromotions.value : []
+  const valid = list.filter((p) => {
+    const title = p?.displayName || p?.name || p?.banner?.title
+    return !!title
+  })
+  valid.sort((a, b) => {
+    const aTs = new Date(a?.activityStartDate || a?.preheatStartDate || 0).getTime()
+    const bTs = new Date(b?.activityStartDate || b?.preheatStartDate || 0).getTime()
+    return bTs - aTs
+  })
+  return valid.length > 0 ? valid[0] : null
+})
+
+const currentPromotionTitle = computed(() => {
+  const p = currentPromotion.value
+  return p?.displayName || p?.name || p?.banner?.title || ''
 })
 
 /**
  * 底部条幅是否显示
  */
 const isVisible = computed(() => {
-  return !!currentPromotion.value
+  return !!currentPromotion.value && !!currentPromotionTitle.value
 })
 
 // 根据本地存储同步最小化状态
@@ -176,7 +188,14 @@ function openBanner() {
  */
 function handleBannerClosed() {
   isPromotionBannerVisible.value = false
-  markLatestPromotionAsViewed()
+  try {
+    const id = currentPromotion.value?.id || ''
+    if (id) {
+      localStorage.setItem('welight_last_viewed_promotion', id)
+    }
+  } catch {
+    // ignore
+  }
 }
 
 /**

@@ -11,11 +11,12 @@
       <div :style="bannerBackgroundStyle" class="relative">
         <!-- 活动规则 - 左下角 -->
         <div class="absolute bottom-4 left-4 text-left z-10 promo-rules-corner">
-          <h3 class="text-white text-sm font-semibold mb-2">活动规则</h3>
+          <h3 class="text-white text-sm font-semibold mb-2">活动信息</h3>
           <ul class="text-white/80 text-xs space-y-1">
-            <li>活动时间：{{ activityTimeLabel }}</li>
-            <li>活动期间下单可享受对应折扣，具体以下单页为准</li>
-            <li>优惠不可叠加使用，以最优惠价格为准</li>
+            <li v-if="promotionTitle">活动：{{ promotionTitle }}</li>
+            <li v-if="activityTimeLabel">时间：{{ activityTimeLabel }}</li>
+            <li v-if="promotionDescription">说明：{{ promotionDescription }}</li>
+            <li v-for="(line, idx) in ruleSummaries" :key="idx">{{ line }}</li>
           </ul>
         </div>
 
@@ -34,7 +35,7 @@
           <div class="text-center mb-6">
             <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 animate-bounce-slow"
               style="text-shadow: 2px 2px 4px rgba(0,0,0,0.2), 0 0 20px rgba(255,187,51,0.3);">
-              {{ promotion?.banner?.title || '活动详情' }}
+              {{ promotionTitle }}
             </h2>
             <p v-if="promotion?.banner?.subtitle" class="text-lg md:text-xl text-white/90 mb-4"
               style="text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
@@ -91,7 +92,25 @@
           </div>
 
           <!-- 活动内容 -->
-          <div v-html="promotion?.banner?.content" style="width: 110%;"></div>
+          <div v-if="promotion?.banner?.content" v-html="promotion.banner.content" style="width: 110%;"></div>
+          <div v-else class="max-w-4xl mx-auto">
+            <div v-if="promotionDescription" class="text-white/90 leading-relaxed whitespace-pre-line">
+              {{ promotionDescription }}
+            </div>
+            <div v-if="ruleSummaries.length > 0" class="mt-4">
+              <div class="text-white font-semibold mb-2">活动规则</div>
+              <ul class="text-white/80 text-sm space-y-1">
+                <li v-for="(line, idx) in ruleSummaries" :key="idx">{{ line }}</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="max-w-4xl mx-auto mt-6 flex justify-center">
+            <button @click="goToPricing"
+              class="px-8 py-3 bg-white text-red-600 font-bold rounded-xl hover:bg-gray-50 hover:scale-[1.02] transition-all shadow-lg">
+              立即抢购
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -100,6 +119,7 @@
 
 <script setup>
 import { ref, watch, onMounted, onUnmounted, computed } from 'vue'
+import { useRouter } from 'vue-router'
 
 const props = defineProps({
   promotion: {
@@ -115,6 +135,16 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue', 'close'])
 
 const isVisible = ref(props.modelValue)
+const router = useRouter()
+
+/**
+ * 关闭条幅并跳转到价格页
+ * @returns {void}
+ */
+function goToPricing() {
+  close()
+  router.push('/pricing')
+}
 
 // 倒计时状态
 const countdown = ref({
@@ -171,6 +201,68 @@ const activityTimeLabel = computed(() => {
   const end = formatDate(props.promotion.endDate)
   return `${start} - ${end}`
 })
+
+const promotionTitle = computed(() => {
+  return props.promotion?.banner?.title || props.promotion?.displayName || props.promotion?.name || ''
+})
+
+const promotionDescription = computed(() => {
+  const p = props.promotion
+  const raw = p?.description || p?.details || ''
+  if (typeof raw !== 'string') return ''
+  return raw.trim()
+})
+
+const ruleSummaries = computed(() => {
+  const rules = Array.isArray(props.promotion?.rules) ? props.promotion.rules : []
+  return rules
+    .filter((r) => r && r.enabled !== false)
+    .slice(0, 3)
+    .map((r) => {
+      const target = formatRuleTarget(r)
+      const discount = formatRuleDiscount(r)
+      if (target && discount) return `规则：${target}，${discount}`
+      if (discount) return `规则：${discount}`
+      if (target) return `规则：${target}`
+      return ''
+    })
+    .filter(Boolean)
+})
+
+/**
+ * 将产品编码/前缀映射为更友好的产品类型名称
+ * @param {string} codeOrPrefix 产品编码或前缀
+ * @returns {string} 产品类型名称
+ */
+function mapProductCodeToLabel(codeOrPrefix) {
+  if (!codeOrPrefix) return ''
+  if (codeOrPrefix.startsWith('WELIGHT')) return '许可证产品'
+  if (codeOrPrefix.startsWith('CREDITS')) return '积分套餐产品'
+  return '指定产品'
+}
+
+function formatRuleTarget(rule) {
+  const type = rule?.matchType
+  const value = rule?.matchValue
+  if (type === 'ALL_PRODUCTS') return '全部产品'
+  if (type === 'PRODUCT_CODE_PREFIX') return value ? mapProductCodeToLabel(value) : ''
+  if (type === 'PRODUCT_CODE_EXACT') return value ? mapProductCodeToLabel(value) : ''
+  return ''
+}
+
+function formatRuleDiscount(rule) {
+  const type = rule?.discountType
+  if (type === 'DISCOUNT_RATE' && typeof rule.discountRate === 'number') {
+    return `${(rule.discountRate * 10).toFixed(1)}折`
+  }
+  if (type === 'DIRECT_REDUCTION' && typeof rule.reductionAmount === 'number') {
+    return `直降¥${rule.reductionAmount}`
+  }
+  if (typeof rule.fixedPrice === 'number') {
+    return `特惠价¥${rule.fixedPrice}`
+  }
+  return ''
+}
 
 // 计算倒计时
 const calculateCountdown = () => {

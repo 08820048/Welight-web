@@ -266,7 +266,7 @@ import PromotionBanner from './PromotionBanner.vue'
 import MiniCountdown from './MiniCountdown.vue'
 import { hasNewAnnouncements as checkNewAnnouncements } from '@/data/announcements.js'
 import { donations } from '@/data/donations.js'
-import { getMenuPromotions, hasNewPromotions, markLatestPromotionAsViewed } from '@/data/promotions.js'
+import { getActivePromotionsFromBackend } from '@/services/campaignService.js'
 import { getLatestVersion } from '@/data/changelog.js'
 
 // 滚动状态
@@ -301,8 +301,13 @@ const markDocsUpdateViewed = () => {
 }
 
 // 获取菜单中的活动
-const loadMenuPromotions = () => {
-  menuPromotions.value = getMenuPromotions()
+const loadMenuPromotions = async () => {
+  try {
+    const promos = await getActivePromotionsFromBackend()
+    menuPromotions.value = (promos || []).filter(p => p.showInMenu)
+  } catch {
+    menuPromotions.value = []
+  }
 }
 
 // 显示活动条幅
@@ -314,9 +319,13 @@ const showPromotionBanner = (promotion) => {
 // 关闭活动条幅
 const closePromotionBanner = () => {
   isPromotionBannerVisible.value = false
-  // 标记活动为已查看
-  if (currentPromotion.value) {
-    markLatestPromotionAsViewed()
+  try {
+    const id = currentPromotion.value?.id || ''
+    if (id) {
+      localStorage.setItem('welight_last_viewed_promotion', id)
+    }
+  } catch {
+    // ignore
   }
   currentPromotion.value = null
 }
@@ -358,19 +367,26 @@ const handleScroll = () => {
 }
 
 // 组件挂载
-onMounted(() => {
+onMounted(async () => {
   window.addEventListener('scroll', handleScroll)
   hasNewAnnouncements.value = checkNewAnnouncements()
 
   // 加载活动菜单
-  loadMenuPromotions()
+  await loadMenuPromotions()
 
   // 检查文档是否有更新（基于版本）
   const lastViewedDocs = localStorage.getItem('welight_docs_last_viewed_version')
   hasDocsUpdate.value = !lastViewedDocs || lastViewedDocs !== latestVersion.version
 
   // 检查是否有新活动需要自动弹出
-  const hasNewPromo = hasNewPromotions()
+  let hasNewPromo = false
+  try {
+    const lastViewedId = localStorage.getItem('welight_last_viewed_promotion') || ''
+    const first = menuPromotions.value[0]
+    hasNewPromo = !!(first && first.id && first.id !== lastViewedId)
+  } catch {
+    hasNewPromo = menuPromotions.value.length > 0
+  }
 
   // 如果有新公告，延迟弹出
   if (hasNewAnnouncements.value) {

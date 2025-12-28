@@ -3,48 +3,73 @@
  * 提供积分套餐查询、购买、订单状态查询等功能
  */
 
+import { getProducts } from './licenseService'
+
 // API基础配置
 const API_BASE_URL = 'https://ilikexff.cn/api'
 
 /**
- * 获取所有积分套餐（硬编码）
- * 返回本地静态数据，避免依赖后端接口与缓存问题
+ * 获取所有积分套餐
+ * 从统一的产品接口获取数据，并过滤出积分套餐
  * @returns {Promise<Object>} 积分套餐列表响应对象
  */
 export async function getCreditPackages() {
   try {
-    console.log('正在获取积分套餐列表...')
-    const response = await fetch(`${API_BASE_URL}/credits/packages`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    console.log('正在获取积分套餐列表 (from products API)...')
+    const products = await getProducts()
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
+    if (!products) {
+      throw new Error('获取产品列表失败')
     }
 
-    const data = await response.json()
-    console.log('积分套餐列表响应:', data)
+    // 过滤出积分套餐 (code 以 CREDITS 开头)
+    const creditPackages = products
+      .filter((p) => p.code && p.code.startsWith('CREDITS'))
+      .map((p) => {
+        let credits = 0
+        try {
+          const meta = JSON.parse(p.metadata || '{}')
+          credits = meta.credits || 0
+        } catch (e) {
+          console.warn('解析套餐 metadata 失败:', p.code)
+        }
 
-    if (data.code === 200) {
-      return {
-        success: true,
-        data: data.data,
-        message: data.message
-      }
-    } else {
-      throw new Error(data.message || '获取积分套餐列表失败')
+        // 计算折扣百分比 (例如 0.8 -> 20%)
+        let discountPercentage = 0
+        if (p.appliedDiscountRate && p.appliedDiscountRate < 1) {
+          discountPercentage = Math.round((1 - p.appliedDiscountRate) * 100)
+        }
+
+        return {
+          id: p.id,
+          code: p.code,
+          name: p.name,
+          description: p.description,
+          credits: credits,
+          price: p.originalPrice || p.price, // 原价
+          currentPrice: p.finalPrice || p.price, // 现价
+          pricePerCredit: credits > 0 ? (p.finalPrice || p.price) / credits : 0,
+          discountPercentage: discountPercentage,
+          isActive: p.isActive,
+          sortOrder: p.sortOrder,
+          isCustom: p.code === 'CREDITS_CUSTOM',
+          recommendTag: p.code === 'CREDITS_500' ? '热门选择' : '' // 简单标记热门
+        }
+      })
+
+    console.log('积分套餐列表处理完成:', creditPackages)
+
+    return {
+      success: true,
+      data: creditPackages,
+      message: '获取成功'
     }
   } catch (error) {
     console.error('获取积分套餐列表失败:', error)
-
-    // 返回模拟数据作为降级方案
     return {
       success: false,
       error: error.message,
-      data: getMockCreditPackages()
+      data: []
     }
   }
 }

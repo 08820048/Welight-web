@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-6">
+  <div class="max-w-md mx-auto bg-white rounded-xl shadow-lg p-6 text-gray-900 dark:text-gray-100">
     <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">激活月卡服务</h2>
     
     <form @submit.prevent="activateCard" class="space-y-4">
@@ -10,7 +10,7 @@
           type="text" 
           required
           placeholder="AI-1727251200001-ABC12345"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono text-sm text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
         />
       </div>
       
@@ -21,7 +21,7 @@
           type="email" 
           required
           placeholder="购买时使用的邮箱地址"
-          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-700 placeholder-gray-400 dark:placeholder-gray-500"
         />
       </div>
       

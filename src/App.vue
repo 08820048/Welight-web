@@ -32,7 +32,7 @@ import Footer from './components/Footer.vue'
 import FooterPromotionBar from './components/FooterPromotionBar.vue'
 import FloatingDonationButton from './components/FloatingDonationButton.vue'
 import BackToTop from './components/BackToTop.vue'
-import { getActivePromotions } from '@/data/promotions.js'
+import { getActivePromotionsFromBackend } from '@/services/campaignService.js'
 
 const route = useRoute()
 const themeStore = useThemeStore()
@@ -47,6 +47,20 @@ const showFooter = computed(() => route.name !== 'documentation' && route.path !
 
 // 懒加载 Spline
 const shouldLoadSpline = ref(false)
+
+const activePromotions = ref([])
+
+/**
+ * 加载活动列表（用于全局视觉效果开关）
+ * @returns {Promise<void>}
+ */
+async function loadActivePromotionsForEffects() {
+  try {
+    activePromotions.value = await getActivePromotionsFromBackend()
+  } catch {
+    activePromotions.value = []
+  }
+}
 
 onMounted(() => {
   // 初始化主题
@@ -63,29 +77,24 @@ onMounted(() => {
       shouldLoadSpline.value = true
     }, 2000)
   }
+
+  loadActivePromotionsForEffects()
 })
 
-/**
- * 计算是否处于“圣诞节活动”的活动期（仅在活动开始至结束期间启用）
- * @returns {boolean} 是否处于圣诞节活动期
- */
-function isWithinChristmasPromotionPeriod() {
-  try {
-    const promos = getActivePromotions() || []
-    const christmas = promos.find(p => p.id === 'christmas-2025')
-    if (!christmas) return false
-    const start = new Date(christmas.activityStartDate)
-    start.setHours(0, 0, 0, 0)
-    const end = new Date(christmas.endDate)
-    end.setHours(23, 59, 59, 999)
-    const now = new Date()
-    return now >= start && now <= end
-  } catch {
-    return false
-  }
-}
-
-const isChristmasPromoActive = computed(() => isWithinChristmasPromotionPeriod())
+const isChristmasPromoActive = computed(() => {
+  const list = activePromotions.value || []
+  return list.some((p) => {
+    const haystack = [
+      p?.name,
+      p?.displayName,
+      p?.banner?.title,
+      p?.banner?.subtitle
+    ]
+      .filter(Boolean)
+      .join(' ')
+    return /圣诞|christmas/i.test(haystack)
+  })
+})
 
 // Canvas 雪花实现
 const snowCanvas = ref(null)
