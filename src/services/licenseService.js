@@ -244,3 +244,41 @@ export function getOrderStatusDescription(status) {
 
   return statusMap[status] || '未知状态'
 }
+
+let cachedPurchaseUserTotal = null
+let purchaseUserTotalLastFetchAt = 0
+const PURCHASE_USER_TOTAL_TTL_MS = 5 * 60 * 1000
+
+export async function getPurchaseUserCounts() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/products/purchase-user-counts`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    const result = await response.json()
+    if (result && (result.code === 200 || result.success) && Array.isArray(result.data)) {
+      return result.data
+    }
+    return []
+  } catch (error) {
+    console.error('获取产品购买用户数失败:', error)
+    return []
+  }
+}
+
+export async function getTotalPurchaseUserCount({ force = false } = {}) {
+  const now = Date.now()
+  if (!force && typeof cachedPurchaseUserTotal === 'number' && now - purchaseUserTotalLastFetchAt < PURCHASE_USER_TOTAL_TTL_MS) {
+    return cachedPurchaseUserTotal
+  }
+
+  const rows = await getPurchaseUserCounts()
+  const total = rows.reduce((sum, item) => {
+    const n = Number(item?.purchaseUserCount)
+    return sum + (Number.isFinite(n) ? n : 0)
+  }, 0)
+
+  cachedPurchaseUserTotal = total
+  purchaseUserTotalLastFetchAt = now
+  return total
+}

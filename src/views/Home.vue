@@ -112,12 +112,21 @@
                   </a>
                 </div>
               </div>
+
+              <div v-if="purchaseUsersBaseTarget"
+                class="mt-4 w-full text-center transition-all duration-[1500ms] ease-out"
+                :class="ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
+                <p class="text-sm text-gray-600 dark:text-gray-300">
+                  已有 <span class="font-semibold text-gray-900 dark:text-gray-100 text-lg sm:text-xl leading-none">{{
+                    animatedPurchaseUsersDisplay }}</span> 位付费用户选择了 Welight
+                </p>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Product Video -->
-        <div class="relative mt-8 px-2 sm:mt-12 md:mt-20 transition-all duration-[1500ms] ease-out" :class="videoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'
+        <div class="relative mt-2 px-2 sm:mt-4 md:mt-8 transition-all duration-[1500ms] ease-out" :class="videoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'
           ">
           <div
             class="relative w-full max-w-5xl mx-auto rounded-2xl border-2 border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/40 backdrop-blur-sm p-2 sm:p-4 shadow-xl transition-all duration-500 hover:shadow-2xl">
@@ -418,6 +427,7 @@ import {
   startStatsSync,
   getDownloadStats
 } from '@/services/downloadStats'
+import { getTotalPurchaseUserCount } from '@/services/licenseService.js'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
 import ThemeTestimonials from '@/components/ThemeTestimonials.vue'
 import DisplayCards from '@/components/DisplayCards.vue'
@@ -458,6 +468,23 @@ const themeStore = useThemeStore()
 const heroImageSrc = computed(() =>
   themeStore.isDark ? '/assert/index_dark.webp' : '/assert/index.webp'
 )
+
+const totalPurchaseUsers = ref(null)
+const purchaseUsersBaseTarget = computed(() => {
+  const num = Number(totalPurchaseUsers.value)
+  if (!Number.isFinite(num) || num <= 0) return 0
+  if (num < 200) return 0
+
+  const int = Math.floor(num)
+  if (int < 10) return int
+  return Math.floor(int / 10) * 10
+})
+
+const animatedPurchaseUsersBase = ref(0)
+const animatedPurchaseUsersDisplay = computed(() => {
+  if (!purchaseUsersBaseTarget.value) return ''
+  return `${(animatedPurchaseUsersBase.value || 0).toLocaleString()}+`
+})
 
 /** 显示首屏标题淡入 */
 function revealHero() {
@@ -812,6 +839,21 @@ const startDownloadAnimation = () => {
   })
 }
 
+const startPurchaseUsersAnimation = () => {
+  const target = purchaseUsersBaseTarget.value
+  if (!target) return
+
+  animateNumber(0, target, 1600, (value) => {
+    animatedPurchaseUsersBase.value = value
+  })
+}
+
+watch(purchaseUsersBaseTarget, (newTarget, oldTarget) => {
+  if (newTarget && newTarget !== oldTarget) {
+    startPurchaseUsersAnimation()
+  }
+})
+
 // 横幅通知相关函数
 const closeBanner = () => {
   // 先播放收起动画
@@ -832,9 +874,9 @@ const downloadFile = async (platform) => {
 
     // 实际下载链接映射
     const downloadUrls = {
-      'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.5.2_x64-setup.exe',
+      'windows-installer': 'https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA',
       'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.5.2_x64_en-US.msi',
-      'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.5.2_aarch64.dmg',
+      'macos-apple': 'https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA',
       'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.5.2_x64.dmg',
       'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.1.6_amd64.AppImage',
       'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.1.6_amd64.deb'
@@ -1000,6 +1042,8 @@ onMounted(async () => {
   try {
     // 初始化下载统计数据
     await loadDownloadStats()
+
+    totalPurchaseUsers.value = await getTotalPurchaseUserCount()
 
     // 启动统计数据同步（每5分钟同步一次）
     statsCleanup = startStatsSync(

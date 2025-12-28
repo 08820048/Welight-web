@@ -4,6 +4,104 @@
 const API_BASE_URL = 'https://ilikexff.cn/api/download-stats'
 // 保留仅旧统计服务的实现，前端不使用需要签名的新接口
 
+function pickFirstFiniteNumber(obj, keys) {
+  if (!obj || typeof obj !== 'object') return null
+  for (const key of keys) {
+    const value = obj[key]
+    const num = Number(value)
+    if (Number.isFinite(num)) return num
+  }
+  return null
+}
+
+function normalizePlatformKey(key) {
+  const k = String(key || '').toLowerCase()
+  if (k.includes('win')) return 'windows'
+  if (k.includes('mac') || k.includes('osx') || k.includes('darwin')) return 'mac'
+  if (k.includes('linux')) return 'linux'
+  return null
+}
+
+function extractPlatformDownloadsFromUnknownShape(data) {
+  if (!data || typeof data !== 'object') return null
+
+  const direct = data.platformDownloads || data.platform_downloads
+  if (direct && typeof direct === 'object' && !Array.isArray(direct)) {
+    const windows = Number(direct.windows ?? direct.win ?? direct.Windows ?? 0) || 0
+    const mac = Number(direct.mac ?? direct.macos ?? direct.osx ?? direct.Mac ?? 0) || 0
+    const linux = Number(direct.linux ?? direct.Linux ?? 0) || 0
+    return { windows, mac, linux }
+  }
+
+  const candidates = [
+    data.platformDownloadCounts,
+    data.platformDownloadCountMap,
+    data.platformStats,
+    data.platforms,
+    data.statsByPlatform,
+    data.downloadsByPlatform
+  ].filter(Boolean)
+
+  for (const candidate of candidates) {
+    if (Array.isArray(candidate)) {
+      const result = { windows: 0, mac: 0, linux: 0 }
+      for (const item of candidate) {
+        if (!item || typeof item !== 'object') continue
+        const platform = normalizePlatformKey(item.platform ?? item.os ?? item.name ?? item.key)
+        const count =
+          Number(item.count ?? item.downloads ?? item.downloadCount ?? item.value ?? item.total ?? 0) || 0
+        if (platform && count > 0) {
+          result[platform] += count
+        }
+      }
+      if (result.windows || result.mac || result.linux) return result
+    }
+
+    if (candidate && typeof candidate === 'object') {
+      const result = { windows: 0, mac: 0, linux: 0 }
+      for (const [k, v] of Object.entries(candidate)) {
+        const platform = normalizePlatformKey(k)
+        const count = Number(v) || 0
+        if (platform && count > 0) {
+          result[platform] += count
+        }
+      }
+      if (result.windows || result.mac || result.linux) return result
+    }
+  }
+
+  return null
+}
+
+function normalizeDownloadStatsFromUpgradeLinkInfo(data) {
+  if (!data || typeof data !== 'object') return null
+
+  const platformDownloads = extractPlatformDownloadsFromUnknownShape(data)
+
+  const totalDownloads =
+    pickFirstFiniteNumber(data, [
+      'totalDownloads',
+      'totalDownload',
+      'totalDownloadCount',
+      'downloadTotal',
+      'downloadCount',
+      'totalCount',
+      'total'
+    ]) ??
+    (platformDownloads
+      ? (Number(platformDownloads.windows) || 0) +
+        (Number(platformDownloads.mac) || 0) +
+        (Number(platformDownloads.linux) || 0)
+      : null)
+
+  if (!Number.isFinite(Number(totalDownloads)) && !platformDownloads) return null
+
+  return {
+    totalDownloads: Number(totalDownloads) || 0,
+    platformDownloads: platformDownloads || {}
+  }
+}
+
 /**
  * 记录下载事件（自动检测平台）
  * @param {string} referer - 来源页面URL
@@ -77,19 +175,33 @@ export async function recordDownloadWithPlatform(platform, referer = 'https://wa
  */
 export async function getDownloadStats() {
   try {
-    const response = await fetch(`${API_BASE_URL}/stats`)
-    if (response.ok) {
-      const result = await response.json()
-      if (result.code === 200 && result.data) {
-        return result.data
+    const upgradeLinkResponse = await fetch(`${API_BASE_URL}/upgrade-link/app-statistics/info`)
+    if (upgradeLinkResponse.ok) {
+      const upgradeLinkResult = await upgradeLinkResponse.json()
+      if (upgradeLinkResult?.success && upgradeLinkResult?.data) {
+        const normalized = normalizeDownloadStatsFromUpgradeLinkInfo(upgradeLinkResult.data)
+        if (normalized) return normalized
+        console.warn('UpgradeLink 统计数据格式异常:', upgradeLinkResult.data)
       } else {
-        console.warn('后端返回数据格式异常:', result)
-        return null
+        console.warn('获取 UpgradeLink 统计数据失败:', upgradeLinkResult?.message || upgradeLinkResult)
       }
     } else {
-      console.error('获取统计数据失败:', response.status)
+      console.warn('获取 UpgradeLink 统计数据失败:', upgradeLinkResponse.status)
+    }
+
+    const legacyResponse = await fetch(`${API_BASE_URL}/stats`)
+    if (!legacyResponse.ok) {
+      console.error('获取统计数据失败:', legacyResponse.status)
       return null
     }
+
+    const legacyResult = await legacyResponse.json()
+    if (legacyResult.code === 200 && legacyResult.data) {
+      return legacyResult.data
+    }
+
+    console.warn('后端返回数据格式异常:', legacyResult)
+    return null
   } catch (error) {
     console.error('获取统计数据时发生错误:', error)
     return null

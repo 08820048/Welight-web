@@ -1280,46 +1280,21 @@ function isLicenseProduct(product) {
   return product.code && (product.code.includes('WELIGHT') || product.code.includes('LICENSE')) && !product.code.includes('CREDITS')
 }
 
-// 获取产品原价
 /**
  * 获取产品原价：用于在价格上方显示灰色的“原价¥xx”
  *
- * - 终身买断（许可证 permanent=true）：原价 ¥79.9
- * - AI 服务：原价 ¥9.9
- * - 云存储服务：原价 ¥19.9
- * - 其它：不显示原价
+ * 仅在产品存在优惠（当前价 < 原价）时显示
  */
 function getOriginalPrice(product) {
-  if (product && typeof product.originalPrice === 'number') {
-    return product.originalPrice
-  }
-  if (
-    product &&
-    typeof product.price === 'number' &&
-    typeof product.finalPrice === 'number' &&
-    product.finalPrice > 0 &&
-    product.finalPrice < product.price
-  ) {
-    return product.price
-  }
-  if (
-    product &&
-    typeof product.price === 'number' &&
-    typeof product.currentPrice === 'number' &&
-    product.currentPrice > 0 &&
-    product.currentPrice < product.price
-  ) {
-    return product.price
-  }
-  if (isLicenseProduct(product)) {
-    if (product.permanent) {
-      return 79.9
-    }
-    return null
-  } else if (product.code.includes('AI_SERVICE')) {
-    return 9.9
-  } else if (product.code.includes('CLOUD_STORAGE')) {
-    return 19.9
+  if (!product) return null
+
+  const base = (typeof product.originalPrice === 'number' && product.originalPrice > 0)
+    ? product.originalPrice
+    : product.price
+  const current = getCurrentPrice(product)
+
+  if (typeof base === 'number' && typeof current === 'number' && current > 0 && current < base) {
+    return base
   }
   return null
 }
