@@ -249,6 +249,12 @@ export async function createCreditPackageOrder(orderData) {
       }
     }
 
+    const couponCode =
+      typeof orderData.couponCode === 'string' ? orderData.couponCode.trim() : ''
+    if (couponCode && orderData.packageCode !== 'CREDITS_CUSTOM') {
+      requestBody.couponCode = couponCode
+    }
+
     console.log('正在创建积分套餐订单:', requestBody)
     console.log('购买API地址:', `${API_BASE_URL}/credits/purchase`)
 

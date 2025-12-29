@@ -1,7 +1,8 @@
 <template>
   <div class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center modal-backdrop"
     style="z-index: 9999;">
-    <div class="bg-white dark:bg-gray-900 rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto modal-content"
+    <div
+      class="bg-white dark:bg-gray-900 rounded-lg p-6 max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto modal-content"
       style="min-height: 400px;">
       <!-- 弹窗头部 -->
       <div class="flex justify-between items-center mb-6">
@@ -27,7 +28,8 @@
             </div>
             <div class="text-right">
               <div class="text-2xl font-bold text-gray-900 dark:text-gray-100">¥{{ selectedPackage.currentPrice }}</div>
-              <button @click="clearPreselection" class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
+              <button @click="clearPreselection"
+                class="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
                 选择其他套餐
               </button>
             </div>
@@ -35,7 +37,8 @@
         </div>
 
         <!-- 套餐选择列表（仅在非直接购买模式时显示） -->
-        <div v-if="!isDirectPurchaseMode && creditPackages.length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div v-if="!isDirectPurchaseMode && creditPackages.length > 0"
+          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div v-for="pkg in creditPackages" :key="pkg.id"
             class="group relative bg-white dark:bg-gray-800 border rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 dark:border-gray-700"
             :class="{
@@ -50,7 +53,8 @@
             </div>
 
             <!-- 产品名称标签 -->
-            <div class="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100">
+            <div
+              class="inline-block text-xs font-semibold px-3 py-1 rounded-full mb-4 bg-gray-100 text-gray-900 dark:bg-gray-700 dark:text-gray-100">
               {{ pkg.packageName }}
             </div>
 
@@ -62,7 +66,8 @@
                 <div class="text-xs text-gray-700 mt-1">最低100积分起购</div>
               </div>
               <div v-else>
-                <div class="text-sm font-medium mb-1 text-gray-800 dark:text-gray-200">{{ pkg.credits }}积分 ¥{{ pkg.currentPrice }}/永久
+                <div class="text-sm font-medium mb-1 text-gray-800 dark:text-gray-200">{{ pkg.credits }}积分 ¥{{
+                  pkg.currentPrice }}/永久
                 </div>
                 <div class="text-3xl font-bold text-gray-900 dark:text-gray-100">¥{{ pkg.currentPrice }}</div>
                 <div v-if="pkg.originalPrice > pkg.currentPrice" class="text-sm text-gray-400 line-through">
@@ -169,6 +174,25 @@
             </div>
           </div>
 
+          <div class="mt-4">
+            <label class="block text-sm font-medium text-gray-900 mb-2">优惠券（选填）</label>
+            <input v-model="purchaseForm.couponCode" type="text" :disabled="!canUseCoupon()"
+              class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 text-gray-900 disabled:bg-gray-100 disabled:text-gray-400"
+              :placeholder="canUseCoupon() ? '输入优惠券码' : '自定义积分套餐暂不支持优惠券'">
+            <div v-if="couponPreviewLoading" class="mt-2 text-xs text-gray-500">正在试算...</div>
+            <div v-if="couponPreview" class="mt-2 text-sm text-gray-600">
+              <div>预计支付：¥{{ couponPreview.finalAmount }}</div>
+              <div class="text-xs">活动价：¥{{ couponPreview.afterCampaignAmount }}</div>
+              <div class="text-xs" v-if="couponPreview.discountRate">
+                优惠券折扣：{{ (couponPreview.discountRate * 10).toFixed(1) }}折
+              </div>
+              <div v-if="couponPreview.appliedCampaignTitle" class="text-xs">
+                命中活动：{{ couponPreview.appliedCampaignTitle }}
+              </div>
+            </div>
+            <div v-if="couponPreviewError" class="mt-2 text-xs text-red-600">{{ couponPreviewError }}</div>
+          </div>
+
           <!-- 购买按钮 -->
           <div class="mt-6">
             <button @click="handlePurchase" :disabled="!canPurchase || purchasing || checkingLicense"
@@ -273,13 +297,15 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import {
   getCreditPackages,
   createCreditPackageOrder,
   pollPaymentStatus,
   calculateCustomCreditsPrice
 } from '../services/creditsService.js'
+import { previewCoupon } from '../services/couponService.js'
+import { createPaymentOrder, getClientInfo } from '../services/licenseService.js'
 import {
   PACKAGE_TYPES,
   PAYMENT_METHODS,
@@ -314,6 +340,7 @@ let pollingInterval = null
 const purchaseForm = ref({
   customerName: '',
   customerEmail: '',
+  couponCode: '',
   paymentMethod: PAYMENT_METHODS.WECHAT_NATIVE
 })
 
@@ -323,6 +350,12 @@ let confirmDialogResolve = null
 
 // 许可证检查相关
 const checkingLicense = ref(false)
+
+const couponPreview = ref(null)
+const couponPreviewLoading = ref(false)
+const couponPreviewError = ref('')
+let couponPreviewDebounce = null
+let couponPreviewSeq = 0
 
 // 计算属性
 const canPurchase = computed(() => {
@@ -462,7 +495,78 @@ function getFinalPrice() {
     return calculateCustomPrice()
   }
 
+  if (couponPreview.value && typeof couponPreview.value.finalAmount === 'number') {
+    return couponPreview.value.finalAmount
+  }
+
   return selectedPackage.value.currentPrice
+}
+
+function canUseCoupon() {
+  return !!selectedPackage.value && selectedPackage.value.packageType !== PACKAGE_TYPES.CUSTOM
+}
+
+function clearCouponState({ clearCode = false } = {}) {
+  couponPreview.value = null
+  couponPreviewError.value = ''
+  couponPreviewLoading.value = false
+  if (clearCode) {
+    purchaseForm.value.couponCode = ''
+  }
+  if (couponPreviewDebounce) {
+    clearTimeout(couponPreviewDebounce)
+    couponPreviewDebounce = null
+  }
+}
+
+async function handleCouponPreview() {
+  if (!canUseCoupon()) {
+    clearCouponState({ clearCode: true })
+    return
+  }
+
+  const couponCode = (purchaseForm.value.couponCode || '').trim()
+  const customerEmail = (purchaseForm.value.customerEmail || '').trim()
+  const productCode = selectedPackage.value?.packageCode
+
+  if (!couponCode) {
+    clearCouponState()
+    return
+  }
+  if (!customerEmail || !productCode) return
+
+  const seq = ++couponPreviewSeq
+  couponPreviewLoading.value = true
+  couponPreviewError.value = ''
+
+  try {
+    const data = await previewCoupon({
+      couponCode,
+      productCode,
+      customerEmail
+    })
+    if (seq !== couponPreviewSeq) return
+    couponPreview.value = data
+  } catch (e) {
+    if (seq !== couponPreviewSeq) return
+    couponPreview.value = null
+    const msg = e?.message || ''
+    couponPreviewError.value = msg ? `试算失败：${msg}` : '试算失败：未知错误'
+  } finally {
+    if (seq === couponPreviewSeq) {
+      couponPreviewLoading.value = false
+    }
+  }
+}
+
+function scheduleCouponPreview() {
+  if (couponPreviewDebounce) {
+    clearTimeout(couponPreviewDebounce)
+    couponPreviewDebounce = null
+  }
+  couponPreviewDebounce = setTimeout(() => {
+    handleCouponPreview()
+  }, 400)
 }
 
 // 显示积分购买确认对话框
@@ -548,37 +652,63 @@ async function handlePurchase() {
     purchasing.value = true
     errorMessage.value = ''
 
-    const orderData = {
-      packageCode: selectedPackage.value.packageCode,
-      customerName: purchaseForm.value.customerName.trim(),
-      customerEmail: customerEmail,
-      paymentMethod: purchaseForm.value.paymentMethod
-    }
+    if (selectedPackage.value.packageType !== PACKAGE_TYPES.CUSTOM) {
+      const order = await createPaymentOrder({
+        productCode: selectedPackage.value.packageCode,
+        customerEmail,
+        customerName: purchaseForm.value.customerName.trim(),
+        paymentMethod: purchaseForm.value.paymentMethod,
+        clientInfo: getClientInfo(),
+        remark: `Web端购买积分 - ${selectedPackage.value.packageName || selectedPackage.value.packageCode}`,
+        couponCode: canUseCoupon() ? (purchaseForm.value.couponCode.trim() || null) : null
+      })
 
-    // 如果是自定义套餐，添加自定义积分数量
-    if (selectedPackage.value.packageType === PACKAGE_TYPES.CUSTOM) {
-      orderData.customCredits = customCredits.value
-    }
-
-    const result = await createCreditPackageOrder(orderData)
-
-    if (result.success && result.data) {
-      // API返回的数据结构：{ qrCode, packageCode, paymentUrl, order }
-      orderInfo.value = result.data.order
+      orderInfo.value = order
       paymentInfo.value = {
-        qrCode: result.data.qrCode,
-        qrCodeUrl: `https://ilikexff.cn/api/payment/orders/${result.data.order.orderNo}/qrcode-image`,
-        paymentUrl: result.data.paymentUrl,
-        paymentMethod: result.data.order.paymentMethod,
-        amount: result.data.order.amount,
-        currency: result.data.order.currency
+        qrCodeUrl: order?.orderNo
+          ? `https://ilikexff.cn/api/payment/orders/${order.orderNo}/qrcode-image`
+          : '',
+        paymentMethod: order?.paymentMethod,
+        amount: order?.amount,
+        currency: order?.currency
       }
-      paymentStatus.value = result.data.order.status || 'PENDING'
+      paymentStatus.value = order?.status || 'PENDING'
 
-      // 开始轮询支付状态
-      startPaymentPolling(result.data.order.orderNo)
+      if (!order?.orderNo) {
+        throw new Error('订单创建失败：未返回订单号')
+      }
+      startPaymentPolling(order.orderNo)
     } else {
-      throw new Error(result.error || '创建订单失败')
+      const orderData = {
+        packageCode: selectedPackage.value.packageCode,
+        customerName: purchaseForm.value.customerName.trim(),
+        customerEmail: customerEmail,
+        paymentMethod: purchaseForm.value.paymentMethod,
+        ...(canUseCoupon() && purchaseForm.value.couponCode.trim()
+          ? { couponCode: purchaseForm.value.couponCode.trim() }
+          : {})
+      }
+
+      orderData.customCredits = customCredits.value
+
+      const result = await createCreditPackageOrder(orderData)
+
+      if (result.success && result.data) {
+        orderInfo.value = result.data.order
+        paymentInfo.value = {
+          qrCode: result.data.qrCode,
+          qrCodeUrl: `https://ilikexff.cn/api/payment/orders/${result.data.order.orderNo}/qrcode-image`,
+          paymentUrl: result.data.paymentUrl,
+          paymentMethod: result.data.order.paymentMethod,
+          amount: result.data.order.amount,
+          currency: result.data.order.currency
+        }
+        paymentStatus.value = result.data.order.status || 'PENDING'
+
+        startPaymentPolling(result.data.order.orderNo)
+      } else {
+        throw new Error(result.error || '创建订单失败')
+      }
     }
   } catch (error) {
     console.error('购买失败:', error)
@@ -658,6 +788,43 @@ onMounted(() => {
 onUnmounted(() => {
   if (pollingInterval) {
     clearInterval(pollingInterval)
+  }
+})
+
+watch(() => purchaseForm.value.couponCode, (code) => {
+  if (!code) {
+    clearCouponState()
+    return
+  }
+  if (canUseCoupon() && purchaseForm.value.customerEmail && selectedPackage.value) {
+    scheduleCouponPreview()
+  }
+})
+
+watch(() => purchaseForm.value.customerEmail, () => {
+  if (!purchaseForm.value.couponCode) return
+  if (canUseCoupon() && selectedPackage.value) {
+    scheduleCouponPreview()
+  }
+})
+
+watch(
+  () => (selectedPackage.value ? `${selectedPackage.value.packageCode}:${selectedPackage.value.packageType}` : ''),
+  () => {
+    if (!canUseCoupon()) {
+      clearCouponState({ clearCode: true })
+      return
+    }
+    if (purchaseForm.value.couponCode) {
+      scheduleCouponPreview()
+    }
+  }
+)
+
+watch(() => customCredits.value, () => {
+  if (!purchaseForm.value.couponCode) return
+  if (!canUseCoupon()) {
+    clearCouponState({ clearCode: true })
   }
 })
 </script>
