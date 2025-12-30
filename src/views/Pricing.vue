@@ -1,6 +1,6 @@
 <template>
   <div class="relative min-h-screen bg-white dark:bg-gray-900">
-    <div class="min-h-screen text-gray-200 px-4 pt-20 pb-12 relative overflow-hidden"
+    <div class="min-h-screen text-gray-800 dark:text-gray-200 px-4 pt-20 pb-12 relative overflow-hidden"
       style="position: relative; z-index: 1;">
       <div class="max-w-6xl mx-auto">
         <!-- 服务状态提示横幅 -->
@@ -356,202 +356,255 @@
             <p class="mt-2 text-gray-600 animate-fade-in-up delay-700">正在加载产品信息...</p>
           </div>
 
-          <ul v-else class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 items-end">
-            <li v-for="(product, index) in products" :key="product.id" class="contents">
-              <div
-                class="relative flex flex-col p-6 text-gray-900 bg-gray-50 rounded-lg shadow-md dark:bg-[#171717] dark:text-white group product-card"
-                :class="[
-                  index === 1 ? 'border-2 border-gray-900 dark:border-gray-200 xl:p-8' : 'border border-gray-300 dark:border-gray-600 xl:p-8'
-                ]">
-                <div v-if="!product.code.includes('MONTHLY')"
-                  class="pricing-ribbon absolute -top-2 -right-2 h-40 w-40 overflow-hidden rounded-md">
-                  <div class="absolute -right-14 top-[43px] w-60 rotate-45 py-2.5 text-center shadow-md"
-                    :class="getPricingRibbonBgClass(product, index)">
-                    {{ getPricingRibbonText(product) }}
-                  </div>
-                </div>
+          <div v-else class="relative mt-10">
+            <div class="relative border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 p-4">
+              <svg aria-hidden="true"
+                class="pointer-events-none absolute -top-3 -left-3 h-5 w-5 text-gray-900 dark:text-gray-100"
+                viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14" />
+              </svg>
+              <svg aria-hidden="true"
+                class="pointer-events-none absolute -top-3 -right-3 h-5 w-5 text-gray-900 dark:text-gray-100"
+                viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14" />
+              </svg>
+              <svg aria-hidden="true"
+                class="pointer-events-none absolute -bottom-3 -left-3 h-5 w-5 text-gray-900 dark:text-gray-100"
+                viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14" />
+              </svg>
+              <svg aria-hidden="true"
+                class="pointer-events-none absolute -bottom-3 -right-3 h-5 w-5 text-gray-900 dark:text-gray-100"
+                viewBox="0 0 24 24" fill="none">
+                <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14" />
+              </svg>
 
-                <h3 class="mb-4 text-2xl font-semibold">
-                  {{ product.code.includes('CREDITS') ? (product.packageName || product.name) : product.name }}
-                </h3>
-
-                <p class="font-light text-gray-500 sm:text-lg dark:text-gray-400 max-w-[90%]">
-                  {{ product.description }}
-                </p>
-
-                <div class="my-8">
-                  <div v-if="getOriginalPrice(product)" class="text-sm text-gray-400 line-through mb-2">
-                    原价¥{{ getOriginalPrice(product) }}{{
-                      product.code.includes('CREDITS')
-                        ? '/永久'
-                        : (!isLicenseProduct(product) ? '/月' : '')
-                    }}
-                  </div>
-
-                  <div class="flex items-end">
-                    <span class="mr-2 text-5xl font-extrabold text-gray-900 dark:text-white">
-                      <template v-if="product.code.includes('MONTHLY')">
-                        ¥{{ getDailyPrice(product) }}
-                      </template>
-                      <template v-else>
-                        ¥{{ getCurrentPrice(product) }}
-                      </template>
-                    </span>
-                    <span class="text-base text-gray-700 dark:text-gray-200">
-                      <template v-if="product.code.includes('MONTHLY')">/天</template>
-                      <template v-else-if="product.code.includes('CREDITS')">/永久</template>
-                      <template v-else-if="isLicenseProduct(product)">{{ product.permanent ? '/永久' : '/年' }}</template>
-                      <template v-else>/月</template>
-                    </span>
-                  </div>
-
-                  <div class="mt-3 flex flex-wrap items-center gap-2">
-                    <div v-if="isProductInActiveCampaign(product)"
-                      class="inline-flex items-center px-3 py-1 rounded-full text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                      {{ getActiveCampaignName(product) }}
+              <ul class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 items-stretch">
+                <li v-for="(product, index) in products" :key="product.id" class="contents">
+                  <div
+                    class="relative flex flex-col p-6 text-gray-900 bg-white rounded-2xl border border-gray-200 shadow-sm dark:border-gray-600 xl:p-8 dark:bg-gray-900 dark:text-white group product-card overflow-hidden"
+                    :class="[
+                      index === 1
+                        ? 'shadow-[0_24px_60px_rgba(15,23,42,0.45)] lg:-translate-y-4 lg:scale-[1.02] z-10'
+                        : 'shadow-[0_18px_45px_rgba(15,23,42,0.22)]'
+                    ]">
+                    <div class="pricing-border-trail" :style="{
+                      '--trail-duration': `${4.8 + index * 0.7}s`,
+                      '--trail-delay': `${-index * 1.4}s`
+                    }" aria-hidden="true">
+                      <span class="pricing-border-trail__segment pricing-border-trail__segment--top" />
+                      <span class="pricing-border-trail__segment pricing-border-trail__segment--right" />
+                      <span class="pricing-border-trail__segment pricing-border-trail__segment--bottom" />
+                      <span class="pricing-border-trail__segment pricing-border-trail__segment--left" />
                     </div>
 
-                    <div v-if="getDiscountPercent(product)"
-                      class="inline-flex items-center px-3 py-1 rounded-full text-xs bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100">
-                      {{ getDiscountPercent(product) }}折
-                    </div>
+                    <div class="relative z-10 flex flex-col flex-1">
+                      <div
+                        class="rounded-2xl bg-gray-50 border border-gray-200/70 p-5 shadow-sm dark:bg-gray-800/40 dark:border-gray-700/60">
+                        <div class="flex items-center justify-between gap-4">
+                          <div class="flex min-w-0 flex-1 items-center">
+                            <div class="min-w-0 text-left">
+                              <h3 class="text-xl font-semibold tracking-tight">
+                                {{ product.code.includes('CREDITS') ? (product.packageName || product.name) :
+                                  product.name
+                                }}
+                              </h3>
+                              <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                                {{ getProductCardSubtitle(product) }}
+                              </p>
+                            </div>
+                          </div>
 
-                    <div v-if="product.code.includes('CREDITS')"
-                      class="inline-flex items-center px-3 py-1 rounded-full text-xs bg-gray-900 text-white dark:bg-gray-200 dark:text-gray-900">
-                      永久有效
+                          <div v-if="!product.code.includes('MONTHLY')"
+                            class="inline-flex shrink-0 items-center whitespace-nowrap rounded-full border border-gray-200 bg-white/90 px-3 py-1 text-xs font-medium text-gray-800 shadow-sm dark:border-gray-700 dark:bg-zinc-900/70 dark:text-gray-100">
+                            <span class="mr-1 inline-block h-1.5 w-1.5 rounded-full"
+                              :class="isProductInActiveCampaign(product) ? 'bg-emerald-500' : 'bg-slate-400'" />
+                            <span>
+                              {{ getPricingRibbonText(product) }}
+                            </span>
+                          </div>
+                        </div>
+
+                        <p class="mt-4 font-normal text-sm text-gray-600 dark:text-gray-300 max-w-[92%]">
+                          {{ product.description }}
+                        </p>
+
+                        <div class="mt-6">
+                          <div v-if="getOriginalPrice(product)" class="text-sm text-gray-400 line-through mb-2">
+                            原价¥{{ getOriginalPrice(product) }}{{
+                              product.code.includes('CREDITS')
+                                ? '/永久'
+                                : (!isLicenseProduct(product) ? '/月' : '')
+                            }}
+                          </div>
+
+                          <div class="inline-flex items-end gap-2">
+                            <span
+                              class="mr-2 inline-flex items-end text-5xl font-extrabold leading-none text-gray-900 dark:text-white">
+                              <span class="mr-1 text-2xl font-semibold leading-none">¥</span>
+                              <span class="leading-none">
+                                <template v-if="product.code.includes('MONTHLY')">
+                                  {{ getDailyPrice(product) }}
+                                </template>
+                                <template v-else>
+                                  {{ getCurrentPrice(product) }}
+                                </template>
+                              </span>
+                            </span>
+                            <span class="text-base text-gray-700 dark:text-gray-200">
+                              <template v-if="product.code.includes('MONTHLY')">/天</template>
+                              <template v-else-if="product.code.includes('CREDITS')">/永久</template>
+                              <template v-else-if="isLicenseProduct(product)">{{ product.permanent ? '/永久' : '/年'
+                              }}</template>
+                              <template v-else>/月</template>
+                            </span>
+                          </div>
+
+                          <div class="mt-4 flex flex-wrap items-center gap-2">
+                            <div v-if="isProductInActiveCampaign(product)"
+                              class="inline-flex items-center whitespace-nowrap px-3 py-1 rounded-full text-xs bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                              {{ getActiveCampaignName(product) }}
+                            </div>
+
+                            <div v-if="getDiscountPercent(product)"
+                              class="inline-flex items-center whitespace-nowrap px-3 py-1 rounded-full text-xs bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-gray-100">
+                              {{ getDiscountPercent(product) }}折
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mt-6">
+                          <button v-if="product.code.includes('CLOUD_STORAGE')"
+                            class="text-xl text-white font-semibold rounded-lg px-5 py-3 text-center border border-gray-400 bg-gray-400 cursor-not-allowed w-full"
+                            disabled>
+                            即将推出
+                          </button>
+
+                          <div v-else-if="product.code.includes('CREDITS')" class="space-y-3">
+                            <button @click="purchaseProduct(product)" :disabled="!isServiceCurrentlyAvailable"
+                              :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
+                              class="text-xl font-semibold rounded-lg px-5 py-3 text-center border transition-all duration-500 w-full"
+                              :class="getPricingPrimaryButtonClass(index, isServiceCurrentlyAvailable)">
+                              {{ getPurchaseButtonText(product) }}
+                            </button>
+                            <button @click="preselectedCreditsPackage = null; showCreditsModal = true"
+                              :disabled="!isServiceCurrentlyAvailable"
+                              class="w-full text-base font-semibold rounded-lg px-5 py-3 text-center border transition-all duration-500"
+                              :class="getPricingSecondaryButtonClass(isServiceCurrentlyAvailable)">
+                              更多套餐
+                            </button>
+                          </div>
+
+                          <div v-else-if="isLicenseProduct(product)" class="space-y-3">
+                            <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
+                              :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
+                              class="text-xl font-semibold rounded-lg px-5 py-3 text-center border transition-all duration-500 w-full"
+                              :class="getPricingPrimaryButtonClass(index, isServiceCurrentlyAvailable)">
+                              {{ product.permanent ? '一键买断' : getPurchaseButtonText(product) }}
+                            </button>
+                            <button v-if="!product.permanent" @click="openRenewModal"
+                              :disabled="!isServiceCurrentlyAvailable"
+                              class="w-full text-base font-semibold rounded-lg px-5 py-3 text-center border transition-all duration-500"
+                              :class="getPricingSecondaryButtonClass(isServiceCurrentlyAvailable)">
+                              产品续费
+                            </button>
+                          </div>
+
+                          <div v-else>
+                            <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
+                              :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
+                              class="text-xl font-semibold rounded-lg px-5 py-3 text-center border transition-all duration-500 w-full"
+                              :class="getPricingPrimaryButtonClass(index, isServiceCurrentlyAvailable)">
+                              {{ getPurchaseButtonText(product) }}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ul class="mt-6 space-y-2.5 text-left text-sm text-gray-700 dark:text-gray-300">
+                        <template v-if="product.code.includes('CREDITS')">
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>{{ getCreditsAmountLocal(product) }}积分</span>
+                          </li>
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>AI 功能消费</span>
+                          </li>
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>图片存储消费</span>
+                          </li>
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>灵活消费</span>
+                          </li>
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>按需使用</span>
+                          </li>
+                        </template>
+
+                        <template v-else-if="isLicenseProduct(product)">
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>{{ product.permanent ? '终身有效' : '1年有效期' }}</span>
+                          </li>
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>附赠 300 积分</span>
+                          </li>
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>7天试用期(含300试用积分)</span>
+                          </li>
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>支持 {{ product.maxActivations }} 台设备激活</span>
+                          </li>
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>全部主题免费(持续更新)</span>
+                          </li>
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>网页版和桌面端共用</span>
+                          </li>
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>所有核心功能</span>
+                          </li>
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>免费更新</span>
+                          </li>
+                          <li class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>技术支持</span>
+                          </li>
+                        </template>
+
+                        <template v-else>
+                          <li v-if="product.code.includes('AI_SERVICE')" class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>支持应用内所有AI功能</span>
+                          </li>
+                          <li v-if="product.code.includes('CLOUD_STORAGE')" class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>云端存储服务</span>
+                          </li>
+                          <li v-else class="flex items-center space-x-3">
+                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
+                            <span>{{ product.validityDays }}天有效期</span>
+                          </li>
+                        </template>
+                      </ul>
                     </div>
                   </div>
-                </div>
-
-                <ul class="mb-8 space-y-3 text-left text-sm text-gray-700 dark:text-gray-300">
-                  <template v-if="product.code.includes('CREDITS')">
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>{{ getCreditsAmountLocal(product) }}积分</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>AI 功能消费</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>图片存储消费</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>永久有效</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>灵活消费</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>按需使用</span>
-                    </li>
-                  </template>
-
-                  <template v-else-if="isLicenseProduct(product)">
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>{{ product.permanent ? '终身有效' : '1年有效期' }}</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>附赠 300 积分</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>7天试用期(含300试用积分)</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>支持 {{ product.maxActivations }} 台设备激活</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>全部主题免费(持续更新)</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>网页版和桌面端共用</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>所有核心功能</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>免费更新</span>
-                    </li>
-                    <li class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>技术支持</span>
-                    </li>
-                  </template>
-
-                  <template v-else>
-                    <li v-if="product.code.includes('AI_SERVICE')" class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>支持应用内所有AI功能</span>
-                    </li>
-                    <li v-if="product.code.includes('CLOUD_STORAGE')" class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>云端存储服务</span>
-                    </li>
-                    <li v-else class="flex items-center space-x-3">
-                      <span class="text-xl text-gray-900 dark:text-gray-100">✔</span>
-                      <span>{{ product.validityDays }}天有效期</span>
-                    </li>
-                  </template>
-                </ul>
-
-                <button v-if="product.code.includes('CLOUD_STORAGE')"
-                  class="text-xl text-white font-semibold rounded-lg px-5 py-3 text-center border border-gray-400 bg-gray-400 cursor-not-allowed mt-auto"
-                  disabled>
-                  即将推出
-                </button>
-
-                <div v-else-if="product.code.includes('CREDITS')" class="space-y-3 mt-auto">
-                  <button @click="purchaseProduct(product)" :disabled="!isServiceCurrentlyAvailable"
-                    :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
-                    class="text-xl font-semibold rounded-lg px-5 py-3 text-center border transition-all duration-500 w-full"
-                    :class="getPricingPrimaryButtonClass(index, isServiceCurrentlyAvailable)">
-                    {{ getPurchaseButtonText(product) }}
-                  </button>
-                  <button @click="preselectedCreditsPackage = null; showCreditsModal = true"
-                    :disabled="!isServiceCurrentlyAvailable"
-                    class="w-full text-base font-semibold rounded-lg px-5 py-3 text-center border transition-all duration-500"
-                    :class="getPricingSecondaryButtonClass(isServiceCurrentlyAvailable)">
-                    更多套餐
-                  </button>
-                </div>
-
-                <div v-else-if="isLicenseProduct(product)" class="space-y-3 mt-auto">
-                  <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
-                    :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
-                    class="text-xl font-semibold rounded-lg px-5 py-3 text-center border transition-all duration-500 w-full"
-                    :class="getPricingPrimaryButtonClass(index, isServiceCurrentlyAvailable)">
-                    {{ product.permanent ? '一键买断' : getPurchaseButtonText(product) }}
-                  </button>
-                  <button v-if="!product.permanent" @click="openRenewModal" :disabled="!isServiceCurrentlyAvailable"
-                    class="w-full text-base font-semibold rounded-lg px-5 py-3 text-center border transition-all duration-500"
-                    :class="getPricingSecondaryButtonClass(isServiceCurrentlyAvailable)">
-                    产品续费
-                  </button>
-                </div>
-
-                <div v-else class="mt-auto">
-                  <button @click="handleProductPurchase(product)" :disabled="!isServiceCurrentlyAvailable"
-                    :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
-                    class="text-xl font-semibold rounded-lg px-5 py-3 text-center border transition-all duration-500 w-full"
-                    :class="getPricingPrimaryButtonClass(index, isServiceCurrentlyAvailable)">
-                    {{ getPurchaseButtonText(product) }}
-                  </button>
-                </div>
-              </div>
-            </li>
-          </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
         </section>
 
 
@@ -648,6 +701,7 @@ import MonthlyCardActivation from '../components/MonthlyCardActivation.vue'
 import CreditsPurchase from '../components/CreditsPurchase.vue'
 import { previewCoupon } from '../services/couponService.js'
 import { getActiveProductActivities } from '../services/campaignService.js'
+import { Check } from 'lucide-vue-next'
 
 // import RecentPurchasesTicker from '../components/RecentPurchasesTicker.vue'
 
@@ -1280,6 +1334,16 @@ function isLicenseProduct(product) {
   return product.code && (product.code.includes('WELIGHT') || product.code.includes('LICENSE')) && !product.code.includes('CREDITS')
 }
 
+function getProductCardSubtitle(product) {
+  const code = product?.code || ''
+  if (code.includes('CREDITS')) return '适合高频 AI 与云服务使用'
+  if (code.includes('MONTHLY')) return '短期密集使用的灵活选择'
+  if (code.includes('AI_SERVICE')) return 'AI 服务月度套餐'
+  if (code.includes('CLOUD_STORAGE')) return '云端存储月度套餐'
+  if (isLicenseProduct(product)) return '解锁全部功能的长期方案'
+  return '灵活购买，随用随开'
+}
+
 /**
  * 获取产品原价：用于在价格上方显示灰色的“原价¥xx”
  *
@@ -1526,16 +1590,10 @@ function getPricingRibbonText(product) {
   return '限时8.8折'
 }
 
-function getPricingRibbonBgClass(product, index) {
-  if (isProductInActiveCampaign(product)) return 'bg-red-600 text-white'
-  if (index === 1) return 'bg-gray-900 text-white dark:bg-gray-200 dark:text-gray-900'
-  return 'bg-gray-900 text-white'
-}
-
 function getPricingPrimaryButtonClass(index, enabled) {
   if (!enabled) return 'bg-gray-300 text-white border-gray-300 cursor-not-allowed dark:bg-gray-700 dark:text-gray-400 dark:border-gray-700'
-  if (index === 1) return 'bg-gray-900 text-white border-gray-900 hover:bg-gray-800 dark:bg-gray-200 dark:text-gray-900 dark:border-gray-200 dark:hover:bg-gray-300'
-  return 'text-gray-900 border-gray-900 hover:bg-gray-900 hover:text-white dark:text-white dark:border-gray-200 dark:hover:bg-gray-200 dark:hover:text-gray-900'
+  void index
+  return 'bg-gray-900 text-white border-gray-900 hover:bg-gray-800 dark:bg-gray-200 dark:text-gray-900 dark:border-gray-200 dark:hover:bg-gray-300'
 }
 
 function getPricingSecondaryButtonClass(enabled) {
@@ -1924,6 +1982,257 @@ function showSuccessToast(message) {
   background: linear-gradient(to bottom, rgba(52, 152, 219, 0.15) 0%, rgba(52, 152, 219, 0.08) 40%, transparent 70%);
 }
 
+.pricing-border-trail {
+  --pricing-card-radius: 16px;
+  --trail-length: 260px;
+  --trail-thickness: 36px;
+  --trail-blur: 4px;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  border: 10px solid transparent;
+  overflow: hidden;
+  -webkit-mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) padding-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+}
+
+.pricing-border-trail__segment {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+  border-radius: 9999px;
+  animation-duration: var(--trail-duration, 5.2s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: var(--trail-delay, 0s);
+  will-change: left, right, top, bottom, opacity;
+}
+
+.pricing-border-trail__segment::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  filter: blur(var(--trail-blur)) saturate(1.25);
+  opacity: 1;
+  transform: translateZ(0);
+}
+
+.pricing-border-trail__segment--top,
+.pricing-border-trail__segment--bottom {
+  width: var(--trail-length);
+  height: var(--trail-thickness);
+}
+
+.pricing-border-trail__segment--right,
+.pricing-border-trail__segment--left {
+  width: var(--trail-thickness);
+  height: var(--trail-length);
+}
+
+.pricing-border-trail__segment--top {
+  top: 0;
+  left: calc(-1 * var(--trail-length));
+  background: linear-gradient(90deg,
+      rgba(59, 130, 246, 0) 0%,
+      rgba(59, 130, 246, 0) 18%,
+      rgba(99, 102, 241, 0.85) 34%,
+      rgba(168, 85, 247, 1) 50%,
+      rgba(99, 102, 241, 0.85) 66%,
+      rgba(59, 130, 246, 0) 82%,
+      rgba(59, 130, 246, 0) 100%);
+  animation-name: pricing-trail-top;
+}
+
+.pricing-border-trail__segment--right {
+  top: calc(-1 * var(--trail-length));
+  right: 0;
+  background: linear-gradient(180deg,
+      rgba(59, 130, 246, 0) 0%,
+      rgba(59, 130, 246, 0) 18%,
+      rgba(99, 102, 241, 0.85) 34%,
+      rgba(168, 85, 247, 1) 50%,
+      rgba(99, 102, 241, 0.85) 66%,
+      rgba(59, 130, 246, 0) 82%,
+      rgba(59, 130, 246, 0) 100%);
+  animation-name: pricing-trail-right;
+}
+
+.pricing-border-trail__segment--bottom {
+  bottom: 0;
+  right: calc(-1 * var(--trail-length));
+  background: linear-gradient(90deg,
+      rgba(59, 130, 246, 0) 0%,
+      rgba(59, 130, 246, 0) 18%,
+      rgba(99, 102, 241, 0.85) 34%,
+      rgba(168, 85, 247, 1) 50%,
+      rgba(99, 102, 241, 0.85) 66%,
+      rgba(59, 130, 246, 0) 82%,
+      rgba(59, 130, 246, 0) 100%);
+  animation-name: pricing-trail-bottom;
+}
+
+.pricing-border-trail__segment--left {
+  bottom: calc(-1 * var(--trail-length));
+  left: 0;
+  background: linear-gradient(180deg,
+      rgba(59, 130, 246, 0) 0%,
+      rgba(59, 130, 246, 0) 18%,
+      rgba(99, 102, 241, 0.85) 34%,
+      rgba(168, 85, 247, 1) 50%,
+      rgba(99, 102, 241, 0.85) 66%,
+      rgba(59, 130, 246, 0) 82%,
+      rgba(59, 130, 246, 0) 100%);
+  animation-name: pricing-trail-left;
+}
+
+@keyframes pricing-trail-top {
+  0% {
+    opacity: 0;
+    left: calc(-1 * var(--trail-length));
+  }
+
+  2% {
+    opacity: 1;
+  }
+
+  22% {
+    opacity: 1;
+    left: 100%;
+  }
+
+  25% {
+    opacity: 0;
+    left: 100%;
+  }
+
+  100% {
+    opacity: 0;
+    left: calc(-1 * var(--trail-length));
+  }
+}
+
+@keyframes pricing-trail-right {
+  0% {
+    opacity: 0;
+    top: calc(-1 * var(--trail-length));
+  }
+
+  24% {
+    opacity: 0;
+    top: calc(-1 * var(--trail-length));
+  }
+
+  27% {
+    opacity: 1;
+  }
+
+  47% {
+    opacity: 1;
+    top: 100%;
+  }
+
+  50% {
+    opacity: 0;
+    top: 100%;
+  }
+
+  100% {
+    opacity: 0;
+    top: calc(-1 * var(--trail-length));
+  }
+}
+
+@keyframes pricing-trail-bottom {
+  0% {
+    opacity: 0;
+    right: calc(-1 * var(--trail-length));
+  }
+
+  49% {
+    opacity: 0;
+    right: calc(-1 * var(--trail-length));
+  }
+
+  52% {
+    opacity: 1;
+  }
+
+  72% {
+    opacity: 1;
+    right: 100%;
+  }
+
+  75% {
+    opacity: 0;
+    right: 100%;
+  }
+
+  100% {
+    opacity: 0;
+    right: calc(-1 * var(--trail-length));
+  }
+}
+
+@keyframes pricing-trail-left {
+  0% {
+    opacity: 0;
+    bottom: calc(-1 * var(--trail-length));
+  }
+
+  74% {
+    opacity: 0;
+    bottom: calc(-1 * var(--trail-length));
+  }
+
+  77% {
+    opacity: 1;
+  }
+
+  97% {
+    opacity: 1;
+    bottom: 100%;
+  }
+
+  100% {
+    opacity: 0;
+    bottom: 100%;
+  }
+}
+
+:global(.dark) .pricing-border-trail__segment--top,
+:global(.dark) .pricing-border-trail__segment--bottom {
+  background: linear-gradient(90deg,
+      rgba(96, 165, 250, 0) 0%,
+      rgba(96, 165, 250, 0) 18%,
+      rgba(129, 140, 248, 0.9) 34%,
+      rgba(196, 181, 253, 1) 50%,
+      rgba(129, 140, 248, 0.9) 66%,
+      rgba(96, 165, 250, 0) 82%,
+      rgba(96, 165, 250, 0) 100%);
+}
+
+:global(.dark) .pricing-border-trail__segment--right,
+:global(.dark) .pricing-border-trail__segment--left {
+  background: linear-gradient(180deg,
+      rgba(96, 165, 250, 0) 0%,
+      rgba(96, 165, 250, 0) 18%,
+      rgba(129, 140, 248, 0.9) 34%,
+      rgba(196, 181, 253, 1) 50%,
+      rgba(129, 140, 248, 0.9) 66%,
+      rgba(96, 165, 250, 0) 82%,
+      rgba(96, 165, 250, 0) 100%);
+}
+
 /* 产品卡片丝滑悬停效果 */
 .product-card {
   transform: translateY(0) scale(1);
@@ -1935,6 +2244,7 @@ function showSuccessToast(message) {
 }
 
 .product-card:hover {
+  transform: translateY(-10px) scale(1.01);
   box-shadow:
     0 25px 50px -12px rgba(0, 0, 0, 0.15),
     0 10px 20px -5px rgba(0, 0, 0, 0.1),

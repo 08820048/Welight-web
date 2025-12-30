@@ -9,17 +9,6 @@
   <transition name="banner-slide">
     <div v-if="isVisible" class="fixed top-0 left-0 right-0 z-[101] shadow-2xl">
       <div :style="bannerBackgroundStyle" class="relative">
-        <!-- 活动规则 - 左下角 -->
-        <div class="absolute bottom-4 left-4 text-left z-10 promo-rules-corner">
-          <h3 class="text-white text-sm font-semibold mb-2">活动信息</h3>
-          <ul class="text-white/80 text-xs space-y-1">
-            <li v-if="promotionTitle">活动：{{ promotionTitle }}</li>
-            <li v-if="activityTimeLabel">时间：{{ activityTimeLabel }}</li>
-            <li v-if="promotionDescription">说明：{{ promotionDescription }}</li>
-            <li v-for="(line, idx) in ruleSummaries" :key="idx">{{ line }}</li>
-          </ul>
-        </div>
-
         <!-- 关闭按钮 -->
         <button @click="close"
           class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full transition-all z-10 group">
@@ -694,25 +683,6 @@ onUnmounted(() => {
 .promo-clean-layout {
   padding: 0;
   margin: 0;
-}
-
-.promo-rules-corner {
-  max-width: 280px;
-}
-
-.promo-rules-corner h3 {
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-}
-
-.promo-rules-corner ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.promo-rules-corner li {
-  line-height: 1.5;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .promo-info-grid-new {

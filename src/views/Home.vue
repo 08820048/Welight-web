@@ -2,47 +2,6 @@
   <div class="relative min-h-screen bg-white dark:bg-gray-900">
     <div class="min-h-screen text-gray-800 dark:text-gray-200 relative overflow-hidden"
       style="position: relative; z-index: 1">
-      <!-- 顶部横幅通知 -->
-      <div v-if="showBanner" class="fixed top-16 left-0 right-0 z-40 overflow-hidden px-4 sm:px-6 lg:px-8">
-        <div
-          class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-200 dark:border-gray-800 rounded-2xl shadow-soft-lg transform transition-all duration-700 ease-out mx-auto max-w-7xl mt-4"
-          :class="bannerVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'">
-          <div class="flex items-center justify-between py-3 px-4 sm:px-6">
-            <div class="flex items-center space-x-3 sm:space-x-4 flex-1 min-w-0">
-              <div class="flex-shrink-0">
-                <div class="w-10 h-10 bg-gray-900 rounded-xl flex items-center justify-center">
-                  <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center space-x-2 mb-0.5 flex-wrap">
-                  <span class="text-base sm:text-lg font-semibold text-gray-900">🎉 Welight v4.1.5 已发布！</span>
-                  <span
-                    class="bg-gray-900 text-white text-xs px-2 py-0.5 rounded-md font-medium whitespace-nowrap">最新版本</span>
-                </div>
-                <p class="text-sm text-gray-600 truncate sm:whitespace-normal">
-                  全新UI界面调整、安装包精简、多个功能增强,主题丰富
-                  <span class="font-medium text-gray-900">建议下载更新！</span>
-                </p>
-              </div>
-            </div>
-            <div class="flex items-center ml-3 sm:ml-4 flex-shrink-0">
-              <button @click="closeBanner"
-                class="text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-all duration-200 p-2 rounded-lg group"
-                title="关闭通知">
-                <svg class="w-5 h-5 group-hover:rotate-90 transition-transform duration-200" fill="none"
-                  stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <!-- Hero Section -->
       <section class="relative pt-24 pb-24">
         <div class="mx-auto max-w-5xl px-6">
@@ -708,32 +667,6 @@ const isDev = import.meta.env.DEV
 // 路由实例
 const route = useRoute()
 
-// 横幅通知状态
-const showBanner = ref(false)
-const bannerVisible = ref(false)
-
-// 当前版本号
-const currentVersion = '4.1.5'
-
-// 检查是否应该显示版本横幅
-const shouldShowVersionBanner = () => {
-  const lastDismissedVersion = localStorage.getItem('welight_dismissed_version_banner')
-  return !lastDismissedVersion || lastDismissedVersion !== currentVersion
-}
-
-// 开发测试函数：重置横幅状态（仅在开发环境使用）
-const resetBannerForTesting = () => {
-  localStorage.removeItem('welight_dismissed_version_banner')
-  showBanner.value = true
-  bannerVisible.value = true
-  console.log('横幅状态已重置，用于测试')
-}
-
-// 在开发环境下暴露测试函数到全局
-if (import.meta.env.DEV) {
-  window.resetBannerForTesting = resetBannerForTesting
-}
-
 // 下载统计数据 - 从后端API获取真实统计
 const downloadStats = ref({
   'windows-installer': 0,
@@ -853,18 +786,6 @@ watch(purchaseUsersBaseTarget, (newTarget, oldTarget) => {
     startPurchaseUsersAnimation()
   }
 })
-
-// 横幅通知相关函数
-const closeBanner = () => {
-  // 先播放收起动画
-  bannerVisible.value = false
-  // 记录用户已关闭当前版本的横幅
-  localStorage.setItem('welight_dismissed_version_banner', currentVersion)
-  // 延迟隐藏横幅
-  setTimeout(() => {
-    showBanner.value = false
-  }, 700) // 与动画时长一致
-}
 
 // 下载文件函数
 const downloadFile = async (platform) => {
@@ -1029,15 +950,6 @@ onMounted(async () => {
   resetPageState()
 
   // 首屏入场动画
-
-  // 检查是否应该显示版本横幅
-  if (shouldShowVersionBanner()) {
-    showBanner.value = true
-    // 延迟显示横幅动画，给页面加载一些时间
-    setTimeout(() => {
-      bannerVisible.value = true
-    }, 1000)
-  }
 
   try {
     // 初始化下载统计数据
