@@ -3,9 +3,9 @@
     <div class="container z-10 mx-auto">
       <div
         class="flex justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[740px] overflow-hidden">
-        <TestimonialsColumn :images="firstColumn" :duration="15" />
-        <TestimonialsColumn :images="secondColumn" :duration="19" class-name="hidden md:block" />
-        <TestimonialsColumn :images="thirdColumn" :duration="17" class-name="hidden lg:block" />
+        <TestimonialsColumn :images="firstColumn" :duration="32" />
+        <TestimonialsColumn :images="secondColumn" :duration="40" class-name="hidden md:block" />
+        <TestimonialsColumn :images="thirdColumn" :duration="36" class-name="hidden lg:block" />
       </div>
     </div>
   </section>

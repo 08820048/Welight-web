@@ -43,7 +43,7 @@ const props = defineProps({
   },
   duration: {
     type: Number,
-    default: 10
+    default: 20
   }
 })
 
@@ -76,5 +76,16 @@ const toWebp = (path) => encodeURI(path.replace(/\.png$/i, '.webp'))
   animation-duration: var(--scroll-duration, 20s);
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll {
+    animation: none;
+    transform: translateY(0);
+  }
 }
 </style>
