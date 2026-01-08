@@ -86,6 +86,16 @@ export const donations = [
     channel: '微信红包',
     specialTag: null,
     isSpecial: false
+  },
+  {
+    id: '20260108142617',
+    amount: 100.0,
+    donorName: '瑞虎珈祥',
+    donationDate: '2026-01-08T14:26:17+08:00',
+    message: '支持群主',
+    channel: '微信转账',
+    specialTag: '荣耀赞助者',
+    isSpecial: true
   }
   // 可以在这里添加更多致谢记录
 ]
