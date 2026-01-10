@@ -5,6 +5,37 @@
     <ModernHeader />
     <main
       class="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <div
+        v-if="!isTopNoticeClosed"
+        class="sticky top-16 z-40 border-b border-gray-200 bg-[#0751cf] text-white dark:border-gray-800">
+        <div class="relative w-full px-6 py-2 md:px-16 text-sm leading-6 text-center">
+          <span>🎉我最新的作品 soloforge 已上线，让世界看见你的独立作品。访问：</span>
+          <a
+            href="https://soloforge.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline underline-offset-2 text-white/90 hover:text-white"
+          >
+            <code class="rounded-md bg-white/15 px-1.5 py-0.5 font-mono">https://soloforge.dev</code>
+          </a>
+          <button
+            type="button"
+            class="absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-white/90 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/60 md:right-16"
+            aria-label="关闭通知"
+            @click="closeTopNotice"
+          >
+            <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5" aria-hidden="true">
+              <path
+                d="M6 6l12 12M18 6L6 18"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
       <RouterView />
     </main>
     <FooterPromotionBar v-if="showFooter" />
@@ -49,6 +80,15 @@ const showFooter = computed(() => route.name !== 'documentation' && route.path !
 const shouldLoadSpline = ref(false)
 
 const activePromotions = ref([])
+const isTopNoticeClosed = ref(false)
+
+/**
+ * 关闭顶部通知（仅本次页面生命周期内生效）
+ * @returns {void}
+ */
+const closeTopNotice = () => {
+  isTopNoticeClosed.value = true
+}
 
 /**
  * 加载活动列表（用于全局视觉效果开关）
@@ -80,6 +120,13 @@ onMounted(() => {
 
   loadActivePromotionsForEffects()
 })
+
+watch(
+  () => route.fullPath,
+  () => {
+    isTopNoticeClosed.value = false
+  }
+)
 
 const isChristmasPromoActive = computed(() => {
   const list = activePromotions.value || []
