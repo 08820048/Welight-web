@@ -84,14 +84,15 @@ const showFooter = computed(() => route.name !== 'documentation' && route.path !
 const shouldLoadSpline = ref(false)
 
 const activePromotions = ref([])
-const isTopNoticeClosed = ref(true)
+const isTopNoticeClosed = ref(localStorage.getItem('soloforge_notice_closed') === 'true')
 
 /**
- * 关闭顶部通知（仅本次页面生命周期内生效）
+ * 关闭顶部通知（持久化到 localStorage）
  * @returns {void}
  */
 const closeTopNotice = () => {
   isTopNoticeClosed.value = true
+  localStorage.setItem('soloforge_notice_closed', 'true')
 }
 
 /**
@@ -127,13 +128,6 @@ onMounted(() => {
 
   loadActivePromotionsForEffects()
 })
-
-watch(
-  () => route.fullPath,
-  () => {
-    isTopNoticeClosed.value = false
-  }
-)
 
 const isChristmasPromoActive = computed(() => {
   const list = activePromotions.value || []
