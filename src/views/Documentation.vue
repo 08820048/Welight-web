@@ -122,6 +122,7 @@
 
 <script setup>
 import { ref, computed, watch, onMounted, onUnmounted, nextTick } from 'vue'
+import { useRoute } from 'vue-router'
 import { marked } from 'marked'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/github.css'
@@ -138,6 +139,8 @@ import { useSEO, seoConfigs } from '@/composables/useSEO'
 
 // SEO配置
 useSEO(seoConfigs.documentation)
+
+const route = useRoute()
 
 // 文档分类图标（Lucide 图标组件映射）
 const categoryIconComponents = {
@@ -171,12 +174,95 @@ const pickDefaultPageId = () => {
 // 响应式数据
 const currentPageId = ref(pickDefaultPageId())
 const defaultFirstPageId = computed(() => pickDefaultPageId())
-const searchQuery = ref('')
+const searchQuery = ref(typeof route.query.q === 'string' ? route.query.q : '')
 const mobileMenuOpen = ref(false)
 const contentScroll = ref(null)
 const menuScroll = ref(null)
 const activeHeadingId = ref(null)
 let headingObserver = null
+
+const HIGHLIGHT_ATTR = 'data-search-highlight'
+
+const escapeRegExp = (input) => {
+  return String(input).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+const getMarkdownContainer = () => {
+  return contentScroll.value?.querySelector('.markdown-content') || null
+}
+
+const clearSearchHighlights = (container) => {
+  if (!container) return
+  const marks = Array.from(container.querySelectorAll(`mark[${HIGHLIGHT_ATTR}]`))
+  if (!marks.length) return
+  for (const mark of marks) {
+    const parent = mark.parentNode
+    if (!parent) continue
+    while (mark.firstChild) {
+      parent.insertBefore(mark.firstChild, mark)
+    }
+    parent.removeChild(mark)
+  }
+  container.normalize()
+}
+
+const applySearchHighlights = (term) => {
+  const container = getMarkdownContainer()
+  if (!container) return
+
+  clearSearchHighlights(container)
+
+  const needle = (term || '').trim()
+  if (!needle) return
+
+  const re = new RegExp(escapeRegExp(needle), 'gi')
+  const isExcluded = (el) => {
+    if (!el || el.nodeType !== Node.ELEMENT_NODE) return false
+    return !!el.closest('pre, code, kbd, samp, script, style, textarea, .mermaid, mark')
+  }
+
+  const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
+    acceptNode: (node) => {
+      const value = node.nodeValue
+      if (!value || !value.trim()) return NodeFilter.FILTER_REJECT
+      const parentEl = node.parentElement
+      if (!parentEl || isExcluded(parentEl)) return NodeFilter.FILTER_REJECT
+      re.lastIndex = 0
+      return re.test(value) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT
+    }
+  })
+
+  const textNodes = []
+  while (walker.nextNode()) textNodes.push(walker.currentNode)
+
+  for (const node of textNodes) {
+    const text = node.nodeValue || ''
+    re.lastIndex = 0
+    let match = re.exec(text)
+    if (!match) continue
+
+    const frag = document.createDocumentFragment()
+    let lastIndex = 0
+    while (match) {
+      const start = match.index
+      const end = start + match[0].length
+      if (start > lastIndex) {
+        frag.appendChild(document.createTextNode(text.slice(lastIndex, start)))
+      }
+      const mark = document.createElement('mark')
+      mark.setAttribute(HIGHLIGHT_ATTR, '1')
+      mark.textContent = match[0]
+      frag.appendChild(mark)
+      lastIndex = end
+      match = re.exec(text)
+    }
+    if (lastIndex < text.length) {
+      frag.appendChild(document.createTextNode(text.slice(lastIndex)))
+    }
+    node.parentNode?.replaceChild(frag, node)
+  }
+}
+
 // 监听内容渲染后初始化滚动联动（ScrollSpy）
 const destroyHeadingObserver = () => {
   if (headingObserver) {
@@ -405,9 +491,10 @@ const nextPage = computed(() => {
 
 // 渲染完成后，初始化滚动联动观察器
 watch(() => renderedContent.value, () => {
-  nextTick(() => {
+  nextTick(async () => {
     initHeadingObserver()
-    renderMermaid()
+    await renderMermaid()
+    applySearchHighlights(searchQuery.value)
   })
 })
 
@@ -442,9 +529,10 @@ const renderMermaid = async () => {
 // 页面切换后重新建立观察器
 watch(currentPageId, () => {
   activeHeadingId.value = null
-  nextTick(() => {
+  nextTick(async () => {
     initHeadingObserver()
-    renderMermaid()
+    await renderMermaid()
+    applySearchHighlights(searchQuery.value)
   })
 })
 
@@ -510,11 +598,20 @@ watch(activeHeadingId, () => {
 
 onMounted(() => {
   mermaid.initialize({ startOnLoad: false, securityLevel: 'loose', theme: 'default' })
-  nextTick(() => {
+  nextTick(async () => {
     initHeadingObserver()
-    renderMermaid()
+    await renderMermaid()
+    applySearchHighlights(searchQuery.value)
   })
 })
+
+watch(
+  () => route.query.q,
+  (q) => {
+    searchQuery.value = typeof q === 'string' ? q : ''
+    nextTick(() => applySearchHighlights(searchQuery.value))
+  }
+)
 </script>
 
 <style scoped>
@@ -561,6 +658,18 @@ onMounted(() => {
 
 .dark :deep(.markdown-content blockquote) {
   @apply bg-blue-900/30 border-blue-400 text-white;
+}
+
+:deep(mark[data-search-highlight]) {
+  background: #fde047;
+  color: #111827;
+  border-radius: 4px;
+  padding: 0 2px;
+}
+
+.dark :deep(mark[data-search-highlight]) {
+  background: rgba(251, 191, 36, 0.35);
+  color: #ffffff;
 }
 
 .dark :deep(.markdown-content table) {

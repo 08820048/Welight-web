@@ -96,6 +96,16 @@ export const donations = [
     channel: '微信转账',
     specialTag: '荣耀赞助者',
     isSpecial: true
+  },
+  {
+    id: '20260115165129',
+    amount: 50.0,
+    donorName: '二宗',
+    donationDate: '2026-01-15T16:51:29+08:00',
+    message: '赞助',
+    channel: '微信转账',
+    specialTag: null,
+    isSpecial: false
   }
   // 可以在这里添加更多致谢记录
 ]

@@ -4,10 +4,12 @@
 
     <ModernHeader />
     <main
-      class="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+      class="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300"
+    >
       <div
         v-if="!isTopNoticeClosed"
-        class="sticky top-16 z-40 border-b border-gray-200 bg-[#0751cf] text-white dark:border-gray-800">
+        class="sticky top-16 z-40 border-b border-gray-200 bg-[#0751cf] text-white dark:border-gray-800"
+      >
         <div class="relative w-full px-6 py-2 md:px-16 text-sm leading-6 text-center">
           <span>🎉我最新的作品 soloforge 已上线，让世界看见你的独立作品。访问：</span>
           <a
@@ -16,7 +18,9 @@
             rel="noopener noreferrer"
             class="underline underline-offset-2 text-white/90 hover:text-white"
           >
-            <code class="rounded-md bg-white/15 px-1.5 py-0.5 font-mono">https://soloforge.dev</code>
+            <code class="rounded-md bg-white/15 px-1.5 py-0.5 font-mono"
+              >https://soloforge.dev</code
+            >
           </a>
           <button
             type="button"
@@ -80,7 +84,7 @@ const showFooter = computed(() => route.name !== 'documentation' && route.path !
 const shouldLoadSpline = ref(false)
 
 const activePromotions = ref([])
-const isTopNoticeClosed = ref(false)
+const isTopNoticeClosed = ref(true)
 
 /**
  * 关闭顶部通知（仅本次页面生命周期内生效）
@@ -108,9 +112,12 @@ onMounted(() => {
 
   // 使用 requestIdleCallback 在浏览器空闲时加载
   if ('requestIdleCallback' in window) {
-    requestIdleCallback(() => {
-      shouldLoadSpline.value = true
-    }, { timeout: 2000 })
+    requestIdleCallback(
+      () => {
+        shouldLoadSpline.value = true
+      },
+      { timeout: 2000 }
+    )
   } else {
     // 降级方案：延迟 2 秒后加载
     setTimeout(() => {
@@ -131,12 +138,7 @@ watch(
 const isChristmasPromoActive = computed(() => {
   const list = activePromotions.value || []
   return list.some((p) => {
-    const haystack = [
-      p?.name,
-      p?.displayName,
-      p?.banner?.title,
-      p?.banner?.subtitle
-    ]
+    const haystack = [p?.name, p?.displayName, p?.banner?.title, p?.banner?.subtitle]
       .filter(Boolean)
       .join(' ')
     return /圣诞|christmas/i.test(haystack)
@@ -158,7 +160,8 @@ let lastTs = 0
  * @returns {number} 雪花数量
  */
 function getSnowflakeCount() {
-  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const prefersReduced =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   const deviceMemory = navigator.deviceMemory || 4
   if (prefersReduced) return 40
   if (deviceMemory <= 4) return 70
