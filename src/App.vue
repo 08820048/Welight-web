@@ -4,38 +4,21 @@
 
     <ModernHeader />
     <main
-      class="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300"
-    >
-      <div
-        v-if="!isTopNoticeClosed"
-        class="sticky top-16 z-40 border-b border-gray-200 bg-[#0751cf] text-white dark:border-gray-800"
-      >
+      class="min-h-screen bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+      <div v-if="!isTopNoticeClosed"
+        class="sticky top-16 z-40 border-b border-gray-200 bg-[#0751cf] text-white dark:border-gray-800">
         <div class="relative w-full px-6 py-2 md:px-16 text-sm leading-6 text-center">
-          <span>🎉我最新的作品 soloforge 已上线，让世界看见你的独立作品。访问：</span>
-          <a
-            href="https://soloforge.dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="underline underline-offset-2 text-white/90 hover:text-white"
-          >
-            <code class="rounded-md bg-white/15 px-1.5 py-0.5 font-mono"
-              >https://soloforge.dev</code
-            >
+          <span>🎉Ornata-一款追求极致性能、纯粹、轻量、现代化的 markdown 编辑器 -&gt;</span>
+          <a href="https://ornata.app" target="_blank" rel="noopener noreferrer"
+            class="underline underline-offset-2 text-white/90 hover:text-white">
+            <code class="rounded-md bg-white/15 px-1.5 py-0.5 font-mono">https://ornata.app</code>
           </a>
-          <button
-            type="button"
+          <button type="button"
             class="absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-white/90 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/60 md:right-16"
-            aria-label="关闭通知"
-            @click="closeTopNotice"
-          >
+            aria-label="关闭通知" @click="closeTopNotice">
             <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5" aria-hidden="true">
-              <path
-                d="M6 6l12 12M18 6L6 18"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
+              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
             </svg>
           </button>
         </div>
@@ -72,6 +55,8 @@ import { getActivePromotionsFromBackend } from '@/services/campaignService.js'
 const route = useRoute()
 const themeStore = useThemeStore()
 
+const TOP_NOTICE_CLOSED_KEY = 'ornata_notice_closed'
+
 // 检查是否为赞助页面
 const isDonationPage = computed(() => {
   return route.name === 'donation' || route.path === '/donation'
@@ -84,7 +69,7 @@ const showFooter = computed(() => route.name !== 'documentation' && route.path !
 const shouldLoadSpline = ref(false)
 
 const activePromotions = ref([])
-const isTopNoticeClosed = ref(localStorage.getItem('soloforge_notice_closed') === 'true')
+const isTopNoticeClosed = ref(localStorage.getItem(TOP_NOTICE_CLOSED_KEY) === 'true')
 
 /**
  * 关闭顶部通知（持久化到 localStorage）
@@ -92,7 +77,7 @@ const isTopNoticeClosed = ref(localStorage.getItem('soloforge_notice_closed') ==
  */
 const closeTopNotice = () => {
   isTopNoticeClosed.value = true
-  localStorage.setItem('soloforge_notice_closed', 'true')
+  localStorage.setItem(TOP_NOTICE_CLOSED_KEY, 'true')
 }
 
 /**
