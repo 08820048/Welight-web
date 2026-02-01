@@ -624,6 +624,17 @@
                 <li class="animate-fade-in-up delay-1400">许可证密钥请在桌面应用中输入使用。</li>
                 <li class="animate-fade-in-up delay-1450">许可证购买后，所有AI功能可以选择购买积分套餐使用，也可以选择自己配置自己的图床进行使用。</li>
                 <li class="animate-fade-in-up delay-1500">反馈交流请通过QQ群联系开发者。</li>
+                <li class="animate-fade-in-up delay-1550">
+                  网页版地址：
+                  <a
+                    href="https://waer.ltd/wl/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="underline text-blue-600 dark:text-blue-400"
+                  >
+                    https://waer.ltd/wl/
+                  </a>
+                </li>
                 <li class="animate-fade-in-up delay-1600">支持微信支付，订单有效期为30分钟。</li>
                 <li class="animate-fade-in-up delay-1700">产品存在代码性质，拥有可复制性，因此购买后，无法退款</li>
                 <li class="animate-fade-in-up delay-1700">网页版本支持更多丰富的主题，使用网页版主题需要使用激活后的许可证进行验证。</li>

@@ -106,6 +106,16 @@ export const donations = [
     channel: '微信转账',
     specialTag: null,
     isSpecial: false
+  },
+  {
+    id: '20260201201017',
+    amount: 9.99,
+    donorName: '博恒',
+    donationDate: '2026-02-01T20:10:17+08:00',
+    message: '支持一下',
+    channel: '收款码收款',
+    specialTag: null,
+    isSpecial: false
   }
   // 可以在这里添加更多致谢记录
 ]
