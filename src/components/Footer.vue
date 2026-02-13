@@ -39,7 +39,7 @@
               >免责声明</router-link
             >
           </div>
-          <div>
+          <div class="flex flex-wrap items-center gap-4">
             <a
               href="https://beian.miit.gov.cn/"
               target="_blank"
@@ -47,6 +47,19 @@
               class="text-[11px] text-gray-700 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200 transition-colors"
             >
               黔ICP备2021010295号-1
+            </a>
+            <a
+              href="https://beian.mps.gov.cn/#/query/webSearch?code=52052402000190"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 text-[11px] text-gray-700 hover:text-gray-800 dark:text-gray-300 dark:hover:text-gray-200 transition-colors"
+            >
+              <img
+                src="https://beian.mps.gov.cn/web/assets/logo01.6189a29f.png"
+                alt="公安备案"
+                class="h-4 w-4"
+              />
+              贵公网安备52052402000190号
             </a>
           </div>
         </div>

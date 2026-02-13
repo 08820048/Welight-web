@@ -55,6 +55,11 @@ const router = createRouter({
       component: () => import('../views/Documentation.vue')
     },
     {
+      path: '/safe',
+      name: 'safe',
+      component: () => import('../views/Safe.vue')
+    },
+    {
       path: '/release-history',
       name: 'release-history',
       component: () => import('../views/ReleaseHistory.vue')
