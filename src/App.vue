@@ -8,11 +8,12 @@
       <div v-if="!isTopNoticeClosed"
         class="sticky top-16 z-40 border-b border-gray-200 bg-[#0751cf] text-white dark:border-gray-800">
         <div class="relative w-full px-6 py-2 md:px-16 text-sm leading-6 text-center">
-          <span>🎉Ornata-一款追求极致性能、纯粹、轻量、现代化的 markdown 编辑器 -&gt;</span>
+          <span>欢迎体验开发者新产品-</span>
           <a href="https://ornata.app" target="_blank" rel="noopener noreferrer"
             class="underline underline-offset-2 text-white/90 hover:text-white">
-            <code class="rounded-md bg-white/15 px-1.5 py-0.5 font-mono">https://ornata.app</code>
+            <code class="rounded-md bg-white/15 px-1.5 py-0.5 font-mono">ornata.app</code>
           </a>
+          <span>。</span>
           <button type="button"
             class="absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-white/90 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/60 md:right-16"
             aria-label="关闭通知" @click="closeTopNotice">
@@ -55,7 +56,7 @@ import { getActivePromotionsFromBackend } from '@/services/campaignService.js'
 const route = useRoute()
 const themeStore = useThemeStore()
 
-const TOP_NOTICE_CLOSED_KEY = 'ornata_notice_closed'
+const TOP_NOTICE_CLOSED_KEY = 'ornata_notice_closed_v2'
 
 // 检查是否为赞助页面
 const isDonationPage = computed(() => {
