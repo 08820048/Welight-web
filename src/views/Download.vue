@@ -34,6 +34,29 @@
               查看历史版本
             </router-link>
           </div>
+          <div class="mt-6 mx-auto w-full max-w-2xl">
+            <p class="mb-2 text-center text-xs uppercase tracking-[0.22em] text-gray-400 dark:text-gray-500">
+              CLI Install
+            </p>
+            <div
+              class="group relative mx-auto flex items-center gap-3 overflow-x-auto rounded-xl bg-[#111111] px-4 py-3 pr-12 font-mono text-sm text-green-400 shadow-lg">
+              <span class="select-none text-gray-500">$</span>
+              <code class="whitespace-nowrap">npm i -g welight-cli</code>
+              <button
+                class="absolute right-3 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md text-gray-500 opacity-0 transition-all duration-200 hover:bg-white/10 hover:text-gray-200 focus:opacity-100 focus:outline-none group-hover:opacity-100 group-focus-within:opacity-100"
+                type="button" :aria-label="cliCopied ? '命令已复制' : '复制 CLI 安装命令'" @click="copyCliCommand">
+                <svg v-if="cliCopied" class="h-4 w-4 text-green-400" fill="none" stroke="currentColor"
+                  viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M5 13l4 4L19 7" />
+                </svg>
+                <svg v-else class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -494,6 +517,27 @@ const totalDownloads = computed(() => {
 // QQ群弹窗相关
 const showQQModal = ref(false)
 const copied = ref(false)
+const cliCommand = 'npm i -g welight-cli'
+const cliCopied = ref(false)
+let copiedResetTimer = null
+let cliCopiedTimer = null
+
+const copyText = async (text) => {
+  if (navigator?.clipboard?.writeText) {
+    await navigator.clipboard.writeText(text)
+    return
+  }
+
+  const textArea = document.createElement('textarea')
+  textArea.value = text
+  textArea.setAttribute('readonly', '')
+  textArea.style.position = 'absolute'
+  textArea.style.left = '-9999px'
+  document.body.appendChild(textArea)
+  textArea.select()
+  document.execCommand('copy')
+  document.body.removeChild(textArea)
+}
 
 // 显示QQ群信息
 const showQQGroup = () => {
@@ -509,23 +553,37 @@ const closeQQModal = () => {
 // 复制QQ群号
 const copyQQGroup = async () => {
   try {
-    await navigator.clipboard.writeText('1071558803')
+    await copyText('1071558803')
     copied.value = true
-    setTimeout(() => {
+
+    if (copiedResetTimer) {
+      clearTimeout(copiedResetTimer)
+    }
+
+    copiedResetTimer = setTimeout(() => {
       copied.value = false
+      copiedResetTimer = null
     }, 2000)
   } catch (error) {
-    // 如果浏览器不支持clipboard API，使用传统方法
-    const textArea = document.createElement('textarea')
-    textArea.value = '1071558803'
-    document.body.appendChild(textArea)
-    textArea.select()
-    document.execCommand('copy')
-    document.body.removeChild(textArea)
-    copied.value = true
-    setTimeout(() => {
-      copied.value = false
-    }, 2000)
+    console.error('复制QQ群号失败:', error)
+  }
+}
+
+const copyCliCommand = async () => {
+  try {
+    await copyText(cliCommand)
+    cliCopied.value = true
+
+    if (cliCopiedTimer) {
+      clearTimeout(cliCopiedTimer)
+    }
+
+    cliCopiedTimer = setTimeout(() => {
+      cliCopied.value = false
+      cliCopiedTimer = null
+    }, 1500)
+  } catch (error) {
+    console.error('复制 CLI 安装命令失败:', error)
   }
 }
 
@@ -616,6 +674,16 @@ onMounted(async () => {
 
 // 组件卸载时清理
 onUnmounted(() => {
+  if (copiedResetTimer) {
+    clearTimeout(copiedResetTimer)
+    copiedResetTimer = null
+  }
+
+  if (cliCopiedTimer) {
+    clearTimeout(cliCopiedTimer)
+    cliCopiedTimer = null
+  }
+
   if (statsCleanup) {
     statsCleanup()
   }

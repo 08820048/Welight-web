@@ -8,10 +8,10 @@
       <div v-if="!isTopNoticeClosed"
         class="sticky top-16 z-40 border-b border-gray-200 bg-[#0751cf] text-white dark:border-gray-800">
         <div class="relative w-full px-6 py-2 md:px-16 text-sm leading-6 text-center">
-          <span>欢迎体验开发者新产品-</span>
-          <a href="https://ornata.app" target="_blank" rel="noopener noreferrer"
+          <span>体验开发者新作 CalcFocus：简单录制，专业输出 · </span>
+          <a href="https://calcfocus.cc" target="_blank" rel="noopener noreferrer"
             class="underline underline-offset-2 text-white/90 hover:text-white">
-            <code class="rounded-md bg-white/15 px-1.5 py-0.5 font-mono">ornata.app</code>
+            <code class="rounded-md bg-white/15 px-1.5 py-0.5 font-mono">calcfocus.cc</code>
           </a>
           <span>。</span>
           <button type="button"
