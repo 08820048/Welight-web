@@ -8,12 +8,7 @@
       <div v-if="!isTopNoticeClosed"
         class="sticky top-16 z-40 border-b border-gray-200 bg-[#0751cf] text-white dark:border-gray-800">
         <div class="relative w-full px-6 py-2 md:px-16 text-sm leading-6 text-center">
-          <span>体验开发者新作 CalcFocus：简单录制，专业输出 · </span>
-          <a href="https://calcfocus.cc" target="_blank" rel="noopener noreferrer"
-            class="underline underline-offset-2 text-white/90 hover:text-white">
-            <code class="rounded-md bg-white/15 px-1.5 py-0.5 font-mono">calcfocus.cc</code>
-          </a>
-          <span>。</span>
+          <span>⚠️ 由于产品策略调整，Welight 积分功能将于 <strong>2026年6月底</strong> 彻底关停，官网已停止积分套餐购买。已购积分请尽快使用，感谢理解。</span>
           <button type="button"
             class="absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-white/90 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/60 md:right-16"
             aria-label="关闭通知" @click="closeTopNotice">
@@ -56,7 +51,7 @@ import { getActivePromotionsFromBackend } from '@/services/campaignService.js'
 const route = useRoute()
 const themeStore = useThemeStore()
 
-const TOP_NOTICE_CLOSED_KEY = 'ornata_notice_closed_v2'
+const TOP_NOTICE_CLOSED_KEY = 'welight_notice_credits_deprecation'
 
 // 检查是否为赞助页面
 const isDonationPage = computed(() => {

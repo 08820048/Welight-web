@@ -1,6 +1,22 @@
 // 公告数据
 export const announcementData = [
   {
+    id: 'announcement-2026-04-24',
+    title: '积分功能即将下架公告',
+    date: '2026-04-24',
+    type: 'important',
+    badge: '重要公告',
+    badgeColor: 'red',
+    content: `# 积分功能即将下架公告
+
+由于产品策略调整，Welight 即将陆续下架积分功能。官网不再提供积分套餐的购买，已购买积分的用户可以继续使用，截止 **2026年6月底**。届时积分功能将彻底关停。希望这期间各位可以尽快使用自己的积分。
+
+感谢理解。
+
+**Welight 开发者**
+*2026年4月24日*`
+  },
+  {
     id: 'announcement-2025-11-11',
     title: '许可证定价调整通知',
     date: '2025-11-11',

@@ -324,7 +324,7 @@
           <div class="text-center relative max-w-3xl mx-auto px-4 md:px-8">
             <AnimatedUnderlineText text="定价与服务购买" text-className="text-4xl font-extrabold text-gray-900 font-longcang"
               underline-className="text-gray-900" />
-            <MagicText text="选择适合您的许可证或积分服务，享受便捷功能与优质体验" container-className="mt-6 justify-center"
+            <MagicText text="选择适合您的许可证，享受便捷功能与优质体验" container-className="mt-6 justify-center"
               word-className="text-lg text-gray-600" />
           </div>
 
@@ -379,8 +379,8 @@
                 <path stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14" />
               </svg>
 
-              <ul class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 items-stretch">
-                <li v-for="(product, index) in products" :key="product.id" class="contents">
+              <ul class="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-8 items-stretch">
+                <li v-for="(product, index) in products.filter(p => !p.code.includes('CREDITS'))" :key="product.id" class="contents">
                   <div
                     class="relative flex flex-col p-6 text-gray-900 bg-white rounded-2xl border border-gray-200 shadow-sm dark:border-gray-600 xl:p-8 dark:bg-gray-900 dark:text-white group product-card overflow-hidden"
                     :class="[
@@ -552,11 +552,7 @@
                           </li>
                           <li class="flex items-center space-x-3">
                             <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
-                            <span>附赠 300 积分</span>
-                          </li>
-                          <li class="flex items-center space-x-3">
-                            <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
-                            <span>7天试用期(含300试用积分)</span>
+                            <span>7天免费试用期</span>
                           </li>
                           <li class="flex items-center space-x-3">
                             <Check class="h-4 w-4 text-gray-900 dark:text-gray-100" />
@@ -622,7 +618,7 @@
                 <li class="animate-fade-in-up delay-1200">购买后许可证将自动发送到您的邮箱，请妥善保存许可证密钥。</li>
                 <li class="animate-fade-in-up delay-1300">每个许可证支持在指定数量的设备上使用。</li>
                 <li class="animate-fade-in-up delay-1400">许可证密钥请在桌面应用中输入使用。</li>
-                <li class="animate-fade-in-up delay-1450">许可证购买后，所有AI功能可以选择购买积分套餐使用，也可以选择自己配置自己的图床进行使用。</li>
+                <li class="animate-fade-in-up delay-1450">许可证购买后，所有AI功能可以选择自己配置密钥使用，也可以选择配置自己的图床进行使用。</li>
                 <li class="animate-fade-in-up delay-1500">反馈交流请通过QQ群联系开发者。</li>
                 <li class="animate-fade-in-up delay-1550">
                   网页版地址：
@@ -639,8 +635,6 @@
                 <li class="animate-fade-in-up delay-1700">产品存在代码性质，拥有可复制性，因此购买后，无法退款</li>
                 <li class="animate-fade-in-up delay-1700">网页版本支持更多丰富的主题，使用网页版主题需要使用激活后的许可证进行验证。</li>
                 <li class="animate-fade-in-up delay-1700">默认内置的图片云存储服务和 AI 服务一样作为可选服务，您也可以选择配置自己的图床进行使用</li>
-                <li class="animate-fade-in-up delay-1700">试用期期间由于没有绑定邮箱,无法购买积分,请务必阅读后操作,否则概不退款。</li>
-                <li class="animate-fade-in-up delay-1700">试用期期间有300试用积分,用完为止,试用期过期之后跟随失效。</li>
               </ul>
 
               <h2
