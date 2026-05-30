@@ -2,7 +2,12 @@
   <div :class="cn('flex flex-col items-center justify-center gap-2', $attrs.class)">
     <div class="relative inline-block">
       <component :is="headingTag"
-        :class="cn('text-4xl md:text-5xl font-bold text-center transition-all duration-700 ease-out', titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5', textClassName)"
+        :class="cn(
+          'text-4xl md:text-5xl font-bold text-center',
+          animated ? 'transition-all duration-700 ease-out' : '',
+          animated ? (titleVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-5') : 'opacity-100 translate-y-0',
+          textClassName
+        )"
         @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         {{ text }}
       </component>
@@ -47,6 +52,10 @@ const props = defineProps({
     type: Number,
     default: 1.5
   },
+  animated: {
+    type: Boolean,
+    default: true
+  },
   level: {
     type: Number,
     default: 2,
@@ -85,15 +94,21 @@ onMounted(() => {
   if (pathRef.value) {
     const length = pathRef.value.getTotalLength()
     pathLength.value = length
-    pathOffset.value = length
+    pathOffset.value = props.animated ? length : 0
 
-    // Animate the path drawing
-    setTimeout(() => {
-      pathOffset.value = 0
-    }, 100)
+    if (props.animated) {
+      // Animate the path drawing
+      setTimeout(() => {
+        pathOffset.value = 0
+      }, 100)
+    }
   }
-  // 触发标题淡入
-  setTimeout(startTitleFadeIn, 100)
+  if (props.animated) {
+    // 触发标题淡入
+    setTimeout(startTitleFadeIn, 100)
+  } else {
+    titleVisible.value = true
+  }
 })
 </script>
 

@@ -4,7 +4,7 @@
       v-for="(card, index) in displayCards"
       :key="index"
       :class="cn(
-        'relative flex min-h-[10rem] w-[22rem] -skew-y-[8deg] select-none flex-col justify-between rounded-xl border-2 border-gray-200 dark:border-gray-700 bg-gray-100/70 dark:bg-gray-800/70 backdrop-blur-sm px-4 py-3 transition-all duration-700 after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-[20rem] after:bg-gradient-to-l after:from-white after:to-transparent dark:after:from-gray-900 after:content-[\'\'] hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-800',
+        'surface-soft relative flex min-h-[10rem] w-[22rem] -skew-y-[8deg] select-none flex-col justify-between px-4 py-3 transition-all duration-700 after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-[20rem] after:bg-gradient-to-l after:from-white after:to-transparent dark:after:from-gray-900 after:content-[\'\']',
         card.className
       )">
       <!-- 玻璃风格的加号图标（带圆形外圈） -->
@@ -23,13 +23,15 @@
         </svg>
       </button>
 
-      <div class="flex items-center gap-2">
-        <span class="relative inline-block rounded-full bg-gray-900 dark:bg-gray-700 p-1 shrink-0">
-          <component :is="card.icon" class="size-4 text-white" />
-        </span>
-        <p :class="cn('text-lg font-medium text-gray-900 dark:text-gray-100 font-longcang', card.titleClassName)">{{ card.title }}</p>
+      <div class="sections-enter" style="--section-step: 70ms">
+        <div class="flex items-center gap-2">
+          <span class="relative inline-block rounded-full bg-gray-900 dark:bg-gray-700 p-1 shrink-0">
+            <component :is="card.icon" class="size-4 text-white" />
+          </span>
+          <p :class="cn('text-balance text-lg font-medium text-gray-900 dark:text-gray-100', card.titleClassName)">{{ card.title }}</p>
+        </div>
+        <p class="text-pretty text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">{{ card.description }}</p>
       </div>
-      <p class="text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">{{ card.description }}</p>
 
     </div>
 
@@ -80,7 +82,7 @@
                 </span>
                 <p
                   :class="cn(
-                    'text-lg md:text-xl font-medium text-white',
+                    'text-balance text-lg md:text-xl font-medium text-white',
                     displayCards[expandedCard]?.titleClassName
                   )">
                   {{ displayCards[expandedCard]?.title }}
@@ -88,7 +90,7 @@
               </div>
 
               <!-- 中间：完整描述文案（不再截断，保留换行），高对比白字 -->
-              <p class="text-sm md:text-base leading-relaxed text-slate-200 whitespace-pre-line">
+              <p class="text-pretty text-sm md:text-base leading-relaxed text-slate-200 whitespace-pre-line">
                 {{ displayCards[expandedCard]?.description }}
               </p>
 

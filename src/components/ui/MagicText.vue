@@ -1,5 +1,5 @@
 <template>
-  <p ref="containerRef" :class="cn('flex flex-wrap leading-relaxed', containerClassName)">
+  <p v-if="mode === 'scroll'" ref="containerRef" :class="cn('flex flex-wrap leading-relaxed', containerClassName)">
     <span
       v-for="(word, i) in words"
       :key="i"
@@ -11,6 +11,11 @@
       }"
     >
       {{ word }}
+    </span>
+  </p>
+  <p v-else :class="cn('flex flex-wrap leading-relaxed', containerClassName)">
+    <span :class="wordClassName">
+      {{ text }}
     </span>
   </p>
 </template>
@@ -30,6 +35,11 @@ const props = defineProps({
   wordClassName: {
     type: String,
     default: 'text-lg md:text-xl lg:text-2xl font-medium text-gray-900'
+  },
+  mode: {
+    type: String,
+    default: 'scroll',
+    validator: (value) => ['scroll', 'static'].includes(value)
   },
   // Scroll offset configuration
   startOffset: {
@@ -97,6 +107,8 @@ const updateOpacities = () => {
 }
 
 onMounted(() => {
+  if (props.mode !== 'scroll') return
+
   // Initial calculation
   updateOpacities()
   
@@ -106,6 +118,8 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  if (props.mode !== 'scroll') return
+
   window.removeEventListener('scroll', updateOpacities)
   window.removeEventListener('resize', updateOpacities)
 })
@@ -114,4 +128,3 @@ onUnmounted(() => {
 <style scoped>
 /* Additional styles if needed */
 </style>
-

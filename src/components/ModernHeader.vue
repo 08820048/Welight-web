@@ -51,7 +51,7 @@
               <Gift v-if="isChristmasSeason" class="w-3 h-3 text-green-600" />
             </span>
           </a>
-          <router-link to="/documentation" @click="markDocsUpdateViewed"
+          <router-link to="/documentation" @click.prevent="openDocumentationWithNotice"
             class="relative text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
             active-class="text-gray-900 dark:text-gray-100">
             <span class="inline-flex items-center gap-1.5">
@@ -252,7 +252,7 @@
               前往下载
             </a>
 
-            <router-link to="/documentation" @click="(markDocsUpdateViewed(), closeMobileMenu())"
+            <router-link to="/documentation" @click.prevent="openDocumentationWithNotice(true)"
               class="relative block w-full text-center px-4 py-3 text-sm font-medium bg-gray-900 text-white rounded-xl transition-colors hover:bg-gray-800">
               <span class="inline-flex items-center gap-2 justify-center">
                 <BookOpenCheck class="w-4 h-4" />文档
@@ -267,14 +267,21 @@
     <!-- Modals -->
     <ChangelogModal :isVisible="isChangelogVisible" @close="closeChangelog" />
     <AnnouncementModal :isVisible="isAnnouncementVisible" @close="closeAnnouncements" />
+    <DocumentationNoticeModal
+      :isVisible="isDocumentationNoticeVisible"
+      @close="closeDocumentationNotice"
+      @confirm="confirmDocumentationNotice"
+    />
     <PromotionBanner v-model="isPromotionBannerVisible" :promotion="currentPromotion" @close="closePromotionBanner" />
   </header>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import ChangelogModal from './ChangelogModal.vue'
 import AnnouncementModal from './AnnouncementModal.vue'
+import DocumentationNoticeModal from './DocumentationNoticeModal.vue'
 import PromotionBanner from './PromotionBanner.vue'
 import { hasNewAnnouncements as checkNewAnnouncements } from '@/data/announcements.js'
 import { getActivePromotionsFromBackend } from '@/services/campaignService.js'
@@ -296,6 +303,8 @@ import {
 import ToggleTheme from '@/components/ui/ToggleTheme.vue'
 
 const themeStore = useThemeStore()
+const router = useRouter()
+const route = useRoute()
 
 /**
  * 判断是否处于圣诞节期间
@@ -358,6 +367,8 @@ const isAnnouncementVisible = ref(false)
 
 // 是否有新公告
 const hasNewAnnouncements = ref(false)
+const isDocumentationNoticeVisible = ref(false)
+const shouldCloseDocumentationMobileMenu = ref(false)
 
 // 活动相关状态
 const isPromotionBannerVisible = ref(false)
@@ -369,6 +380,37 @@ const latestVersion = getLatestVersion()
 // 标记文档已查看
 const markDocsUpdateViewed = () => {
   localStorage.setItem('welight_docs_last_viewed_version', latestVersion.version)
+}
+
+const openDocumentationWithNotice = (shouldCloseMobileMenu = false) => {
+  if (route.path === '/documentation' || route.name === 'documentation') {
+    markDocsUpdateViewed()
+    if (shouldCloseMobileMenu) {
+      closeMobileMenu()
+    }
+    window.location.reload()
+    return
+  }
+
+  shouldCloseDocumentationMobileMenu.value = shouldCloseMobileMenu
+  isDocumentationNoticeVisible.value = true
+}
+
+const closeDocumentationNotice = () => {
+  isDocumentationNoticeVisible.value = false
+  shouldCloseDocumentationMobileMenu.value = false
+}
+
+const confirmDocumentationNotice = () => {
+  markDocsUpdateViewed()
+
+  if (shouldCloseDocumentationMobileMenu.value) {
+    closeMobileMenu()
+  }
+
+  isDocumentationNoticeVisible.value = false
+  shouldCloseDocumentationMobileMenu.value = false
+  router.push('/documentation')
 }
 
 // 获取菜单中的活动

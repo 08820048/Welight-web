@@ -87,11 +87,11 @@ export const seoConfigs = {
     url: 'https://waer.ltd/about'
   },
   pricing: {
-    title: 'Welight定价 - 许可证购买 | 年付/终身授权 | AI积分套餐',
+    title: 'Welight定价 - $9.9 许可证购买 | Dodo Payments 安全结账',
     description:
-      'Welight微信公众号排版工具定价方案，提供年许可证、终身许可证和AI积分套餐。解锁全部主题模板、AI智能写作等高级功能，物超所值。',
+      'Welight微信公众号排版工具定价方案，$9.9 购买标准许可证，解锁网页版与桌面端完整功能，并通过 Dodo Payments 安全结账。',
     keywords:
-      'Welight价格,公众号排版工具价格,许可证购买,终身授权,AI积分,会员价格,软件购买,正版授权',
+      'Welight价格,公众号排版工具价格,许可证购买,Dodo Payments,软件购买,正版授权',
     url: 'https://waer.ltd/pricing'
   },
   donation: {

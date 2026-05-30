@@ -1,33 +1,37 @@
 <template>
   <!-- 活动条幅遮罩层 -->
   <transition name="banner-overlay">
-    <div v-if="isVisible" @click="close" class="fixed inset-0 bg-black/50 backdrop-blur-sm z-[100]"
+    <div v-if="isVisible" @click="close" class="fixed inset-0 z-[100] bg-black/45 backdrop-blur-sm"
       style="animation: fadeIn 0.3s ease-out;"></div>
   </transition>
 
   <!-- 活动条幅内容 -->
   <transition name="banner-slide">
-    <div v-if="isVisible" class="fixed top-0 left-0 right-0 z-[101] shadow-2xl">
-      <div :style="bannerBackgroundStyle" class="relative">
+    <div v-if="isVisible" class="fixed inset-x-0 top-0 z-[101] px-4 pt-4 md:px-6 md:pt-6">
+      <div :style="bannerBackgroundStyle"
+        class="relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] border border-white/20 shadow-[0_30px_90px_-35px_rgba(15,23,42,0.5)]">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_48%)]"></div>
         <!-- 关闭按钮 -->
         <button @click="close"
-          class="absolute top-4 right-4 w-8 h-8 flex items-center justify-center bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-full transition-all z-10 group">
-          <svg class="w-5 h-5 text-white group-hover:rotate-90 transition-transform duration-300" fill="none"
+          class="absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/25 bg-white/12 backdrop-blur-md transition-all hover:bg-white/18">
+          <svg class="h-5 w-5 text-white/90 transition-transform duration-300 hover:rotate-90" fill="none"
             stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
 
         <!-- 条幅内容 -->
-        <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <div :class="['sections-enter', { 'is-visible': isVisible }]"
+          class="container relative mx-auto max-w-6xl px-4 py-8 md:px-8 md:py-10"
+          style="--section-step: 90ms">
           <!-- 标题区域 -->
           <div class="text-center mb-6">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 animate-bounce-slow"
-              style="text-shadow: 2px 2px 4px rgba(0,0,0,0.2), 0 0 20px rgba(255,187,51,0.3);">
+            <h2 class="text-balance mb-2 text-3xl font-bold tracking-[-0.04em] text-white md:text-4xl lg:text-5xl"
+              style="text-shadow: 0 10px 35px rgba(15,23,42,0.2);">
               {{ promotionTitle }}
             </h2>
             <p v-if="promotion?.banner?.subtitle" class="text-lg md:text-xl text-white/90 mb-4"
-              style="text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+              style="text-shadow: 0 1px 2px rgba(15,23,42,0.15);">
               {{ promotion.banner.subtitle }}
             </p>
 
@@ -71,7 +75,7 @@
 
             <!-- 活动已结束提示 -->
             <div v-else-if="promotion && countdown.total <= 0"
-              class="inline-flex items-center gap-2 bg-gray-500/30 backdrop-blur-md rounded-2xl px-6 py-4 border border-white/30">
+              class="inline-flex items-center gap-2 rounded-2xl border border-white/25 bg-white/12 px-6 py-4 backdrop-blur-md">
               <svg class="w-6 h-6 text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -81,14 +85,17 @@
           </div>
 
           <!-- 活动内容 -->
-          <div v-if="promotion?.banner?.content" v-html="promotion.banner.content" style="width: 110%;"></div>
+          <div v-if="promotion?.banner?.content" class="mx-auto max-w-5xl rounded-[1.5rem] border border-white/14 bg-black/10 px-5 py-5 backdrop-blur-sm">
+            <div v-html="promotion.banner.content"></div>
+          </div>
           <div v-else class="max-w-4xl mx-auto">
-            <div v-if="promotionDescription" class="text-white/90 leading-relaxed whitespace-pre-line">
+            <div v-if="promotionDescription"
+              class="rounded-[1.5rem] border border-white/14 bg-black/10 px-5 py-5 text-white/90 leading-relaxed whitespace-pre-line backdrop-blur-sm">
               {{ promotionDescription }}
             </div>
             <div v-if="ruleSummaries.length > 0" class="mt-4">
-              <div class="text-white font-semibold mb-2">活动规则</div>
-              <ul class="text-white/80 text-sm space-y-1">
+              <div class="mb-2 text-white font-semibold">活动规则</div>
+              <ul class="rounded-[1.25rem] border border-white/14 bg-black/10 px-5 py-4 text-sm text-white/80 space-y-1 backdrop-blur-sm">
                 <li v-for="(line, idx) in ruleSummaries" :key="idx">{{ line }}</li>
               </ul>
             </div>
@@ -96,7 +103,7 @@
 
           <div class="max-w-4xl mx-auto mt-6 flex justify-center">
             <button @click="goToPricing"
-              class="px-8 py-3 bg-white text-red-600 font-bold rounded-xl hover:bg-gray-50 hover:scale-[1.02] transition-all shadow-lg">
+              class="rounded-xl bg-white px-8 py-3 font-bold text-red-600 shadow-[0_20px_40px_-24px_rgba(15,23,42,0.55)] transition-all hover:scale-[1.02] hover:bg-gray-50">
               立即抢购
             </button>
           </div>
@@ -473,10 +480,6 @@ onUnmounted(() => {
   50% {
     transform: translateY(-10px);
   }
-}
-
-.animate-bounce-slow {
-  animation: bounce-slow 2s ease-in-out infinite;
 }
 
 /* 渐入动画 */

@@ -1,28 +1,33 @@
 <template>
   <div class="relative min-h-screen bg-white">
-    <div class="min-h-screen" style="position: relative; z-index: 1;">
+    <div class="min-h-screen overflow-hidden" style="position: relative; z-index: 1;">
+      <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[26rem] overflow-hidden">
+        <div class="absolute left-1/2 top-[-8rem] h-72 w-72 -translate-x-[145%] rounded-full bg-slate-100/80 blur-3xl"></div>
+        <div class="absolute right-1/2 top-2 h-80 w-80 translate-x-[145%] rounded-full bg-blue-100/60 blur-3xl"></div>
+        <div class="absolute left-1/2 top-24 h-52 w-[32rem] -translate-x-1/2 rounded-full bg-white/75 blur-3xl"></div>
+      </div>
       <!-- 导航栏占位 -->
       <div class="h-16"></div>
 
       <div class="flex">
         <!-- 移动端遮罩层 -->
-        <div v-if="mobileMenuOpen" class="fixed inset-0 bg-black/50 z-40 lg:hidden" @click="mobileMenuOpen = false">
+        <div v-if="mobileMenuOpen" class="fixed inset-0 z-40 bg-black/45 backdrop-blur-sm lg:hidden" @click="mobileMenuOpen = false">
         </div>
 
         <!-- 侧边栏 -->
         <aside :class="[
-          'fixed top-16 left-0 h-[calc(100vh-4rem)] w-80 border-r border-gray-200 shadow-sm transition-transform duration-300 z-50 overflow-hidden',
+          'fixed top-16 left-0 h-[calc(100vh-4rem)] w-80 overflow-hidden border-r border-gray-200/80 bg-white/88 shadow-[0_20px_55px_-38px_rgba(15,23,42,0.35)] backdrop-blur transition-transform duration-300 z-50',
           'lg:sticky lg:top-16 lg:translate-x-0',
           mobileMenuOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         ]">
           <div class="flex flex-col h-full">
 
             <!-- 导航菜单 -->
-            <nav ref="menuScroll" class="flex-1 overflow-y-auto p-4">
+            <nav ref="menuScroll" class="flex-1 overflow-y-auto p-4 lg:p-5">
               <div v-for="category in filteredCategories" :key="category.id" class="mb-6">
                 <h3
-                  :class="['text-sm font-bold mb-3 px-2 flex items-center gap-2', categoryTheme[category.color]?.title || 'text-gray-900']">
-                  <span class="inline-flex items-center justify-center w-5 h-5 rounded-md bg-gray-100 text-current">
+                  :class="['text-sm font-bold mb-3 px-2 flex items-center gap-2 tracking-[0.01em]', categoryTheme[category.color]?.title || 'text-gray-900']">
+                  <span class="surface-stat inline-flex items-center justify-center w-5 h-5 rounded-md text-current">
                     <component :is="categoryIconComponents[category.icon] || FileText" class="w-4 h-4" />
                   </span>
                   {{ category.title }}
@@ -30,10 +35,10 @@
                 <ul class="space-y-1">
                   <li v-for="page in getPagesByCategory(category.id)" :key="page.id">
                     <button @click="setCurrentPage(page.id)" :class="[
-                      'menu-btn w-full text-left px-3 py-2 text-sm rounded-none relative transition-all duration-200 ease-out',
+                      'menu-btn w-full text-left px-3 py-2.5 text-sm rounded-xl relative transition-all duration-200 ease-out',
                       currentPageId === page.id
-                        ? [categoryTheme[category.color]?.activeBg || 'bg-blue-50', categoryTheme[category.color]?.activeText || 'text-blue-700', 'font-medium menu-active']
-                        : 'text-gray-700 hover:bg-gray-100 hover:text-gray-900'
+                        ? [categoryTheme[category.color]?.activeBg || 'bg-blue-50', categoryTheme[category.color]?.activeText || 'text-blue-700', 'font-medium menu-active surface-soft-inner surface-soft-outline']
+                        : 'text-gray-700 hover:bg-gray-100/80 hover:text-gray-900'
                     ]">
                       {{ page.title }}
                     </button>
@@ -42,7 +47,7 @@
                       class="mt-1 ml-6 space-y-0.5 subheadings" :class="{ 'subline-active': !!activeHeadingId }">
                       <li v-for="h in currentHeadings" :key="h.id">
                         <button @click="scrollToHeading(h.id)" :data-heading-id="h.id" :class="[
-                          'subitem-btn w-full text-left pl-3 pr-2 py-1 text-xs rounded-none hover:bg-gray-100 transition-colors relative',
+                          'subitem-btn w-full text-left pl-3 pr-2 py-1.5 text-xs rounded-lg hover:bg-gray-100/80 transition-colors relative',
                           activeHeadingId === h.id
                             ? ['active-subitem', categoryTheme[category.color]?.activeText || 'text-green-700', 'font-medium pb-1 -mb-px']
                             : 'text-gray-600 hover:text-gray-800'
@@ -62,7 +67,7 @@
 
         <!-- 移动端菜单按钮 -->
         <button @click="mobileMenuOpen = true"
-          class="fixed top-20 left-4 z-30 lg:hidden p-2 rounded-lg bg-white border border-gray-200 shadow-sm hover:bg-gray-50 transition-colors">
+          class="surface-stat fixed top-20 left-4 z-30 rounded-xl p-2.5 transition-colors hover:bg-white lg:hidden">
           <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -70,17 +75,18 @@
 
         <!-- 主内容区域 - 与侧边栏并排布局，无额外内边距 -->
         <main ref="contentScroll" class="flex-1 h-[calc(100vh-4rem)] overflow-y-auto">
-          <div class="max-w-4xl mx-auto px-6 py-8">
+          <div class="max-w-5xl mx-auto px-4 py-6 md:px-6 md:py-8">
             <!-- 面包屑导航已移除 -->
 
             <!-- 文档内容 -->
-            <div v-if="currentPage" class="prose prose-gray max-w-none">
+            <div v-if="currentPage" class="surface-soft p-5 md:p-8">
               <!-- 使用 v-html 渲染 Markdown 内容 -->
-              <div v-html="renderedContent" class="markdown-content"></div>
+              <div v-html="renderedContent" class="markdown-content prose prose-gray max-w-none sections-enter is-visible"
+                style="--section-step: 80ms"></div>
             </div>
 
             <!-- 默认欢迎页面 -->
-            <div v-else class="text-center py-16">
+            <div v-else class="surface-soft sections-enter is-visible text-center py-16 px-6">
               <svg class="mx-auto h-12 w-12 text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
@@ -94,18 +100,18 @@
             </div>
 
             <!-- 页面导航 -->
-            <div v-if="currentPage" class="flex justify-between items-center mt-12 pt-8 border-t border-gray-200">
+            <div v-if="currentPage" class="mt-6 flex items-center justify-between gap-4">
               <button v-if="previousPage" @click="setCurrentPage(previousPage.id)"
-                class="inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:underline focus:outline-none">
+                class="surface-soft-inner surface-soft-outline inline-flex items-center gap-2 rounded-xl bg-white/80 px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 focus:outline-none">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
                 </svg>
                 {{ previousPage.title }}
               </button>
-              <div v-else></div>
+              <div v-else class="hidden md:block"></div>
 
               <button v-if="nextPage" @click="setCurrentPage(nextPage.id)"
-                class="inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-gray-900 hover:underline focus:outline-none">
+                class="surface-soft-inner surface-soft-outline inline-flex items-center gap-2 rounded-xl bg-white/80 px-4 py-2.5 text-sm font-medium text-gray-700 transition-colors hover:text-gray-900 focus:outline-none">
                 {{ nextPage.title }}
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

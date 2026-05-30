@@ -150,7 +150,7 @@
           </a>
 
           <!-- 文档按钮 -->
-          <router-link to="/documentation" @click="markDocsUpdateViewed" class="hidden md:block doc-button-new"
+          <router-link to="/documentation" @click.prevent="openDocumentationWithNotice" class="hidden md:block doc-button-new"
             title="查看文档">
             <div>
               <div class="pencil"></div>
@@ -219,7 +219,7 @@
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             月卡管理
           </router-link>
-          <router-link to="/documentation" @click="closeMobileMenu"
+          <router-link to="/documentation" @click.prevent="openDocumentationWithNotice(true)"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             文档
           </router-link>
@@ -253,6 +253,13 @@
     <!-- 公告模态框 -->
     <AnnouncementModal :isVisible="isAnnouncementVisible" @close="closeAnnouncements" />
 
+    <!-- 文档提示 -->
+    <DocumentationNoticeModal
+      :isVisible="isDocumentationNoticeVisible"
+      @close="closeDocumentationNotice"
+      @confirm="confirmDocumentationNotice"
+    />
+
     <!-- 活动条幅 -->
     <PromotionBanner v-model="isPromotionBannerVisible" :promotion="currentPromotion" @close="closePromotionBanner" />
   </header>
@@ -260,8 +267,10 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
 import ChangelogModal from './ChangelogModal.vue'
 import AnnouncementModal from './AnnouncementModal.vue'
+import DocumentationNoticeModal from './DocumentationNoticeModal.vue'
 import PromotionBanner from './PromotionBanner.vue'
 import MiniCountdown from './MiniCountdown.vue'
 import { hasNewAnnouncements as checkNewAnnouncements } from '@/data/announcements.js'
@@ -283,9 +292,13 @@ const isAnnouncementVisible = ref(false)
 
 // 是否有新公告
 const hasNewAnnouncements = ref(false)
+const isDocumentationNoticeVisible = ref(false)
+const shouldCloseDocumentationMobileMenu = ref(false)
 
 // 计算赞助次数
 const donationCount = computed(() => donations.length)
+const router = useRouter()
+const route = useRoute()
 
 // 活动相关状态
 const isPromotionBannerVisible = ref(false)
@@ -298,6 +311,37 @@ const latestVersion = getLatestVersion()
 const markDocsUpdateViewed = () => {
   localStorage.setItem('welight_docs_last_viewed_version', latestVersion.version)
   hasDocsUpdate.value = false
+}
+
+const openDocumentationWithNotice = (shouldCloseMobileMenu = false) => {
+  if (route.path === '/documentation' || route.name === 'documentation') {
+    markDocsUpdateViewed()
+    if (shouldCloseMobileMenu) {
+      closeMobileMenu()
+    }
+    window.location.reload()
+    return
+  }
+
+  shouldCloseDocumentationMobileMenu.value = shouldCloseMobileMenu
+  isDocumentationNoticeVisible.value = true
+}
+
+const closeDocumentationNotice = () => {
+  isDocumentationNoticeVisible.value = false
+  shouldCloseDocumentationMobileMenu.value = false
+}
+
+const confirmDocumentationNotice = () => {
+  markDocsUpdateViewed()
+
+  if (shouldCloseDocumentationMobileMenu.value) {
+    closeMobileMenu()
+  }
+
+  isDocumentationNoticeVisible.value = false
+  shouldCloseDocumentationMobileMenu.value = false
+  router.push('/documentation')
 }
 
 // 获取菜单中的活动

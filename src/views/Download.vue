@@ -396,12 +396,12 @@
           </div>
 
           <!-- QQ群信息弹窗 -->
-          <div v-if="showQQModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          <div v-if="showQQModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/45 px-4 py-6 backdrop-blur-sm"
             @click="closeQQModal">
-            <div class="bg-white dark:bg-gray-800 rounded-lg p-8 max-w-md mx-4 shadow-2xl" @click.stop>
+            <div class="surface-soft relative mx-4 w-full max-w-md rounded-[28px] p-8 text-gray-900 shadow-2xl" @click.stop>
               <div class="text-center">
                 <div
-                  class="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
+                  class="surface-stat mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
                   <svg class="w-8 h-8 text-gray-900 dark:text-gray-200" fill="currentColor" viewBox="0 0 24 24">
                     <path
                       d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
@@ -410,12 +410,12 @@
                 <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">Welight 交流反馈群</h3>
                 <p class="text-gray-600 dark:text-gray-300 mb-6">遇到问题或需要帮助？欢迎加入我们的QQ群</p>
 
-                <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-6">
+                <div class="surface-soft-inner surface-soft-outline mb-6 rounded-2xl bg-gray-50/85 p-4">
                   <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">QQ群号</p>
                   <div class="flex items-center justify-center space-x-2">
                     <span class="text-2xl font-bold text-gray-900 dark:text-gray-200">1071558803</span>
                     <button @click="copyQQGroup"
-                      class="text-gray-900 hover:text-gray-700 dark:text-gray-200 dark:hover:text-gray-300">
+                      class="rounded-md p-1 text-gray-900 transition-colors hover:bg-gray-200/70 hover:text-gray-700 dark:text-gray-200 dark:hover:text-gray-300">
                       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
@@ -427,11 +427,11 @@
 
                 <div class="flex space-x-3">
                   <button @click="closeQQModal"
-                    class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                    class="surface-soft-inner surface-soft-outline flex-1 rounded-xl px-4 py-2 text-gray-700 transition-colors hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700">
                     关闭
                   </button>
                   <a href="https://qm.qq.com/q/Q7CbqSNmUY" target="_blank"
-                    class="flex-1 px-4 py-2 bg-gray-900 text-white rounded-lg hover:bg-gray-800 transition-colors text-center">
+                    class="flex-1 rounded-xl bg-gray-900 px-4 py-2 text-center text-white transition-colors hover:bg-gray-800">
                     直接加群
                   </a>
                 </div>

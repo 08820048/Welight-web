@@ -1,20 +1,20 @@
 <template>
   <teleport to="body">
     <!-- 模态框背景 -->
-    <div v-if="isVisible" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[100] p-4 pt-20 animate-fade-in"
+    <div v-if="isVisible" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/55 p-4 pt-20 backdrop-blur-sm animate-fade-in"
       @click="closeModal">
       <!-- 模态框内容 -->
       <div
-        class="bg-white border border-gray-200 rounded-lg shadow-lg max-w-4xl w-full max-h-[85vh] overflow-hidden modal-content"
+        class="surface-soft modal-content max-h-[85vh] w-full max-w-4xl overflow-hidden rounded-[28px]"
         @click.stop>
         <!-- 头部 -->
-        <div class="flex items-center justify-between p-6 border-b border-gray-200">
+        <div class="sections-enter flex items-center justify-between border-b border-gray-200/80 p-6">
           <div class="flex flex-col space-y-2">
             <h2 class="text-lg font-semibold text-gray-900">公告通知</h2>
             <p class="text-sm text-gray-500">Welight 重要公告和通知</p>
           </div>
           <button @click="closeModal"
-            class="text-gray-400 hover:text-gray-600 transition-colors rounded-md hover:bg-gray-100 p-1">
+            class="surface-stat inline-flex h-10 w-10 items-center justify-center rounded-full p-1 text-gray-400 transition-colors hover:text-gray-700">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -27,12 +27,13 @@
           <div class="space-y-6">
             <!-- 动态渲染公告 -->
             <template v-for="announcement in announcementData" :key="announcement.id">
-              <div class="relative pb-6 border-b border-gray-100 last:border-0 last:pb-0">
+              <div class="sections-enter surface-soft-inner surface-soft-outline relative rounded-2xl bg-gray-50/80 pb-6 pt-5 px-5 last:pb-5"
+                style="--section-step: 80ms">
                 <!-- 公告标题 -->
                 <div class="flex items-start space-x-3 mb-3">
                   <div class="flex items-center space-x-2 flex-1">
                     <span class="text-base font-semibold text-gray-900">{{ announcement.title }}</span>
-                    <span class="px-2 py-0.5 text-xs rounded-md bg-gray-900 text-white">
+                    <span class="surface-stat px-2 py-0.5 text-xs rounded-md text-gray-900">
                       {{ announcement.badge }}
                     </span>
                   </div>
@@ -51,9 +52,9 @@
         </div>
 
         <!-- 底部 -->
-        <div class="border-t border-gray-200 p-4 flex justify-end">
+        <div class="border-t border-gray-200/80 p-4 flex justify-end">
           <button @click="closeModal"
-            class="px-4 py-2 bg-gray-900 hover:bg-gray-800 text-white text-sm rounded-md transition-colors">
+            class="rounded-xl bg-gray-900 px-4 py-2 text-sm text-white transition-colors hover:bg-gray-800">
             关闭
           </button>
         </div>
@@ -139,7 +140,7 @@ onUnmounted(() => {
 
 /* 模态框动画 */
 .modal-content {
-  animation: modalZoomIn 0.2s ease-out;
+  animation: modalZoomIn 0.24s ease-out;
 }
 
 @keyframes modalZoomIn {
