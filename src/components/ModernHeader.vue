@@ -1,6 +1,6 @@
 <template>
   <header
-    class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 dark:bg-gray-900/80 dark:border-white">
+    class="fixed top-0 left-0 right-0 z-50 border-b border-[#d8e1d2] bg-[#f4f7f1]/85 backdrop-blur-md dark:border-[#536471] dark:bg-[#3c4a55]/90">
     <div class="w-full px-6 md:px-16">
       <!-- Desktop Navbar -->
       <nav class="hidden lg:flex items-center justify-between h-16">
@@ -16,7 +16,7 @@
         <!-- Center: one-page anchors -->
         <nav class="flex items-center gap-6">
           <a v-for="item in anchorLinks" :key="item.href" :href="item.href"
-            class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
+            class="text-sm font-medium text-[#63715f] hover:text-[#202821] dark:text-[#c8d0c5] dark:hover:text-[#f4f7f1]">
             {{ item.label }}
           </a>
         </nav>
@@ -25,11 +25,11 @@
         <div class="flex items-center gap-3">
           <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex h-9 items-center rounded-full border border-gray-300 bg-white px-4 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:hover:bg-gray-800">
+            class="inline-flex h-9 items-center rounded-full border border-[#cad7c3] bg-[#fbfcf8] px-4 text-sm font-semibold text-[#202821] transition-colors hover:bg-[#edf3e8] dark:border-[#60717d] dark:bg-[#465865] dark:text-[#f4f7f1] dark:hover:bg-[#506371]">
             下载试用
           </a>
           <router-link to="/pricing"
-            class="inline-flex h-9 items-center rounded-full bg-gray-900 px-4 text-sm font-semibold text-white transition-colors hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200">
+            class="inline-flex h-9 items-center rounded-full bg-[#3c4a55] px-4 text-sm font-semibold text-[#f4f7f1] transition-colors hover:bg-[#2f3b44] dark:bg-[#f4f7f1] dark:text-[#2f3b44] dark:hover:bg-[#e7edde]">
             购买许可证
           </router-link>
           <div class="relative group" v-if="false">
@@ -90,7 +90,7 @@
         </router-link>
 
         <button @click="toggleMobileMenu"
-          class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
+          class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-[#e7edde] transition-colors dark:hover:bg-[#506371]">
           <svg v-if="!isMobileMenuOpen" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -110,7 +110,7 @@
     <!-- Mobile Menu Drawer -->
     <transition name="mobile-drawer">
       <div v-if="isMobileMenuOpen"
-        class="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-white dark:bg-gray-900 shadow-2xl z-50 lg:hidden overflow-y-auto">
+        class="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-[#f4f7f1] shadow-2xl dark:bg-[#3c4a55] z-50 lg:hidden overflow-y-auto">
         <div class="p-6">
           <!-- Mobile Menu Header -->
           <div class="flex items-center justify-between mb-6">
@@ -120,12 +120,12 @@
             </div>
             <div class="flex items-center gap-2">
               <button @click="toggleTheme" aria-label="切换主题"
-                class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 transition-colors dark:text-gray-600">
+                class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-[#e7edde] transition-colors dark:text-[#f4f7f1] dark:hover:bg-[#506371]">
                 <Sun v-if="themeStore.isDark" class="h-5 w-5" />
                 <Moon v-else class="h-5 w-5" />
               </button>
               <button @click="closeMobileMenu" aria-label="关闭菜单"
-                class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
+                class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-[#e7edde] transition-colors dark:hover:bg-[#506371]">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
@@ -136,7 +136,7 @@
           <!-- Mobile Menu Items -->
           <nav class="space-y-1">
             <a v-for="item in anchorLinks" :key="item.href" :href="item.href" @click="closeMobileMenu"
-              class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              class="block px-4 py-3 text-sm font-medium text-[#3c4a55] dark:text-[#f4f7f1] rounded-xl hover:bg-[#e7edde] dark:hover:bg-[#506371] transition-colors">
               {{ item.label }}
             </a>
 
@@ -151,7 +151,7 @@
 
             <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
               @click="closeMobileMenu"
-              class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+              class="block px-4 py-3 text-sm font-medium text-[#3c4a55] dark:text-[#f4f7f1] rounded-xl hover:bg-[#e7edde] dark:hover:bg-[#506371] transition-colors">
               <span class="inline-flex items-center gap-2">
                 <DownloadIcon class="w-4 h-4" />
                 下载
@@ -198,20 +198,20 @@
           </nav>
 
             <!-- Mobile Action Buttons -->
-          <div class="mt-6 space-y-3 border-t border-gray-200 pt-6">
+          <div class="mt-6 space-y-3 border-t border-[#d8e1d2] pt-6 dark:border-[#536471]">
             <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
               @click="closeMobileMenu"
-              class="block w-full text-center px-4 py-3 text-sm font-medium border border-gray-300 bg-white text-gray-900 rounded-xl transition-colors hover:bg-gray-50">
+              class="block w-full text-center px-4 py-3 text-sm font-medium border border-[#cad7c3] bg-[#fbfcf8] text-[#202821] rounded-xl transition-colors hover:bg-[#edf3e8] dark:border-[#60717d] dark:bg-[#465865] dark:text-[#f4f7f1] dark:hover:bg-[#506371]">
               下载试用
             </a>
 
             <router-link to="/pricing" @click="closeMobileMenu"
-              class="relative block w-full text-center px-4 py-3 text-sm font-medium bg-gray-900 text-white rounded-xl transition-colors hover:bg-gray-800">
+              class="relative block w-full text-center px-4 py-3 text-sm font-medium bg-[#3c4a55] text-[#f4f7f1] rounded-xl transition-colors hover:bg-[#2f3b44] dark:bg-[#f4f7f1] dark:text-[#2f3b44] dark:hover:bg-[#e7edde]">
               购买许可证
             </router-link>
 
             <router-link to="/documentation" @click.prevent="openDocumentationWithNotice(true)"
-              class="relative block w-full text-center px-4 py-3 text-sm font-medium border border-gray-300 bg-white text-gray-900 rounded-xl transition-colors hover:bg-gray-50">
+              class="relative block w-full text-center px-4 py-3 text-sm font-medium border border-[#cad7c3] bg-[#fbfcf8] text-[#202821] rounded-xl transition-colors hover:bg-[#edf3e8] dark:border-[#60717d] dark:bg-[#465865] dark:text-[#f4f7f1] dark:hover:bg-[#506371]">
               文档
             </router-link>
           </div>
