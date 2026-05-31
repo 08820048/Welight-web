@@ -33,8 +33,8 @@ const promotions = [
             </div>
             <div class="promo-info-item">
               <h3>许可证限时特惠中</h3>
-              <p>特惠现价 <strong>14.99元/永久</strong></p>
-              <span>活动结束后恢复原价 <strong>49.99元/每年</strong></span>
+              <p>当前支持 <strong>$5-$16 自由付款</strong></p>
+              <span>最终金额以支付页面展示为准</span>
             </div>
           </div>
           <div class="promo-actions">
@@ -54,25 +54,25 @@ const promotions = [
     activityStartDate: '2025-12-24',
     endDate: '2025-12-27',
     showInMenu: true,
-    menuBadge: '直降9.9',
+    menuBadge: '自由付款',
     menuBadgeText: '',
     banner: {
-      title: '圣诞节活动 · 许可证直降9.9元',
-      subtitle: '所有许可证套餐直降 9.9 元！',
+      title: '圣诞节活动 · 许可证自由付款',
+      subtitle: '支付页面支持在 $5-$16 区间自由选择金额',
       bgColor: '#dc2626',
       bgGradient: 'linear-gradient(90deg, #ef4444 0%, #22c55e 100%)',
       content: `
         <div class="promo-clean-layout">
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
-              <h3>许可证限时直降</h3>
-              <p>所有许可证套餐 <strong>立减 9.9 元</strong></p>
-              <span>节日限定直降优惠，仅限活动期</span>
+              <h3>许可证自由付款</h3>
+              <p>当前区间 <strong>$5-$16</strong></p>
+              <span>你可以在支付页面选择合适金额</span>
             </div>
             <div class="promo-info-item">
-              <h3>买断更划算</h3>
-              <p>买断版享受同等直降优惠</p>
-              <span>活动结束后恢复原价</span>
+              <h3>一次购买</h3>
+              <p>网页版与桌面端完整功能</p>
+              <span>最终税费与支付方式以结账页为准</span>
             </div>
           </div>
           <div class="promo-actions">
@@ -96,21 +96,21 @@ const promotions = [
     menuBadgeText: '',
     banner: {
       title: '跨年限时活动 · 新年焕新',
-      subtitle: '许可证全部6.5折，积分套餐全系8折',
+      subtitle: '许可证支持 $5-$16 自由付款',
       bgColor: '#f97316',
       bgGradient: 'linear-gradient(90deg, #60A5FA 0%, #6366F1 50%, #A78BFA 100%)',
       content: `
         <div class="promo-clean-layout">
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
-              <h3>许可证全系折扣</h3>
-              <p>全场 <strong>6.5折</strong></p>
-              <span>限时优惠，迎新焕新</span>
+              <h3>许可证自由付款</h3>
+              <p>当前区间 <strong>$5-$16</strong></p>
+              <span>在支付页面选择合适金额</span>
             </div>
             <div class="promo-info-item">
-              <h3>积分套餐优惠</h3>
-              <p>全系 <strong>8折</strong></p>
-              <span>多档位套餐均享折扣</span>
+              <h3>AI 服务可自配</h3>
+              <p>模型与图床按需配置</p>
+              <span>旧积分套餐不再作为主要售卖项</span>
             </div>
           </div>
           <div class="promo-actions">
@@ -134,16 +134,16 @@ const promotions = [
     menuBadgeText: '',
     banner: {
       title: '冬至特惠 · 暖冬同行',
-      subtitle: '许可证全部8折',
+      subtitle: '许可证支持 $5-$16 自由付款',
       bgColor: '#3b82f6',
       bgGradient: 'linear-gradient(90deg, #2563EB 0%, #22D3EE 50%, #2DD4BF 100%)',
       content: `
         <div class="promo-clean-layout">
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
-              <h3>许可证限时折扣</h3>
-              <p>全场 <strong style="color:#ff4444">8折</strong></p>
-              <span>冬至限定优惠，仅限活动期</span>
+              <h3>许可证自由付款</h3>
+              <p>当前区间 <strong style="color:#ff4444">$5-$16</strong></p>
+              <span>最终金额以支付页面展示为准</span>
             </div>
           </div>
           <div class="promo-actions">

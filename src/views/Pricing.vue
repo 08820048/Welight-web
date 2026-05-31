@@ -61,7 +61,7 @@
               <h3 class="font-bold text-gray-900">{{ selectedProduct.name }}</h3>
               <p class="text-pretty mb-3 text-sm text-gray-600">{{ selectedProduct.description }}</p>
               <div class="flex items-center justify-between">
-                <span class="tabular-nums text-lg font-bold text-gray-900">{{ formatPrice(selectedProduct.price,
+                <span class="tabular-nums text-lg font-bold text-gray-900">{{ selectedProduct.priceRange || formatPrice(selectedProduct.price,
                   selectedProduct.currency) }}</span>
                 <span v-if="selectedProduct.permanent"
                   class="surface-stat rounded-full px-2.5 py-1 text-xs text-gray-900 dark:text-gray-100">永久授权</span>
@@ -280,7 +280,7 @@
           <div class="text-center relative max-w-3xl mx-auto px-4 md:px-8">
             <AnimatedUnderlineText text="Welight 授权" text-className="text-balance text-4xl font-extrabold tracking-[-0.03em] text-[#202821] dark:text-[#f4f7f1]"
               underline-className="text-[#3c4a55] dark:text-[#f4f7f1]" />
-            <MagicText text="一次购买，解锁网页版与桌面端完整编辑体验" container-className="mt-6 justify-center"
+            <MagicText text="支付时选择金额，即可解锁网页版与桌面端完整编辑体验" container-className="mt-6 justify-center"
               word-className="text-pretty text-lg text-[#5f6b5c] dark:text-[#d7ded3]" />
           </div>
 
@@ -324,11 +324,10 @@
 
                 <div class="relative z-10">
                   <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#6f7b69] dark:text-[#c8d0c5]">
-                    Welight License
+                    Flexible License
                   </p>
                   <div class="mt-5 flex items-start justify-center tabular-nums text-[#202821] dark:text-[#f4f7f1]">
-                    <span class="translate-y-3 text-5xl font-light leading-none md:text-6xl">$</span>
-                    <span class="text-[7.5rem] font-light leading-[0.8] tracking-normal md:text-[9rem]">9.9</span>
+                    <span class="text-[4.7rem] font-light leading-[0.9] tracking-normal md:text-[8rem]">$5-$16</span>
                   </div>
 
                   <button
@@ -338,11 +337,11 @@
                     class="mx-auto mt-6 flex min-h-12 w-full max-w-xs items-center justify-center rounded-full px-6 py-3 text-base font-semibold shadow-[0_18px_44px_-24px_rgba(60,74,85,0.72)] transition-transform duration-200 active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-55"
                     :class="getPricingPrimaryButtonClass(0, isServiceCurrentlyAvailable)"
                   >
-                    $9.9买断
+                    选择金额并购买
                   </button>
 
                   <div class="mx-auto mt-7 max-w-xl space-y-3 text-pretty text-sm leading-7 text-[#5f6b5c] dark:text-[#d7ded3] md:text-base">
-                    <p>实际结账价格为 <span class="font-semibold text-[#202821] dark:text-[#f4f7f1]">$9.9</span>，最终税费与可用支付方式以支付页面展示为准。</p>
+                    <p>支付页面支持在 <span class="font-semibold text-[#202821] dark:text-[#f4f7f1]">$5-$16</span> 区间自由选择付款金额，最终税费与可用支付方式以支付页面展示为准。</p>
                     <p>包含网页版与桌面端完整功能、主题更新、许可证发放与授权验证。</p>
                     <p>
                       或先
@@ -394,7 +393,7 @@
                     https://waer.ltd/wl/
                   </a>
                 </li>
-                <li class="animate-fade-in-up delay-1600">支付由 Dodo Payments 托管处理，最终税费、币种换算与可用支付方式以结账页为准。</li>
+                <li class="animate-fade-in-up delay-1600">支付由 Dodo Payments 托管处理，支付页可在 $5-$16 区间自由选择付款金额，最终税费、币种换算与可用支付方式以结账页为准。</li>
                 <li class="animate-fade-in-up delay-1700">如需退款请联系支持协助处理，能否退款以支付平台规则、交易时间和订单状态为准。</li>
                 <li class="animate-fade-in-up delay-1700">默认内置的图片云存储服务和 AI 服务一样作为可选服务，您也可以选择配置自己的图床进行使用</li>
               </ul>
@@ -532,8 +531,9 @@ const DODO_LICENSE_PRODUCT = {
   id: 'dodo-welight-license',
   code: 'WELIGHT_DODO_LICENSE',
   name: 'Welight 标准授权',
-  description: '解锁网页版与桌面端完整功能，购买后由 Dodo Payments 发放许可证密钥。',
-  price: 9.9,
+  description: '解锁网页版与桌面端完整功能，支付页可在 $5-$16 区间自由付款，购买后由 Dodo Payments 发放许可证密钥。',
+  price: 5,
+  priceRange: '$5-$16',
   currency: 'USD',
   permanent: true,
   maxActivations: 2,

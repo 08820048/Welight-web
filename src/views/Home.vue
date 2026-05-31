@@ -43,7 +43,7 @@
               to="/pricing"
               class="inline-flex min-h-11 items-center justify-center rounded-full border border-[#cad7c3] bg-[#fbfcf8] px-6 py-3 text-sm font-semibold text-[#202821] transition-colors hover:bg-[#edf3e8] dark:border-[#60717d] dark:bg-[#465865] dark:text-[#f4f7f1] dark:hover:bg-[#506371]"
             >
-              $9.9买断
+              $5-$16 自由付款
             </router-link>
           </div>
         </div>
@@ -194,20 +194,20 @@
     <section id="pricing" class="scroll-mt-28 px-4 py-20 md:px-6 md:py-28">
       <div class="mx-auto max-w-5xl">
         <div data-reveal="up-xs">
-          <SectionHeader eyebrow="04" title="价格直接讲清楚" description="不把过期积分套餐作为主要售卖项。当前官网以买断许可证为主，AI 服务和模型配置按实际使用方式处理。" />
+          <SectionHeader eyebrow="04" title="自由付款，完整授权" description="先试用，合适再购买。支付页面可在 $5-$16 区间内选择金额，授权内容不因金额不同而变化。" />
         </div>
 
         <div data-reveal="up-sm" class="motion-card mx-auto mt-12 max-w-2xl rounded-lg bg-[#fbfcf8] p-8 text-center shadow-[0_26px_80px_-55px_rgba(60,74,85,0.45)] ring-1 ring-[#cad7c3] dark:bg-[#465865] dark:ring-white/10">
-          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#6f7b69] dark:text-[#c8d0c5]">Personal License</p>
-          <div class="mt-5 tabular-nums text-7xl font-light leading-none md:text-8xl">$9.9</div>
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#6f7b69] dark:text-[#c8d0c5]">Flexible License</p>
+          <div class="mt-5 tabular-nums text-6xl font-light leading-none md:text-8xl">$5-$16</div>
           <router-link
             to="/pricing"
             class="mx-auto mt-7 inline-flex min-h-12 w-full max-w-xs items-center justify-center rounded-full bg-[#3c4a55] px-6 py-3 text-base font-semibold text-[#f4f7f1] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#2f3b44] active:scale-[0.96] dark:bg-[#f4f7f1] dark:text-[#2f3b44] dark:hover:bg-[#e7edde]"
           >
-            $9.9买断
+            选择金额并购买
           </router-link>
           <p class="mx-auto mt-6 max-w-lg text-pretty text-sm leading-7 text-[#5f6b5c] dark:text-[#d7ded3]">
-            终身更新 · 2 台 Mac / 许可证 · 3天试用 · 支持银行卡、Apple Pay、微信等。最终税费与可用支付方式以支付页面展示为准。
+            支付页面可在 $5-$16 区间自由选择付款金额。终身更新 · 2 台 Mac / 许可证 · 3天试用 · 支持银行卡、Apple Pay、微信等。
           </p>
         </div>
       </div>
@@ -402,7 +402,7 @@ const faqs = [
   },
   {
     question: '试用和许可证怎么激活？',
-    answer: '先下载试用确认工作流是否合适。购买许可证后在应用内按提示激活，当前官网价格和支付方式以支付页面展示为准。'
+    answer: '先下载试用确认工作流是否合适。购买许可证后在应用内按提示激活，支付页面支持在 $5-$16 区间自由付款，最终税费与可用支付方式以支付页面展示为准。'
   }
 ]
 
