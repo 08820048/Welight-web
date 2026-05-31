@@ -1,1419 +1,570 @@
 <template>
-  <div class="relative min-h-screen bg-white dark:bg-gray-900">
-    <div class="min-h-screen text-gray-800 dark:text-gray-200 relative overflow-hidden"
-      style="position: relative; z-index: 1">
-      <!-- Hero Section -->
-      <section class="relative pt-24 pb-24">
-        <div class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34rem] overflow-hidden">
-          <div class="absolute left-1/2 top-[-8rem] h-80 w-80 -translate-x-[120%] rounded-full bg-sky-100/70 blur-3xl dark:bg-sky-500/10"></div>
-          <div class="absolute right-1/2 top-12 h-72 w-72 translate-x-[140%] rounded-full bg-cyan-100/80 blur-3xl dark:bg-cyan-400/10"></div>
-          <div class="absolute left-1/2 top-48 h-56 w-[34rem] -translate-x-1/2 rounded-full bg-white/70 blur-3xl dark:bg-white/5"></div>
-        </div>
-        <div class="mx-auto max-w-6xl px-6">
-          <div class="mx-auto">
-            <!-- Animated content group -->
-            <div class="space-y-8 text-center">
-              <!-- Main heading -->
-              <div class="mt-12 lg:mt-20 transition-all duration-[1500ms] ease-out"
-                :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
-                <AnimatedUnderlineText text="好看的排版，从来简约。" :level="1"
-                  :animated="false"
-                  text-className="text-balance text-5xl font-medium leading-[0.95] tracking-[-0.04em] md:text-7xl text-gray-900 dark:text-gray-100"
-                  underline-className="text-gray-900 dark:text-gray-100" />
-              </div>
+  <div ref="revealRoot" class="min-h-screen bg-[#fbfbfa] text-gray-950 dark:bg-gray-950 dark:text-gray-50" :class="{ 'reveal-ready': revealMotionReady }">
+    <section id="top" class="px-4 pt-24 md:px-6 md:pt-28">
+      <div class="mx-auto max-w-6xl">
+        <div class="mx-auto max-w-4xl text-center">
+          <p data-reveal="up-xs" class="text-sm font-semibold uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">
+            Agent-led publishing workspace
+          </p>
+          <h1 class="hero-title mt-5 text-balance text-4xl font-semibold tracking-normal text-gray-950 md:text-6xl dark:text-white">
+            <span
+              v-for="(word, index) in heroTitleWords"
+              :key="word"
+              class="hero-title-word"
+              :style="{ '--word-delay': `${120 + index * 80}ms` }"
+            >
+              {{ word }}
+            </span>
+          </h1>
+          <p data-reveal="up-sm" style="--reveal-delay: 440ms" class="mx-auto mt-6 max-w-3xl text-pretty text-lg leading-8 text-gray-600 md:text-xl dark:text-gray-300">
+            素材搜索、文章其稿、审校、配图和创作发布
+          </p>
 
-              <div class="mx-auto max-w-3xl transition-all duration-[1500ms] ease-out"
-                :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
-                <p class="text-pretty text-lg leading-8 text-gray-600 dark:text-gray-300 md:text-xl">
-                  专为微信公众号创作者打造的智能排版应用，拥有更优性能、更快捷的操作体验。
-                </p>
-              </div>
+          <div class="mt-7 flex flex-wrap justify-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+            <span
+              v-for="(item, index) in heroFacts"
+              :key="item"
+              data-reveal="up-xs"
+              class="rounded-full border border-gray-200 bg-white px-3 py-1 dark:border-gray-800 dark:bg-gray-900"
+              :style="{ '--reveal-delay': `${560 + index * 55}ms` }"
+            >
+              {{ item }}
+            </span>
+          </div>
 
-              <!-- Download CTA Row -->
-              <div class="mt-14 flex w-full flex-wrap items-center justify-center gap-3 transition-all duration-[1500ms] ease-out"
-                :class="ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'
-                  ">
-                <!-- macOS button (black pill) -->
-                <button
-                  class="inline-flex items-center rounded-full bg-black pl-5 pr-4 py-3 text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-gray-900 shadow-soft-lg"
-                  @click="downloadFile('macos-apple')">
-                  <svg class="mr-2 w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M18.71,19.5C17.88,20.74 17,21.95 15.66,21.97C14.32,22 13.89,21.18 12.37,21.18C10.84,21.18 10.37,21.95 9.1,22C7.79,22.05 6.8,20.68 5.96,19.47C4.25,17 2.94,12.45 4.7,9.39C5.57,7.87 7.13,6.91 8.82,6.88C10.1,6.86 11.32,7.75 12.11,7.75C12.89,7.75 14.37,6.68 15.92,6.84C16.57,6.87 18.39,7.1 19.56,8.82C19.47,8.88 17.39,10.1 17.41,12.63C17.44,15.65 20.06,16.66 20.09,16.67C20.06,16.74 19.67,18.11 18.71,19.5M13,3.5C13.73,2.67 14.94,2.04 15.94,2C16.07,3.17 15.6,4.35 14.9,5.19C14.21,6.04 13.07,6.7 11.95,6.61C11.8,5.46 12.36,4.26 13,3.5Z" />
-                  </svg>
-                  下载 macOS 版
-                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-
-                <!-- Windows button (white pill) -->
-                <button
-                  class="surface-stat inline-flex items-center rounded-full pl-5 pr-4 py-3 text-gray-900 dark:text-gray-200"
-                  @click="downloadFile('windows-installer')">
-                  <svg class="mr-2 w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path
-                      d="M0,0V11.408H11.408V0ZM12.594,0V11.408H24V0ZM0,12.594V24H11.408V12.594ZM12.594,12.594V24H24V12.594Z" />
-                  </svg>
-                  下载 Windows 版
-                  <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-
-                <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA"
-                  target="_blank"
-                  class="surface-stat group inline-flex items-center rounded-full pl-5 pr-4 py-3 text-gray-700 transition-colors hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
-                  查看所有版本
-                  <svg class="ml-2 w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none"
-                    stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                  </svg>
-                </a>
-
-                <div class="flex items-center gap-3 text-sm text-gray-500">
-                  <span class="tabular-nums text-gray-600 dark:text-gray-300">
-                    总下载量：{{ animatedTotalDownloads.toLocaleString() }}次
-                  </span>
-                </div>
-              </div>
-
-              <div class="mx-auto mt-5 w-full max-w-2xl transition-all duration-[1500ms] ease-out"
-                :class="ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
-                <p class="mb-2 text-center text-xs uppercase tracking-[0.22em] text-gray-400 dark:text-gray-500">
-                  CLI 安装
-                </p>
-                <div
-                  class="group relative mx-auto flex items-center gap-3 overflow-x-auto rounded-[1.1rem] bg-[#111111] px-4 py-3 pr-12 font-mono text-sm text-green-400 shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_18px_44px_-26px_rgba(15,23,42,0.8)]">
-                  <span class="select-none text-gray-500">$</span>
-                  <code class="whitespace-nowrap">npm i -g welight-cli</code>
-                  <button
-                    class="absolute right-3 top-1/2 inline-flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md text-gray-500 opacity-0 transition-all duration-200 hover:bg-white/10 hover:text-gray-200 focus:opacity-100 focus:outline-none group-hover:opacity-100 group-focus-within:opacity-100"
-                    type="button" :aria-label="cliCopied ? '命令已复制' : '复制 CLI 安装命令'" @click="copyCliCommand">
-                    <svg v-if="cliCopied" class="h-4 w-4 text-green-400" fill="none" stroke="currentColor"
-                      viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M5 13l4 4L19 7" />
-                    </svg>
-                    <svg v-else class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
-              <div v-if="purchaseUsersBaseTarget"
-                class="mt-4 w-full text-center transition-all duration-[1500ms] ease-out"
-                :class="ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
-                <p class="text-sm text-gray-600 dark:text-gray-300">
-                  已有 <span class="tabular-nums font-semibold text-gray-900 dark:text-gray-100 text-lg sm:text-xl leading-none">{{
-                    animatedPurchaseUsersDisplay }}</span> 位付费用户选择了 Welight
-                </p>
-              </div>
-            </div>
+          <div data-reveal="up-xs" style="--reveal-delay: 800ms" class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <button
+              class="inline-flex min-h-11 items-center justify-center rounded-full bg-gray-950 px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_42px_-26px_rgba(15,23,42,0.8)] transition-transform duration-200 hover:-translate-y-0.5 active:scale-[0.96] dark:bg-white dark:text-gray-950"
+              @click="downloadFile('macos-apple')"
+            >
+              下载试用
+            </button>
+            <router-link
+              to="/pricing"
+              class="inline-flex min-h-11 items-center justify-center rounded-full border border-gray-300 bg-white px-6 py-3 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:hover:bg-gray-800"
+            >
+              $9.9买断
+            </router-link>
           </div>
         </div>
 
-        <!-- Product Video -->
-        <div class="relative mt-2 px-2 sm:mt-4 md:mt-8 transition-all duration-[1500ms] ease-out" :class="videoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'
-          ">
-          <div
-            class="surface-soft relative w-full max-w-5xl mx-auto p-2 sm:p-4">
-            <div
-              class="surface-soft-inner surface-soft-outline relative overflow-hidden aspect-video bg-gray-100 dark:bg-gray-800">
-              <picture v-if="themeStore.isDark">
-                <source srcset="/assert/index_dark.webp" type="image/webp" />
-                <img :src="heroImageSrc" alt="Welight 预览" class="w-full h-full object-cover" loading="eager"
-                  decoding="async" fetchpriority="high" width="1200" height="675" />
-              </picture>
-              <picture v-else>
-                <source srcset="/assert/index.webp" type="image/webp" />
-                <img :src="heroImageSrc" alt="Welight 预览" class="w-full h-full object-cover" loading="eager"
-                  decoding="async" fetchpriority="high" width="1200" height="675" />
-              </picture>
-            </div>
-          </div>
-          <!-- 提示：请将 videoUrl 替换为您的 MP4 视频链接 -->
+        <div data-reveal="up-sm" style="--reveal-delay: 980ms" class="mt-12 overflow-hidden rounded-lg bg-white p-2 shadow-[0_30px_90px_-55px_rgba(15,23,42,0.55)] ring-1 ring-black/10 dark:bg-gray-900 dark:ring-white/10">
+          <picture>
+            <source :srcset="themeStore.isDark ? '/assert/index_dark.webp' : '/assert/index.webp'" type="image/webp" />
+            <img
+              :src="themeStore.isDark ? '/assert/index_dark.webp' : '/assert/index.webp'"
+              alt="Welight 桌面应用界面，包含编辑区、预览区和 AI 创作入口"
+              class="aspect-[16/9] w-full rounded-md object-cover"
+              width="1200"
+              height="675"
+              loading="eager"
+              decoding="async"
+            />
+          </picture>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- Themes Section -->
-      <section class="relative py-32 content-auto">
-        <div class="relative container-custom">
-          <!-- Section header -->
-          <div class="sections-enter mb-20 scroll-animate">
-            <AnimatedUnderlineText text="丰富多样的排版主题"
-              :animated="false"
-              text-className="text-balance text-4xl md:text-5xl font-bold tracking-[-0.03em] text-gray-900 dark:text-gray-100"
-              underline-className="text-gray-900 dark:text-gray-100" />
-            <MagicText text="精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果" mode="static" container-className="mt-6 justify-center"
-              word-className="text-pretty text-xl text-gray-500" />
-          </div>
-
-          <!-- Themes showcase - Testimonials Column style -->
-          <div class="scroll-animate">
-            <ThemeTestimonials />
-          </div>
+    <section id="features" class="scroll-mt-28 px-4 py-20 md:px-6 md:py-28">
+      <div class="mx-auto max-w-6xl">
+        <div data-reveal="up-xs">
+          <SectionHeader eyebrow="00" title="一个 Agent 工作台，而不是一堆按钮" description="Welight 的页面重点从单点排版能力，转向公众号创作流程里的判断、生成、预览和交付。" />
         </div>
-      </section>
 
-      <!-- Features Section -->
-      <section class="relative py-32 content-auto">
-        <div class="relative container-custom">
-          <!-- Section header -->
-          <div class="sections-enter mb-20 scroll-animate">
-            <AnimatedUnderlineText text="快捷高效的编辑体验"
-              :animated="false"
-              text-className="text-balance text-4xl md:text-5xl font-bold tracking-[-0.03em] text-gray-900"
-              underline-className="text-gray-900" />
-            <MagicText text="从划词工具栏到智能排版，每一个功能都经过精心设计" mode="static" container-className="mt-6 justify-center"
-              word-className="text-pretty text-xl text-gray-500" />
-          </div>
-
-          <!-- Features Display Cards -->
-          <div class="grid md:grid-cols-2 gap-16 lg:gap-24">
-            <!-- First Group -->
-            <div class="scroll-animate flex justify-center">
-              <DisplayCards :cards="featuresGroup1" />
-            </div>
-
-            <!-- Second Group -->
-            <div class="scroll-animate flex justify-center">
-              <DisplayCards :cards="featuresGroup2" />
-            </div>
-          </div>
+        <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <article
+            v-for="(area, index) in workspaces"
+            :key="area.title"
+            data-reveal="up-sm"
+            class="motion-card rounded-lg bg-white p-5 ring-1 ring-black/10 dark:bg-gray-900 dark:ring-white/10"
+            :style="{ '--reveal-delay': `${index * 80}ms` }"
+          >
+            <p class="text-sm font-semibold text-gray-500 dark:text-gray-400">{{ area.kicker }}</p>
+            <h3 class="mt-3 text-xl font-semibold tracking-normal">{{ area.title }}</h3>
+            <p class="mt-3 text-pretty text-sm leading-6 text-gray-600 dark:text-gray-300">{{ area.description }}</p>
+            <ul class="mt-5 space-y-2 text-sm text-gray-700 dark:text-gray-300">
+              <li v-for="point in area.points" :key="point" class="flex gap-2">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gray-900 dark:bg-gray-100"></span>
+                <span>{{ point }}</span>
+              </li>
+            </ul>
+          </article>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <!-- AI Integration Section -->
-      <section class="relative py-32 content-auto">
-        <div class="relative container-custom">
-          <!-- Section header -->
-          <div class="sections-enter mb-20 scroll-animate">
-            <AnimatedUnderlineText text="一站式智能体验"
-              :animated="false"
-              text-className="text-balance text-4xl md:text-5xl font-bold tracking-[-0.03em] text-gray-900"
-              underline-className="text-gray-900" />
-            <MagicText text="集成多个主流 AI 模型，为你的写作提供智能辅助" mode="static" container-className="mt-6 justify-center max-w-2xl mx-auto"
-              word-className="text-pretty text-lg md:text-xl text-gray-600" />
-          </div>
-
-          <!-- AI Models Glass Logo Carousel -->
-          <div class="relative mb-16 scroll-animate" style="transition-delay: 0.15s">
-            <LogoCarousel :logos="aiModelLogos" :column-count="aiModelLogos.length" />
-          </div>
-
-          <!-- AI Features showcase -->
-          <div class="grid lg:grid-cols-2 gap-16 items-start">
-            <!-- Left side - AI Tools Features -->
-            <div class="order-2 lg:order-1 scroll-animate">
-              <VerticalDisplayCards :features="aiLeftFeatures" />
-            </div>
-
-            <!-- Right side - AI Writing Features -->
-            <div class="order-1 lg:order-2 scroll-animate">
-              <VerticalDisplayCards :features="aiRightFeatures" />
-            </div>
-          </div>
+    <section id="workflow" class="scroll-mt-28 border-y border-gray-200 bg-white px-4 py-20 md:px-6 md:py-28 dark:border-gray-800 dark:bg-gray-900/45">
+      <div class="mx-auto max-w-6xl">
+        <div data-reveal="up-xs">
+          <SectionHeader eyebrow="01" title="从想法到公众号后台，只走一条线" description="Agent 负责把上下文、生成步骤和工具调用串起来，你在每个关键节点做选择。" />
         </div>
-      </section>
 
-      <!-- Secure Publish Support Section -->
-      <section class="relative py-32 content-auto">
-        <div class="relative container-custom">
-          <!-- Section header -->
-          <div class="sections-enter mb-20 scroll-animate">
-            <AnimatedUnderlineText text="安全便捷的发布支持"
-              :animated="false"
-              text-className="text-balance text-4xl md:text-5xl font-bold tracking-[-0.03em] text-gray-900"
-              underline-className="text-gray-900" />
-            <MagicText text="支持应用内将排版后的文章一键发布到公众号草稿，服务号支持一键发布草稿，免去手动复制粘贴的繁琐。"
-              mode="static" container-className="mt-6 justify-center max-w-2xl mx-auto"
-              word-className="text-pretty text-lg md:text-xl text-gray-600" />
+        <div class="mt-12 grid gap-3 lg:grid-cols-5">
+          <article
+            v-for="(step, index) in workflowSteps"
+            :key="step.title"
+            data-reveal="up-xs"
+            class="motion-card rounded-lg bg-[#fbfbfa] p-5 ring-1 ring-black/10 dark:bg-gray-950 dark:ring-white/10"
+            :style="{ '--reveal-delay': `${index * 70}ms` }"
+          >
+            <div class="flex items-center justify-between">
+              <span class="tabular-nums text-sm font-semibold text-gray-400">0{{ index + 1 }}</span>
+              <span v-if="index < workflowSteps.length - 1" class="hidden text-gray-300 lg:inline">→</span>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold">{{ step.title }}</h3>
+            <p class="mt-3 text-pretty text-sm leading-6 text-gray-600 dark:text-gray-300">{{ step.description }}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ai" class="scroll-mt-28 px-4 py-20 md:px-6 md:py-28">
+      <div class="mx-auto max-w-6xl">
+        <div data-reveal="up-xs">
+          <SectionHeader eyebrow="02" title="Agent 不是黑盒，它把过程摊开给你看" description="创作过程保留可读的中间结果：会话、任务步骤、工具调用、联网搜索、记忆和工作空间。" />
+        </div>
+
+        <div class="mt-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+          <div data-reveal="right-sm" class="overflow-hidden rounded-lg bg-white p-2 ring-1 ring-black/10 dark:bg-gray-900 dark:ring-white/10">
+            <picture>
+              <source :srcset="themeStore.isDark ? '/assert/fbcg-dark.webp' : '/assert/fbcg.webp'" type="image/webp" />
+              <img
+                :src="themeStore.isDark ? '/assert/fbcg-dark.webp' : '/assert/fbcg.webp'"
+                alt="Welight 发布前处理和预览界面"
+                class="aspect-[4/3] w-full rounded-md object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
           </div>
 
-          <div class="grid lg:grid-cols-2 gap-16 items-stretch">
-            <!-- Left: Description -->
-            <div class="order-2 lg:order-1 scroll-animate h-full">
-              <div class="flex flex-col h-full gap-6">
-                <!-- Top: tjydexp preview -->
-                <div class="flex-1 min-h-[240px] lg:min-h-[280px]">
-                  <div
-                    class="surface-soft relative w-full h-full max-w-3xl mx-auto p-2">
-                    <div
-                      class="surface-soft-inner surface-soft-outline relative h-full overflow-hidden bg-gray-100 dark:bg-gray-800">
-                      <picture v-if="themeStore.isDark">
-                        <source srcset="/assert/tjydexp-dark.webp" type="image/webp" />
-                        <img src="/assert/tjydexp-dark.webp" alt="推荐阅读扩展预览" class="w-full h-full object-contain"
-                          loading="lazy" decoding="async" />
-                      </picture>
-                      <picture v-else>
-                        <source srcset="/assert/tjydexp.webp" type="image/webp" />
-                        <img src="/assert/tjydexp.webp" alt="推荐阅读扩展预览" class="w-full h-full object-contain"
-                          loading="lazy" decoding="async" />
-                      </picture>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Middle: description text -->
-                <div class="sections-enter" style="--section-step: 90ms">
-                  <MagicText text="文末[推荐阅读]板块一键插入，文章标题自动读取、支持多模板配置。" mode="static" container-className="justify-start max-w-2xl"
-                    word-className="text-pretty text-lg md:text-xl text-gray-600" />
-                </div>
-
-                <!-- Bottom: tjyd preview -->
-                <div class="flex-1 min-h-[240px] lg:min-h-[280px]">
-                  <div
-                    class="surface-soft relative w-full h-full max-w-3xl mx-auto p-2">
-                    <div
-                      class="surface-soft-inner surface-soft-outline relative h-full overflow-hidden bg-gray-100 dark:bg-gray-800">
-                      <picture v-if="themeStore.isDark">
-                        <source srcset="/assert/tjyd-dark.webp" type="image/webp" />
-                        <img src="/assert/tjyd-dark.webp" alt="推荐阅读预览" class="w-full h-full object-contain"
-                          loading="lazy" decoding="async" />
-                      </picture>
-                      <picture v-else>
-                        <source srcset="/assert/tjyd.webp" type="image/webp" />
-                        <img src="/assert/tjyd.webp" alt="推荐阅读预览" class="w-full h-full object-contain" loading="lazy"
-                          decoding="async" />
-                      </picture>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right: Preview Image -->
-            <div class="order-1 lg:order-2 scroll-animate h-full">
-              <div
-                class="surface-soft relative w-full h-full max-w-3xl mx-auto p-2">
-                <div
-                  class="surface-soft-inner surface-soft-outline relative h-full overflow-hidden bg-gray-100 dark:bg-gray-800">
-                  <picture v-if="themeStore.isDark">
-                    <source srcset="/assert/fbcg-dark.webp" type="image/webp" />
-                    <img src="/assert/fbcg-dark.webp" alt="发布支持预览" class="w-full h-full object-contain" loading="lazy"
-                      decoding="async" />
-                  </picture>
-                  <picture v-else>
-                    <source srcset="/assert/fbcg.webp" type="image/webp" />
-                    <img src="/assert/fbcg.webp" alt="发布支持预览" class="w-full h-full object-contain" loading="lazy"
-                      decoding="async" />
-                  </picture>
-                </div>
-              </div>
-            </div>
+          <div class="grid gap-3">
+            <article
+              v-for="(capability, index) in agentCapabilities"
+              :key="capability.title"
+              data-reveal="left-sm"
+              class="motion-card rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-gray-900"
+              :style="{ '--reveal-delay': `${index * 75}ms` }"
+            >
+              <h3 class="text-lg font-semibold">{{ capability.title }}</h3>
+              <p class="mt-2 text-pretty text-sm leading-6 text-gray-600 dark:text-gray-300">{{ capability.description }}</p>
+            </article>
           </div>
         </div>
-      </section>
 
-      <!-- Markdown Support Section -->
-      <section class="relative min-h-screen py-20 content-auto">
-        <div class="relative container-custom">
-          <!-- Section header -->
-          <div class="sections-enter text-center mb-16 scroll-animate" style="transition-delay: 0.1s">
-            <AnimatedUnderlineText text="是排版工具，也是强大的Markdown编辑器"
-              :animated="false"
-              text-className="text-balance text-3xl md:text-4xl lg:text-5xl font-bold tracking-[-0.03em] text-gray-900 dark:text-gray-100"
-              underline-className="text-gray-900 dark:text-gray-100" />
-            <MagicText text="全面支持标准Markdown语法及扩展功能，让你的文档编写更加高效和专业"
-              mode="static" container-className="mt-6 justify-center max-w-3xl mx-auto"
-              word-className="text-pretty text-lg md:text-xl text-gray-600 dark:text-gray-300" />
-          </div>
-
-          <!-- Markdown features grid -->
-          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <!-- Basic Syntax -->
-            <div class="scroll-animate scale-up" style="transition-delay: 0.4s">
-              <MarkdownFeatureCard :icon="FileText" title="基础语法" :features="[
-                '标题 (H1-H6)',
-                '粗体、斜体、删除线',
-                '有序、无序列表',
-                '链接和图片',
-                '引用块'
-              ]" />
-            </div>
-
-            <!-- Code Support -->
-            <div class="scroll-animate scale-up" style="transition-delay: 0.5s">
-              <MarkdownFeatureCard :icon="Code" title="代码支持" :features="['行内代码', '代码块', '语法高亮', '多语言支持', '代码行号']" />
-            </div>
-
-            <!-- Tables -->
-            <div class="scroll-animate scale-up" style="transition-delay: 0.6s">
-              <MarkdownFeatureCard :icon="Table" title="表格功能" :features="[
-                '标准表格语法',
-                '列对齐控制',
-                '表格样式美化',
-                '可视化编辑',
-                '导入导出支持'
-              ]" />
-            </div>
-
-            <!-- Math & Formulas -->
-            <div class="scroll-animate scale-up" style="transition-delay: 0.7s">
-              <MarkdownFeatureCard :icon="Calculator" title="数学公式"
-                :features="['LaTeX 数学公式', '行内公式', '块级公式', '公式编号', '实时预览']" />
-            </div>
-
-            <!-- Extended Features -->
-            <div class="scroll-animate scale-up" style="transition-delay: 0.8s">
-              <MarkdownFeatureCard :icon="Puzzle" title="扩展功能" :features="['任务列表', '脚注支持', '定义列表', '缩略语', '高亮标记']" />
-            </div>
-
-            <!-- Diagrams -->
-            <div class="scroll-animate scale-up" style="transition-delay: 0.9s">
-              <MarkdownFeatureCard :icon="BarChart" title="图表支持"
-                :features="['Mermaid 图表', '流程图', '时序图', '甘特图', '思维导图']" />
-            </div>
-          </div>
-
-          <!-- Markdown advantages -->
-          <div class="sections-enter text-center scroll-animate" style="transition-delay: 1s">
-            <div class="max-w-4xl mx-auto">
-              <AnimatedUnderlineText text="为什么选择Welight？"
-                :animated="false"
-                text-className="text-balance text-2xl md:text-3xl font-bold tracking-[-0.03em] text-gray-900"
-                underline-className="text-gray-900" />
-
-              <div class="grid md:grid-cols-3 gap-8 mt-12">
-                <!-- Advantage 1 -->
-                <div class="sections-enter scroll-animate fade-up text-center" style="transition-delay: 1.1s">
-                  <h4 class="text-xl font-bold text-gray-900 mb-3">简单高效</h4>
-                  <MagicText text="轻量级编辑器，学习成本低，书写效率高，专注内容创作" mode="static" container-className="justify-center"
-                    word-className="text-pretty text-base text-gray-600" />
-                </div>
-
-                <!-- Advantage 2 -->
-                <div class="sections-enter scroll-animate fade-up text-center" style="transition-delay: 1.2s">
-                  <h4 class="text-xl font-bold text-gray-900 mb-3">极简审美</h4>
-                  <MagicText text="回归创作 初衷，所见即所得，拒绝花里胡哨的图案堆叠。" mode="static" container-className="justify-center"
-                    word-className="text-pretty text-base text-gray-600" />
-                </div>
-
-                <!-- Advantage 3 -->
-                <div class="sections-enter scroll-animate fade-up text-center" style="transition-delay: 1.3s">
-                  <h4 class="text-xl font-bold text-gray-900 mb-3">一杯星巴克</h4>
-                  <MagicText text="为了斗争那些动辄上千的同类产品，我们收取的仅仅是软件本身的构建费用！" mode="static" container-className="justify-center"
-                    word-className="text-pretty text-base text-gray-600" />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Bottom text -->
-          <div class="sections-enter text-center mt-16 scroll-animate" style="transition-delay: 1.4s">
-            <MagicText text="让Welight成为你高效写作的得力助手" mode="static" container-className="justify-center"
-              word-className="text-balance text-xl md:text-2xl font-medium text-gray-600" />
+        <div data-reveal="up-xs" class="mt-12">
+          <p class="text-center text-sm font-semibold uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">
+            模型和服务可按需配置
+          </p>
+          <div class="mt-5 flex flex-wrap justify-center gap-3">
+            <span
+              v-for="(model, index) in modelSupport"
+              :key="model"
+              data-reveal="up-xs"
+              class="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-300"
+              :style="{ '--reveal-delay': `${index * 35}ms` }"
+            >
+              {{ model }}
+            </span>
           </div>
         </div>
-      </section>
-    </div>
+      </div>
+    </section>
 
-    <!-- 底部右上角购买通知滚动 -->
-    <!-- <PurchaseNotificationTicker /> -->
+    <section id="principles" class="scroll-mt-28 border-y border-gray-200 bg-white px-4 py-20 md:px-6 md:py-28 dark:border-gray-800 dark:bg-gray-900/45">
+      <div class="mx-auto max-w-6xl">
+        <div data-reveal="up-xs">
+          <SectionHeader eyebrow="03" title="Welight 的产品边界" description="Agent 可以帮你推进，但不会把每一步都变成不可控的自动化。" />
+        </div>
+        <div class="mt-10 grid gap-4 md:grid-cols-2">
+          <article
+            v-for="(principle, index) in principles"
+            :key="principle.title"
+            data-reveal="up-sm"
+            class="motion-card rounded-lg bg-[#fbfbfa] p-6 ring-1 ring-black/10 dark:bg-gray-950 dark:ring-white/10"
+            :style="{ '--reveal-delay': `${index * 80}ms` }"
+          >
+            <h3 class="text-xl font-semibold">{{ principle.title }}</h3>
+            <p class="mt-3 text-pretty text-sm leading-7 text-gray-600 dark:text-gray-300">{{ principle.description }}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="scroll-mt-28 px-4 py-20 md:px-6 md:py-28">
+      <div class="mx-auto max-w-5xl">
+        <div data-reveal="up-xs">
+          <SectionHeader eyebrow="04" title="价格直接讲清楚" description="不把过期积分套餐作为主要售卖项。当前官网以买断许可证为主，AI 服务和模型配置按实际使用方式处理。" />
+        </div>
+
+        <div data-reveal="up-sm" class="motion-card mx-auto mt-12 max-w-2xl rounded-lg bg-white p-8 text-center shadow-[0_26px_80px_-55px_rgba(15,23,42,0.55)] ring-1 ring-black/10 dark:bg-gray-900 dark:ring-white/10">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-gray-500 dark:text-gray-400">Personal License</p>
+          <div class="mt-5 tabular-nums text-7xl font-light leading-none md:text-8xl">$9.9</div>
+          <router-link
+            to="/pricing"
+            class="mx-auto mt-7 inline-flex min-h-12 w-full max-w-xs items-center justify-center rounded-full bg-gray-950 px-6 py-3 text-base font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 active:scale-[0.96] dark:bg-white dark:text-gray-950"
+          >
+            $9.9买断
+          </router-link>
+          <p class="mx-auto mt-6 max-w-lg text-pretty text-sm leading-7 text-gray-600 dark:text-gray-300">
+            终身更新 · 2 台 Mac / 许可证 · 3天试用 · 支持银行卡、Apple Pay、微信等。最终税费与可用支付方式以支付页面展示为准。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="scroll-mt-28 border-t border-gray-200 bg-white px-4 py-20 md:px-6 md:py-28 dark:border-gray-800 dark:bg-gray-900/45">
+      <div class="mx-auto max-w-4xl">
+        <div data-reveal="up-xs">
+          <SectionHeader eyebrow="05" title="常见问题" description="尽量用短答案回答真实购买和使用前会遇到的问题。" />
+        </div>
+        <div data-reveal="up-sm" class="mt-10 divide-y divide-gray-200 rounded-lg border border-gray-200 bg-[#fbfbfa] dark:divide-gray-800 dark:border-gray-800 dark:bg-gray-950">
+          <details v-for="(item, index) in faqs" :key="item.question" class="group p-5" data-reveal="up-xs" :style="{ '--reveal-delay': `${index * 45}ms` }">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-semibold">
+              {{ item.question }}
+              <span class="text-xl font-light text-gray-400 transition-transform group-open:rotate-45">+</span>
+            </summary>
+            <p class="mt-4 text-pretty text-sm leading-7 text-gray-600 dark:text-gray-300">{{ item.answer }}</p>
+          </details>
+        </div>
+      </div>
+    </section>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
-import { useRoute } from 'vue-router'
-import {
-  handleDownload,
-  initializeDownloadStats,
-  startStatsSync,
-  getDownloadStats
-} from '@/services/downloadStats'
-import { getTotalPurchaseUserCount } from '@/services/licenseService.js'
-import { useSEO, seoConfigs } from '@/composables/useSEO'
-import ThemeTestimonials from '@/components/ThemeTestimonials.vue'
-import DisplayCards from '@/components/DisplayCards.vue'
-import ImageDisplayCard from '@/components/ImageDisplayCard.vue'
-import DualImageDisplayCard from '@/components/DualImageDisplayCard.vue'
-import MarkdownFeatureCard from '@/components/MarkdownFeatureCard.vue'
-import VerticalDisplayCards from '@/components/VerticalDisplayCards.vue'
-import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
-import MagicText from '@/components/ui/MagicText.vue'
-// import PurchaseNotificationTicker from '@/components/PurchaseNotificationTicker.vue'
-import LogoCarousel from '@/components/LogoCarousel.vue'
-import {
-  Wand2,
-  Command,
-  Copy,
-  BarChart3,
-  Palette,
-  Sparkles,
-  FileText,
-  Code,
-  Table,
-  Calculator,
-  Puzzle,
-  BarChart
-} from 'lucide-vue-next'
+import { defineComponent, h, ref, computed, onMounted, onUnmounted } from 'vue'
 import { useThemeStore } from '@/stores/theme'
+import { handleDownload, initializeDownloadStats, getDownloadStats } from '@/services/downloadStats'
+import { useSEO, seoConfigs } from '@/composables/useSEO'
 
-// SEO配置
 useSEO(seoConfigs.home)
 
-// 首屏淡入动画状态
-const heroVisible = ref(true)
-const ctaVisible = ref(true)
-const videoVisible = ref(true)
+const SectionHeader = defineComponent({
+  props: {
+    eyebrow: { type: String, required: true },
+    title: { type: String, required: true },
+    description: { type: String, required: true }
+  },
+  setup(props) {
+    return () =>
+      h('div', { class: 'mx-auto max-w-3xl text-center' }, [
+        h('p', { class: 'tabular-nums text-sm font-semibold text-gray-400' }, props.eyebrow),
+        h('h2', { class: 'mt-3 text-balance text-3xl font-semibold tracking-normal md:text-5xl' }, props.title),
+        h('p', { class: 'mx-auto mt-5 max-w-2xl text-pretty text-base leading-7 text-gray-600 dark:text-gray-300' }, props.description)
+      ])
+  }
+})
 
-// 主题状态与英雄图资源
 const themeStore = useThemeStore()
-const heroImageSrc = computed(() =>
-  themeStore.isDark ? '/assert/index_dark.webp' : '/assert/index.webp'
-)
+const revealRoot = ref(null)
+const revealMotionReady = ref(false)
+let revealObserver = null
 
-const totalPurchaseUsers = ref(null)
-const purchaseUsersBaseTarget = computed(() => {
-  const num = Number(totalPurchaseUsers.value)
-  if (!Number.isFinite(num) || num <= 0) return 0
-  if (num < 200) return 0
+const heroTitleWords = ['一句话、一篇文章、远不止于此']
 
-  const int = Math.floor(num)
-  if (int < 10) return int
-  return Math.floor(int / 10) * 10
+const heroFacts = [
+  'Agent 主导创作',
+  'Markdown + 公众号预览',
+  '一键复制/发布公众号',
+  '支持自配 AI 模型'
+]
+
+const workspaces = [
+  {
+    kicker: 'Research',
+    title: '选题和资料',
+    description: '把联网搜索、上下文整理、素材摘录放进同一个会话里，减少在浏览器、文档和聊天窗口之间来回切换。',
+    points: ['联网搜索', '上下文整理', '资料转大纲']
+  },
+  {
+    kicker: 'Write',
+    title: '写作和改稿',
+    description: '从初稿、扩写、润色到摘要解释，Agent 保留步骤和中间结果，你可以随时接管文本。',
+    points: ['流式输出', '任务步骤', '检查点']
+  },
+  {
+    kicker: 'Format',
+    title: '预览和排版',
+    description: 'Markdown、公式、图表、代码和注音可以在预览区直接看到公众号图文效果，再决定是否复制。',
+    points: ['实时预览', '主题切换', '自定义 CSS']
+  },
+  {
+    kicker: 'Publish',
+    title: '发布前处理',
+    description: '图片上传、封面配图、推荐阅读、导入导出和公众号复制都放在发布前最后一段流程里处理。',
+    points: ['图床配置', '素材整理', '一键复制']
+  }
+]
+
+const workflowSteps = [
+  {
+    title: '写下初稿',
+    description: '先把观点、素材或零散笔记放进编辑区，不需要一开始就处理格式。'
+  },
+  {
+    title: 'Agent 补全结构',
+    description: '让 Agent 根据上下文补齐标题、段落层级、摘要、示例和过渡。'
+  },
+  {
+    title: '选择主题预览',
+    description: '在公众号样式预览里检查标题、引用、代码、表格和图片显示。'
+  },
+  {
+    title: '处理图片和封面',
+    description: '按需要搜索配图、生成图片、上传图床或整理公众号素材。'
+  },
+  {
+    title: '复制/发布公众号',
+    description: '确认无误后一键复制/发布公众号，减少发布前反复调样式。'
+  }
+]
+
+const agentCapabilities = [
+  {
+    title: '会话侧边栏和工作空间',
+    description: '同一篇文章里的资料、生成结果和修改记录可以归在一个上下文里，不必每次从零解释。'
+  },
+  {
+    title: '工具调用和任务步骤',
+    description: '搜索、生成、润色、配图等动作有明确过程，方便你判断 Agent 做了什么。'
+  },
+  {
+    title: 'MCP和Skill支持',
+    description: '通过 MCP 接入外部工具和数据源，用 Skill 固化常用创作流程，让 Agent 可以按你的工作习惯扩展能力。'
+  },
+  {
+    title: '模型和服务可替换',
+    description: '支持多家模型与图床配置，尽量把选择权交给创作者自己。'
+  }
+]
+
+const modelSupport = [
+  'DeepSeek',
+  'OpenAI',
+  '通义千问',
+  '豆包',
+  'Kimi',
+  '智谱',
+  'Ollama',
+  'SiliconFlow',
+  'OpenRouter',
+  '可灵'
+]
+
+const principles = [
+  {
+    title: '本地写作优先',
+    description: '桌面应用提供独立写作环境，文章不必先塞进公众号后台再调格式。'
+  },
+  {
+    title: '先预览，再发布',
+    description: '复制前先看公众号图文效果，尤其是图片、代码、表格和复杂 Markdown 内容。'
+  },
+  {
+    title: 'AI 是协作者，不是黑盒',
+    description: '流式输出、工具调用、任务步骤和检查点都应该可见，方便创作者判断和修改。'
+  },
+  {
+    title: '能自配，就不锁死',
+    description: '模型、图床和服务尽量提供可配置选项，避免把创作流程绑定在单一服务上。'
+  }
+]
+
+const faqs = [
+  {
+    question: 'Welight 和公众号后台编辑器有什么区别？',
+    answer: '公众号后台适合最终发布，Welight 更适合写作、AI 协作、主题预览和发布前整理。你可以在 Welight 里完成大部分准备工作，再复制到后台。'
+  },
+  {
+    question: '现在的 Welight 为什么强调 Agent？',
+    answer: '因为创作流程不只是排版。选题、查资料、扩写、润色、配图、预览和复制都有上下文，Agent 更适合把这些步骤串起来。'
+  },
+  {
+    question: '我不会 Markdown 能用吗？',
+    answer: '可以。Markdown 是高效入口，不是使用门槛。普通文本、快捷菜单、智能排版和预览也能覆盖日常公众号写作。'
+  },
+  {
+    question: 'AI 功能必须购买官方服务吗？',
+    answer: '不是。Welight 支持多家模型和服务配置，具体可用能力取决于你配置的模型、密钥和当前版本支持。'
+  },
+  {
+    question: '能不能一键复制/发布公众号？',
+    answer: '可以。核心目标就是把预览后的图文排版一键复制/发布公众号，减少最后发布前的手动调整。'
+  },
+  {
+    question: '支持哪些系统？',
+    answer: '官网提供 macOS 和 Windows 下载入口；不同平台的安装包和更新节奏以下载页为准。'
+  },
+  {
+    question: '图片和文章内容会上传到哪里？',
+    answer: '写作内容默认在你的本地工作流里处理。图片是否上传取决于你配置的图床或使用的服务，发布前建议检查对应配置。'
+  },
+  {
+    question: '试用和许可证怎么激活？',
+    answer: '先下载试用确认工作流是否合适。购买许可证后在应用内按提示激活，当前官网价格和支付方式以支付页面展示为准。'
+  }
+]
+
+const downloadStats = ref({})
+const backendStats = ref(null)
+const totalDownloads = computed(() => {
+  if (backendStats.value?.totalDownloads !== undefined) return backendStats.value.totalDownloads
+  return Object.values(downloadStats.value).reduce((sum, count) => sum + (Number(count) || 0), 0)
 })
 
-const animatedPurchaseUsersBase = ref(0)
-const animatedPurchaseUsersDisplay = computed(() => {
-  if (!purchaseUsersBaseTarget.value) return ''
-  return `${(animatedPurchaseUsersBase.value || 0).toLocaleString()}+`
-})
-const cliCommand = 'npm i -g welight-cli'
-const cliCopied = ref(false)
-let cliCopiedTimer = null
+async function downloadFile(platform) {
+  const downloadUrls = {
+    'macos-apple': 'https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA',
+    'windows-installer': 'https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA'
+  }
 
-const copyText = async (text) => {
-  if (navigator?.clipboard?.writeText) {
-    await navigator.clipboard.writeText(text)
+  const downloadUrl = downloadUrls[platform] || downloadUrls['macos-apple']
+  await handleDownload(platform, downloadUrl, async (downloadedPlatform) => {
+    downloadStats.value = {
+      ...downloadStats.value,
+      [downloadedPlatform]: (downloadStats.value[downloadedPlatform] || 0) + 1
+    }
+  })
+}
+
+function initializeRevealMotion() {
+  if (typeof window === 'undefined' || !revealRoot.value) return
+
+  const targets = Array.from(revealRoot.value.querySelectorAll('[data-reveal]'))
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  if (!targets.length || reduceMotion || !('IntersectionObserver' in window)) {
+    targets.forEach((target) => target.classList.add('is-revealed'))
     return
   }
 
-  const textArea = document.createElement('textarea')
-  textArea.value = text
-  textArea.setAttribute('readonly', '')
-  textArea.style.position = 'absolute'
-  textArea.style.left = '-9999px'
-  document.body.appendChild(textArea)
-  textArea.select()
-  document.execCommand('copy')
-  document.body.removeChild(textArea)
-}
-
-const copyCliCommand = async () => {
-  try {
-    await copyText(cliCommand)
-    cliCopied.value = true
-
-    if (cliCopiedTimer) {
-      clearTimeout(cliCopiedTimer)
-    }
-
-    cliCopiedTimer = setTimeout(() => {
-      cliCopied.value = false
-      cliCopiedTimer = null
-    }, 1500)
-  } catch (error) {
-    console.error('复制 CLI 安装命令失败:', error)
-  }
-}
-
-/** 显示首屏标题淡入 */
-function revealHero() {
-  heroVisible.value = true
-}
-
-/** 显示CTA区域淡入 */
-function revealCta() {
-  ctaVisible.value = true
-}
-
-/** 显示产品预览淡入 */
-function revealVideo() {
-  videoVisible.value = true
-}
-
-// Features Display Cards Data
-const featuresGroup1 = [
-  {
-    icon: Wand2,
-    title: '划词工具栏',
-    description: '选中文本即可显示划词工具栏，快速应用格式、预设的 AI 快捷功能',
-    titleClassName: 'text-gray-900'
-  },
-  {
-    icon: Command,
-    title: 'AI快捷文生图',
-    description: '集成阿里千文系统、快手kolors文生图模型,一句话即可参加自己的佳作',
-    titleClassName: 'text-gray-900'
-  },
-  {
-    icon: Copy,
-    title: '预览一键复制',
-    description: '满意的排版风格一键复制，粘贴微信编辑器即可发布，所见即所得',
-    titleClassName: 'text-gray-900'
-  }
-]
-
-const featuresGroup2 = [
-  {
-    icon: BarChart3,
-    title: '智能图表转换',
-    description: '采用 ChartJs 图表渲染集成，图表格式自动转码，数据转表弹指可得',
-    titleClassName: 'text-gray-900'
-  },
-  {
-    icon: Palette,
-    title: '丰富主题样式',
-    description: '精心设计的多种主题风格，让你的推文呈现更加专业和美观的视觉效果',
-    titleClassName: 'text-gray-900'
-  },
-  {
-    icon: Sparkles,
-    title: 'AI 智能助手',
-    description: '集成多个主流 AI 模型，为你的写作提供智能辅助，让创作更加高效',
-    titleClassName: 'text-gray-900'
-  }
-]
-
-// AI Features Data - Left side
-const aiLeftFeatures = [
-  {
-    title: '转微信外链',
-    description: '根据引用的链接自动生成微信外链引用'
-  },
-  {
-    title: 'AI 图表',
-    description: '智能分析提供的文本数据，转为合适的 Mermaid 图表'
-  },
-  {
-    title: 'AI 创作',
-    description: '结合 10 余种实时新闻资讯，掌握创作热点，一键快速完成文章创作'
-  },
-  {
-    title: '图库系统',
-    description: '集成各大图片平台，超上万张图片资源免费使用，内置图床一键上传复用'
-  }
-]
-
-// AI Models logos for glass carousel
-const aiModelLogos = [
-  {
-    id: 'deepseek',
-    name: 'DeepSeek',
-    src: '/llm/deepseek-color.svg'
-  },
-  {
-    id: 'zhipu',
-    name: '智谱',
-    src: '/llm/zhipu-color.svg'
-  },
-  {
-    id: 'qwen',
-    name: 'Qwen',
-    src: '/llm/qwen-color.svg'
-  },
-  {
-    id: 'kimi',
-    name: 'Kimi',
-    src: '/llm/kimi-color.svg'
-  },
-  {
-    id: 'ollama',
-    name: 'Ollama',
-    src: '/llm/ollama.svg'
-  },
-  {
-    id: '豆包',
-    name: '豆包',
-    src: '/llm/doubao-color.svg'
-  },
-  {
-    id: 'kolors',
-    name: 'Kolors',
-    src: '/llm/kolors-color.svg'
-  }
-]
-
-// AI Features Data - Right side
-const aiRightFeatures = [
-  {
-    title: '智能续写',
-    description: 'AI 根据上下文智能续写内容，保持文章风格一致性'
-  },
-  {
-    title: '多语言翻译',
-    description: '内置 13 种不同语言的 AI 翻译支持，跨语言沟通无障碍'
-  },
-  {
-    title: '代码生成',
-    description: '根据文本语语意,一键生成对应的代码,技术文章高效创作'
-  },
-  {
-    title: '内容润色',
-    description: '划词选中内容，AI 一键润色，让文字更加精彩'
-  }
-]
-
-// Hero卡片自动切换
-const heroCard1 = ref(null)
-const heroCard2 = ref(null)
-const heroCard3 = ref(null)
-let autoSwitchTimer = null
-let isAutoSwitchPaused = false
-
-// 自动切换卡片
-const startAutoSwitch = () => {
-  if (autoSwitchTimer) {
-    clearInterval(autoSwitchTimer)
-  }
-
-  let currentIndex = 0
-  const cards = [heroCard1, heroCard2, heroCard3]
-
-  autoSwitchTimer = setInterval(() => {
-    if (!isAutoSwitchPaused && cards[0].value) {
-      currentIndex = (currentIndex + 1) % 3
-      cards[currentIndex].value.checked = true
-    }
-  }, 4000) // 每4秒切换一次
-}
-
-// 暂停自动切换（鼠标悬停时）
-const pauseAutoSwitch = () => {
-  isAutoSwitchPaused = true
-}
-
-// 恢复自动切换（鼠标离开时）
-const resumeAutoSwitch = () => {
-  isAutoSwitchPaused = false
-}
-
-// 停止自动切换
-const stopAutoSwitch = () => {
-  if (autoSwitchTimer) {
-    clearInterval(autoSwitchTimer)
-    autoSwitchTimer = null
-  }
-}
-
-/**
- * 动态加载撒花特效库
- */
-function loadConfettiLibrary() {
-  return new Promise((resolve, reject) => {
-    if (typeof window.confetti !== 'undefined') {
-      resolve()
-      return
-    }
-
-    const script = document.createElement('script')
-    script.src =
-      'https://cdn.jsdelivr.net/npm/tsparticles-confetti@2.12.0/tsparticles.confetti.bundle.min.js'
-
-    script.onload = () => resolve()
-    script.onerror = () => reject(new Error('Failed to load confetti library'))
-    document.head.appendChild(script)
-  })
-}
-
-/**
- * 触发彩虹撒花特效
- */
-async function triggerRainbowConfetti() {
-  try {
-    await loadConfettiLibrary()
-    window.confetti({
-      particleCount: 150,
-      spread: 60,
-      origin: { y: 0.6 },
-      colors: ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8']
-    })
-  } catch (error) {
-    console.error('彩虹撒花特效加载失败:', error)
-  }
-}
-
-// 开发模式检测
-const isDev = import.meta.env.DEV
-
-// 路由实例
-const route = useRoute()
-
-// 下载统计数据 - 从后端API获取真实统计
-const downloadStats = ref({
-  'windows-installer': 0,
-  'windows-msi': 0,
-  'macos-apple': 0,
-  'macos-intel': 0,
-  'linux-appimage': 0,
-  'linux-deb': 0,
-  'linux-rpm': 0
-})
-
-// 后端原始统计数据
-const backendStats = ref(null)
-
-// 动画数字状态
-const animatedTotalDownloads = ref(0)
-const animatedMacDownloads = ref(0)
-const animatedWindowsDownloads = ref(0)
-const animatedLinuxDownloads = ref(0)
-
-// 计算总下载量 - 优先使用后端数据
-const totalDownloads = computed(() => {
-  if (backendStats.value && backendStats.value.totalDownloads !== undefined) {
-    return backendStats.value.totalDownloads
-  }
-  return Object.values(downloadStats.value).reduce((total, count) => total + count, 0)
-})
-
-// 数字递增动画函数
-const animateNumber = (from, to, duration, callback) => {
-  // 确保输入值是有效数字
-  const fromNum = Number(from) || 0
-  const toNum = Number(to) || 0
-  const durationNum = Number(duration) || 1000
-
-  const startTime = Date.now()
-  const difference = toNum - fromNum
-
-  const step = () => {
-    const elapsed = Date.now() - startTime
-    const progress = Math.min(elapsed / durationNum, 1)
-
-    // 使用缓动函数，让动画更自然
-    const easeOutQuart = 1 - Math.pow(1 - progress, 4)
-    const current = Math.floor(fromNum + difference * easeOutQuart)
-
-    callback(current)
-
-    if (progress < 1) {
-      requestAnimationFrame(step)
-    } else {
-      callback(toNum) // 确保最终值准确
-    }
-  }
-
-  requestAnimationFrame(step)
-}
-
-// 计算各平台总下载量
-const getPlatformDownloads = () => {
-  const stats = downloadStats.value
-  return {
-    windows: (stats['windows-installer'] || 0) + (stats['windows-msi'] || 0),
-    macos: (stats['macos-apple'] || 0) + (stats['macos-intel'] || 0),
-    linux: (stats['linux-appimage'] || 0) + (stats['linux-deb'] || 0) + (stats['linux-rpm'] || 0)
-  }
-}
-
-// 从后端数据获取平台下载量
-const getPlatformDownloadsFromBackend = () => {
-  if (backendStats.value && backendStats.value.platformDownloads) {
-    return {
-      windows: backendStats.value.platformDownloads.windows || 0,
-      macos: backendStats.value.platformDownloads.mac || 0, // 注意：API返回的是'mac'不是'macos'
-      linux: backendStats.value.platformDownloads.linux || 0
-    }
-  }
-  return getPlatformDownloads() // 回退到本地计算
-}
-
-// 启动下载数据动画
-const startDownloadAnimation = () => {
-  const platformStats = getPlatformDownloadsFromBackend()
-
-  // 总下载量动画
-  animateNumber(0, totalDownloads.value, 2000, (value) => {
-    animatedTotalDownloads.value = value
-  })
-
-  // macOS下载量动画（两种安装包总和）
-  animateNumber(0, platformStats.macos, 1800, (value) => {
-    animatedMacDownloads.value = value
-  })
-
-  // Windows下载量动画（两种安装包总和）
-  animateNumber(0, platformStats.windows, 1600, (value) => {
-    animatedWindowsDownloads.value = value
-  })
-
-  // Linux下载量动画（三种安装包总和）
-  animateNumber(0, platformStats.linux, 1400, (value) => {
-    animatedLinuxDownloads.value = value
-  })
-}
-
-const startPurchaseUsersAnimation = () => {
-  const target = purchaseUsersBaseTarget.value
-  if (!target) return
-
-  animateNumber(0, target, 1600, (value) => {
-    animatedPurchaseUsersBase.value = value
-  })
-}
-
-watch(purchaseUsersBaseTarget, (newTarget, oldTarget) => {
-  if (newTarget && newTarget !== oldTarget) {
-    startPurchaseUsersAnimation()
-  }
-})
-
-// 下载文件函数
-const downloadFile = async (platform) => {
-  try {
-    // 触发彩虹撒花特效
-    triggerRainbowConfetti()
-
-    // 实际下载链接映射
-    const downloadUrls = {
-      'windows-installer': 'https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA',
-      'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.5.2_x64_en-US.msi',
-      'macos-apple': 'https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA',
-      'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.5.2_x64.dmg',
-      'linux-appimage': 'https://waer.ltd/downloads/linux/Welight_4.1.6_amd64.AppImage',
-      'linux-deb': 'https://waer.ltd/downloads/linux/Welight_4.1.6_amd64.deb'
-    }
-
-    const downloadUrl = downloadUrls[platform]
-
-    if (downloadUrl) {
-      // 使用新的下载处理服务，传入更新本地统计的回调
-      const updateLocalStats = async (downloadedPlatform) => {
-        try {
-          // 更新本地统计数据
-          const currentStats = { ...downloadStats.value }
-          if (currentStats[downloadedPlatform] !== undefined) {
-            currentStats[downloadedPlatform] += 1
-          }
-          downloadStats.value = currentStats
-
-          // 同时刷新后端原始数据
-          const rawData = await getDownloadStats()
-          if (rawData) {
-            backendStats.value = rawData
-          }
-          console.log('本地统计已更新:', currentStats, '后端数据:', rawData)
-
-          // 数据更新后重新启动动画
-          setTimeout(() => {
-            startDownloadAnimation()
-          }, 300)
-        } catch (error) {
-          console.error('更新本地统计失败:', error)
-        }
-      }
-
-      await handleDownload(platform, downloadUrl, updateLocalStats)
-    } else {
-      console.log(`${platform} 版本暂不可用`)
-      alert(`${platform} 版本即将推出，敬请期待！`)
-    }
-  } catch (error) {
-    console.error('下载处理失败:', error)
-    // 下载失败也不应该影响页面状态
-  }
-}
-
-// 初始化下载统计数据
-const loadDownloadStats = async () => {
-  try {
-    // 先获取后端原始数据
-    const rawData = await getDownloadStats()
-    if (rawData) {
-      backendStats.value = rawData
-      console.log('后端原始数据:', rawData)
-    }
-
-    // 再获取映射后的数据
-    const stats = await initializeDownloadStats()
-    downloadStats.value = stats
-    console.log('映射后的统计数据:', stats)
-
-    // 数据加载完成后，延迟启动动画
-    setTimeout(() => {
-      startDownloadAnimation()
-    }, 1000) // 延迟1秒，让页面元素先渲染
-  } catch (error) {
-    console.error('初始化下载统计数据失败:', error)
-  }
-}
-
-// 滚动触发动画
-let observer = null
-let statsCleanup = null
-const isInitialized = ref(false)
-
-// 重置页面状态
-const resetPageState = () => {
-  // 清理之前的observer
-  if (observer) {
-    observer.disconnect()
-    observer = null
-  }
-
-  // 重置动画状态
-  const allAnimatedElements = document.querySelectorAll('.animate-in-view, .scroll-animate-first')
-  allAnimatedElements.forEach((el) => {
-    el.classList.remove('animate-in-view', 'scroll-animate-first')
-  })
-
-  isInitialized.value = false
-}
-
-// 初始化页面动画
-const initializeAnimations = () => {
-  if (isInitialized.value) return
-
-  // 使用 nextTick 确保 DOM 已完全渲染
-  nextTick(() => {
-    try {
-      // 确保页面滚动到顶部
-      window.scrollTo(0, 0)
-
-      // 创建 Intersection Observer 来监听元素进入视口
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              // 当元素进入视口时，添加动画类
-              entry.target.classList.add('animate-in-view')
-            } else {
-              // 当元素离开视口时，移除动画类，以便下次进入时重新触发
-              entry.target.classList.remove('animate-in-view')
-            }
-          })
-        },
-        {
-          threshold: 0.3, // 当元素30%可见时触发
-          rootMargin: '0px 0px -100px 0px' // 提前100px触发
-        }
-      )
-
-      // 观察所有需要动画的元素
-      const animatedElements = document.querySelectorAll('.scroll-animate')
-      console.log(`找到 ${animatedElements.length} 个滚动动画元素`)
-      animatedElements.forEach((el) => {
-        if (observer) observer.observe(el)
+  revealMotionReady.value = true
+  revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return
+        entry.target.classList.add('is-revealed')
+        revealObserver?.unobserve(entry.target)
       })
-
-      // 为首页元素也添加滚动监听
-      const firstPageElements = document.querySelectorAll(
-        '.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-scale-in'
-      )
-      console.log(`找到 ${firstPageElements.length} 个首页动画元素`)
-      firstPageElements.forEach((el) => {
-        // 给首页元素添加scroll-animate类
-        el.classList.add('scroll-animate-first')
-        if (observer) observer.observe(el)
-      })
-
-      isInitialized.value = true
-      console.log('页面动画初始化完成')
-    } catch (error) {
-      console.error('动画初始化失败:', error)
-      isInitialized.value = true // 即使失败也标记为已初始化，避免重复尝试
+    },
+    {
+      rootMargin: '0px 0px -12% 0px',
+      threshold: 0.16
     }
+  )
+
+  requestAnimationFrame(() => {
+    targets.forEach((target) => revealObserver?.observe(target))
   })
 }
 
 onMounted(async () => {
-  // 重置页面状态
-  resetPageState()
-
-  // 首屏入场动画
+  initializeRevealMotion()
 
   try {
-    // 初始化下载统计数据
-    await loadDownloadStats()
-
-    totalPurchaseUsers.value = await getTotalPurchaseUserCount()
-
-    // 启动统计数据同步（每5分钟同步一次）
-    statsCleanup = startStatsSync(
-      async (newStats) => {
-        downloadStats.value = newStats
-        // 同时更新后端原始数据
-        const rawData = await getDownloadStats()
-        if (rawData) {
-          backendStats.value = rawData
-        }
-
-        // 定期同步时也重新启动动画
-        setTimeout(() => {
-          startDownloadAnimation()
-        }, 300)
-      },
-      5 * 60 * 1000
-    )
-
-    // 初始化动画
-    initializeAnimations()
-
-    // 启动Hero卡片自动切换（延迟启动，等待页面加载完成）
-    setTimeout(() => {
-      startAutoSwitch()
-    }, 2000)
+    const [stats, rawData] = await Promise.all([initializeDownloadStats(), getDownloadStats()])
+    downloadStats.value = stats || {}
+    backendStats.value = rawData || null
   } catch (error) {
-    console.error('页面初始化失败:', error)
-    // 即使数据加载失败，也要初始化动画
-    initializeAnimations()
-
-    // 启动Hero卡片自动切换
-    setTimeout(() => {
-      startAutoSwitch()
-    }, 2000)
+    console.warn('下载统计加载失败:', error)
   }
 })
 
-// 监听路由变化，确保每次回到首页都能正确初始化
-watch(
-  () => route.path,
-  (newPath, oldPath) => {
-    if (newPath === '/' && oldPath !== '/') {
-      console.log('返回首页，重新初始化...')
-      // 延迟一点时间确保页面完全加载
-      setTimeout(() => {
-        resetPageState()
-        initializeAnimations()
-      }, 100)
-    }
-  },
-  { immediate: false }
-)
-
-// 监听页面可见性变化
-const handleVisibilityChange = () => {
-  if (!document.hidden && route.path === '/') {
-    console.log('页面重新可见，检查初始化状态...')
-    // 如果页面重新可见且在首页，确保动画正常
-    if (!isInitialized.value) {
-      setTimeout(() => {
-        initializeAnimations()
-      }, 200)
-    }
-  }
-}
-
-// 添加页面可见性监听
-document.addEventListener('visibilitychange', handleVisibilityChange)
-
 onUnmounted(() => {
-  if (cliCopiedTimer) {
-    clearTimeout(cliCopiedTimer)
-    cliCopiedTimer = null
-  }
-
-  // 清理 Intersection Observer
-  if (observer) {
-    observer.disconnect()
-    observer = null
-  }
-
-  // 清理统计数据同步
-  if (statsCleanup) {
-    statsCleanup()
-    statsCleanup = null
-  }
-
-  // 清理页面可见性监听
-  document.removeEventListener('visibilitychange', handleVisibilityChange)
-
-  // 停止Hero卡片自动切换
-  stopAutoSwitch()
-
-  // 重置状态
-  isInitialized.value = false
-
-  console.log('首页组件已卸载，清理完成')
+  revealObserver?.disconnect()
 })
 </script>
 
 <style scoped>
-/* Hero 卡片堆叠效果样式 */
-.hero-card-stack-section {
-  /* 默认值 */
-  --_offset-steps: 1.5rem;
-  --_scale-steps: 3;
-  --_opacity-steps: 12;
-  --_ani-duration: 300ms;
-
-  /* 计算值 - 负值让卡片向上偏移 */
-  --_offset-steps-two: calc(var(--_offset-steps) * -1);
-  --_offset-steps-three: calc(var(--_offset-steps) * -2);
-
-  --scale-steps-two: calc(1 - var(--_scale-steps) * 0.01);
-  --scale-steps-three: calc(1 - var(--_scale-steps) * 0.02);
-
-  --opacity-steps-two: calc(1 - var(--_opacity-steps) * 0.01);
-  --opacity-steps-three: calc(1 - var(--_opacity-steps) * 0.02);
-
-  position: relative;
-  width: 100%;
-  min-height: calc(350px + var(--_offset-steps) * 2);
-  margin-top: 60px;
-}
-
-@media (min-width: 600px) {
-  .hero-card-stack-section {
-    --_offset-steps: 2rem;
-    margin-top: 80px;
-  }
-}
-
-@media (min-width: 768px) {
-  .hero-card-stack-section {
-    min-height: calc(400px + var(--_offset-steps) * 2);
-    margin-top: 100px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .hero-card-stack-section {
-    --_offset-steps: 2.5rem;
-    min-height: calc(460px + var(--_offset-steps) * 2);
-    margin-top: 120px;
-  }
-}
-
-.hero-card {
-  --_bg-alpha: 0.5;
-  --_border-radius: 12px;
-  --_bg-dot-offset: 20px;
-  --_bg-dot-color: var(--_bg-clr);
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  isolation: isolate;
-  background-color: white;
-  transition:
-    all 500ms ease-in-out,
-    box-shadow 200ms ease-in-out;
-  border-radius: var(--_border-radius);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-
-  transform: translateY(var(--_offset, 0)) scale(var(--_scale, 1));
-  transform-origin: top center;
-  order: var(--_order);
-  z-index: var(--_order);
-  opacity: var(--_opacity);
-  pointer-events: var(--_pointer-event, auto);
-}
-
-.hero-card::before,
-.hero-card::after {
-  content: '';
-  position: absolute;
-  border-radius: inherit;
-  pointer-events: none;
-}
-
-.hero-card::before {
-  z-index: -2;
-  inset: calc(var(--_bg-dot-offset) * -1);
-  background-image: radial-gradient(var(--_bg-dot-color) 1px, transparent 0px);
-  background-repeat: repeat;
-  background-size: 5px 5px;
-  background-position: center;
-  border-radius: calc(var(--_border-radius) + var(--_bg-dot-offset));
-}
-
-.hero-card::after {
-  background-color: white;
-  inset: 0;
-  z-index: -1;
-}
-
-/* 卡片标签 - 让整个卡片可点击 */
-.hero-card-label {
-  display: block;
-  cursor: var(--_pointer-cursor, pointer);
-  width: 100%;
-  height: 100%;
-  pointer-events: var(--_pointer-event, auto);
-}
-
-/* 当前激活的卡片悬停效果 */
-.hero-card-stack-section:has(input:nth-child(1):checked) .hero-card:nth-of-type(1):hover,
-.hero-card-stack-section:has(input:nth-child(2):checked) .hero-card:nth-of-type(2):hover,
-.hero-card-stack-section:has(input:nth-child(3):checked) .hero-card:nth-of-type(3):hover {
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-}
-
-.hero-card-label>header {
-  padding: 0.75rem 1.5rem;
+.hero-title {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--_bg-clr);
-  transition: background-color var(--_ani-duration) ease-in-out;
-  border-radius: var(--_border-radius) var(--_border-radius) 0 0;
+  flex-wrap: wrap;
+  justify-content: center;
+  column-gap: 0.18em;
+  row-gap: 0.08em;
 }
 
-.hero-next-arrow {
+.hero-title-word {
   display: inline-block;
-  pointer-events: auto;
+  opacity: 0;
+  transform: translate3d(0, 0.28em, 0);
+  filter: blur(8px);
+  animation: hero-word-rise 720ms cubic-bezier(0.2, 0, 0, 1) forwards;
+  animation-delay: var(--word-delay, 0ms);
 }
 
-.hero-next-arrow>label {
-  padding: 0;
-  color: white;
-  font-size: 1.5rem;
-  transition: rotate 300ms ease-in-out;
-  cursor: pointer;
-  user-select: none;
-  display: inline-block;
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, 18px, 0);
+  filter: blur(8px);
+  transition-property: opacity, transform, filter;
+  transition-duration: 700ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
 }
 
-.hero-next-arrow>label:hover {
-  rotate: 90deg;
+.reveal-ready [data-reveal='up-xs'] {
+  transform: translate3d(0, 12px, 0);
 }
 
-.hero-card-label>header>h3 {
-  margin: 0;
-  font-weight: 600;
-  font-size: 1.25rem;
-  color: white;
-  transition: translate var(--_ani-duration) ease-in-out;
+.reveal-ready [data-reveal='up-sm'] {
+  transform: translate3d(0, 24px, 0);
 }
 
-.hero-card-content {
-  position: relative;
-  padding: 0;
-  width: 100%;
-  height: 280px;
-  overflow: hidden;
-  border-radius: 0 0 var(--_border-radius) var(--_border-radius);
+.reveal-ready [data-reveal='left-sm'] {
+  transform: translate3d(24px, 0, 0);
 }
 
-@media (min-width: 768px) {
-  .hero-card-content {
-    height: 320px;
+.reveal-ready [data-reveal='right-sm'] {
+  transform: translate3d(-24px, 0, 0);
+}
+
+.reveal-ready [data-reveal].is-revealed {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+  will-change: auto;
+}
+
+.motion-card {
+  transition-property: transform, box-shadow, border-color;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.motion-card:hover,
+.reveal-ready .motion-card.is-revealed:hover {
+  transform: translate3d(0, -4px, 0);
+  box-shadow: 0 22px 55px -42px rgba(15, 23, 42, 0.72);
+}
+
+@keyframes hero-word-rise {
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0);
   }
 }
 
-@media (min-width: 1024px) {
-  .hero-card-content {
-    height: 380px;
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-word {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
   }
-}
 
-.hero-card-content img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: var(--_ani-duration) ease-in-out;
-  display: block;
-}
-
-/* 定义每张卡片的样式 */
-.hero-card:nth-of-type(1) {
-  --_bg-clr: #07c160;
-  --_order: var(--_1-order, 3);
-  --_scale: var(--_1-scale, 1);
-  --_opacity: var(--_1-opacity, 1);
-  --_offset: var(--_1-offset, 0);
-  --_pointer-event: var(--_1-pointer-event, auto);
-  --_pointer-cursor: var(--_1-pointer-cursor, pointer);
-}
-
-.hero-card:nth-of-type(2) {
-  --_bg-clr: #2c69eb;
-  --_order: var(--_2-order, 2);
-  --_scale: var(--_2-scale, var(--scale-steps-two));
-  --_opacity: var(--_2-opacity, var(--opacity-steps-two));
-  --_offset: var(--_2-offset, var(--_offset-steps-two));
-  --_pointer-event: var(--_2-pointer-event, none);
-  --_pointer-cursor: var(--_2-pointer-cursor, default);
-}
-
-.hero-card:nth-of-type(3) {
-  --_bg-clr: #ed5d0e;
-  --_order: var(--_3-order, 1);
-  --_scale: var(--_3-scale, var(--scale-steps-three));
-  --_opacity: var(--_3-opacity, var(--opacity-steps-three));
-  --_offset: var(--_3-offset, var(--_offset-steps-three));
-  --_pointer-event: var(--_3-pointer-event, none);
-  --_pointer-cursor: var(--_3-pointer-cursor, default);
-}
-
-/* 卡片 1 选中 */
-.hero-card-stack-section:has(input:nth-child(1):checked) {
-  --_1-order: 3;
-  --_1-scale: 1;
-  --_1-opacity: 1;
-  --_1-offset: 0;
-  --_1-pointer-event: auto;
-  --_1-pointer-cursor: pointer;
-
-  --_2-order: 2;
-  --_2-scale: var(--scale-steps-two);
-  --_2-opacity: var(--opacity-steps-two);
-  --_2-offset: var(--_offset-steps-two);
-
-  --_3-order: 1;
-  --_3-scale: var(--scale-steps-three);
-  --_3-opacity: var(--opacity-steps-three);
-  --_3-offset: var(--_offset-steps-three);
-}
-
-/* 卡片 2 选中 */
-.hero-card-stack-section:has(input:nth-child(2):checked) {
-  --_2-order: 3;
-  --_2-scale: 1;
-  --_2-opacity: 1;
-  --_2-offset: 0;
-  --_2-pointer-event: auto;
-  --_2-pointer-cursor: pointer;
-
-  --_3-order: 2;
-  --_3-scale: var(--scale-steps-two);
-  --_3-opacity: var(--opacity-steps-two);
-  --_3-offset: var(--_offset-steps-two);
-
-  --_1-order: 1;
-  --_1-scale: var(--scale-steps-three);
-  --_1-opacity: var(--opacity-steps-three);
-  --_1-offset: var(--_offset-steps-three);
-}
-
-/* 卡片 3 选中 */
-.hero-card-stack-section:has(input:nth-child(3):checked) {
-  --_3-order: 3;
-  --_3-scale: 1;
-  --_3-opacity: 1;
-  --_3-offset: 0;
-  --_3-pointer-event: auto;
-  --_3-pointer-cursor: pointer;
-
-  --_1-order: 2;
-  --_1-scale: var(--scale-steps-two);
-  --_1-opacity: var(--opacity-steps-two);
-  --_1-offset: var(--_offset-steps-two);
-
-  --_2-order: 1;
-  --_2-scale: var(--scale-steps-three);
-  --_2-opacity: var(--opacity-steps-three);
-  --_2-offset: var(--_offset-steps-three);
-}
-
-/* 工具类 */
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border-width: 0;
+  .reveal-ready [data-reveal],
+  .reveal-ready [data-reveal].is-revealed,
+  .motion-card,
+  .motion-card:hover {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+    box-shadow: none;
+  }
 }
 </style>

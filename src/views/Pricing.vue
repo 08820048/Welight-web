@@ -361,7 +361,7 @@
                     <span class="hidden text-gray-300 sm:inline">·</span>
                     <span>2 台 Mac / 许可证</span>
                     <span class="hidden text-gray-300 sm:inline">·</span>
-                    <span>14 天试用</span>
+                    <span>3天试用</span>
                     <span class="hidden text-gray-300 sm:inline">·</span>
                     <span>支持银行卡、Apple Pay、微信等</span>
                   </div>
@@ -382,7 +382,6 @@
                 购买须知
               </h2>
               <ul class="list-disc pl-6 text-gray-700 dark:text-gray-300 space-y-2 mb-6 text-sm">
-                <li class="animate-fade-in-up delay-1700">请在应用使用过程中确保网络通畅，关闭VPN，避免状态检测异常，影响你的使用体验</li>
                 <li class="animate-fade-in-up delay-1200">购买后许可证由 Dodo Payments 自动发放，请妥善保存许可证密钥。</li>
                 <li class="animate-fade-in-up delay-1300">每个许可证支持在指定数量的设备上使用。</li>
                 <li class="animate-fade-in-up delay-1400">许可证密钥请在桌面应用中输入使用。</li>
@@ -400,8 +399,7 @@
                   </a>
                 </li>
                 <li class="animate-fade-in-up delay-1600">支付由 Dodo Payments 托管处理，最终税费、币种换算与可用支付方式以结账页为准。</li>
-                <li class="animate-fade-in-up delay-1700">产品存在代码性质，拥有可复制性，因此购买后，无法退款</li>
-                <li class="animate-fade-in-up delay-1700">网页版本支持更多丰富的主题，使用网页版主题需要使用激活后的许可证进行验证。</li>
+                <li class="animate-fade-in-up delay-1700">如需退款请联系支持协助处理，能否退款以支付平台规则、交易时间和订单状态为准。</li>
                 <li class="animate-fade-in-up delay-1700">默认内置的图片云存储服务和 AI 服务一样作为可选服务，您也可以选择配置自己的图床进行使用</li>
               </ul>
 
@@ -546,7 +544,7 @@ const DODO_LICENSE_PRODUCT = {
   features: [
     '终身更新',
     '2 台 Mac / 许可证',
-    '14 天试用',
+    '3天试用',
     '网页版和桌面端共用',
     '支持银行卡、Apple Pay、微信等'
   ]

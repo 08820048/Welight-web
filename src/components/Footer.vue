@@ -38,6 +38,11 @@
               class="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
               >免责声明</router-link
             >
+            <router-link
+              to="/donation"
+              class="hover:text-gray-900 dark:hover:text-gray-100 transition-colors"
+              >致谢</router-link
+            >
           </div>
           <div class="flex flex-wrap items-center gap-4">
             <a

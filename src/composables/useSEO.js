@@ -4,7 +4,7 @@ export function useSEO(options = {}) {
   const defaultOptions = {
     title: 'Welight - 微信公众号排版工具 | Markdown一键转公众号',
     description:
-      'Welight是专业的微信公众号排版工具，基于Markdown语法快速排版。支持多种精美主题、AI智能写作、一键复制到公众号。让公众号排版变得简单高效，提升内容创作体验。',
+      'Welight是专业的微信公众号排版工具，基于Markdown语法快速排版。支持多种精美主题、AI智能写作、一键复制/发布公众号。让公众号排版变得简单高效，提升内容创作体验。',
     keywords:
       'Welight,微信公众号排版,公众号编辑器,Markdown排版,公众号工具,微信排版,内容创作,AI写作,一键排版,免费下载',
     image: 'https://waer.ltd/logo.png',
@@ -57,19 +57,19 @@ export function useSEO(options = {}) {
 // 页面特定的SEO配置
 export const seoConfigs = {
   home: {
-    title: 'Welight - 微信公众号排版工具 | Markdown一键转公众号 | 排版神器',
+    title: 'Welight - Agent 主导的公众号创作、AI 写作与排版工作台',
     description:
-      'Welight是专业的微信公众号排版工具，基于Markdown语法快速排版。支持20+精美主题、AI智能写作、一键复制到公众号。让公众号排版变得简单高效，是自媒体人、运营人员的首选排版神器。',
+      'Welight 是面向微信公众号创作者的 Agent 主导桌面工作台，把选题研究、AI 创作、Markdown 编辑、实时预览、图片处理和一键复制整合在一起。',
     keywords:
-      'Welight,微信公众号排版,公众号编辑器,Markdown排版,公众号工具,微信排版,内容创作,AI写作,排版神器,公众号模板,文章美化,自媒体工具,微信编辑器,公众号格式化,一键排版',
+      'Welight,Agent创作,微信公众号排版,公众号编辑器,AI写作,Markdown排版,公众号工具,一键复制发布公众号,桌面应用',
     url: 'https://waer.ltd/'
   },
   download: {
-    title: 'Welight下载 - 免费微信公众号排版工具 | 支持Windows/macOS/Linux',
+    title: 'Welight下载 - 免费微信公众号排版工具 | 支持Windows/macOS',
     description:
-      '免费下载Welight微信公众号排版工具，支持Windows 10/11、macOS、Linux系统。基于Markdown的专业公众号编辑器，20+主题模板，AI智能写作，让排版变得简单高效。',
+      '免费下载Welight微信公众号排版工具，支持Windows 10/11、macOS系统。基于Markdown的专业公众号编辑器，20+主题模板，AI智能写作，让排版变得简单高效。',
     keywords:
-      'Welight下载,微信公众号排版工具下载,公众号编辑器下载,免费排版软件,Windows,macOS,Linux,桌面应用下载,公众号工具免费',
+      'Welight下载,微信公众号排版工具下载,公众号编辑器下载,免费排版软件,Windows,macOS,桌面应用下载,公众号工具免费',
     url: 'https://waer.ltd/download'
   },
   changelog: {
@@ -125,7 +125,7 @@ export const seoConfigs = {
   releaseHistory: {
     title: 'Welight历史版本下载 - 所有版本归档',
     description:
-      '下载Welight微信公众号排版工具的历史版本，包含所有已发布版本的安装包归档，支持Windows、macOS、Linux系统。',
+      '下载Welight微信公众号排版工具的历史版本，包含所有已发布版本的安装包归档，支持Windows、macOS系统。',
     keywords: 'Welight历史版本,旧版本下载,版本归档,Welight下载,版本回退',
     url: 'https://waer.ltd/release-history'
   },

@@ -13,51 +13,24 @@
           </router-link>
         </div>
 
-        <!-- Center: Desktop Menu (移除，统一到右侧文本菜单) -->
-        <div class="hidden"></div>
-
-        <!-- Right: 文本菜单 + 主题切换 -->
-        <div class="flex items-center gap-6">
-          <router-link to="/"
-            class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
-            active-class="text-gray-900 dark:text-gray-100">
-            <span class="inline-flex items-center gap-1.5">
-              <TvMinimal class="w-4 h-4" />首页
-              <Snowflake v-if="isChristmasSeason" class="w-3 h-3 text-red-500" />
-            </span>
-          </router-link>
-          <router-link to="/pricing"
-            class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
-            active-class="text-gray-900 dark:text-gray-100">
-            <span class="inline-flex items-center gap-1.5">
-              <JapaneseYen class="w-4 h-4" />定价
-              <Snowflake v-if="isChristmasSeason" class="w-3 h-3 text-green-600" />
-            </span>
-          </router-link>
-          <router-link to="/donation"
-            class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
-            active-class="text-gray-900 dark:text-gray-100">
-            <span class="inline-flex items-center gap-1.5">
-              <Heart class="w-4 h-4" />
-              赞助
-              <Gift v-if="isChristmasSeason" class="w-3 h-3 text-red-600" />
-            </span>
-          </router-link>
-          <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
+        <!-- Center: one-page anchors -->
+        <nav class="flex items-center gap-6">
+          <a v-for="item in anchorLinks" :key="item.href" :href="item.href"
             class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
-            <span class="inline-flex items-center gap-1.5">
-              <DownloadIcon class="w-4 h-4" />
-              下载
-              <Gift v-if="isChristmasSeason" class="w-3 h-3 text-green-600" />
-            </span>
+            {{ item.label }}
           </a>
-          <router-link to="/documentation" @click.prevent="openDocumentationWithNotice"
-            class="relative text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
-            active-class="text-gray-900 dark:text-gray-100">
-            <span class="inline-flex items-center gap-1.5">
-              <BookOpenCheck class="w-4 h-4" />文档
-              <Snowflake v-if="isChristmasSeason" class="w-3 h-3 text-blue-600" />
-            </span>
+        </nav>
+
+        <!-- Right: actions + theme toggle -->
+        <div class="flex items-center gap-3">
+          <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex h-9 items-center rounded-full border border-gray-300 bg-white px-4 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:hover:bg-gray-800">
+            下载试用
+          </a>
+          <router-link to="/pricing"
+            class="inline-flex h-9 items-center rounded-full bg-gray-900 px-4 text-sm font-semibold text-white transition-colors hover:bg-gray-800 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-gray-200">
+            购买许可证
           </router-link>
           <div class="relative group" v-if="false">
             <button
@@ -162,30 +135,10 @@
 
           <!-- Mobile Menu Items -->
           <nav class="space-y-1">
-            <router-link to="/" @click="closeMobileMenu"
+            <a v-for="item in anchorLinks" :key="item.href" :href="item.href" @click="closeMobileMenu"
               class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              <span class="inline-flex items-center gap-2">
-                <TvMinimal class="w-4 h-4" />首页
-                <Snowflake v-if="isChristmasSeason" class="w-3 h-3 text-red-500" />
-              </span>
-            </router-link>
-
-            <router-link to="/pricing" @click="closeMobileMenu"
-              class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              <span class="inline-flex items-center gap-2">
-                <JapaneseYen class="w-4 h-4" />定价
-                <Snowflake v-if="isChristmasSeason" class="w-3 h-3 text-green-600" />
-              </span>
-            </router-link>
-
-            <router-link to="/donation" @click="closeMobileMenu"
-              class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
-              <span class="inline-flex items-center gap-2">
-                <Heart class="w-4 h-4" />
-                赞助
-                <Gift v-if="isChristmasSeason" class="w-3 h-3 text-red-600" />
-              </span>
-            </router-link>
+              {{ item.label }}
+            </a>
 
             <button v-if="false" @click="(showAnnouncements(), closeMobileMenu())"
               class="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-between">
@@ -244,20 +197,22 @@
             </button>
           </nav>
 
-          <!-- Mobile Action Buttons -->
+            <!-- Mobile Action Buttons -->
           <div class="mt-6 space-y-3 border-t border-gray-200 pt-6">
             <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
               @click="closeMobileMenu"
               class="block w-full text-center px-4 py-3 text-sm font-medium border border-gray-300 bg-white text-gray-900 rounded-xl transition-colors hover:bg-gray-50">
-              前往下载
+              下载试用
             </a>
 
-            <router-link to="/documentation" @click.prevent="openDocumentationWithNotice(true)"
+            <router-link to="/pricing" @click="closeMobileMenu"
               class="relative block w-full text-center px-4 py-3 text-sm font-medium bg-gray-900 text-white rounded-xl transition-colors hover:bg-gray-800">
-              <span class="inline-flex items-center gap-2 justify-center">
-                <BookOpenCheck class="w-4 h-4" />文档
-                <Snowflake v-if="isChristmasSeason" class="w-3 h-3 text-blue-600" />
-              </span>
+              购买许可证
+            </router-link>
+
+            <router-link to="/documentation" @click.prevent="openDocumentationWithNotice(true)"
+              class="relative block w-full text-center px-4 py-3 text-sm font-medium border border-gray-300 bg-white text-gray-900 rounded-xl transition-colors hover:bg-gray-50">
+              文档
             </router-link>
           </div>
         </div>
@@ -290,14 +245,9 @@ import { useThemeStore } from '@/stores/theme'
 import {
   Sun,
   Moon,
-  TvMinimal,
-  JapaneseYen,
-  Heart,
   Megaphone,
   History,
-  BookOpenCheck,
   Download as DownloadIcon,
-  Snowflake,
   Gift
 } from 'lucide-vue-next'
 import ToggleTheme from '@/components/ui/ToggleTheme.vue'
@@ -376,6 +326,13 @@ const currentPromotion = ref(null)
 const menuPromotions = ref([])
 
 const latestVersion = getLatestVersion()
+const anchorLinks = [
+  { href: '/#features', label: '功能' },
+  { href: '/#workflow', label: '工作流' },
+  { href: '/#ai', label: 'AI 创作' },
+  { href: '/#pricing', label: '定价' },
+  { href: '/#faq', label: 'FAQ' }
+]
 
 // 标记文档已查看
 const markDocsUpdateViewed = () => {
