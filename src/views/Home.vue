@@ -48,15 +48,15 @@
           </div>
         </div>
 
-        <div data-reveal="up-sm" style="--reveal-delay: 980ms" class="mt-12 overflow-hidden rounded-lg bg-white p-2 shadow-[0_30px_90px_-55px_rgba(15,23,42,0.55)] ring-1 ring-black/10 dark:bg-gray-900 dark:ring-white/10">
+        <div data-reveal="up-sm" style="--reveal-delay: 980ms" class="mt-12">
           <picture>
-            <source :srcset="themeStore.isDark ? '/assert/index_dark.webp' : '/assert/index.webp'" type="image/webp" />
+            <source :srcset="themeStore.isDark ? '/assert/hero-dark.png' : '/assert/hero-light.png'" type="image/png" />
             <img
-              :src="themeStore.isDark ? '/assert/index_dark.webp' : '/assert/index.webp'"
+              :src="themeStore.isDark ? '/assert/hero-dark.png' : '/assert/hero-light.png'"
               alt="Welight 桌面应用界面，包含编辑区、预览区和 AI 创作入口"
-              class="aspect-[16/9] w-full rounded-md object-cover"
-              width="1200"
-              height="675"
+              class="h-auto w-full"
+              width="1508"
+              height="918"
               loading="eager"
               decoding="async"
             />
