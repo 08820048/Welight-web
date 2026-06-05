@@ -327,7 +327,7 @@
                     Flexible License
                   </p>
                   <div class="mt-5 flex items-start justify-center tabular-nums text-[#202821] dark:text-[#f4f7f1]">
-                    <span class="text-[4.7rem] font-light leading-[0.9] tracking-normal md:text-[8rem]">$5-$16</span>
+                    <span class="text-[4.7rem] font-light leading-[0.9] tracking-normal md:text-[8rem]">$3-$10</span>
                   </div>
 
                   <button
@@ -341,7 +341,7 @@
                   </button>
 
                   <div class="mx-auto mt-7 max-w-xl space-y-3 text-pretty text-sm leading-7 text-[#5f6b5c] dark:text-[#d7ded3] md:text-base">
-                    <p>支付页面支持在 <span class="font-semibold text-[#202821] dark:text-[#f4f7f1]">$5-$16</span> 区间自由选择付款金额，最终税费与可用支付方式以支付页面展示为准。</p>
+                    <p>支付页面支持在 <span class="font-semibold text-[#202821] dark:text-[#f4f7f1]">$3-$10</span> 区间自由选择付款金额，最终税费与可用支付方式以支付页面展示为准。</p>
                     <p>包含网页版与桌面端完整功能、主题更新、许可证发放与授权验证。</p>
                     <p>
                       或先
@@ -393,7 +393,7 @@
                     https://waer.ltd/wl/
                   </a>
                 </li>
-                <li class="animate-fade-in-up delay-1600">支付由 Dodo Payments 托管处理，支付页可在 $5-$16 区间自由选择付款金额，最终税费、币种换算与可用支付方式以结账页为准。</li>
+                <li class="animate-fade-in-up delay-1600">支付由 Dodo Payments 托管处理，支付页可在 $3-$10 区间自由选择付款金额，最终税费、币种换算与可用支付方式以结账页为准。</li>
                 <li class="animate-fade-in-up delay-1700">如需退款请联系支持协助处理，能否退款以支付平台规则、交易时间和订单状态为准。</li>
                 <li class="animate-fade-in-up delay-1700">默认内置的图片云存储服务和 AI 服务一样作为可选服务，您也可以选择配置自己的图床进行使用</li>
               </ul>
@@ -531,9 +531,9 @@ const DODO_LICENSE_PRODUCT = {
   id: 'dodo-welight-license',
   code: 'WELIGHT_DODO_LICENSE',
   name: 'Welight 标准授权',
-  description: '解锁网页版与桌面端完整功能，支付页可在 $5-$16 区间自由付款，购买后由 Dodo Payments 发放许可证密钥。',
-  price: 5,
-  priceRange: '$5-$16',
+  description: '解锁网页版与桌面端完整功能，支付页可在 $3-$10 区间自由付款，购买后由 Dodo Payments 发放许可证密钥。',
+  price: 3,
+  priceRange: '$3-$10',
   currency: 'USD',
   permanent: true,
   maxActivations: 2,

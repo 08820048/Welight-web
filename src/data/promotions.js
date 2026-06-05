@@ -33,7 +33,7 @@ const promotions = [
             </div>
             <div class="promo-info-item">
               <h3>许可证限时特惠中</h3>
-              <p>当前支持 <strong>$5-$16 自由付款</strong></p>
+              <p>当前支持 <strong>$3-$10 自由付款</strong></p>
               <span>最终金额以支付页面展示为准</span>
             </div>
           </div>
@@ -58,7 +58,7 @@ const promotions = [
     menuBadgeText: '',
     banner: {
       title: '圣诞节活动 · 许可证自由付款',
-      subtitle: '支付页面支持在 $5-$16 区间自由选择金额',
+      subtitle: '支付页面支持在 $3-$10 区间自由选择金额',
       bgColor: '#dc2626',
       bgGradient: 'linear-gradient(90deg, #ef4444 0%, #22c55e 100%)',
       content: `
@@ -66,7 +66,7 @@ const promotions = [
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
               <h3>许可证自由付款</h3>
-              <p>当前区间 <strong>$5-$16</strong></p>
+              <p>当前区间 <strong>$3-$10</strong></p>
               <span>你可以在支付页面选择合适金额</span>
             </div>
             <div class="promo-info-item">
@@ -96,7 +96,7 @@ const promotions = [
     menuBadgeText: '',
     banner: {
       title: '跨年限时活动 · 新年焕新',
-      subtitle: '许可证支持 $5-$16 自由付款',
+      subtitle: '许可证支持 $3-$10 自由付款',
       bgColor: '#f97316',
       bgGradient: 'linear-gradient(90deg, #60A5FA 0%, #6366F1 50%, #A78BFA 100%)',
       content: `
@@ -104,7 +104,7 @@ const promotions = [
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
               <h3>许可证自由付款</h3>
-              <p>当前区间 <strong>$5-$16</strong></p>
+              <p>当前区间 <strong>$3-$10</strong></p>
               <span>在支付页面选择合适金额</span>
             </div>
             <div class="promo-info-item">
@@ -134,7 +134,7 @@ const promotions = [
     menuBadgeText: '',
     banner: {
       title: '冬至特惠 · 暖冬同行',
-      subtitle: '许可证支持 $5-$16 自由付款',
+      subtitle: '许可证支持 $3-$10 自由付款',
       bgColor: '#3b82f6',
       bgGradient: 'linear-gradient(90deg, #2563EB 0%, #22D3EE 50%, #2DD4BF 100%)',
       content: `
@@ -142,7 +142,7 @@ const promotions = [
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
               <h3>许可证自由付款</h3>
-              <p>当前区间 <strong style="color:#ff4444">$5-$16</strong></p>
+              <p>当前区间 <strong style="color:#ff4444">$3-$10</strong></p>
               <span>最终金额以支付页面展示为准</span>
             </div>
           </div>
