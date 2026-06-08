@@ -157,11 +157,12 @@
             <span class="hidden sm:inline text-sm font-medium">技术服务</span>
           </button> -->
 
-          <!-- 定价菜单按钮 -->
-          <router-link
-            to="/pricing"
+          <!-- 购买按钮 -->
+          <a
+            href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success"
+            target="_blank"
             class="flex items-center space-x-2 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-all duration-200 group relative"
-            title="定价与购买"
+            title="立即购买"
           >
             <svg
               class="w-5 h-5 group-hover:scale-110 transition-transform duration-200"
@@ -176,14 +177,14 @@
                 d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
               />
             </svg>
-            <span class="hidden sm:inline text-sm font-medium">定价</span>
+            <span class="hidden sm:inline text-sm font-medium">购买</span>
             <!-- 新设计的庆字标识 -->
             <span
               class="absolute -top-2 -right-2 text-white text-xs px-2 py-1 rounded-full font-bold shadow-md bg-gradient-to-r from-red-500 to-orange-500 group-hover:scale-110 transition-transform duration-300"
             >
               庆
             </span>
-          </router-link>
+          </a>
 
           <!-- 月卡管理按钮 -->
           <router-link

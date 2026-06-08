@@ -1,6 +1,6 @@
 <template>
-  <div class="relative min-h-screen bg-[#f4f7f1] dark:bg-[#3c4a55]">
-    <div class="min-h-screen text-[#202821] dark:text-[#f4f7f1] px-4 pt-20 pb-12 relative overflow-hidden"
+  <div class="relative min-h-screen bg-[#f5f4ed] dark:bg-[#141413]">
+    <div class="min-h-screen text-[#141413] dark:text-[#f5f4ed] px-4 pt-20 pb-12 relative overflow-hidden"
       style="position: relative; z-index: 1;">
       <div class="product-pricing-field pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34rem]" aria-hidden="true"></div>
       <div class="max-w-6xl mx-auto">
@@ -261,7 +261,7 @@
                   <!-- 等待支付提示 -->
                   <div v-else-if="renewOrderStatus === 'PENDING'" class="text-sm text-gray-500">
                     <div class="flex items-center justify-center mb-2">
-                      <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-[#3c4a55] mr-2 dark:border-[#f4f7f1]"></div>
+                      <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-[#1B365D] mr-2 dark:border-[#f5f4ed]"></div>
                       <span>等待支付...</span>
                     </div>
                     <p>请使用微信扫描二维码完成支付</p>
@@ -278,10 +278,10 @@
         <!-- 标题区：定价与服务购买 -->
         <section class="relative mb-10 py-12 md:py-16 animate-fade-in-up delay-100">
           <div class="text-center relative max-w-3xl mx-auto px-4 md:px-8">
-            <AnimatedUnderlineText text="Welight 授权" text-className="text-balance text-4xl font-extrabold tracking-[-0.03em] text-[#202821] dark:text-[#f4f7f1]"
-              underline-className="text-[#3c4a55] dark:text-[#f4f7f1]" />
+            <AnimatedUnderlineText text="Welight 授权" text-className="text-balance text-4xl font-medium tracking-normal text-[#141413] dark:text-[#f5f4ed]"
+              underline-className="text-[#1B365D] dark:text-[#f5f4ed]" />
             <MagicText text="支付时选择金额，即可解锁网页版与桌面端完整编辑体验" container-className="mt-6 justify-center"
-              word-className="text-pretty text-lg text-[#5f6b5c] dark:text-[#d7ded3]" />
+              word-className="text-pretty text-lg text-[#504e49] dark:text-[#d6d1c4]" />
           </div>
 
           <!-- 月卡购买弹窗 -->
@@ -307,60 +307,49 @@
 
           <!-- 产品卡片区 -->
           <div v-if="loadingProducts" class="text-center py-12 animate-fade-in-up delay-600">
-            <div class="animate-spin inline-block w-8 h-8 border-4 border-[#3c4a55] border-t-transparent rounded-full dark:border-[#f4f7f1] dark:border-t-transparent">
+            <div class="animate-spin inline-block w-8 h-8 border-4 border-[#1B365D] border-t-transparent rounded-full dark:border-[#f5f4ed] dark:border-t-transparent">
             </div>
-            <p class="mt-2 text-[#5f6b5c] animate-fade-in-up delay-700 dark:text-[#d7ded3]">正在加载产品信息...</p>
+            <p class="mt-2 text-[#504e49] animate-fade-in-up delay-700 dark:text-[#d6d1c4]">正在加载产品信息...</p>
           </div>
 
           <div v-else class="relative mt-10">
-            <div class="mx-auto max-w-3xl px-4 md:px-8">
-              <div class="surface-soft product-card relative overflow-hidden px-6 py-10 text-center md:px-12 md:py-12">
-                <div class="pricing-border-trail" style="--trail-duration: 5.2s; --trail-delay: -1.1s" aria-hidden="true">
-                  <span class="pricing-border-trail__segment pricing-border-trail__segment--top" />
-                  <span class="pricing-border-trail__segment pricing-border-trail__segment--right" />
-                  <span class="pricing-border-trail__segment pricing-border-trail__segment--bottom" />
-                  <span class="pricing-border-trail__segment pricing-border-trail__segment--left" />
-                </div>
+            <div class="mx-auto max-w-3xl px-4 text-center md:px-8">
+              <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#1B365D] dark:text-[#D0DCE9]">
+                Flexible License
+              </p>
+              <div class="mt-5 flex items-start justify-center tabular-nums text-[#141413] dark:text-[#f5f4ed]">
+                <span class="text-[clamp(3.4rem,14vw,8rem)] font-light leading-[0.9] tracking-normal">$3-$10</span>
+              </div>
 
-                <div class="relative z-10">
-                  <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#6f7b69] dark:text-[#c8d0c5]">
-                    Flexible License
-                  </p>
-                  <div class="mt-5 flex items-start justify-center tabular-nums text-[#202821] dark:text-[#f4f7f1]">
-                    <span class="text-[4.7rem] font-light leading-[0.9] tracking-normal md:text-[8rem]">$3-$10</span>
-                  </div>
+              <button
+                @click="handleProductPurchase(primaryPricingProduct)"
+                :disabled="!isServiceCurrentlyAvailable"
+                :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
+                class="mx-auto mt-6 flex min-h-12 w-full max-w-xs items-center justify-center rounded-lg px-6 py-3 text-base font-semibold transition-transform duration-200 active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-55"
+                :class="getPricingPrimaryButtonClass(0, isServiceCurrentlyAvailable)"
+              >
+                选择金额并购买
+              </button>
 
-                  <button
-                    @click="handleProductPurchase(primaryPricingProduct)"
-                    :disabled="!isServiceCurrentlyAvailable"
-                    :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
-                    class="mx-auto mt-6 flex min-h-12 w-full max-w-xs items-center justify-center rounded-full px-6 py-3 text-base font-semibold shadow-[0_18px_44px_-24px_rgba(60,74,85,0.72)] transition-transform duration-200 active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-55"
-                    :class="getPricingPrimaryButtonClass(0, isServiceCurrentlyAvailable)"
-                  >
-                    选择金额并购买
-                  </button>
+              <div class="mx-auto mt-7 max-w-xl space-y-3 text-pretty text-sm leading-7 text-[#504e49] dark:text-[#d6d1c4] md:text-base">
+                <p>支付页面支持在 <span class="font-semibold text-[#141413] dark:text-[#f5f4ed]">$3-$10</span> 区间自由选择付款金额，最终税费与可用支付方式以支付页面展示为准。</p>
+                <p>包含网页版与桌面端完整功能、主题更新、许可证发放与授权验证。</p>
+                <p>
+                  或先
+                  <router-link to="/download" class="font-semibold text-[#1B365D] underline underline-offset-4 hover:text-[#141413] dark:text-[#f5f4ed] dark:hover:text-[#E4ECF5]">
+                    下载免费试用
+                  </router-link>
+                </p>
+              </div>
 
-                  <div class="mx-auto mt-7 max-w-xl space-y-3 text-pretty text-sm leading-7 text-[#5f6b5c] dark:text-[#d7ded3] md:text-base">
-                    <p>支付页面支持在 <span class="font-semibold text-[#202821] dark:text-[#f4f7f1]">$3-$10</span> 区间自由选择付款金额，最终税费与可用支付方式以支付页面展示为准。</p>
-                    <p>包含网页版与桌面端完整功能、主题更新、许可证发放与授权验证。</p>
-                    <p>
-                      或先
-                      <router-link to="/download" class="font-semibold text-[#3c4a55] underline underline-offset-4 hover:text-[#202821] dark:text-[#f4f7f1] dark:hover:text-[#e7edde]">
-                        下载免费试用
-                      </router-link>
-                    </p>
-                  </div>
-
-                  <div class="mt-9 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-[#63715f] dark:text-[#c8d0c5]">
-                    <span>终身更新</span>
-                    <span class="hidden text-[#aab8a3] sm:inline dark:text-[#8fa0aa]">·</span>
-                    <span>2 台 Mac / 许可证</span>
-                    <span class="hidden text-[#aab8a3] sm:inline dark:text-[#8fa0aa]">·</span>
-                    <span>3天试用</span>
-                    <span class="hidden text-[#aab8a3] sm:inline dark:text-[#8fa0aa]">·</span>
-                    <span>支持银行卡、Apple Pay、微信等</span>
-                  </div>
-                </div>
+              <div class="mt-9 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-[#6b6a64] dark:text-[#D0DCE9]">
+                <span>终身更新</span>
+                <span class="hidden text-[#9d9789] sm:inline dark:text-[#817d72]">·</span>
+                <span>2 台 Mac / 许可证</span>
+                <span class="hidden text-[#9d9789] sm:inline dark:text-[#817d72]">·</span>
+                <span>3天试用</span>
+                <span class="hidden text-[#9d9789] sm:inline dark:text-[#817d72]">·</span>
+                <span>支持银行卡、Apple Pay、微信等</span>
               </div>
             </div>
           </div>
@@ -371,12 +360,12 @@
         <!-- 购买须知与接口说明（线框模块：购买须知） -->
         <section class="mt-12 relative py-12 md:py-16 animate-fade-in-up delay-1000">
           <div class="relative max-w-3xl mx-auto px-4 md:px-8">
-            <div class="surface-soft p-6">
+            <div class="pt-8">
               <h2
-                class="text-xl font-bold text-[#202821] dark:text-[#f4f7f1] mb-4 animate-fade-in-left delay-1100">
+                class="text-xl font-bold text-[#141413] dark:text-[#f5f4ed] mb-4 animate-fade-in-left delay-1100">
                 购买须知
               </h2>
-              <ul class="list-disc pl-6 text-[#4d5a4a] dark:text-[#d7ded3] space-y-2 mb-6 text-sm">
+              <ul class="list-disc pl-6 text-[#3D3D3A] dark:text-[#d6d1c4] space-y-2 mb-6 text-sm">
                 <li class="animate-fade-in-up delay-1200">购买后许可证由 Dodo Payments 自动发放，请妥善保存许可证密钥。</li>
                 <li class="animate-fade-in-up delay-1300">每个许可证支持在指定数量的设备上使用。</li>
                 <li class="animate-fade-in-up delay-1400">许可证密钥请在桌面应用中输入使用。</li>
@@ -388,7 +377,7 @@
                     href="https://waer.ltd/wl/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="underline text-[#3c4a55] transition-colors hover:text-[#202821] dark:text-[#f4f7f1] dark:hover:text-[#e7edde]"
+                    class="underline text-[#1B365D] transition-colors hover:text-[#141413] dark:text-[#f5f4ed] dark:hover:text-[#E4ECF5]"
                   >
                     https://waer.ltd/wl/
                   </a>
@@ -399,21 +388,16 @@
               </ul>
 
               <h2
-                class="text-xl font-bold text-[#202821] dark:text-[#f4f7f1] mb-4 animate-fade-in-left delay-1800">
+                class="text-xl font-bold text-[#141413] dark:text-[#f5f4ed] mb-4 animate-fade-in-left delay-1800">
                 交流反馈
               </h2>
-              <div
-                class="surface-soft-inner surface-soft-outline rounded-lg bg-[#edf3e8]/85 p-4 text-sm animate-scale-in delay-1900 dark:bg-[#465865]">
-                <div class="flex items-center space-x-4">
-                  <div>
-                    <span class="font-medium text-[#3c4a55] dark:text-[#f4f7f1]">QQ群：</span>
-                    <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=U4EFNYA9KuxK3OOQJQRfmzrfpwn3NM%2BHScNavJLkDXANe7H%2BONEQvGMvVI2LRrx2&busi_data=eyJncm91cENvZGUiOiIxMDcxNTU4ODAzIiwidG9rZW4iOiI3N2krQUx6VTVoTXVwOVRBRU52djl6R3k2VDYyNWR1RXl4bk92S2Y5SzNWVTBrUTlmeitCNEN6OS92KzZoMElqIiwidWluIjoiMjIxNzAyMTU2MyJ9&data=xN0g96ZxEMQlgiGFEWHsx8x0rZ0Qz9zmsBlJXrOxz6m1DVOYht3OeVZLFTMy6bGTC-Nc4yxMX25CDwocSJMQRLkcxdIUz6736qxlkysN8AE&svctype=5&tempid=h5_group_info"
-                      target="_blank"
-                      class="text-[#3c4a55] underline transition-colors hover:text-[#202821] dark:text-[#f4f7f1] dark:hover:text-[#e7edde]">
-                      点击加入
-                    </a>
-                  </div>
-                </div>
+              <div class="text-sm animate-scale-in delay-1900">
+                <span class="font-medium text-[#1B365D] dark:text-[#f5f4ed]">QQ群：</span>
+                <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=U4EFNYA9KuxK3OOQJQRfmzrfpwn3NM%2BHScNavJLkDXANe7H%2BONEQvGMvVI2LRrx2&busi_data=eyJncm91cENvZGUiOiIxMDcxNTU4ODAzIiwidG9rZW4iOiI3N2krQUx6VTVoTXVwOVRBRU52djl6R3k2VDYyNWR1RXl4bk92S2Y5SzNWVTBrUTlmeitCNEN6OS92KzZoMElqIiwidWluIjoiMjIxNzAyMTU2MyJ9&data=xN0g96ZxEMQlgiGFEWHsx8x0rZ0Qz9zmsBlJXrOxz6m1DVOYht3OeVZLFTMy6bGTC-Nc4yxMX25CDwocSJMQRLkcxdIUz6736qxlkysN8AE&svctype=5&tempid=h5_group_info"
+                  target="_blank"
+                  class="text-[#1B365D] underline transition-colors hover:text-[#141413] dark:text-[#f5f4ed] dark:hover:text-[#E4ECF5]">
+                  点击加入
+                </a>
               </div>
             </div>
           </div>
@@ -1213,14 +1197,14 @@ function getPricingRibbonText(product) {
 }
 
 function getPricingPrimaryButtonClass(index, enabled) {
-  if (!enabled) return 'cursor-not-allowed border-[#cad7c3] bg-[#d8e1d2] text-[#8a9784] dark:border-[#536471] dark:bg-[#33404a] dark:text-[#9aa7ad]'
+  if (!enabled) return 'cursor-not-allowed border-[#d8d3c4] bg-[#e8e6dc] text-[#9d9789] dark:border-[#44433f] dark:bg-[#242421] dark:text-[#9d9789]'
   void index
-  return 'border-[#3c4a55] bg-[#3c4a55] text-[#f4f7f1] hover:bg-[#2f3b44] dark:border-[#f4f7f1] dark:bg-[#f4f7f1] dark:text-[#2f3b44] dark:hover:bg-[#e7edde]'
+  return 'border-[#1B365D] bg-[#1B365D] text-[#f5f4ed] hover:bg-[#142947] dark:border-[#f5f4ed] dark:bg-[#f5f4ed] dark:text-[#142947] dark:hover:bg-[#E4ECF5]'
 }
 
 function getPricingSecondaryButtonClass(enabled) {
-  if (!enabled) return 'cursor-not-allowed border-[#cad7c3] bg-[#edf3e8] text-[#8a9784] dark:border-[#536471] dark:bg-[#33404a] dark:text-[#9aa7ad]'
-  return 'border-[#cad7c3] text-[#202821] hover:bg-[#edf3e8] dark:border-[#60717d] dark:text-[#f4f7f1] dark:hover:bg-[#506371]'
+  if (!enabled) return 'cursor-not-allowed border-[#d8d3c4] bg-[#e8e6dc] text-[#9d9789] dark:border-[#44433f] dark:bg-[#242421] dark:text-[#9d9789]'
+  return 'border-[#d8d3c4] text-[#141413] hover:bg-[#e8e6dc] dark:border-[#55554f] dark:text-[#f5f4ed] dark:hover:bg-[#3a3a36]'
 }
 
 
@@ -1589,19 +1573,19 @@ function showSuccessToast(message) {
 
 /* 卡片内部渐隐效果 */
 .ai-service-gradient-overlay {
-  background: linear-gradient(to bottom, rgba(249, 115, 22, 0.15) 0%, rgba(249, 115, 22, 0.08) 40%, transparent 70%);
+  background: linear-gradient(to bottom, rgba(27, 54, 93, 0.14) 0%, rgba(27, 54, 93, 0.07) 40%, transparent 70%);
 }
 
 .cloud-storage-gradient-overlay {
-  background: linear-gradient(to bottom, rgba(168, 85, 247, 0.15) 0%, rgba(168, 85, 247, 0.08) 40%, transparent 70%);
+  background: linear-gradient(to bottom, rgba(27, 54, 93, 0.14) 0%, rgba(27, 54, 93, 0.07) 40%, transparent 70%);
 }
 
 .monthly-card-gradient-overlay {
-  background: linear-gradient(to bottom, rgba(49, 200, 145, 0.15) 0%, rgba(49, 200, 145, 0.08) 40%, transparent 70%);
+  background: linear-gradient(to bottom, rgba(27, 54, 93, 0.14) 0%, rgba(27, 54, 93, 0.07) 40%, transparent 70%);
 }
 
 .permanent-gradient-overlay {
-  background: linear-gradient(to bottom, rgba(52, 152, 219, 0.15) 0%, rgba(52, 152, 219, 0.08) 40%, transparent 70%);
+  background: linear-gradient(to bottom, rgba(27, 54, 93, 0.14) 0%, rgba(27, 54, 93, 0.07) 40%, transparent 70%);
 }
 
 .pricing-border-trail {
@@ -1665,13 +1649,13 @@ function showSuccessToast(message) {
   top: 0;
   left: calc(-1 * var(--trail-length));
   background: linear-gradient(90deg,
-      rgba(59, 130, 246, 0) 0%,
-      rgba(59, 130, 246, 0) 18%,
-      rgba(99, 102, 241, 0.85) 34%,
-      rgba(168, 85, 247, 1) 50%,
-      rgba(99, 102, 241, 0.85) 66%,
-      rgba(59, 130, 246, 0) 82%,
-      rgba(59, 130, 246, 0) 100%);
+      rgba(27, 54, 93, 0) 0%,
+      rgba(27, 54, 93, 0) 18%,
+      rgba(45, 90, 138, 0.72) 34%,
+      rgba(27, 54, 93, 0.95) 50%,
+      rgba(45, 90, 138, 0.72) 66%,
+      rgba(27, 54, 93, 0) 82%,
+      rgba(27, 54, 93, 0) 100%);
   animation-name: pricing-trail-top;
 }
 
@@ -1679,13 +1663,13 @@ function showSuccessToast(message) {
   top: calc(-1 * var(--trail-length));
   right: 0;
   background: linear-gradient(180deg,
-      rgba(59, 130, 246, 0) 0%,
-      rgba(59, 130, 246, 0) 18%,
-      rgba(99, 102, 241, 0.85) 34%,
-      rgba(168, 85, 247, 1) 50%,
-      rgba(99, 102, 241, 0.85) 66%,
-      rgba(59, 130, 246, 0) 82%,
-      rgba(59, 130, 246, 0) 100%);
+      rgba(27, 54, 93, 0) 0%,
+      rgba(27, 54, 93, 0) 18%,
+      rgba(45, 90, 138, 0.72) 34%,
+      rgba(27, 54, 93, 0.95) 50%,
+      rgba(45, 90, 138, 0.72) 66%,
+      rgba(27, 54, 93, 0) 82%,
+      rgba(27, 54, 93, 0) 100%);
   animation-name: pricing-trail-right;
 }
 
@@ -1693,13 +1677,13 @@ function showSuccessToast(message) {
   bottom: 0;
   right: calc(-1 * var(--trail-length));
   background: linear-gradient(90deg,
-      rgba(59, 130, 246, 0) 0%,
-      rgba(59, 130, 246, 0) 18%,
-      rgba(99, 102, 241, 0.85) 34%,
-      rgba(168, 85, 247, 1) 50%,
-      rgba(99, 102, 241, 0.85) 66%,
-      rgba(59, 130, 246, 0) 82%,
-      rgba(59, 130, 246, 0) 100%);
+      rgba(27, 54, 93, 0) 0%,
+      rgba(27, 54, 93, 0) 18%,
+      rgba(45, 90, 138, 0.72) 34%,
+      rgba(27, 54, 93, 0.95) 50%,
+      rgba(45, 90, 138, 0.72) 66%,
+      rgba(27, 54, 93, 0) 82%,
+      rgba(27, 54, 93, 0) 100%);
   animation-name: pricing-trail-bottom;
 }
 
@@ -1707,13 +1691,13 @@ function showSuccessToast(message) {
   bottom: calc(-1 * var(--trail-length));
   left: 0;
   background: linear-gradient(180deg,
-      rgba(59, 130, 246, 0) 0%,
-      rgba(59, 130, 246, 0) 18%,
-      rgba(99, 102, 241, 0.85) 34%,
-      rgba(168, 85, 247, 1) 50%,
-      rgba(99, 102, 241, 0.85) 66%,
-      rgba(59, 130, 246, 0) 82%,
-      rgba(59, 130, 246, 0) 100%);
+      rgba(27, 54, 93, 0) 0%,
+      rgba(27, 54, 93, 0) 18%,
+      rgba(45, 90, 138, 0.72) 34%,
+      rgba(27, 54, 93, 0.95) 50%,
+      rgba(45, 90, 138, 0.72) 66%,
+      rgba(27, 54, 93, 0) 82%,
+      rgba(27, 54, 93, 0) 100%);
   animation-name: pricing-trail-left;
 }
 
@@ -1834,25 +1818,25 @@ function showSuccessToast(message) {
 :global(.dark) .pricing-border-trail__segment--top,
 :global(.dark) .pricing-border-trail__segment--bottom {
   background: linear-gradient(90deg,
-      rgba(96, 165, 250, 0) 0%,
-      rgba(96, 165, 250, 0) 18%,
-      rgba(129, 140, 248, 0.9) 34%,
-      rgba(196, 181, 253, 1) 50%,
-      rgba(129, 140, 248, 0.9) 66%,
-      rgba(96, 165, 250, 0) 82%,
-      rgba(96, 165, 250, 0) 100%);
+      rgba(208, 220, 233, 0) 0%,
+      rgba(208, 220, 233, 0) 18%,
+      rgba(208, 220, 233, 0.6) 34%,
+      rgba(228, 236, 245, 0.9) 50%,
+      rgba(208, 220, 233, 0.6) 66%,
+      rgba(208, 220, 233, 0) 82%,
+      rgba(208, 220, 233, 0) 100%);
 }
 
 :global(.dark) .pricing-border-trail__segment--right,
 :global(.dark) .pricing-border-trail__segment--left {
   background: linear-gradient(180deg,
-      rgba(96, 165, 250, 0) 0%,
-      rgba(96, 165, 250, 0) 18%,
-      rgba(129, 140, 248, 0.9) 34%,
-      rgba(196, 181, 253, 1) 50%,
-      rgba(129, 140, 248, 0.9) 66%,
-      rgba(96, 165, 250, 0) 82%,
-      rgba(96, 165, 250, 0) 100%);
+      rgba(208, 220, 233, 0) 0%,
+      rgba(208, 220, 233, 0) 18%,
+      rgba(208, 220, 233, 0.6) 34%,
+      rgba(228, 236, 245, 0.9) 50%,
+      rgba(208, 220, 233, 0.6) 66%,
+      rgba(208, 220, 233, 0) 82%,
+      rgba(208, 220, 233, 0) 100%);
 }
 
 /* 产品卡片丝滑悬停效果 */
@@ -1869,9 +1853,8 @@ function showSuccessToast(message) {
 .product-card:hover {
   transform: translateY(-6px) scale(1.006);
   box-shadow:
-    0 0 0 1px rgba(15, 23, 42, 0.06),
-    0 18px 38px -24px rgba(15, 23, 42, 0.24),
-    0 30px 70px -42px rgba(15, 23, 42, 0.22);
+    0 0 0 1px rgba(27, 54, 93, 0.18),
+    0 6px 28px rgba(20, 20, 19, 0.06);
   filter: brightness(1.005);
 }
 
@@ -1881,22 +1864,22 @@ function showSuccessToast(message) {
 
 /* 渐隐效果层的hover增强 */
 .product-card:hover .ai-service-gradient-overlay {
-  background: linear-gradient(to bottom, rgba(249, 115, 22, 0.2) 0%, rgba(249, 115, 22, 0.1) 40%, transparent 70%);
+  background: linear-gradient(to bottom, rgba(27, 54, 93, 0.18) 0%, rgba(27, 54, 93, 0.09) 40%, transparent 70%);
   transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .product-card:hover .cloud-storage-gradient-overlay {
-  background: linear-gradient(to bottom, rgba(168, 85, 247, 0.2) 0%, rgba(168, 85, 247, 0.1) 40%, transparent 70%);
+  background: linear-gradient(to bottom, rgba(27, 54, 93, 0.18) 0%, rgba(27, 54, 93, 0.09) 40%, transparent 70%);
   transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .product-card:hover .monthly-card-gradient-overlay {
-  background: linear-gradient(to bottom, rgba(49, 200, 145, 0.2) 0%, rgba(49, 200, 145, 0.1) 40%, transparent 70%);
+  background: linear-gradient(to bottom, rgba(27, 54, 93, 0.18) 0%, rgba(27, 54, 93, 0.09) 40%, transparent 70%);
   transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .product-card:hover .permanent-gradient-overlay {
-  background: linear-gradient(to bottom, rgba(52, 152, 219, 0.2) 0%, rgba(52, 152, 219, 0.1) 40%, transparent 70%);
+  background: linear-gradient(to bottom, rgba(27, 54, 93, 0.18) 0%, rgba(27, 54, 93, 0.09) 40%, transparent 70%);
   transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 

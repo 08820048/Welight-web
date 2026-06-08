@@ -118,10 +118,11 @@
           </div>
           <h3 class="text-lg font-medium text-gray-900 mb-2">暂无月卡记录</h3>
           <p class="text-gray-500 mb-4">该邮箱下没有找到月卡记录</p>
-          <router-link to="/pricing"
+          <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success"
+            target="_blank"
             class="inline-block px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-            去购买月卡
-          </router-link>
+            去购买许可证
+          </a>
         </div>
       </div>
 

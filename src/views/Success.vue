@@ -96,12 +96,13 @@
           >
             下载 Welight
           </router-link>
-          <router-link
-            to="/pricing"
+          <a
+            href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success"
+            target="_blank"
             class="rounded-lg border border-gray-300 px-5 py-3 text-center text-sm font-semibold transition-colors hover:bg-gray-50 dark:border-gray-600 dark:hover:bg-gray-800"
           >
-            返回定价页
-          </router-link>
+            再次购买
+          </a>
         </div>
       </div>
     </div>

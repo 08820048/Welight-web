@@ -38,7 +38,7 @@ const promotions = [
             </div>
           </div>
           <div class="promo-actions">
-            <a href="/pricing" class="promo-btn-main">立即抢购</a>
+            <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success" class="promo-btn-main">立即抢购</a>
             <a href="https://qm.qq.com/q/nNA64h5d6K" class="promo-btn-sub">加入社群，享更多福利</a>
           </div>
         </div>
@@ -76,7 +76,7 @@ const promotions = [
             </div>
           </div>
           <div class="promo-actions">
-            <a href="/pricing" class="promo-btn-main">立即抢购</a>
+            <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success" class="promo-btn-main">立即抢购</a>
             <a href="https://qm.qq.com/q/nNA64h5d6K" class="promo-btn-sub">加入社群，享更多福利</a>
           </div>
         </div>
@@ -114,7 +114,7 @@ const promotions = [
             </div>
           </div>
           <div class="promo-actions">
-            <a href="/pricing" class="promo-btn-main">立即抢购</a>
+            <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success" class="promo-btn-main">立即抢购</a>
             <a href="https://qm.qq.com/q/nNA64h5d6K" class="promo-btn-sub">加入社群，享更多福利</a>
           </div>
         </div>
@@ -147,7 +147,7 @@ const promotions = [
             </div>
           </div>
           <div class="promo-actions">
-            <a href="/pricing" class="promo-btn-main">立即抢购</a>
+            <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success" class="promo-btn-main">立即抢购</a>
             <a href="https://qm.qq.com/q/nNA64h5d6K" class="promo-btn-sub">加入社群，享更多福利</a>
           </div>
         </div>

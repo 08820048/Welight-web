@@ -1,66 +1,68 @@
 <template>
-  <div ref="revealRoot" class="product-main min-h-screen" :class="{ 'reveal-ready': revealMotionReady }">
+  <div ref="revealRoot" class="product-main min-h-screen overflow-x-hidden" :class="{ 'reveal-ready': revealMotionReady }">
     <section id="top" class="product-hero-field px-4 pt-24 md:px-6 md:pt-28">
       <div class="mx-auto max-w-6xl">
-        <div class="mx-auto max-w-4xl text-center">
-          <p data-reveal="up-xs" class="text-sm font-semibold uppercase tracking-[0.16em] text-[#6f7b69] dark:text-[#c8d0c5]">
-            Agent-led publishing workspace
-          </p>
-          <h1 class="hero-title mt-5 text-balance text-4xl font-semibold tracking-normal text-[#202821] md:text-6xl dark:text-[#f4f7f1]">
-            <span
-              v-for="(word, index) in heroTitleWords"
-              :key="word"
-              class="hero-title-word"
-              :style="{ '--word-delay': `${120 + index * 80}ms` }"
-            >
-              {{ word }}
-            </span>
-          </h1>
-          <p data-reveal="up-sm" style="--reveal-delay: 440ms" class="mx-auto mt-6 max-w-3xl text-pretty text-lg leading-8 text-[#5f6b5c] md:text-xl dark:text-[#d7ded3]">
-            素材搜索、文章其稿、审校、配图和创作发布
-          </p>
+        <div class="grid items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
+          <div class="max-w-2xl">
+            <p data-reveal="up-xs" class="text-sm font-semibold uppercase tracking-[0.16em] text-[#1B365D] dark:text-[#D0DCE9]">
+              Agent-led publishing workspace
+            </p>
+            <h1 class="hero-title mt-5 text-balance text-4xl font-medium tracking-normal text-[#141413] md:text-5xl dark:text-[#f5f4ed]">
+              <span
+                v-for="(word, index) in heroTitleWords"
+                :key="word"
+                class="hero-title-word"
+                :style="{ '--word-delay': `${120 + index * 80}ms` }"
+              >
+                {{ word }}
+              </span>
+            </h1>
+            <p data-reveal="up-sm" style="--reveal-delay: 440ms" class="mt-7 max-w-xl text-pretty text-lg leading-8 text-[#504e49] md:text-xl dark:text-[#d6d1c4]">
+              素材搜索、文章其稿、审校、配图和创作发布
+            </p>
 
-          <div class="mt-7 flex flex-wrap justify-center gap-2 text-sm text-[#5f6b5c] dark:text-[#d7ded3]">
-            <span
-              v-for="(item, index) in heroFacts"
-              :key="item"
-              data-reveal="up-xs"
-              class="rounded-full border border-[#cad7c3] bg-[#fbfcf8] px-3 py-1 dark:border-[#60717d] dark:bg-[#465865]"
-              :style="{ '--reveal-delay': `${560 + index * 55}ms` }"
-            >
-              {{ item }}
-            </span>
+            <div class="mt-8 flex flex-wrap gap-x-3 gap-y-1 text-sm text-[#504e49] dark:text-[#d6d1c4]">
+              <span
+                v-for="(item, index) in heroFacts"
+                :key="item"
+                data-reveal="up-xs"
+                class="text-[#1B365D] dark:text-[#D0DCE9]"
+                :style="{ '--reveal-delay': `${560 + index * 55}ms` }"
+              >
+                {{ item }}<span v-if="index < heroFacts.length - 1" class="ml-3 text-[#9d9789] dark:text-[#817d72]">·</span>
+              </span>
+            </div>
+
+            <div data-reveal="up-xs" style="--reveal-delay: 800ms" class="mt-9 flex flex-col gap-3 sm:flex-row">
+              <button
+                class="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#e8e6dc] px-6 py-3 text-sm font-semibold text-[#141413] shadow-[0_0_0_1px_rgba(20,20,19,0.08)] transition-colors hover:bg-[#dedace] dark:bg-[#30302e] dark:text-[#f5f4ed] dark:shadow-[0_0_0_1px_rgba(245,244,237,0.1)] dark:hover:bg-[#3a3a36]"
+                @click="downloadFile('macos-apple')"
+              >
+                下载试用
+              </button>
+              <a
+                :href="checkoutUrl"
+                class="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#1B365D] px-6 py-3 text-sm font-semibold text-[#faf9f5] shadow-[0_0_0_1px_rgba(27,54,93,0.14),0_4px_24px_rgba(20,20,19,0.06)] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#142947] active:scale-[0.96] dark:bg-[#D0DCE9] dark:text-[#141413] dark:hover:bg-[#E4ECF5]"
+              >
+                购买
+              </a>
+            </div>
           </div>
 
-          <div data-reveal="up-xs" style="--reveal-delay: 800ms" class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <button
-              class="inline-flex min-h-11 items-center justify-center rounded-full bg-[#3c4a55] px-6 py-3 text-sm font-semibold text-[#f4f7f1] shadow-[0_18px_42px_-26px_rgba(60,74,85,0.8)] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#2f3b44] active:scale-[0.96] dark:bg-[#f4f7f1] dark:text-[#2f3b44] dark:hover:bg-[#e7edde]"
-              @click="downloadFile('macos-apple')"
-            >
-              下载试用
-            </button>
-            <router-link
-              to="/pricing"
-              class="inline-flex min-h-11 items-center justify-center rounded-full border border-[#cad7c3] bg-[#fbfcf8] px-6 py-3 text-sm font-semibold text-[#202821] transition-colors hover:bg-[#edf3e8] dark:border-[#60717d] dark:bg-[#465865] dark:text-[#f4f7f1] dark:hover:bg-[#506371]"
-            >
-              $3-$10 自由付款
-            </router-link>
+          <div data-reveal="up-sm" style="--reveal-delay: 980ms">
+            <picture>
+              <source :srcset="themeStore.isDark ? '/assert/hero-dark.png' : '/assert/hero-light.png'" type="image/png" />
+              <img
+                :src="themeStore.isDark ? '/assert/hero-dark.png' : '/assert/hero-light.png'"
+                alt="Welight 桌面应用界面，包含编辑区、预览区和 AI 创作入口"
+                class="product-shot h-auto w-full"
+                width="1508"
+                height="918"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
           </div>
-        </div>
-
-        <div data-reveal="up-sm" style="--reveal-delay: 980ms" class="mt-12">
-          <picture>
-            <source :srcset="themeStore.isDark ? '/assert/hero-dark.png' : '/assert/hero-light.png'" type="image/png" />
-            <img
-              :src="themeStore.isDark ? '/assert/hero-dark.png' : '/assert/hero-light.png'"
-              alt="Welight 桌面应用界面，包含编辑区、预览区和 AI 创作入口"
-              class="h-auto w-full"
-              width="1508"
-              height="918"
-              loading="eager"
-              decoding="async"
-            />
-          </picture>
         </div>
       </div>
     </section>
@@ -71,48 +73,57 @@
           <SectionHeader eyebrow="00" title="一个 Agent 工作台，而不是一堆按钮" description="Welight 的页面重点从单点排版能力，转向公众号创作流程里的判断、生成、预览和交付。" />
         </div>
 
-        <div class="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div class="mt-10 space-y-0">
           <article
             v-for="(area, index) in workspaces"
             :key="area.title"
             data-reveal="up-sm"
-            class="motion-card rounded-lg bg-[#fbfcf8] p-5 ring-1 ring-[#cad7c3] dark:bg-[#465865] dark:ring-white/10"
+            class="border-t border-[#d8d3c4] py-6 first:border-t-0 dark:border-[#44433f]"
             :style="{ '--reveal-delay': `${index * 80}ms` }"
           >
-            <p class="text-sm font-semibold text-[#6f7b69] dark:text-[#c8d0c5]">{{ area.kicker }}</p>
-            <h3 class="mt-3 text-xl font-semibold tracking-normal">{{ area.title }}</h3>
-            <p class="mt-3 text-pretty text-sm leading-6 text-[#5f6b5c] dark:text-[#d7ded3]">{{ area.description }}</p>
-            <ul class="mt-5 space-y-2 text-sm text-[#4d5a4a] dark:text-[#d7ded3]">
-              <li v-for="point in area.points" :key="point" class="flex gap-2">
-                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3c4a55] dark:bg-[#f4f7f1]"></span>
-                <span>{{ point }}</span>
-              </li>
-            </ul>
+            <div class="grid gap-5 md:grid-cols-[220px_1fr] md:gap-10 lg:grid-cols-[260px_1fr]">
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#1B365D] dark:text-[#D0DCE9]">{{ area.kicker }}</p>
+                <h3 class="mt-2 text-xl md:text-2xl font-semibold tracking-normal text-[#1B365D] dark:text-[#D0DCE9]">{{ area.title }}</h3>
+              </div>
+              <div>
+                <p class="text-pretty text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">{{ area.description }}</p>
+                <ul class="mt-4 space-y-1.5 text-sm text-[#3D3D3A] dark:text-[#d6d1c4]">
+                  <li v-for="point in area.points" :key="point" class="flex gap-2">
+                    <span class="mt-2 h-1 w-1 shrink-0 rounded-full bg-[#1B365D] dark:bg-[#f5f4ed]"></span>
+                    <span>{{ point }}</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="workflow" class="product-section-band scroll-mt-28 border-y border-[#dbe4d3] px-4 py-20 md:px-6 md:py-28 dark:border-[#536471]">
+    <section id="workflow" class="product-section-band scroll-mt-28 border-y border-[#d8d3c4] px-4 py-20 md:px-6 md:py-28 dark:border-[#44433f]">
       <div class="mx-auto max-w-6xl">
         <div data-reveal="up-xs">
           <SectionHeader eyebrow="01" title="从想法到公众号后台，只走一条线" description="Agent 负责把上下文、生成步骤和工具调用串起来，你在每个关键节点做选择。" />
         </div>
 
-        <div class="mt-12 grid gap-3 lg:grid-cols-5">
+        <div class="mt-10 space-y-0">
           <article
             v-for="(step, index) in workflowSteps"
             :key="step.title"
             data-reveal="up-xs"
-            class="motion-card rounded-lg bg-[#fbfcf8] p-5 ring-1 ring-[#cad7c3] dark:bg-[#465865] dark:ring-white/10"
+            class="border-t border-[#d8d3c4] py-6 first:border-t-0 dark:border-[#44433f]"
             :style="{ '--reveal-delay': `${index * 70}ms` }"
           >
-            <div class="flex items-center justify-between">
-              <span class="tabular-nums text-sm font-semibold text-[#8a9784] dark:text-[#c8d0c5]">0{{ index + 1 }}</span>
-              <span v-if="index < workflowSteps.length - 1" class="hidden text-[#aab8a3] dark:text-[#8fa0aa] lg:inline">→</span>
+            <div class="grid gap-5 md:grid-cols-[220px_1fr] md:gap-10 lg:grid-cols-[260px_1fr]">
+              <div>
+                <span class="tabular-nums text-xs font-semibold uppercase tracking-[0.14em] text-[#6b6a64] dark:text-[#D0DCE9]">Step 0{{ index + 1 }}</span>
+                <h3 class="mt-1 text-xl md:text-2xl font-semibold tracking-normal text-[#1B365D] dark:text-[#D0DCE9]">{{ step.title }}</h3>
+              </div>
+              <div>
+                <p class="text-pretty text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">{{ step.description }}</p>
+              </div>
             </div>
-            <h3 class="mt-5 text-lg font-semibold">{{ step.title }}</h3>
-            <p class="mt-3 text-pretty text-sm leading-6 text-[#5f6b5c] dark:text-[#d7ded3]">{{ step.description }}</p>
           </article>
         </div>
       </div>
@@ -121,39 +132,30 @@
     <section id="ai" class="scroll-mt-28 px-4 py-20 md:px-6 md:py-28">
       <div class="mx-auto max-w-6xl">
         <div data-reveal="up-xs">
-          <SectionHeader eyebrow="02" title="Agent 不是黑盒，它把过程摊开给你看" description="创作过程保留可读的中间结果：会话、任务步骤、工具调用、联网搜索、记忆和工作空间。" />
+          <SectionHeader eyebrow="02" title="过程透明，创作可控" description="创作过程保留可读的中间结果：会话、任务步骤、工具调用、联网搜索、记忆和工作空间。" />
         </div>
 
-        <div class="mt-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-          <div data-reveal="right-sm" class="overflow-hidden rounded-lg bg-[#fbfcf8] p-2 ring-1 ring-[#cad7c3] dark:bg-[#465865] dark:ring-white/10">
-            <picture>
-              <source :srcset="themeStore.isDark ? '/assert/fbcg-dark.webp' : '/assert/fbcg.webp'" type="image/webp" />
-              <img
-                :src="themeStore.isDark ? '/assert/fbcg-dark.webp' : '/assert/fbcg.webp'"
-                alt="Welight 发布前处理和预览界面"
-                class="aspect-[4/3] w-full rounded-md object-contain"
-                loading="lazy"
-                decoding="async"
-              />
-            </picture>
-          </div>
-
-          <div class="grid gap-3">
-            <article
-              v-for="(capability, index) in agentCapabilities"
-              :key="capability.title"
-              data-reveal="left-sm"
-              class="motion-card rounded-lg border border-[#cad7c3] bg-[#fbfcf8] p-5 dark:border-[#60717d] dark:bg-[#465865]"
-              :style="{ '--reveal-delay': `${index * 75}ms` }"
-            >
-              <h3 class="text-lg font-semibold">{{ capability.title }}</h3>
-              <p class="mt-2 text-pretty text-sm leading-6 text-[#5f6b5c] dark:text-[#d7ded3]">{{ capability.description }}</p>
-            </article>
-          </div>
+        <div class="mt-10 space-y-0">
+          <article
+            v-for="(capability, index) in agentCapabilities"
+            :key="capability.title"
+            data-reveal="left-sm"
+            class="border-t border-[#d8d3c4] py-6 first:border-t-0 dark:border-[#44433f]"
+            :style="{ '--reveal-delay': `${index * 75}ms` }"
+          >
+            <div class="grid gap-5 md:grid-cols-[220px_1fr] md:gap-10 lg:grid-cols-[260px_1fr]">
+              <div>
+                <h3 class="text-xl md:text-2xl font-semibold tracking-normal text-[#1B365D] dark:text-[#D0DCE9]">{{ capability.title }}</h3>
+              </div>
+              <div>
+                <p class="text-pretty text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">{{ capability.description }}</p>
+              </div>
+            </div>
+          </article>
         </div>
 
         <div data-reveal="up-xs" class="mt-12">
-          <p class="text-center text-sm font-semibold uppercase tracking-[0.16em] text-[#6f7b69] dark:text-[#c8d0c5]">
+          <p class="text-center text-sm font-semibold uppercase tracking-[0.16em] text-[#1B365D] dark:text-[#D0DCE9]">
             模型和服务可按需配置
           </p>
           <div class="mt-5 flex flex-wrap justify-center gap-3">
@@ -161,7 +163,7 @@
               v-for="(model, index) in modelSupport"
               :key="model"
               data-reveal="up-xs"
-              class="rounded-full border border-[#cad7c3] bg-[#fbfcf8] px-3 py-1.5 text-sm text-[#4d5a4a] dark:border-[#60717d] dark:bg-[#465865] dark:text-[#d7ded3]"
+              class="text-sm text-[#3D3D3A] dark:text-[#d6d1c4]"
               :style="{ '--reveal-delay': `${index * 35}ms` }"
             >
               {{ model }}
@@ -171,21 +173,21 @@
       </div>
     </section>
 
-    <section id="principles" class="product-section-band scroll-mt-28 border-y border-[#dbe4d3] px-4 py-20 md:px-6 md:py-28 dark:border-[#536471]">
+    <section id="principles" class="product-section-band scroll-mt-28 border-y border-[#d8d3c4] px-4 py-20 md:px-6 md:py-28 dark:border-[#44433f]">
       <div class="mx-auto max-w-6xl">
         <div data-reveal="up-xs">
           <SectionHeader eyebrow="03" title="Welight 的产品边界" description="Agent 可以帮你推进，但不会把每一步都变成不可控的自动化。" />
         </div>
-        <div class="mt-10 grid gap-4 md:grid-cols-2">
+        <div class="mt-10 grid gap-x-10 gap-y-8 md:grid-cols-2">
           <article
             v-for="(principle, index) in principles"
             :key="principle.title"
             data-reveal="up-sm"
-            class="motion-card rounded-lg bg-[#fbfcf8] p-6 ring-1 ring-[#cad7c3] dark:bg-[#465865] dark:ring-white/10"
+            class="pt-5"
             :style="{ '--reveal-delay': `${index * 80}ms` }"
           >
-            <h3 class="text-xl font-semibold">{{ principle.title }}</h3>
-            <p class="mt-3 text-pretty text-sm leading-7 text-[#5f6b5c] dark:text-[#d7ded3]">{{ principle.description }}</p>
+            <h3 class="text-xl font-semibold text-[#1B365D] dark:text-[#D0DCE9]">{{ principle.title }}</h3>
+            <p class="mt-3 text-pretty text-sm leading-7 text-[#504e49] dark:text-[#d6d1c4]">{{ principle.description }}</p>
           </article>
         </div>
       </div>
@@ -197,34 +199,34 @@
           <SectionHeader eyebrow="04" title="自由付款，完整授权" description="先试用，合适再购买。支付页面可在 $3-$10 区间内选择金额，授权内容不因金额不同而变化。" />
         </div>
 
-        <div data-reveal="up-sm" class="motion-card mx-auto mt-12 max-w-2xl rounded-lg bg-[#fbfcf8] p-8 text-center shadow-[0_26px_80px_-55px_rgba(60,74,85,0.45)] ring-1 ring-[#cad7c3] dark:bg-[#465865] dark:ring-white/10">
-          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#6f7b69] dark:text-[#c8d0c5]">Flexible License</p>
+        <div data-reveal="up-sm" class="mx-auto mt-12 max-w-2xl text-center">
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#1B365D] dark:text-[#D0DCE9]">Flexible License</p>
           <div class="mt-5 tabular-nums text-6xl font-light leading-none md:text-8xl">$3-$10</div>
-          <router-link
-            to="/pricing"
-            class="mx-auto mt-7 inline-flex min-h-12 w-full max-w-xs items-center justify-center rounded-full bg-[#3c4a55] px-6 py-3 text-base font-semibold text-[#f4f7f1] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#2f3b44] active:scale-[0.96] dark:bg-[#f4f7f1] dark:text-[#2f3b44] dark:hover:bg-[#e7edde]"
+          <a
+            :href="checkoutUrl"
+            class="mx-auto mt-7 inline-flex min-h-12 w-full max-w-xs items-center justify-center rounded-lg bg-[#1B365D] px-6 py-3 text-base font-semibold text-[#f5f4ed] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#142947] active:scale-[0.96] dark:bg-[#f5f4ed] dark:text-[#142947] dark:hover:bg-[#E4ECF5]"
           >
             选择金额并购买
-          </router-link>
-          <p class="mx-auto mt-6 max-w-lg text-pretty text-sm leading-7 text-[#5f6b5c] dark:text-[#d7ded3]">
+          </a>
+          <p class="mx-auto mt-6 max-w-lg text-pretty text-sm leading-7 text-[#504e49] dark:text-[#d6d1c4]">
             支付页面可在 $3-$10 区间自由选择付款金额。终身更新 · 2 台 Mac / 许可证 · 3天试用 · 支持银行卡、Apple Pay、微信等。
           </p>
         </div>
       </div>
     </section>
 
-    <section id="faq" class="product-section-band scroll-mt-28 border-t border-[#dbe4d3] px-4 py-20 md:px-6 md:py-28 dark:border-[#536471]">
+    <section id="faq" class="product-section-band scroll-mt-28 border-t border-[#d8d3c4] px-4 py-20 md:px-6 md:py-28 dark:border-[#44433f]">
       <div class="mx-auto max-w-4xl">
         <div data-reveal="up-xs">
           <SectionHeader eyebrow="05" title="常见问题" description="尽量用短答案回答真实购买和使用前会遇到的问题。" />
         </div>
-        <div data-reveal="up-sm" class="mt-10 divide-y divide-[#dbe4d3] rounded-lg border border-[#cad7c3] bg-[#fbfcf8] dark:divide-[#60717d] dark:border-[#60717d] dark:bg-[#465865]">
-          <details v-for="(item, index) in faqs" :key="item.question" class="group p-5" data-reveal="up-xs" :style="{ '--reveal-delay': `${index * 45}ms` }">
+        <div data-reveal="up-sm" class="mt-10 divide-y divide-[#d8d3c4] border-y border-[#d8d3c4] dark:divide-[#44433f] dark:border-[#44433f]">
+          <details v-for="(item, index) in faqs" :key="item.question" class="group py-5" data-reveal="up-xs" :style="{ '--reveal-delay': `${index * 45}ms` }">
             <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-left text-base font-semibold">
               {{ item.question }}
-              <span class="text-xl font-light text-[#8a9784] transition-transform group-open:rotate-45 dark:text-[#c8d0c5]">+</span>
+              <span class="text-xl font-light text-[#6b6a64] transition-transform group-open:rotate-45 dark:text-[#D0DCE9]">+</span>
             </summary>
-            <p class="mt-4 text-pretty text-sm leading-7 text-[#5f6b5c] dark:text-[#d7ded3]">{{ item.answer }}</p>
+            <p class="mt-4 text-pretty text-sm leading-7 text-[#504e49] dark:text-[#d6d1c4]">{{ item.answer }}</p>
           </details>
         </div>
       </div>
@@ -237,6 +239,7 @@ import { defineComponent, h, ref, computed, onMounted, onUnmounted } from 'vue'
 import { useThemeStore } from '@/stores/theme'
 import { handleDownload, initializeDownloadStats, getDownloadStats } from '@/services/downloadStats'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
+import { buildDodoCheckoutUrl } from '@/services/dodoPaymentsService.js'
 
 useSEO(seoConfigs.home)
 
@@ -248,10 +251,10 @@ const SectionHeader = defineComponent({
   },
   setup(props) {
     return () =>
-      h('div', { class: 'mx-auto max-w-3xl text-center' }, [
-        h('p', { class: 'tabular-nums text-sm font-semibold text-[#8a9784] dark:text-[#c8d0c5]' }, props.eyebrow),
-        h('h2', { class: 'mt-3 text-balance text-3xl font-semibold tracking-normal md:text-5xl' }, props.title),
-        h('p', { class: 'mx-auto mt-5 max-w-2xl text-pretty text-base leading-7 text-[#5f6b5c] dark:text-[#d7ded3]' }, props.description)
+      h('div', { class: 'max-w-3xl pt-5 text-left' }, [
+        h('p', { class: 'tabular-nums text-sm font-semibold text-[#1B365D] dark:text-[#D0DCE9]' }, props.eyebrow),
+        h('h2', { class: 'mt-3 text-balance text-2xl font-semibold tracking-normal text-[#1B365D] md:text-3xl dark:text-[#D0DCE9]' }, props.title),
+        h('p', { class: 'mt-5 max-w-2xl text-pretty text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]' }, props.description)
       ])
   }
 })
@@ -260,6 +263,8 @@ const themeStore = useThemeStore()
 const revealRoot = ref(null)
 const revealMotionReady = ref(false)
 let revealObserver = null
+
+const checkoutUrl = buildDodoCheckoutUrl({ quantity: 1 })
 
 const heroTitleWords = ['一句话、一篇文章、远不止于此']
 
@@ -403,6 +408,14 @@ const faqs = [
   {
     question: '试用和许可证怎么激活？',
     answer: '先下载试用确认工作流是否合适。购买许可证后在应用内按提示激活，支付页面支持在 $3-$10 区间自由付款，最终税费与可用支付方式以支付页面展示为准。'
+  },
+  {
+    question: 'Welight 5.0 版本注意事项',
+    answer: '5.0 版本进行了非常大的改动，包括支付授权，之前购买过许可证的用户可能需要重新激活，若许可证激活失败，请通过 QQ 群联系我进行处理。'
+  },
+  {
+    question: '新版本还支持积分吗？',
+    answer: '5.0 新版本开始不再提供积分机制，用户需要自备 AI 模型所需的密钥进行配置使用。'
   }
 ]
 
@@ -480,9 +493,22 @@ onUnmounted(() => {
 .hero-title {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   column-gap: 0.18em;
   row-gap: 0.08em;
+  font-family: 'Songti SC', 'STSong', 'Noto Serif SC', serif;
+}
+
+.product-shot {
+  border-radius: 10px;
+  outline: 1px solid rgba(0, 0, 0, 0.1);
+  outline-offset: -1px;
+  box-shadow: 0 4px 24px rgba(20, 20, 19, 0.05);
+}
+
+:global(.dark) .product-shot {
+  outline-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.26);
 }
 
 .hero-title-word {
@@ -537,7 +563,16 @@ onUnmounted(() => {
 .motion-card:hover,
 .reveal-ready .motion-card.is-revealed:hover {
   transform: translate3d(0, -4px, 0);
-  box-shadow: 0 22px 55px -42px rgba(60, 74, 85, 0.72);
+  box-shadow:
+    0 0 0 1px rgba(27, 54, 93, 0.18),
+    0 6px 28px rgba(20, 20, 19, 0.06);
+}
+
+:global(.dark) .motion-card:hover,
+:global(.dark) .reveal-ready .motion-card.is-revealed:hover {
+  box-shadow:
+    0 0 0 1px rgba(245, 244, 237, 0.14),
+    0 8px 28px rgba(0, 0, 0, 0.28);
 }
 
 @keyframes hero-word-rise {

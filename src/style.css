@@ -11,16 +11,17 @@
 
   body {
     font-family:
-      'YouYuan', '幼圆', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', sans-serif;
+      '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB',
+      'Microsoft YaHei', sans-serif;
     line-height: 1.6;
-    background-color: #f4f7f1;
-    color: #202821;
+    background-color: #f5f4ed;
+    color: #141413;
   }
 
   /* Dark mode overrides */
   .dark body {
-    background-color: #3c4a55;
-    color: #f4f7f1;
+    background-color: #141413;
+    color: #f5f4ed;
   }
 
   * {
@@ -74,12 +75,11 @@
   }
 
   .surface-soft {
-    border-radius: 1.5rem;
-    background: rgba(251, 252, 248, 0.86);
+    border-radius: 1.25rem;
+    background: #faf9f5;
     box-shadow:
-      0 0 0 1px rgba(60, 74, 85, 0.08),
-      0 1px 2px -1px rgba(60, 74, 85, 0.1),
-      0 16px 42px -24px rgba(60, 74, 85, 0.24);
+      0 0 0 1px rgba(20, 20, 19, 0.08),
+      0 4px 24px rgba(20, 20, 19, 0.05);
     transition:
       box-shadow 220ms ease,
       transform 220ms ease,
@@ -88,9 +88,8 @@
 
   .surface-soft:hover {
     box-shadow:
-      0 0 0 1px rgba(60, 74, 85, 0.1),
-      0 8px 20px -14px rgba(60, 74, 85, 0.2),
-      0 28px 60px -30px rgba(60, 74, 85, 0.28);
+      0 0 0 1px rgba(27, 54, 93, 0.18),
+      0 6px 28px rgba(20, 20, 19, 0.06);
   }
 
   .surface-soft-inner {
@@ -98,16 +97,16 @@
   }
 
   .surface-soft-outline {
-    outline: 1px solid rgba(60, 74, 85, 0.1);
+    outline: 1px solid rgba(20, 20, 19, 0.1);
     outline-offset: -1px;
   }
 
   .surface-stat {
     border-radius: 9999px;
-    background: rgba(251, 252, 248, 0.78);
+    background: #e8e6dc;
     box-shadow:
-      0 0 0 1px rgba(60, 74, 85, 0.08),
-      0 8px 24px -20px rgba(60, 74, 85, 0.34);
+      0 0 0 1px rgba(20, 20, 19, 0.08),
+      0 4px 18px rgba(20, 20, 19, 0.04);
     transition:
       box-shadow 220ms ease,
       transform 220ms ease,
@@ -117,8 +116,8 @@
   .surface-stat:hover {
     transform: translateY(-1px);
     box-shadow:
-      0 0 0 1px rgba(60, 74, 85, 0.1),
-      0 14px 32px -22px rgba(60, 74, 85, 0.36);
+      0 0 0 1px rgba(27, 54, 93, 0.18),
+      0 8px 22px rgba(20, 20, 19, 0.06);
   }
 
   .sections-enter > * {
@@ -170,18 +169,16 @@
   }
 
   .dark .surface-soft {
-    background: rgba(70, 88, 101, 0.82);
+    background: #30302e;
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, 0.08),
-      0 1px 2px -1px rgba(0, 0, 0, 0.4),
-      0 18px 42px -24px rgba(0, 0, 0, 0.55);
+      0 4px 24px rgba(0, 0, 0, 0.24);
   }
 
   .dark .surface-soft:hover {
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, 0.11),
-      0 10px 24px -16px rgba(0, 0, 0, 0.45),
-      0 32px 70px -34px rgba(0, 0, 0, 0.62);
+      0 8px 28px rgba(0, 0, 0, 0.28);
   }
 
   .dark .surface-soft-outline {
@@ -189,10 +186,10 @@
   }
 
   .dark .surface-stat {
-    background: rgba(70, 88, 101, 0.8);
+    background: #30302e;
     box-shadow:
       0 0 0 1px rgba(255, 255, 255, 0.08),
-      0 10px 24px -20px rgba(0, 0, 0, 0.45);
+      0 6px 20px rgba(0, 0, 0, 0.22);
   }
 }
 
@@ -228,28 +225,28 @@
 
 /* Dark mode common overrides for existing utility classes */
 .dark .text-gray-900 {
-  color: #f4f7f1;
+  color: #f5f4ed;
 }
 .dark .text-gray-800 {
-  color: #e7edde;
+  color: #ebe8dc;
 }
 .dark .text-gray-700 {
-  color: #d7ded3;
+  color: #d6d1c4;
 }
 .dark .text-gray-600 {
-  color: #c8d0c5;
+  color: #c9c5b8;
 }
 .dark .text-gray-500 {
-  color: #b4beb1;
+  color: #9d9789;
 }
 .dark .bg-white {
-  background-color: #465865;
+  background-color: #30302e;
 }
 .dark .bg-gray-50 {
-  background-color: #33404a;
+  background-color: #242421;
 }
 .dark .border-gray-200 {
-  border-color: #60717d;
+  border-color: #44433f;
 }
 
 .dark .markdown-content {
@@ -281,14 +278,14 @@
 
 /* Product page base colors are kept last so they win over generated utilities. */
 .product-main {
-  background-color: #f4f7f1;
-  color: #202821;
+  background-color: #f5f4ed;
+  color: #141413;
 }
 
 html.dark .product-main,
 .dark .product-main {
-  background-color: #3c4a55;
-  color: #f4f7f1;
+  background-color: #141413;
+  color: #f5f4ed;
 }
 
 .product-hero-field {
@@ -298,48 +295,22 @@ html.dark .product-main,
 }
 
 .product-hero-field::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto;
-  z-index: -1;
-  height: min(760px, 82vh);
-  pointer-events: none;
-  background-image:
-    linear-gradient(rgba(60, 74, 85, 0.044) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(60, 74, 85, 0.044) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(251, 252, 248, 0.64), rgba(251, 252, 248, 0));
-  background-position:
-    center top,
-    center top,
-    center top;
-  background-size:
-    32px 32px,
-    32px 32px,
-    100% 100%;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.86) 48%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.86) 48%, transparent 100%);
+  content: none;
 }
 
 .product-section-band {
-  background-color: #edf3e8;
-  background-image: linear-gradient(rgba(60, 74, 85, 0.034) 1px, transparent 1px);
-  background-size: 100% 44px;
-  background-position: center top;
+  background: transparent;
 }
 
 .product-pricing-field {
   overflow: hidden;
   background-image:
-    linear-gradient(rgba(60, 74, 85, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(60, 74, 85, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(237, 243, 232, 0.9), rgba(244, 247, 241, 0));
+    linear-gradient(90deg, rgba(27, 54, 93, 0.052) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(250, 249, 245, 0.88), rgba(245, 244, 237, 0));
   background-position:
-    center top,
-    center top,
     center top;
   background-size:
-    36px 36px,
-    36px 36px,
+    100% 44px,
     100% 100%;
   -webkit-mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.78) 54%, transparent 100%);
   mask-image: linear-gradient(to bottom, #000 0%, rgba(0, 0, 0, 0.78) 54%, transparent 100%);
@@ -347,22 +318,17 @@ html.dark .product-main,
 
 html.dark .product-hero-field::before,
 .dark .product-hero-field::before {
-  background-image:
-    linear-gradient(rgba(244, 247, 241, 0.052) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(244, 247, 241, 0.052) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(51, 64, 74, 0.62), rgba(51, 64, 74, 0));
+  content: none;
 }
 
 html.dark .product-section-band,
 .dark .product-section-band {
-  background-color: #33404a;
-  background-image: linear-gradient(rgba(244, 247, 241, 0.044) 1px, transparent 1px);
+  background: transparent;
 }
 
 html.dark .product-pricing-field,
 .dark .product-pricing-field {
   background-image:
-    linear-gradient(rgba(244, 247, 241, 0.052) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(244, 247, 241, 0.052) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(51, 64, 74, 0.94), rgba(60, 74, 85, 0));
+    linear-gradient(90deg, rgba(245, 244, 237, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(48, 48, 46, 0.92), rgba(20, 20, 19, 0));
 }

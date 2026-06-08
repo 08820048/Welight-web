@@ -134,12 +134,12 @@ const isVisible = ref(props.modelValue)
 const router = useRouter()
 
 /**
- * 关闭条幅并跳转到价格页
+ * 关闭条幅并跳转到购买页
  * @returns {void}
  */
 function goToPricing() {
   close()
-  router.push('/pricing')
+  window.location.href = 'https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success'
 }
 
 // 倒计时状态

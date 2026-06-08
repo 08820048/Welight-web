@@ -28,14 +28,15 @@
             公告通知
             <div v-if="hasNewAnnouncements" class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
           </button>
-          <router-link to="/pricing" class="hover:text-slate-900 transition-colors font-medium relative"
-            active-class="text-primary-600">
-            定价
+          <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success"
+            target="_blank"
+            class="hover:text-slate-900 transition-colors font-medium relative">
+            购买
             <!-- <span
               class="absolute -top-2 -right-3 text-white text-xs px-1.5 py-0.5 rounded-full font-bold shadow-sm bg-gradient-to-r from-red-500 to-orange-500 scale-90">
               庆
             </span> -->
-          </router-link>
+          </a>
 
           <router-link to="/donation"
             class="hover:text-slate-900 transition-colors font-medium relative flex items-center gap-1.5"
@@ -198,10 +199,11 @@
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             功能特性
           </router-link>
-          <router-link to="/pricing" @click="closeMobileMenu"
+          <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success"
+            target="_blank" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
-            定价
-          </router-link>
+            购买
+          </a>
           <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA&versionCode=4001005"
             target="_blank" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">

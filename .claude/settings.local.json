@@ -4,7 +4,13 @@
       "Bash(npm run:*)",
       "Bash(git add:*)",
       "Bash(git commit -m ':*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "mcp__web-reader__webReader",
+      "WebFetch(domain:mole.fit)",
+      "Bash(Read *)",
+      "Bash(npx wrangler *)",
+      "Bash(npm ls *)",
+      "Bash(git commit -m ' *)"
     ]
   }
 }

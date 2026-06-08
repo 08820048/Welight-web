@@ -1,50 +1,43 @@
 <template>
   <!-- 模态框背景 -->
-  <div 
-    v-if="isVisible" 
-    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+  <div
+    v-if="isVisible"
+    class="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
     @click="closeModal"
   >
     <!-- 模态框内容 -->
     <div
-      class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-md w-full modal-content"
+      class="w-full max-w-md rounded-lg border border-[#d8d3c4] bg-[#f5f4ed] modal-content dark:border-[#44433f] dark:bg-[#141413]"
       @click.stop
     >
       <!-- 头部 -->
-      <div class="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-        <div class="flex items-center space-x-3">
-          <div class="w-8 h-8 bg-red-100 dark:bg-red-900 rounded-lg flex items-center justify-center">
-            <svg class="w-5 h-5 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-            </svg>
-          </div>
-          <h2 class="text-xl font-bold text-gray-900 dark:text-white">支持我们</h2>
-        </div>
-        <button 
+      <div class="flex items-center justify-between border-b border-[#d8d3c4] px-6 py-5 dark:border-[#44433f]">
+        <h2 class="text-lg font-semibold text-[#1B365D] dark:text-[#D0DCE9]">赞助支持</h2>
+        <button
           @click="closeModal"
-          class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+          class="rounded-md p-1 text-[#6b6a64] transition-colors hover:text-[#141413] dark:text-[#817d72] dark:hover:text-[#f5f4ed]"
         >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
 
       <!-- 内容区域 -->
-      <div class="p-6">
-        <p class="text-gray-600 dark:text-gray-300 mb-6 text-center">
+      <div class="px-6 py-6">
+        <p class="mb-6 text-center text-sm leading-6 text-[#504e49] dark:text-[#d6d1c4]">
           如果您觉得我们的软件对您有帮助，欢迎通过以下方式支持我们的开发工作
         </p>
-        
+
         <!-- 赞助方式选择 -->
-        <div class="flex justify-center space-x-4 mb-6">
+        <div class="mb-6 flex justify-center gap-3">
           <button
             @click="activeTab = 'wechat'"
             :class="[
-              'px-4 py-2 rounded-lg font-medium transition-colors',
-              activeTab === 'wechat' 
-                ? 'bg-green-500 text-white' 
-                : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+              'rounded-md px-4 py-2 text-sm font-medium transition-colors',
+              activeTab === 'wechat'
+                ? 'bg-[#1B365D] text-white dark:bg-[#D0DCE9] dark:text-[#141413]'
+                : 'border border-[#d8d3c4] text-[#504e49] hover:bg-[#ebe8dc] dark:border-[#44433f] dark:text-[#d6d1c4] dark:hover:bg-[#30302e]'
             ]"
           >
             微信支付
@@ -52,10 +45,10 @@
           <button
             @click="activeTab = 'alipay'"
             :class="[
-              'px-4 py-2 rounded-lg font-medium transition-colors',
-              activeTab === 'alipay' 
-                ? 'bg-blue-500 text-white' 
-                : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+              'rounded-md px-4 py-2 text-sm font-medium transition-colors',
+              activeTab === 'alipay'
+                ? 'bg-[#1B365D] text-white dark:bg-[#D0DCE9] dark:text-[#141413]'
+                : 'border border-[#d8d3c4] text-[#504e49] hover:bg-[#ebe8dc] dark:border-[#44433f] dark:text-[#d6d1c4] dark:hover:bg-[#30302e]'
             ]"
           >
             支付宝
@@ -64,18 +57,18 @@
 
         <!-- 二维码显示区域 -->
         <div class="flex justify-center">
-          <div class="bg-white p-4 rounded-lg shadow-inner">
-            <img 
+          <div class="rounded-lg border border-[#d8d3c4] bg-white p-4 dark:border-[#44433f]">
+            <img
               :src="activeTab === 'wechat' ? '/wx.jpg' : '/zfb.jpg'"
               :alt="activeTab === 'wechat' ? '微信支付二维码' : '支付宝支付二维码'"
-              class="w-48 h-48 object-contain"
+              class="h-48 w-48 object-contain"
               loading="lazy"
             />
           </div>
         </div>
 
         <!-- 提示文字 -->
-        <p class="text-sm text-gray-500 dark:text-gray-400 text-center mt-4">
+        <p class="mt-4 text-center text-xs text-[#6b6a64] dark:text-[#817d72]">
           {{ activeTab === 'wechat' ? '使用微信扫描上方二维码进行赞助' : '使用支付宝扫描上方二维码进行赞助' }}
         </p>
       </div>
@@ -131,7 +124,7 @@ onUnmounted(() => {
 @keyframes modalFadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px) scale(0.95);
+    transform: translateY(12px) scale(0.97);
   }
   to {
     opacity: 1;

@@ -6,7 +6,7 @@
     <main
       class="product-main min-h-screen transition-colors duration-300">
       <div v-if="!isTopNoticeClosed"
-        class="sticky top-16 z-40 border-b border-[#dbe4d3] bg-[#3c4a55] text-[#f4f7f1] dark:border-[#536471] dark:bg-[#33404a]">
+        class="sticky top-16 z-40 border-b border-[#d8d3c4] bg-[#1B365D] text-[#faf9f5] dark:border-[#44433f] dark:bg-[#30302e]">
         <div class="relative w-full px-6 py-2 md:px-16 text-sm leading-6 text-center">
           <span>⚠️ 由于产品策略调整，Welight 积分功能将于 <strong>2026年6月底</strong> 彻底关停，官网已停止积分套餐购买。已购积分请尽快使用，感谢理解。</span>
           <button type="button"

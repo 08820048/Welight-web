@@ -1,233 +1,25 @@
 <template>
   <header
-    class="fixed top-0 left-0 right-0 z-50 border-b border-[#d8e1d2] bg-[#f4f7f1]/85 backdrop-blur-md dark:border-[#536471] dark:bg-[#3c4a55]/90">
+    class="fixed top-0 left-0 right-0 z-50">
     <div class="w-full px-6 md:px-16">
       <!-- Desktop Navbar -->
       <nav class="hidden lg:flex items-center justify-between h-16">
-        <!-- Left: Logo -->
-        <div class="flex items-center">
-          <router-link to="/" class="flex items-center gap-2 relative">
-            <img src="/logo.png" alt="Welight Logo" class="w-8 h-8 rounded-lg" />
-            <span class="text-lg font-semibold">Welight</span>
-            <span v-if="isChristmasSeason" class="ml-1 text-lg">🎅</span>
-          </router-link>
-        </div>
-
-        <!-- Center: one-page anchors -->
-        <nav class="flex items-center gap-6">
-          <a v-for="item in anchorLinks" :key="item.href" :href="item.href"
-            class="text-sm font-medium text-[#63715f] hover:text-[#202821] dark:text-[#c8d0c5] dark:hover:text-[#f4f7f1]">
-            {{ item.label }}
-          </a>
-        </nav>
-
-        <!-- Right: actions + theme toggle -->
-        <div class="flex items-center gap-3">
-          <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex h-9 items-center rounded-full border border-[#cad7c3] bg-[#fbfcf8] px-4 text-sm font-semibold text-[#202821] transition-colors hover:bg-[#edf3e8] dark:border-[#60717d] dark:bg-[#465865] dark:text-[#f4f7f1] dark:hover:bg-[#506371]">
-            下载试用
-          </a>
-          <router-link to="/pricing"
-            class="inline-flex h-9 items-center rounded-full bg-[#3c4a55] px-4 text-sm font-semibold text-[#f4f7f1] transition-colors hover:bg-[#2f3b44] dark:bg-[#f4f7f1] dark:text-[#2f3b44] dark:hover:bg-[#e7edde]">
-            购买许可证
-          </router-link>
-          <div class="relative group" v-if="false">
-            <button
-              class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 flex items-center gap-1.5">
-              交流反馈
-              <svg class="w-3 h-3 transition-transform duration-200 group-hover:rotate-180" fill="none"
-                stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </button>
-            <div
-              class="absolute top-full right-0 mt-2 w-48 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md rounded-lg shadow-lg border border-white/30 dark:border-gray-800 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-              <div class="py-2">
-                <a href="https://qm.qq.com/q/nNA64h5d6K" target="_blank"
-                  class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 transition-colors duration-200">
-                  <div class="flex items-center space-x-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
-                    </svg>
-                    <span>交流讨论</span>
-                  </div>
-                </a>
-                <a href="https://docs.qq.com/sheet/DS1RITFdUR1BQSURY?tdsourcetag=nt-grpaio-file" target="_blank"
-                  class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 transition-colors duration-200">
-                  <div class="flex items-center space-x-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.464 0L4.35 16.5c-.77.833.192 2.5 1.732 2.5z" />
-                    </svg>
-                    <span>问题反馈</span>
-                  </div>
-                </a>
-                <a href="https://docs.qq.com/sheet/DS3NVaFhQeVZTSG11?tdsourcetag=nt-grpaio-file" target="_blank"
-                  class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-primary-600 transition-colors duration-200">
-                  <div class="flex items-center space-x-2">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                    </svg>
-                    <span>功能诉求</span>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-          <ToggleTheme class="ml-1" />
-        </div>
+        <router-link to="/" class="text-lg font-semibold">Welight</router-link>
+        <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success"
+          class="inline-flex h-9 items-center rounded-lg bg-[#1B365D] px-4 text-sm font-semibold text-[#faf9f5] transition-colors hover:bg-[#142947] dark:bg-[#D0DCE9] dark:text-[#141413] dark:hover:bg-[#E4ECF5]">
+          购买许可证
+        </a>
       </nav>
 
       <!-- Mobile Navbar -->
-      <div class="flex lg:hidden items-center justify-between h-16">
-        <router-link to="/" class="flex items-center gap-2">
-          <img src="/logo.png" alt="Welight Logo" class="w-8 h-8 rounded-lg" />
-          <span class="text-lg font-semibold">Welight</span>
-          <span v-if="isChristmasSeason" class="ml-1 text-lg">🎅</span>
-        </router-link>
-
-        <button @click="toggleMobileMenu"
-          class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-[#e7edde] transition-colors dark:hover:bg-[#506371]">
-          <svg v-if="!isMobileMenuOpen" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-          <svg v-else class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
+      <nav class="flex lg:hidden items-center justify-between h-16">
+        <router-link to="/" class="text-lg font-semibold">Welight</router-link>
+        <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success"
+          class="inline-flex h-9 items-center rounded-lg bg-[#1B365D] px-4 text-sm font-semibold text-[#faf9f5] transition-colors hover:bg-[#142947] dark:bg-[#D0DCE9] dark:text-[#141413] dark:hover:bg-[#E4ECF5]">
+          购买许可证
+        </a>
+      </nav>
     </div>
-
-    <!-- Mobile Menu Overlay -->
-    <transition name="mobile-overlay">
-      <div v-if="isMobileMenuOpen" @click="closeMobileMenu"
-        class="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden"></div>
-    </transition>
-
-    <!-- Mobile Menu Drawer -->
-    <transition name="mobile-drawer">
-      <div v-if="isMobileMenuOpen"
-        class="fixed top-0 right-0 bottom-0 w-80 max-w-[85vw] bg-[#f4f7f1] shadow-2xl dark:bg-[#3c4a55] z-50 lg:hidden overflow-y-auto">
-        <div class="p-6">
-          <!-- Mobile Menu Header -->
-          <div class="flex items-center justify-between mb-6">
-            <div class="flex items-center gap-2">
-              <img src="/logo.png" alt="Welight Logo" class="w-8 h-8 rounded-lg" />
-              <span class="text-lg font-semibold">Welight</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <button @click="toggleTheme" aria-label="切换主题"
-                class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-[#e7edde] transition-colors dark:text-[#f4f7f1] dark:hover:bg-[#506371]">
-                <Sun v-if="themeStore.isDark" class="h-5 w-5" />
-                <Moon v-else class="h-5 w-5" />
-              </button>
-              <button @click="closeMobileMenu" aria-label="关闭菜单"
-                class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-[#e7edde] transition-colors dark:hover:bg-[#506371]">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          <!-- Mobile Menu Items -->
-          <nav class="space-y-1">
-            <a v-for="item in anchorLinks" :key="item.href" :href="item.href" @click="closeMobileMenu"
-              class="block px-4 py-3 text-sm font-medium text-[#3c4a55] dark:text-[#f4f7f1] rounded-xl hover:bg-[#e7edde] dark:hover:bg-[#506371] transition-colors">
-              {{ item.label }}
-            </a>
-
-            <button v-if="false" @click="(showAnnouncements(), closeMobileMenu())"
-              class="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center justify-between">
-              <span class="inline-flex items-center gap-2">
-                <Megaphone class="w-4 h-4" />
-                公告
-              </span>
-              <div v-if="hasNewAnnouncements" class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
-            </button>
-
-            <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
-              @click="closeMobileMenu"
-              class="block px-4 py-3 text-sm font-medium text-[#3c4a55] dark:text-[#f4f7f1] rounded-xl hover:bg-[#e7edde] dark:hover:bg-[#506371] transition-colors">
-              <span class="inline-flex items-center gap-2">
-                <DownloadIcon class="w-4 h-4" />
-                下载
-                <Gift v-if="isChristmasSeason" class="w-3 h-3 text-green-600" />
-              </span>
-            </a>
-
-            <button v-if="false" @click="(showChangelog(), closeMobileMenu())"
-              class="w-full text-left px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
-              <span class="inline-flex items-center gap-2">
-                <History class="w-4 h-4" />
-                更新日志
-              </span>
-            </button>
-
-            <!-- 交流反馈，移动到最后 -->
-            <div class="border-t border-gray-200 pt-4 mt-4" v-if="false">
-              <div class="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                交流反馈
-              </div>
-              <a href="https://qm.qq.com/q/nNA64h5d6K" target="_blank" @click="closeMobileMenu"
-                class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
-                交流讨论
-              </a>
-              <a href="https://docs.qq.com/sheet/DS1RITFdUR1BQSURY?tdsourcetag=nt-grpaio-file" target="_blank"
-                @click="closeMobileMenu"
-                class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
-                问题反馈
-              </a>
-              <a href="https://docs.qq.com/sheet/DS3NVaFhQeVZTSG11?tdsourcetag=nt-grpaio-file" target="_blank"
-                @click="closeMobileMenu"
-                class="block px-4 py-3 text-sm font-medium text-gray-700 rounded-xl hover:bg-gray-100 transition-colors">
-                功能诉求
-              </a>
-            </div>
-
-            <!-- 活动菜单项 -->
-            <button v-for="promo in menuPromotions" :key="promo.id"
-              @click="(showPromotionBanner(promo), closeMobileMenu())"
-              class="w-full text-left px-4 py-3 text-sm font-bold rounded-xl transition-colors bg-gradient-to-r from-orange-500 to-red-500 text-white hover:from-orange-600 hover:to-red-600 flex items-center justify-between">
-              <span>{{ promo.name }}</span>
-              <span v-if="promo.menuBadge">{{ promo.menuBadge }}</span>
-            </button>
-          </nav>
-
-            <!-- Mobile Action Buttons -->
-          <div class="mt-6 space-y-3 border-t border-[#d8e1d2] pt-6 dark:border-[#536471]">
-            <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
-              @click="closeMobileMenu"
-              class="block w-full text-center px-4 py-3 text-sm font-medium border border-[#cad7c3] bg-[#fbfcf8] text-[#202821] rounded-xl transition-colors hover:bg-[#edf3e8] dark:border-[#60717d] dark:bg-[#465865] dark:text-[#f4f7f1] dark:hover:bg-[#506371]">
-              下载试用
-            </a>
-
-            <router-link to="/pricing" @click="closeMobileMenu"
-              class="relative block w-full text-center px-4 py-3 text-sm font-medium bg-[#3c4a55] text-[#f4f7f1] rounded-xl transition-colors hover:bg-[#2f3b44] dark:bg-[#f4f7f1] dark:text-[#2f3b44] dark:hover:bg-[#e7edde]">
-              购买许可证
-            </router-link>
-
-            <router-link to="/documentation" @click.prevent="openDocumentationWithNotice(true)"
-              class="relative block w-full text-center px-4 py-3 text-sm font-medium border border-[#cad7c3] bg-[#fbfcf8] text-[#202821] rounded-xl transition-colors hover:bg-[#edf3e8] dark:border-[#60717d] dark:bg-[#465865] dark:text-[#f4f7f1] dark:hover:bg-[#506371]">
-              文档
-            </router-link>
-          </div>
-        </div>
-      </div>
-    </transition>
-
-    <!-- Modals -->
-    <ChangelogModal :isVisible="isChangelogVisible" @close="closeChangelog" />
-    <AnnouncementModal :isVisible="isAnnouncementVisible" @close="closeAnnouncements" />
-    <DocumentationNoticeModal
-      :isVisible="isDocumentationNoticeVisible"
-      @close="closeDocumentationNotice"
-      @confirm="confirmDocumentationNotice"
-    />
-    <PromotionBanner v-model="isPromotionBannerVisible" :promotion="currentPromotion" @close="closePromotionBanner" />
   </header>
 </template>
 
