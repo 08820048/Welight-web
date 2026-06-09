@@ -33,7 +33,7 @@ const promotions = [
             </div>
             <div class="promo-info-item">
               <h3>许可证限时特惠中</h3>
-              <p>当前支持 <strong>$3-$10 自由付款</strong></p>
+              <p>当前支持 <strong>$7 固定价格</strong></p>
               <span>最终金额以支付页面展示为准</span>
             </div>
           </div>
@@ -54,20 +54,20 @@ const promotions = [
     activityStartDate: '2025-12-24',
     endDate: '2025-12-27',
     showInMenu: true,
-    menuBadge: '自由付款',
+    menuBadge: '$7',
     menuBadgeText: '',
     banner: {
-      title: '圣诞节活动 · 许可证自由付款',
-      subtitle: '支付页面支持在 $3-$10 区间自由选择金额',
+      title: '圣诞节活动 · 许可证固定价格',
+      subtitle: '固定价格 $7',
       bgColor: '#dc2626',
       bgGradient: 'linear-gradient(90deg, #ef4444 0%, #22c55e 100%)',
       content: `
         <div class="promo-clean-layout">
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
-              <h3>许可证自由付款</h3>
-              <p>当前区间 <strong>$3-$10</strong></p>
-              <span>你可以在支付页面选择合适金额</span>
+              <h3>许可证购买</h3>
+              <p>当前区间 <strong>$7</strong></p>
+              <span>固定价格，简单透明</span>
             </div>
             <div class="promo-info-item">
               <h3>一次购买</h3>
@@ -96,15 +96,15 @@ const promotions = [
     menuBadgeText: '',
     banner: {
       title: '跨年限时活动 · 新年焕新',
-      subtitle: '许可证支持 $3-$10 自由付款',
+      subtitle: '许可证支持 $7 固定价格',
       bgColor: '#f97316',
       bgGradient: 'linear-gradient(90deg, #60A5FA 0%, #6366F1 50%, #A78BFA 100%)',
       content: `
         <div class="promo-clean-layout">
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
-              <h3>许可证自由付款</h3>
-              <p>当前区间 <strong>$3-$10</strong></p>
+              <h3>许可证购买</h3>
+              <p>当前区间 <strong>$7</strong></p>
               <span>在支付页面选择合适金额</span>
             </div>
             <div class="promo-info-item">
@@ -134,15 +134,15 @@ const promotions = [
     menuBadgeText: '',
     banner: {
       title: '冬至特惠 · 暖冬同行',
-      subtitle: '许可证支持 $3-$10 自由付款',
+      subtitle: '许可证支持 $7 固定价格',
       bgColor: '#3b82f6',
       bgGradient: 'linear-gradient(90deg, #2563EB 0%, #22D3EE 50%, #2DD4BF 100%)',
       content: `
         <div class="promo-clean-layout">
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
-              <h3>许可证自由付款</h3>
-              <p>当前区间 <strong style="color:#ff4444">$3-$10</strong></p>
+              <h3>许可证购买</h3>
+              <p>当前区间 <strong>$7</strong></p>
               <span>最终金额以支付页面展示为准</span>
             </div>
           </div>

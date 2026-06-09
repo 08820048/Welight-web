@@ -22,7 +22,7 @@
             </div>
             <!-- 右侧：操作按钮（恢复原来同一行右侧布局） -->
             <div class="flex items-center gap-2 md:gap-3 shrink-0">
-              <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success"
+              <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&price=7&redirect_url=https://waer.ltd/success"
                 target="_blank"
                 class="rounded-lg bg-[#faf9f5] px-3 py-1.5 text-sm font-semibold text-[#141413] transition-all hover:bg-[#ebe8dc] md:px-4 md:py-2 md:text-base">
                 立即抢购

@@ -1,8 +1,8 @@
 <template>
   <div ref="revealRoot" class="product-main min-h-screen overflow-x-hidden" :class="{ 'reveal-ready': revealMotionReady }">
-    <section id="top" class="product-hero-field px-4 pt-24 md:px-6 md:pt-28">
-      <div class="mx-auto max-w-6xl">
-        <div class="grid items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
+    <section id="top" class="product-hero-field flex min-h-screen px-4 md:px-6">
+      <div class="mx-auto flex w-full max-w-6xl items-center">
+        <div class="grid w-full items-center gap-12 lg:grid-cols-[0.92fr_1.08fr]">
           <div class="max-w-2xl">
             <p data-reveal="up-xs" class="text-sm font-semibold uppercase tracking-[0.16em] text-[#1B365D] dark:text-[#D0DCE9]">
               Agent-led publishing workspace
@@ -196,20 +196,20 @@
     <section id="pricing" class="scroll-mt-28 px-4 py-20 md:px-6 md:py-28">
       <div class="mx-auto max-w-5xl">
         <div data-reveal="up-xs">
-          <SectionHeader eyebrow="04" title="自由付款，完整授权" description="先试用，合适再购买。支付页面可在 $3-$10 区间内选择金额，授权内容不因金额不同而变化。" />
+          <SectionHeader eyebrow="04" title="完整授权" description="先试用，合适再购买。仅需 $7，一次付费即可解锁全部功能。" />
         </div>
 
         <div data-reveal="up-sm" class="mx-auto mt-12 max-w-2xl text-center">
-          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#1B365D] dark:text-[#D0DCE9]">Flexible License</p>
-          <div class="mt-5 tabular-nums text-6xl font-light leading-none md:text-8xl">$3-$10</div>
+          <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#1B365D] dark:text-[#D0DCE9]">License</p>
+          <div class="mt-5 tabular-nums text-6xl font-light leading-none md:text-8xl">$7</div>
           <a
             :href="checkoutUrl"
             class="mx-auto mt-7 inline-flex min-h-12 w-full max-w-xs items-center justify-center rounded-lg bg-[#1B365D] px-6 py-3 text-base font-semibold text-[#f5f4ed] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#142947] active:scale-[0.96] dark:bg-[#f5f4ed] dark:text-[#142947] dark:hover:bg-[#E4ECF5]"
           >
-            选择金额并购买
+            购买
           </a>
           <p class="mx-auto mt-6 max-w-lg text-pretty text-sm leading-7 text-[#504e49] dark:text-[#d6d1c4]">
-            支付页面可在 $3-$10 区间自由选择付款金额。终身更新 · 2 台 Mac / 许可证 · 3天试用 · 支持银行卡、Apple Pay、微信等。
+            固定价格 $7。终身更新 · 2 台 Mac / 许可证 · 3天试用 · 支持银行卡、Apple Pay、微信等。
           </p>
         </div>
       </div>
@@ -407,7 +407,7 @@ const faqs = [
   },
   {
     question: '试用和许可证怎么激活？',
-    answer: '先下载试用确认工作流是否合适。购买许可证后在应用内按提示激活，支付页面支持在 $3-$10 区间自由付款，最终税费与可用支付方式以支付页面展示为准。'
+    answer: '先下载试用确认工作流是否合适。购买许可证后在应用内按提示激活，固定价格 $7，最终税费与可用支付方式以支付页面展示为准。'
   },
   {
     question: 'Welight 5.0 版本注意事项',

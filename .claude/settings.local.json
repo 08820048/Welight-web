@@ -10,7 +10,9 @@
       "Bash(Read *)",
       "Bash(npx wrangler *)",
       "Bash(npm ls *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(npx vite *)",
+      "Bash(grep -rn \"3-\\\\$10\\\\|自由付款\\\\|区间自由\\\\|自由选择\" src/ --include=\"*.vue\" --include=\"*.js\" --include=\"*.md\")"
     ]
   }
 }
