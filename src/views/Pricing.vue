@@ -347,7 +347,7 @@
                 <span class="hidden text-[#9d9789] sm:inline dark:text-[#817d72]">·</span>
                 <span>2 台 Mac / 许可证</span>
                 <span class="hidden text-[#9d9789] sm:inline dark:text-[#817d72]">·</span>
-                <span>3天试用</span>
+                <span>7天试用</span>
                 <span class="hidden text-[#9d9789] sm:inline dark:text-[#817d72]">·</span>
                 <span>支持银行卡、Apple Pay、微信等</span>
               </div>
@@ -524,7 +524,7 @@ const DODO_LICENSE_PRODUCT = {
   features: [
     '终身更新',
     '2 台 Mac / 许可证',
-    '3天试用',
+    '7天试用',
     '网页版和桌面端共用',
     '支持银行卡、Apple Pay、微信等'
   ]

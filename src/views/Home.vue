@@ -18,7 +18,7 @@
               </span>
             </h1>
             <p data-reveal="up-sm" style="--reveal-delay: 440ms" class="mt-7 max-w-xl text-pretty text-lg leading-8 text-[#504e49] md:text-xl dark:text-[#d6d1c4]">
-              素材搜索、文章其稿、审校、配图和创作发布
+              素材搜索、文章起草、审校、配图和创作发布
             </p>
 
             <div class="mt-8 flex flex-wrap gap-x-3 gap-y-1 text-sm text-[#504e49] dark:text-[#d6d1c4]">
@@ -209,7 +209,7 @@
             购买
           </a>
           <p class="mx-auto mt-6 max-w-lg text-pretty text-sm leading-7 text-[#504e49] dark:text-[#d6d1c4]">
-            固定价格 $7。终身更新 · 2 台 Mac / 许可证 · 3天试用 · 支持银行卡、Apple Pay、微信等。
+            固定价格 $7。终身更新 · 2 台 Mac / 许可证 · 7天试用 · 支持银行卡、Apple Pay、微信等。
           </p>
         </div>
       </div>
