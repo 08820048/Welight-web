@@ -5,18 +5,38 @@
     <ModernHeader />
     <main
       class="product-main min-h-screen transition-colors duration-300">
-      <div v-if="!isTopNoticeClosed"
-        class="sticky top-16 z-40 border-b border-[#d8d3c4] bg-[#1B365D] text-[#faf9f5] dark:border-[#44433f] dark:bg-[#30302e]">
-        <div class="relative w-full px-6 py-2 md:px-16 text-sm leading-6 text-center">
-          <span>⚠️ 由于产品策略调整，Welight 积分功能将于 <strong>2026年6月底</strong> 彻底关停，官网已停止积分套餐购买。已购积分请尽快使用，感谢理解。</span>
-          <button type="button"
-            class="absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-white/90 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/60 md:right-16"
-            aria-label="关闭通知" @click="closeTopNotice">
-            <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5" aria-hidden="true">
-              <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </button>
+      <!-- 顶部条幅区域（始终固定） -->
+      <div v-if="!isCliboBannerClosed || !isTopNoticeClosed" class="sticky top-16 z-40">
+        <!-- Clibo 推广条幅 -->
+        <div v-if="!isCliboBannerClosed"
+          class="flex items-center justify-center py-2">
+          <div
+            class="relative inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-[#1B365D] via-[#2B4A7A] to-[#1B365D] px-4 py-1.5 text-sm text-[#faf9f5] dark:from-[#2a2a28] dark:via-[#3a3a38] dark:to-[#2a2a28]">
+            <span>新品宣传 - 一个Mac原生、小巧强大的剪切板管理App - <a href="https://clibo.us" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-white/80 transition-colors font-semibold">Clibo</a></span>
+            <button type="button"
+              class="ml-1 rounded-full p-0.5 text-white/70 hover:bg-white/10 hover:text-white focus:outline-none shrink-0"
+              aria-label="关闭推广条幅" @click="isCliboBannerClosed = true">
+              <svg viewBox="0 0 24 24" fill="none" class="h-4 w-4" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <!-- 积分关停通知 -->
+        <div v-if="!isTopNoticeClosed"
+          class="border-b border-[#d8d3c4] bg-[#1B365D] text-[#faf9f5] dark:border-[#44433f] dark:bg-[#30302e]">
+          <div class="relative w-full px-6 py-2 md:px-16 text-sm leading-6 text-center">
+            <span>⚠️ 由于产品策略调整，Welight 积分功能将于 <strong>2026年6月底</strong> 彻底关停，官网已停止积分套餐购买。已购积分请尽快使用，感谢理解。</span>
+            <button type="button"
+              class="absolute right-6 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-white/90 hover:bg-white/10 hover:text-white focus:outline-none focus:ring-2 focus:ring-white/60 md:right-16"
+              aria-label="关闭通知" @click="closeTopNotice">
+              <svg viewBox="0 0 24 24" fill="none" class="h-5 w-5" aria-hidden="true">
+                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
       <RouterView />
@@ -66,6 +86,7 @@ const shouldLoadSpline = ref(false)
 
 const activePromotions = ref([])
 const isTopNoticeClosed = ref(localStorage.getItem(TOP_NOTICE_CLOSED_KEY) === 'true')
+const isCliboBannerClosed = ref(false)
 
 /**
  * 关闭顶部通知（持久化到 localStorage）
