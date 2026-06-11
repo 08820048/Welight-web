@@ -38,7 +38,7 @@
                 class="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#e8e6dc] px-6 py-3 text-sm font-semibold text-[#141413] shadow-[0_0_0_1px_rgba(20,20,19,0.08)] transition-colors hover:bg-[#dedace] dark:bg-[#30302e] dark:text-[#f5f4ed] dark:shadow-[0_0_0_1px_rgba(245,244,237,0.1)] dark:hover:bg-[#3a3a36]"
                 @click="downloadFile('macos-apple')"
               >
-                下载试用
+                下载
               </button>
               <a
                 :href="checkoutUrl"
@@ -196,12 +196,12 @@
     <section id="pricing" class="scroll-mt-28 px-4 py-20 md:px-6 md:py-28">
       <div class="mx-auto max-w-5xl">
         <div data-reveal="up-xs">
-          <SectionHeader eyebrow="04" title="完整授权" description="先试用，合适再购买。仅需 $7，一次付费即可解锁全部功能。" />
+          <SectionHeader eyebrow="04" title="完整授权" description="仅需 $5，一次付费即可解锁全部功能。" />
         </div>
 
         <div data-reveal="up-sm" class="mx-auto mt-12 max-w-2xl text-center">
           <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#1B365D] dark:text-[#D0DCE9]">License</p>
-          <div class="mt-5 tabular-nums text-6xl font-light leading-none md:text-8xl">$7</div>
+          <div class="mt-5 tabular-nums text-6xl font-light leading-none md:text-8xl">$5</div>
           <a
             :href="checkoutUrl"
             class="mx-auto mt-7 inline-flex min-h-12 w-full max-w-xs items-center justify-center rounded-lg bg-[#1B365D] px-6 py-3 text-base font-semibold text-[#f5f4ed] transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[#142947] active:scale-[0.96] dark:bg-[#f5f4ed] dark:text-[#142947] dark:hover:bg-[#E4ECF5]"
@@ -209,7 +209,7 @@
             购买
           </a>
           <p class="mx-auto mt-6 max-w-lg text-pretty text-sm leading-7 text-[#504e49] dark:text-[#d6d1c4]">
-            固定价格 $7。终身更新 · 2 台 Mac / 许可证 · 7天试用 · 支持银行卡、Apple Pay、微信等。
+            固定价格 $5。终身更新 · 2 台 Mac / 许可证 · 支持银行卡、Apple Pay、微信等。
           </p>
         </div>
       </div>
@@ -406,8 +406,8 @@ const faqs = [
     answer: '写作内容默认在你的本地工作流里处理。图片是否上传取决于你配置的图床或使用的服务，发布前建议检查对应配置。'
   },
   {
-    question: '试用和许可证怎么激活？',
-    answer: '先下载试用确认工作流是否合适。购买许可证后在应用内按提示激活，固定价格 $7，最终税费与可用支付方式以支付页面展示为准。'
+    question: '许可证怎么激活？',
+    answer: '购买许可证后在应用内按提示激活，固定价格 $5，最终税费与可用支付方式以支付页面展示为准。'
   },
   {
     question: 'Welight 5.0 版本注意事项',

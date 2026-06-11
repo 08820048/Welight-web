@@ -280,7 +280,7 @@
           <div class="text-center relative max-w-3xl mx-auto px-4 md:px-8">
             <AnimatedUnderlineText text="Welight 授权" text-className="text-balance text-4xl font-medium tracking-normal text-[#141413] dark:text-[#f5f4ed]"
               underline-className="text-[#1B365D] dark:text-[#f5f4ed]" />
-            <MagicText text="$7 立即解锁网页版与桌面端完整编辑体验" container-className="mt-6 justify-center"
+            <MagicText text="$5 立即解锁网页版与桌面端完整编辑体验" container-className="mt-6 justify-center"
               word-className="text-pretty text-lg text-[#504e49] dark:text-[#d6d1c4]" />
           </div>
 
@@ -318,7 +318,7 @@
                 License
               </p>
               <div class="mt-5 flex items-start justify-center tabular-nums text-[#141413] dark:text-[#f5f4ed]">
-                <span class="text-[clamp(3.4rem,14vw,8rem)] font-light leading-[0.9] tracking-normal">$7</span>
+                <span class="text-[clamp(3.4rem,14vw,8rem)] font-light leading-[0.9] tracking-normal">$5</span>
               </div>
 
               <button
@@ -332,22 +332,14 @@
               </button>
 
               <div class="mx-auto mt-7 max-w-xl space-y-3 text-pretty text-sm leading-7 text-[#504e49] dark:text-[#d6d1c4] md:text-base">
-                <p>固定价格 <span class="font-semibold text-[#141413] dark:text-[#f5f4ed]">$7</span>，最终税费与可用支付方式以支付页面展示为准。</p>
+                <p>固定价格 <span class="font-semibold text-[#141413] dark:text-[#f5f4ed]">$5</span>，最终税费与可用支付方式以支付页面展示为准。</p>
                 <p>包含网页版与桌面端完整功能、主题更新、许可证发放与授权验证。</p>
-                <p>
-                  或先
-                  <router-link to="/download" class="font-semibold text-[#1B365D] underline underline-offset-4 hover:text-[#141413] dark:text-[#f5f4ed] dark:hover:text-[#E4ECF5]">
-                    下载免费试用
-                  </router-link>
-                </p>
               </div>
 
               <div class="mt-9 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-[#6b6a64] dark:text-[#D0DCE9]">
                 <span>终身更新</span>
                 <span class="hidden text-[#9d9789] sm:inline dark:text-[#817d72]">·</span>
                 <span>2 台 Mac / 许可证</span>
-                <span class="hidden text-[#9d9789] sm:inline dark:text-[#817d72]">·</span>
-                <span>7天试用</span>
                 <span class="hidden text-[#9d9789] sm:inline dark:text-[#817d72]">·</span>
                 <span>支持银行卡、Apple Pay、微信等</span>
               </div>
@@ -382,7 +374,7 @@
                     https://waer.ltd/wl/
                   </a>
                 </li>
-                <li class="animate-fade-in-up delay-1600">支付由 Dodo Payments 托管处理，固定价格 $7，最终税费、币种换算与可用支付方式以结账页为准。</li>
+                <li class="animate-fade-in-up delay-1600">支付由 Dodo Payments 托管处理，固定价格 $5，最终税费、币种换算与可用支付方式以结账页为准。</li>
                 <li class="animate-fade-in-up delay-1700">如需退款请联系支持协助处理，能否退款以支付平台规则、交易时间和订单状态为准。</li>
                 <li class="animate-fade-in-up delay-1700">默认内置的图片云存储服务和 AI 服务一样作为可选服务，您也可以选择配置自己的图床进行使用</li>
               </ul>
@@ -515,16 +507,15 @@ const DODO_LICENSE_PRODUCT = {
   id: 'dodo-welight-license',
   code: 'WELIGHT_DODO_LICENSE',
   name: 'Welight 标准授权',
-  description: '解锁网页版与桌面端完整功能，仅需 $7，购买后由 Dodo Payments 发放许可证密钥。',
-  price: 7,
-  priceRange: '$7',
+  description: '解锁网页版与桌面端完整功能，仅需 $5，购买后由 Dodo Payments 发放许可证密钥。',
+  price: 5,
+  priceRange: '$5',
   currency: 'USD',
   permanent: true,
   maxActivations: 2,
   features: [
     '终身更新',
     '2 台 Mac / 许可证',
-    '7天试用',
     '网页版和桌面端共用',
     '支持银行卡、Apple Pay、微信等'
   ]

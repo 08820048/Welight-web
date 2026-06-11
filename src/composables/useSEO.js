@@ -87,9 +87,9 @@ export const seoConfigs = {
     url: 'https://waer.ltd/about'
   },
   pricing: {
-    title: 'Welight购买 - $7 许可证 | Dodo Payments 安全结账',
+    title: 'Welight购买 - $5 许可证 | Dodo Payments 安全结账',
     description:
-      'Welight微信公众号排版工具购买页面，仅需 $7 即可购买许可证，解锁网页版与桌面端完整功能，并通过 Dodo Payments 安全结账。',
+      'Welight微信公众号排版工具购买页面，仅需 $5 即可购买许可证，解锁网页版与桌面端完整功能，并通过 Dodo Payments 安全结账。',
     keywords:
       'Welight价格,公众号排版工具价格,许可证购买,Dodo Payments,软件购买,正版授权',
     url: 'https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success'

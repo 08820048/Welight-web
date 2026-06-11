@@ -12,7 +12,10 @@
       "Bash(npm ls *)",
       "Bash(git commit -m ' *)",
       "Bash(npx vite *)",
-      "Bash(grep -rn \"3-\\\\$10\\\\|自由付款\\\\|区间自由\\\\|自由选择\" src/ --include=\"*.vue\" --include=\"*.js\" --include=\"*.md\")"
+      "Bash(grep -rn \"3-\\\\$10\\\\|自由付款\\\\|区间自由\\\\|自由选择\" src/ --include=\"*.vue\" --include=\"*.js\" --include=\"*.md\")",
+      "Bash(git commit *)",
+      "Bash(grep -rn '\\\\$7' /Users/xuyi/Desktop/Welight/Welight-web --include='*.vue' --include='*.js' --include='*.ts' --include='*.json' --include='*.md')",
+      "Bash(grep -rn '\\\\$3\\\\|\\\\$10' /Users/xuyi/Desktop/Welight/Welight-web --include='*.vue' --include='*.js' --include='*.ts' --include='*.json' --include='*.md')"
     ]
   }
 }
