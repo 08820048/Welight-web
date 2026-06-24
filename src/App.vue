@@ -2,11 +2,11 @@
   <div id="app">
     <!-- 文档页禁用 3D 背景，其他页面可再启用 -->
 
-    <ModernHeader />
+    <ModernHeader v-if="showGlobalChrome" />
     <main
       class="product-main min-h-screen transition-colors duration-300">
       <!-- 顶部条幅区域（始终固定） -->
-      <div v-if="!isCliboBannerClosed || !isTopNoticeClosed" class="sticky top-16 z-40">
+      <div v-if="showGlobalChrome && (!isCliboBannerClosed || !isTopNoticeClosed)" class="sticky top-16 z-40">
         <!-- Clibo 推广条幅 -->
         <div v-if="!isCliboBannerClosed"
           class="flex items-center justify-center py-2">
@@ -77,6 +77,8 @@ const TOP_NOTICE_CLOSED_KEY = 'welight_notice_credits_deprecation'
 const isDonationPage = computed(() => {
   return route.name === 'donation' || route.path === '/donation'
 })
+
+const showGlobalChrome = computed(() => route.name !== 'home' && route.path !== '/')
 
 // 文档页不显示 Footer，避免双滚动条
 const showFooter = computed(() => route.name !== 'documentation' && route.path !== '/documentation')
