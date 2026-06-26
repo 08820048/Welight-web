@@ -5,6 +5,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    color-scheme: light;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

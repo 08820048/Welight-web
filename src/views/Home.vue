@@ -1,17 +1,6 @@
 <template>
   <div ref="revealRoot" class="product-main home-page relative isolate min-h-screen overflow-x-hidden" :class="{ 'reveal-ready': revealMotionReady }">
-    <video
-      class="home-motion-bg"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="metadata"
-      poster="/assert/hero-light.png"
-      aria-hidden="true"
-    >
-      <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260428_193507_4286c423-2fd9-4efd-92bd-91a939453fc1.mp4" type="video/mp4" />
-    </video>
+    <div class="home-motion-bg" aria-hidden="true"></div>
     <div class="home-motion-wash" aria-hidden="true"></div>
 
     <section id="top" class="product-hero-field relative z-10 flex min-h-screen items-center justify-center bg-transparent p-3 md:p-5">
@@ -136,7 +125,11 @@
               <svg width="100%" height="100%" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M56 56H0C30.9279 56 56 30.9279 56 0V56Z" fill="#f0f0f0"/></svg>
             </div>
 
-            <router-link to="/documentation" class="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(30,50,90,0.1)] bg-[rgba(30,50,90,0.05)] md:h-14 md:w-14">
+            <router-link
+              to="/documentation"
+              aria-label="打开使用文档"
+              class="flex h-10 w-10 items-center justify-center rounded-full border border-[rgba(30,50,90,0.1)] bg-[rgba(30,50,90,0.05)] md:h-14 md:w-14"
+            >
               <ArrowUpRight class="h-5 w-5 text-[rgba(30,50,90,0.8)] md:h-6 md:w-6" />
             </router-link>
             <div class="pr-1">
@@ -706,11 +699,37 @@ onUnmounted(() => {
 
 .home-motion-bg {
   z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: 65% center;
-  filter: saturate(1.04) contrast(0.96);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.86), transparent 24rem),
+    radial-gradient(circle at 82% 24%, rgba(208, 220, 233, 0.54), transparent 26rem),
+    radial-gradient(circle at 44% 76%, rgba(30, 50, 90, 0.13), transparent 24rem),
+    linear-gradient(115deg, #f3f4f2 0%, #e8edf2 45%, #f8f7f2 100%);
+}
+
+.home-motion-bg::before,
+.home-motion-bg::after {
+  content: '';
+  position: absolute;
+  inset: -22%;
+  opacity: 0.72;
+  will-change: transform;
+}
+
+.home-motion-bg::before {
+  background:
+    radial-gradient(circle at 20% 35%, rgba(255, 255, 255, 0.92), transparent 18rem),
+    radial-gradient(circle at 76% 40%, rgba(30, 50, 90, 0.12), transparent 22rem),
+    radial-gradient(circle at 46% 72%, rgba(208, 220, 233, 0.52), transparent 20rem);
+  animation: home-bg-drift 22s ease-in-out infinite alternate;
+}
+
+.home-motion-bg::after {
+  background:
+    linear-gradient(120deg, transparent 0%, rgba(255, 255, 255, 0.42) 28%, transparent 54%),
+    radial-gradient(circle at 62% 18%, rgba(255, 255, 255, 0.5), transparent 18rem);
+  mix-blend-mode: screen;
+  animation: home-bg-sweep 18s ease-in-out infinite alternate;
 }
 
 .home-motion-wash {
@@ -829,11 +848,6 @@ onUnmounted(() => {
   background: transparent;
 }
 
-:global(.dark) .home-motion-bg {
-  opacity: 0.62;
-  filter: saturate(0.88) contrast(0.88) brightness(0.72);
-}
-
 :global(.dark) .home-motion-wash {
   background:
     radial-gradient(circle at 50% 8%, rgba(20, 20, 19, 0.34), transparent 28rem),
@@ -929,9 +943,30 @@ onUnmounted(() => {
   }
 }
 
+@keyframes home-bg-drift {
+  from {
+    transform: translate3d(-2%, -1%, 0) scale(1);
+  }
+
+  to {
+    transform: translate3d(3%, 2%, 0) scale(1.04);
+  }
+}
+
+@keyframes home-bg-sweep {
+  from {
+    transform: translate3d(-4%, 2%, 0) rotate(-2deg);
+  }
+
+  to {
+    transform: translate3d(5%, -2%, 0) rotate(2deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .home-motion-bg {
-    display: none;
+  .home-motion-bg::before,
+  .home-motion-bg::after {
+    animation: none;
   }
 
   .home-motion-wash {
