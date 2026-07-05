@@ -4,6 +4,18 @@
     <div class="home-motion-wash" aria-hidden="true"></div>
 
     <section id="top" class="product-hero-field relative z-10 flex min-h-screen items-center justify-center bg-transparent p-3 md:p-5">
+      <video
+        class="hero-video-bg"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        poster="/assert/hero-light.png"
+        aria-hidden="true"
+      >
+        <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260428_193507_4286c423-2fd9-4efd-92bd-91a939453fc1.mp4" type="video/mp4" />
+      </video>
       <div class="hero-shell group relative flex h-[calc(100vh-1.5rem)] min-h-[680px] w-full max-w-[1536px] flex-col items-center overflow-hidden rounded-[1.5rem] bg-white/10 shadow-none md:h-[calc(100vh-2.5rem)] md:rounded-[3rem]">
         <div class="absolute inset-0 z-[1] bg-[linear-gradient(180deg,rgba(240,240,240,0.82)_0%,rgba(240,240,240,0.38)_45%,rgba(240,240,240,0.78)_100%)]"></div>
         <div class="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_50%_18%,rgba(255,255,255,0.74),transparent_42%),linear-gradient(90deg,rgba(240,240,240,0.32),rgba(255,255,255,0.06),rgba(240,240,240,0.42))]"></div>
@@ -1014,5 +1026,16 @@ onUnmounted(() => {
   .glass-pricing {
     padding: 3rem;
   }
+}
+
+/* Hero 区域视频背景 - 仅在 hero 区域内显示 */
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
 }
 </style>

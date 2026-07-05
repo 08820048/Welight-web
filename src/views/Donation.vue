@@ -6,10 +6,10 @@
           Donation
         </p>
         <h1 class="mt-5 text-balance text-3xl font-semibold tracking-normal text-[#1B365D] md:text-4xl dark:text-[#D0DCE9]">
-          赞助支持 Welight
+          赞助支持开发者.<a href="https://store.dodopayments.com/cerebellum?loadIn=defaultBrowser" target="_blank" rel="noopener" class="underline underline-offset-2 hover:opacity-80 transition-opacity">Cerebellum</a>
         </h1>
         <p class="mt-4 mx-auto max-w-2xl text-pretty text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">
-          感谢每一位支持 Welight 的你，您的赞助将用于支持软件的持续开发、服务器维护、功能优化和技术支持。
+          感谢每一位支持开发者的你，您的赞助将用于支持 Cerebellum 旗下产品的持续开发、服务器维护、功能优化和技术支持。
         </p>
       </div>
     </section>

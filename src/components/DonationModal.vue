@@ -29,55 +29,27 @@
           如果您觉得我们的软件对您有帮助，欢迎通过以下方式支持我们的开发工作
         </p>
 
-        <!-- 赞助方式选择 -->
-        <div class="mb-6 flex justify-center gap-3">
-          <button
-            @click="activeTab = 'wechat'"
-            :class="[
-              'rounded-md px-4 py-2 text-sm font-medium transition-colors',
-              activeTab === 'wechat'
-                ? 'bg-[#1B365D] text-white dark:bg-[#D0DCE9] dark:text-[#141413]'
-                : 'border border-[#d8d3c4] text-[#504e49] hover:bg-[#ebe8dc] dark:border-[#44433f] dark:text-[#d6d1c4] dark:hover:bg-[#30302e]'
-            ]"
+        <!-- 在线支付按钮 -->
+        <div class="flex flex-col items-center gap-4">
+          <a
+            href="https://checkout.dodopayments.com/buy/pdt_0NiW0spMeUxnwgT5vwDNY?quantity=1"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center justify-center gap-2 rounded-full bg-[rgba(30,50,90,0.88)] px-8 py-3 text-base font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[rgba(30,50,90,1)] active:scale-[0.96] dark:bg-[#f5f4ed] dark:text-[#142947] dark:hover:bg-[#E4ECF5]"
           >
-            微信支付
-          </button>
-          <button
-            @click="activeTab = 'alipay'"
-            :class="[
-              'rounded-md px-4 py-2 text-sm font-medium transition-colors',
-              activeTab === 'alipay'
-                ? 'bg-[#1B365D] text-white dark:bg-[#D0DCE9] dark:text-[#141413]'
-                : 'border border-[#d8d3c4] text-[#504e49] hover:bg-[#ebe8dc] dark:border-[#44433f] dark:text-[#d6d1c4] dark:hover:bg-[#30302e]'
-            ]"
-          >
-            支付宝
-          </button>
+            在线赞助支持
+          </a>
+          <p class="text-center text-xs text-[#6b6a64] dark:text-[#817d72]">
+            点击按钮前往支付页面，支持银行卡、微信、支付宝等多种支付方式
+          </p>
         </div>
-
-        <!-- 二维码显示区域 -->
-        <div class="flex justify-center">
-          <div class="rounded-lg border border-[#d8d3c4] bg-white p-4 dark:border-[#44433f]">
-            <img
-              :src="activeTab === 'wechat' ? '/wx.jpg' : '/zfb.jpg'"
-              :alt="activeTab === 'wechat' ? '微信支付二维码' : '支付宝支付二维码'"
-              class="h-48 w-48 object-contain"
-              loading="lazy"
-            />
-          </div>
-        </div>
-
-        <!-- 提示文字 -->
-        <p class="mt-4 text-center text-xs text-[#6b6a64] dark:text-[#817d72]">
-          {{ activeTab === 'wechat' ? '使用微信扫描上方二维码进行赞助' : '使用支付宝扫描上方二维码进行赞助' }}
-        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { onMounted, onUnmounted } from 'vue'
 
 // Props
 const props = defineProps({
@@ -89,9 +61,6 @@ const props = defineProps({
 
 // Emits
 const emit = defineEmits(['close'])
-
-// 当前激活的标签页
-const activeTab = ref('wechat')
 
 // 关闭模态框
 const closeModal = () => {
