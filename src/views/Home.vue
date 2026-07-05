@@ -19,7 +19,15 @@
 
             <ul class="hidden items-center gap-8 text-sm font-normal text-[rgb(45,45,45)] md:flex">
               <li v-for="item in heroNavItems" :key="item.label">
+                <router-link
+                  v-if="item.isRoute"
+                  :to="item.href"
+                  class="group flex cursor-pointer items-center gap-1 transition-opacity hover:opacity-70"
+                >
+                  {{ item.label }}
+                </router-link>
                 <a
+                  v-else
                   :href="item.href"
                   class="group flex cursor-pointer items-center gap-1 transition-opacity hover:opacity-70"
                 >
@@ -380,12 +388,10 @@ let revealObserver = null
 const checkoutUrl = buildDodoCheckoutUrl({ quantity: 1 })
 
 const heroNavItems = [
-  { href: '#features', label: '功能' },
-  { href: '#workflow', label: '工作流', hasDropdown: true },
-  { href: '#ai', label: 'AI 创作' },
   { href: '#compare', label: '对比' },
   { href: '#pricing', label: '定价' },
-  { href: '#faq', label: 'FAQ', hasDropdown: true }
+  { href: '#faq', label: 'FAQ', hasDropdown: true },
+  { href: '/donation', label: '致谢', isRoute: true }
 ]
 
 const heroTitleWords = ['一句话', '一篇文章', '远不止于此']
