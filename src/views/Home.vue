@@ -100,10 +100,6 @@
           </div>
 
           <div data-reveal="right-sm" style="--reveal-delay: 880ms" class="absolute bottom-28 left-auto right-4 flex w-fit min-w-[140px] flex-col gap-2 rounded-[1.2rem] bg-white/30 p-3 backdrop-blur-xl md:bottom-6 md:left-6 md:right-auto md:min-w-[150px] md:rounded-[1.5rem] md:p-4 lg:bottom-10 lg:left-10 lg:min-w-[180px] lg:gap-3 lg:rounded-[2.2rem] lg:p-5">
-            <div class="flex flex-col">
-              <span class="text-2xl font-normal tracking-tight text-[rgba(30,50,90,0.9)] md:text-3xl">{{ totalDownloadsText }}</span>
-              <span class="text-[10px] font-normal uppercase tracking-wider text-[rgba(30,50,90,0.6)] md:text-[12px]">Total Downloads</span>
-            </div>
             <a
               href="https://qm.qq.com/q/nNA64h5d6K"
               target="_blank"

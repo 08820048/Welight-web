@@ -63,7 +63,7 @@
             <div
               class="absolute top-full left-0 mt-2 w-48 bg-white/95 backdrop-blur-md rounded-lg shadow-lg border border-white/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[60]">
               <div class="py-2">
-                <a href="https://qm.qq.com/q/nNA64h5d6K" target="_blank"
+                <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=ksnTYp3Puhc%2FmHe4BgNG73VDWykN%2FQxAV%2BfDI9TkZqY7a7TyiEVzbFoC4XUEbWeX&busi_data=eyJncm91cENvZGUiOiI0NzQ5MTk0NTgiLCJ0b2tlbiI6IlY2aUI0V3kvWFJhQUZrYXc5WFhLaHlHMzJsa0hlbFROdkFpTUVwcndyTDIzeWVKMU9SeDlvRmFja1pmRElQaFMiLCJ1aW4iOiIyMjE3MDIxNTYzIn0%3D&data=DAdDioP_YBpztOA2YNL5VvKvK2XKMOl4ZJKCZlzfp_ZVasT801z-5F7opkUw1NzwxPvEnGs5P_2y6djq489Tng&svctype=4&tempid=h5_group_info" target="_blank"
                   class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-primary-600 transition-colors duration-200">
                   <div class="flex items-center space-x-2">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

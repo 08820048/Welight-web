@@ -39,7 +39,7 @@ const promotions = [
           </div>
           <div class="promo-actions">
             <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success" class="promo-btn-main">立即抢购</a>
-            <a href="https://qm.qq.com/q/nNA64h5d6K" class="promo-btn-sub">加入社群，享更多福利</a>
+            <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=ksnTYp3Puhc%2FmHe4BgNG73VDWykN%2FQxAV%2BfDI9TkZqY7a7TyiEVzbFoC4XUEbWeX&busi_data=eyJncm91cENvZGUiOiI0NzQ5MTk0NTgiLCJ0b2tlbiI6IlY2aUI0V3kvWFJhQUZrYXc5WFhLaHlHMzJsa0hlbFROdkFpTUVwcndyTDIzeWVKMU9SeDlvRmFja1pmRElQaFMiLCJ1aW4iOiIyMjE3MDIxNTYzIn0%3D&data=DAdDioP_YBpztOA2YNL5VvKvK2XKMOl4ZJKCZlzfp_ZVasT801z-5F7opkUw1NzwxPvEnGs5P_2y6djq489Tng&svctype=4&tempid=h5_group_info" class="promo-btn-sub">加入社群，享更多福利</a>
           </div>
         </div>
       `
@@ -77,7 +77,7 @@ const promotions = [
           </div>
           <div class="promo-actions">
             <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success" class="promo-btn-main">立即抢购</a>
-            <a href="https://qm.qq.com/q/nNA64h5d6K" class="promo-btn-sub">加入社群，享更多福利</a>
+            <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=ksnTYp3Puhc%2FmHe4BgNG73VDWykN%2FQxAV%2BfDI9TkZqY7a7TyiEVzbFoC4XUEbWeX&busi_data=eyJncm91cENvZGUiOiI0NzQ5MTk0NTgiLCJ0b2tlbiI6IlY2aUI0V3kvWFJhQUZrYXc5WFhLaHlHMzJsa0hlbFROdkFpTUVwcndyTDIzeWVKMU9SeDlvRmFja1pmRElQaFMiLCJ1aW4iOiIyMjE3MDIxNTYzIn0%3D&data=DAdDioP_YBpztOA2YNL5VvKvK2XKMOl4ZJKCZlzfp_ZVasT801z-5F7opkUw1NzwxPvEnGs5P_2y6djq489Tng&svctype=4&tempid=h5_group_info" class="promo-btn-sub">加入社群，享更多福利</a>
           </div>
         </div>
       `
@@ -115,7 +115,7 @@ const promotions = [
           </div>
           <div class="promo-actions">
             <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success" class="promo-btn-main">立即抢购</a>
-            <a href="https://qm.qq.com/q/nNA64h5d6K" class="promo-btn-sub">加入社群，享更多福利</a>
+            <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=ksnTYp3Puhc%2FmHe4BgNG73VDWykN%2FQxAV%2BfDI9TkZqY7a7TyiEVzbFoC4XUEbWeX&busi_data=eyJncm91cENvZGUiOiI0NzQ5MTk0NTgiLCJ0b2tlbiI6IlY2aUI0V3kvWFJhQUZrYXc5WFhLaHlHMzJsa0hlbFROdkFpTUVwcndyTDIzeWVKMU9SeDlvRmFja1pmRElQaFMiLCJ1aW4iOiIyMjE3MDIxNTYzIn0%3D&data=DAdDioP_YBpztOA2YNL5VvKvK2XKMOl4ZJKCZlzfp_ZVasT801z-5F7opkUw1NzwxPvEnGs5P_2y6djq489Tng&svctype=4&tempid=h5_group_info" class="promo-btn-sub">加入社群，享更多福利</a>
           </div>
         </div>
       `
@@ -148,7 +148,7 @@ const promotions = [
           </div>
           <div class="promo-actions">
             <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&redirect_url=https://waer.ltd/success" class="promo-btn-main">立即抢购</a>
-            <a href="https://qm.qq.com/q/nNA64h5d6K" class="promo-btn-sub">加入社群，享更多福利</a>
+            <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=ksnTYp3Puhc%2FmHe4BgNG73VDWykN%2FQxAV%2BfDI9TkZqY7a7TyiEVzbFoC4XUEbWeX&busi_data=eyJncm91cENvZGUiOiI0NzQ5MTk0NTgiLCJ0b2tlbiI6IlY2aUI0V3kvWFJhQUZrYXc5WFhLaHlHMzJsa0hlbFROdkFpTUVwcndyTDIzeWVKMU9SeDlvRmFja1pmRElQaFMiLCJ1aW4iOiIyMjE3MDIxNTYzIn0%3D&data=DAdDioP_YBpztOA2YNL5VvKvK2XKMOl4ZJKCZlzfp_ZVasT801z-5F7opkUw1NzwxPvEnGs5P_2y6djq489Tng&svctype=4&tempid=h5_group_info" class="promo-btn-sub">加入社群，享更多福利</a>
           </div>
         </div>
       `
