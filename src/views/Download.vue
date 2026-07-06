@@ -384,7 +384,7 @@
                     class="surface-soft-inner surface-soft-outline flex-1 rounded-xl px-4 py-2 text-gray-700 transition-colors hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700">
                     关闭
                   </button>
-                  <a href="https://qm.qq.com/q/Q7CbqSNmUY" target="_blank"
+                  <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=ksnTYp3Puhc%2FmHe4BgNG73VDWykN%2FQxAV%2BfDI9TkZqY7a7TyiEVzbFoC4XUEbWeX&busi_data=eyJncm91cENvZGUiOiI0NzQ5MTk0NTgiLCJ0b2tlbiI6IlY2aUI0V3kvWFJhQUZrYXc5WFhLaHlHMzJsa0hlbFROdkFpTUVwcndyTDIzeWVKMU9SeDlvRmFja1pmRElQaFMiLCJ1aW4iOiIyMjE3MDIxNTYzIn0%3D&data=DAdDioP_YBpztOA2YNL5VvKvK2XKMOl4ZJKCZlzfp_ZVasT801z-5F7opkUw1NzwxPvEnGs5P_2y6djq489Tng&svctype=4&tempid=h5_group_info" target="_blank"
                     class="flex-1 rounded-xl bg-gray-900 px-4 py-2 text-center text-white transition-colors hover:bg-gray-800">
                     直接加群
                   </a>
