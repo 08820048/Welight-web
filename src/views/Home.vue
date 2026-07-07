@@ -119,6 +119,19 @@
             </button>
           </div>
 
+          <div data-reveal="right-sm" style="--reveal-delay: 880ms" class="absolute bottom-28 left-auto right-4 flex w-fit min-w-[140px] flex-col gap-2 rounded-[1.2rem] bg-white/30 p-3 backdrop-blur-xl md:bottom-6 md:left-6 md:right-auto md:min-w-[150px] md:rounded-[1.5rem] md:p-4 lg:bottom-10 lg:left-10 lg:min-w-[180px] lg:gap-3 lg:rounded-[2.2rem] lg:p-5">
+            <a
+              href="https://qun.qq.com/universal-share/share?ac=1&authKey=ksnTYp3Puhc%2FmHe4BgNG73VDWykN%2FQxAV%2BfDI9TkZqY7a7TyiEVzbFoC4XUEbWeX&busi_data=eyJncm91cENvZGUiOiI0NzQ5MTk0NTgiLCJ0b2tlbiI6IlY2aUI0V3kvWFJhQUZrYXc5WFhLaHlHMzJsa0hlbFROdkFpTUVwcndyTDIzeWVKMU9SeDlvRmFja1pmRElQaFMiLCJ1aW4iOiIyMjE3MDIxNTYzIn0%3D&data=DAdDioP_YBpztOA2YNL5VvKvK2XKMOl4ZJKCZlzfp_ZVasT801z-5F7opkUw1NzwxPvEnGs5P_2y6djq489Tng&svctype=4&tempid=h5_group_info"
+              target="_blank"
+              rel="noopener"
+              class="group flex items-center gap-2 self-start rounded-full bg-white py-1.5 pl-1.5 pr-5 transition-all duration-200 hover:scale-[1.02] hover:bg-white/90 active:scale-[0.98]"
+            >
+              <span class="flex items-center justify-center rounded-full bg-[rgba(30,50,90,0.1)] p-1">
+                <ArrowUpRight class="h-4 w-4 text-[rgba(30,50,90,0.9)]" />
+              </span>
+              <span class="text-[14px] font-normal text-[rgba(30,50,90,0.9)]">加入社群</span>
+            </a>
+          </div>
 
           <div data-reveal="up-sm" style="--reveal-delay: 980ms" class="absolute bottom-0 right-0 flex items-center gap-3 rounded-tl-[1.5rem] bg-[#f0f0f0] p-3 pl-8 pt-5 sm:gap-4 sm:rounded-tl-[2rem] sm:p-4 sm:pl-10 sm:pt-6 md:gap-6 md:rounded-tl-[3.5rem] md:p-6 md:pl-14 md:pt-8">
             <div class="pointer-events-none absolute -top-[1.5rem] right-0 h-[1.5rem] w-[1.5rem] sm:-top-[2rem] sm:h-[2rem] sm:w-[2rem] md:-top-[3.5rem] md:h-[3.5rem] md:w-[3.5rem]">
