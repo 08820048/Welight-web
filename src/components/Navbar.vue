@@ -444,7 +444,7 @@
                       复制
                     </button>
                   </div>
-                  <div class="text-2xl font-bold text-blue-600 text-center mb-2">2217021563</div>
+                  <div class="text-2xl font-bold text-blue-600 text-center mb-2">474919458</div>
                   <p v-if="techQQCopied" class="text-green-600 text-sm text-center mb-2">
                     QQ号已复制到剪贴板
                   </p>
@@ -463,7 +463,7 @@
               关闭
             </button>
             <a
-              href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=2217021563&website=www.oicqzone.com"
+              href="tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=474919458&website=www.oicqzone.com"
               class="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-center"
             >
               联系技术支持
@@ -537,7 +537,7 @@ const closeTechSupport = () => {
 // 复制技术支持QQ号
 const copyTechQQ = async () => {
   try {
-    await navigator.clipboard.writeText('2217021563')
+    await navigator.clipboard.writeText('474919458')
     techQQCopied.value = true
     setTimeout(() => {
       techQQCopied.value = false
