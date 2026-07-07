@@ -7,7 +7,8 @@
           <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#1B365D] dark:text-[#D0DCE9]">
             Disclaimer
           </p>
-          <h1 class="mt-5 text-balance text-3xl font-semibold tracking-normal text-[#1B365D] md:text-4xl dark:text-[#D0DCE9]">
+          <h1
+            class="mt-5 text-balance text-3xl font-semibold tracking-normal text-[#1B365D] md:text-4xl dark:text-[#D0DCE9]">
             免责声明
           </h1>
           <p class="mt-4 text-pretty text-base text-[#504e49] dark:text-[#d6d1c4]">
@@ -78,7 +79,8 @@
             <div>
               <h3 class="text-base font-semibold text-[#141413] dark:text-[#f5f4ed]">2.3 AI 模型来源</h3>
               <p class="mt-2">
-                Welight 集成的 AI 功能基于第三方 AI 服务提供商（如 DeepSeek、智谱、Qwen、Kimi、Ollama 等）。这些 AI 模型的输出结果由第三方服务提供商生成，Welight 不对其准确性、完整性或适用性做任何保证。
+                Welight 集成的 AI 功能基于第三方 AI 服务提供商（如 DeepSeek、智谱、Qwen、Kimi、Ollama 等）。这些 AI 模型的输出结果由第三方服务提供商生成，Welight
+                不对其准确性、完整性或适用性做任何保证。
               </p>
             </div>
           </div>
@@ -222,7 +224,8 @@
             <li><strong>QQ群：</strong>474919458</li>
             <li>
               <strong>官方网站：</strong>
-              <a href="https://welight.waer.ltd" class="text-[#1B365D] underline underline-offset-2 hover:text-[#142947] dark:text-[#D0DCE9] dark:hover:text-[#E4ECF5]">
+              <a href="https://welight.waer.ltd"
+                class="text-[#1B365D] underline underline-offset-2 hover:text-[#142947] dark:text-[#D0DCE9] dark:hover:text-[#E4ECF5]">
                 https://welight.waer.ltd
               </a>
             </li>
@@ -239,10 +242,8 @@
 
         <!-- 返回按钮 -->
         <div class="border-t border-[#d8d3c4] py-10 text-center dark:border-[#44433f]">
-          <router-link
-            to="/"
-            class="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#e8e6dc] px-6 py-3 text-sm font-semibold text-[#141413] shadow-[0_0_0_1px_rgba(20,20,19,0.08)] transition-colors hover:bg-[#dedace] dark:bg-[#30302e] dark:text-[#f5f4ed] dark:shadow-[0_0_0_1px_rgba(245,244,237,0.1)] dark:hover:bg-[#3a3a36]"
-          >
+          <router-link to="/"
+            class="inline-flex min-h-11 items-center justify-center rounded-lg bg-[#e8e6dc] px-6 py-3 text-sm font-semibold text-[#141413] shadow-[0_0_0_1px_rgba(20,20,19,0.08)] transition-colors hover:bg-[#dedace] dark:bg-[#30302e] dark:text-[#f5f4ed] dark:shadow-[0_0_0_1px_rgba(245,244,237,0.1)] dark:hover:bg-[#3a3a36]">
             <svg class="mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>

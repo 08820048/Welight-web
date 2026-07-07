@@ -6,7 +6,8 @@
           <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#1B365D] dark:text-[#D0DCE9]">
             Privacy Policy
           </p>
-          <h1 class="mt-5 text-balance text-3xl font-semibold tracking-normal text-[#1B365D] md:text-4xl dark:text-[#D0DCE9]">
+          <h1
+            class="mt-5 text-balance text-3xl font-semibold tracking-normal text-[#1B365D] md:text-4xl dark:text-[#D0DCE9]">
             隐私政策
           </h1>
           <p class="mt-4 text-pretty text-base text-[#504e49] dark:text-[#d6d1c4]">
@@ -23,7 +24,8 @@
       <div class="mx-auto max-w-4xl space-y-0">
         <div class="border-t border-[#d8d3c4] py-8 dark:border-[#44433f]">
           <div class="space-y-3 text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">
-            <p>Welight（以下简称"我们"）深知个人信息对您的重要性，我们将按照法律法规的规定，保护您的个人信息及隐私安全。我们制定本《隐私政策》并特别提示：希望您在使用 Welight 及相关服务前仔细阅读并理解本《隐私政策》，以便做出适当的选择。</p>
+            <p>Welight（以下简称"我们"）深知个人信息对您的重要性，我们将按照法律法规的规定，保护您的个人信息及隐私安全。我们制定本《隐私政策》并特别提示：希望您在使用 Welight
+              及相关服务前仔细阅读并理解本《隐私政策》，以便做出适当的选择。</p>
             <p>本《隐私政策》将帮助您了解：</p>
             <ul class="list-disc pl-6 space-y-1">
               <li>我们会收集哪些信息</li>
@@ -61,7 +63,8 @@
 
             <div>
               <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">3. 第三方服务信息</h3>
-              <p class="mt-2">当您使用 AI 功能时，您的请求可能会被发送到第三方 AI 服务提供商（如 DeepSeek、智谱、Qwen、Kimi 等）。这些第三方服务提供商有自己的隐私政策，我们建议您仔细阅读。</p>
+              <p class="mt-2">当您使用 AI 功能时，您的请求可能会被发送到第三方 AI 服务提供商（如 DeepSeek、智谱、Qwen、Kimi
+                等）。这些第三方服务提供商有自己的隐私政策，我们建议您仔细阅读。</p>
             </div>
 
             <div>
@@ -119,7 +122,9 @@
 
             <div>
               <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">3. 安全事件处理</h3>
-              <p class="mt-2">如发生个人信息泄露等安全事件，我们会立即启动应急预案，阻止安全事件扩大，并按照法律法规的要求及时向您告知：安全事件的基本情况和可能的影响、我们已采取或将要采取的处置措施、您可自主防范和降低风险的建议等。</p>
+              <p class="mt-2">
+                如发生个人信息泄露等安全事件，我们会立即启动应急预案，阻止安全事件扩大，并按照法律法规的要求及时向您告知：安全事件的基本情况和可能的影响、我们已采取或将要采取的处置措施、您可自主防范和降低风险的建议等。
+              </p>
             </div>
           </div>
         </div>
@@ -140,7 +145,8 @@
 
             <div>
               <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">2. 转让</h3>
-              <p class="mt-2">我们不会将您的个人信息转让给任何公司、组织和个人，但以下情况除外：在获得您的明确同意后；在涉及合并、收购或破产清算时，如涉及到个人信息转让，我们会要求新的持有您个人信息的公司、组织继续受本政策的约束。</p>
+              <p class="mt-2">
+                我们不会将您的个人信息转让给任何公司、组织和个人，但以下情况除外：在获得您的明确同意后；在涉及合并、收购或破产清算时，如涉及到个人信息转让，我们会要求新的持有您个人信息的公司、组织继续受本政策的约束。</p>
             </div>
 
             <div>
@@ -186,7 +192,8 @@
           <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b6a64] dark:text-[#D0DCE9]">07</p>
           <h2 class="mt-2 text-xl font-semibold tracking-normal text-[#1B365D] dark:text-[#D0DCE9]">隐私政策的更新</h2>
           <div class="mt-4 space-y-3 text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">
-            <p>我们可能会适时修订本《隐私政策》的条款，该等修订构成本《隐私政策》的一部分。如该等修订造成您在本《隐私政策》下权利的实质减少，我们将在修订生效前通过在主页上显著位置提示或向您发送电子邮件或以其他方式通知您。</p>
+            <p>我们可能会适时修订本《隐私政策》的条款，该等修订构成本《隐私政策》的一部分。如该等修订造成您在本《隐私政策》下权利的实质减少，我们将在修订生效前通过在主页上显著位置提示或向您发送电子邮件或以其他方式通知您。
+            </p>
             <p>在该种情况下，若您继续使用我们的服务，即表示同意受经修订的本《隐私政策》的约束。</p>
           </div>
         </div>
@@ -198,7 +205,8 @@
             <p><strong>QQ群：</strong>474919458</p>
             <p>
               <strong>官方网站：</strong>
-              <a href="https://welight.waer.ltd" class="text-[#1B365D] underline hover:text-[#141413] dark:text-[#D0DCE9] dark:hover:text-[#E4ECF5]">https://welight.waer.ltd</a>
+              <a href="https://welight.waer.ltd"
+                class="text-[#1B365D] underline hover:text-[#141413] dark:text-[#D0DCE9] dark:hover:text-[#E4ECF5]">https://welight.waer.ltd</a>
             </p>
             <p>一般情况下，我们将在15个工作日内回复。</p>
           </div>
@@ -206,8 +214,7 @@
 
         <div class="text-center mt-8">
           <router-link to="/"
-            class="inline-flex items-center px-6 py-3 rounded-lg bg-[#e8e6dc] text-sm font-semibold text-[#141413] shadow-[0_0_0_1px_rgba(20,20,19,0.08)] transition-colors hover:bg-[#dedace] dark:bg-[#30302e] dark:text-[#f5f4ed] dark:shadow-[0_0_0_1px_rgba(245,244,237,0.1)] dark:hover:bg-[#3a3a36]"
-          >
+            class="inline-flex items-center px-6 py-3 rounded-lg bg-[#e8e6dc] text-sm font-semibold text-[#141413] shadow-[0_0_0_1px_rgba(20,20,19,0.08)] transition-colors hover:bg-[#dedace] dark:bg-[#30302e] dark:text-[#f5f4ed] dark:shadow-[0_0_0_1px_rgba(245,244,237,0.1)] dark:hover:bg-[#3a3a36]">
             返回首页
           </router-link>
         </div>

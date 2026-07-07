@@ -2,11 +2,12 @@
   <div class="relative min-h-screen bg-[#f5f4ed] dark:bg-[#141413]">
     <div class="min-h-screen text-[#141413] dark:text-[#f5f4ed] px-4 pt-20 pb-12 relative overflow-hidden"
       style="position: relative; z-index: 1;">
-      <div class="product-pricing-field pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34rem]" aria-hidden="true"></div>
+      <div class="product-pricing-field pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34rem]"
+        aria-hidden="true"></div>
       <div class="max-w-6xl mx-auto">
         <!-- 服务状态提示横幅 -->
-        <div v-if="serviceStatus && !isServiceCurrentlyAvailable"
-          class="surface-soft mb-6 p-4 animate-fade-in-up" :class="{
+        <div v-if="serviceStatus && !isServiceCurrentlyAvailable" class="surface-soft mb-6 p-4 animate-fade-in-up"
+          :class="{
             'bg-yellow-50/90': serviceStatus.statusCode === 'MAINTENANCE' || serviceStatus.statusCode === 'DEGRADED',
             'bg-red-50/90': serviceStatus.statusCode === 'FAULT'
           }">
@@ -61,7 +62,8 @@
               <h3 class="font-bold text-gray-900">{{ selectedProduct.name }}</h3>
               <p class="text-pretty mb-3 text-sm text-gray-600">{{ selectedProduct.description }}</p>
               <div class="flex items-center justify-between">
-                <span class="tabular-nums text-lg font-bold text-gray-900">{{ selectedProduct.priceRange || formatPrice(selectedProduct.price,
+                <span class="tabular-nums text-lg font-bold text-gray-900">{{ selectedProduct.priceRange ||
+                  formatPrice(selectedProduct.price,
                   selectedProduct.currency) }}</span>
                 <span v-if="selectedProduct.permanent"
                   class="surface-stat rounded-full px-2.5 py-1 text-xs text-gray-900 dark:text-gray-100">永久授权</span>
@@ -73,7 +75,8 @@
 
             <div v-if="!orderInfo">
               <form @submit.prevent="submitBuy" class="space-y-4">
-                <div class="surface-soft-inner surface-soft-outline rounded-2xl bg-gray-50/80 p-4 text-sm text-gray-700 dark:bg-gray-800/40 dark:text-gray-200">
+                <div
+                  class="surface-soft-inner surface-soft-outline rounded-2xl bg-gray-50/80 p-4 text-sm text-gray-700 dark:bg-gray-800/40 dark:text-gray-200">
                   <p>将跳转到 Dodo Payments 托管结账页完成支付。支付完成后会自动回到本站成功页，并显示 Dodo 发放的许可证密钥。</p>
                   <p class="mt-2 text-xs text-gray-500 dark:text-gray-400">最终价格、税费、可用支付方式和邮箱收集以 Dodo Checkout 页面为准。</p>
                 </div>
@@ -99,8 +102,10 @@
               </form>
             </div>
             <div v-else>
-              <div class="surface-soft-inner surface-soft-outline mb-4 rounded-2xl bg-gray-50/80 p-5 text-center dark:bg-gray-800/40">
-                <div class="tabular-nums mb-1 text-lg font-bold text-gray-900">订单金额：¥{{ orderInfo.amount }} {{ orderInfo.currency }}
+              <div
+                class="surface-soft-inner surface-soft-outline mb-4 rounded-2xl bg-gray-50/80 p-5 text-center dark:bg-gray-800/40">
+                <div class="tabular-nums mb-1 text-lg font-bold text-gray-900">订单金额：¥{{ orderInfo.amount }} {{
+                  orderInfo.currency }}
                 </div>
                 <div v-if="orderInfo && orderInfo.originalAmount && orderInfo.originalAmount !== orderInfo.amount"
                   class="text-sm text-gray-600 mb-1">
@@ -112,7 +117,8 @@
                   <span v-if="orderInfo.appliedCouponId" class="ml-2">优惠券ID：{{ orderInfo.appliedCouponId }}</span>
                 </div>
                 <div class="text-gray-600 mb-2">请使用微信扫码支付</div>
-                <img :src="qrCodeImg" alt="支付二维码" class="mx-auto h-40 w-40 rounded-2xl border border-gray-200 bg-white p-2 shadow-sm"
+                <img :src="qrCodeImg" alt="支付二维码"
+                  class="mx-auto h-40 w-40 rounded-2xl border border-gray-200 bg-white p-2 shadow-sm"
                   v-if="qrCodeImg" />
                 <div class="tabular-nums mt-3 text-xs text-gray-400">订单号：{{ orderInfo.orderNo }}</div>
                 <div class="mt-4 rounded-2xl border px-3 py-2 text-sm font-medium" :class="{
@@ -130,14 +136,17 @@
                 class="surface-soft-inner surface-soft-outline mt-4 rounded-2xl bg-gray-50/80 p-4 text-gray-900 dark:bg-gray-800/40">
                 <div class="font-bold mb-3 flex items-center justify-between">
                   <span>许可证信息</span>
-                  <span class="surface-stat rounded-full px-2.5 py-1 text-xs text-gray-900 dark:text-gray-100">购买成功</span>
+                  <span
+                    class="surface-stat rounded-full px-2.5 py-1 text-xs text-gray-900 dark:text-gray-100">购买成功</span>
                 </div>
                 <div class="space-y-2 text-sm">
-                  <div class="surface-soft-outline flex items-center justify-between rounded-xl bg-white/90 p-3 dark:bg-gray-900/50">
+                  <div
+                    class="surface-soft-outline flex items-center justify-between rounded-xl bg-white/90 p-3 dark:bg-gray-900/50">
                     <span>许可证密钥：</span>
                     <div class="flex items-center">
                       <span class="tabular-nums mr-2 font-mono text-gray-900">{{ licenseInfo.licenseKey }}</span>
-                      <button @click="copyLicenseKey" class="text-xs text-gray-900 transition-colors hover:text-gray-700">
+                      <button @click="copyLicenseKey"
+                        class="text-xs text-gray-900 transition-colors hover:text-gray-700">
                         复制
                       </button>
                     </div>
@@ -150,7 +159,8 @@
                   <div>最大激活数：{{ licenseInfo.maxActivations }}</div>
                   <div>当前激活数：{{ licenseInfo.currentActivations }}</div>
                 </div>
-                <div class="surface-soft-outline mt-4 rounded-xl bg-gray-100/90 p-3 text-xs text-gray-900 dark:bg-gray-900/50 dark:text-gray-100">
+                <div
+                  class="surface-soft-outline mt-4 rounded-xl bg-gray-100/90 p-3 text-xs text-gray-900 dark:bg-gray-900/50 dark:text-gray-100">
                   💡 提示：许可证已发送到您的邮箱，请在桌面应用中输入许可证密钥使用
                 </div>
               </div>
@@ -210,7 +220,8 @@
             <!-- 创建订单后显示支付信息 -->
             <div v-else>
               <div class="text-center">
-                <div class="surface-soft-inner surface-soft-outline mb-4 rounded-2xl bg-gray-50/80 p-5 dark:bg-gray-800/40">
+                <div
+                  class="surface-soft-inner surface-soft-outline mb-4 rounded-2xl bg-gray-50/80 p-5 dark:bg-gray-800/40">
                   <div class="surface-stat mb-3 inline-flex h-16 w-16 items-center justify-center rounded-full">
                     <svg class="w-8 h-8 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -224,7 +235,8 @@
 
                   <!-- 支付二维码 -->
                   <div v-if="renewQrCodeImg" class="mb-4 flex justify-center">
-                    <img :src="renewQrCodeImg" alt="支付二维码" class="h-64 w-64 rounded-2xl border border-gray-200 bg-white p-2 shadow-sm" />
+                    <img :src="renewQrCodeImg" alt="支付二维码"
+                      class="h-64 w-64 rounded-2xl border border-gray-200 bg-white p-2 shadow-sm" />
                   </div>
 
                   <!-- 订单状态 -->
@@ -261,7 +273,9 @@
                   <!-- 等待支付提示 -->
                   <div v-else-if="renewOrderStatus === 'PENDING'" class="text-sm text-gray-500">
                     <div class="flex items-center justify-center mb-2">
-                      <div class="animate-spin rounded-full h-4 w-4 border-b-2 border-[#1B365D] mr-2 dark:border-[#f5f4ed]"></div>
+                      <div
+                        class="animate-spin rounded-full h-4 w-4 border-b-2 border-[#1B365D] mr-2 dark:border-[#f5f4ed]">
+                      </div>
                       <span>等待支付...</span>
                     </div>
                     <p>请使用微信扫描二维码完成支付</p>
@@ -278,7 +292,8 @@
         <!-- 标题区：定价与服务购买 -->
         <section class="relative mb-10 py-12 md:py-16 animate-fade-in-up delay-100">
           <div class="text-center relative max-w-3xl mx-auto px-4 md:px-8">
-            <AnimatedUnderlineText text="Welight 授权" text-className="text-balance text-4xl font-medium tracking-normal text-[#141413] dark:text-[#f5f4ed]"
+            <AnimatedUnderlineText text="Welight 授权"
+              text-className="text-balance text-4xl font-medium tracking-normal text-[#141413] dark:text-[#f5f4ed]"
               underline-className="text-[#1B365D] dark:text-[#f5f4ed]" />
             <MagicText text="26 元立即解锁网页版与桌面端完整编辑体验" container-className="mt-6 justify-center"
               word-className="text-pretty text-lg text-[#504e49] dark:text-[#d6d1c4]" />
@@ -307,7 +322,8 @@
 
           <!-- 产品卡片区 -->
           <div v-if="loadingProducts" class="text-center py-12 animate-fade-in-up delay-600">
-            <div class="animate-spin inline-block w-8 h-8 border-4 border-[#1B365D] border-t-transparent rounded-full dark:border-[#f5f4ed] dark:border-t-transparent">
+            <div
+              class="animate-spin inline-block w-8 h-8 border-4 border-[#1B365D] border-t-transparent rounded-full dark:border-[#f5f4ed] dark:border-t-transparent">
             </div>
             <p class="mt-2 text-[#504e49] animate-fade-in-up delay-700 dark:text-[#d6d1c4]">正在加载产品信息...</p>
           </div>
@@ -321,22 +337,22 @@
                 <span class="text-[clamp(3.4rem,14vw,8rem)] font-light leading-[0.9] tracking-normal">26 元</span>
               </div>
 
-              <button
-                @click="handleProductPurchase(primaryPricingProduct)"
-                :disabled="!isServiceCurrentlyAvailable"
+              <button @click="handleProductPurchase(primaryPricingProduct)" :disabled="!isServiceCurrentlyAvailable"
                 :title="!isServiceCurrentlyAvailable ? getStatusTooltip(serviceStatus) : ''"
                 class="mx-auto mt-6 flex min-h-12 w-full max-w-xs items-center justify-center rounded-lg px-6 py-3 text-base font-semibold transition-transform duration-200 active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-55"
-                :class="getPricingPrimaryButtonClass(0, isServiceCurrentlyAvailable)"
-              >
+                :class="getPricingPrimaryButtonClass(0, isServiceCurrentlyAvailable)">
                 请作者喝一杯瑞幸美式
               </button>
 
-              <div class="mx-auto mt-7 max-w-xl space-y-3 text-pretty text-sm leading-7 text-[#504e49] dark:text-[#d6d1c4] md:text-base">
-                <p>固定价格 <span class="font-semibold text-[#141413] dark:text-[#f5f4ed]">26 元</span>，最终税费与可用支付方式以支付页面展示为准。</p>
+              <div
+                class="mx-auto mt-7 max-w-xl space-y-3 text-pretty text-sm leading-7 text-[#504e49] dark:text-[#d6d1c4] md:text-base">
+                <p>固定价格 <span class="font-semibold text-[#141413] dark:text-[#f5f4ed]">26 元</span>，最终税费与可用支付方式以支付页面展示为准。
+                </p>
                 <p>包含网页版与桌面端完整功能、主题更新、许可证发放与授权验证。</p>
               </div>
 
-              <div class="mt-9 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-[#6b6a64] dark:text-[#D0DCE9]">
+              <div
+                class="mt-9 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-[#6b6a64] dark:text-[#D0DCE9]">
                 <span>终身更新</span>
                 <span class="hidden text-[#9d9789] sm:inline dark:text-[#817d72]">·</span>
                 <span>2 台设备 / 许可证</span>
@@ -353,8 +369,7 @@
         <section class="mt-12 relative py-12 md:py-16 animate-fade-in-up delay-1000">
           <div class="relative max-w-3xl mx-auto px-4 md:px-8">
             <div class="pt-8">
-              <h2
-                class="text-xl font-bold text-[#141413] dark:text-[#f5f4ed] mb-4 animate-fade-in-left delay-1100">
+              <h2 class="text-xl font-bold text-[#141413] dark:text-[#f5f4ed] mb-4 animate-fade-in-left delay-1100">
                 购买须知
               </h2>
               <ul class="list-disc pl-6 text-[#3D3D3A] dark:text-[#d6d1c4] space-y-2 mb-6 text-sm">
@@ -365,12 +380,8 @@
                 <li class="animate-fade-in-up delay-1500">反馈交流请通过QQ群联系开发者。</li>
                 <li class="animate-fade-in-up delay-1550">
                   网页版地址：
-                  <a
-                    href="https://waer.ltd/wl/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="underline text-[#1B365D] transition-colors hover:text-[#141413] dark:text-[#f5f4ed] dark:hover:text-[#E4ECF5]"
-                  >
+                  <a href="https://waer.ltd/wl/" target="_blank" rel="noopener noreferrer"
+                    class="underline text-[#1B365D] transition-colors hover:text-[#141413] dark:text-[#f5f4ed] dark:hover:text-[#E4ECF5]">
                     https://waer.ltd/wl/
                   </a>
                 </li>
@@ -379,8 +390,7 @@
                 <li class="animate-fade-in-up delay-1700">默认内置的图片云存储服务和 AI 服务一样作为可选服务，您也可以选择配置自己的图床进行使用</li>
               </ul>
 
-              <h2
-                class="text-xl font-bold text-[#141413] dark:text-[#f5f4ed] mb-4 animate-fade-in-left delay-1800">
+              <h2 class="text-xl font-bold text-[#141413] dark:text-[#f5f4ed] mb-4 animate-fade-in-left delay-1800">
                 交流反馈
               </h2>
               <div class="text-sm animate-scale-in delay-1900">
