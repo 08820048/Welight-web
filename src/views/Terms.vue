@@ -127,7 +127,7 @@
           <div class="mt-4 space-y-3 text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">
             <p><span class="font-semibold text-[#141413] dark:text-[#f5f4ed]">1.</span> 本协议的任何条款无论因何种原因无效或不具可执行性，其余条款仍有效，对双方具有约束力。</p>
             <p><span class="font-semibold text-[#141413] dark:text-[#f5f4ed]">2.</span> 本协议中的标题仅为方便而设，不影响对本协议的理解。</p>
-            <p><span class="font-semibold text-[#141413] dark:text-[#f5f4ed]">3.</span> 如果您对本协议或本服务有任何疑问，请通过 QQ 1071558803</p>
+            <p><span class="font-semibold text-[#141413] dark:text-[#f5f4ed]">3.</span> 如果您对本协议或本服务有任何疑问，请通过 QQ 474919458</p>
           </div>
         </div>
 
@@ -135,7 +135,7 @@
           <h2 class="text-xl font-semibold text-[#1B365D] dark:text-[#D0DCE9]">联系我们</h2>
           <div class="mt-4 space-y-2 text-base text-[#504e49] dark:text-[#d6d1c4]">
             <p>如果您对本服务条款有任何疑问或建议，请通过以下方式联系我们：</p>
-            <p><strong>QQ群：</strong>1071558803</p>
+            <p><strong>QQ群：</strong>474919458</p>
             <p>
               <strong>官方网站：</strong>
               <a href="https://welight.waer.ltd" class="text-[#1B365D] underline hover:text-[#141413] dark:text-[#D0DCE9] dark:hover:text-[#E4ECF5]">https://welight.waer.ltd</a>

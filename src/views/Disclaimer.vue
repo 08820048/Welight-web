@@ -219,7 +219,7 @@
             如果您对本免责声明有任何疑问或建议，请通过以下方式联系我们：
           </p>
           <ul class="mt-3 space-y-1.5 text-base text-[#504e49] dark:text-[#d6d1c4]">
-            <li><strong>QQ群：</strong>1071558803</li>
+            <li><strong>QQ群：</strong>474919458</li>
             <li>
               <strong>官方网站：</strong>
               <a href="https://welight.waer.ltd" class="text-[#1B365D] underline underline-offset-2 hover:text-[#142947] dark:text-[#D0DCE9] dark:hover:text-[#E4ECF5]">

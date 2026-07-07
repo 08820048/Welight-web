@@ -47,8 +47,7 @@
                 type="button" :aria-label="cliCopied ? '命令已复制' : '复制 CLI 安装命令'" @click="copyCliCommand">
                 <svg v-if="cliCopied" class="h-4 w-4 text-green-400" fill="none" stroke="currentColor"
                   viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M5 13l4 4L19 7" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
                 <svg v-else class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -350,12 +349,13 @@
           </div>
 
           <!-- QQ群信息弹窗 -->
-          <div v-if="showQQModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/45 px-4 py-6 backdrop-blur-sm"
+          <div v-if="showQQModal"
+            class="fixed inset-0 z-50 flex items-center justify-center bg-black/45 px-4 py-6 backdrop-blur-sm"
             @click="closeQQModal">
-            <div class="surface-soft relative mx-4 w-full max-w-md rounded-[28px] p-8 text-gray-900 shadow-2xl" @click.stop>
+            <div class="surface-soft relative mx-4 w-full max-w-md rounded-[28px] p-8 text-gray-900 shadow-2xl"
+              @click.stop>
               <div class="text-center">
-                <div
-                  class="surface-stat mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
+                <div class="surface-stat mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full">
                   <svg class="w-8 h-8 text-gray-900 dark:text-gray-200" fill="currentColor" viewBox="0 0 24 24">
                     <path
                       d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
@@ -367,7 +367,7 @@
                 <div class="surface-soft-inner surface-soft-outline mb-6 rounded-2xl bg-gray-50/85 p-4">
                   <p class="text-sm text-gray-500 dark:text-gray-400 mb-2">QQ群号</p>
                   <div class="flex items-center justify-center space-x-2">
-                    <span class="text-2xl font-bold text-gray-900 dark:text-gray-200">1071558803</span>
+                    <span class="text-2xl font-bold text-gray-900 dark:text-gray-200">474919458</span>
                     <button @click="copyQQGroup"
                       class="rounded-md p-1 text-gray-900 transition-colors hover:bg-gray-200/70 hover:text-gray-700 dark:text-gray-200 dark:hover:text-gray-300">
                       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -384,7 +384,8 @@
                     class="surface-soft-inner surface-soft-outline flex-1 rounded-xl px-4 py-2 text-gray-700 transition-colors hover:bg-gray-50 dark:text-gray-300 dark:hover:bg-gray-700">
                     关闭
                   </button>
-                  <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=ksnTYp3Puhc%2FmHe4BgNG73VDWykN%2FQxAV%2BfDI9TkZqY7a7TyiEVzbFoC4XUEbWeX&busi_data=eyJncm91cENvZGUiOiI0NzQ5MTk0NTgiLCJ0b2tlbiI6IlY2aUI0V3kvWFJhQUZrYXc5WFhLaHlHMzJsa0hlbFROdkFpTUVwcndyTDIzeWVKMU9SeDlvRmFja1pmRElQaFMiLCJ1aW4iOiIyMjE3MDIxNTYzIn0%3D&data=DAdDioP_YBpztOA2YNL5VvKvK2XKMOl4ZJKCZlzfp_ZVasT801z-5F7opkUw1NzwxPvEnGs5P_2y6djq489Tng&svctype=4&tempid=h5_group_info" target="_blank"
+                  <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=ksnTYp3Puhc%2FmHe4BgNG73VDWykN%2FQxAV%2BfDI9TkZqY7a7TyiEVzbFoC4XUEbWeX&busi_data=eyJncm91cENvZGUiOiI0NzQ5MTk0NTgiLCJ0b2tlbiI6IlY2aUI0V3kvWFJhQUZrYXc5WFhLaHlHMzJsa0hlbFROdkFpTUVwcndyTDIzeWVKMU9SeDlvRmFja1pmRElQaFMiLCJ1aW4iOiIyMjE3MDIxNTYzIn0%3D&data=DAdDioP_YBpztOA2YNL5VvKvK2XKMOl4ZJKCZlzfp_ZVasT801z-5F7opkUw1NzwxPvEnGs5P_2y6djq489Tng&svctype=4&tempid=h5_group_info"
+                    target="_blank"
                     class="flex-1 rounded-xl bg-gray-900 px-4 py-2 text-center text-white transition-colors hover:bg-gray-800">
                     直接加群
                   </a>
@@ -504,7 +505,7 @@ const closeQQModal = () => {
 // 复制QQ群号
 const copyQQGroup = async () => {
   try {
-    await copyText('1071558803')
+    await copyText('474919458')
     copied.value = true
 
     if (copiedResetTimer) {

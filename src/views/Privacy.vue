@@ -195,7 +195,7 @@
           <h2 class="text-xl font-semibold text-[#1B365D] dark:text-[#D0DCE9]">如何联系我们</h2>
           <div class="mt-4 space-y-2 text-base text-[#504e49] dark:text-[#d6d1c4]">
             <p>如果您对本隐私政策有任何疑问、意见或建议，请通过以下方式与我们联系：</p>
-            <p><strong>QQ群：</strong>1071558803</p>
+            <p><strong>QQ群：</strong>474919458</p>
             <p>
               <strong>官方网站：</strong>
               <a href="https://welight.waer.ltd" class="text-[#1B365D] underline hover:text-[#141413] dark:text-[#D0DCE9] dark:hover:text-[#E4ECF5]">https://welight.waer.ltd</a>
