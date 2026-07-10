@@ -22,7 +22,7 @@
   /* Dark mode overrides */
   .dark body {
     background-color: #141413;
-    color: #f5f4ed;
+    color: #ffffff;
   }
 
   * {
@@ -77,7 +77,7 @@
 
   .surface-soft {
     border-radius: 1.25rem;
-    background: #faf9f5;
+    background: #ffffff;
     box-shadow:
       0 0 0 1px rgba(20, 20, 19, 0.08),
       0 4px 24px rgba(20, 20, 19, 0.05);
@@ -104,7 +104,7 @@
 
   .surface-stat {
     border-radius: 9999px;
-    background: #e8e6dc;
+    background: #f3f3f3;
     box-shadow:
       0 0 0 1px rgba(20, 20, 19, 0.08),
       0 4px 18px rgba(20, 20, 19, 0.04);
@@ -226,19 +226,19 @@
 
 /* Dark mode common overrides for existing utility classes */
 .dark .text-gray-900 {
-  color: #f5f4ed;
+  color: #ffffff;
 }
 .dark .text-gray-800 {
-  color: #ebe8dc;
+  color: #f0f0f0;
 }
 .dark .text-gray-700 {
-  color: #d6d1c4;
+  color: #666666;
 }
 .dark .text-gray-600 {
   color: #c9c5b8;
 }
 .dark .text-gray-500 {
-  color: #9d9789;
+  color: #999999;
 }
 .dark .bg-white {
   background-color: #30302e;
@@ -286,7 +286,7 @@
 html.dark .product-main,
 .dark .product-main {
   background-color: #141413;
-  color: #f5f4ed;
+  color: #ffffff;
 }
 
 .product-hero-field {
@@ -333,3 +333,4 @@ html.dark .product-pricing-field,
     linear-gradient(90deg, rgba(245, 244, 237, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(48, 48, 46, 0.92), rgba(20, 20, 19, 0));
 }
+

@@ -7,15 +7,15 @@
   >
     <!-- 模态框内容 -->
     <div
-      class="w-full max-w-md rounded-lg border border-[#d8d3c4] bg-[#f5f4ed] modal-content dark:border-[#44433f] dark:bg-[#141413]"
+      class="w-full max-w-md rounded-lg border border-[#e5e5e5] bg-[#ffffff] modal-content dark:border-[#44433f] dark:bg-[#141413]"
       @click.stop
     >
       <!-- 头部 -->
-      <div class="flex items-center justify-between border-b border-[#d8d3c4] px-6 py-5 dark:border-[#44433f]">
+      <div class="flex items-center justify-between border-b border-[#e5e5e5] px-6 py-5 dark:border-[#44433f]">
         <h2 class="text-lg font-semibold text-[#1B365D] dark:text-[#D0DCE9]">赞助支持</h2>
         <button
           @click="closeModal"
-          class="rounded-md p-1 text-[#6b6a64] transition-colors hover:text-[#141413] dark:text-[#817d72] dark:hover:text-[#f5f4ed]"
+          class="rounded-md p-1 text-[#6b6a64] transition-colors hover:text-[#141413] dark:text-[#817d72] dark:hover:text-[#ffffff]"
         >
           <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -25,7 +25,7 @@
 
       <!-- 内容区域 -->
       <div class="px-6 py-6">
-        <p class="mb-6 text-center text-sm leading-6 text-[#504e49] dark:text-[#d6d1c4]">
+        <p class="mb-6 text-center text-sm leading-6 text-[#666666] dark:text-[#666666]">
           如果您觉得我们的软件对您有帮助，欢迎通过以下方式支持我们的开发工作
         </p>
 
@@ -35,7 +35,7 @@
             href="https://checkout.dodopayments.com/buy/pdt_0NiW0spMeUxnwgT5vwDNY?quantity=1"
             target="_blank"
             rel="noopener"
-            class="inline-flex items-center justify-center gap-2 rounded-full bg-[rgba(30,50,90,0.88)] px-8 py-3 text-base font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[rgba(30,50,90,1)] active:scale-[0.96] dark:bg-[#f5f4ed] dark:text-[#142947] dark:hover:bg-[#E4ECF5]"
+            class="inline-flex items-center justify-center gap-2 rounded-full bg-[rgba(30,50,90,0.88)] px-8 py-3 text-base font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5 hover:bg-[rgba(30,50,90,1)] active:scale-[0.96] dark:bg-[#ffffff] dark:text-[#142947] dark:hover:bg-[#E4ECF5]"
           >
             在线赞助支持
           </a>

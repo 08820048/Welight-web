@@ -3,7 +3,7 @@
   <div class="fixed bottom-6 right-6 z-40">
     <button
       @click="openDonationModal"
-      class="flex items-center gap-2 rounded-full border border-[#d8d3c4] bg-[#f5f4ed] px-4 py-2 text-sm font-semibold text-[#1B365D] transition-colors hover:bg-[#ebe8dc] dark:border-[#44433f] dark:bg-[#1B365D] dark:text-[#D0DCE9] dark:hover:bg-[#2D5A8A]"
+      class="flex items-center gap-2 rounded-full border border-[#e5e5e5] bg-[#ffffff] px-4 py-2 text-sm font-semibold text-[#1B365D] transition-colors hover:bg-[#f0f0f0] dark:border-[#44433f] dark:bg-[#1B365D] dark:text-[#D0DCE9] dark:hover:bg-[#2D5A8A]"
       title="支持我们"
     >
       <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">

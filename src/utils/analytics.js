@@ -35,22 +35,6 @@ export function trackEvent(category, action, label, value) {
 }
 
 /**
- * 获取下载统计数据 - 已迁移到 downloadStats 服务
- * @deprecated 请使用 @/services/downloadStats 中的相关函数
- */
-export function getDownloadStats() {
-  console.warn('getDownloadStats 已废弃，请使用 @/services/downloadStats 中的 initializeDownloadStats')
-  return {
-    'windows-installer': 0,
-    'windows-msi': 0,
-    'macos-apple': 0,
-    'macos-intel': 0,
-    'linux-appimage': 0,
-    'linux-deb': 0
-  }
-}
-
-/**
  * 初始化百度统计
  * @param {string} siteId - 百度统计站点ID
  */

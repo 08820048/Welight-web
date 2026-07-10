@@ -217,10 +217,6 @@
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             主题预览
           </a>
-          <router-link to="/monthly-cards" @click="closeMobileMenu"
-            class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
-            月卡管理
-          </router-link>
           <router-link to="/documentation" @click.prevent="openDocumentationWithNotice(true)"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             文档

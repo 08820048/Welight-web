@@ -2,7 +2,7 @@
   <div id="app">
     <!-- 文档页禁用 3D 背景，其他页面可再启用 -->
 
-    <ModernHeader v-if="showGlobalChrome" />
+    <ModernHeader />
     <main
       class="product-main min-h-screen transition-colors duration-300">
       <!-- 顶部条幅区域（始终固定） -->
@@ -11,7 +11,7 @@
         <div v-if="!isCliboBannerClosed"
           class="flex items-center justify-center py-2">
           <div
-            class="relative inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-[#1B365D] via-[#2B4A7A] to-[#1B365D] px-4 py-1.5 text-sm text-[#faf9f5] dark:from-[#2a2a28] dark:via-[#3a3a38] dark:to-[#2a2a28]">
+            class="relative inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-[#1B365D] via-[#2B4A7A] to-[#1B365D] px-4 py-1.5 text-sm text-[#ffffff] dark:from-[#2a2a28] dark:via-[#3a3a38] dark:to-[#2a2a28]">
             <span>新品宣传 - 一个Mac原生、小巧强大的剪切板管理App - <a href="https://clibo.us" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-white/80 transition-colors font-semibold">Clibo</a></span>
             <button type="button"
               class="ml-1 rounded-full p-0.5 text-white/70 hover:bg-white/10 hover:text-white focus:outline-none shrink-0"
@@ -25,7 +25,7 @@
         </div>
         <!-- 积分关停通知 -->
         <div v-if="!isTopNoticeClosed"
-          class="border-b border-[#d8d3c4] bg-[#1B365D] text-[#faf9f5] dark:border-[#44433f] dark:bg-[#30302e]">
+          class="border-b border-[#e5e5e5] bg-[#1B365D] text-[#ffffff] dark:border-[#44433f] dark:bg-[#30302e]">
           <div class="relative w-full px-6 py-2 md:px-16 text-sm leading-6 text-center">
             <span>⚠️ 由于产品策略调整，Welight 积分功能将于 <strong>2026年6月底</strong> 彻底关停，官网已停止积分套餐购买。已购积分请尽快使用，感谢理解。</span>
             <button type="button"
@@ -337,3 +337,4 @@ watch(isChristmasPromoActive, (active) => {
   display: block;
 }
 </style>
+

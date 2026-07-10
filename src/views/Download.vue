@@ -23,7 +23,6 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                   d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              总下载量：{{ totalDownloads.toLocaleString() }}次
             </div>
             <router-link to="/release-history"
               class="inline-flex items-center px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-gray-200 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200">
@@ -91,12 +90,6 @@
                 </button>
               </div>
               <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">EXE: 5.84 MB | MSI: 8.34 MB</p>
-              <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
-                <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
-                  <span>EXE: {{ downloadStats['windows-installer'].toLocaleString() }} 次</span>
-                  <span>MSI: {{ downloadStats['windows-msi'].toLocaleString() }} 次</span>
-                </div>
-              </div>
             </div>
 
             <!-- macOS -->
@@ -127,12 +120,6 @@
                 </button>
               </div>
               <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">Intel: 13.2 MB | Apple Silicon: 13 MB</p>
-              <div class="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
-                <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400">
-                  <span>Intel: {{ downloadStats['macos-intel'].toLocaleString() }} 次</span>
-                  <span>Apple Silicon: {{ downloadStats['macos-apple'].toLocaleString() }} 次</span>
-                </div>
-              </div>
             </div>
 
           </div>
@@ -438,33 +425,13 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { handleDownload, initializeDownloadStats, startStatsSync, getDownloadStats } from '@/services/downloadStats'
+import { ref, onUnmounted } from 'vue'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
 import AnimatedUnderlineText from '@/components/ui/AnimatedUnderlineText.vue'
 import MagicText from '@/components/ui/MagicText.vue'
 
 // SEO配置
 useSEO(seoConfigs.download)
-
-// 下载统计数据 - 从后端API获取真实统计
-const downloadStats = ref({
-  'windows-installer': 0,
-  'windows-msi': 0,
-  'macos-apple': 0,
-  'macos-intel': 0
-})
-
-// 后端原始统计数据
-const backendStats = ref(null)
-
-// 计算总下载量 - 优先使用后端数据
-const totalDownloads = computed(() => {
-  if (backendStats.value && backendStats.value.totalDownloads) {
-    return backendStats.value.totalDownloads
-  }
-  return Object.values(downloadStats.value).reduce((total, count) => total + count, 0)
-})
 
 // QQ群弹窗相关
 const showQQModal = ref(false)
@@ -554,71 +521,12 @@ const downloadFile = async (platform) => {
   const downloadUrl = downloadUrls[platform]
 
   if (downloadUrl) {
-    // 使用新的下载处理服务，传入更新本地统计的回调
-    const updateLocalStats = async (downloadedPlatform) => {
-      try {
-        // 更新本地统计数据
-        const currentStats = { ...downloadStats.value }
-        if (currentStats[downloadedPlatform] !== undefined) {
-          currentStats[downloadedPlatform] += 1
-        }
-        downloadStats.value = currentStats
-
-        // 同时刷新后端原始数据
-        const rawData = await getDownloadStats()
-        if (rawData) {
-          backendStats.value = rawData
-        }
-        console.log('本地统计已更新:', currentStats, '后端数据:', rawData)
-      } catch (error) {
-        console.error('更新本地统计失败:', error)
-      }
-    }
-
-    await handleDownload(platform, downloadUrl, updateLocalStats)
+    window.location.href = downloadUrl
   } else {
     console.log(`${platform} 版本暂不可用`)
     alert(`${platform} 版本即将推出，敬请期待！`)
   }
 }
-
-// 初始化下载统计数据
-const loadDownloadStats = async () => {
-  try {
-    // 先获取后端原始数据
-    const rawData = await getDownloadStats()
-    if (rawData) {
-      backendStats.value = rawData
-      console.log('后端原始数据:', rawData)
-    }
-
-    // 再获取映射后的数据
-    const stats = await initializeDownloadStats()
-    downloadStats.value = stats
-    console.log('映射后的统计数据:', stats)
-  } catch (error) {
-    console.error('初始化下载统计数据失败:', error)
-  }
-}
-
-// 统计数据同步清理函数
-let statsCleanup = null
-
-// 组件挂载时加载数据
-onMounted(async () => {
-  // 初始化下载统计数据
-  await loadDownloadStats()
-
-  // 启动统计数据同步（每5分钟同步一次）
-  statsCleanup = startStatsSync(async (newStats) => {
-    downloadStats.value = newStats
-    // 同时更新后端原始数据
-    const rawData = await getDownloadStats()
-    if (rawData) {
-      backendStats.value = rawData
-    }
-  }, 5 * 60 * 1000)
-})
 
 // 组件卸载时清理
 onUnmounted(() => {
@@ -632,9 +540,6 @@ onUnmounted(() => {
     cliCopiedTimer = null
   }
 
-  if (statsCleanup) {
-    statsCleanup()
-  }
 })
 </script>
 

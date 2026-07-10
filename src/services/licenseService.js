@@ -260,8 +260,7 @@ export async function getPurchaseUserCounts() {
       return result.data
     }
     return []
-  } catch (error) {
-    console.error('获取产品购买用户数失败:', error)
+  } catch {
     return []
   }
 }

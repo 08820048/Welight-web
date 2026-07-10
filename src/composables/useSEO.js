@@ -116,12 +116,6 @@ export const seoConfigs = {
     keywords: 'Welight社区,用户交流,QQ群,微信群,公众号交流,排版技巧分享,用户群',
     url: 'https://waer.ltd/community'
   },
-  monthlyCards: {
-    title: 'Welight月卡功能 - 灵活订阅方案',
-    description: 'Welight月卡订阅服务，按月付费使用全部高级功能，灵活便捷，适合短期项目使用。',
-    keywords: 'Welight月卡,按月订阅,灵活付费,短期使用,订阅服务',
-    url: 'https://waer.ltd/monthly-cards'
-  },
   releaseHistory: {
     title: 'Welight历史版本下载 - 所有版本归档',
     description:

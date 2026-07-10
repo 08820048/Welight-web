@@ -10,7 +10,7 @@
             class="mt-5 text-balance text-3xl font-semibold tracking-normal text-[#1B365D] md:text-4xl dark:text-[#D0DCE9]">
             隐私政策
           </h1>
-          <p class="mt-4 text-pretty text-base text-[#504e49] dark:text-[#d6d1c4]">
+          <p class="mt-4 text-pretty text-base text-[#666666] dark:text-[#666666]">
             Welight 隐私政策
           </p>
           <p class="mt-2 text-sm text-[#6b6a64] dark:text-[#817d72]">
@@ -22,8 +22,8 @@
 
     <section class="px-4 pb-20 md:px-6 md:pb-28">
       <div class="mx-auto max-w-4xl space-y-0">
-        <div class="border-t border-[#d8d3c4] py-8 dark:border-[#44433f]">
-          <div class="space-y-3 text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">
+        <div class="border-t border-[#e5e5e5] py-8 dark:border-[#44433f]">
+          <div class="space-y-3 text-base leading-7 text-[#666666] dark:text-[#666666]">
             <p>Welight（以下简称"我们"）深知个人信息对您的重要性，我们将按照法律法规的规定，保护您的个人信息及隐私安全。我们制定本《隐私政策》并特别提示：希望您在使用 Welight
               及相关服务前仔细阅读并理解本《隐私政策》，以便做出适当的选择。</p>
             <p>本《隐私政策》将帮助您了解：</p>
@@ -36,12 +36,12 @@
           </div>
         </div>
 
-        <div class="border-t border-[#d8d3c4] py-8 dark:border-[#44433f]">
+        <div class="border-t border-[#e5e5e5] py-8 dark:border-[#44433f]">
           <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b6a64] dark:text-[#D0DCE9]">01</p>
           <h2 class="mt-2 text-xl font-semibold tracking-normal text-[#1B365D] dark:text-[#D0DCE9]">我们收集的信息</h2>
-          <div class="mt-4 space-y-4 text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">
+          <div class="mt-4 space-y-4 text-base leading-7 text-[#666666] dark:text-[#666666]">
             <div>
-              <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">1. 您主动提供的信息</h3>
+              <h3 class="font-semibold text-[#141413] dark:text-[#ffffff]">1. 您主动提供的信息</h3>
               <p class="mt-2">在您使用我们的服务时，您可能会主动向我们提供以下信息：</p>
               <ul class="list-disc pl-6 mt-2 space-y-1">
                 <li><strong>账号信息：</strong>当您注册账号时，您需要提供邮箱地址用于接收许可证密钥。</li>
@@ -52,7 +52,7 @@
             </div>
 
             <div>
-              <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">2. 我们自动收集的信息</h3>
+              <h3 class="font-semibold text-[#141413] dark:text-[#ffffff]">2. 我们自动收集的信息</h3>
               <p class="mt-2">在您使用我们的服务时，我们可能会自动收集以下信息：</p>
               <ul class="list-disc pl-6 mt-2 space-y-1">
                 <li><strong>设备信息：</strong>设备型号、操作系统版本、设备标识符等。</li>
@@ -62,13 +62,13 @@
             </div>
 
             <div>
-              <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">3. 第三方服务信息</h3>
+              <h3 class="font-semibold text-[#141413] dark:text-[#ffffff]">3. 第三方服务信息</h3>
               <p class="mt-2">当您使用 AI 功能时，您的请求可能会被发送到第三方 AI 服务提供商（如 DeepSeek、智谱、Qwen、Kimi
                 等）。这些第三方服务提供商有自己的隐私政策，我们建议您仔细阅读。</p>
             </div>
 
             <div>
-              <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">4. 关于默认图床服务的数据处理说明</h3>
+              <h3 class="font-semibold text-[#141413] dark:text-[#ffffff]">4. 关于默认图床服务的数据处理说明</h3>
               <ul class="list-disc pl-6 mt-2 space-y-1">
                 <li>当您使用默认图床功能上传图片时，您的图片将被上传至第三方图床服务提供商（ImgBB）的服务器。</li>
                 <li>我们不会存储您上传的图片内容，图片将直接传输至第三方服务提供商。</li>
@@ -80,10 +80,10 @@
           </div>
         </div>
 
-        <div class="border-t border-[#d8d3c4] py-8 dark:border-[#44433f]">
+        <div class="border-t border-[#e5e5e5] py-8 dark:border-[#44433f]">
           <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b6a64] dark:text-[#D0DCE9]">02</p>
           <h2 class="mt-2 text-xl font-semibold tracking-normal text-[#1B365D] dark:text-[#D0DCE9]">我们如何使用收集的信息</h2>
-          <div class="mt-4 space-y-3 text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">
+          <div class="mt-4 space-y-3 text-base leading-7 text-[#666666] dark:text-[#666666]">
             <p>我们会将收集到的信息用于以下用途：</p>
             <ul class="list-disc pl-6 space-y-1">
               <li><strong>提供服务：</strong>为您提供 Welight 的核心功能，包括文章编辑、排版、AI 创作等。</li>
@@ -96,12 +96,12 @@
           </div>
         </div>
 
-        <div class="border-t border-[#d8d3c4] py-8 dark:border-[#44433f]">
+        <div class="border-t border-[#e5e5e5] py-8 dark:border-[#44433f]">
           <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b6a64] dark:text-[#D0DCE9]">03</p>
           <h2 class="mt-2 text-xl font-semibold tracking-normal text-[#1B365D] dark:text-[#D0DCE9]">信息的存储和保护</h2>
-          <div class="mt-4 space-y-4 text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">
+          <div class="mt-4 space-y-4 text-base leading-7 text-[#666666] dark:text-[#666666]">
             <div>
-              <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">1. 信息存储</h3>
+              <h3 class="font-semibold text-[#141413] dark:text-[#ffffff]">1. 信息存储</h3>
               <ul class="list-disc pl-6 mt-2 space-y-1">
                 <li><strong>存储地点：</strong>您的信息将存储在中华人民共和国境内的服务器上。</li>
                 <li><strong>存储期限：</strong>我们仅在为您提供服务所必需的期间内保留您的个人信息。当您注销账号或删除数据后，我们将删除或匿名化处理您的个人信息。</li>
@@ -109,7 +109,7 @@
             </div>
 
             <div>
-              <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">2. 安全措施</h3>
+              <h3 class="font-semibold text-[#141413] dark:text-[#ffffff]">2. 安全措施</h3>
               <p class="mt-2">我们采取以下安全措施保护您的信息：</p>
               <ul class="list-disc pl-6 mt-2 space-y-1">
                 <li>使用加密技术（如 HTTPS）保护数据传输安全</li>
@@ -121,7 +121,7 @@
             </div>
 
             <div>
-              <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">3. 安全事件处理</h3>
+              <h3 class="font-semibold text-[#141413] dark:text-[#ffffff]">3. 安全事件处理</h3>
               <p class="mt-2">
                 如发生个人信息泄露等安全事件，我们会立即启动应急预案，阻止安全事件扩大，并按照法律法规的要求及时向您告知：安全事件的基本情况和可能的影响、我们已采取或将要采取的处置措施、您可自主防范和降低风险的建议等。
               </p>
@@ -129,12 +129,12 @@
           </div>
         </div>
 
-        <div class="border-t border-[#d8d3c4] py-8 dark:border-[#44433f]">
+        <div class="border-t border-[#e5e5e5] py-8 dark:border-[#44433f]">
           <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b6a64] dark:text-[#D0DCE9]">04</p>
           <h2 class="mt-2 text-xl font-semibold tracking-normal text-[#1B365D] dark:text-[#D0DCE9]">信息的共享、转让和公开披露</h2>
-          <div class="mt-4 space-y-4 text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">
+          <div class="mt-4 space-y-4 text-base leading-7 text-[#666666] dark:text-[#666666]">
             <div>
-              <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">1. 共享</h3>
+              <h3 class="font-semibold text-[#141413] dark:text-[#ffffff]">1. 共享</h3>
               <p class="mt-2">我们不会与任何公司、组织和个人共享您的个人信息，但以下情况除外：</p>
               <ul class="list-disc pl-6 mt-2 space-y-1">
                 <li><strong>获得您的明确同意：</strong>在获得您的明确同意后，我们会与其他方共享您的个人信息。</li>
@@ -144,22 +144,22 @@
             </div>
 
             <div>
-              <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">2. 转让</h3>
+              <h3 class="font-semibold text-[#141413] dark:text-[#ffffff]">2. 转让</h3>
               <p class="mt-2">
                 我们不会将您的个人信息转让给任何公司、组织和个人，但以下情况除外：在获得您的明确同意后；在涉及合并、收购或破产清算时，如涉及到个人信息转让，我们会要求新的持有您个人信息的公司、组织继续受本政策的约束。</p>
             </div>
 
             <div>
-              <h3 class="font-semibold text-[#141413] dark:text-[#f5f4ed]">3. 公开披露</h3>
+              <h3 class="font-semibold text-[#141413] dark:text-[#ffffff]">3. 公开披露</h3>
               <p class="mt-2">我们仅会在以下情况下，公开披露您的个人信息：获得您明确同意后；基于法律的披露：在法律、法律程序、诉讼或政府主管部门强制性要求的情况下，我们可能会公开披露您的个人信息。</p>
             </div>
           </div>
         </div>
 
-        <div class="border-t border-[#d8d3c4] py-8 dark:border-[#44433f]">
+        <div class="border-t border-[#e5e5e5] py-8 dark:border-[#44433f]">
           <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b6a64] dark:text-[#D0DCE9]">05</p>
           <h2 class="mt-2 text-xl font-semibold tracking-normal text-[#1B365D] dark:text-[#D0DCE9]">您的权利</h2>
-          <div class="mt-4 space-y-3 text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">
+          <div class="mt-4 space-y-3 text-base leading-7 text-[#666666] dark:text-[#666666]">
             <p>按照中国相关的法律法规，您对自己的个人信息享有以下权利：</p>
             <ul class="list-disc pl-6 space-y-1">
               <li><strong>访问权：</strong>您有权访问您的个人信息，法律法规规定的例外情况除外。</li>
@@ -179,28 +179,28 @@
           </div>
         </div>
 
-        <div class="border-t border-[#d8d3c4] py-8 dark:border-[#44433f]">
+        <div class="border-t border-[#e5e5e5] py-8 dark:border-[#44433f]">
           <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b6a64] dark:text-[#D0DCE9]">06</p>
           <h2 class="mt-2 text-xl font-semibold tracking-normal text-[#1B365D] dark:text-[#D0DCE9]">未成年人保护</h2>
-          <div class="mt-4 space-y-3 text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">
+          <div class="mt-4 space-y-3 text-base leading-7 text-[#666666] dark:text-[#666666]">
             <p>我们非常重视对未成年人个人信息的保护。若您是18周岁以下的未成年人，在使用我们的服务前，应事先取得您的家长或法定监护人的同意。</p>
             <p>若您是未成年人的监护人，当您对您所监护的未成年人的个人信息有相关疑问时，请通过本政策公示的联系方式与我们联系。</p>
           </div>
         </div>
 
-        <div class="border-t border-[#d8d3c4] py-8 dark:border-[#44433f]">
+        <div class="border-t border-[#e5e5e5] py-8 dark:border-[#44433f]">
           <p class="text-xs font-semibold uppercase tracking-[0.14em] text-[#6b6a64] dark:text-[#D0DCE9]">07</p>
           <h2 class="mt-2 text-xl font-semibold tracking-normal text-[#1B365D] dark:text-[#D0DCE9]">隐私政策的更新</h2>
-          <div class="mt-4 space-y-3 text-base leading-7 text-[#504e49] dark:text-[#d6d1c4]">
+          <div class="mt-4 space-y-3 text-base leading-7 text-[#666666] dark:text-[#666666]">
             <p>我们可能会适时修订本《隐私政策》的条款，该等修订构成本《隐私政策》的一部分。如该等修订造成您在本《隐私政策》下权利的实质减少，我们将在修订生效前通过在主页上显著位置提示或向您发送电子邮件或以其他方式通知您。
             </p>
             <p>在该种情况下，若您继续使用我们的服务，即表示同意受经修订的本《隐私政策》的约束。</p>
           </div>
         </div>
 
-        <div class="border-t border-[#d8d3c4] py-8 dark:border-[#44433f]">
+        <div class="border-t border-[#e5e5e5] py-8 dark:border-[#44433f]">
           <h2 class="text-xl font-semibold text-[#1B365D] dark:text-[#D0DCE9]">如何联系我们</h2>
-          <div class="mt-4 space-y-2 text-base text-[#504e49] dark:text-[#d6d1c4]">
+          <div class="mt-4 space-y-2 text-base text-[#666666] dark:text-[#666666]">
             <p>如果您对本隐私政策有任何疑问、意见或建议，请通过以下方式与我们联系：</p>
             <p><strong>QQ群：</strong>474919458</p>
             <p>
@@ -214,7 +214,7 @@
 
         <div class="text-center mt-8">
           <router-link to="/"
-            class="inline-flex items-center px-6 py-3 rounded-lg bg-[#e8e6dc] text-sm font-semibold text-[#141413] shadow-[0_0_0_1px_rgba(20,20,19,0.08)] transition-colors hover:bg-[#dedace] dark:bg-[#30302e] dark:text-[#f5f4ed] dark:shadow-[0_0_0_1px_rgba(245,244,237,0.1)] dark:hover:bg-[#3a3a36]">
+            class="inline-flex items-center px-6 py-3 rounded-lg bg-[#f3f3f3] text-sm font-semibold text-[#141413] shadow-[0_0_0_1px_rgba(20,20,19,0.08)] transition-colors hover:bg-[#e5e5e5] dark:bg-[#30302e] dark:text-[#ffffff] dark:shadow-[0_0_0_1px_rgba(245,244,237,0.1)] dark:hover:bg-[#3a3a36]">
             返回首页
           </router-link>
         </div>
@@ -227,3 +227,4 @@
 import { useSEO, seoConfigs } from '@/composables/useSEO'
 useSEO(seoConfigs.privacy)
 </script>
+

@@ -1,6 +1,6 @@
 <template>
-  <div class="relative min-h-screen bg-[#f5f4ed] dark:bg-[#141413]">
-    <div class="min-h-screen text-[#141413] dark:text-[#f5f4ed] px-4 pt-20 pb-12 relative overflow-hidden"
+  <div class="relative min-h-screen bg-[#ffffff] dark:bg-[#141413]">
+    <div class="min-h-screen text-[#141413] dark:text-[#ffffff] px-4 pt-20 pb-12 relative overflow-hidden"
       style="position: relative; z-index: 1;">
       <div class="product-pricing-field pointer-events-none absolute inset-x-0 top-0 -z-10 h-[34rem]"
         aria-hidden="true"></div>
@@ -274,7 +274,7 @@
                   <div v-else-if="renewOrderStatus === 'PENDING'" class="text-sm text-gray-500">
                     <div class="flex items-center justify-center mb-2">
                       <div
-                        class="animate-spin rounded-full h-4 w-4 border-b-2 border-[#1B365D] mr-2 dark:border-[#f5f4ed]">
+                        class="animate-spin rounded-full h-4 w-4 border-b-2 border-[#1B365D] mr-2 dark:border-[#ffffff]">
                       </div>
                       <span>等待支付...</span>
                     </div>
@@ -293,39 +293,18 @@
         <section class="relative mb-10 py-12 md:py-16 animate-fade-in-up delay-100">
           <div class="text-center relative max-w-3xl mx-auto px-4 md:px-8">
             <AnimatedUnderlineText text="Welight 授权"
-              text-className="text-balance text-4xl font-medium tracking-normal text-[#141413] dark:text-[#f5f4ed]"
-              underline-className="text-[#1B365D] dark:text-[#f5f4ed]" />
+              text-className="text-balance text-4xl font-medium tracking-normal text-[#141413] dark:text-[#ffffff]"
+              underline-className="text-[#1B365D] dark:text-[#ffffff]" />
             <MagicText text="26 元立即解锁网页版与桌面端完整编辑体验" container-className="mt-6 justify-center"
-              word-className="text-pretty text-lg text-[#504e49] dark:text-[#d6d1c4]" />
-          </div>
-
-          <!-- 月卡购买弹窗 -->
-          <div v-if="showMonthlyCardModal"
-            class="fixed inset-0 z-50 flex items-center justify-center bg-black/45 px-4 py-6 backdrop-blur-sm modal-backdrop animate-fade-in">
-            <MonthlyCardPurchase ref="monthlyCardPurchaseRef" :preselected-service-type="selectedServiceType"
-              @close="closeMonthlyCardModal" class="animate-scale-in" />
-          </div>
-
-          <!-- 月卡激活弹窗 -->
-          <div v-if="showMonthlyCardActivationModal"
-            class="fixed inset-0 z-50 flex items-center justify-center bg-black/45 px-4 py-6 backdrop-blur-sm modal-backdrop animate-fade-in">
-            <div class="surface-soft modal-content relative mx-4 w-full max-w-lg overflow-hidden rounded-[28px]">
-              <button @click="showMonthlyCardActivationModal = false"
-                class="surface-stat absolute right-4 top-4 z-10 inline-flex h-10 w-10 items-center justify-center rounded-full text-gray-500 transition-colors duration-200 hover:text-gray-900">
-                <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-              <MonthlyCardActivation />
-            </div>
+              word-className="text-pretty text-lg text-[#666666] dark:text-[#666666]" />
           </div>
 
           <!-- 产品卡片区 -->
           <div v-if="loadingProducts" class="text-center py-12 animate-fade-in-up delay-600">
             <div
-              class="animate-spin inline-block w-8 h-8 border-4 border-[#1B365D] border-t-transparent rounded-full dark:border-[#f5f4ed] dark:border-t-transparent">
+              class="animate-spin inline-block w-8 h-8 border-4 border-[#1B365D] border-t-transparent rounded-full dark:border-[#ffffff] dark:border-t-transparent">
             </div>
-            <p class="mt-2 text-[#504e49] animate-fade-in-up delay-700 dark:text-[#d6d1c4]">正在加载产品信息...</p>
+            <p class="mt-2 text-[#666666] animate-fade-in-up delay-700 dark:text-[#666666]">正在加载产品信息...</p>
           </div>
 
           <div v-else class="relative mt-10">
@@ -333,7 +312,7 @@
               <p class="text-sm font-semibold uppercase tracking-[0.16em] text-[#1B365D] dark:text-[#D0DCE9]">
                 License
               </p>
-              <div class="mt-5 flex items-start justify-center tabular-nums text-[#141413] dark:text-[#f5f4ed]">
+              <div class="mt-5 flex items-start justify-center tabular-nums text-[#141413] dark:text-[#ffffff]">
                 <span class="text-[clamp(3.4rem,14vw,8rem)] font-light leading-[0.9] tracking-normal">26 元</span>
               </div>
 
@@ -345,8 +324,8 @@
               </button>
 
               <div
-                class="mx-auto mt-7 max-w-xl space-y-3 text-pretty text-sm leading-7 text-[#504e49] dark:text-[#d6d1c4] md:text-base">
-                <p>固定价格 <span class="font-semibold text-[#141413] dark:text-[#f5f4ed]">26 元</span>，最终税费与可用支付方式以支付页面展示为准。
+                class="mx-auto mt-7 max-w-xl space-y-3 text-pretty text-sm leading-7 text-[#666666] dark:text-[#666666] md:text-base">
+                <p>固定价格 <span class="font-semibold text-[#141413] dark:text-[#ffffff]">26 元</span>，最终税费与可用支付方式以支付页面展示为准。
                 </p>
                 <p>包含网页版与桌面端完整功能、主题更新、许可证发放与授权验证。</p>
               </div>
@@ -354,9 +333,9 @@
               <div
                 class="mt-9 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-[#6b6a64] dark:text-[#D0DCE9]">
                 <span>终身更新</span>
-                <span class="hidden text-[#9d9789] sm:inline dark:text-[#817d72]">·</span>
+                <span class="hidden text-[#999999] sm:inline dark:text-[#817d72]">·</span>
                 <span>2 台设备 / 许可证</span>
-                <span class="hidden text-[#9d9789] sm:inline dark:text-[#817d72]">·</span>
+                <span class="hidden text-[#999999] sm:inline dark:text-[#817d72]">·</span>
                 <span>支持银行卡、Apple Pay、<span class="font-medium text-[#08ca64]">微信</span>等</span>
               </div>
             </div>
@@ -369,10 +348,10 @@
         <section class="mt-12 relative py-12 md:py-16 animate-fade-in-up delay-1000">
           <div class="relative max-w-3xl mx-auto px-4 md:px-8">
             <div class="pt-8">
-              <h2 class="text-xl font-bold text-[#141413] dark:text-[#f5f4ed] mb-4 animate-fade-in-left delay-1100">
+              <h2 class="text-xl font-bold text-[#141413] dark:text-[#ffffff] mb-4 animate-fade-in-left delay-1100">
                 购买须知
               </h2>
-              <ul class="list-disc pl-6 text-[#3D3D3A] dark:text-[#d6d1c4] space-y-2 mb-6 text-sm">
+              <ul class="list-disc pl-6 text-[#333333] dark:text-[#666666] space-y-2 mb-6 text-sm">
                 <li class="animate-fade-in-up delay-1200">购买后许可证由 Dodo Payments 自动发放，请妥善保存许可证密钥。</li>
                 <li class="animate-fade-in-up delay-1300">每个许可证支持在指定数量的设备上使用。</li>
                 <li class="animate-fade-in-up delay-1400">许可证密钥请在桌面应用中输入使用。</li>
@@ -381,7 +360,7 @@
                 <li class="animate-fade-in-up delay-1550">
                   网页版地址：
                   <a href="https://waer.ltd/wl/" target="_blank" rel="noopener noreferrer"
-                    class="underline text-[#1B365D] transition-colors hover:text-[#141413] dark:text-[#f5f4ed] dark:hover:text-[#E4ECF5]">
+                    class="underline text-[#1B365D] transition-colors hover:text-[#141413] dark:text-[#ffffff] dark:hover:text-[#E4ECF5]">
                     https://waer.ltd/wl/
                   </a>
                 </li>
@@ -390,14 +369,14 @@
                 <li class="animate-fade-in-up delay-1700">默认内置的图片云存储服务和 AI 服务一样作为可选服务，您也可以选择配置自己的图床进行使用</li>
               </ul>
 
-              <h2 class="text-xl font-bold text-[#141413] dark:text-[#f5f4ed] mb-4 animate-fade-in-left delay-1800">
+              <h2 class="text-xl font-bold text-[#141413] dark:text-[#ffffff] mb-4 animate-fade-in-left delay-1800">
                 交流反馈
               </h2>
               <div class="text-sm animate-scale-in delay-1900">
-                <span class="font-medium text-[#1B365D] dark:text-[#f5f4ed]">QQ群：</span>
+                <span class="font-medium text-[#1B365D] dark:text-[#ffffff]">QQ群：</span>
                 <a href="https://qun.qq.com/universal-share/share?ac=1&authKey=ksnTYp3Puhc%2FmHe4BgNG73VDWykN%2FQxAV%2BfDI9TkZqY7a7TyiEVzbFoC4XUEbWeX&busi_data=eyJncm91cENvZGUiOiI0NzQ5MTk0NTgiLCJ0b2tlbiI6IlY2aUI0V3kvWFJhQUZrYXc5WFhLaHlHMzJsa0hlbFROdkFpTUVwcndyTDIzeWVKMU9SeDlvRmFja1pmRElQaFMiLCJ1aW4iOiIyMjE3MDIxNTYzIn0%3D&data=DAdDioP_YBpztOA2YNL5VvKvK2XKMOl4ZJKCZlzfp_ZVasT801z-5F7opkUw1NzwxPvEnGs5P_2y6djq489Tng&svctype=4&tempid=h5_group_info"
                   target="_blank"
-                  class="text-[#1B365D] underline transition-colors hover:text-[#141413] dark:text-[#f5f4ed] dark:hover:text-[#E4ECF5]">
+                  class="text-[#1B365D] underline transition-colors hover:text-[#141413] dark:text-[#ffffff] dark:hover:text-[#E4ECF5]">
                   点击加入
                 </a>
               </div>
@@ -445,8 +424,6 @@ import {
   getStatusTooltip,
   createServiceStatusMonitor
 } from '../services/serviceStatusService.js'
-import MonthlyCardPurchase from '../components/MonthlyCardPurchase.vue'
-import MonthlyCardActivation from '../components/MonthlyCardActivation.vue'
 import CreditsPurchase from '../components/CreditsPurchase.vue'
 import { previewCoupon } from '../services/couponService.js'
 import { getActiveProductActivities } from '../services/campaignService.js'
@@ -534,14 +511,11 @@ const DODO_LICENSE_PRODUCT = {
 const products = ref([])
 const loadingProducts = ref(true)
 const showBuyModal = ref(false)
-const showMonthlyCardModal = ref(false)
-const showMonthlyCardActivationModal = ref(false)
 const showCreditsModal = ref(false)
 const preselectedCreditsPackage = ref(null)
 const selectedProduct = ref(null)
 const toastMessage = ref('')
 const showToast = ref(false)
-const selectedServiceType = ref('')
 const buyForm = ref({
   customerEmail: '',
   customerName: '',
@@ -555,7 +529,6 @@ const licenseInfo = ref(null)
 let pollingPromise = null
 
 const qrCodeImg = ref('')
-const monthlyCardPurchaseRef = ref(null)
 
 // 续费相关响应式数据
 const showRenewModal = ref(false)
@@ -703,33 +676,9 @@ function openBuyModal(product = null) {
   showBuyModal.value = true
 }
 
-// 打开月卡购买弹窗
-function openMonthlyCardModal(serviceType) {
-  selectedServiceType.value = serviceType
-  showMonthlyCardModal.value = true
-}
-
-// 关闭月卡购买弹窗
-function closeMonthlyCardModal() {
-  showMonthlyCardModal.value = false
-  selectedServiceType.value = ''
-}
-
 // 统一的产品购买处理
 function handleProductPurchase(product) {
-  if (product.code.includes('MONTHLY')) {
-    // 月卡产品，使用月卡购买流程
-    let serviceType = ''
-    if (product.code.includes('AI_SERVICE')) {
-      serviceType = 'AI_SERVICE'
-    } else if (product.code.includes('CLOUD_STORAGE')) {
-      serviceType = 'CLOUD_STORAGE'
-    }
-    openMonthlyCardModal(serviceType)
-  } else {
-    // 许可证产品，使用许可证购买流程
-    openBuyModal(product)
-  }
+  openBuyModal(product)
 }
 
 // 关闭弹窗时清理状态
@@ -1198,14 +1147,14 @@ function getPricingRibbonText(product) {
 }
 
 function getPricingPrimaryButtonClass(index, enabled) {
-  if (!enabled) return 'cursor-not-allowed border-[#d8d3c4] bg-[#e8e6dc] text-[#9d9789] dark:border-[#44433f] dark:bg-[#242421] dark:text-[#9d9789]'
+  if (!enabled) return 'cursor-not-allowed border-[#e5e5e5] bg-[#f3f3f3] text-[#999999] dark:border-[#44433f] dark:bg-[#242421] dark:text-[#999999]'
   void index
-  return 'border-[#1B365D] bg-[#1B365D] text-[#f5f4ed] hover:bg-[#142947] dark:border-[#f5f4ed] dark:bg-[#f5f4ed] dark:text-[#142947] dark:hover:bg-[#E4ECF5]'
+  return 'border-[#1B365D] bg-[#1B365D] text-[#ffffff] hover:bg-[#142947] dark:border-[#ffffff] dark:bg-[#ffffff] dark:text-[#142947] dark:hover:bg-[#E4ECF5]'
 }
 
 function getPricingSecondaryButtonClass(enabled) {
-  if (!enabled) return 'cursor-not-allowed border-[#d8d3c4] bg-[#e8e6dc] text-[#9d9789] dark:border-[#44433f] dark:bg-[#242421] dark:text-[#9d9789]'
-  return 'border-[#d8d3c4] text-[#141413] hover:bg-[#e8e6dc] dark:border-[#55554f] dark:text-[#f5f4ed] dark:hover:bg-[#3a3a36]'
+  if (!enabled) return 'cursor-not-allowed border-[#e5e5e5] bg-[#f3f3f3] text-[#999999] dark:border-[#44433f] dark:bg-[#242421] dark:text-[#999999]'
+  return 'border-[#e5e5e5] text-[#141413] hover:bg-[#f3f3f3] dark:border-[#55554f] dark:text-[#ffffff] dark:hover:bg-[#3a3a36]'
 }
 
 
@@ -1380,15 +1329,6 @@ async function purchaseProduct(product) {
         isPopular: product.isPopular || false
       }
       showCreditsModal.value = true
-    } else if (product.code.includes('MONTHLY')) {
-      // 月卡产品，使用月卡购买流程
-      let serviceType = ''
-      if (product.code.includes('AI_SERVICE')) {
-        serviceType = 'AI_SERVICE'
-      } else if (product.code.includes('CLOUD_STORAGE')) {
-        serviceType = 'CLOUD_STORAGE'
-      }
-      openMonthlyCardModal(serviceType)
     } else {
       // 许可证产品，使用许可证购买流程
       openBuyModal(product)
@@ -1578,10 +1518,6 @@ function showSuccessToast(message) {
 }
 
 .cloud-storage-gradient-overlay {
-  background: linear-gradient(to bottom, rgba(27, 54, 93, 0.14) 0%, rgba(27, 54, 93, 0.07) 40%, transparent 70%);
-}
-
-.monthly-card-gradient-overlay {
   background: linear-gradient(to bottom, rgba(27, 54, 93, 0.14) 0%, rgba(27, 54, 93, 0.07) 40%, transparent 70%);
 }
 
@@ -1874,11 +1810,6 @@ function showSuccessToast(message) {
   transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.product-card:hover .monthly-card-gradient-overlay {
-  background: linear-gradient(to bottom, rgba(27, 54, 93, 0.18) 0%, rgba(27, 54, 93, 0.09) 40%, transparent 70%);
-  transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-}
-
 .product-card:hover .permanent-gradient-overlay {
   background: linear-gradient(to bottom, rgba(27, 54, 93, 0.18) 0%, rgba(27, 54, 93, 0.09) 40%, transparent 70%);
   transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -1889,7 +1820,6 @@ function showSuccessToast(message) {
 /* 为渐隐效果层添加基础过渡 */
 .ai-service-gradient-overlay,
 .cloud-storage-gradient-overlay,
-.monthly-card-gradient-overlay,
 .permanent-gradient-overlay {
   transition: background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -2259,3 +2189,4 @@ function showSuccessToast(message) {
   }
 }
 </style>
+

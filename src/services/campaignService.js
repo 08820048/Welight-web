@@ -11,8 +11,7 @@ export async function getActiveProductActivities() {
       return result.data || []
     }
     throw new Error(result.message || '获取进行中的活动失败')
-  } catch (error) {
-    console.error('获取进行中的活动失败:', error)
+  } catch {
     return []
   }
 }

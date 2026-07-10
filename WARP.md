@@ -34,7 +34,7 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 #### Core Directories
 - `src/components/` - Vue components (20+ components including modals, purchase flows)
 - `src/views/` - Page-level components (11 pages: Home, Download, Pricing, etc.)
-- `src/services/` - API services (credits, licensing, download stats, service status)
+- `src/services/` - API services (credits, licensing, service status)
 - `src/stores/` - Pinia stores (theme management)
 - `src/utils/` - Utilities (analytics, message system)
 - `src/data/` - Static data and configuration
@@ -43,7 +43,6 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 #### Key Components
 - `Navbar.vue` - Main navigation with responsive design
 - `CreditsPurchase.vue` - Complex credit purchase flow with multiple payment methods
-- `MonthlyCardPurchase.vue` - Subscription purchase interface
 - `PromotionBanner.vue` - Dynamic promotional content system
 - `AnnouncementModal.vue` - System announcements and updates
 
@@ -53,8 +52,6 @@ This file provides guidance to WARP (warp.dev) when working with code in this re
 All API interactions use dedicated service modules:
 - `creditsService.js` - Credit purchase and management
 - `licenseService.js` - Software license operations
-- `monthlyCardService.js` - Subscription management
-- `downloadStats.js` - Download statistics tracking
 - `serviceStatusService.js` - Service health monitoring
 
 #### Service Status System
