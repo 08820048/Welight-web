@@ -1,154 +1,64 @@
 <template>
-  <div class="grid [grid-template-areas:'stack'] place-items-center opacity-100 animate-in fade-in-0 duration-700">
-    <div
-      v-for="(card, index) in displayCards"
+  <div class="grid w-full gap-4 sm:grid-cols-2">
+    <article
+      v-for="(card, index) in cards"
       :key="index"
-      :class="cn(
-        'surface-soft relative flex min-h-[10rem] w-[22rem] -skew-y-[8deg] select-none flex-col justify-between px-4 py-3 transition-all duration-700 after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-[20rem] after:bg-gradient-to-l after:from-white after:to-transparent dark:after:from-gray-900 after:content-[\'\']',
-        card.className
-      )">
-      <!-- 玻璃风格的加号图标（带圆形外圈） -->
+      class="surface-soft group relative flex min-h-[10rem] flex-col justify-between p-5 transition-transform duration-300 hover:-translate-y-1"
+    >
       <button
+        type="button"
         @click.stop="toggleDetail(index)"
-        class="absolute top-3 right-3 inline-flex items-center justify-center rounded-full bg-white/30 dark:bg-white/10 backdrop-blur-xl border border-white/60 dark:border-white/20 shadow-sm text-gray-800 dark:text-gray-200 hover:bg-white/70 dark:hover:bg-white/20 hover:text-gray-900 dark:hover:text-white hover:shadow-md transition-all duration-200 w-8 h-8 group z-20">
-        <!-- 圆形外圈 -->
-        <span class="absolute inset-[3px] rounded-full border border-white/80 dark:border-white/30 opacity-80"></span>
-        <!-- 加号图标 -->
-        <svg
-          class="relative z-10 w-3.5 h-3.5 transition-transform duration-200 group-hover:scale-110"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24">
+        class="absolute right-4 top-4 inline-flex h-8 w-8 items-center justify-center rounded-full border border-black/10 bg-white text-gray-700 shadow-sm transition-transform duration-200 hover:scale-105 hover:bg-gray-50 active:scale-[0.96]"
+        :aria-label="`查看${card.title}详情`"
+      >
+        <svg class="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
         </svg>
       </button>
 
-      <div class="sections-enter" style="--section-step: 70ms">
-        <div class="flex items-center gap-2">
-          <span class="relative inline-block rounded-full bg-gray-900 dark:bg-gray-700 p-1 shrink-0">
-            <component :is="card.icon" class="size-4 text-white" />
+      <div class="pr-9">
+        <div class="flex items-center gap-3">
+          <span class="inline-flex shrink-0 rounded-full bg-gray-900 p-2 text-white">
+            <component :is="card.icon" class="h-4 w-4" aria-hidden="true" />
           </span>
-          <p :class="cn('text-balance text-lg font-medium text-gray-900 dark:text-gray-100', card.titleClassName)">{{ card.title }}</p>
+          <h3 :class="['text-balance text-lg font-semibold text-gray-900', card.titleClassName]">
+            {{ card.title }}
+          </h3>
         </div>
-        <p class="text-pretty text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">{{ card.description }}</p>
+        <p class="mt-5 text-pretty text-sm leading-6 text-gray-600">{{ card.description }}</p>
       </div>
-
-    </div>
-
-    <!-- 全屏居中模态框 -->
-    <Teleport to="body">
-      <Transition
-        enter-active-class="transition-opacity duration-300"
-        enter-from-class="opacity-0"
-        enter-to-class="opacity-100"
-        leave-active-class="transition-opacity duration-200"
-        leave-from-class="opacity-100"
-        leave-to-class="opacity-0">
-        <div
-          v-if="expandedCard !== null"
-          @click="toggleDetail(null)"
-          class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] flex items-center justify-center p-4">
-          <!-- 详情卡片 -->
-          <Transition
-            enter-active-class="transition-all duration-300 ease-out"
-            enter-from-class="opacity-0 scale-90 translate-y-4"
-            enter-to-class="opacity-100 scale-100 translate-y-0"
-            leave-active-class="transition-all duration-200 ease-in"
-            leave-from-class="opacity-100 scale-100 translate-y-0"
-            leave-to-class="opacity-0 scale-95 translate-y-2">
-            <!-- 浮窗里的卡片：板正展示，不带斜角 -->
-            <div
-              v-if="expandedCard !== null"
-              @click.stop
-              class="relative flex min-h-[10rem] w-[26rem] select-none flex-col justify-between
-                     rounded-2xl border border-white/15 bg-white/10 px-6 py-5
-                     shadow-[0_30px_90px_rgba(0,0,0,0.65)] backdrop-blur-2xl
-                     before:pointer-events-none before:absolute before:inset-0 before:rounded-[1.1rem]
-                     before:border before:border-white/20 before:bg-gradient-to-br
-                     before:from-white/15 before:to-transparent before:opacity-80
-                     before:[mask-image:radial-gradient(circle_at_top,_white,_transparent_65%)]">
-              <!-- 关闭按钮 -->
-              <button
-                @click.stop="closeDetail()"
-                class="absolute -top-3 -right-3 flex h-6 w-6 items-center justify-center rounded-full
-                       bg-black/70 text-white/70 hover:text-white hover:bg-black/80 text-xs transition-colors">
-                ×
-              </button>
-
-              <!-- 顶部：圆形图标 + 标题（和主卡片同款排布） -->
-              <div class="flex items-center gap-2">
-                <span class="relative inline-block rounded-full bg-black/80 p-1 shrink-0">
-                  <component :is="displayCards[expandedCard]?.icon" class="size-4 text-white" />
-                </span>
-                <p
-                  :class="cn(
-                    'text-balance text-lg md:text-xl font-medium text-white',
-                    displayCards[expandedCard]?.titleClassName
-                  )">
-                  {{ displayCards[expandedCard]?.title }}
-                </p>
-              </div>
-
-              <!-- 中间：完整描述文案（不再截断，保留换行），高对比白字 -->
-              <p class="text-pretty text-sm md:text-base leading-relaxed text-slate-200 whitespace-pre-line">
-                {{ displayCards[expandedCard]?.description }}
-              </p>
-
-              <!-- 底部：可选的副标题/时间，略淡一点的白字 -->
-              <p v-if="displayCards[expandedCard]?.date" class="text-xs text-slate-300/80">
-                {{ displayCards[expandedCard]?.date }}
-              </p>
-            </div>
-          </Transition>
-        </div>
-      </Transition>
-    </Teleport>
+    </article>
   </div>
+
+  <Teleport to="body">
+    <Transition enter-active-class="transition-opacity duration-200" enter-from-class="opacity-0" enter-to-class="opacity-100"
+      leave-active-class="transition-opacity duration-150" leave-from-class="opacity-100" leave-to-class="opacity-0">
+      <div v-if="expandedCard !== null" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm" @click="closeDetail">
+        <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl" @click.stop>
+          <div class="flex items-start justify-between gap-4">
+            <div class="flex items-center gap-3">
+              <span class="inline-flex rounded-full bg-gray-900 p-2 text-white">
+                <component :is="cards[expandedCard]?.icon" class="h-4 w-4" aria-hidden="true" />
+              </span>
+              <h3 class="text-xl font-semibold text-gray-900">{{ cards[expandedCard]?.title }}</h3>
+            </div>
+            <button type="button" class="text-2xl leading-none text-gray-400 hover:text-gray-900" @click="closeDetail" aria-label="关闭">×</button>
+          </div>
+          <p class="mt-6 text-base leading-7 text-gray-600">{{ cards[expandedCard]?.description }}</p>
+        </div>
+      </div>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 
-const props = defineProps({
-  cards: {
-    type: Array,
-    default: () => []
-  }
+defineProps({
+  cards: { type: Array, default: () => [] }
 })
 
 const expandedCard = ref(null)
-
-const cn = (...classes) => {
-  return classes.filter(Boolean).join(' ')
-}
-
-const toggleDetail = (index) => {
-  expandedCard.value = index
-}
-
-const closeDetail = () => {
-  expandedCard.value = null
-}
-
-const defaultCards = [
-  {
-    className: "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
-  },
-  {
-    className: "[grid-area:stack] translate-x-16 translate-y-10 hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-background/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0",
-  },
-  {
-    className: "[grid-area:stack] translate-x-32 translate-y-20 hover:translate-y-10",
-  },
-]
-
-const displayCards = computed(() => {
-  if (props.cards.length > 0) {
-    return props.cards.map((card, index) => ({
-      ...defaultCards[index % defaultCards.length],
-      ...card
-    }))
-  }
-  return defaultCards
-})
+const toggleDetail = (index) => { expandedCard.value = index }
+const closeDetail = () => { expandedCard.value = null }
 </script>

@@ -1,39 +1,20 @@
 <template>
-  <div class="space-y-8">
-    <div
+  <div class="grid gap-4">
+    <article
       v-for="(feature, index) in features"
       :key="index"
-      class="relative group">
-      <!-- 叠加卡片容器 -->
-      <div class="grid [grid-template-areas:'stack'] relative">
-        <!-- Card 1 - Back -->
-        <div
-          class="surface-soft relative w-full -skew-y-[8deg] select-none px-4 py-3 transition-all duration-700 [grid-area:stack] group-hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-white/50 dark:before:bg-gray-900/40 grayscale-[100%] group-hover:before:opacity-0 before:transition-opacity before:duration-700 group-hover:grayscale-0 before:left-0 before:top-0 after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-[20rem] after:bg-gradient-to-l after:from-white dark:after:from-gray-900 after:to-transparent after:content-['']">
-          <div class="sections-enter" style="--section-step: 70ms">
-            <h3 class="text-balance text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">{{ feature.title }}</h3>
-            <p class="text-pretty text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">{{ feature.description }}</p>
-          </div>
-        </div>
-
-        <!-- Card 2 - Middle -->
-        <div
-          class="surface-soft relative w-full -skew-y-[8deg] select-none px-4 py-3 transition-all duration-700 [grid-area:stack] translate-x-8 translate-y-5 group-hover:-translate-y-1 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-white/50 dark:before:bg-gray-900/40 grayscale-[100%] group-hover:before:opacity-0 before:transition-opacity before:duration-700 group-hover:grayscale-0 before:left-0 before:top-0 after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-[20rem] after:bg-gradient-to-l after:from-white dark:after:from-gray-900 after:to-transparent after:content-['']">
-          <div class="sections-enter" style="--section-step: 70ms">
-            <h3 class="text-balance text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">{{ feature.title }}</h3>
-            <p class="text-pretty text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">{{ feature.description }}</p>
-          </div>
-        </div>
-
-        <!-- Card 3 - Front -->
-        <div
-          class="surface-soft relative w-full -skew-y-[8deg] select-none px-4 py-3 transition-all duration-700 [grid-area:stack] translate-x-16 translate-y-10 group-hover:translate-y-5 z-10 after:absolute after:-right-1 after:top-[-5%] after:h-[110%] after:w-[20rem] after:bg-gradient-to-l after:from-white dark:after:from-gray-900 after:to-transparent after:content-['']">
-          <div class="sections-enter" style="--section-step: 70ms">
-            <h3 class="text-balance text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">{{ feature.title }}</h3>
-            <p class="text-pretty text-sm text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3">{{ feature.description }}</p>
-          </div>
+      class="surface-soft group p-5 transition-transform duration-300 hover:-translate-y-1"
+    >
+      <div class="flex items-start gap-4">
+        <span class="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-gray-900 text-sm font-semibold text-white">
+          {{ String(index + 1).padStart(2, '0') }}
+        </span>
+        <div>
+          <h3 class="text-balance text-lg font-semibold text-gray-900">{{ feature.title }}</h3>
+          <p class="mt-2 text-pretty text-sm leading-6 text-gray-600">{{ feature.description }}</p>
         </div>
       </div>
-    </div>
+    </article>
   </div>
 </template>
 
@@ -42,9 +23,7 @@ defineProps({
   features: {
     type: Array,
     required: true,
-    validator: (value) => {
-      return value.every(item => item.title && item.description)
-    }
+    validator: (value) => value.every(item => item.title && item.description)
   }
 })
 </script>

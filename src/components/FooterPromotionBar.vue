@@ -22,7 +22,7 @@
             </div>
             <!-- 右侧：操作按钮（恢复原来同一行右侧布局） -->
             <div class="flex items-center gap-2 md:gap-3 shrink-0">
-              <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&price=26&redirect_url=https://waer.ltd/success"
+              <a href="https://checkout.dodopayments.com/buy/pdt_0NfwDna4ZjtnAan2fCf7T?quantity=1&price=59&redirect_url=https://waer.ltd/success"
                 target="_blank"
                 class="rounded-lg bg-[#ffffff] px-3 py-1.5 text-sm font-semibold text-[#141413] transition-all hover:bg-[#f0f0f0] md:px-4 md:py-2 md:text-base">
                 立即抢购
@@ -63,8 +63,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
-import { getActivePromotionsFromBackend } from '@/services/campaignService.js'
+import { ref, computed, watch } from 'vue'
 import PromotionBanner from './PromotionBanner.vue'
 import MiniCountdown from './MiniCountdown.vue'
 
@@ -117,14 +116,6 @@ function setMinimizedPromotionId(promotionId) {
 const activePromotions = ref([])
 const isPromotionBannerVisible = ref(false)
 const isMinimized = ref(false)
-
-async function loadActivePromotions() {
-  try {
-    activePromotions.value = await getActivePromotionsFromBackend()
-  } catch {
-    activePromotions.value = []
-  }
-}
 
 /**
  * 安全获取有效活动列表
@@ -210,10 +201,6 @@ function restoreBar() {
   isMinimized.value = false
 }
 
-onMounted(() => {
-  loadActivePromotions()
-})
-
 </script>
 
 <style scoped>
@@ -228,4 +215,3 @@ onMounted(() => {
   transform: translateY(8px);
 }
 </style>
-

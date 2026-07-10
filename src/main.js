@@ -4,6 +4,10 @@ import App from './App.vue'
 import router from './router'
 import './style.css'
 
+// 网站固定使用浅色模式，同时清理旧版本可能遗留的深色模式状态。
+document.documentElement.classList.remove('dark')
+localStorage.removeItem('themeMode')
+
 /**
  * 在生产环境禁用 console 输出，并捕获错误到内存供后续上报
  */

@@ -27,7 +27,7 @@
             </div>
             <div>
               <p class="text-pretty text-base leading-7 text-[#666666] dark:text-[#666666]">
-                每位赞助者每月可获得 <span class="font-semibold text-[#141413] dark:text-[#ffffff]">500 积分</span> 奖励，积分可用于 AI 功能消费和图片存储服务。
+                优先获得开发者新产品的体验和免费授权赠送等福利
               </p>
             </div>
           </div>
@@ -146,4 +146,3 @@ onMounted(() => {
   initData()
 })
 </script>
-

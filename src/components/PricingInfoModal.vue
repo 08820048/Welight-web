@@ -60,7 +60,7 @@
             <h3 class="text-lg font-bold text-gray-900 dark:text-white mb-4">关于定价</h3>
             <div class="text-gray-600 dark:text-gray-300 space-y-4 text-sm leading-relaxed">
               <p>
-                当前许可证固定价格为 26 元。购买后可以获得网页版与桌面端完整功能授权。
+                当前许可证固定价格为 59 元。购买后可以获得网页版与桌面端完整功能授权。
               </p>
               <p>
                 对于应用内的 AI 服务，Welight 更推荐你按需配置自己的模型密钥、图床或相关服务。这样成本和能力都更透明，也不会把创作流程锁死在单一服务里。

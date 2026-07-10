@@ -1,64 +1,56 @@
 <template>
   <header
-    class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200 dark:bg-gray-900/80 dark:border-white">
-    <div class="w-full px-6 md:px-16">
+    class="welight-site-nav fixed inset-x-0 top-0 z-50 pointer-events-none">
+    <div class="nav-shell pointer-events-auto mx-4 mt-4 max-w-[1180px] rounded-full border border-black/10 bg-white/65 px-5 shadow-[0_14px_38px_rgba(0,0,0,0.10)] backdrop-blur-xl dark:border-white/10 dark:bg-gray-950/65 sm:mx-auto sm:px-8">
       <!-- Desktop Navbar -->
-      <nav class="hidden lg:flex items-center justify-between h-16">
+      <nav class="hidden lg:grid grid-cols-[1fr_auto_1fr] items-center h-16 gap-8">
         <!-- Left: Logo -->
-        <div class="flex items-center">
-          <router-link to="/" class="flex items-center gap-2 relative">
-            <img src="/logo.png" alt="Welight Logo" class="w-8 h-8 rounded-lg" />
-            <span class="text-lg font-semibold">Welight</span>
+        <div class="flex items-center justify-self-start">
+          <router-link to="/" class="brand-link flex items-center gap-2.5 relative">
+            <img src="/logo.png" alt="Welight Logo" class="brand-mark w-[30px] h-[30px] rounded-lg" />
+            <span class="text-[15px] font-semibold tracking-[-0.01em]">Welight</span>
             <span v-if="isChristmasSeason" class="ml-1 text-lg">🎅</span>
           </router-link>
         </div>
 
-        <!-- Center: Desktop Menu (移除，统一到右侧文本菜单) -->
-        <div class="hidden"></div>
-
-        <!-- Right: 文本菜单 + 主题切换 -->
-        <div class="flex items-center gap-6">
+        <!-- Center: Desktop Menu -->
+        <div class="nav-links flex items-center justify-center gap-7">
           <router-link to="/"
-            class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
-            active-class="text-gray-900 dark:text-gray-100">
+            class="nav-link text-[13px] font-medium text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-white"
+            active-class="is-active">
             <span class="inline-flex items-center gap-1.5">
-              <TvMinimal class="w-4 h-4" />首页
+              首页
               <Snowflake v-if="isChristmasSeason" class="w-3 h-3 text-red-500" />
             </span>
           </router-link>
-          <router-link to="/pricing"
-            class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
-            active-class="text-gray-900 dark:text-gray-100">
+          <router-link to="/#pricing"
+            class="nav-link text-[13px] font-medium text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-white"
+            active-class="is-active">
             <span class="inline-flex items-center gap-1.5">
-              <JapaneseYen class="w-4 h-4" />定价
+              定价
               <Snowflake v-if="isChristmasSeason" class="w-3 h-3 text-green-600" />
             </span>
           </router-link>
           <router-link to="/donation"
-            class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
-            active-class="text-gray-900 dark:text-gray-100">
+            class="nav-link text-[13px] font-medium text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-white"
+            active-class="is-active">
             <span class="inline-flex items-center gap-1.5">
-              <Heart class="w-4 h-4" />
               赞助
               <Gift v-if="isChristmasSeason" class="w-3 h-3 text-red-600" />
             </span>
           </router-link>
-          <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
-            class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
-            <span class="inline-flex items-center gap-1.5">
-              <DownloadIcon class="w-4 h-4" />
-              下载
-              <Gift v-if="isChristmasSeason" class="w-3 h-3 text-green-600" />
-            </span>
-          </a>
           <router-link to="/documentation" @click="markDocsUpdateViewed"
-            class="relative text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
-            active-class="text-gray-900 dark:text-gray-100">
+            class="nav-link relative text-[13px] font-medium text-gray-500 hover:text-gray-950 dark:text-gray-400 dark:hover:text-white"
+            active-class="is-active">
             <span class="inline-flex items-center gap-1.5">
-              <BookOpenCheck class="w-4 h-4" />文档
+              文档
               <Snowflake v-if="isChristmasSeason" class="w-3 h-3 text-blue-600" />
             </span>
           </router-link>
+        </div>
+
+        <!-- Right: Theme + Download -->
+        <div class="nav-actions flex items-center justify-self-end gap-3">
           <div class="relative group" v-if="false">
             <button
               class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 flex items-center gap-1.5">
@@ -104,7 +96,11 @@
               </div>
             </div>
           </div>
-          <ToggleTheme class="ml-1" />
+          <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
+            class="nav-download inline-flex h-9 items-center gap-2 rounded-full bg-gray-950 px-4 text-[13px] font-medium text-white transition-transform hover:bg-gray-800 active:scale-[0.96] dark:bg-white dark:text-gray-950 dark:hover:bg-gray-200">
+            <DownloadIcon class="w-3.5 h-3.5" />
+            下载
+          </a>
         </div>
       </nav>
 
@@ -146,11 +142,6 @@
               <span class="text-lg font-semibold">Welight</span>
             </div>
             <div class="flex items-center gap-2">
-              <button @click="toggleTheme" aria-label="切换主题"
-                class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 transition-colors dark:text-gray-600">
-                <Sun v-if="themeStore.isDark" class="h-5 w-5" />
-                <Moon v-else class="h-5 w-5" />
-              </button>
               <button @click="closeMobileMenu" aria-label="关闭菜单"
                 class="inline-flex h-10 w-10 items-center justify-center rounded-full hover:bg-gray-100 transition-colors">
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -170,7 +161,7 @@
               </span>
             </router-link>
 
-            <router-link to="/pricing" @click="closeMobileMenu"
+            <router-link to="/#pricing" @click="closeMobileMenu"
               class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
               <span class="inline-flex items-center gap-2">
                 <JapaneseYen class="w-4 h-4" />定价
@@ -272,17 +263,13 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import ChangelogModal from './ChangelogModal.vue'
 import AnnouncementModal from './AnnouncementModal.vue'
 import PromotionBanner from './PromotionBanner.vue'
 import { hasNewAnnouncements as checkNewAnnouncements } from '@/data/announcements.js'
-import { getActivePromotionsFromBackend } from '@/services/campaignService.js'
 import { getLatestVersion } from '@/data/changelog.js'
-import { useThemeStore } from '@/stores/theme'
 import {
-  Sun,
-  Moon,
   TvMinimal,
   JapaneseYen,
   Heart,
@@ -293,9 +280,6 @@ import {
   Snowflake,
   Gift
 } from 'lucide-vue-next'
-import ToggleTheme from '@/components/ui/ToggleTheme.vue'
-
-const themeStore = useThemeStore()
 
 /**
  * 判断是否处于圣诞节期间
@@ -309,43 +293,6 @@ function isInChristmasSeason(date = new Date()) {
 }
 
 const isChristmasSeason = computed(() => isInChristmasSeason())
-
-// 切换主题（带 View Transition 动画）
-const toggleTheme = async (event) => {
-  const isDark = themeStore.isDark
-
-  // 降级方案：不支持 View Transition API
-  if (!document.startViewTransition) {
-    themeStore.toggleTheme()
-    return
-  }
-
-  // 获取动画起点：右上角
-  const x = innerWidth
-  const y = 0
-  const endRadius = Math.hypot(innerWidth, innerHeight)
-
-  const transition = document.startViewTransition(async () => {
-    themeStore.toggleTheme()
-    await nextTick()
-  })
-
-  // 等待伪元素创建完成
-  await transition.ready
-
-  // 执行动画
-  document.documentElement.animate(
-    {
-      clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${endRadius}px at ${x}px ${y}px)`]
-    },
-    {
-      duration: 1000,
-      easing: 'ease-in-out',
-      // 指定动画作用于新视图的伪元素
-      pseudoElement: '::view-transition-new(root)'
-    }
-  )
-}
 
 // 移动端菜单状态
 const isMobileMenuOpen = ref(false)
@@ -372,15 +319,6 @@ const markDocsUpdateViewed = () => {
 }
 
 // 获取菜单中的活动
-const loadMenuPromotions = async () => {
-  try {
-    const promos = await getActivePromotionsFromBackend()
-    menuPromotions.value = (promos || []).filter(p => p.showInMenu)
-  } catch {
-    menuPromotions.value = []
-  }
-}
-
 // 显示活动条幅
 const showPromotionBanner = (promotion) => {
   currentPromotion.value = promotion
@@ -442,7 +380,6 @@ const closeAnnouncements = () => {
 // 组件挂载
 onMounted(() => {
   hasNewAnnouncements.value = checkNewAnnouncements()
-  loadMenuPromotions()
 
   // 文档更新提示标识已移除
 })
@@ -454,6 +391,53 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.welight-site-nav {
+  color: #171717;
+  -webkit-font-smoothing: antialiased;
+}
+
+.nav-shell {
+  transition-property: box-shadow;
+  transition-duration: 180ms;
+  transition-timing-function: ease;
+}
+
+.nav-shell:hover {
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.13);
+}
+
+.brand-link,
+.nav-link,
+.nav-download,
+.brand-link:hover .brand-mark {
+  transform: translateY(-1px);
+}
+
+.brand-mark {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  outline: 1px solid rgba(0, 0, 0, 0.08);
+  transition: transform 180ms ease;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 1100px) and (min-width: 1024px) {
+  .nav-links {
+    gap: 1.25rem;
+  }
+
+  .nav-download {
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+  }
+}
+
 /* Mobile Overlay Transitions */
 .mobile-overlay-enter-active,
 .mobile-overlay-leave-active {
@@ -476,4 +460,3 @@ onUnmounted(() => {
   transform: translateX(100%);
 }
 </style>
-

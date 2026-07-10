@@ -13,7 +13,7 @@ export const dodoCheckoutConfig = {
 export function buildDodoCheckoutUrl({ quantity = 1 } = {}) {
   const url = new URL(DODO_CHECKOUT_BASE_URL)
   url.searchParams.set('quantity', String(quantity || 1))
-  url.searchParams.set('price', '26')
+  url.searchParams.set('price', '59')
   url.searchParams.set('redirect_url', DODO_RETURN_URL)
   return url.toString()
 }

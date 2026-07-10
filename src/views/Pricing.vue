@@ -295,7 +295,7 @@
             <AnimatedUnderlineText text="Welight 授权"
               text-className="text-balance text-4xl font-medium tracking-normal text-[#141413] dark:text-[#ffffff]"
               underline-className="text-[#1B365D] dark:text-[#ffffff]" />
-            <MagicText text="26 元立即解锁网页版与桌面端完整编辑体验" container-className="mt-6 justify-center"
+            <MagicText text="59 元立即解锁网页版与桌面端完整编辑体验" container-className="mt-6 justify-center"
               word-className="text-pretty text-lg text-[#666666] dark:text-[#666666]" />
           </div>
 
@@ -313,7 +313,7 @@
                 License
               </p>
               <div class="mt-5 flex items-start justify-center tabular-nums text-[#141413] dark:text-[#ffffff]">
-                <span class="text-[clamp(3.4rem,14vw,8rem)] font-light leading-[0.9] tracking-normal">26 元</span>
+                <span class="text-[clamp(3.4rem,14vw,8rem)] font-light leading-[0.9] tracking-normal">59 元</span>
               </div>
 
               <button @click="handleProductPurchase(primaryPricingProduct)" :disabled="!isServiceCurrentlyAvailable"
@@ -325,7 +325,7 @@
 
               <div
                 class="mx-auto mt-7 max-w-xl space-y-3 text-pretty text-sm leading-7 text-[#666666] dark:text-[#666666] md:text-base">
-                <p>固定价格 <span class="font-semibold text-[#141413] dark:text-[#ffffff]">26 元</span>，最终税费与可用支付方式以支付页面展示为准。
+                <p>固定价格 <span class="font-semibold text-[#141413] dark:text-[#ffffff]">59 元</span>，最终税费与可用支付方式以支付页面展示为准。
                 </p>
                 <p>包含网页版与桌面端完整功能、主题更新、许可证发放与授权验证。</p>
               </div>
@@ -364,7 +364,7 @@
                     https://waer.ltd/wl/
                   </a>
                 </li>
-                <li class="animate-fade-in-up delay-1600">支付由 Dodo Payments 托管处理，固定价格 26 元，最终税费、币种换算与可用支付方式以结账页为准。</li>
+                <li class="animate-fade-in-up delay-1600">支付由 Dodo Payments 托管处理，固定价格 59 元，最终税费、币种换算与可用支付方式以结账页为准。</li>
                 <li class="animate-fade-in-up delay-1700">如需退款请联系支持协助处理，能否退款以支付平台规则、交易时间和订单状态为准。</li>
                 <li class="animate-fade-in-up delay-1700">默认内置的图片云存储服务和 AI 服务一样作为可选服务，您也可以选择配置自己的图床进行使用</li>
               </ul>
@@ -494,9 +494,9 @@ const DODO_LICENSE_PRODUCT = {
   id: 'dodo-welight-license',
   code: 'WELIGHT_DODO_LICENSE',
   name: 'Welight 标准授权',
-  description: '解锁网页版与桌面端完整功能，仅需 26 元，购买后由 Dodo Payments 发放许可证密钥。',
-  price: 26,
-  priceRange: '26 元',
+  description: '解锁网页版与桌面端完整功能，仅需 59 元，购买后由 Dodo Payments 发放许可证密钥。',
+  price: 59,
+  priceRange: '59 元',
   currency: 'CNY',
   permanent: true,
   maxActivations: 2,
@@ -2189,4 +2189,3 @@ function showSuccessToast(message) {
   }
 }
 </style>
-

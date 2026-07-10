@@ -6,23 +6,7 @@
     <main
       class="product-main min-h-screen transition-colors duration-300">
       <!-- 顶部条幅区域（始终固定） -->
-      <div v-if="showGlobalChrome && (!isCliboBannerClosed || !isTopNoticeClosed)" class="sticky top-16 z-40">
-        <!-- Clibo 推广条幅 -->
-        <div v-if="!isCliboBannerClosed"
-          class="flex items-center justify-center py-2">
-          <div
-            class="relative inline-flex items-center gap-1 rounded-full bg-gradient-to-r from-[#1B365D] via-[#2B4A7A] to-[#1B365D] px-4 py-1.5 text-sm text-[#ffffff] dark:from-[#2a2a28] dark:via-[#3a3a38] dark:to-[#2a2a28]">
-            <span>新品宣传 - 一个Mac原生、小巧强大的剪切板管理App - <a href="https://clibo.us" target="_blank" rel="noopener" class="underline underline-offset-2 hover:text-white/80 transition-colors font-semibold">Clibo</a></span>
-            <button type="button"
-              class="ml-1 rounded-full p-0.5 text-white/70 hover:bg-white/10 hover:text-white focus:outline-none shrink-0"
-              aria-label="关闭推广条幅" @click="isCliboBannerClosed = true">
-              <svg viewBox="0 0 24 24" fill="none" class="h-4 w-4" aria-hidden="true">
-                <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </button>
-          </div>
-        </div>
+      <div v-if="!isTopNoticeClosed" class="sticky top-16 z-40">
         <!-- 积分关停通知 -->
         <div v-if="!isTopNoticeClosed"
           class="border-b border-[#e5e5e5] bg-[#1B365D] text-[#ffffff] dark:border-[#44433f] dark:bg-[#30302e]">
@@ -41,8 +25,8 @@
       </div>
       <RouterView />
     </main>
-    <FooterPromotionBar v-if="showFooter" />
-    <Footer v-if="showFooter" />
+    <FooterPromotionBar />
+    <Footer />
 
     <!-- 悬浮赞助按钮 - 只在赞助页面显示 -->
     <FloatingDonationButton v-if="isDonationPage" />
@@ -60,16 +44,13 @@
 <script setup>
 import { RouterView, useRoute } from 'vue-router'
 import { computed, ref, onMounted, onUnmounted, watch } from 'vue'
-import { useThemeStore } from './stores/theme'
 import ModernHeader from './components/ModernHeader.vue'
 import Footer from './components/Footer.vue'
 import FooterPromotionBar from './components/FooterPromotionBar.vue'
 import FloatingDonationButton from './components/FloatingDonationButton.vue'
 import BackToTop from './components/BackToTop.vue'
-import { getActivePromotionsFromBackend } from '@/services/campaignService.js'
 
 const route = useRoute()
-const themeStore = useThemeStore()
 
 const TOP_NOTICE_CLOSED_KEY = 'welight_notice_credits_deprecation'
 
@@ -78,17 +59,11 @@ const isDonationPage = computed(() => {
   return route.name === 'donation' || route.path === '/donation'
 })
 
-const showGlobalChrome = computed(() => route.name !== 'home' && route.path !== '/')
-
-// 文档页不显示 Footer，避免双滚动条
-const showFooter = computed(() => route.name !== 'documentation' && route.path !== '/documentation')
-
 // 懒加载 Spline
 const shouldLoadSpline = ref(false)
 
 const activePromotions = ref([])
 const isTopNoticeClosed = ref(localStorage.getItem(TOP_NOTICE_CLOSED_KEY) === 'true')
-const isCliboBannerClosed = ref(false)
 
 /**
  * 关闭顶部通知（持久化到 localStorage）
@@ -103,18 +78,7 @@ const closeTopNotice = () => {
  * 加载活动列表（用于全局视觉效果开关）
  * @returns {Promise<void>}
  */
-async function loadActivePromotionsForEffects() {
-  try {
-    activePromotions.value = await getActivePromotionsFromBackend()
-  } catch {
-    activePromotions.value = []
-  }
-}
-
 onMounted(() => {
-  // 初始化主题
-  themeStore.initTheme()
-
   // 使用 requestIdleCallback 在浏览器空闲时加载
   if ('requestIdleCallback' in window) {
     requestIdleCallback(
@@ -130,7 +94,6 @@ onMounted(() => {
     }, 2000)
   }
 
-  loadActivePromotionsForEffects()
 })
 
 const isChristmasPromoActive = computed(() => {
@@ -337,4 +300,3 @@ watch(isChristmasPromoActive, (active) => {
   display: block;
 }
 </style>
-

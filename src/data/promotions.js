@@ -33,7 +33,7 @@ const promotions = [
             </div>
             <div class="promo-info-item">
               <h3>许可证限时特惠中</h3>
-              <p>当前支持 <strong>26 元固定价格</strong></p>
+              <p>当前支持 <strong>59 元固定价格</strong></p>
               <span>最终金额以支付页面展示为准</span>
             </div>
           </div>
@@ -54,11 +54,11 @@ const promotions = [
     activityStartDate: '2025-12-24',
     endDate: '2025-12-27',
     showInMenu: true,
-    menuBadge: '26 元',
+    menuBadge: '59 元',
     menuBadgeText: '',
     banner: {
       title: '圣诞节活动 · 许可证固定价格',
-      subtitle: '固定价格 26 元',
+      subtitle: '固定价格 59 元',
       bgColor: '#dc2626',
       bgGradient: 'linear-gradient(90deg, #ef4444 0%, #22c55e 100%)',
       content: `
@@ -66,7 +66,7 @@ const promotions = [
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
               <h3>许可证购买</h3>
-              <p>当前区间 <strong>26 元</strong></p>
+              <p>当前区间 <strong>59 元</strong></p>
               <span>固定价格，简单透明</span>
             </div>
             <div class="promo-info-item">
@@ -96,7 +96,7 @@ const promotions = [
     menuBadgeText: '',
     banner: {
       title: '跨年限时活动 · 新年焕新',
-      subtitle: '许可证支持 26 元固定价格',
+      subtitle: '许可证支持 59 元固定价格',
       bgColor: '#f97316',
       bgGradient: 'linear-gradient(90deg, #60A5FA 0%, #6366F1 50%, #A78BFA 100%)',
       content: `
@@ -104,7 +104,7 @@ const promotions = [
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
               <h3>许可证购买</h3>
-              <p>当前区间 <strong>26 元</strong></p>
+              <p>当前区间 <strong>59 元</strong></p>
               <span>在支付页面选择合适金额</span>
             </div>
             <div class="promo-info-item">
@@ -134,7 +134,7 @@ const promotions = [
     menuBadgeText: '',
     banner: {
       title: '冬至特惠 · 暖冬同行',
-      subtitle: '许可证支持 26 元固定价格',
+      subtitle: '许可证支持 59 元固定价格',
       bgColor: '#3b82f6',
       bgGradient: 'linear-gradient(90deg, #2563EB 0%, #22D3EE 50%, #2DD4BF 100%)',
       content: `
@@ -142,7 +142,7 @@ const promotions = [
           <div class="promo-info-grid-new">
             <div class="promo-info-item">
               <h3>许可证购买</h3>
-              <p>当前区间 <strong>26 元</strong></p>
+              <p>当前区间 <strong>59 元</strong></p>
               <span>最终金额以支付页面展示为准</span>
             </div>
           </div>

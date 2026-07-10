@@ -3,8 +3,15 @@
     <div class="min-h-screen text-gray-800 dark:text-gray-200 relative overflow-hidden"
       style="position: relative; z-index: 1">
       <!-- Hero Section -->
-      <section class="relative pt-24 pb-24">
-        <div class="mx-auto max-w-5xl px-6">
+      <section class="relative z-10 overflow-hidden pt-24 pb-24">
+        <video class="hero-video-background" autoplay muted loop playsinline preload="metadata"
+          aria-hidden="true">
+          <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260520_133010_cb9c806d-bc9d-47f1-ac4c-b1759134ec8b.mp4"
+            type="video/mp4" />
+        </video>
+        <div class="hero-video-overlay" aria-hidden="true"></div>
+
+        <div class="relative z-10 mx-auto max-w-5xl px-6">
           <div class="mx-auto">
             <!-- Animated content group -->
             <div class="space-y-8">
@@ -12,8 +19,8 @@
               <div class="mt-12 lg:mt-20 transition-all duration-[1500ms] ease-out" :class="heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'
                 ">
                 <AnimatedUnderlineText text="好看的排版，从来简约。" :level="1"
-                  text-className="text-5xl font-medium md:text-6xl text-gray-900 dark:text-gray-100 whitespace-nowrap font-longcang"
-                  underline-className="text-gray-900 dark:text-gray-100" />
+                  text-className="hero-title text-5xl font-semibold md:text-6xl text-gray-950 dark:text-gray-100 whitespace-nowrap font-longcang"
+                  underline-className="hero-title text-gray-950 dark:text-gray-100" />
               </div>
 
               <!-- Description -->
@@ -30,7 +37,7 @@
                   ">
                 <!-- macOS button (black pill) -->
                 <button
-                  class="inline-flex items-center px-5 py-2.5 rounded-full bg-black text-white hover:bg-gray-900 transition-colors shadow-soft-lg"
+                  class="hero-cta inline-flex items-center px-5 py-2.5 rounded-full bg-black text-white hover:bg-gray-900 transition-colors shadow-[0_12px_28px_rgba(0,0,0,0.24)] ring-1 ring-black/10"
                   @click="downloadFile('macos-apple')">
                   <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
                     <path
@@ -44,7 +51,7 @@
 
                 <!-- Windows button (white pill) -->
                 <button
-                  class="inline-flex items-center px-5 py-2.5 rounded-full bg-white text-gray-900 border border-gray-200 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 transition-colors shadow-soft"
+                  class="hero-cta inline-flex items-center px-5 py-2.5 rounded-full bg-white/95 text-gray-950 border border-black/15 hover:bg-white dark:bg-gray-800 dark:text-gray-200 dark:border-gray-700 transition-colors shadow-[0_12px_28px_rgba(0,0,0,0.16)]"
                   @click="downloadFile('windows-installer')">
                   <svg class="w-5 h-5 mr-2" viewBox="0 0 24 24" fill="currentColor">
                     <path
@@ -56,33 +63,14 @@
                   </svg>
                 </button>
 
-                <!-- Stats and all versions link -->
-                <div class="flex items-center gap-3 text-sm text-gray-500">
-                  <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA"
-                    target="_blank" class="text-gray-600 hover:text-gray-900 transition-colors flex items-center group">
-                    查看所有版本
-                    <svg class="w-3.5 h-3.5 ml-1 group-hover:translate-x-0.5 transition-transform" fill="none"
-                      stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                </div>
               </div>
 
-              <div v-if="purchaseUsersBaseTarget"
-                class="mt-4 w-full text-center transition-all duration-[1500ms] ease-out"
-                :class="ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'">
-                <p class="text-sm text-gray-600 dark:text-gray-300">
-                  已有 <span class="font-semibold text-gray-900 dark:text-gray-100 text-lg sm:text-xl leading-none">{{
-                    animatedPurchaseUsersDisplay }}</span> 位付费用户选择了 Welight
-                </p>
-              </div>
             </div>
           </div>
         </div>
 
         <!-- Product Preview -->
-        <div class="relative mt-2 px-2 sm:mt-4 md:mt-8 transition-all duration-[1500ms] ease-out" :class="videoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'
+        <div class="relative z-10 mt-2 px-2 sm:mt-4 md:mt-8 transition-all duration-[1500ms] ease-out" :class="videoVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3 blur-[12px]'
           ">
           <img src="/assert/hero.png" alt="Welight 预览"
             class="mx-auto block h-auto w-full max-w-5xl" loading="eager" decoding="async"
@@ -191,16 +179,8 @@
                     class="relative w-full h-full max-w-3xl mx-auto rounded-2xl border-2 border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/40 backdrop-blur-sm p-2 shadow-xl transition-all duration-500 hover:shadow-2xl">
                     <div
                       class="relative h-full rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 bg-gray-100 dark:bg-gray-800">
-                      <picture v-if="themeStore.isDark">
-                        <source srcset="/assert/tjydexp-dark.webp" type="image/webp" />
-                        <img src="/assert/tjydexp-dark.webp" alt="推荐阅读扩展预览" class="w-full h-full object-contain"
-                          loading="lazy" decoding="async" />
-                      </picture>
-                      <picture v-else>
-                        <source srcset="/assert/tjydexp.webp" type="image/webp" />
-                        <img src="/assert/tjydexp.webp" alt="推荐阅读扩展预览" class="w-full h-full object-contain"
-                          loading="lazy" decoding="async" />
-                      </picture>
+                      <img src="/assert/tjydexp.webp" alt="推荐阅读扩展预览" class="w-full h-full object-contain"
+                        loading="lazy" decoding="async" />
                     </div>
                   </div>
                 </div>
@@ -215,16 +195,8 @@
                     class="relative w-full h-full max-w-3xl mx-auto rounded-2xl border-2 border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/40 backdrop-blur-sm p-2 shadow-xl transition-all duration-500 hover:shadow-2xl">
                     <div
                       class="relative h-full rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 bg-gray-100 dark:bg-gray-800">
-                      <picture v-if="themeStore.isDark">
-                        <source srcset="/assert/tjyd-dark.webp" type="image/webp" />
-                        <img src="/assert/tjyd-dark.webp" alt="推荐阅读预览" class="w-full h-full object-contain"
-                          loading="lazy" decoding="async" />
-                      </picture>
-                      <picture v-else>
-                        <source srcset="/assert/tjyd.webp" type="image/webp" />
-                        <img src="/assert/tjyd.webp" alt="推荐阅读预览" class="w-full h-full object-contain" loading="lazy"
-                          decoding="async" />
-                      </picture>
+                      <img src="/assert/tjyd.webp" alt="推荐阅读预览" class="w-full h-full object-contain" loading="lazy"
+                        decoding="async" />
                     </div>
                   </div>
                 </div>
@@ -237,16 +209,8 @@
                 class="relative w-full h-full max-w-3xl mx-auto rounded-2xl border-2 border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-900/40 backdrop-blur-sm p-2 shadow-xl transition-all duration-500 hover:shadow-2xl">
                 <div
                   class="relative h-full rounded-xl overflow-hidden shadow-lg ring-1 ring-gray-200 dark:ring-gray-700 bg-gray-100 dark:bg-gray-800">
-                  <picture v-if="themeStore.isDark">
-                    <source srcset="/assert/fbcg-dark.webp" type="image/webp" />
-                    <img src="/assert/fbcg-dark.webp" alt="发布支持预览" class="w-full h-full object-contain" loading="lazy"
-                      decoding="async" />
-                  </picture>
-                  <picture v-else>
-                    <source srcset="/assert/fbcg.webp" type="image/webp" />
-                    <img src="/assert/fbcg.webp" alt="发布支持预览" class="w-full h-full object-contain" loading="lazy"
-                      decoding="async" />
-                  </picture>
+                  <img src="/assert/fbcg.webp" alt="发布支持预览" class="w-full h-full object-contain" loading="lazy"
+                    decoding="async" />
                 </div>
               </div>
             </div>
@@ -351,6 +315,48 @@
             </div>
           </section>
 
+          <!-- Pricing Section -->
+          <section id="pricing" class="relative scroll-mt-24 py-24 md:py-32 content-auto" aria-labelledby="pricing-title">
+            <div class="mx-auto max-w-5xl">
+              <div class="text-center">
+                <AnimatedUnderlineText text="Welight 授权" :level="2"
+                  text-className="text-3xl md:text-4xl font-bold text-gray-900 font-longcang"
+                  underline-className="text-gray-900" />
+                <MagicText text="一次购买，终身授权"
+                  container-className="mt-6 justify-center"
+                  word-className="text-base md:text-lg text-gray-600" />
+              </div>
+
+              <div class="mt-12 grid overflow-hidden rounded-[2rem] border border-gray-200 bg-white shadow-[0_18px_60px_rgba(0,0,0,0.07)] md:grid-cols-[1.1fr_0.9fr]">
+                <div class="p-8 md:p-12">
+                  <p id="pricing-title" class="text-sm font-semibold uppercase tracking-[0.18em] text-gray-500">License</p>
+                  <div class="mt-5 flex items-baseline gap-2 text-gray-950">
+                    <span class="text-6xl font-semibold tracking-[-0.06em] md:text-7xl">59</span>
+                    <span class="text-xl font-medium text-gray-500">元</span>
+                  </div>
+                  <p class="mt-5 max-w-md text-sm leading-7 text-gray-600 md:text-base">
+                    支持银行卡、Apple Pay、微信等支付方式
+                  </p>
+                  <button type="button" @click="goToCheckout"
+                    class="mt-8 inline-flex min-h-12 items-center justify-center rounded-full bg-gray-950 px-7 text-sm font-semibold text-white shadow-[0_14px_30px_rgba(0,0,0,0.18)] transition-transform duration-200 hover:bg-gray-800 active:scale-[0.96]">
+                    立即购买
+                    <span class="ml-2" aria-hidden="true">↗</span>
+                  </button>
+                </div>
+
+                <div class="border-t border-gray-200 bg-gray-50/70 p-8 md:border-l md:border-t-0 md:p-12">
+                  <p class="text-sm font-semibold text-gray-900">包含内容</p>
+                  <ul class="mt-6 space-y-4 text-sm leading-6 text-gray-600">
+                    <li v-for="item in ['终身更新', '3 台设备激活', '全部主题使用', 'Obsidian 插件支持（开发中）', '自动拥有后续所有新增权益']" :key="item" class="flex items-start gap-3">
+                      <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gray-900" aria-hidden="true"></span>
+                      <span>{{ item }}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
           <!-- Markdown advantages -->
           <div class="mt-32 text-center scroll-animate" style="transition-delay: 1s">
             <div class="max-w-4xl mx-auto">
@@ -400,7 +406,7 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useRoute } from 'vue-router'
-import { getTotalPurchaseUserCount } from '@/services/licenseService.js'
+import { buildDodoCheckoutUrl, storePendingDodoCheckout } from '@/services/dodoPaymentsService.js'
 import { useSEO, seoConfigs } from '@/composables/useSEO'
 import ThemeTestimonials from '@/components/ThemeTestimonials.vue'
 import DisplayCards from '@/components/DisplayCards.vue'
@@ -426,7 +432,6 @@ import {
   Puzzle,
   BarChart
 } from 'lucide-vue-next'
-import { useThemeStore } from '@/stores/theme'
 
 // SEO配置
 useSEO(seoConfigs.home)
@@ -436,25 +441,15 @@ const heroVisible = ref(true)
 const ctaVisible = ref(true)
 const videoVisible = ref(true)
 
-// 主题状态与英雄图资源
-const themeStore = useThemeStore()
+function goToCheckout() {
+  storePendingDodoCheckout({
+    productCode: 'WELIGHT_DODO_LICENSE',
+    productName: 'Welight 标准授权',
+    source: 'home-pricing'
+  })
+  window.location.href = buildDodoCheckoutUrl({ quantity: 1 })
+}
 
-const totalPurchaseUsers = ref(null)
-const purchaseUsersBaseTarget = computed(() => {
-  const num = Number(totalPurchaseUsers.value)
-  if (!Number.isFinite(num) || num <= 0) return 0
-  if (num < 200) return 0
-
-  const int = Math.floor(num)
-  if (int < 10) return int
-  return Math.floor(int / 10) * 10
-})
-
-const animatedPurchaseUsersBase = ref(0)
-const animatedPurchaseUsersDisplay = computed(() => {
-  if (!purchaseUsersBaseTarget.value) return ''
-  return `${(animatedPurchaseUsersBase.value || 0).toLocaleString()}+`
-})
 /** 显示首屏标题淡入 */
 function revealHero() {
   heroVisible.value = true
@@ -761,8 +756,6 @@ onMounted(async () => {
   // 首屏入场动画
 
   try {
-    totalPurchaseUsers.value = await getTotalPurchaseUserCount()
-
     // 初始化动画
     initializeAnimations()
 
@@ -836,6 +829,43 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.hero-video-background,
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-title {
+  text-shadow: 0 2px 18px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.hero-cta {
+  position: relative;
+  z-index: 1;
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
+  transition-property: background-color, box-shadow, transform;
+  transition-duration: 180ms;
+}
+
+.hero-cta:active {
+  transform: scale(0.96);
+}
+
+.hero-video-background {
+  z-index: 0;
+  object-fit: cover;
+  opacity: 0.62;
+}
+
+.hero-video-overlay {
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.16) 48%, rgba(255, 255, 255, 0.48));
+}
+
 /* Hero 卡片堆叠效果样式 */
 .hero-card-stack-section {
   /* 默认值 */
