@@ -96,7 +96,7 @@
               </div>
             </div>
           </div>
-          <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
+          <a href="/download"
             class="nav-download inline-flex h-9 items-center gap-2 rounded-full bg-gray-950 px-4 text-[13px] font-medium text-white transition-transform hover:bg-gray-800 active:scale-[0.96] dark:bg-white dark:text-gray-950 dark:hover:bg-gray-200">
             <DownloadIcon class="w-3.5 h-3.5" />
             下载
@@ -187,7 +187,7 @@
               <div v-if="hasNewAnnouncements" class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
             </button>
 
-            <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
+            <a href="/download"
               @click="closeMobileMenu"
               class="block px-4 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 rounded-xl hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
               <span class="inline-flex items-center gap-2">
@@ -237,7 +237,7 @@
 
           <!-- Mobile Action Buttons -->
           <div class="mt-6 space-y-3 border-t border-gray-200 pt-6">
-            <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA" target="_blank"
+            <a href="/download"
               @click="closeMobileMenu"
               class="block w-full text-center px-4 py-3 text-sm font-medium border border-gray-300 bg-white text-gray-900 rounded-xl transition-colors hover:bg-gray-50">
               前往下载

@@ -511,11 +511,11 @@ const downloadFile = async (platform) => {
   // 实际下载链接映射
   const downloadUrls = {
     // Windows
-    'windows-installer': 'https://waer.ltd/downloads/windows/Welight_4.1.6_x64-setup.exe',
-    'windows-msi': 'https://waer.ltd/downloads/windows/Welight_4.1.6_x64_en-US.msi',
+    'windows-installer': 'https://releases.waer.ltd/Welight_5.0.2_x64-setup.exe?v=5.0.2',
+    'windows-msi': 'https://releases.waer.ltd/Welight_5.0.2_x64-setup.exe?v=5.0.2',
     // macOS 下载链接
-    'macos-apple': 'https://waer.ltd/downloads/mac/Welight_4.1.6_aarch64.dmg',
-    'macos-intel': 'https://waer.ltd/downloads/mac/Welight_4.1.6_x64.dmg'
+    'macos-apple': 'https://releases.waer.ltd/Welight_5.0.2_aarch64.dmg?v=5.0.2',
+    'macos-intel': 'https://releases.waer.ltd/Welight_5.0.2_aarch64.dmg?v=5.0.2'
   }
 
   const downloadUrl = downloadUrls[platform]

@@ -450,6 +450,18 @@ function goToCheckout() {
   window.location.href = buildDodoCheckoutUrl({ quantity: 1 })
 }
 
+function downloadFile(platform) {
+  const downloadUrls = {
+    'macos-apple': 'https://releases.waer.ltd/Welight_5.0.2_aarch64.dmg?v=5.0.2',
+    'windows-installer': 'https://releases.waer.ltd/Welight_5.0.2_x64-setup.exe?v=5.0.2'
+  }
+
+  const downloadUrl = downloadUrls[platform]
+  if (downloadUrl) {
+    window.location.href = downloadUrl
+  }
+}
+
 /** 显示首屏标题淡入 */
 function revealHero() {
   heroVisible.value = true

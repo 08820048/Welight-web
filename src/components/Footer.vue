@@ -15,9 +15,7 @@
         <p>公众号创作者的智能排版与 AI 创作工作台。</p>
         <a
           class="footer-download"
-          href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/download"
         >
           下载 Welight
           <span aria-hidden="true">↗</span>

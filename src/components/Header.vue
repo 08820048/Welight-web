@@ -132,7 +132,7 @@
         <!-- 右侧按钮组 -->
         <div class="flex items-center gap-3">
           <!-- 前往下载按钮 -->
-          <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA&versionCode=4001005"
+          <a href="/download"
             target="_blank" class="hidden md:block download-button" title="前往下载">
             <span class="button__text">前往下载</span>
             <span class="button__icon">
@@ -204,7 +204,7 @@
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             购买
           </a>
-          <a href="https://download.upgrade.toolsetlink.com/download?appKey=2fO2OcSAKXFQ9Gf7F3IooA&versionCode=4001005"
+          <a href="/download"
             target="_blank" @click="closeMobileMenu"
             class="block px-4 py-2 text-slate-700 hover:bg-gray-50 rounded-lg transition-colors">
             下载
